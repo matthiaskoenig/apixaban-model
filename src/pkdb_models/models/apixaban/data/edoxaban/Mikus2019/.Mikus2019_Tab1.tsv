@@ -1,0 +1,19 @@
+study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cilow	cihigh	cv	median	min	max	sd	se	unit	comments
+Mikus2019	all	18.0	API25, RIV25, EDO50	cmax	apixaban	plasma	HPLC MS/MS	24.0	hr	827.0	751.0	911.0	NA	NA	NA	NA	173.169007637522	NA	pg/ml	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50	tmax	apixaban	plasma	HPLC MS/MS	NA	NA	1.13	0.75	2.0	NA	NA	NA	NA	1.35288287216814	NA	hr	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	6386.0	5772.0	7065.0	NA	NA	NA	NA	1399.42204297072	NA	pg*hr/ml	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50	thalf	apixaban	plasma	HPLC MS/MS	NA	NA	6.8	5.59	8.27	NA	NA	NA	NA	2.90058087792849	NA	hr	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50	vd	apixaban	plasma	HPLC MS/MS	NA	NA	38.4	31.3	47.1	NA	NA	NA	NA	17.1004395042053	NA	l	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50	oral clearance	apixaban	plasma	HPLC MS/MS	NA	NA	65.3	59.0	72.2	NA	NA	NA	NA	14.2864431300956	NA	ml/hr	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50	recovery	apixaban	urine	HPLC MS/MS	24.0	hr	24.3	21.1	27.9	NA	NA	NA	NA	7.35968282459467	NA	percent	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50	clearance_renal	apixaban	urine	HPLC MS/MS	24.0	hr	15.8	13.7	18.4	NA	NA	NA	NA	5.0868395993522	NA	ml/min	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50	clearance	apixaban	urine	HPLC MS/MS	24.0	hr	48.3	42.1	55.5	NA	NA	NA	NA	14.5029043896425	NA	ml/min	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50, KET	cmax	apixaban	plasma	HPLC MS/MS	24.0	hr	1389.0	1255.0	1537.0	NA	NA	NA	NA	305.210375961132	NA	pg/ml	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50, KET	tmax	apixaban	plasma	HPLC MS/MS	NA	NA	1.0	0.5	2.5	NA	NA	NA	NA	2.16461259546902	NA	hr	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50, KET	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	12.129	10756.0	13678.0	NA	NA	NA	NA	3162.49900198024	NA	pg*hr/ml	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50, KET	thalf	apixaban	plasma	HPLC MS/MS	NA	NA	7.78	6.77	8.96	NA	NA	NA	NA	2.37025079203858	NA	hr	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50, KET	vd	apixaban	plasma	HPLC MS/MS	NA	NA	23.2	20.4	26.3	NA	NA	NA	NA	6.38560715663362	NA	l	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50, KET	oral clearance	apixaban	plasma	HPLC MS/MS	NA	NA	34.4	30.5	38.7	NA	NA	NA	NA	8.874911641423	NA	ml/hr	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50, KET	recovery	apixaban	urine	HPLC MS/MS	24.0	hr	37.0	34.1	40.2	NA	NA	NA	NA	6.60206841618052	NA	percent	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50, KET	clearance_renal	apixaban	urine	HPLC MS/MS	24.0	hr	12.7	11.2	14.4	NA	NA	NA	NA	3.46338015275044	NA	ml/min	geometric mean
+Mikus2019	all	18.0	API25, RIV25, EDO50, KET	clearance	apixaban	urine	HPLC MS/MS	24.0	hr	21.3	18.3	24.7	NA	NA	NA	NA	6.92676030550087	NA	ml/min	geometric mean

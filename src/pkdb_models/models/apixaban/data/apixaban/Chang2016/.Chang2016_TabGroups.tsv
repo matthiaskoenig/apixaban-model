@@ -1,0 +1,54 @@
+study	name	group_count	parent	measurement_type	count	substance	choice	mean	median	sd	se	min	max	unit	comments
+Chang2016	all	32.0	NA	species	32.0	NA	homo sapiens	NA	NA	NA	NA	NA	NA	NA	NA
+Chang2016	all	32.0	NA	overnight fast	32.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	10h fast
+Chang2016	all	32.0	NA	healthy	8.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	NA
+Chang2016	all	32.0	NA	healthy	24.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Chang2016	all	32.0	NA	sex	18.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Chang2016	all	32.0	NA	sex	14.0	NA	F	NA	NA	NA	NA	NA	NA	NA	NA
+Chang2016	normal	8.0	all	healthy	8.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	Normal Renal Function
+Chang2016	normal	8.0	all	sex	3.0	NA	M	NA	NA	NA	NA	NA	NA	NA	Normal Renal Function
+Chang2016	normal	8.0	all	sex	5.0	NA	F	NA	NA	NA	NA	NA	NA	NA	Normal Renal Function
+Chang2016	normal	8.0	all	ethnicity	8.0	NA	caucasian	NA	NA	NA	NA	NA	NA	NA	Normal Renal Function
+Chang2016	normal	8.0	all	age 	8.0	NA	NA	59.0	NA	2.0	NA	56.0	62.0	yr	Normal Renal Function
+Chang2016	normal	8.0	all	weight	8.0	NA	NA	83.3	NA	9.7	NA	66.2	92.8	kg	Normal Renal Function
+Chang2016	normal	8.0	all	bmi	8.0	NA	NA	29.0	NA	3.8	NA	24.0	35.0	kg/m^2	Normal Renal Function
+Chang2016	normal	8.0	all	clearance	8.0	creatinine	NA	106.7	NA	14.3	NA	88.2	126.7	ml/min	Normal Renal Function
+Chang2016	normal	8.0	all	gfr	8.0	NA	NA	98.9	NA	11.2	NA	80.2	112.0	ml/min	Normal Renal Function
+Chang2016	normal	8.0	all	gfr	8.0	NA	NA	80.7	NA	5.6	NA	72.3	89.3	ml/min/(1.73*m^2)	Normal Renal Function
+Chang2016	normal	8.0	all	clearance	8.0	iohexol	NA	112.5	NA	17.6	NA	94.0	143.7	ml/min	Normal Renal Function
+Chang2016	mild	10.0	all	healthy	10.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Chang2016	mild	10.0	all	sex	4.0	NA	M	NA	NA	NA	NA	NA	NA	NA	Mild Renal Impairment 
+Chang2016	mild	10.0	all	sex	6.0	NA	F	NA	NA	NA	NA	NA	NA	NA	Mild Renal Impairment 
+Chang2016	mild	10.0	all	ethnicity	6.0	NA	caucasian	NA	NA	NA	NA	NA	NA	NA	Mild Renal Impairment 
+Chang2016	mild	10.0	all	ethnicity	4.0	NA	black 	NA	NA	NA	NA	NA	NA	NA	Mild Renal Impairment 
+Chang2016	mild	10.0	all	age 	10.0	NA	NA	61.0	NA	13.0	NA	35.0	76.0	yr	Mild Renal Impairment 
+Chang2016	mild	10.0	all	weight	10.0	NA	NA	79.3	NA	16.3	NA	60.0	112.4	kg	Mild Renal Impairment 
+Chang2016	mild	10.0	all	bmi	10.0	NA	NA	29.4	NA	4.4	NA	23.0	37.0	kg/m^2	Mild Renal Impairment 
+Chang2016	mild	10.0	all	clearance	10.0	creatinine	NA	58.8	NA	8.1	NA	50.6	76.0	ml/min	Mild Renal Impairment 
+Chang2016	mild	10.0	all	gfr	10.0	NA	NA	53.7	NA	9.8	NA	40.0	62.9	ml/min	Mild Renal Impairment 
+Chang2016	mild	10.0	all	gfr	10.0	NA	NA	49.3	NA	12.8	NA	29.4	70.2	ml/min/(1.73*m^2)	Mild Renal Impairment 
+Chang2016	mild	10.0	all	clearance	10.0	iohexol	NA	50.5	NA	10.4	NA	40.6	69.0	ml/min	Mild Renal Impairment 
+Chang2016	moderate	7.0	all	healthy	7.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Chang2016	moderate	7.0	all	sex	6.0	NA	M	NA	NA	NA	NA	NA	NA	NA	Moderate Renal Impairment
+Chang2016	moderate	7.0	all	sex	1.0	NA	F	NA	NA	NA	NA	NA	NA	NA	Moderate Renal Impairment
+Chang2016	moderate	7.0	all	ethnicity	5.0	NA	caucasian	NA	NA	NA	NA	NA	NA	NA	Moderate Renal Impairment
+Chang2016	moderate	7.0	all	ethnicity	2.0	NA	black 	NA	NA	NA	NA	NA	NA	NA	Moderate Renal Impairment
+Chang2016	moderate	7.0	all	age 	7.0	NA	NA	68.0	NA	11.0	NA	51.0	85.0	yr	Moderate Renal Impairment
+Chang2016	moderate	7.0	all	weight	7.0	NA	NA	74.5	NA	14.7	NA	58.9	103.7	kg	Moderate Renal Impairment
+Chang2016	moderate	7.0	all	bmi	7.0	NA	NA	26.6	NA	2.7	NA	21.0	31.0	kg/m^2	Moderate Renal Impairment
+Chang2016	moderate	7.0	all	clearance	7.0	creatinine	NA	38.0	NA	6.4	NA	31.3	46.4	ml/min	Moderate Renal Impairment
+Chang2016	moderate	7.0	all	gfr	7.0	NA	NA	41.1	NA	11.0	NA	23.8	56.5	ml/min	Moderate Renal Impairment
+Chang2016	moderate	7.0	all	gfr	7.0	NA	NA	44.7	NA	19.3	NA	18.1	74.0	ml/min/(1.73*m^2)	Moderate Renal Impairment
+Chang2016	moderate	7.0	all	clearance	7.0	iohexol	NA	42.5	NA	22.7	NA	14.0	81.0	ml/min	Moderate Renal Impairment
+Chang2016	severe	7.0	all	healthy	7.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Chang2016	severe	7.0	all	sex	5.0	NA	M	NA	NA	NA	NA	NA	NA	NA	Severe Renal Impairment
+Chang2016	severe	7.0	all	sex	2.0	NA	F	NA	NA	NA	NA	NA	NA	NA	Severe Renal Impairment
+Chang2016	severe	7.0	all	ethnicity	5.0	NA	caucasian	NA	NA	NA	NA	NA	NA	NA	Severe Renal Impairment
+Chang2016	severe	7.0	all	ethnicity	2.0	NA	black 	NA	NA	NA	NA	NA	NA	NA	Severe Renal Impairment
+Chang2016	severe	7.0	all	age 	7.0	NA	NA	65.0	NA	7.0	NA	53.0	74.0	yr	Severe Renal Impairment
+Chang2016	severe	7.0	all	weight	7.0	NA	NA	84.1	NA	23.9	NA	59.0	132.3	kg	Severe Renal Impairment
+Chang2016	severe	7.0	all	bmi	7.0	NA	NA	29.6	NA	7.5	NA	25.0	46.0	kg/m^2	Severe Renal Impairment
+Chang2016	severe	7.0	all	clearance	7.0	creatinine	NA	24.5	NA	4.1	NA	15.7	28.0	ml/min	Severe Renal Impairment
+Chang2016	severe	7.0	all	gfr	7.0	NA	NA	23.7	NA	5.0	NA	15.1	28.8	ml/min	Cockroft-Gault
+Chang2016	severe	7.0	all	gfr	7.0	NA	NA	19.2	NA	6.7	NA	11.8	31.4	ml/min/(1.73*m^2)	MDRD
+Chang2016	severe	7.0	all	clearance	7.0	iohexol	NA	19.1	NA	4.5	NA	13.8	24.2	ml/min	Severe Renal Impairment

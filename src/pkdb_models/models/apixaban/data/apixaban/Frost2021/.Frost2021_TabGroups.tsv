@@ -1,0 +1,36 @@
+study	name	group_count	parent	measurement_type	count	substance	choice	mean	median	sd	se	min	max	unit	comments
+Frost2021	all	40.0	NA	species	40.0	NA	homo sapiens	NA	NA	NA	NA	NA	NA	NA	NA
+Frost2021	all	40.0	NA	healthy	40.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	NA
+Frost2021	all	40.0	NA	sex	40.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Frost2021	iv_placebo	10.0	all	age	10.0	NA	NA	30.0	NA	8.0	2.5298221281347035	19.0	44.0	year	NA
+Frost2021	iv_placebo	10.0	all	sex	10.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Frost2021	iv_placebo	10.0	all	weight	10.0	NA	NA	78.7	NA	11.2	3.5417509793885844	59.0	94.9	kg	NA
+Frost2021	iv_placebo	10.0	all	bmi	10.0	NA	NA	25.0	NA	3.2	1.0119288512538813	20.3	29.6	kg/m^2	NA
+Frost2021	iv_placebo	10.0	all	inr	10.0	NA	NA	1.11	NA	0.09	0.02846049894151541	NA	NA	dimensionless	NA
+Frost2021	apix	30.0	all	species	30.0	NA	homo sapiens	NA	NA	NA	NA	NA	NA	NA	NA
+Frost2021	group1	6.0	apix	age	6.0	NA	NA	28.0	NA	5.0	2.041241452319315	23.0	36.0	year	NA
+Frost2021	group1	6.0	apix	sex	6.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Frost2021	group1	6.0	apix	weight	6.0	NA	NA	75.8	NA	109.0	44.49906366056107	60.0	89.7	kg	NA
+Frost2021	group1	6.0	apix	bmi	6.0	NA	NA	24.9	NA	3.6	1.4696938456699071	19.8	28.8	kg/m^2	NA
+Frost2021	group1	6.0	all	inr	6.0	NA	NA	1.12	NA	0.04	0.016329931618554522	NA	NA	dimensionless	NA
+Frost2021	group2	6.0	apix	age	6.0	NA	NA	26.0	NA	8.0	3.2659863237109046	18.0	39.0	year	NA
+Frost2021	group2	6.0	apix	sex	6.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Frost2021	group2	6.0	apix	weight	6.0	NA	NA	74.8	NA	5.0	2.041241452319315	65.3	79.0	kg	NA
+Frost2021	group2	6.0	apix	bmi	6.0	NA	NA	24.2	NA	1.9	0.7756717518813397	21.8	26.3	kg/m^2	NA
+Frost2021	group2	6.0	apix	inr	6.0	NA	NA	1.1	NA	0.0	0.0	NA	NA	dimensionless	NA
+Frost2021	group3	6.0	apix	age	6.0	NA	NA	29.0	NA	5.0	2.041241452319315	22.0	36.0	year	NA
+Frost2021	group3	6.0	apix	sex	6.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Frost2021	group3	6.0	apix	bmi	6.0	NA	NA	25.0	NA	2.5	1.0206207261596576	20.4	28.1	kg/m^2	NA
+Frost2021	group3	6.0	apix	inr	6.0	NA	NA	1.13	NA	0.05	0.020412414523193152	NA	NA	dimensionless	NA
+Frost2021	group4	6.0	apix	age	6.0	NA	NA	34.0	NA	11.0	4.4907311951024935	20.0	43.0	year	NA
+Frost2021	group4	6.0	apix	sex	6.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Frost2021	group4	6.0	apix	bmi	6.0	NA	NA	26.7	NA	1.8	0.7348469228349536	24.6	29.2	kg/m^2	NA
+Frost2021	group4	6.0	apix	inr	6.0	NA	NA	1.08	NA	0.04	0.016329931618554522	NA	NA	dimensionless	NA
+Frost2021	group5	6.0	apix	age	6.0	NA	NA	29.0	NA	4.0	1.6329931618554523	26.0	37.0	year	NA
+Frost2021	group5	6.0	apix	sex	6.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Frost2021	group5	6.0	apix	bmi	6.0	NA	NA	26.1	NA	1.9	0.7756717518813397	23.7	29.2	kg/m^2	NA
+Frost2021	group5	6.0	apix	inr	6.0	NA	NA	1.08	NA	0.04	0.016329931618554522	NA	NA	dimensionless	NA
+Frost2021	group_po	3.0	group3	fasting	3.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	n of participants: The participated in po study group3 included 6 people, 1 dropped out before PO study. So, in reality 3 people recieved apixaban, 2 - placebo in PO study
+Frost2021	group_po	3.0	group3	inr	3.0	NA	NA	1.14	NA	0.05	0.02886751345948129	NA	NA	dimensionless	NA
+Frost2021	po_placebo	2.0	group3	inr	2.0	NA	NA	1.3	NA	0.42	0.2969848480983499	NA	NA	dimensionless	NA
+Frost2021	placebo	12.0	all	species	12.0	NA	homo sapiens	NA	NA	NA	NA	NA	NA	NA	NA

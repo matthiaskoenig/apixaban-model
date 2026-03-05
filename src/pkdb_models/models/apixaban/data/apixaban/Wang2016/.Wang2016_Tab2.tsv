@@ -1,0 +1,22 @@
+study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cv	sd	se	median	min	max	unit	comments
+Wang2016	healthy	8.0	API5	cmax	apixaban	plasma	LC MS/MS	NA	NA	126.0	29.0	36.54	NA	NA	NA	NA	ng/ml	geometric mean
+Wang2016	healthy	8.0	API5	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	1265.0	30.0	379.5	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Wang2016	healthy	8.0	API5	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	2.0	1.0	4.0	hr	NA
+Wang2016	healthy	8.0	API5	thalf	apixaban	plasma	LC MS/MS	NA	NA	20.0	NA	14.45	NA	NA	NA	NA	hr	NA
+Wang2016	healthy	8.0	API5	oral clearance	apixaban	plasma	LC MS/MS	NA	NA	65.9	33.0	21.747	NA	NA	NA	NA	ml/min	geometric mean
+Wang2016	healthy	8.0	API5	 clearance_renal	apixaban	urine	LC MS/MS	NA	NA	11.3	44.0	4.972	NA	NA	NA	NA	ml/min	geometric mean
+Wang2016	healthy	8.0	API5	fraction_unbound	apixaban	plasma	LC MS/MS	NA	NA	6.8	NA	0.71	NA	NA	NA	NA	percent	NA
+Wang2016	esrd	8.0	API5, DIALYSIS_POST	cmax	apixaban	plasma	LC MS/MS	NA	NA	98.9	29.0	28.681	NA	NA	NA	NA	ng/ml	geometric mean
+Wang2016	esrd	8.0	API5, DIALYSIS_POST	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	1474.0	44.0	648.56	NA	NA	NA	NA	ng/ml*hr	period 1, geometric mean
+Wang2016	esrd	8.0	API5, DIALYSIS_POST	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	2.0	1.0	6.0	hr	NA
+Wang2016	esrd	8.0	API5, DIALYSIS_POST	thalf	apixaban	plasma	LC MS/MS	NA	NA	12.5	NA	3.14	NA	NA	NA	NA	hr	NA
+Wang2016	esrd	8.0	API5, DIALYSIS_POST	oral clearance	apixaban	plasma	LC MS/MS	NA	NA	56.6	24.0	13.584	NA	NA	NA	NA	ml/min	geometric mean
+Wang2016	esrd	8.0	API5, DIALYSIS_POST	 clearance_renal	apixaban	plasma	LC MS/MS	NA	NA	0.02	70.0	0.014	NA	NA	NA	NA	ml/min	geometric mean, clearance_renal n=5 for urine parameters
+Wang2016	esrd	5.0	API5, DIALYSIS_POST	fraction_unbound	apixaban	plasma	LC MS/MS	NA	NA	5.9	NA	0.97	NA	NA	NA	NA	percent	NA
+Wang2016	esrd	8.0	API5, DIALYSIS_PRE	cmax	apixaban	plasma	LC MS/MS	NA	NA	114.0	31.0	35.34	NA	NA	NA	NA	ng/ml	geometric mean
+Wang2016	esrd	8.0	API5, DIALYSIS_PRE	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	1717.0	24.0	412.08	NA	NA	NA	NA	ng/ml*hr	period 2, geometric mean
+Wang2016	esrd	8.0	API5, DIALYSIS_PRE	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	2.0	2.0	6.0	hr	NA
+Wang2016	esrd	8.0	API5, DIALYSIS_PRE	thalf	apixaban	plasma	LC MS/MS	NA	NA	12.7	NA	3.4	NA	NA	NA	NA	hr	NA
+Wang2016	esrd	8.0	API5, DIALYSIS_PRE	oral clearance	apixaban	plasma	LC MS/MS	NA	NA	48.5	22.0	10.67	NA	NA	NA	NA	ml/min	NA
+Wang2016	esrd	5.0	API5, DIALYSIS_PRE	 clearance_renal	apixaban	plasma	LC MS/MS	NA	NA	0.02	80.0	0.016	NA	NA	NA	NA	ml/min	clearence_renal n=5 for urine parameters
+Wang2016	esrd	8.0	API5, DIALYSIS_PRE	fraction_unbound	apixaban	plasma	LC MS/MS	NA	NA	8.5	NA	1.2	NA	NA	NA	NA	percent	NA

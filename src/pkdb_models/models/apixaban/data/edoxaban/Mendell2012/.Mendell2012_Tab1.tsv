@@ -1,0 +1,17 @@
+study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cv	median	min	max	sd	se	unit	comments
+Mendell2012	all	23.0	ED60	auc_end	edoxaban	plasma	LC MS/MS	24.0	hr	1931.1	19.0	NA	NA	NA	366.909	NA	ng*hr/ml	geometric mean
+Mendell2012	all	23.0	ED60	cmax	edoxaban	plasma	LC MS/MS	24.0	hr	238.43	33.0	NA	NA	NA	78.6819	NA	ng/ml	geometric mean
+Mendell2012	all	23.0	ED60	tmax	edoxaban	plasma	LC MS/MS	NA	NA	NA	NA	1.0	0.983	2.0	NA	NA	hr	NA
+Mendell2012	all	23.0	ED60	thalf	edoxaban	plasma	LC MS/MS	NA	NA	9.83	NA	NA	NA	NA	3.98	NA	hr	NA
+Mendell2012	all	23.0	ED60	oral clearance	edoxaban	plasma	LC MS/MS	24.0	hr	31.6	6.2	NA	NA	NA	1.9592	NA	L/hr	geometric mean
+Mendell2012	all	23.0	ED60	cumulative amount	edoxaban	urine	LC MS/MS	24.0	hr	20.1	NA	NA	NA	NA	3.86	NA	mg	NA
+Mendell2012	all	23.0	ED60	recovery	edoxaban	urine	LC MS/MS	24.0	hr	33.49	NA	NA	NA	NA	6.43	NA	percent	NA
+Mendell2012	all	23.0	ED60	 clearance_renal	edoxaban	urine	LC MS/MS	24.0	hr	10.39	NA	NA	NA	NA	1.81	NA	l/hr	NA
+Mendell2012	all	23.0	ED60, DIG	auc_end	edoxaban	plasma	LC MS/MS	24.0	hr	2113.7	23.6	NA	NA	NA	498.8332	NA	ng*hr/ml	geometric mean
+Mendell2012	all	23.0	ED60, DIG	cmax	edoxaban	plasma	LC MS/MS	24.0	hr	275.67	42.5	NA	NA	NA	117.15975	NA	ng/ml	geometric mean
+Mendell2012	all	23.0	ED60, DIG	tmax	edoxaban	plasma	LC MS/MS	NA	NA	NA	NA	1.5	0.983	2.0	NA	NA	hr	NA
+Mendell2012	all	23.0	ED60, DIG	thalf	edoxaban	plasma	LC MS/MS	NA	NA	8.35	NA	NA	NA	NA	4.23	NA	hr	NA
+Mendell2012	all	23.0	ED60, DIG	oral clearance	edoxaban	plasma	LC MS/MS	24.0	hr	29.2	7.2	NA	NA	NA	2.1024	NA	L/hr	geometric mean
+Mendell2012	all	23.0	ED60, DIG	cumulative amount	edoxaban	urine	LC MS/MS	24.0	hr	19.58	NA	NA	NA	NA	3.7	NA	mg	NA
+Mendell2012	all	23.0	ED60, DIG	recovery	edoxaban	urine	LC MS/MS	24.0	hr	32.63	NA	NA	NA	NA	6.17	NA	percent	NA
+Mendell2012	all	23.0	ED60, DIG	 clearance_renal	edoxaban	urine	LC MS/MS	24.0	hr	9.25	NA	NA	NA	NA	1.76	NA	l/hr	NA

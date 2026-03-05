@@ -1,0 +1,32 @@
+study	name	group_count	parent	measurement_type	count	substance	choice	mean	median	sd	se	min	max	unit	comments
+Mendell2011	all	32.0	NA	species	32.0	NA	homo sapiens	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	all	32.0	NA	healthy	32.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	all	32.0	NA	ethnicity	16.0	NA	caucasian	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	all	32.0	NA	ethnicity	16.0	NA	japanese	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	all	32.0	NA	medication	32.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	all	32.0	NA	sex	32.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	all	32.0	NA	overnight fast	16.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	japanFed	16.0	all	overnight fast	16.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	japanFed	16.0	all	ethnicity	16.0	NA	japanese	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	japanFed	16.0	all	age	16.0	NA	NA	25.0	NA	4.0	NA	NA	NA	yr	NA
+Mendell2011	japanFed	16.0	all	weight	16.0	NA	NA	67.2	NA	7.9	NA	NA	NA	kg	NA
+Mendell2011	japanFed	16.0	all	height	16.0	NA	NA	172.0	NA	4.8	NA	NA	NA	cm	NA
+Mendell2011	japanFed	16.0	all	bmi	16.0	NA	NA	22.7	NA	2.5	NA	NA	NA	kg/m^2	NA
+Mendell2011	caucasFed	16.0	all	overnight fast	16.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	caucasFed	16.0	all	ethnicity	16.0	NA	caucasian	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	caucasFed	16.0	all	age	16.0	NA	NA	31.0	NA	9.9	NA	NA	NA	yr	NA
+Mendell2011	caucasFed	16.0	all	weight	16.0	NA	NA	75.6	NA	7.2	NA	NA	NA	kg	NA
+Mendell2011	caucasFed	16.0	all	height	16.0	NA	NA	179.0	NA	6.4	NA	NA	NA	cm	NA
+Mendell2011	caucasFed	16.0	all	bmi	16.0	NA	NA	23.6	NA	2.1	NA	NA	NA	kg/m^2	NA
+Mendell2011	japanFast	16.0	all	overnight fast	16.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	japanFast	16.0	all	ethnicity	16.0	NA	japanese	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	japanFast	16.0	all	age	16.0	NA	NA	25.0	NA	4.0	NA	NA	NA	yr	NA
+Mendell2011	japanFast	16.0	all	weight	16.0	NA	NA	67.2	NA	7.9	NA	NA	NA	kg	NA
+Mendell2011	japanFast	16.0	all	height	16.0	NA	NA	172.0	NA	4.8	NA	NA	NA	cm	NA
+Mendell2011	japanFast	16.0	all	bmi	16.0	NA	NA	22.7	NA	2.5	NA	NA	NA	kg/m^2	NA
+Mendell2011	caucasFast	16.0	all	overnight fast	16.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	caucasFast	16.0	all	ethnicity	16.0	NA	caucasian	NA	NA	NA	NA	NA	NA	NA	NA
+Mendell2011	caucasFast	16.0	all	age	16.0	NA	NA	31.0	NA	9.9	NA	NA	NA	yr	NA
+Mendell2011	caucasFast	16.0	all	weight	16.0	NA	NA	75.6	NA	7.2	NA	NA	NA	kg	NA
+Mendell2011	caucasFast	16.0	all	height	16.0	NA	NA	179.0	NA	6.4	NA	NA	NA	cm	NA
+Mendell2011	caucasFast	16.0	all	bmi	16.0	NA	NA	23.6	NA	2.1	NA	NA	NA	kg/m^2	NA

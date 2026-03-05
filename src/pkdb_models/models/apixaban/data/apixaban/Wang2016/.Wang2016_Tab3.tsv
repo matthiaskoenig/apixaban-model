@@ -1,0 +1,10 @@
+study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	sd	se	median	min	max	cv	unit	comments
+Wang2016	healthy	8.0	API5	inr	NA	plasma	coagulation assay	NA	NA	0.97	0.09	0.0318198051533946	NA	NA	NA	NA	dimensionless	NA
+Wang2016	healthy	8.0	API5	prothrombin time	NA	plasma	coagulation assay	NA	NA	11.5	1.2	0.424264068711928	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	8.0	API5	aPTT	NA	plasma	coagulation assay	NA	NA	34.3	4.8	1.69705627484771	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	8.0	DIALYSIS_POST	inr	NA	plasma	coagulation assay	NA	NA	1.07	0.13	0.0459619407771256	NA	NA	NA	NA	dimensionless	period 1
+Wang2016	esrd	8.0	DIALYSIS_POST	prothrombin time	NA	plasma	coagulation assay	NA	NA	12.8	1.5	0.530330085889911	NA	NA	NA	NA	seconds	period 1
+Wang2016	esrd	8.0	DIALYSIS_POST	aPTT	NA	plasma	coagulation assay	NA	NA	36.4	6.0	2.12132034355964	NA	NA	NA	NA	seconds	period 1
+Wang2016	esrd	8.0	DIALYSIS_PRE	inr	NA	plasma	coagulation assay	NA	NA	1.09	0.15	0.0530330085889911	NA	NA	NA	NA	dimensionless	period 2
+Wang2016	esrd	8.0	DIALYSIS_PRE	prothrombin time	NA	plasma	coagulation assay	NA	NA	13.0	1.8	0.636396103067893	NA	NA	NA	NA	seconds	period 2
+Wang2016	esrd	8.0	DIALYSIS_PRE	aPTT	NA	plasma	coagulation assay	NA	NA	31.5	6.7	2.36880771697493	NA	NA	NA	NA	seconds	period 2

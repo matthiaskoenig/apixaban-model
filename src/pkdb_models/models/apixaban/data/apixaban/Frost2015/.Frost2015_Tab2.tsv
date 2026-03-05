@@ -1,0 +1,19 @@
+study	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	mean	geomean	median	min	max	sd	se	cv	unit	comments
+Frost2015	young	40.0	API_20	cmax	apixaban	plasma	HPLC MS/MS	cmax_young	NA	NA	NA	315.4	NA	NA	NA	107.236	NA	34.0	ng/ml	NA
+Frost2015	young	40.0	API_20	auc_inf	apixaban	plasma	HPLC MS/MS	auc_inf_young	NA	NA	NA	3424.0	NA	NA	NA	1095.68	NA	32.0	ng/ml*hr	one young female subject was excluded from the summary statistics for auc_inf and thalf
+Frost2015	young	40.0	API_20	auc_end	apixaban	plasma	HPLC MS/MS	auc_end_young	96.0	hr	NA	3360.0	NA	NA	NA	1075.2	NA	32.0	ng/ml*hr	NA
+Frost2015	young	40.0	API_20	tmax	apixaban	plasma	HPLC MS/MS	tmax_young	NA	NA	NA	NA	3.0	1.0	4.0	NA	NA	NA	hr	NA
+Frost2015	young	40.0	API_20	thalf	apixaban	plasma	HPLC MS/MS	thalf_young	NA	NA	11.98	NA	NA	NA	NA	5.15	NA	NA	hr	one young female subject was excluded from the summary statistics for auc_inf and thalf
+Frost2015	young	40.0	API_20	clearance_renal	apixaban	plasma	HPLC MS/MS	clearance_renal_young	NA	NA	0.63	NA	NA	NA	NA	0.33	NA	NA	l/hr	NA
+Frost2015	young	40.0	API_20	clearance	apixaban	plasma	HPLC MS/MS	clearance_young	NA	NA	6.1	NA	NA	NA	NA	1.81	NA	NA	l/hr	NA
+Frost2015	young	40.0	API_20	vd_ss	apixaban	plasma	HPLC MS/MS	vd_ss_young	NA	NA	85.2	NA	NA	NA	NA	28.2	NA	NA	l	NA
+Frost2015	young	40.0	API_20	cumulative amount	apixaban	plasma	calculated	cumulative amount_young	96.0	hr	2.0655737704918034	NA	NA	NA	NA	0.06217513899804629	NA	NA	mg	1/hr * hr/l * mg, time assumed
+Frost2015	elderly	39.0	API_20	cmax	apixaban	plasma	HPLC MS/MS	cmax_elderly	NA	NA	NA	336.9	NA	NA	NA	90.963	NA	27.0	ng/ml	NA
+Frost2015	elderly	39.0	API_20	auc_inf	apixaban	plasma	HPLC MS/MS	auc_inf_elderly	NA	NA	NA	4536.0	NA	NA	NA	1043.28	NA	23.0	ng/ml*hr	NA
+Frost2015	elderly	39.0	API_20	auc_end	apixaban	plasma	HPLC MS/MS	auc_end_elderly	96.0	hr	NA	4451.0	NA	NA	NA	1023.73	NA	23.0	ng/ml*hr	NA
+Frost2015	elderly	39.0	API_20	tmax	apixaban	plasma	HPLC MS/MS	tmax_elderly	NA	NA	NA	NA	3.0	1.0	4.0	NA	NA	NA	hr	NA
+Frost2015	elderly	39.0	API_20	thalf	apixaban	plasma	HPLC MS/MS	thalf_elderly	NA	NA	15.45	NA	NA	NA	NA	7.39	NA	NA	hr	NA
+Frost2015	elderly	39.0	API_20	clearance_renal	apixaban	plasma	HPLC MS/MS	clearance_renal_elderly	NA	NA	0.45	NA	NA	NA	NA	0.13	NA	NA	l/hr	NA
+Frost2015	elderly	39.0	API_20	clearance	apixaban	plasma	HPLC MS/MS	clearance_elderly	NA	NA	4.52	NA	NA	NA	NA	0.98	NA	NA	l/hr	NA
+Frost2015	elderly	39.0	API_20	vd_ss	apixaban	plasma	HPLC MS/MS	vd_ss_elderly	NA	NA	77.5	NA	NA	NA	NA	27.0	NA	NA	l	NA
+Frost2015	elderly	39.0	API_20	cumulative amount	apixaban	plasma	calculated	cumulative amount_elderly	96.0	hr	1.9911504424778763	NA	NA	NA	NA	0.03596013975256185	NA	NA	mg	1/hr * hr/l * mg, time assumed

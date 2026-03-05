@@ -1,0 +1,25 @@
+study	name	group_count	parent	measurement_type	count	substance	choice	mean	median	sd	se	min	max	unit	comments
+Wang2016	all	16.0	NA	species	16.0	NA	homo sapiens	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	all	16.0	NA	healthy	8.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	all	16.0	NA	healthy	8.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	all	16.0	NA	pregnant	16.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	all	16.0	NA	sex	12.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	all	16.0	NA	sex	4.0	NA	F	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	healthy	8.0	all	healthy	8.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	healthy	8.0	all	sex	6.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	healthy	8.0	all	sex	2.0	NA	F	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	healthy	8.0	all	ethnicity	6.0	NA	caucasian	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	healthy	8.0	all	ethnicity	1.0	NA	african american	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	healthy	8.0	all	ethnicity	1.0	NA	american indian	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	healthy	8.0	all	age	8.0	NA	NA	47.0	NA	7.7	NA	34.0	59.0	yr	NA
+Wang2016	healthy	8.0	all	weight	8.0	NA	NA	87.4	NA	18.4	NA	66.3	115.0	kg	NA
+Wang2016	healthy	8.0	all	bmi	8.0	NA	NA	29.7	NA	3.9	NA	24.8	35.0	kg/m^2	NA
+Wang2016	healthy	8.0	all	clearance	8.0	creatinine	NA	125.0	NA	25.4	NA	86.0	150.0	mL/min	NA
+Wang2016	esrd	8.0	all	healthy	6.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	esrd	8.0	all	sex	6.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	esrd	8.0	all	sex	2.0	NA	F	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	esrd	8.0	all	ethnicity	1.0	NA	caucasian	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	esrd	8.0	all	ethnicity	7.0	NA	african american	NA	NA	NA	NA	NA	NA	NA	NA
+Wang2016	esrd	8.0	all	age	8.0	NA	NA	46.9	NA	7.9	NA	36.0	63.0	yr	NA
+Wang2016	esrd	8.0	all	weight	8.0	NA	NA	92.5	NA	21.2	NA	62.2	126.0	kg	NA
+Wang2016	esrd	8.0	all	bmi	8.0	NA	NA	29.7	NA	7.4	NA	21.9	41.8	kg/m^2	NA

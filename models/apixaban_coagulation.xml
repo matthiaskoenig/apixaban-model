@@ -1,0 +1,1025 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" level="3" version="2" comp:required="true">
+  <notes>
+    <body xmlns="http://www.w3.org/1999/xhtml">
+      <p>Created with <a href="https://github.com/matthiaskoenig/sbmlutils">https://github.com/matthiaskoenig/sbmlutils</a>.
+<a href="https://doi.org/10.5281/zenodo.5525390">
+        <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5525390.svg" alt="DOI"/></a></p>
+      </body>
+    </notes>
+  <model metaid="meta_apixaban_coagulation" id="apixaban_coagulation" name="Model for coagulation factors and readouts." substanceUnits="mmole" timeUnits="min" volumeUnits="litre" areaUnits="m2" lengthUnits="metre" extentUnits="mmole">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+        <p>Model for coagulation factors and readouts.</p>
+        <p>The content of this model has been carefully created in a manual research effort.</p>
+        <h2>Terms of use</h2>
+        <p>Copyright © 2026 <a href="None" title="Mariia Myshkina" target="_blank">Mariia Myshkina</a>.</p>
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+          <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+        </a>
+        <br/>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+<p>Redistribution and use of any part of this model, with or without modification, are permitted provided
+that the following conditions are met:</p>
+        <ul>
+          <li>Redistributions of this SBML file must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+          <li>Redistributions in a different form must reproduce the above copyright notice, this list of conditions
+and the following disclaimer in the documentation and/or other materials provided
+with the distribution.</li>
+        </ul>
+        <p>This model is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></body>
+      </notes>
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+        <rdf:Description rdf:about="#meta_apixaban_coagulation">
+          <dcterms:creator>
+            <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Myshkina</vCard4:family-name>
+                  <vCard4:given-name>Mariia</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>mariia.myshkina@hu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-Universität zu Berlin, Institute for Theoretical Biology</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Babaeva</vCard4:family-name>
+                  <vCard4:given-name>Mariia</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>mariia.babaeva@charite.de</vCard4:hasEmail>
+                <vCard4:organization-name>Charité University Medicine Berlin, Master Molecular Medicine</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Linh</vCard4:family-name>
+                  <vCard4:given-name>Chang</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>changlin@student.hu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-Universität zu Berlin</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Metternich</vCard4:family-name>
+                  <vCard4:given-name>Johannes</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>metternich@campus.tu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Technische Universität Berlin</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Baton</vCard4:family-name>
+                  <vCard4:given-name>Shelee</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>sheleepab97@zedat.fu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Freie Universität Berlin</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Elias</vCard4:family-name>
+                  <vCard4:given-name>Michelle</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>michelleelias66@gmail.com</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-University Berlin, Institute for Biology</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>König</vCard4:family-name>
+                  <vCard4:given-name>Matthias</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>koenigmx@hu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-Universität zu Berlin, Faculty of Life Sciences, Department of Biology, Institute of Theoretical Biology, Systems Medicine of the Liver; University of Stuttgart, Institute of Structural Mechanics and Dynamics in Aerospace Engineering</vCard4:organization-name>
+              </rdf:li>
+            </rdf:Bag>
+          </dcterms:creator>
+          <dcterms:created rdf:parseType="Resource">
+            <dcterms:W3CDTF>2026-03-05T15:31:03Z</dcterms:W3CDTF>
+          </dcterms:created>
+          <dcterms:modified rdf:parseType="Resource">
+            <dcterms:W3CDTF>2026-03-05T15:31:03Z</dcterms:W3CDTF>
+          </dcterms:modified>
+          <bqbiol:hasTaxon>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/taxonomy/9606"/>
+              <rdf:li rdf:resource="https://identifiers.org/snomedct/337915000"/>
+            </rdf:Bag>
+          </bqbiol:hasTaxon>
+          <bqbiol:hasProperty>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/mamo/MAMO_0000046"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C61308"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C180619"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C15299"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C15720"/>
+              <rdf:li rdf:resource="https://identifiers.org/GO:0007596"/>
+            </rdf:Bag>
+          </bqbiol:hasProperty>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+    <listOfUnitDefinitions>
+      <unitDefinition id="IU_per_ml" name="1/ml">
+        <listOfUnits>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="g_per_mole" name="g/mole">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="l_per_min" name="l/min">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="m2" name="meter^2">
+        <listOfUnits>
+          <unit kind="metre" exponent="2" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mM" name="mmole/liter">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg" name="mg">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg_per_s_l" name="mg/s/l">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="min" name="min">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="min_per_hr" name="min/hour">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="60"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole" name="mmole">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_min" name="mmole/min">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_min_l" name="mmole/min/l">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="ng_per_ml" name="ng/ml">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="1e-09"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_min" name="1/min">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_mmole" name="1/mmole">
+        <listOfUnits>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment metaid="meta_Vplasma" sboTerm="SBO:0000290" id="Vplasma" name="plasma" spatialDimensions="3" size="5" units="litre" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vplasma">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="meta_Cve_api" sboTerm="SBO:0000247" id="Cve_api" name="apixaban" compartment="Vplasma" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Cve_api">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/QNZCBYKSOIHPEH-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C61308"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/698090000"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter metaid="meta_INR_ref" sboTerm="SBO:0000002" id="INR_ref" name="INR reference" value="1" units="dimensionless" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_INR_ref">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_PT_ref" sboTerm="SBO:0000002" id="PT_ref" name="prothrombin time reference" value="12.5" units="second" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_PT_ref">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_aPTT_ref" sboTerm="SBO:0000002" id="aPTT_ref" name="activated partial thromboplastin reference" value="28.4" units="second" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_aPTT_ref">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_mPT_ref" sboTerm="SBO:0000002" id="mPT_ref" name="modified prothrombin time reference" value="53.4" units="second" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_mPT_ref">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_INR" sboTerm="SBO:0000002" id="INR" name="INR" value="1" units="dimensionless" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_INR">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_PT" sboTerm="SBO:0000002" id="PT" name="prothrombin time" value="12.5" units="second" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_PT">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_aPTT" sboTerm="SBO:0000002" id="aPTT" name="activated partial thromboplastin" value="28.4" units="second" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_aPTT">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_mPT" sboTerm="SBO:0000002" id="mPT" name="modified prothrombin time" value="53.4" units="second" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_mPT">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_Xa_inhibition" sboTerm="SBO:0000002" id="Xa_inhibition" name="inhibition of FXa" value="0" units="dimensionless" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Xa_inhibition">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_antiXa_activity" sboTerm="SBO:0000002" id="antiXa_activity" name="anti-FXa activity" value="0" units="IU_per_ml" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_antiXa_activity">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_antiXa_activity_gram" sboTerm="SBO:0000002" id="antiXa_activity_gram" name="anti-FXa activity" value="0" units="ng_per_ml" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_antiXa_activity_gram">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_INR_change" sboTerm="SBO:0000002" id="INR_change" name="INR change" value="NaN" units="dimensionless" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Absolute change to baseline INR</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_INR_change">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_INR_ratio" sboTerm="SBO:0000002" id="INR_ratio" name="INR ratio" value="NaN" units="dimensionless" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Ratio relative to baseline INR</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_INR_ratio">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_INR_relchange" sboTerm="SBO:0000002" id="INR_relchange" name="INR relative change" value="NaN" units="dimensionless" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Ratio relative to baseline INR</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_INR_relchange">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_PT_change" sboTerm="SBO:0000002" id="PT_change" name="prothrombin time change" value="NaN" units="second" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Absolute change to baseline prothrombin time</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_PT_change">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_PT_ratio" sboTerm="SBO:0000002" id="PT_ratio" name="prothrombin time ratio" value="NaN" units="dimensionless" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Ratio relative to baseline prothrombin time</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_PT_ratio">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_PT_relchange" sboTerm="SBO:0000002" id="PT_relchange" name="prothrombin time relative change" value="NaN" units="dimensionless" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Ratio relative to baseline prothrombin time</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_PT_relchange">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_aPTT_change" sboTerm="SBO:0000002" id="aPTT_change" name="activated partial thromboplastin change" value="NaN" units="second" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Absolute change to baseline activated partial thromboplastin</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_aPTT_change">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_aPTT_ratio" sboTerm="SBO:0000002" id="aPTT_ratio" name="activated partial thromboplastin ratio" value="NaN" units="dimensionless" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Ratio relative to baseline activated partial thromboplastin</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_aPTT_ratio">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_aPTT_relchange" sboTerm="SBO:0000002" id="aPTT_relchange" name="activated partial thromboplastin relative change" value="NaN" units="dimensionless" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Ratio relative to baseline activated partial thromboplastin</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_aPTT_relchange">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_mPT_change" sboTerm="SBO:0000002" id="mPT_change" name="modified prothrombin time change" value="NaN" units="second" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Absolute change to baseline modified prothrombin time</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_mPT_change">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_mPT_ratio" sboTerm="SBO:0000002" id="mPT_ratio" name="modified prothrombin time ratio" value="NaN" units="dimensionless" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Ratio relative to baseline modified prothrombin time</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_mPT_ratio">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_mPT_relchange" sboTerm="SBO:0000002" id="mPT_relchange" name="modified prothrombin time relative change" value="NaN" units="dimensionless" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Ratio relative to baseline modified prothrombin time</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_mPT_relchange">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_Emax_INR" sboTerm="SBO:0000002" id="Emax_INR" name="Effect constant for INR inhibition" value="0.751552226973606" units="dimensionless" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Emax_INR">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_EC50_api_INR" sboTerm="SBO:0000002" id="EC50_api_INR" name="Effect constant for INR" value="0.000883732940236046" units="mM" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_EC50_api_INR">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_Emax_PT" sboTerm="SBO:0000002" id="Emax_PT" name="Effect constant for PT inhibition" value="3.55309" units="dimensionless" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Emax_PT">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_EC50_api_PT" sboTerm="SBO:0000002" id="EC50_api_PT" name="Effect constant for PT" value="0.00358" units="mM" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_EC50_api_PT">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_Emax_aPTT" sboTerm="SBO:0000002" id="Emax_aPTT" name="Effect constant for aPTT inhibition" value="0.444368499749261" units="dimensionless" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Emax_aPTT">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_EC50_api_aPTT" sboTerm="SBO:0000002" id="EC50_api_aPTT" name="Effect constant for aPTT" value="0.000494153291759925" units="mM" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_EC50_api_aPTT">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_Emax_mPT" sboTerm="SBO:0000002" id="Emax_mPT" name="Effect constant for mPT inhibition" value="1.56589206567588" units="dimensionless" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Emax_mPT">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_EC50_api_mPT" sboTerm="SBO:0000002" id="EC50_api_mPT" name="Effect constant for mPT" value="0.000189426271250564" units="mM" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_EC50_api_mPT">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_Emax_Xa" sboTerm="SBO:0000002" id="Emax_Xa" name="Effect constant for Xa inhibition" value="0.686093" units="dimensionless" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Emax_Xa">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_EC50_api_Xa" sboTerm="SBO:0000002" id="EC50_api_Xa" name="Effect constant for Xa inhibition" value="0.0002959" units="mM" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_EC50_api_Xa">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_Emax_antiXa" sboTerm="SBO:0000002" id="Emax_antiXa" name="Effect constant for anti-Xa activity" value="0.686093" units="IU_per_ml" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Emax_antiXa">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_EC50_api_antiXa" sboTerm="SBO:0000002" id="EC50_api_antiXa" name="Effect constant for anti-Xa activity" value="0.0002959" units="mM" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_EC50_api_antiXa">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+    </listOfParameters>
+    <listOfRules>
+      <assignmentRule variable="INR_change">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> INR </ci>
+            <ci> INR_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="INR_ratio">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> INR </ci>
+            <ci> INR_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="INR_relchange">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <minus/>
+              <ci> INR </ci>
+              <ci> INR_ref </ci>
+            </apply>
+            <ci> INR_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PT_change">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> PT </ci>
+            <ci> PT_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PT_ratio">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> PT </ci>
+            <ci> PT_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PT_relchange">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <minus/>
+              <ci> PT </ci>
+              <ci> PT_ref </ci>
+            </apply>
+            <ci> PT_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="aPTT_change">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> aPTT </ci>
+            <ci> aPTT_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="aPTT_ratio">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> aPTT </ci>
+            <ci> aPTT_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="aPTT_relchange">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <minus/>
+              <ci> aPTT </ci>
+              <ci> aPTT_ref </ci>
+            </apply>
+            <ci> aPTT_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mPT_change">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> mPT </ci>
+            <ci> mPT_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mPT_ratio">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> mPT </ci>
+            <ci> mPT_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mPT_relchange">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <minus/>
+              <ci> mPT </ci>
+              <ci> mPT_ref </ci>
+            </apply>
+            <ci> mPT_ref </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="INR">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <ci> INR_ref </ci>
+            <apply>
+              <plus/>
+              <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Emax_INR </ci>
+                  <ci> Cve_api </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Cve_api </ci>
+                  <ci> EC50_api_INR </ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PT">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <ci> PT_ref </ci>
+            <apply>
+              <plus/>
+              <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Emax_PT </ci>
+                  <ci> Cve_api </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Cve_api </ci>
+                  <ci> EC50_api_PT </ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="aPTT">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <ci> aPTT_ref </ci>
+            <apply>
+              <plus/>
+              <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Emax_aPTT </ci>
+                  <ci> Cve_api </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Cve_api </ci>
+                  <ci> EC50_api_aPTT </ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mPT">
+        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+          <apply>
+            <times/>
+            <ci> mPT_ref </ci>
+            <apply>
+              <plus/>
+              <cn sbml:units="dimensionless" type="integer"> 1 </cn>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Emax_mPT </ci>
+                  <ci> Cve_api </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Cve_api </ci>
+                  <ci> EC50_api_mPT </ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Xa_inhibition">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> Emax_Xa </ci>
+              <ci> Cve_api </ci>
+            </apply>
+            <apply>
+              <plus/>
+              <ci> Cve_api </ci>
+              <ci> EC50_api_Xa </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="antiXa_activity">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> Emax_antiXa </ci>
+              <ci> Cve_api </ci>
+            </apply>
+            <apply>
+              <plus/>
+              <ci> Cve_api </ci>
+              <ci> EC50_api_antiXa </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+    </listOfRules>
+    <comp:listOfPorts>
+      <comp:port metaid="Vplasma_port" sboTerm="SBO:0000599" comp:idRef="Vplasma" comp:id="Vplasma_port" comp:name="Port of Vplasma"/>
+    </comp:listOfPorts>
+  </model>
+</sbml>

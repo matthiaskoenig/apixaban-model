@@ -1,0 +1,31 @@
+study	name	group_count	parent	measurement_type	count	substance	choice	mean	median	sd	se	min	max	unit	comments
+Jonsson2015	all	32.0	NA	species	32.0	NA	homo sapiens	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	all	32.0	NA	healthy	8.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	all	32.0	NA	healthy	24.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	all	32.0	NA	sex	19.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	all	32.0	NA	sex	13.0	NA	F	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	all	32.0	NA	overnight fast	32.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	healthy	8.0	all	healthy	8.0	NA	Y	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	healthy	8.0	all	sex	6.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	healthy	8.0	all	sex	2.0	NA	F	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	healthy	8.0	all	age	8.0	NA	NA	50.1	NA	NA	NA	30.0	64.0	yr	NA
+Jonsson2015	healthy	8.0	all	weight	8.0	NA	NA	74.4	NA	NA	NA	58.9	89.4	kg	NA
+Jonsson2015	healthy	8.0	all	clearance_renal	8.0	NA	NA	NA	NA	NA	NA	80.0	NA	ml/min	NA
+Jonsson2015	mildRI	8.0	all	healthy	8.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	mildRI	8.0	all	sex	6.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	mildRI	8.0	all	sex	2.0	NA	F	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	mildRI	8.0	all	age	8.0	NA	NA	56.8	NA	NA	NA	38.0	65.0	yr	NA
+Jonsson2015	mildRI	8.0	all	weight	8.0	NA	NA	76.5	NA	NA	NA	60.3	91.0	kg	NA
+Jonsson2015	mildRI	8.0	all	clearance_renal	8.0	NA	NA	NA	NA	NA	NA	50.0	80.0	ml/min	NA
+Jonsson2015	moderateRI	8.0	all	healthy	8.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	moderateRI	8.0	all	sex	5.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	moderateRI	8.0	all	sex	3.0	NA	F	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	moderateRI	8.0	all	age	8.0	NA	NA	50.8	NA	NA	NA	30.8	67.0	yr	NA
+Jonsson2015	moderateRI	8.0	all	weight	8.0	NA	NA	78.6	NA	NA	NA	58.0	90.0	kg	NA
+Jonsson2015	moderateRI	8.0	all	clearance_renal	8.0	NA	NA	NA	NA	NA	NA	30.0	50.0	ml/min	NA
+Jonsson2015	severeRI	8.0	all	healthy	8.0	NA	N	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	severeRI	8.0	all	sex	3.0	NA	M	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	severeRI	8.0	all	sex	5.0	NA	F	NA	NA	NA	NA	NA	NA	NA	NA
+Jonsson2015	severeRI	8.0	all	age	8.0	NA	NA	53.1	NA	NA	NA	41.0	63.0	yr	NA
+Jonsson2015	severeRI	8.0	all	weight	8.0	NA	NA	71.7	NA	NA	NA	56.0	95.0	kg	NA
+Jonsson2015	severeRI	8.0	all	clearance_renal	8.0	NA	NA	NA	NA	NA	NA	NA	30.0	ml/min	NA

@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" level="3" version="2" comp:required="true">
+  <notes>
+    <body xmlns="http://www.w3.org/1999/xhtml">
+      <p>Created with <a href="https://github.com/matthiaskoenig/sbmlutils">https://github.com/matthiaskoenig/sbmlutils</a>.
+<a href="https://doi.org/10.5281/zenodo.5525390">
+        <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5525390.svg" alt="DOI"/></a></p>
+      </body>
+    </notes>
+  <model metaid="meta_apixaban_liver" id="apixaban_liver" name="Model for hepatic apixaban metabolism." substanceUnits="mmole" timeUnits="min" volumeUnits="litre" areaUnits="m2" lengthUnits="metre" extentUnits="mmole">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+        <p>Model for hepatic apixaban metabolism.</p>
+        <p>The content of this model has been carefully created in a manual research effort.</p>
+        <h2>Terms of use</h2>
+        <p>Copyright © 2026 <a href="None" title="Mariia Myshkina" target="_blank">Mariia Myshkina</a>.</p>
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+          <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+        </a>
+        <br/>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+<p>Redistribution and use of any part of this model, with or without modification, are permitted provided
+that the following conditions are met:</p>
+        <ul>
+          <li>Redistributions of this SBML file must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+          <li>Redistributions in a different form must reproduce the above copyright notice, this list of conditions
+and the following disclaimer in the documentation and/or other materials provided
+with the distribution.</li>
+        </ul>
+        <p>This model is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></body>
+      </notes>
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+        <rdf:Description rdf:about="#meta_apixaban_liver">
+          <dcterms:creator>
+            <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Myshkina</vCard4:family-name>
+                  <vCard4:given-name>Mariia</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>mariia.myshkina@hu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-Universität zu Berlin, Institute for Theoretical Biology</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Babaeva</vCard4:family-name>
+                  <vCard4:given-name>Mariia</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>mariia.babaeva@charite.de</vCard4:hasEmail>
+                <vCard4:organization-name>Charité University Medicine Berlin, Master Molecular Medicine</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Linh</vCard4:family-name>
+                  <vCard4:given-name>Chang</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>changlin@student.hu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-Universität zu Berlin</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Metternich</vCard4:family-name>
+                  <vCard4:given-name>Johannes</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>metternich@campus.tu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Technische Universität Berlin</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Baton</vCard4:family-name>
+                  <vCard4:given-name>Shelee</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>sheleepab97@zedat.fu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Freie Universität Berlin</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>Elias</vCard4:family-name>
+                  <vCard4:given-name>Michelle</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>michelleelias66@gmail.com</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-University Berlin, Institute for Biology</vCard4:organization-name>
+              </rdf:li>
+              <rdf:li rdf:parseType="Resource">
+                <vCard4:hasName rdf:parseType="Resource">
+                  <vCard4:family-name>König</vCard4:family-name>
+                  <vCard4:given-name>Matthias</vCard4:given-name>
+                </vCard4:hasName>
+                <vCard4:hasEmail>koenigmx@hu-berlin.de</vCard4:hasEmail>
+                <vCard4:organization-name>Humboldt-Universität zu Berlin, Faculty of Life Sciences, Department of Biology, Institute of Theoretical Biology, Systems Medicine of the Liver; University of Stuttgart, Institute of Structural Mechanics and Dynamics in Aerospace Engineering</vCard4:organization-name>
+              </rdf:li>
+            </rdf:Bag>
+          </dcterms:creator>
+          <dcterms:created rdf:parseType="Resource">
+            <dcterms:W3CDTF>2026-03-05T15:31:03Z</dcterms:W3CDTF>
+          </dcterms:created>
+          <dcterms:modified rdf:parseType="Resource">
+            <dcterms:W3CDTF>2026-03-05T15:31:03Z</dcterms:W3CDTF>
+          </dcterms:modified>
+          <bqbiol:hasTaxon>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/taxonomy/9606"/>
+              <rdf:li rdf:resource="https://identifiers.org/snomedct/337915000"/>
+            </rdf:Bag>
+          </bqbiol:hasTaxon>
+          <bqbiol:hasProperty>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/mamo/MAMO_0000046"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C61308"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C180619"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C15299"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C15720"/>
+              <rdf:li rdf:resource="https://identifiers.org/GO:0007596"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C79371"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C79372"/>
+            </rdf:Bag>
+          </bqbiol:hasProperty>
+          <bqbiol:occursIn>
+            <rdf:Bag>
+              <rdf:li rdf:resource="https://identifiers.org/FMA:7197"/>
+              <rdf:li rdf:resource="https://identifiers.org/BTO:0000759"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit/C12392"/>
+            </rdf:Bag>
+          </bqbiol:occursIn>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+    <listOfUnitDefinitions>
+      <unitDefinition id="g_per_mole" name="g/mole">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="l_per_min" name="l/min">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="m2" name="meter^2">
+        <listOfUnits>
+          <unit kind="metre" exponent="2" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mM" name="mmole/liter">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg" name="mg">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mg_per_s_l" name="mg/s/l">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="min" name="min">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="min_per_hr" name="min/hour">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="60"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole" name="mmole">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_min" name="mmole/min">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="mmole_per_min_l" name="mmole/min/l">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="0.001"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_min" name="1/min">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_mmole" name="1/mmole">
+        <listOfUnits>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment metaid="meta_Vext" sboTerm="SBO:0000290" id="Vext" name="plasma" spatialDimensions="3" size="1.5" units="litre" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vext">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vli" sboTerm="SBO:0000290" id="Vli" name="liver" spatialDimensions="3" size="1.5" units="litre" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vli">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7197"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000759"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12392"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vmem" sboTerm="SBO:0000290" id="Vmem" name="membrane" spatialDimensions="2" size="NaN" units="m2" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vmem">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:84669"/>
+                  <rdf:li rdf:resource="https://identifiers.org/GO:0016323"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vbi" sboTerm="SBO:0000290" id="Vbi" name="bile" spatialDimensions="3" size="1" units="litre" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vbi">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:62971"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13192"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+      <compartment metaid="meta_Vlumen" sboTerm="SBO:0000290" id="Vlumen" name="gut lumen" spatialDimensions="3" size="1" units="litre" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_Vlumen">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:45615"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000545"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12736"/>
+                  <rdf:li rdf:resource="https://identifiers.org/FMA:7199"/>
+                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000648"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="meta_api_ext" sboTerm="SBO:0000247" id="api_ext" name="apixaban (plasma)" compartment="Vext" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_api_ext">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/QNZCBYKSOIHPEH-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C61308"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/698090000"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_api" sboTerm="SBO:0000247" id="api" name="apixaban (liver)" compartment="Vli" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_api">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/QNZCBYKSOIHPEH-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit/C61308"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct/698090000"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m1_ext" sboTerm="SBO:0000247" id="m1_ext" name="M1 (plasma)" compartment="Vext" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m1_ext">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/91667715"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/HRIFVOGTDGFZKP-UHFFFAOYSA-N"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m1" sboTerm="SBO:0000247" id="m1" name="M1 (liver)" compartment="Vli" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m1">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/91667715"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/HRIFVOGTDGFZKP-UHFFFAOYSA-N"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m1_bi" sboTerm="SBO:0000247" id="m1_bi" name="M1 (bile)" compartment="Vbi" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m1_bi">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/91667715"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/HRIFVOGTDGFZKP-UHFFFAOYSA-N"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m1_lumen" sboTerm="SBO:0000247" id="m1_lumen" name="M1 (gut)" compartment="Vlumen" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m1_lumen">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/91667715"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/HRIFVOGTDGFZKP-UHFFFAOYSA-N"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m2" sboTerm="SBO:0000247" id="m2" name="M2 (liver)" compartment="Vli" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m2">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/10203943"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/HGHLWAZFIGRAOT-UHFFFAOYSA-N"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m2_bi" sboTerm="SBO:0000247" id="m2_bi" name="M2 (bile)" compartment="Vbi" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m2_bi">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/10203943"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/HGHLWAZFIGRAOT-UHFFFAOYSA-N"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m2_lumen" sboTerm="SBO:0000247" id="m2_lumen" name="M2 (gut)" compartment="Vlumen" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m2_lumen">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/10203943"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey/HGHLWAZFIGRAOT-UHFFFAOYSA-N"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m7_ext" sboTerm="SBO:0000247" id="m7_ext" name="M7 (plasma)" compartment="Vext" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m7_ext">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m7" sboTerm="SBO:0000247" id="m7" name="M7 (liver)" compartment="Vli" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m7">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m7_bi" sboTerm="SBO:0000247" id="m7_bi" name="M7 (bile)" compartment="Vbi" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m7_bi">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="meta_m7_lumen" sboTerm="SBO:0000247" id="m7_lumen" name="M7 (gut)" compartment="Vlumen" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_m7_lumen">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter metaid="meta_MXEXBI_k" sboTerm="SBO:0000009" id="MXEXBI_k" name="rate for edoxaban metabolites export in bile" value="9.99999999999998e-05" units="per_min" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_MXEXBI_k">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_APIIM_k" sboTerm="SBO:0000186" id="APIIM_k" name="rate apixaban import" value="1000" units="per_min" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_APIIM_k">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000186"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_API2M2_k" sboTerm="SBO:0000186" id="API2M2_k" name="rate api -&gt; m2 conversion" value="0.0201879974391193" units="per_min" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_API2M2_k">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000186"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_API2M7_k" sboTerm="SBO:0000186" id="API2M7_k" name="rate api -&gt; m7 conversion" value="0.00847502114519145" units="per_min" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_API2M7_k">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000186"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_M22M1_k" sboTerm="SBO:0000186" id="M22M1_k" name="rate m2 -&gt; m1 conversion" value="0.1" units="per_min" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_M22M1_k">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000186"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_M1EX_k" sboTerm="SBO:0000186" id="M1EX_k" name="rate M1 export" value="1000" units="per_min" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_M1EX_k">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000186"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_M7EX_k" sboTerm="SBO:0000186" id="M7EX_k" name="rate M7 export" value="1000" units="per_min" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_M7EX_k">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000186"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction metaid="meta_APIIM" sboTerm="SBO:0000655" id="APIIM" name="apixaban import (APIIM)" reversible="true" compartment="Vmem">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Assuming fast equilibration.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_APIIM">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="api_ext" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="api" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> APIIM_k </ci>
+              <ci> Vli </ci>
+              <apply>
+                <minus/>
+                <ci> api_ext </ci>
+                <ci> api </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_API2M2" sboTerm="SBO:0000176" id="API2M2" name="apixaban -&gt; M2 (CYP3A4/5)" reversible="false" compartment="Vli">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_API2M2">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000176"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="api" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m2" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> API2M2_k </ci>
+              <ci> Vli </ci>
+              <ci> api </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_API2M7" sboTerm="SBO:0000176" id="API2M7" name="apixaban -&gt; M7 (CYP3A4/5)" reversible="false" compartment="Vli">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_API2M7">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000176"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="api" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m7" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> API2M7_k </ci>
+              <ci> Vli </ci>
+              <ci> api </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_M22M1" sboTerm="SBO:0000176" id="M22M1" name="M2 -&gt; M1 (SULT1A1)" reversible="false" compartment="Vli">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_M22M1">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000176"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="m2" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m1" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> M22M1_k </ci>
+              <ci> Vli </ci>
+              <ci> m2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_M1EX" sboTerm="SBO:0000655" id="M1EX" name="M1 export (M1EX)" reversible="true" compartment="Vmem">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Assuming fast equilibration.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_M1EX">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="m1" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m1_ext" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> M1EX_k </ci>
+              <ci> Vli </ci>
+              <apply>
+                <minus/>
+                <ci> m1 </ci>
+                <ci> m1_ext </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_M7EX" sboTerm="SBO:0000655" id="M7EX" name="M7 export (M7EX)" reversible="true" compartment="Vmem">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Assuming fast equilibration.</p>
+          </body>
+        </notes>
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_M7EX">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="m7" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m7_ext" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> M7EX_k </ci>
+              <ci> Vli </ci>
+              <apply>
+                <minus/>
+                <ci> m7 </ci>
+                <ci> m7_ext </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_M1EXBI" sboTerm="SBO:0000655" id="M1EXBI" name="M1 bile export" reversible="false" compartment="Vmem">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_M1EXBI">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="m1" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m1_bi" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> MXEXBI_k </ci>
+              <ci> Vli </ci>
+              <ci> m1 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_M1EXEHC" sboTerm="SBO:0000655" id="M1EXEHC" name="M1 enterohepatic circulation" reversible="false" compartment="Vlumen">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_M1EXEHC">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="m1_bi" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m1_lumen" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> M1EXBI </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_M2EXBI" sboTerm="SBO:0000655" id="M2EXBI" name="M2 bile export" reversible="false" compartment="Vmem">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_M2EXBI">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="m2" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m2_bi" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> MXEXBI_k </ci>
+              <ci> Vli </ci>
+              <ci> m2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_M2EXEHC" sboTerm="SBO:0000655" id="M2EXEHC" name="M2 enterohepatic circulation" reversible="false" compartment="Vlumen">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_M2EXEHC">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="m2_bi" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m2_lumen" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> M2EXBI </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_M7EXBI" sboTerm="SBO:0000655" id="M7EXBI" name="M7 bile export" reversible="false" compartment="Vmem">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_M7EXBI">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="m7" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m7_bi" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> MXEXBI_k </ci>
+              <ci> Vli </ci>
+              <ci> m7 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="meta_M7EXEHC" sboTerm="SBO:0000655" id="M7EXEHC" name="M7 enterohepatic circulation" reversible="false" compartment="Vlumen">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_M7EXEHC">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="m7_bi" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="m7_lumen" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> M7EXBI </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+    <comp:listOfPorts>
+      <comp:port metaid="Vext_port" sboTerm="SBO:0000599" comp:idRef="Vext" comp:id="Vext_port" comp:name="Port of Vext"/>
+      <comp:port metaid="Vli_port" sboTerm="SBO:0000599" comp:idRef="Vli" comp:id="Vli_port" comp:name="Port of Vli"/>
+      <comp:port metaid="Vmem_port" sboTerm="SBO:0000599" comp:idRef="Vmem" comp:id="Vmem_port" comp:name="Port of Vmem"/>
+      <comp:port metaid="Vbi_port" sboTerm="SBO:0000599" comp:idRef="Vbi" comp:id="Vbi_port" comp:name="Port of Vbi"/>
+      <comp:port metaid="Vlumen_port" sboTerm="SBO:0000599" comp:idRef="Vlumen" comp:id="Vlumen_port" comp:name="Port of Vlumen"/>
+      <comp:port metaid="api_ext_port" sboTerm="SBO:0000599" comp:idRef="api_ext" comp:id="api_ext_port" comp:name="Port of api_ext"/>
+      <comp:port metaid="m1_ext_port" sboTerm="SBO:0000599" comp:idRef="m1_ext" comp:id="m1_ext_port" comp:name="Port of m1_ext"/>
+      <comp:port metaid="m1_lumen_port" sboTerm="SBO:0000599" comp:idRef="m1_lumen" comp:id="m1_lumen_port" comp:name="Port of m1_lumen"/>
+      <comp:port metaid="m2_lumen_port" sboTerm="SBO:0000599" comp:idRef="m2_lumen" comp:id="m2_lumen_port" comp:name="Port of m2_lumen"/>
+      <comp:port metaid="m7_ext_port" sboTerm="SBO:0000599" comp:idRef="m7_ext" comp:id="m7_ext_port" comp:name="Port of m7_ext"/>
+      <comp:port metaid="m7_lumen_port" sboTerm="SBO:0000599" comp:idRef="m7_lumen" comp:id="m7_lumen_port" comp:name="Port of m7_lumen"/>
+    </comp:listOfPorts>
+  </model>
+</sbml>
