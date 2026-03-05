@@ -13,7 +13,7 @@ The COMBINE archive is available from [`apixaban_model.omex`](./apixaban_model.o
 ![model overview](./figures/apixaban_model.png)
 
 ### Comp submodels
-* **liver** submodel [`apixaban_coagulation.xml`](./models/apixaban_coagulation.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/apixaban-model/main/models/apixaban_coagulation.xml) and [equations](./models/apixaban_coagulation.md).
+* **coagulation** submodel [`apixaban_coagulation.xml`](./models/apixaban_coagulation.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/apixaban-model/main/models/apixaban_coagulation.xml) and [equations](./models/apixaban_coagulation.md).
 * **liver** submodel [`apixaban_liver.xml`](./models/apixaban_liver.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/apixaban-model/main/models/apixaban_liver.xml) and [equations](./models/apixaban_liver.md).
 * **kidney** submodel [`apixaban_kidney.xml`](./models/apixaban_kidney.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/apixaban-model/main/models/apixaban_kidney.xml) and [equations](./models/apixaban_kidney.md).
 * **intestine** submodel [`apixaban_intestine.xml`](./models/apixaban_intestine.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/apixaban-model/main/models/apixaban_intestine.xml) and [equations](./models/apixaban_intestine.md).

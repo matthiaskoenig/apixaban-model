@@ -13,7 +13,7 @@ from pkdb_models.models.apixaban.experiments.metadata import Tissue, Route, Dosi
 from sbmlsim.plot import Axis, Figure
 from sbmlsim.simulation import Timecourse, TimecourseSim
 
-from pkdb_models.models.edoxaban.helpers import run_experiments
+from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Lenard2024(ApixabanSimulationExperiment):

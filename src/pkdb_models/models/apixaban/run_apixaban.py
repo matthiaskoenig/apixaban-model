@@ -10,7 +10,7 @@ from pkdb_models.models.apixaban import APIXABAN_PATH
 from pkdb_models.models.apixaban.simulations import run_simulation_experiments, EXPERIMENTS
 from sbmlutils.console import console
 
-FACTORY_SCRIPT_PATH = EDOXABAN_PATH / "models" / "factory.py"
+FACTORY_SCRIPT_PATH = APIXABAN_PATH / "models" / "factory.py"
 
 class Action(str, Enum):
     # simulations
