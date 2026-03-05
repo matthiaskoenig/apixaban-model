@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13987865.svg)](https://doi.org/10.5281/zenodo.13987865)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18877904.svg)](https://doi.org/10.5281/zenodo.18877904)
 [![GitHub Action](https://github.com/matthiaskoenig/apixaban-model/actions/workflows/python.yml/badge.svg)](https://github.com/matthiaskoenig/apixaban-model/actions/workflows/python.yml)
 [![GitHub Action](https://github.com/matthiaskoenig/apixaban-model/actions/workflows/docker.yml/badge.svg)](https://github.com/matthiaskoenig/apixaban-model/actions/workflows/docker.yml)
 
@@ -13,7 +13,7 @@ The COMBINE archive is available from [`apixaban_model.omex`](./apixaban_model.o
 ![model overview](./figures/apixaban_model.png)
 
 ### Comp submodels
-* **liver** submodel [`apixaban_coagulation.xml`](./models/apixaban_coagulation.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/apixaban-model/main/models/apixaban_coagulation.xml) and [equations](./models/apixaban_coagulation.md).
+* **coagulation** submodel [`apixaban_coagulation.xml`](./models/apixaban_coagulation.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/apixaban-model/main/models/apixaban_coagulation.xml) and [equations](./models/apixaban_coagulation.md).
 * **liver** submodel [`apixaban_liver.xml`](./models/apixaban_liver.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/apixaban-model/main/models/apixaban_liver.xml) and [equations](./models/apixaban_liver.md).
 * **kidney** submodel [`apixaban_kidney.xml`](./models/apixaban_kidney.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/apixaban-model/main/models/apixaban_kidney.xml) and [equations](./models/apixaban_kidney.md).
 * **intestine** submodel [`apixaban_intestine.xml`](./models/apixaban_intestine.xml) with [SBML4humans report](https://sbml4humans.de/model_url?url=https://raw.githubusercontent.com/matthiaskoenig/apixaban-model/main/models/apixaban_intestine.xml) and [equations](./models/apixaban_intestine.md).
@@ -24,7 +24,7 @@ To cite the model repository
 
 > Myshkina, M., Babaeva, M., Chang, L., Metternich, J., Baton, S., Elias, M. & König, M. (2026).
 > *Physiologically based pharmacokinetic/ pharmacodynamic (PBPK/PD) model of apixaban.*   
-> Zenodo. [https://doi.org/10.5281/zenodo.13987865](https://doi.org/10.5281/zenodo.13987865)
+> Zenodo. [https://doi.org/10.5281/zenodo.18877904](https://doi.org/10.5281/zenodo.18877904)
 
 ## License
 

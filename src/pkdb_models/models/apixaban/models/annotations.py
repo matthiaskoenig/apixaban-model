@@ -20,7 +20,7 @@ model = [
 
     # model reference
     # (BQB.IS_DESCRIBED_BY, "doi/10.20944/preprints202507.1945.v1"),  # preprint
-    # (BQB.IS_DESCRIBED_BY, "doi/10.5281/zenodo.15157735"),  # apixaban-model
+    (BQB.IS_DESCRIBED_BY, "doi/10.5281/zenodo.13987865"),  # apixaban-model
 ]
 
 

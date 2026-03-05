@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13987865.svg)](https://doi.org/10.5281/zenodo.13987865)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18877904.svg)](https://doi.org/10.5281/zenodo.18877904)
 [![GitHub Action](https://github.com/matthiaskoenig/apixaban-model/actions/workflows/python.yml/badge.svg)](https://github.com/matthiaskoenig/apixaban-model/actions/workflows/python.yml)
 [![GitHub Action](https://github.com/matthiaskoenig/apixaban-model/actions/workflows/docker.yml/badge.svg)](https://github.com/matthiaskoenig/apixaban-model/actions/workflows/docker.yml)
 
@@ -24,7 +24,7 @@ To cite the model repository
 
 > Myshkina, M., Babaeva, M., Chang, L., Metternich, J., Baton, S., Elias, M. & König, M. (2026).
 > *Physiologically based pharmacokinetic/ pharmacodynamic (PBPK/PD) model of apixaban.*   
-> Zenodo. [https://doi.org/10.5281/zenodo.13987865](https://doi.org/10.5281/zenodo.13987865)
+> Zenodo. [https://doi.org/10.5281/zenodo.18877904](https://doi.org/10.5281/zenodo.18877904)
 
 ## License
 
