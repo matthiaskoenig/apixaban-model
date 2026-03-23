@@ -54,25 +54,40 @@ def filter_baseline(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
 # --- Fit experiments ---
 f_fitexp_kwargs = dict(
     experiment_classes  = [
-        # all
         Abdollahizad2025,
+        Bashir2018,
         Chang2016,
+        Cui2013,
         Frost2013,
-        # Frost2013a, # FIXME: incorrect simulation
+        Frost2013a,
         Frost2014,
-        # Frost2015,
-        # Frost2015b,
-        # Frost2018,
-        # Frost2021,
-        # Frost2021a,
-        # Kreutz2017,
-        # Lenard2024,
-        # Lenard2025,
-        # Metze2021,
-        # Mikus2019,
-        # Rohr2024,
-        # Upreti2013,
-        # VandenBosch2021
+        Frost2014a,
+        Frost2015,
+        Frost2015a,
+        Frost2015b,
+        Frost2018,
+        Frost2021,
+        Frost2021a,
+        Garonzik2019,
+        Jeong2019,
+        Kreutz2017,
+        Lenard2024,
+        Lenard2025,
+        Leong2024,
+        Metze2021,
+        Mikus2019,
+        Raghavan2009, # FIXME: not tablet, but solution
+        Rohr2024,
+        Shaikh2021,
+        Song2015,
+        Song2016,
+        Tirona2018,
+        Upreti2013,
+        Upreti2013a,
+        Vakkalagadda2016,
+        VandenBosch2021,
+        Wang2014,
+        Wang2016,
     ],
     base_path=APIXABAN_PATH,
     data_path=DATA_PATHS,
@@ -122,6 +137,59 @@ def filter_pharmacodynamics(fit_mapping_key: str, fit_mapping: FitMapping) -> bo
         "aPTT_relchange",
 
         "Xa_inhibition",
+        "antiXa_activity",
+        "antiXa_activity_gram",
+    }:
+        return False
+
+    return True
+
+def filter_inr(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
+    """Only INR data."""
+    yid = "__".join(fit_mapping.observable.y.sid.split("__")[1:])
+    if yid not in {
+        "INR",
+        "INR_change",
+        "INR_ratio",
+        "INR_relchange",
+    }:
+        return False
+
+    return True
+
+def filter_mpt(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
+    """Only mPT data."""
+    yid = "__".join(fit_mapping.observable.y.sid.split("__")[1:])
+    if yid not in {
+        "mPT",
+        "mPT_change",
+        "mPT_ratio",
+        "mPT_relchange",
+    }:
+        return False
+
+    return True
+
+def filter_aptt(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
+    """Only aptt data."""
+    yid = "__".join(fit_mapping.observable.y.sid.split("__")[1:])
+    if yid not in {
+        "aPTT",
+        "aPTT_change",
+        "aPTT_ratio",
+        "aPTT_relchange",
+    }:
+        return False
+
+    return True
+
+def filter_xa(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
+    """Only xa data."""
+    yid = "__".join(fit_mapping.observable.y.sid.split("__")[1:])
+    if yid not in {
+        "Xa_inhibition",
+        "antiXa_activity",
+        "antiXa_activity_gram",
     }:
         return False
 
@@ -143,6 +211,21 @@ def f_fitexp_pharmacodynamics() -> Dict[str, List[FitExperiment]]:
     """Pharmacodynamics data."""
     return f_fitexp(metadata_filters=[filter_baseline, filter_pharmacodynamics], **f_fitexp_kwargs)
 
+def f_fitexp_inr() -> Dict[str, List[FitExperiment]]:
+    """Pharmacodynamics data."""
+    return f_fitexp(metadata_filters=[filter_baseline, filter_inr], **f_fitexp_kwargs)
+
+def f_fitexp_mpt() -> Dict[str, List[FitExperiment]]:
+    """Pharmacodynamics data."""
+    return f_fitexp(metadata_filters=[filter_baseline, filter_mpt], **f_fitexp_kwargs)
+
+def f_fitexp_aptt() -> Dict[str, List[FitExperiment]]:
+    """Pharmacodynamics data."""
+    return f_fitexp(metadata_filters=[filter_baseline, filter_aptt], **f_fitexp_kwargs)
+
+def f_fitexp_xa() -> Dict[str, List[FitExperiment]]:
+    """Pharmacodynamics data."""
+    return f_fitexp(metadata_filters=[filter_baseline, filter_xa], **f_fitexp_kwargs)
 
 if __name__ == "__main__":
     """Test construction of FitExperiments."""
@@ -150,8 +233,12 @@ if __name__ == "__main__":
     for f in [
         f_fitexp_all,
         # f_fitexp_control,
-        f_fitexp_pharmacokinetics,
-        f_fitexp_pharmacodynamics,
+        # f_fitexp_pharmacokinetics,
+        # f_fitexp_pharmacodynamics,
+        f_fitexp_inr,
+        f_fitexp_mpt,
+        f_fitexp_aptt,
+        f_fitexp_xa,
     ]:
         console.rule(style="white")
         console.print(f"{f.__name__}")

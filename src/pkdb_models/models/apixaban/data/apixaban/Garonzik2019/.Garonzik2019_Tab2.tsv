@@ -1,0 +1,11 @@
+study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cv	sd	se	median	min	max	unit	comments
+Garonzik2019	all	19.0	TX_API5_1	cmax	apixaban	plasma	LC MS/MS	NA	NA	261.0	NA	NA	NA	NA	NA	NA	ng/ml	geometric mean
+Garonzik2019	all	19.0	TX_API5_1	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	2482.0	NA	NA	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Garonzik2019	all	19.0	TX_API5_1	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	2531.0	NA	NA	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Garonzik2019	all	19.0	TX_API5_1	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	3.0	1.0	4.03	hr	NA
+Garonzik2019	all	19.0	TX_API5_1	thalf	apixaban	plasma	LC MS/MS	NA	NA	12.7	NA	5.32	NA	NA	NA	NA	hr	NA
+Garonzik2019	all	18.0	TX_CLARI_1, TX_API5_2	cmax	apixaban	plasma	LC MS/MS	NA	NA	339.0	NA	NA	NA	NA	NA	NA	ng/ml	geometric mean
+Garonzik2019	all	18.0	TX_CLARI_1, TX_API5_2	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	3960.0	NA	NA	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Garonzik2019	all	18.0	TX_CLARI_1, TX_API5_2	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	4036.0	NA	NA	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Garonzik2019	all	18.0	TX_CLARI_1, TX_API5_2	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	3.0	1.0	4.0	hr	NA
+Garonzik2019	all	18.0	TX_CLARI_1, TX_API5_2	thalf	apixaban	plasma	LC MS/MS	NA	NA	11.9	NA	4.53	NA	NA	NA	NA	hr	NA

@@ -4,6 +4,7 @@ from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
@@ -105,7 +106,9 @@ class Lenard2024(ApixabanSimulationExperiment):
             experiment=self,
             sid="Fig2",
             num_cols=1,
-            name=f"{self.__class__.__name__} (healthy)",
+            name=f"{self.__class__.__name__}",
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time), legend=True
@@ -141,4 +144,6 @@ class Lenard2024(ApixabanSimulationExperiment):
 
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Lenard2024.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(Lenard2024, output_dir=Lenard2024.__name__)

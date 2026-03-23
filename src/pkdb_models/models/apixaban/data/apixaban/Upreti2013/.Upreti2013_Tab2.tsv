@@ -6,7 +6,8 @@ Upreti2013	low	18.0	API10	thalf	apixaban	plasma	HPLC MS/MS	thalf_low	NA	NA	15.8	
 Upreti2013	low	18.0	API10	vd	apixaban	plasma	HPLC MS/MS	vd_low	NA	NA	52.7	NA	NA	NA	23.715	NA	45.0	l	NA
 Upreti2013	low	18.0	API10	clearance_renal	apixaban	plasma	HPLC MS/MS	clearance_renal_low	NA	NA	14.1	NA	NA	NA	3.525	NA	25.0	ml/min	NA
 Upreti2013	low	18.0	API10	oral clearance	apixaban	plasma	HPLC MS/MS	oral clearance_low	NA	NA	68.8	NA	NA	NA	27.52	NA	40.0	ml/min	NA
-Upreti2013	low	18.0	API10	cumulative amount	apixaban	plasma	calculated	cumulative amount_low	72.0	hr	2.050704	NA	NA	NA	0.7396761690899888	NA	NA	mg	time assumed
+Upreti2013	low	18.0	API10	cumulative amount	apixaban	plasma	calculated	cumulative amount_low	0.0	hr	0.0	NA	NA	NA	NA	NA	NA	mg	NA
+Upreti2013	low	18.0	API10	cumulative amount	apixaban	plasma	calculated	cumulative amount_low	72.0	hr	2.050704	NA	NA	NA	0.739676169089989	NA	NA	mg	time assumed
 Upreti2013	reference	16.0	API10	cmax	apixaban	plasma	HPLC MS/MS	cmax_reference	NA	NA	207.0	NA	NA	NA	49.68	NA	24.0	ng/ml	NA
 Upreti2013	reference	16.0	API10	auc_inf	apixaban	plasma	HPLC MS/MS	auc_inf_reference	NA	NA	2024.0	NA	NA	NA	485.76	NA	24.0	ng/ml*hr	NA
 Upreti2013	reference	16.0	API10	tmax	apixaban	plasma	HPLC MS/MS	tmax_reference	NA	NA	NA	3.03	2.0	6.0	NA	NA	NA	hr	NA
@@ -14,12 +15,14 @@ Upreti2013	reference	16.0	API10	thalf	apixaban	plasma	HPLC MS/MS	thalf_reference
 Upreti2013	reference	16.0	API10	vd	apixaban	plasma	HPLC MS/MS	vd_reference	NA	NA	61.0	NA	NA	NA	13.42	NA	22.0	l	NA
 Upreti2013	reference	16.0	API10	clearance_renal	apixaban	plasma	HPLC MS/MS	clearance_renal_reference	NA	NA	12.6	NA	NA	NA	5.67	NA	45.0	ml/min	NA
 Upreti2013	reference	16.0	API10	oral clearance	apixaban	plasma	HPLC MS/MS	oral clearance_reference	NA	NA	82.3	NA	NA	NA	15.637	NA	19.0	ml/min	NA
+Upreti2013	reference	16.0	API10	cumulative amount	apixaban	plasma	calculated	cumulative amount_reference	0.0	hr	0.0	NA	NA	NA	NA	NA	NA	mg	NA
 Upreti2013	reference	16.0	API10	cumulative amount	apixaban	plasma	calculated	cumulative amount_reference	72.0	hr	1.530144	NA	NA	NA	0.78037344	NA	NA	mg	time assumed
 Upreti2013	high	19.0	API10	cmax	apixaban	plasma	HPLC MS/MS	cmax_high	NA	NA	144.0	NA	NA	NA	40.32	NA	28.0	ng/ml	NA
 Upreti2013	high	19.0	API10	auc_inf	apixaban	plasma	HPLC MS/MS	auc_inf_high	NA	NA	1561.0	NA	NA	NA	483.91	NA	31.0	ng/ml*hr	NA
 Upreti2013	high	19.0	API10	tmax	apixaban	plasma	HPLC MS/MS	tmax_high	NA	NA	NA	3.98	1.0	6.0	NA	NA	NA	hr	NA
 Upreti2013	high	19.0	API10	thalf	apixaban	plasma	HPLC MS/MS	thalf_high	NA	NA	8.8	NA	NA	NA	3.15	NA	NA	hr	NA
-Upreti2013	high	19.0	API10	vd	apixaban	plasma	HPLC MS/MS	vd_high	NA	NA	75.6	NA	NA	NA	21.167999999999996	NA	28.0	l	NA
+Upreti2013	high	19.0	API10	vd	apixaban	plasma	HPLC MS/MS	vd_high	NA	NA	75.6	NA	NA	NA	21.168	NA	28.0	l	NA
 Upreti2013	high	19.0	API10	clearance_renal	apixaban	plasma	HPLC MS/MS	clearance_renal_high	NA	NA	17.8	NA	NA	NA	7.476	NA	42.0	ml/min	NA
 Upreti2013	high	19.0	API10	oral clearance	apixaban	plasma	HPLC MS/MS	oral clearance_high	NA	NA	106.8	NA	NA	NA	37.38	NA	35.0	ml/min	NA
-Upreti2013	high	19.0	API10	cumulative amount	apixaban	plasma	calculated	cumulative amount_high	72.0	hr	1.667148	NA	NA	NA	0.8702768057858602	NA	NA	mg	time assumed
+Upreti2013	high	19.0	API10	cumulative amount	apixaban	plasma	calculated	cumulative amount_high	0.0	hr	0.0	NA	NA	NA	0.0	NA	NA	mg	NA
+Upreti2013	high	19.0	API10	cumulative amount	apixaban	plasma	calculated	cumulative amount_high	72.0	hr	1.667148	NA	NA	NA	0.87027680578586	NA	NA	mg	time assumed

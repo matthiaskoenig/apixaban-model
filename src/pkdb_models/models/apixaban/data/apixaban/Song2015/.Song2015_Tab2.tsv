@@ -1,0 +1,46 @@
+study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cv	sd	se	median	min	max	unit	comments
+Song2015	study_1	14.0	API10_PO_OS	cmax	apixaban	plasma	LC MS/MS	NA	NA	287.0	30.0	86.1	NA	NA	NA	NA	ng/ml	geometric mean
+Song2015	study_1	14.0	API10_PO_OS	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	2855.0	21.0	599.55	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_1	14.0	API10_PO_OS	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	2790.0	21.0	585.9	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_1	14.0	API10_PO_OS	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	2.0	1.0	4.0	hr	NA
+Song2015	study_1	14.0	API10_PO_OS	thalf	apixaban	plasma	LC MS/MS	NA	NA	13.8	NA	6.1	NA	NA	NA	NA	hr	NA
+Song2015	study_1	14.0	API10_PO_OS	bioavailability	apixaban	plasma	LC MS/MS	NA	NA	105.0	NA	NA	NA	NA	NA	NA	percent	relative bioavailability, geometric mean based on GMR
+Song2015	study_1	14.0	API10_PO_TAB	cmax	apixaban	plasma	LC MS/MS	NA	NA	294.0	37.0	108.78	NA	NA	NA	NA	ng/ml	geometric mean
+Song2015	study_1	14.0	API10_PO_TAB	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	2707.0	21.0	568.47	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_1	14.0	API10_PO_TAB	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	2663.0	22.0	585.86	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_1	14.0	API10_PO_TAB	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	2.0	0.5	4.05	hr	NA
+Song2015	study_1	14.0	API10_PO_TAB	thalf	apixaban	plasma	LC MS/MS	NA	NA	12.3	NA	4.5	NA	NA	NA	NA	hr	NA
+Song2015	study_2	21.0	API5_NGT_D5W	cmax	apixaban	plasma	LC MS/MS	NA	NA	180.0	22.0	39.6	NA	NA	NA	NA	ng/ml	geometric mean
+Song2015	study_2	21.0	API5_NGT_D5W	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	1239.0	25.0	309.75	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_2	21.0	API5_NGT_D5W	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	1214.0	26.0	315.64	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_2	21.0	API5_NGT_D5W	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	1.0	0.3	2.0	hr	NA
+Song2015	study_2	21.0	API5_NGT_D5W	thalf	apixaban	plasma	LC MS/MS	NA	NA	10.4	NA	4.5	NA	NA	NA	NA	hr	NA
+Song2015	study_2	21.0	API5_NGT_D5W	bioavailability	apixaban	plasma	LC MS/MS	NA	NA	96.7	11.0	10.637	NA	NA	NA	NA	percent	relative bioavailability, geometric mean
+Song2015	study_2	21.0	API5_NGT_IF	cmax	apixaban	plasma	LC MS/MS	NA	NA	153.0	20.0	30.6	NA	NA	NA	NA	ng/ml	geometric mean
+Song2015	study_2	21.0	API5_NGT_IF	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	1181.0	26.0	307.06	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_2	21.0	API5_NGT_IF	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	1154.0	26.0	300.04	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_2	21.0	API5_NGT_IF	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	1.0	0.48	2.0	hr	NA
+Song2015	study_2	21.0	API5_NGT_IF	thalf	apixaban	plasma	LC MS/MS	NA	NA	10.6	NA	3.8	NA	NA	NA	NA	hr	NA
+Song2015	study_2	21.0	API5_NGT_IF	bioavailability	apixaban	plasma	LC MS/MS	NA	NA	92.2	7.0	6.454	NA	NA	NA	NA	percent	relative bioavailability, geometric mean
+Song2015	study_2	21.0	API5_PO_OS	cmax	apixaban	plasma	LC MS/MS	NA	NA	189.0	23.0	43.47	NA	NA	NA	NA	ng/ml	geometric mean
+Song2015	study_2	21.0	API5_PO_OS	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	1280.0	21.0	268.8	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_2	21.0	API5_PO_OS	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	1257.0	21.0	263.97	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_2	21.0	API5_PO_OS	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	0.52	0.48	2.0	hr	NA
+Song2015	study_2	21.0	API5_PO_OS	thalf	apixaban	plasma	LC MS/MS	NA	NA	10.5	NA	4.2	NA	NA	NA	NA	hr	NA
+Song2015	study_3	21.0	API5_NGT_NS	cmax	apixaban	plasma	LC MS/MS	NA	NA	121.0	21.0	25.41	NA	NA	NA	NA	ng/ml	geometric mean
+Song2015	study_3	21.0	API5_NGT_NS	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	1122.0	18.0	201.96	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_3	21.0	API5_NGT_NS	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	1098.0	18.0	197.64	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_3	21.0	API5_NGT_NS	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	3.0	1.0	4.2	hr	NA
+Song2015	study_3	21.0	API5_NGT_NS	thalf	apixaban	plasma	LC MS/MS	NA	NA	9.6	NA	2.4	NA	NA	NA	NA	hr	NA
+Song2015	study_3	21.0	API5_NGT_NS	bioavailability	apixaban	plasma	LC MS/MS	NA	NA	81.3	16.0	13.008	NA	NA	NA	NA	percent	relative bioavailability, geometric mean
+Song2015	study_3	21.0	API5_NGT_D5W_crushed	cmax	apixaban	plasma	LC MS/MS	NA	NA	158.0	22.0	34.76	NA	NA	NA	NA	ng/ml	geometric mean
+Song2015	study_3	21.0	API5_NGT_D5W_crushed	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	1321.0	18.0	237.78	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_3	21.0	API5_NGT_D5W_crushed	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	1295.0	18.0	233.1	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_3	21.0	API5_NGT_D5W_crushed	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	1.0	0.5	3.0	hr	NA
+Song2015	study_3	21.0	API5_NGT_D5W_crushed	thalf	apixaban	plasma	LC MS/MS	NA	NA	10.4	NA	7.8	NA	NA	NA	NA	hr	NA
+Song2015	study_3	21.0	API5_NGT_D5W_crushed	bioavailability	apixaban	plasma	LC MS/MS	NA	NA	95.1	13.0	12.363	NA	NA	NA	NA	percent	relative bioavailability, geometric mean
+Song2015	study_3	21.0	API5_PO_OS_3	cmax	apixaban	plasma	LC MS/MS	NA	NA	177.0	19.0	33.63	NA	NA	NA	NA	ng/ml	geometric mean
+Song2015	study_3	21.0	API5_PO_OS_3	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	1380.0	15.0	207.0	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_3	21.0	API5_PO_OS_3	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	1354.0	15.0	203.1	NA	NA	NA	NA	ng/ml*hr	geometric mean
+Song2015	study_3	21.0	API5_PO_OS_3	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	1.0	0.5	2.0	hr	NA
+Song2015	study_3	21.0	API5_PO_OS_3	thalf	apixaban	plasma	LC MS/MS	NA	NA	11.2	NA	6.9	NA	NA	NA	NA	hr	NA

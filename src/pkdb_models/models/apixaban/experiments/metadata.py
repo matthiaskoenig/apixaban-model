@@ -46,12 +46,20 @@ class Fasting(str, Enum):
 
 class Coadministration(str, Enum):
     NONE = "none"
-    CLARITHROMYCIN = "clarithromycin"
     CARBAMAZEPINE = "carbamazepine"
+    CLARITHROMYCIN = "clarithromycin"
+    CYCLOSPORINE = "cyclosporine"
+    DILTIAZEM = "diltilium"
+    EDOXABAN = "edoxaban"
+    FAMOTIDINE = "famotidine"
     GABAPENTIN = "gabapentin"
-    PREGABALIN = "pregabalin"
     KETOCONAZOLE = "ketoconazole"
+    LAPATINIB = "lapatinib"
+    PREGABALIN = "pregabalin"
     RITONAVIR = "ritonavir"
+    RIVAROXABAN = "rivaroxaban"
+    ROSUVASTATIN = "rosuvastatin"
+    TACROLIMUS = "tacrolimus"
 
 
 @dataclass

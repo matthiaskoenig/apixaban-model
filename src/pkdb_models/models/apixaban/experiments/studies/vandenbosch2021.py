@@ -4,6 +4,7 @@ from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
@@ -20,8 +21,8 @@ class VandenBosch2021(ApixabanSimulationExperiment):
     """Simulation experiment of VandenBosch2021."""
 
     colors = {
-        "PO2.5":"purple",
-        "PO5": "blue"
+        "PO2.5":"#006d2c",
+        "PO5": "#006d2c"
     }
 
     interventions = list(colors.keys())
@@ -77,7 +78,7 @@ class VandenBosch2021(ApixabanSimulationExperiment):
                     changes={
                         **self.default_changes(),
                         "PODOSE_api": Q_(self.doses[intervention], "mg"),
-                        "KI__f_renal_function": Q_(self.renal_map["Severe renal impairment"], "dimensionless"),
+                        "KI__f_renal_function": Q_(self.renal_map["End stage renal impairment"], "dimensionless"),
                     },
                 )
             )
@@ -99,7 +100,7 @@ class VandenBosch2021(ApixabanSimulationExperiment):
                         dataset=f"{intervention}_{name}_{self.groups[intervention]}_mean",
                         xid="time",
                         yid="mean",
-                        yid_sd="mean_sd",
+                        yid_sd=None,
                         count="count",
                     ),
                     observable=FitData(
@@ -158,6 +159,8 @@ class VandenBosch2021(ApixabanSimulationExperiment):
             name=f"{self.__class__.__name__}",
             num_rows=1,
             num_cols=2,
+            height=self.panel_height,
+            width=self.panel_width * 2,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -177,7 +180,7 @@ class VandenBosch2021(ApixabanSimulationExperiment):
                     task=f"task_api_{intervention}",
                     xid="time",
                     yid=sid,
-                    label=f"SRI sim: {dose} mg PO",
+                    label=f"sim SRI: {dose}mg PO",
                     color=self.colors[intervention],
                 )
                 # data
@@ -187,7 +190,7 @@ class VandenBosch2021(ApixabanSimulationExperiment):
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=f"SRI exp: {dose} mg PO",
+                    label=f"exp SRI: {dose}mg PO",
                     color=self.colors[intervention],
                 )
                 legend = True
@@ -197,9 +200,9 @@ class VandenBosch2021(ApixabanSimulationExperiment):
                         xid="time",
                         yid="value",
                         dataset=f"{intervention}_{name}_{self.groups[intervention]}_I{ki}",
-                        label=f"SRI exp I: {dose}mg PO" if legend else None,
-                        color="#00000066",
-                        markeredgecolor="#00000066",
+                        label=f"exp individ SRI: {dose}mg PO" if legend else None,
+                        color='#006d2c40',
+                        markeredgecolor='#006d2c40',
                         marker="o",
                         linestyle="",
                         markersize=5.2,
@@ -211,4 +214,6 @@ class VandenBosch2021(ApixabanSimulationExperiment):
 
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / VandenBosch2021.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(VandenBosch2021, output_dir=VandenBosch2021.__name__)

@@ -1,0 +1,19 @@
+study	name	group_count	parent	measurement_type	count	choice	mean	sd	se	min	max	unit	comments
+Song2016	all	55.0	NA	species	55.0	homo sapiens	NA	NA	NA	NA	NA	NA	NA
+Song2016	all	55.0	NA	healthy	55.0	Y	NA	NA	NA	NA	NA	NA	NA
+Song2016	all	55.0	NA	sex	11.0	F	NA	NA	NA	NA	NA	NA	NA
+Song2016	crushed	33.0	all	age	33.0	NA	32.3	7.4	NA	20.0	45.0	yr	NA
+Song2016	crushed	33.0	all	sex	7.0	F	NA	NA	NA	NA	NA	NA	NA
+Song2016	crushed	33.0	all	bmi	33.0	NA	26.1	2.2	NA	20.3	29.9	kg/m^2	NA
+Song2016	crushed	33.0	all	weight	33.0	NA	77.4	7.9	NA	59.2	89.7	kg	NA
+Song2016	crushed	33.0	all	overnight fast	33.0	Y	NA	NA	NA	NA	NA	NA	NA
+Song2016	crushed	33.0	all	ethnicity	21.0	caucasian	NA	NA	NA	NA	NA	NA	NA
+Song2016	crushed	33.0	all	ethnicity	8.0	black	NA	NA	NA	NA	NA	NA	NA
+Song2016	crushed	33.0	all	ethnicity	1.0	american indian	NA	NA	NA	NA	NA	NA	NA
+Song2016	food	22.0	all	age	22.0	NA	31.2	6.2	NA	21.0	43.0	yr	NA
+Song2016	food	22.0	all	sex	4.0	F	NA	NA	NA	NA	NA	NA	NA
+Song2016	food	22.0	all	bmi	22.0	NA	23.6	2.6	NA	19.1	29.1	kg/m^2	NA
+Song2016	food	22.0	all	weight	22.0	NA	69.2	10.1	NA	50.1	86.6	kg	NA
+Song2016	food	22.0	all	ethnicity	22.0	asian	NA	NA	NA	NA	NA	NA	NA
+Song2016	food_fasted	22.0	all	overnight fast	22.0	Y	NA	NA	NA	NA	NA	NA	NA
+Song2016	food_fed	22.0	all	overnight fast	22.0	N	NA	NA	NA	NA	NA	NA	NA

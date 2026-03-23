@@ -15,16 +15,25 @@ from sbmlsim.fit.runner import run_optimization
 from sbmlsim.fit.options import *
 from sbmlsim.fit.sampling import SamplingType
 
+from pkdb_models.models.aliskiren.fitting.parameters import parameters_apple
 from pkdb_models.models.apixaban.fitting.fit_experiments import (
     f_fitexp_all,
     f_fitexp_control,
     f_fitexp_pharmacokinetics,
     f_fitexp_pharmacodynamics,
+    f_fitexp_inr,
+    f_fitexp_mpt,
+    f_fitexp_aptt,
+    f_fitexp_xa,
 )
 from pkdb_models.models.apixaban.fitting.parameters import (
     parameters_all,
     parameters_pharmacokinetics,
     parameters_pharmacodynamics,
+    parameters_inr,
+    parameters_mpt,
+    parameters_aptt,
+    parameters_xa,
 )
 
 from pkdb_models.models.apixaban import (
@@ -118,6 +127,10 @@ class FitExperimentSubset(str, Enum):
     CONTROL = "CONTROL",
     PK = "PK",
     PD = "PD",
+    INR = "INR"
+    MPT = "MPT"
+    APTT = "APTT"
+    XA = "XA"
 
 
 def fit_apixaban(
@@ -187,6 +200,14 @@ def get_fit_experiments(fit_subset: FitExperimentSubset, study_ids: List[str] = 
         fitexp_dict = f_fitexp_pharmacokinetics()
     elif fit_subset == FitExperimentSubset.PD:
         fitexp_dict = f_fitexp_pharmacodynamics()
+    elif fit_subset == FitExperimentSubset.INR:
+        fitexp_dict = f_fitexp_inr()
+    elif fit_subset == FitExperimentSubset.MPT:
+        fitexp_dict = f_fitexp_mpt()
+    elif fit_subset == FitExperimentSubset.APTT:
+        fitexp_dict = f_fitexp_aptt()
+    elif fit_subset == FitExperimentSubset.XA:
+        fitexp_dict = f_fitexp_xa()
 
     if study_ids:
         fit_experiments = [fitexp_dict[sid] for sid in study_ids]
@@ -211,6 +232,14 @@ def get_fit_parameters(fit_subset: FitExperimentSubset) -> List[FitParameter]:
         parameters = parameters_pharmacokinetics
     elif fit_subset == FitExperimentSubset.PD:
         parameters = parameters_pharmacodynamics
+    elif fit_subset == FitExperimentSubset.INR:
+        parameters = parameters_inr
+    elif fit_subset == FitExperimentSubset.MPT:
+        parameters = parameters_mpt
+    elif fit_subset == FitExperimentSubset.APTT:
+        parameters = parameters_aptt
+    elif fit_subset == FitExperimentSubset.XA:
+        parameters = parameters_xa
 
     return parameters
 
@@ -399,5 +428,9 @@ if __name__ == "__main__":
     fit_apixaban --cores=10 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=CONTROL --name=APIXABAN_LSQ_CONTROL
     fit_apixaban --cores=5 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=PK --name=APIXABAN_LSQ_PK
     fit_apixaban --cores=5 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=PD --name=APIXABAN_LSQ_PD
+    fit_apixaban --cores=5 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=INR --name=APIXABAN_LSQ_INR
+    fit_apixaban --cores=5 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=MPT --name=APIXABAN_LSQ_MPT
+    fit_apixaban --cores=5 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=APTT --name=APIXABAN_LSQ_APTT
+    fit_apixaban --cores=5 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=XA --name=APIXABAN_LSQ_XA
     """
     main()

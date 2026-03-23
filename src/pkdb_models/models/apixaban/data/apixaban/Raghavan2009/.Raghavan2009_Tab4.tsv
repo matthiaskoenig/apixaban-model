@@ -1,8 +1,83 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	median	min	max	sd	se	cv	unit	comments
-Raghavan2009	low	18	API10	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	264.0	NA	NA	NA	68.64	NA	26.0	ng/ml	NA
-Raghavan2009	low	18	API10	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	2424.0	NA	NA	NA	630.24	NA	26.0	ng/ml*hr	NA
-Raghavan2009	low	18	API10	tmax	apixaban	plasma	HPLC MS/MS	NA	NA	NA	3.0	1.0	6.0	NA	NA	NA	hr	NA
-Raghavan2009	low	18	API10	thalf	apixaban	plasma	HPLC MS/MS	NA	NA	15.8	NA	NA	NA	9.8	NA	NA	hr	NA
-Raghavan2009	low	18	API10	vd	apixaban	plasma	HPLC MS/MS	NA	NA	52.7	NA	NA	NA	23.715	NA	45.0	l	NA
-Raghavan2009	low	18	API10	clearance_renal	apixaban	plasma	HPLC MS/MS	NA	NA	14.1	NA	NA	NA	3.525	NA	25.0	ml/min	NA
-Raghavan2009	low	18	API10	oral clearance	apixaban	plasma	HPLC MS/MS	NA	NA	68.8	NA	NA	NA	27.52	NA	40.0	ml/min	NA
+study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	sd	se	unit	comments
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M1	urine	HPLC MS/MS	m1_urine_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M1	feces	HPLC MS/MS	m1_feces_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M1	bile	HPLC MS/MS	m1_bile_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M1	urine	HPLC MS/MS	m1_urine_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M1	feces	HPLC MS/MS	m1_feces_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M1	urine	HPLC MS/MS	m1_urine_group1	292.0	hr	NA	1.58	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M1	feces	HPLC MS/MS	m1_feces_group1	292.0	hr	NA	1.24	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M1	bile	HPLC MS/MS	m1_bile_group2	8.0	hr	NA	0.96	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M1	urine	HPLC MS/MS	m1_urine_group2	240.0	hr	NA	2.55	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M1	feces	HPLC MS/MS	m1_feces_group2	240.0	hr	NA	2.4	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M2	urine	HPLC MS/MS	m2_urine_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M2	feces	HPLC MS/MS	m2_feces_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M2	bile	HPLC MS/MS	m2_bile_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M2	urine	HPLC MS/MS	m2_urine_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M2	feces	HPLC MS/MS	m2_feces_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M2	urine	HPLC MS/MS	m2_urine_group1	292.0	hr	NA	NA	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M2	feces	HPLC MS/MS	m2_feces_group1	292.0	hr	NA	12.2	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M2	bile	HPLC MS/MS	m2_bile_group2	8.0	hr	NA	0.02	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M2	urine	HPLC MS/MS	m2_urine_group2	240.0	hr	NA	NA	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M2	feces	HPLC MS/MS	m2_feces_group2	240.0	hr	NA	5.09	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M4	urine	HPLC MS/MS	m4_urine_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M4	feces	HPLC MS/MS	m4_feces_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M4	bile	HPLC MS/MS	m4_bile_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M4	urine	HPLC MS/MS	m4_urine_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M4	feces	HPLC MS/MS	m4_feces_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M4	urine	HPLC MS/MS	m4_urine_group1	292.0	hr	NA	NA	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M4	feces	HPLC MS/MS	m4_feces_group1	292.0	hr	NA	0.37	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M4	bile	HPLC MS/MS	m4_bile_group2	8.0	hr	NA	NA	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M4	urine	HPLC MS/MS	m4_urine_group2	240.0	hr	NA	NA	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M4	feces	HPLC MS/MS	m4_feces_group2	240.0	hr	NA	NA	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M7	urine	HPLC MS/MS	m7_urine_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M7	feces	HPLC MS/MS	m7_feces_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M7	bile	HPLC MS/MS	m7_bile_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M7	urine	HPLC MS/MS	m7_urine_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M7	feces	HPLC MS/MS	m7_feces_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M7	urine	HPLC MS/MS	m7_urine_group1	292.0	hr	NA	1.46	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M7	feces	HPLC MS/MS	m7_feces_group1	292.0	hr	NA	3.7	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M7	bile	HPLC MS/MS	m7_bile_group2	8.0	hr	NA	0.32	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M7	urine	HPLC MS/MS	m7_urine_group2	240.0	hr	NA	1.85	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M7	feces	HPLC MS/MS	m7_feces_group2	240.0	hr	NA	2.76	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M10	urine	HPLC MS/MS	m10_urine_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M10	feces	HPLC MS/MS	m10_feces_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M10	bile	HPLC MS/MS	m10_bile_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M10	urine	HPLC MS/MS	m10_urine_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M10	feces	HPLC MS/MS	m10_feces_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M10	urine	HPLC MS/MS	m10_urine_group1	292.0	hr	NA	NA	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M10	feces	HPLC MS/MS	m10_feces_group1	292.0	hr	NA	0.09	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M10	bile	HPLC MS/MS	m10_bile_group2	8.0	hr	NA	0.24	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M10	urine	HPLC MS/MS	m10_urine_group2	240.0	hr	NA	0.46	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M10	feces	HPLC MS/MS	m10_feces_group2	240.0	hr	NA	0.26	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M13	urine	HPLC MS/MS	m13_urine_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M13	feces	HPLC MS/MS	m13_feces_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M13	bile	HPLC MS/MS	m13_bile_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M13	urine	HPLC MS/MS	m13_urine_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M13	feces	HPLC MS/MS	m13_feces_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M13	urine	HPLC MS/MS	m13_urine_group1	292.0	hr	NA	NA	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban-M13	feces	HPLC MS/MS	m13_feces_group1	292.0	hr	NA	3.07	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M13	bile	HPLC MS/MS	m13_bile_group2	8.0	hr	NA	0.06	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M13	urine	HPLC MS/MS	m13_urine_group2	240.0	hr	NA	NA	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban-M13	feces	HPLC MS/MS	m13_feces_group2	240.0	hr	NA	0.96	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban	urine	HPLC MS/MS	apixaban_urine_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban	feces	HPLC MS/MS	apixaban_feces_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban	bile	HPLC MS/MS	apixaban_bile_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban	urine	HPLC MS/MS	apixaban_urine_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban	feces	HPLC MS/MS	apixaban_feces_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban	urine	HPLC MS/MS	apixaban_urine_group1	292.0	hr	NA	21.5	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban	feces	HPLC MS/MS	apixaban_feces_group1	292.0	hr	NA	34.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban	bile	HPLC MS/MS	apixaban_bile_group2	8.0	hr	NA	0.84	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban	urine	HPLC MS/MS	apixaban_urine_group2	240.0	hr	NA	23.9	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban	feces	HPLC MS/MS	apixaban_feces_group2	240.0	hr	NA	34.5	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban and metabolites	urine	HPLC MS/MS	apixaban_total_urine_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban and metabolites	feces	HPLC MS/MS	apixaban_total_feces_group1	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban and metabolites	bile	HPLC MS/MS	apixaban_total_bile_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban and metabolites	urine	HPLC MS/MS	apixaban_total_urine_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban and metabolites	feces	HPLC MS/MS	apixaban_total_feces_group2	0.0	hr	NA	0.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban and metabolites	urine	HPLC MS/MS	apixaban_total_urine_group1	292.0	hr	NA	24.5	NA	NA	NA	percent	NA
+Raghavan2009	NA	group1	6.0	API20	recovery	apixaban and metabolites	feces	HPLC MS/MS	apixaban_total_feces_group1	292.0	hr	NA	56.0	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban and metabolites	bile	HPLC MS/MS	apixaban_total_bile_group2	4.0	hr	NA	0.25	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban and metabolites	bile	HPLC MS/MS	apixaban_total_bile_group2	6.0	hr	NA	1.07	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban and metabolites	bile	HPLC MS/MS	apixaban_total_bile_group2	8.0	hr	NA	2.44	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban and metabolites	urine	HPLC MS/MS	apixaban_total_urine_group2	240.0	hr	NA	28.8	NA	NA	NA	percent	NA
+Raghavan2009	NA	group2	4.0	API20	recovery	apixaban and metabolites	feces	HPLC MS/MS	apixaban_total_feces_group2	240.0	hr	NA	46.7	NA	NA	NA	percent	NA

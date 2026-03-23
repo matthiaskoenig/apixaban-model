@@ -4,6 +4,7 @@ from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
@@ -59,15 +60,15 @@ class Frost2013(ApixabanSimulationExperiment):
     }
 
     colors = {
-        "D0_5": "black",
-        "D1": "tab:red",
-        "D2_5": "tab:blue",
-        "D5": "tab:green",
-        "D10": "tab:cyan",
-        "D25": "tab:orange",
-        "D50": "tab:purple",
-        "fasted": "tab:brown",
-        "fed": "tab:pink",
+        "D0_5": "#fff5eb",
+        "D1": "#fee6ce",
+        "D2_5": "#fdd0a2",
+        "D5": "#fdae6b",
+        "D10": "#fd8d3c",
+        "D25": "#e6550d",
+        "D50": "#a63603",
+        "fasted": "black",
+        "fed": "tab:purple",
     }
 
     groups = list(bodyweights.keys())
@@ -121,6 +122,7 @@ class Frost2013(ApixabanSimulationExperiment):
                         **self.default_changes(),
                         "BW": Q_(self.bodyweights[group], "kg"),
                         "PODOSE_api": Q_(10, "mg"),
+                        "GU__F_api_abs": Q_(self.fasting_map[group], "dimensionless"),
                     },
                 )]
             )
@@ -232,7 +234,9 @@ class Frost2013(ApixabanSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid="Fig1A",
-            name=self.__class__.__name__
+            name=self.__class__.__name__,
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -250,7 +254,7 @@ class Frost2013(ApixabanSimulationExperiment):
                     task=f"task_{group}",
                     xid="time",
                     yid=sid,
-                    label=group,
+                    label=f"sim {group}: 10mg PO",
                     color=self.colors[group],
                 )
                 # data
@@ -260,7 +264,7 @@ class Frost2013(ApixabanSimulationExperiment):
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=group,
+                    label=f"exp {group}: 10mg PO",
                     color=self.colors[group],
                 )
 
@@ -272,7 +276,9 @@ class Frost2013(ApixabanSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid="Fig1B",
-            name=self.__class__.__name__
+            name=self.__class__.__name__,
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -290,7 +296,7 @@ class Frost2013(ApixabanSimulationExperiment):
                     task=f"task_{group}",
                     xid="time",
                     yid=sid,
-                    label=group,
+                    label=f"sim: {self.doses[group]}mg PO",
                     color=self.colors[group],
                 )
                 # data
@@ -299,7 +305,7 @@ class Frost2013(ApixabanSimulationExperiment):
                     xid="time",
                     yid="mean",
                     count="count",
-                    label=group,
+                    label=f"exp: {self.doses[group]}mg PO",
                     color=self.colors[group],
                 )
 
@@ -312,12 +318,14 @@ class Frost2013(ApixabanSimulationExperiment):
             experiment=self,
             sid="Fig3",
             name=self.__class__.__name__,
-            num_rows=3,
-            num_cols=1,
+            num_rows=1,
+            num_cols=3,
+            height=self.panel_height * 1.15,
+            width=self.panel_width * 1.15 * 3 * 1.05,
         )
         plots = fig.create_plots(
-            xaxis=Axis(self.label_time, unit=self.unit_time),
-            legend=True,
+            xaxis=Axis(self.label_time, unit=self.unit_time, max=70,),
+            legend=True
         )
         plots[0].set_yaxis(self.labels["INR"], unit=self.units["INR"])
         plots[1].set_yaxis(self.labels["aPTT"], unit=self.units["aPTT"])
@@ -333,7 +341,7 @@ class Frost2013(ApixabanSimulationExperiment):
                     task=f"task_{group}",
                     xid="time",
                     yid=sid,
-                    label=group,
+                    label=f"sim: {self.doses[group]}mg PO",
                     color=self.colors[group],
                 )
                 # data
@@ -342,7 +350,7 @@ class Frost2013(ApixabanSimulationExperiment):
                     xid="time",
                     yid="mean",
                     count="count",
-                    label=group,
+                    label=f"exp: {self.doses[group]}mg PO",
                     color=self.colors[group],
                 )
 
@@ -355,8 +363,9 @@ class Frost2013(ApixabanSimulationExperiment):
                 experiment=self,
                 sid="Fig4",
                 name=self.__class__.__name__,
-                num_rows=1,
                 num_cols=3,
+                height=self.panel_height,
+                width=self.panel_width * 1.05 * 3,
             )
             plots = fig.create_plots(
                 xaxis=Axis(self.label_api_plasma, unit=self.unit_api),
@@ -370,7 +379,18 @@ class Frost2013(ApixabanSimulationExperiment):
 
             for k, (sid, name) in enumerate(self.info_fig4.items()):
                 plots[k].set_yaxis(self.labels[sid], unit="%", scale="linear")
-
+                is_legend = True
+                for group in self.single_dose_study:
+                    # simulation
+                    plots[k].add_data(
+                        task=f"task_{group}",
+                        xid="[Cve_api]",
+                        yid=plot_configs[k][1],
+                        label="sim" if is_legend else "",
+                        color="black",
+                        linestyle="solid",
+                    )
+                    is_legend = False
                 for group in self.scatter_dose:
                     if group not in self.doses:
                         continue
@@ -379,8 +399,9 @@ class Frost2013(ApixabanSimulationExperiment):
                         xid="[Cve_api]",
                         yid=sid,
                         label="sim",
-                        color=self.colors.get(group, "gray"),
+                        color=self.colors.get(group, "white"),
                         marker="x",
+                        linestyle="solid",
                     )
 
                 dset_candidates = [
@@ -394,27 +415,18 @@ class Frost2013(ApixabanSimulationExperiment):
                         dataset=dkey,
                         xid="x",
                         yid="y",
-                        label="single_dose",
-                        color="#00000066",
-                        markeredgecolor="#00000066",
+                        label="exp individ",
+                        color="white",
+                        markeredgecolor="black",
                         marker="o",
                         linestyle="",
-                        markersize=5.2,
+                        # markersize=5.2,
                     )
                     break
-                is_legend = True
-                for group in self.single_dose_study:
-                    # simulation
-                    plots[k].add_data(
-                        task=f"task_{group}",
-                        xid="[Cve_api]",
-                        yid=plot_configs[k][1],
-                        label="sim" if is_legend else "",
-                        color="black",
-                        linestyle="solid",
-                    )
-                    is_legend = False
+
             return {fig.sid: fig}
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Frost2013.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(Frost2013, output_dir=Frost2013.__name__)

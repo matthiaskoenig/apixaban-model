@@ -1,13 +1,13 @@
 study	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	mean	geomean	median	min	max	sd	se	cv	unit	comments
-Frost2015	female	39.0	API_20	cmax	apixaban	plasma	HPLC MS/MS	cmax_female	NA	NA	NA	353.4	NA	NA	NA	109.55399999999999	NA	31.0	ng/ml	NA
-Frost2015	female	39.0	API_20	auc_inf	apixaban	plasma	HPLC MS/MS	auc_inf_female	NA	NA	NA	4235.0	NA	NA	NA	1185.8000000000002	NA	28.0	ng/ml*hr	one young female subject was excluded from the summary statistics for auc_inf and thalf
-Frost2015	female	39.0	API_20	auc_end	apixaban	plasma	HPLC MS/MS	auc_end_female	96.0	hr	NA	4116.0	NA	NA	NA	1193.6399999999999	NA	29.0	ng/ml*hr	NA
+Frost2015	female	39.0	API_20	cmax	apixaban	plasma	HPLC MS/MS	cmax_female	NA	NA	NA	353.4	NA	NA	NA	109.554	NA	31.0	ng/ml	NA
+Frost2015	female	39.0	API_20	auc_inf	apixaban	plasma	HPLC MS/MS	auc_inf_female	NA	NA	NA	4235.0	NA	NA	NA	1185.8	NA	28.0	ng/ml*hr	one young female subject was excluded from the summary statistics for auc_inf and thalf
+Frost2015	female	39.0	API_20	auc_end	apixaban	plasma	HPLC MS/MS	auc_end_female	96.0	hr	NA	4116.0	NA	NA	NA	1193.64	NA	29.0	ng/ml*hr	NA
 Frost2015	female	39.0	API_20	tmax	apixaban	plasma	HPLC MS/MS	tmax_female	NA	NA	NA	NA	3.0	1.0	4.0	NA	NA	NA	hr	NA
 Frost2015	female	39.0	API_20	thalf	apixaban	plasma	HPLC MS/MS	thalf_female	NA	NA	14.89	NA	NA	NA	NA	7.06	NA	NA	hr	one young female subject was excluded from the summary statistics for auc_inf and thalf
 Frost2015	female	39.0	API_20	clearance_renal	apixaban	plasma	HPLC MS/MS	clearance_renal_female	NA	NA	0.46	NA	NA	NA	NA	0.18	NA	NA	l/hr	NA
 Frost2015	female	39.0	API_20	clearance	apixaban	plasma	HPLC MS/MS	clearance_female	NA	NA	4.91	NA	NA	NA	NA	1.41	NA	NA	l/hr	NA
 Frost2015	female	39.0	API_20	vd_ss	apixaban	plasma	HPLC MS/MS	vd_ss_female	NA	NA	79.7	NA	NA	NA	NA	28.8	NA	NA	l	NA
-Frost2015	female	39.0	API_20	cumulative amount	apixaban	plasma	calculated	cumulative amount_female	96.0	hr	1.8737270875763747	NA	NA	NA	NA	0.045472653419450844	NA	NA	mg	1/hr * hr/l * mg, time assumed
+Frost2015	female	39.0	API_20	cumulative amount	apixaban	plasma	calculated	cumulative amount_female	96.0	hr	1.87372708757637	NA	NA	NA	NA	0.0454726534194508	NA	NA	mg	1/hr * hr/l * mg, time assumed
 Frost2015	male	40.0	API_20	cmax	apixaban	plasma	HPLC MS/MS	cmax_male	NA	NA	NA	301.0	NA	NA	NA	78.26	NA	26.0	ng/ml	NA
 Frost2015	male	40.0	API_20	auc_inf	apixaban	plasma	HPLC MS/MS	auc_inf_male	NA	NA	NA	3680.0	NA	NA	NA	1104.0	NA	30.0	ng/ml*hr	NA
 Frost2015	male	40.0	API_20	auc_end	apixaban	plasma	HPLC MS/MS	auc_end_male	96.0	hr	NA	3626.0	NA	NA	NA	1087.8	NA	30.0	ng/ml*hr	NA
@@ -16,4 +16,4 @@ Frost2015	male	40.0	API_20	thalf	apixaban	plasma	HPLC MS/MS	thalf_male	NA	NA	12.
 Frost2015	male	40.0	API_20	clearance_renal	apixaban	plasma	HPLC MS/MS	clearance_renal_male	NA	NA	0.62	NA	NA	NA	NA	0.31	NA	NA	l/hr	NA
 Frost2015	male	40.0	API_20	clearance	apixaban	plasma	HPLC MS/MS	clearance_male	NA	NA	5.69	NA	NA	NA	NA	1.79	NA	NA	l/hr	NA
 Frost2015	male	40.0	API_20	vd_ss	apixaban	plasma	HPLC MS/MS	vd_ss_male	NA	NA	82.8	NA	NA	NA	NA	26.9	NA	NA	l	NA
-Frost2015	male	40.0	API_20	cumulative amount	apixaban	plasma	calculated	cumulative amount_male	96.0	hr	2.1792618629173988	NA	NA	NA	NA	0.06436804878637412	NA	NA	mg	1/hr * hr/l * mg, time assumed
+Frost2015	male	40.0	API_20	cumulative amount	apixaban	plasma	calculated	cumulative amount_male	96.0	hr	2.1792618629174	NA	NA	NA	NA	0.0643680487863741	NA	NA	mg	1/hr * hr/l * mg, time assumed

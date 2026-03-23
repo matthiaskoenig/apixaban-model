@@ -1,0 +1,1395 @@
+{
+  "experiment_id": "Frost2014",
+  "base_path": "/home/mariia/git/pkdb_models/pkdb_models/models/apixaban",
+  "data_path": "[PosixPath('/home/mariia/git/pkdb_data/studies/apixaban'), PosixPath('/home/mariia/git/pkdb_data/studies/edoxaban')]",
+  "models": {
+    "model": {
+      "sid": null,
+      "name": null,
+      "language": "SBML",
+      "language_type": "SBML",
+      "source": {
+        "source": "/home/mariia/git/pkdb_models/pkdb_models/models/apixaban/models/results/models/apixaban_body_flat.xml",
+        "path": "/home/mariia/git/pkdb_models/pkdb_models/models/apixaban/models/results/models/apixaban_body_flat.xml",
+        "content": "None"
+      },
+      "changes": {}
+    }
+  },
+  "tasks": {
+    "task_mAPI": {
+      "model": "model",
+      "simulation": "mAPI"
+    }
+  },
+  "simulations": {
+    "mAPI": {
+      "type": "TimecourseSim",
+      "selections": null,
+      "reset": true,
+      "time_offset": -4320,
+      "timecourses": [
+        {
+          "start": 0,
+          "end": 720,
+          "steps": 1000,
+          "changes": {
+            "ftissue_api": {
+              "_magnitude": 9.999362175489635,
+              "_units": "l_per_min"
+            },
+            "Kp_api": {
+              "_magnitude": 0.033548549714271736,
+              "_units": "dimensionless"
+            },
+            "GU__APIABS_k": {
+              "_magnitude": 0.09999949917572021,
+              "_units": "GU__per_min"
+            },
+            "LI__API2M2_k": {
+              "_magnitude": 0.01570094528592168,
+              "_units": "LI__per_min"
+            },
+            "LI__API2M7_k": {
+              "_magnitude": 0.020189792087538537,
+              "_units": "LI__per_min"
+            },
+            "LI__M22M1_k": {
+              "_magnitude": 0.11061496092925446,
+              "_units": "LI__per_min"
+            },
+            "KI__APIEX_k": {
+              "_magnitude": 0.044556517937263916,
+              "_units": "KI__per_min"
+            },
+            "Emax_INR": {
+              "_magnitude": 1.034912223511749,
+              "_units": "dimensionless"
+            },
+            "EC50_api_INR": {
+              "_magnitude": 0.0011792528732025547,
+              "_units": "millimolar"
+            },
+            "Emax_mPT": {
+              "_magnitude": 1.9946311340457776,
+              "_units": "dimensionless"
+            },
+            "EC50_api_mPT": {
+              "_magnitude": 0.00032191356203984284,
+              "_units": "millimolar"
+            },
+            "Emax_aPTT": {
+              "_magnitude": 0.4606822559153521,
+              "_units": "dimensionless"
+            },
+            "EC50_api_aPTT": {
+              "_magnitude": 0.0005858154549784874,
+              "_units": "millimolar"
+            },
+            "Emax_Xa": {
+              "_magnitude": 4.581056537417629,
+              "_units": "per_mM"
+            },
+            "Emax_antiXa": {
+              "_magnitude": 6332.859524334975,
+              "_units": "IU_per_ml_mM"
+            },
+            "Emax_antiXa_gram": {
+              "_magnitude": 452775.1008926358,
+              "_units": "ng_per_ml_mM"
+            },
+            "BW": {
+              "_magnitude": 75.9,
+              "_units": "kilogram"
+            },
+            "PODOSE_api": {
+              "_magnitude": 2.5,
+              "_units": "milligram"
+            }
+          },
+          "model_changes": {},
+          "model_manipulations": {},
+          "discard": false
+        },
+        {
+          "start": 0,
+          "end": 720,
+          "steps": 1000,
+          "changes": {
+            "ftissue_api": {
+              "_magnitude": 9.999362175489635,
+              "_units": "l_per_min"
+            },
+            "Kp_api": {
+              "_magnitude": 0.033548549714271736,
+              "_units": "dimensionless"
+            },
+            "GU__APIABS_k": {
+              "_magnitude": 0.09999949917572021,
+              "_units": "GU__per_min"
+            },
+            "LI__API2M2_k": {
+              "_magnitude": 0.01570094528592168,
+              "_units": "LI__per_min"
+            },
+            "LI__API2M7_k": {
+              "_magnitude": 0.020189792087538537,
+              "_units": "LI__per_min"
+            },
+            "LI__M22M1_k": {
+              "_magnitude": 0.11061496092925446,
+              "_units": "LI__per_min"
+            },
+            "KI__APIEX_k": {
+              "_magnitude": 0.044556517937263916,
+              "_units": "KI__per_min"
+            },
+            "Emax_INR": {
+              "_magnitude": 1.034912223511749,
+              "_units": "dimensionless"
+            },
+            "EC50_api_INR": {
+              "_magnitude": 0.0011792528732025547,
+              "_units": "millimolar"
+            },
+            "Emax_mPT": {
+              "_magnitude": 1.9946311340457776,
+              "_units": "dimensionless"
+            },
+            "EC50_api_mPT": {
+              "_magnitude": 0.00032191356203984284,
+              "_units": "millimolar"
+            },
+            "Emax_aPTT": {
+              "_magnitude": 0.4606822559153521,
+              "_units": "dimensionless"
+            },
+            "EC50_api_aPTT": {
+              "_magnitude": 0.0005858154549784874,
+              "_units": "millimolar"
+            },
+            "Emax_Xa": {
+              "_magnitude": 4.581056537417629,
+              "_units": "per_mM"
+            },
+            "Emax_antiXa": {
+              "_magnitude": 6332.859524334975,
+              "_units": "IU_per_ml_mM"
+            },
+            "Emax_antiXa_gram": {
+              "_magnitude": 452775.1008926358,
+              "_units": "ng_per_ml_mM"
+            },
+            "BW": {
+              "_magnitude": 75.9,
+              "_units": "kilogram"
+            },
+            "PODOSE_api": {
+              "_magnitude": 2.5,
+              "_units": "milligram"
+            }
+          },
+          "model_changes": {},
+          "model_manipulations": {},
+          "discard": false
+        },
+        {
+          "start": 0,
+          "end": 720,
+          "steps": 1000,
+          "changes": {
+            "ftissue_api": {
+              "_magnitude": 9.999362175489635,
+              "_units": "l_per_min"
+            },
+            "Kp_api": {
+              "_magnitude": 0.033548549714271736,
+              "_units": "dimensionless"
+            },
+            "GU__APIABS_k": {
+              "_magnitude": 0.09999949917572021,
+              "_units": "GU__per_min"
+            },
+            "LI__API2M2_k": {
+              "_magnitude": 0.01570094528592168,
+              "_units": "LI__per_min"
+            },
+            "LI__API2M7_k": {
+              "_magnitude": 0.020189792087538537,
+              "_units": "LI__per_min"
+            },
+            "LI__M22M1_k": {
+              "_magnitude": 0.11061496092925446,
+              "_units": "LI__per_min"
+            },
+            "KI__APIEX_k": {
+              "_magnitude": 0.044556517937263916,
+              "_units": "KI__per_min"
+            },
+            "Emax_INR": {
+              "_magnitude": 1.034912223511749,
+              "_units": "dimensionless"
+            },
+            "EC50_api_INR": {
+              "_magnitude": 0.0011792528732025547,
+              "_units": "millimolar"
+            },
+            "Emax_mPT": {
+              "_magnitude": 1.9946311340457776,
+              "_units": "dimensionless"
+            },
+            "EC50_api_mPT": {
+              "_magnitude": 0.00032191356203984284,
+              "_units": "millimolar"
+            },
+            "Emax_aPTT": {
+              "_magnitude": 0.4606822559153521,
+              "_units": "dimensionless"
+            },
+            "EC50_api_aPTT": {
+              "_magnitude": 0.0005858154549784874,
+              "_units": "millimolar"
+            },
+            "Emax_Xa": {
+              "_magnitude": 4.581056537417629,
+              "_units": "per_mM"
+            },
+            "Emax_antiXa": {
+              "_magnitude": 6332.859524334975,
+              "_units": "IU_per_ml_mM"
+            },
+            "Emax_antiXa_gram": {
+              "_magnitude": 452775.1008926358,
+              "_units": "ng_per_ml_mM"
+            },
+            "BW": {
+              "_magnitude": 75.9,
+              "_units": "kilogram"
+            },
+            "PODOSE_api": {
+              "_magnitude": 2.5,
+              "_units": "milligram"
+            }
+          },
+          "model_changes": {},
+          "model_manipulations": {},
+          "discard": false
+        },
+        {
+          "start": 0,
+          "end": 720,
+          "steps": 1000,
+          "changes": {
+            "ftissue_api": {
+              "_magnitude": 9.999362175489635,
+              "_units": "l_per_min"
+            },
+            "Kp_api": {
+              "_magnitude": 0.033548549714271736,
+              "_units": "dimensionless"
+            },
+            "GU__APIABS_k": {
+              "_magnitude": 0.09999949917572021,
+              "_units": "GU__per_min"
+            },
+            "LI__API2M2_k": {
+              "_magnitude": 0.01570094528592168,
+              "_units": "LI__per_min"
+            },
+            "LI__API2M7_k": {
+              "_magnitude": 0.020189792087538537,
+              "_units": "LI__per_min"
+            },
+            "LI__M22M1_k": {
+              "_magnitude": 0.11061496092925446,
+              "_units": "LI__per_min"
+            },
+            "KI__APIEX_k": {
+              "_magnitude": 0.044556517937263916,
+              "_units": "KI__per_min"
+            },
+            "Emax_INR": {
+              "_magnitude": 1.034912223511749,
+              "_units": "dimensionless"
+            },
+            "EC50_api_INR": {
+              "_magnitude": 0.0011792528732025547,
+              "_units": "millimolar"
+            },
+            "Emax_mPT": {
+              "_magnitude": 1.9946311340457776,
+              "_units": "dimensionless"
+            },
+            "EC50_api_mPT": {
+              "_magnitude": 0.00032191356203984284,
+              "_units": "millimolar"
+            },
+            "Emax_aPTT": {
+              "_magnitude": 0.4606822559153521,
+              "_units": "dimensionless"
+            },
+            "EC50_api_aPTT": {
+              "_magnitude": 0.0005858154549784874,
+              "_units": "millimolar"
+            },
+            "Emax_Xa": {
+              "_magnitude": 4.581056537417629,
+              "_units": "per_mM"
+            },
+            "Emax_antiXa": {
+              "_magnitude": 6332.859524334975,
+              "_units": "IU_per_ml_mM"
+            },
+            "Emax_antiXa_gram": {
+              "_magnitude": 452775.1008926358,
+              "_units": "ng_per_ml_mM"
+            },
+            "BW": {
+              "_magnitude": 75.9,
+              "_units": "kilogram"
+            },
+            "PODOSE_api": {
+              "_magnitude": 2.5,
+              "_units": "milligram"
+            }
+          },
+          "model_changes": {},
+          "model_manipulations": {},
+          "discard": false
+        },
+        {
+          "start": 0,
+          "end": 720,
+          "steps": 1000,
+          "changes": {
+            "ftissue_api": {
+              "_magnitude": 9.999362175489635,
+              "_units": "l_per_min"
+            },
+            "Kp_api": {
+              "_magnitude": 0.033548549714271736,
+              "_units": "dimensionless"
+            },
+            "GU__APIABS_k": {
+              "_magnitude": 0.09999949917572021,
+              "_units": "GU__per_min"
+            },
+            "LI__API2M2_k": {
+              "_magnitude": 0.01570094528592168,
+              "_units": "LI__per_min"
+            },
+            "LI__API2M7_k": {
+              "_magnitude": 0.020189792087538537,
+              "_units": "LI__per_min"
+            },
+            "LI__M22M1_k": {
+              "_magnitude": 0.11061496092925446,
+              "_units": "LI__per_min"
+            },
+            "KI__APIEX_k": {
+              "_magnitude": 0.044556517937263916,
+              "_units": "KI__per_min"
+            },
+            "Emax_INR": {
+              "_magnitude": 1.034912223511749,
+              "_units": "dimensionless"
+            },
+            "EC50_api_INR": {
+              "_magnitude": 0.0011792528732025547,
+              "_units": "millimolar"
+            },
+            "Emax_mPT": {
+              "_magnitude": 1.9946311340457776,
+              "_units": "dimensionless"
+            },
+            "EC50_api_mPT": {
+              "_magnitude": 0.00032191356203984284,
+              "_units": "millimolar"
+            },
+            "Emax_aPTT": {
+              "_magnitude": 0.4606822559153521,
+              "_units": "dimensionless"
+            },
+            "EC50_api_aPTT": {
+              "_magnitude": 0.0005858154549784874,
+              "_units": "millimolar"
+            },
+            "Emax_Xa": {
+              "_magnitude": 4.581056537417629,
+              "_units": "per_mM"
+            },
+            "Emax_antiXa": {
+              "_magnitude": 6332.859524334975,
+              "_units": "IU_per_ml_mM"
+            },
+            "Emax_antiXa_gram": {
+              "_magnitude": 452775.1008926358,
+              "_units": "ng_per_ml_mM"
+            },
+            "BW": {
+              "_magnitude": 75.9,
+              "_units": "kilogram"
+            },
+            "PODOSE_api": {
+              "_magnitude": 2.5,
+              "_units": "milligram"
+            }
+          },
+          "model_changes": {},
+          "model_manipulations": {},
+          "discard": false
+        },
+        {
+          "start": 0,
+          "end": 720,
+          "steps": 1000,
+          "changes": {
+            "ftissue_api": {
+              "_magnitude": 9.999362175489635,
+              "_units": "l_per_min"
+            },
+            "Kp_api": {
+              "_magnitude": 0.033548549714271736,
+              "_units": "dimensionless"
+            },
+            "GU__APIABS_k": {
+              "_magnitude": 0.09999949917572021,
+              "_units": "GU__per_min"
+            },
+            "LI__API2M2_k": {
+              "_magnitude": 0.01570094528592168,
+              "_units": "LI__per_min"
+            },
+            "LI__API2M7_k": {
+              "_magnitude": 0.020189792087538537,
+              "_units": "LI__per_min"
+            },
+            "LI__M22M1_k": {
+              "_magnitude": 0.11061496092925446,
+              "_units": "LI__per_min"
+            },
+            "KI__APIEX_k": {
+              "_magnitude": 0.044556517937263916,
+              "_units": "KI__per_min"
+            },
+            "Emax_INR": {
+              "_magnitude": 1.034912223511749,
+              "_units": "dimensionless"
+            },
+            "EC50_api_INR": {
+              "_magnitude": 0.0011792528732025547,
+              "_units": "millimolar"
+            },
+            "Emax_mPT": {
+              "_magnitude": 1.9946311340457776,
+              "_units": "dimensionless"
+            },
+            "EC50_api_mPT": {
+              "_magnitude": 0.00032191356203984284,
+              "_units": "millimolar"
+            },
+            "Emax_aPTT": {
+              "_magnitude": 0.4606822559153521,
+              "_units": "dimensionless"
+            },
+            "EC50_api_aPTT": {
+              "_magnitude": 0.0005858154549784874,
+              "_units": "millimolar"
+            },
+            "Emax_Xa": {
+              "_magnitude": 4.581056537417629,
+              "_units": "per_mM"
+            },
+            "Emax_antiXa": {
+              "_magnitude": 6332.859524334975,
+              "_units": "IU_per_ml_mM"
+            },
+            "Emax_antiXa_gram": {
+              "_magnitude": 452775.1008926358,
+              "_units": "ng_per_ml_mM"
+            },
+            "BW": {
+              "_magnitude": 75.9,
+              "_units": "kilogram"
+            },
+            "PODOSE_api": {
+              "_magnitude": 2.5,
+              "_units": "milligram"
+            }
+          },
+          "model_changes": {},
+          "model_manipulations": {},
+          "discard": false
+        },
+        {
+          "start": 0,
+          "end": 720,
+          "steps": 1000,
+          "changes": {
+            "ftissue_api": {
+              "_magnitude": 9.999362175489635,
+              "_units": "l_per_min"
+            },
+            "Kp_api": {
+              "_magnitude": 0.033548549714271736,
+              "_units": "dimensionless"
+            },
+            "GU__APIABS_k": {
+              "_magnitude": 0.09999949917572021,
+              "_units": "GU__per_min"
+            },
+            "LI__API2M2_k": {
+              "_magnitude": 0.01570094528592168,
+              "_units": "LI__per_min"
+            },
+            "LI__API2M7_k": {
+              "_magnitude": 0.020189792087538537,
+              "_units": "LI__per_min"
+            },
+            "LI__M22M1_k": {
+              "_magnitude": 0.11061496092925446,
+              "_units": "LI__per_min"
+            },
+            "KI__APIEX_k": {
+              "_magnitude": 0.044556517937263916,
+              "_units": "KI__per_min"
+            },
+            "Emax_INR": {
+              "_magnitude": 1.034912223511749,
+              "_units": "dimensionless"
+            },
+            "EC50_api_INR": {
+              "_magnitude": 0.0011792528732025547,
+              "_units": "millimolar"
+            },
+            "Emax_mPT": {
+              "_magnitude": 1.9946311340457776,
+              "_units": "dimensionless"
+            },
+            "EC50_api_mPT": {
+              "_magnitude": 0.00032191356203984284,
+              "_units": "millimolar"
+            },
+            "Emax_aPTT": {
+              "_magnitude": 0.4606822559153521,
+              "_units": "dimensionless"
+            },
+            "EC50_api_aPTT": {
+              "_magnitude": 0.0005858154549784874,
+              "_units": "millimolar"
+            },
+            "Emax_Xa": {
+              "_magnitude": 4.581056537417629,
+              "_units": "per_mM"
+            },
+            "Emax_antiXa": {
+              "_magnitude": 6332.859524334975,
+              "_units": "IU_per_ml_mM"
+            },
+            "Emax_antiXa_gram": {
+              "_magnitude": 452775.1008926358,
+              "_units": "ng_per_ml_mM"
+            },
+            "BW": {
+              "_magnitude": 75.9,
+              "_units": "kilogram"
+            },
+            "PODOSE_api": {
+              "_magnitude": 2.5,
+              "_units": "milligram"
+            }
+          },
+          "model_changes": {},
+          "model_manipulations": {},
+          "discard": false
+        },
+        {
+          "start": 0,
+          "end": 2700,
+          "steps": 1000,
+          "changes": {
+            "ftissue_api": {
+              "_magnitude": 9.999362175489635,
+              "_units": "l_per_min"
+            },
+            "Kp_api": {
+              "_magnitude": 0.033548549714271736,
+              "_units": "dimensionless"
+            },
+            "GU__APIABS_k": {
+              "_magnitude": 0.09999949917572021,
+              "_units": "GU__per_min"
+            },
+            "LI__API2M2_k": {
+              "_magnitude": 0.01570094528592168,
+              "_units": "LI__per_min"
+            },
+            "LI__API2M7_k": {
+              "_magnitude": 0.020189792087538537,
+              "_units": "LI__per_min"
+            },
+            "LI__M22M1_k": {
+              "_magnitude": 0.11061496092925446,
+              "_units": "LI__per_min"
+            },
+            "KI__APIEX_k": {
+              "_magnitude": 0.044556517937263916,
+              "_units": "KI__per_min"
+            },
+            "Emax_INR": {
+              "_magnitude": 1.034912223511749,
+              "_units": "dimensionless"
+            },
+            "EC50_api_INR": {
+              "_magnitude": 0.0011792528732025547,
+              "_units": "millimolar"
+            },
+            "Emax_mPT": {
+              "_magnitude": 1.9946311340457776,
+              "_units": "dimensionless"
+            },
+            "EC50_api_mPT": {
+              "_magnitude": 0.00032191356203984284,
+              "_units": "millimolar"
+            },
+            "Emax_aPTT": {
+              "_magnitude": 0.4606822559153521,
+              "_units": "dimensionless"
+            },
+            "EC50_api_aPTT": {
+              "_magnitude": 0.0005858154549784874,
+              "_units": "millimolar"
+            },
+            "Emax_Xa": {
+              "_magnitude": 4.581056537417629,
+              "_units": "per_mM"
+            },
+            "Emax_antiXa": {
+              "_magnitude": 6332.859524334975,
+              "_units": "IU_per_ml_mM"
+            },
+            "Emax_antiXa_gram": {
+              "_magnitude": 452775.1008926358,
+              "_units": "ng_per_ml_mM"
+            },
+            "BW": {
+              "_magnitude": 75.9,
+              "_units": "kilogram"
+            },
+            "PODOSE_api": {
+              "_magnitude": 2.5,
+              "_units": "milligram"
+            }
+          },
+          "model_changes": {},
+          "model_manipulations": {},
+          "discard": false
+        }
+      ]
+    }
+  },
+  "data": {
+    "task_mAPI__time": {
+      "type": "TASK",
+      "index": "time",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__Cve_api": {
+      "type": "TASK",
+      "index": "Cve_api",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__Cve_m1": {
+      "type": "TASK",
+      "index": "Cve_m1",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__Cve_m7": {
+      "type": "TASK",
+      "index": "Cve_m7",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__Aurine_api": {
+      "type": "TASK",
+      "index": "Aurine_api",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__Aurine_m1": {
+      "type": "TASK",
+      "index": "Aurine_m1",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__Aurine_m7": {
+      "type": "TASK",
+      "index": "Aurine_m7",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__Afeces_api": {
+      "type": "TASK",
+      "index": "Afeces_api",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__Afeces_m1": {
+      "type": "TASK",
+      "index": "Afeces_m1",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__Afeces_m2": {
+      "type": "TASK",
+      "index": "Afeces_m2",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__Afeces_m7": {
+      "type": "TASK",
+      "index": "Afeces_m7",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__GU__APIEXC": {
+      "type": "TASK",
+      "index": "GU__APIEXC",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__KI__f_renal_function": {
+      "type": "TASK",
+      "index": "KI__f_renal_function",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__f_cirrhosis": {
+      "type": "TASK",
+      "index": "f_cirrhosis",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__INR": {
+      "type": "TASK",
+      "index": "INR",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__INR_change": {
+      "type": "TASK",
+      "index": "INR_change",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__INR_ratio": {
+      "type": "TASK",
+      "index": "INR_ratio",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__INR_relchange": {
+      "type": "TASK",
+      "index": "INR_relchange",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__PT": {
+      "type": "TASK",
+      "index": "PT",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__PT_change": {
+      "type": "TASK",
+      "index": "PT_change",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__PT_ratio": {
+      "type": "TASK",
+      "index": "PT_ratio",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__PT_relchange": {
+      "type": "TASK",
+      "index": "PT_relchange",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__mPT": {
+      "type": "TASK",
+      "index": "mPT",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__mPT_change": {
+      "type": "TASK",
+      "index": "mPT_change",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__mPT_ratio": {
+      "type": "TASK",
+      "index": "mPT_ratio",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__mPT_relchange": {
+      "type": "TASK",
+      "index": "mPT_relchange",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__aPTT": {
+      "type": "TASK",
+      "index": "aPTT",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__aPTT_change": {
+      "type": "TASK",
+      "index": "aPTT_change",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__aPTT_ratio": {
+      "type": "TASK",
+      "index": "aPTT_ratio",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__aPTT_relchange": {
+      "type": "TASK",
+      "index": "aPTT_relchange",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__Xa_inhibition": {
+      "type": "TASK",
+      "index": "Xa_inhibition",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__antiXa_activity": {
+      "type": "TASK",
+      "index": "antiXa_activity",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__antiXa_activity_gram": {
+      "type": "TASK",
+      "index": "antiXa_activity_gram",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__PODOSE_api": {
+      "type": "TASK",
+      "index": "PODOSE_api",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__GU__F_api_abs": {
+      "type": "TASK",
+      "index": "GU__F_api_abs",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_mAPI__BW": {
+      "type": "TASK",
+      "index": "BW",
+      "unit": null,
+      "task": "task_mAPI",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    }
+  },
+  "figures": {
+    "Fig1": {
+      "sid": "Fig1",
+      "name": "Frost2014 (healthy)",
+      "num_rows": 1,
+      "num_cols": 1,
+      "width": 7.0,
+      "height": 5.0,
+      "subplots": [
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig1__plot0",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig1__plot0_xaxis",
+              "name": "time [hr]",
+              "label": "time",
+              "unit": "hr",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig1__plot0_yaxis",
+              "name": "apixaban plasma [nM]",
+              "label": "apixaban plasma",
+              "unit": "nM",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig1__plot0_curve0",
+                "name": "mAPI",
+                "x": "task_mAPI__time",
+                "y": "task_mAPI__Cve_api",
+                "xerr": null,
+                "yerr": null,
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#800080ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#800080ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#800080ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig1__plot0_curve1",
+                "name": "mAPI\u00b1SD (n=14)",
+                "x": "apixaban_mAPI__time",
+                "y": "apixaban_mAPI__mean",
+                "xerr": null,
+                "yerr": "apixaban_mAPI__mean_sd",
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "DASH",
+                    "color": "#800080ff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "SQUARE",
+                    "fill": "#800080ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#800080ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": []
+          },
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        }
+      ]
+    },
+    "Fig2": {
+      "sid": "Fig2",
+      "name": "Frost2014 (healthy)",
+      "num_rows": 1,
+      "num_cols": 1,
+      "width": 7.0,
+      "height": 5.0,
+      "subplots": [
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig2__plot0",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig2__plot0_xaxis",
+              "name": "time [hr]",
+              "label": "time",
+              "unit": "hr",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig2__plot0_yaxis",
+              "name": "anti-FXa activity [IU/ml]",
+              "label": "anti-FXa activity",
+              "unit": "IU/ml",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig2__plot0_curve0",
+                "name": "mAPI",
+                "x": "task_mAPI__time",
+                "y": "task_mAPI__antiXa_activity",
+                "xerr": null,
+                "yerr": null,
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#800080ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#800080ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#800080ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig2__plot0_curve1",
+                "name": "mAPI (n=14)",
+                "x": "Xa_mAPI__time",
+                "y": "Xa_mAPI__mean",
+                "xerr": null,
+                "yerr": null,
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "DASH",
+                    "color": "#800080ff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "SQUARE",
+                    "fill": "#800080ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#800080ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              }
+            ],
+            "areas": []
+          },
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        }
+      ]
+    },
+    "PD scatter": {
+      "sid": "PD scatter",
+      "name": "Frost2014",
+      "num_rows": 1,
+      "num_cols": 1,
+      "width": 7.0,
+      "height": 5.0,
+      "subplots": [
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "PD scatter__plot0",
+            "name": null,
+            "xaxis": {
+              "sid": "PD scatter__plot0_xaxis",
+              "name": "apixaban plasma [\u00b5M]",
+              "label": "apixaban plasma",
+              "unit": "\u00b5M",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "PD scatter__plot0_yaxis",
+              "name": "anti-FXa activity [IU/ml]",
+              "label": "anti-FXa activity",
+              "unit": "IU/ml",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "PD scatter__plot0_curve0",
+                "name": "exp chronic: 2.5mg PO",
+                "x": "apixaban__x",
+                "y": "apixaban__y",
+                "xerr": null,
+                "yerr": null,
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "PD scatter__plot0_curve1",
+                "name": "sim chronic: 2.5mg PO",
+                "x": "task_mAPI__Cve_api",
+                "y": "task_mAPI__antiXa_activity",
+                "xerr": null,
+                "yerr": null,
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              },
+              {
+                "sid": "PD scatter__plot0_curve2",
+                "name": "mean exp chronic: 2.5mg PO",
+                "x": "apixaban_mean__x",
+                "y": "apixaban_mean__y",
+                "xerr": null,
+                "yerr": null,
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#000000ff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "SQUARE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 2
+              }
+            ],
+            "areas": []
+          },
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        }
+      ]
+    }
+  }
+}

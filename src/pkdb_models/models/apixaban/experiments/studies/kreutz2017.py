@@ -4,6 +4,7 @@ from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
@@ -43,7 +44,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
 
     def datasets(self) -> Dict[str, DataSet]:
         dsets = {}
-        for fig_id, group_id in zip(["Fig2", "Fig6", "FigS1", "TabS2", "FigS1Mean"], ["label", "label", "x_label", "label", "x_label"]):
+        for fig_id, group_id in zip(["Fig2", "Fig6", "FigS1", "FigS1Mean", "TabS2"], ["label", "label", "x_label", "x_label", "label"]):
             df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
             for label, df_label in df.groupby(group_id):
                 if "riv" in label:
@@ -119,7 +120,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
                     ),
                     observable=FitData(
                         self,
-                        task=f"task_apixaban",
+                        task="task_apixaban",
                         xid="time",
                         yid=sid,
                     ),
@@ -127,7 +128,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
                         tissue=Tissue.PLASMA,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
-                        dosing=Dosing.SINGLE,
+                        dosing=Dosing.MULTIPLE,
                         health=Health.HEALTHY,
                         fasting=Fasting.FED,
                     ),
@@ -140,7 +141,8 @@ class Kreutz2017(ApixabanSimulationExperiment):
         return {
             **self.figure_pk(),
             **self.figure_pd(),
-            **self.figure_scatter(),
+            # scatter plot data unreliable (see offset in data)
+            # **self.figure_scatter(),
         }
 
     def figure_pk(self) -> Dict[str, Figure]:
@@ -149,8 +151,8 @@ class Kreutz2017(ApixabanSimulationExperiment):
             experiment=self,
             sid="PK",
             name=self.__class__.__name__,
-            num_rows=1,
-            num_cols=1,
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time, min=-24),
@@ -161,10 +163,10 @@ class Kreutz2017(ApixabanSimulationExperiment):
         for label, sid in self.info_figpk.items():
             # simulation
             plots[0].add_data(
-                task=f"task_apixaban",
+                task="task_apixaban",
                 xid="time",
                 yid=sid,
-                label=f"sim chronic fed: {self.dose}mg {self.route}",
+                label=f"sim fed: {self.dose}mg {self.route}",
                 color=self.fasting_colors["fed"],
             )
             # data
@@ -174,7 +176,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
                 yid="mean",
                 yid_sd="mean_sd",
                 count="count",
-                label=f"exp chronic fed: {self.dose}mg {self.route}",
+                label=f"exp fed: {self.dose}mg {self.route}",
                 color=self.fasting_colors["fed"],
             )
 
@@ -186,23 +188,22 @@ class Kreutz2017(ApixabanSimulationExperiment):
             experiment=self,
             sid="PD",
             name=self.__class__.__name__,
-            num_rows=1,
-            num_cols=3,
+            num_cols=len(self.info_figpd),
+            height=self.panel_height,
+            width=self.panel_width * 3 * 1.05,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time, min=-24),
             legend=True,
         )
-
-
         for kp, (label, sid) in enumerate(self.info_figpd.items()):
-            plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid], scale="linear")
+            plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid])
             # simulation
             plots[kp].add_data(
-                task=f"task_apixaban",
+                task="task_apixaban",
                 xid="time",
                 yid=sid,
-                label=f"sim chronic fed: {self.dose}mg {self.route}",
+                label=f"sim fed: {self.dose}mg {self.route}",
                 color=self.fasting_colors["fed"],
             )
             # data
@@ -212,7 +213,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
                 yid="mean",
                 yid_sd="mean_sd",
                 count="count",
-                label=f"exp chronic fed: {self.dose}mg {self.route}",
+                label=f"exp fed: {self.dose}mg {self.route}",
                 color=self.fasting_colors["fed"],
             )
 
@@ -226,7 +227,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
             "linestyle": "solid",
             },
             "kwargs_exp": {
-                "label": f"mean exp chronic fed: {self.dose}mg {self.route}",
+                "label": f"{self.dose}mg {self.route}",
                 "marker": "s",
                 "linestyle": "",
                 "color": self.fasting_colors["fed"],
@@ -238,14 +239,14 @@ class Kreutz2017(ApixabanSimulationExperiment):
 
         style_indiv = {
             "kwargs_sim": {
-            "color": "black",
+            "color": "tab:grey",
             "linestyle": "",
             "marker": "o"
             },
             "kwargs_exp": {
                 "label": f"exp chronic fed: {self.dose}mg {self.route}",
                 "color": "white",
-                "markeredgecolor": "black",
+                "markeredgecolor": self.fasting_colors["fed"],
                 "marker": "o",
                 "linestyle": "",
             }
@@ -258,6 +259,8 @@ class Kreutz2017(ApixabanSimulationExperiment):
             name=self.__class__.__name__,
             num_rows=1,
             num_cols=1,
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots_Xa = fig_Xa.create_plots(
             xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
@@ -294,4 +297,6 @@ class Kreutz2017(ApixabanSimulationExperiment):
 
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Kreutz2017.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(Kreutz2017, output_dir=Kreutz2017.__name__)

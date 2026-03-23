@@ -4,6 +4,7 @@ from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
@@ -38,6 +39,11 @@ class Cui2013(ApixabanSimulationExperiment):
         "antiXa_vs_apixaban": "antiXa_activity",
     }
 
+    legends = {
+        "API10": "single 10mg PO",  # single dose
+        "API10M": "multiple 10mg PO",  # multiple doses
+    }
+
     def datasets(self) -> Dict[str, DataSet]:
         dsets: Dict[str, DataSet] = {}
 
@@ -66,7 +72,7 @@ class Cui2013(ApixabanSimulationExperiment):
         # single dose
         tc_single = Timecourse(
             start=0,
-            end=24 * 60,
+            end=96 * 60,
             steps=1000,
             changes={
                 **self.default_changes(),
@@ -100,7 +106,7 @@ class Cui2013(ApixabanSimulationExperiment):
         )
         tc2 = Timecourse(
             start=0,
-            end=74 * 60,
+            end=96 * 60,
             steps=1000,
             changes={
                 "PODOSE_api": Q_(self.dose, "mg"),
@@ -161,10 +167,12 @@ class Cui2013(ApixabanSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid="Fig1",
-            name=f"{self.__class__.__name__} (healthy)",
+            name=f"{self.__class__.__name__}",
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
-            xaxis=Axis(self.label_time, unit=self.unit_time),
+            xaxis=Axis(self.label_time, unit=self.unit_time, min=-20, max=75),
             legend=True,
         )
         for kp, sid in enumerate(self.infos_pk):
@@ -175,8 +183,8 @@ class Cui2013(ApixabanSimulationExperiment):
                 task=f"task_{intervention}",
                 xid="time",
                 yid="[Cve_api]",
-                label=intervention,
-                color=self.colors[intervention],
+                label=f"sim {self.legends[intervention]}",
+                color=self.admin_colors["single"] if intervention == "API10" else self.admin_colors["multiple"],
             )
 
             plots[0].add_data(
@@ -185,8 +193,8 @@ class Cui2013(ApixabanSimulationExperiment):
                 yid="mean",
                 yid_sd="mean_sd",
                 count="count",
-                label=intervention,
-                color=self.colors[intervention],
+                label=f"exp {self.legends[intervention]}",
+                color=self.admin_colors["single"] if intervention == "API10" else self.admin_colors["multiple"],
             )
 
         return {fig.sid: fig}
@@ -195,10 +203,12 @@ class Cui2013(ApixabanSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid="Fig2",
-            name=f"{self.__class__.__name__} (healthy)",
+            name=f"{self.__class__.__name__}",
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
-            xaxis=Axis(self.label_time, unit=self.unit_time),
+            xaxis=Axis(self.label_time, unit=self.unit_time, min=-20, max=75),
             legend=True,
         )
         for kp, sid in enumerate(self.infos_pd):
@@ -211,8 +221,8 @@ class Cui2013(ApixabanSimulationExperiment):
                     task=f"task_{intervention}",
                     xid="time",
                     yid=sid,
-                    label=intervention,
-                    color=self.colors[intervention],
+                    label=f"sim {self.legends[intervention]}",
+                    color=self.admin_colors["single"] if intervention == "API10" else self.admin_colors["multiple"],
                 )
                 plots[0].add_data(
                     dataset=f"{name}_{intervention}",
@@ -220,8 +230,8 @@ class Cui2013(ApixabanSimulationExperiment):
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=intervention,
-                    color=self.colors[intervention],
+                    label=f"exp {self.legends[intervention]}",
+                    color=self.admin_colors["single"] if intervention == "API10" else self.admin_colors["multiple"],
                 )
 
         return {fig.sid: fig}
@@ -230,7 +240,9 @@ class Cui2013(ApixabanSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid="Fig3",
-            name=f"{self.__class__.__name__} (Renal impairment)",
+            name=f"{self.__class__.__name__}",
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
@@ -241,17 +253,16 @@ class Cui2013(ApixabanSimulationExperiment):
             task="task_API10",
             xid="[Cve_api]",
             yid="antiXa_activity",
-            label="API10",
+            label="sim: 10mg PO",
             color="black",
-            linestyle="",
-            marker="o",
+            linestyle="solid",
         )
 
         plots[0].add_data(
             dataset="antiXa_vs_apixaban",
             xid="x",
             yid="y",
-            label="API10",
+            label="exp individ: 10mg PO",
             color="white",
             markeredgecolor="black",
             marker="o",
@@ -262,4 +273,6 @@ class Cui2013(ApixabanSimulationExperiment):
 
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Cui2013.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(Cui2013, output_dir=Cui2013.__name__)

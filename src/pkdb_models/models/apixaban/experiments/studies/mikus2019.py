@@ -4,6 +4,7 @@ from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
@@ -92,7 +93,7 @@ class Mikus2019(ApixabanSimulationExperiment):
                         dosing= Dosing.MULTIPLE,
                         health=Health.HEALTHY,
                         fasting=Fasting.FASTED,
-                        coadministration=Coadministration.KETOCONAZOLE if "KET" in intervention else Coadministration.NONE,
+                        coadministration=Coadministration.KETOCONAZOLE if "KET" in intervention else Coadministration.RIVAROXABAN.EDOXABAN,
                     ),
                 )
 
@@ -145,4 +146,6 @@ class Mikus2019(ApixabanSimulationExperiment):
 
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Mikus2019.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(Mikus2019, output_dir=Mikus2019.__name__)

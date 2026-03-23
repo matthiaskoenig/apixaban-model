@@ -1,0 +1,6 @@
+study	name	time	time_end	time_unit	route	application	measurement_type	form	substance	value	unit	comments
+Vakkalagadda2016	API5IV	0	0.00277777777777778	hr	iv	constant infusion	dosing	solution	apixaban	5.0	mg	Intravenous apixaban was formulated as a 2.5-mg mL-1 sterile, non-pyrogenic solution  and administered peripherally as a bolus injection given over approximately 10 s,
+Vakkalagadda2016	API10PO	0	NA	hr	oral	single dose	dosing	tablet	apixaban	10.0	mg	Oral apixaban was administered as a single 10-mg tablet under fasting conditions along with 240 mL of water.
+Vakkalagadda2016	RIF600	0|24|10	NA	hr	oral	multiple dose	dosing	tablet	rifampicin	600.0	mg	NA
+Vakkalagadda2016	API5IV_after	288	288.002777777778	hr	iv	constant infusion	dosing	solution	apixaban	5.0	mg	Although there are two administrations at different times, they are analyzed together
+Vakkalagadda2016	API10PO_after	288	NA	hr	oral	single dose	dosing	tablet	apixaban	10.0	mg	Although there are two administrations at different times, they are analyzed together

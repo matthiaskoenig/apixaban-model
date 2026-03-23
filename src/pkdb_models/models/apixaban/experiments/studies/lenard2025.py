@@ -4,6 +4,7 @@ from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment
 )
@@ -78,7 +79,7 @@ class Lenard2025(ApixabanSimulationExperiment):
             # PK
             for ks, sid in enumerate(self.infos_pk):
                 name = self.infos_pk[sid]
-                coadministration = Coadministration.NONE
+                coadministration = Coadministration.RIVAROXABAN.EDOXABAN
                 if "CAR" in intervention:
                     coadministration = Coadministration.CARBAMAZEPINE
                 elif "GAB" in intervention:
@@ -157,4 +158,6 @@ class Lenard2025(ApixabanSimulationExperiment):
 
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Lenard2025.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(Lenard2025, output_dir=Lenard2025.__name__)

@@ -4,6 +4,7 @@ from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
@@ -39,22 +40,58 @@ class Frost2015(ApixabanSimulationExperiment):
         "elderly_male": 79,
         "elderly_female": 70,
     }
+    groups = list(bodyweights.keys())
 
     # mean start values at t=0
-    inrs = {"INR_ref": 1.1}
+    inrs = {
+        "INR_ref": 1.1
+    }
 
     dose = "API_20"
 
     # plot colors
     colors = {
         "young": "black",
-        "elderly": "tab:red",
-        "male": "tab:blue",
-        "female": "tab:green",
-        "young_male": "tab:cyan",
-        "young_female": "tab:orange",
-        "elderly_male": "tab:purple",
-        "elderly_female": "tab:brown",
+        "elderly": "#66c2a4",
+        "male": "black",
+        "female": "black",
+        "young_male": "black",
+        "young_female": "black",
+        "elderly_male": "#66c2a4",
+        "elderly_female": "#66c2a4",
+    }
+
+    markers = {
+        "young": "s",
+        "elderly": "s",
+        "male": "s",
+        "female": "^",
+        "young_male": "s",
+        "young_female": "^",
+        "elderly_male": "s",
+        "elderly_female": "^",
+    }
+
+    legend = {
+        "young": "Y: 20mg PO",
+        "elderly": "E: 20mg PO",
+        "male": "M: 20mg PO",
+        "female": "F: 20mg PO",
+        "young_male": "Y M: 20mg PO",
+        "young_female": "Y F: 20mg PO",
+        "elderly_male": "E M: 20mg PO",
+        "elderly_female": "E F: 20mg PO",
+    }
+
+    clearance = {
+        "young": 119.5 / 119.5, # taken as reference
+        "elderly": 79.1 / 119.5,
+        "male": 103.05 / 119.5,
+        "female": 95.9 / 119.5,
+        "young_male": 123.3 / 119.5,
+        "young_female": 115.7 / 119.5,
+        "elderly_male": 82.8 / 119.5,
+        "elderly_female": 75.1 / 119.5,
     }
 
     info_fig1 = {
@@ -97,24 +134,11 @@ class Frost2015(ApixabanSimulationExperiment):
     def simulations(self) -> Dict[str, TimecourseSim]:
         Q_ = self.Q_
         tcsims = {}
-        for group in self.age_gender:
+        for group in self.groups:
             tcsims[group] = TimecourseSim(
                 [Timecourse(
                     start=0,
-                    end=96 * 60,  # [min]
-                    steps=1000,
-                    changes={
-                        **self.default_changes(),
-                        "BW": Q_(self.bodyweights[group], "kg"),
-                        "PODOSE_api": Q_(20, "mg"),
-                    },
-                )]
-            )
-        for group in self.gender:
-            tcsims[group] = TimecourseSim(
-                [Timecourse(
-                    start=0,
-                    end=96 * 60,  # [min]
+                    end=120 * 60,  # [min]
                     steps=1000,
                     changes={
                         **self.default_changes(),
@@ -122,21 +146,7 @@ class Frost2015(ApixabanSimulationExperiment):
                         "PODOSE_api": Q_(20, "mg"),
                         # set pharmacodynamic baseline reference parameters (assignment rules use these)
                         "INR_ref": Q_(self.inrs["INR_ref"], self.units["INR"]),
-                    },
-                )]
-            )
-        for group in self.age:
-            tcsims[group] = TimecourseSim(
-                [Timecourse(
-                    start=0,
-                    end=96 * 60,  # [min]
-                    steps=1000,
-                    changes={
-                        **self.default_changes(),
-                        "BW": Q_(self.bodyweights[group], "kg"),
-                        "PODOSE_api": Q_(20, "mg"),
-                        # set pharmacodynamic baseline reference parameters (assignment rules use these)
-                        "INR_ref": Q_(self.inrs["INR_ref"], self.units["INR"]),
+                        "KI__f_renal_function": Q_(self.clearance[group], "dimensionless"),
                     },
                 )]
             )
@@ -146,7 +156,6 @@ class Frost2015(ApixabanSimulationExperiment):
         mappings = {}
 
         datasets_map = getattr(self, "_datasets", {})
-
         dset_id_plasma = lambda group: f"apixaban_{group}"
         dset_id_urine = lambda group: f"cumulative amount_{group}"
 
@@ -168,7 +177,7 @@ class Frost2015(ApixabanSimulationExperiment):
                             self,
                             task=task_key,
                             xid="time",
-                            yid="[Cve_api]",
+                            yid="[Cve_api]" if "apixaban" in dset_key else "Aurine_api",
                         ),
                         metadata=ApixabanMappingMetaData(
                             tissue=Tissue.PLASMA if "apixaban" in dset_key else Tissue.URINE,
@@ -241,6 +250,8 @@ class Frost2015(ApixabanSimulationExperiment):
             name=self.__class__.__name__,
             num_cols=2,
             num_rows=1,
+            height=self.panel_height,
+            width=self.panel_width * 2,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -259,7 +270,7 @@ class Frost2015(ApixabanSimulationExperiment):
                     task=task_key,
                     xid="time",
                     yid=sid,
-                    label=group,
+                    label=f"sim {self.legend[group]}",
                     color=self.colors[group],
                 )
                 # data
@@ -269,8 +280,9 @@ class Frost2015(ApixabanSimulationExperiment):
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=group,
+                    label=f"exp {self.legend[group]}",
                     color=self.colors[group],
+                    marker=self.markers[group],
                 )
 
         return {fig.sid: fig}
@@ -282,8 +294,10 @@ class Frost2015(ApixabanSimulationExperiment):
             experiment=self,
             sid="Fig3",
             name=self.__class__.__name__,
-            num_rows=4,
-            num_cols=2,
+            num_rows=2,
+            num_cols=4,
+            height=self.panel_height * 2 * 1.1,
+            width=self.panel_width * 4 * 1.1
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -318,20 +332,22 @@ class Frost2015(ApixabanSimulationExperiment):
                     task=task_id,
                     xid="time",
                     yid=sid,
-                    label=sim_g,
-                    color=self.colors.get(sim_g, "gray"),
+                    label=f"sim {self.legend[sim_g]}",
+                    color=self.colors[sim_g],
                 )
 
             for group in data_groups:
                 dset_key = f"{name}_{group}_{self.dose}"
+                group = group.rstrip("1")
                 plots[k].add_data(
                         dataset=dset_key,
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
                         count="count",
-                        label=group,
-                        color=self.colors.get(group.rstrip("1"), "black"),
+                        label=f"exp {self.legend[group]}",
+                        color=self.colors[group],
+                        marker=self.markers[group],
                 )
 
         return {fig.sid: fig}
@@ -345,6 +361,8 @@ class Frost2015(ApixabanSimulationExperiment):
                 name=self.__class__.__name__,
                 num_rows=2,
                 num_cols=2,
+                height=self.panel_height * 2,
+                width=self.panel_width * 2
             )
             plots = fig.create_plots(
                 xaxis=Axis(self.label_api_plasma, unit=self.unit_api),
@@ -365,6 +383,32 @@ class Frost2015(ApixabanSimulationExperiment):
                     sim_g = g[:-1] if g.endswith("1") else g
                     if sim_g not in sim_groups:
                         sim_groups.append(sim_g)
+
+                added = set()
+
+                info_key = self.info_fig4.get(sid, sid)
+                datasets_map = getattr(self, "_datasets", {})
+                for group in sim_groups:
+                    if sid == "antiXa_activity_gram":
+                        candidates = (f"{group}1",)
+                    else:
+                        candidates = (group,)
+
+                    for candidate in candidates:
+                        dkey = f"{candidate}_apixaban_vs_{info_key}"
+                        if dkey in datasets_map and dkey not in added:
+                            plots[k].add_data(
+                                dataset=dkey,
+                                xid="x",
+                                yid="y",
+                                label=f"exp individ {self.legend[group]}",
+                                markeredgecolor=self.colors.get(group, "black"),
+                                color="white",
+                                linestyle="",
+                                marker=self.markers[group],
+                            )
+                            added.add(dkey)
+
                 is_legend = True
                 for sim_g in sim_groups:
                     plots[k].add_data(
@@ -377,33 +421,13 @@ class Frost2015(ApixabanSimulationExperiment):
                     )
                     is_legend = False
 
-                info_key = self.info_fig4.get(sid, sid)
-                datasets_map = getattr(self, "_datasets", {})
 
-                added = set()
-                for group in groups:
-                    base = group.rstrip("1")
-                    if sid == "antiXa_activity_gram":
-                        candidates = (f"{base}1",)
-                    else:
-                        candidates = (base,)
 
-                    for candidate in candidates:
-                        dkey = f"{candidate}_apixaban_vs_{info_key}"
-                        if dkey in datasets_map and dkey not in added:
-                            plots[k].add_data(
-                                dataset=dkey,
-                                xid="x",
-                                yid="y",
-                                label=base,
-                                color=self.colors.get(base, "black"),
-                                marker="o",
-                                linestyle="",
-                            )
-                            added.add(dkey)
 
             return {fig.sid: fig}
 
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Frost2015.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(Frost2015, output_dir=Frost2015.__name__)

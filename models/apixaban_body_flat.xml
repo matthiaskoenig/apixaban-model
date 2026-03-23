@@ -93,10 +93,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-03-05T16:11:47Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-03-23T10:07:04Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-03-05T16:11:47Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-03-23T10:07:04Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
@@ -136,6 +136,13 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
       <unitDefinition id="IU_per_ml" name="1/ml">
         <listOfUnits>
           <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="IU_per_ml_mM" name="1/(ml*mmole/l)">
+        <listOfUnits>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
         </listOfUnits>
       </unitDefinition>
       <unitDefinition id="cm" name="cm">
@@ -359,9 +366,23 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
         </listOfUnits>
       </unitDefinition>
+      <unitDefinition id="ng_per_ml_mM" name="ng/(ml*mmole/l)">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="1e-09"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
       <unitDefinition id="per_hr" name="1/hr">
         <listOfUnits>
           <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_mM" name="1/(mmole/l)">
+        <listOfUnits>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
         </listOfUnits>
       </unitDefinition>
       <unitDefinition id="per_min" name="1/min">
@@ -2371,7 +2392,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Emax_Xa" sboTerm="SBO:0000002" id="Emax_Xa" name="Effect constant for Xa inhibition" value="0.686093" units="dimensionless" constant="true">
+      <parameter metaid="meta_Emax_Xa" sboTerm="SBO:0000002" id="Emax_Xa" name="Effect constant for Xa inhibition" value="0.686093" units="per_mM" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Emax_Xa">
@@ -2384,20 +2405,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_EC50_api_Xa" sboTerm="SBO:0000002" id="EC50_api_Xa" name="Effect constant for Xa inhibition" value="0.0002959" units="mM" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_EC50_api_Xa">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_Emax_antiXa" sboTerm="SBO:0000002" id="Emax_antiXa" name="Effect constant for anti-Xa activity" value="0.686093" units="IU_per_ml" constant="true">
+      <parameter metaid="meta_Emax_antiXa" sboTerm="SBO:0000002" id="Emax_antiXa" name="Effect constant for anti-Xa activity" value="0.686093" units="IU_per_ml_mM" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Emax_antiXa">
@@ -2410,10 +2418,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_EC50_api_antiXa" sboTerm="SBO:0000002" id="EC50_api_antiXa" name="Effect constant for anti-Xa activity" value="0.0002959" units="mM" constant="true">
+      <parameter metaid="meta_Emax_antiXa_gram" sboTerm="SBO:0000002" id="Emax_antiXa_gram" name="Effect constant for anti-Xa activity" value="0.686093" units="ng_per_ml_mM" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_EC50_api_antiXa">
+            <rdf:Description rdf:about="#meta_Emax_antiXa_gram">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
@@ -3449,34 +3457,27 @@ or creatinine plasma amounts.</p>
       <assignmentRule variable="Xa_inhibition">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <divide/>
-            <apply>
-              <times/>
-              <ci> Emax_Xa </ci>
-              <ci> Cve_api </ci>
-            </apply>
-            <apply>
-              <plus/>
-              <ci> Cve_api </ci>
-              <ci> EC50_api_Xa </ci>
-            </apply>
+            <times/>
+            <ci> Emax_Xa </ci>
+            <ci> Cve_api </ci>
           </apply>
         </math>
       </assignmentRule>
       <assignmentRule variable="antiXa_activity">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <divide/>
-            <apply>
-              <times/>
-              <ci> Emax_antiXa </ci>
-              <ci> Cve_api </ci>
-            </apply>
-            <apply>
-              <plus/>
-              <ci> Cve_api </ci>
-              <ci> EC50_api_antiXa </ci>
-            </apply>
+            <times/>
+            <ci> Emax_antiXa </ci>
+            <ci> Cve_api </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="antiXa_activity_gram">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Emax_antiXa_gram </ci>
+            <ci> Cve_api </ci>
           </apply>
         </math>
       </assignmentRule>

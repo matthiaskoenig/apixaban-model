@@ -1,9 +1,11 @@
+import math
 from typing import Dict
 
 from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
@@ -23,13 +25,23 @@ class Wang2016(ApixabanSimulationExperiment):
 
     colors = {
         "healthy": "black",
-        "esrd_P1": "tab:blue",
-        "esrd_P2": "tab:red",
+        "esrd_P1": "#006d5e",
+        "esrd_P2": "#006d5e",
+    }
+    markers = {
+        "healthy": "s",
+        "esrd_P1": "*",
+        "esrd_P2": "^",
     }
     bodyweights = {  # [kg]
         "healthy": 87.4,
         "esrd_P1": 92.5,  # post-apixaban hemodialysis
         "esrd_P2": 92.5,  # pre-apixaban hemodialysis
+    }
+    bodyheights = {
+        "healthy": math.sqrt(87.4 / 29.7),
+        "esrd_P1": math.sqrt(92.5 / 29.7),  # post-apixaban hemodialysis
+        "esrd_P2": math.sqrt(92.5 / 29.7),  # pre-apixaban hemodialysis
     }
 
     inrs = {
@@ -107,6 +119,7 @@ class Wang2016(ApixabanSimulationExperiment):
                         "INR_ref": Q_(self.inrs[group], "dimensionless"),
                         "aPTT_ref": Q_(self.aptts[group], "second"),
                         "PT_ref": Q_(self.pts[group], "second"),
+                        "HEIGHT": Q_(self.bodyheights[group], "m"),
                     },
                 )
             ])
@@ -161,7 +174,9 @@ class Wang2016(ApixabanSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid="PK",
-            name=f"{self.__class__.__name__} (Renal impairment)",
+            name=f"{self.__class__.__name__}",
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -179,7 +194,7 @@ class Wang2016(ApixabanSimulationExperiment):
                     task=f"task_{group}",
                     xid="time",
                     yid=sid,
-                    label=group,
+                    label="sim: 5mg PO" if group == "healthy" else "sim EsRI: 5mg PO",
                     color=self.colors[group]
                 )
                 # Data
@@ -189,7 +204,7 @@ class Wang2016(ApixabanSimulationExperiment):
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=group,
+                    label="exp: 5mg PO" if group == "healthy" else "exp EsRI: 5mg PO",
                     color=self.colors[group]
                 )
 
@@ -199,9 +214,11 @@ class Wang2016(ApixabanSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid="PD",
-            name=f"{self.__class__.__name__} (Renal impairment)",
+            name=f"{self.__class__.__name__}",
             num_cols=2,
             num_rows=2,
+            height=self.panel_height * 2,
+            width=self.panel_width * 2,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -219,7 +236,7 @@ class Wang2016(ApixabanSimulationExperiment):
                     task=f"task_{group}",
                     xid="time",
                     yid=sid,
-                    label=group,
+                    label="sim: 5mg PO" if group == "healthy" else "sim EsRI: 5mg PO",
                     color=self.colors[group],
                 )
                 # data
@@ -229,7 +246,7 @@ class Wang2016(ApixabanSimulationExperiment):
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=group,
+                    label="exp: 5mg PO" if group == "healthy" else "exp EsRI: 5mg PO",
                     color=self.colors[group],
                 )
 
@@ -239,35 +256,41 @@ class Wang2016(ApixabanSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid="PD_scatter",
-            name=f"{self.__class__.__name__} (Renal impairment)",
+            name=f"{self.__class__.__name__}",
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
             legend=True,
         )
         plots[0].set_yaxis(self.labels["antiXa_activity"], unit=self.units["antiXa_activity"], scale="linear")
-
+        is_legend = True
         for group in self.groups:
             plots[0].add_data(
                 task=f"task_{group}",
                 xid="[Cve_api]",
                 yid="antiXa_activity",
-                label=group,
-                color=self.colors[group]
+                label="sim: 5mg PO" if is_legend else "",
+                color="black"
             )
+            is_legend = False
             plots[0].add_data(
                 dataset=f"apixaban_vs_xa_{group}",
                 xid="x",
                 yid="y",
-                count="count",
-                label=group,
+                label="exp individ EsRI: 5mg PO" if group == "esrd_P2" else "exp individ: 5mg PO",
                 linestyle="",
-                color=self.colors[group]
+                color="white",
+                markeredgecolor=self.colors[group],
+                marker=self.markers[group],
             )
 
         return {fig.sid: fig}
 
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Wang2016.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(Wang2016, output_dir=Wang2016.__name__)
 

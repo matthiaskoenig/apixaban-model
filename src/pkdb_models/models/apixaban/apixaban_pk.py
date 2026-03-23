@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from pkdb_analysis.pk.pharmacokinetics import TimecoursePK
 
@@ -30,6 +31,16 @@ def process_substance_pk(experiment, xres, scandim, dose_index, dose_value, subs
     tcpk = TimecoursePK(**tpkw)
     pk_dict = tcpk.pk.to_dict()
     pk_dict["substance"] = substance
+
+    # manually calculate AUCend(0->12hr, 0->48hr, 0->72hr, 0->96hr)
+    t_vec_values = t_vec.magnitude
+    for t_end in [12 * 60, 24 * 60, 48 * 60, 72 * 60, 96 * 60]:
+        t_vec = t_vec_values[t_vec_values <= t_end]
+        t_idx = np.where(t_vec_values <= t_end)[0][-1]
+        c_vec_values = c_vec.magnitude[0:t_idx+1]
+        auc_end = np.sum((t_vec[1:] - t_vec[0:-1]) * (c_vec_values[1:] + c_vec_values[0:-1]) / 2.0)
+        pk_dict[f"aucend_{int(t_end / 60)}"] = auc_end
+        pk_dict[f"aucend_{int(t_end / 60)}_unit"] = tcpk.pk.auc.units
 
     # For metabolites: calculate additional clearance parameters
     if substance in ["api", "m1", "m7"]:

@@ -1,0 +1,21 @@
+study	class	condition	parameter	dose	dose_unit	substance	n	mean	sd	geom_mean	median	Q1	Q3	min	max	unit
+Frost2021a	hepatic	normal	cmax	5	mg	apixaban	16			123						ng/ml
+Frost2021a	hepatic	normal	aucinf	5	mg	apixaban	16			1054						ng*hr/ml
+Frost2021a	hepatic	normal	tmax	5	mg	apixaban	16				2.5			2	4	hr
+Frost2021a	hepatic	normal	thalf	5	mg	apixaban	16	14.8	10.2							hr
+Frost2021a	hepatic	normal	cl_renal	5	mg	apixaban	16			0.59						ml/min
+Frost2021a	hepatic	normal	aucend_72	5	mg	apixaban	16			1021						ng*hr/ml
+#																
+Frost2021a	hepatic	mild	cmax	5	mg	apixaban	8			104						ng/ml
+Frost2021a	hepatic	mild	aucinf	5	mg	apixaban	8			1083						ng*hr/ml
+Frost2021a	hepatic	mild	tmax	5	mg	apixaban	8				3.25			2	4	hr
+Frost2021a	hepatic	mild	thalf	5	mg	apixaban	8	14.7	7							hr
+Frost2021a	hepatic	mild	cl_renal	5	mg	apixaban	8			0.89						ml/min
+Frost2021a	hepatic	mild	aucend_72	5	mg	apixaban	8			1054						ng*hr/ml
+#																
+Frost2021a	hepatic	moderate	cmax	5	mg	apixaban	8			115						ng/ml
+Frost2021a	hepatic	moderate	aucinf	5	mg	apixaban	8			1152						ng*hr/ml
+Frost2021a	hepatic	moderate	tmax	5	mg	apixaban	8				3			2	4	hr
+Frost2021a	hepatic	moderate	thalf	5	mg	apixaban	8	17.1	16.8							hr
+Frost2021a	hepatic	moderate	cl_renal	5	mg	apixaban	8			0.56						ml/min
+Frost2021a	hepatic	moderate	aucend_72	5	mg	apixaban	8			1116						ng*hr/ml

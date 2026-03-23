@@ -1,3 +1,4 @@
+import math
 from typing import Dict
 
 from sbmlsim.data import DataSet, load_pkdb_dataframe
@@ -6,6 +7,7 @@ from sbmlsim.plot import Axis, Figure
 from sbmlsim.simulation import Timecourse, TimecourseSim
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import ApixabanSimulationExperiment
 from pkdb_models.models.apixaban.experiments.metadata import Tissue, Route, Dosing, ApplicationForm, Health, \
     Fasting, ApixabanMappingMetaData
@@ -25,15 +27,27 @@ class Frost2018(ApixabanSimulationExperiment):
     }
     dose_keys = list(doses.keys())
     colors = {
-        "placebo": "black",
-        "API2.5": "tab:blue",
-        "API10": "tab:orange",
-        "API25": "tab:green",
-        "API50": "purple",
+        "placebo": "tab:grey",
+        "API2.5": "#fff5eb",
+        "API10": "#fdb97d",
+        "API25": "#e95e0d",
+        "API50": "#7f2704",
     }
     ethnicities = {
         "japanese": "D",
         "caucasian": "s",
+    }
+    bodyweight ={
+        "japanese_placebo": 66,
+        "japanese": 65.6,
+        "caucasian": 70.1,
+        "caucasian_placebo": 68,
+    }
+    bodyheight ={
+        "japanese_placebo": math.sqrt(66 / 22),
+        "japanese": math.sqrt(65.6 / 23.1),
+        "caucasian": math.sqrt(70.1 / 21.9),
+        "caucasian_placebo": math.sqrt(68 / 22.1),
     }
     info_fig1 = {
         "[Cve_api]": "apixaban",
@@ -50,7 +64,7 @@ class Frost2018(ApixabanSimulationExperiment):
                     dset.unit_conversion("mean", 1 / self.Mr.api)
                 elif "cumulative amount" in label:
                     dset.unit_conversion("mean", 1 / self.Mr.api)
-                    console.print(dset)
+                    # console.print(dset)
                 elif fig_id == "Tab2":
                     continue
                 dsets[label] = dset
@@ -61,17 +75,20 @@ class Frost2018(ApixabanSimulationExperiment):
         Q_ = self.Q_
         tcsims: Dict[str, TimecourseSim] = {}
         for key, dose in self.doses.items():
-            tcsims[key] = TimecourseSim([
-                Timecourse(
-                    start=0,
-                    end=100 * 60,  # minutes
-                    steps=500,
-                    changes={
-                        **self.default_changes(),
-                        "PODOSE_api": Q_(dose, "mg"),
-                    },
-                )
-            ])
+            for group, bw in self.bodyweight.items():
+                tcsims[f"{key}_{group}"] = TimecourseSim([
+                    Timecourse(
+                        start=0,
+                        end=100 * 60,  # minutes
+                        steps=500,
+                        changes={
+                            **self.default_changes(),
+                            "PODOSE_api": Q_(dose, "mg"),
+                            "BW": Q_(bw, "kg"),
+                            "HEIGHT": Q_(self.bodyheight[group], "m"),
+                        },
+                    )
+                ])
         return tcsims
 
     def fit_mappings(self) -> Dict[str, FitMapping]:
@@ -101,12 +118,11 @@ class Frost2018(ApixabanSimulationExperiment):
                             dataset=label,
                             xid="time",
                             yid="mean",
-                            yid_sd="mean_sd",
                             count="count",
                         ),
                         observable=FitData(
                             self,
-                            task=f"task_{key}",
+                            task=f"task_{key}_{ethnicity}",
                             xid="time",
                             yid=observable,
                         ),
@@ -132,9 +148,11 @@ class Frost2018(ApixabanSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid="Fig1",
-            num_rows=1,
+            num_rows=2,
             num_cols=2,
-            name=f"{self.__class__.__name__} (Healthy)",
+            name=f"{self.__class__.__name__}",
+            height=self.panel_height * 2,
+            width=self.panel_width * 2,
         )
         Figure.legend_fontsize = 9.5
         plots = fig.create_plots(xaxis=Axis(self.label_time, unit=self.unit_time), legend=True)
@@ -146,35 +164,37 @@ class Frost2018(ApixabanSimulationExperiment):
         ]
 
         for plot_idx, yid, ylabel, yunit, skip_placebo_data in plot_configs:
-            plot = plots[plot_idx]
-            plot.set_yaxis(ylabel, unit=yunit)
+            plots[plot_idx].set_yaxis(ylabel, unit=yunit)
+            plots[plot_idx + 2].set_yaxis(ylabel, unit=yunit)
 
             # simulation
             for key, dose in self.doses.items():
-                task_id = f"task_{key}"
-                plot.add_data(
-                    task=task_id,
-                    xid="time",
-                    yid=yid,
-                    label=f"{dose:g} mg",
-                    color=self.colors.get(key),
-                )
-
-            # study data
-            for ethnicity, marker in self.ethnicities.items():
-                for key, dose in self.doses.items():
-                    if skip_placebo_data and key == "placebo":
+                if dose == 0:
+                    continue
+                for ethnicity in self.bodyweight.keys():
+                    if "placebo" in ethnicity:
                         continue
+                    if ethnicity == "caucasian":
+                        idx = plot_idx + 2
+                    else:
+                        idx = plot_idx
+                    task_id = f"task_{key}_{ethnicity}"
+                    plots[idx].add_data(
+                        task=task_id,
+                        xid="time",
+                        yid=yid,
+                        label=f"sim {ethnicity}: {dose:g} mg PO",
+                        color=self.colors.get(key),
+                    )
                     label = f"{ethnicity}_{key}" if yid == "[Cve_api]" else f"cumulative amount_{ethnicity}_{key}"
-                    plot.add_data(
+                    plots[idx].add_data(
                         dataset=label,
                         xid="time",
                         yid="mean",
-                        yid_sd="mean_sd",
                         count="count",
-                        label=f"{dose:g} mg - {ethnicity}",
+                        label=f"exp {ethnicity}: {dose:g} mg PO",
                         color=self.colors[key],
-                        marker=marker,
+                        marker=self.ethnicities[ethnicity],
                     )
 
         return {fig.sid: fig}
@@ -182,10 +202,12 @@ class Frost2018(ApixabanSimulationExperiment):
     def figure_pd(self) -> Dict[str, Figure]:
         fig = Figure(
             experiment=self,
-            sid="Fig1",
-            num_rows=1,
+            sid="Fig2",
+            num_rows=2,
             num_cols=3,
-            name=f"{self.__class__.__name__} (Healthy)",
+            name=f"{self.__class__.__name__}",
+            height=self.panel_height * 2,
+            width=self.panel_width * 3 * 1.05,
         )
         Figure.legend_fontsize = 9.5
         plots = fig.create_plots(xaxis=Axis(self.label_time, unit=self.unit_time), legend=True)
@@ -198,40 +220,43 @@ class Frost2018(ApixabanSimulationExperiment):
         ]
 
         for plot_idx, yid, ylabel, yunit, dataset_suffix, skip_placebo_data in plot_configs:
-            plot = plots[plot_idx]
-            plot.set_yaxis(ylabel, unit=yunit)
+            plots[plot_idx].set_yaxis(ylabel, unit=yunit)
+            plots[plot_idx+3].set_yaxis(ylabel, unit=yunit)
 
             # simulation
             for key, dose in self.doses.items():
-                task_id = f"task_{key}"
-                plot.add_data(
-                    task=task_id,
-                    xid="time",
-                    yid=yid,
-                    label=f"{dose:g} mg",
-                    color=self.colors.get(key),
-                )
-
-            # study data
-            for ethnicity, marker in self.ethnicities.items():
-                for key, dose in self.doses.items():
-                    if skip_placebo_data and key == "placebo":
+                for ethnicity in self.bodyweight.keys():
+                    if "placebo" in ethnicity:
                         continue
+                    if ethnicity == "caucasian":
+                        idx = plot_idx + 3
+                    else:
+                        idx = plot_idx
+                    task_id = f"task_{key}_{ethnicity}"
+                    plots[idx].add_data(
+                        task=task_id,
+                        xid="time",
+                        yid=yid,
+                        label=f"sim {ethnicity}: {dose:g} mg PO",
+                        color=self.colors.get(key),
+                    )
                     label = f"{ethnicity}{dataset_suffix}_{key}"
-                    plot.add_data(
+                    plots[idx].add_data(
                         dataset=label,
                         xid="time",
                         yid="mean",
-                        yid_sd="mean_sd",
                         count="count",
-                        label=f"{dose:g} mg - {ethnicity}",
+                        label=f"exp {ethnicity}: {dose:g} mg PO",
                         color=self.colors[key],
-                        marker=marker,
+                        marker=self.ethnicities[ethnicity],
                     )
+
 
         return {fig.sid: fig}
 
 
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Frost2018.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(Frost2018, output_dir=Frost2018.__name__)

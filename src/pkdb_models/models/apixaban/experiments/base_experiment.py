@@ -24,6 +24,9 @@ class ApixabanSimulationExperiment(SimulationExperiment):
     legend_font_size = 9
     suptitle_font_size = 25
 
+    panel_width = 7.7
+    panel_height = 5.7
+
     # labels
     label_time = "time"
     label_api = "apixaban"
@@ -149,16 +152,22 @@ class ApixabanSimulationExperiment(SimulationExperiment):
         "antiXa_activity_gram": "ng/ml"
     }
 
+    # ----------- Multiple dosing -----
+    admin_colors = {
+        "single": "black",
+        "multiple": "tab:olive"
+    }
+
     # ----------- Fasting/food -----
     # food changes the fraction absorbed
     fasting_map = {  # GU__F_api_abs
-        "not reported": 0.82,  # assuming fasted state if nothing is reported
-        "fasted": 0.82,
+        "not reported": 0.66,  # assuming fasted state if nothing is reported
+        "fasted": 0.66, # Frost2021
         "fed": 1.0,
     }
     fasting_colors = {
         "fasted": "black",
-        "fed": "tab:red",
+        "fed": "tab:purple",
     }
 
     # ----------- Renal map --------------
@@ -167,14 +176,14 @@ class ApixabanSimulationExperiment(SimulationExperiment):
         "Mild renal impairment": 50.0 / 101.0,  # 0.5
         "Moderate renal impairment": 35.0 / 101.0,  # 0.35
         "Severe renal impairment": 20.0 / 101.0,  # 0.20
-        # "End stage renal disease": 10.5 / 101.0,  # 0.1
+        "End stage renal impairment": 10.5 / 101.0,  # 0.1
     }
     renal_colors = {
         "Normal renal function": "black",
         "Mild renal impairment": "#66c2a4",
         "Moderate renal impairment": "#2ca25f",
         "Severe renal impairment": "#006d2c",
-        # "End stage renal disease": "#006d5e"
+        "End stage renal impairment": "#006d5e"
     }
 
     # ----------- Cirrhosis map --------------
@@ -209,22 +218,25 @@ class ApixabanSimulationExperiment(SimulationExperiment):
             # pharmacokinetics
             #         >>> !Optimal parameter 'ftissue_api' within 5% of upper bound! <<<
             #         >>> !Optimal parameter 'GU__APIABS_k' within 5% of upper bound! <<<
-            'ftissue_api': Q_(9.999362175489635, 'l/min'),  # [0.01 - 10]
-            'Kp_api': Q_(0.033548549714271736, 'dimensionless'),  # [0.01 - 1]
-            'GU__APIABS_k': Q_(0.09999949917572021, '1/min'),  # [0.001 - 0.1]
-            'LI__API2M2_k': Q_(0.01570094528592168, '1/min'),  # [0.001 - 100.0]
-            'LI__API2M7_k': Q_(0.020189792087538537, '1/min'),  # [0.001 - 100.0]
-            'LI__M22M1_k': Q_(0.11061496092925446, '1/min'),  # [0.001 - 100.0]
-            'KI__APIEX_k': Q_(0.044556517937263916, '1/min'),  # [0.001 - 100.0]
-
+                'ftissue_api': Q_(9.999362175489635, 'l/min'),  # [0.01 - 10]
+                'Kp_api': Q_(0.033548549714271736, 'dimensionless'),  # [0.01 - 1]
+                'GU__APIABS_k': Q_(0.09999949917572021, '1/min'),  # [0.001 - 0.1]
+                'LI__API2M2_k': Q_(0.01570094528592168, '1/min'),  # [0.001 - 100.0]
+                'LI__API2M7_k': Q_(0.020189792087538537, '1/min'),  # [0.001 - 100.0]
+                'LI__M22M1_k': Q_(0.11061496092925446, '1/min'),  # [0.001 - 100.0]
+                'KI__APIEX_k': Q_(0.044556517937263916, '1/min'),  # [0.001 - 100.0]
 
             # pharmacodynamics
-            # 'Emax_INR': Q_(0.7515522269736061, 'dimensionless'),  # [0.1 - 10]
-            # 'EC50_api_INR': Q_(0.0008837329402360458, 'mM'),  # [1e-07 - 0.01]
-            # 'Emax_aPTT': Q_(0.444368499749261, 'dimensionless'),  # [0.1 - 10]
-            # 'EC50_api_aPTT': Q_(0.0004941532917599249, 'mM'),  # [1e-07 - 0.01]
-            # 'Emax_mPT': Q_(1.5658920656758848, 'dimensionless'),  # [0.1 - 10]
-            # 'EC50_api_mPT': Q_(0.0001894262712505642, 'mM'),  # [1e-07 - 0.01]
+            'Emax_INR': Q_(1.034912223511749, 'dimensionless'),  # [0.1 - 10]
+            'EC50_api_INR': Q_(0.0011792528732025547, 'mM'),  # [1e-07 - 0.01]
+            'Emax_mPT': Q_(1.9946311340457776, 'dimensionless'),  # [0.1 - 10]
+            'EC50_api_mPT': Q_(0.00032191356203984284, 'mM'),  # [1e-07 - 0.01]
+            'Emax_aPTT': Q_(0.4606822559153521, 'dimensionless'),  # [0.1 - 10]
+            'EC50_api_aPTT': Q_(0.0005858154549784874, 'mM'),  # [1e-07 - 0.01]
+            'Emax_Xa': Q_(4.581056537417629, 'per_mM'),  # [1e-06 - 1000000.0]
+            'Emax_antiXa': Q_(6332.859524334975, 'IU_per_ml_mM'),  # [1e-06 - 1000000.0]
+            'Emax_antiXa_gram': Q_(452775.1008926358, 'ng_per_ml_mM'),  # [1e-06 - 1000000.0]
+
         }
 
         return changes
@@ -310,25 +322,43 @@ class ApixabanSimulationExperiment(SimulationExperiment):
     pk_labels = {
         "auc": "AUCend",
         "aucinf": "AUC",
+        "aucend_12": "AUCend 12h",
+        "aucend_24": "AUCend 24h",
+        "aucend_48": "AUCend 48h",
+        "aucend_72": "AUCend 72h",
+        "aucend_96": "AUCend 96h",
         "cl": "Total clearance",
         "cl_renal": "Renal clearance",
         "cl_hepatic": "Hepatic clearance",
         "cmax": "Cmax",
+        "tmax": "Max. time",
         "thalf": "Half-life",
         "kel": "kel",
         "vd": "vd",
+        # "inrmax": "INRmax",
+        # "ptmax": "PTmax",
+        # "apttmax": "aPTTmax",
     }
 
     pk_units = {
         "auc": "µmole/l*hr",
         "aucinf": "µmole/l*hr",
+        "aucend_12": "µmole/l*hr",
+        "aucend_24": "µmole/l*hr",
+        "aucend_48": "µmole/l*hr",
+        "aucend_72": "µmole/l*hr",
+        "aucend_96": "µmole/l*hr",
         "cl": "ml/min",
         "cl_renal": "ml/min",
         "cl_hepatic": "ml/min",
         "cmax": "µmole/l",
+        "tmax": "hr",
         "thalf": "hr",
         "kel": "1/hr",
         "vd": "l",
+        # "inrmax": "dimensionless",
+        # "ptmax": "sec",
+        # "apttmax": "sec",
     }
 
     def calculate_apixaban_pk(self, scans: list = []) -> Dict[str, pd.DataFrame]:

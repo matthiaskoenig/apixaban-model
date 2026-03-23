@@ -1,0 +1,13 @@
+study	class	condition	parameter	dose	dose_unit	substance	n	mean	sd	geom_mean	median	Q1	Q3	min	max	unit
+Frost2013	food	fasted	cmax	10	mg	apixaban	21			150.8						ng/ml
+Frost2013	food	fasted	aucinf	10	mg	apixaban	21			1789						ng/ml*hr
+Frost2013	food	fasted	aucend_60	10	mg	apixaban	21			1762.2						ng/ml*hr
+Frost2013	food	fasted	tmax	10	mg	apixaban	21				3			1.5	6	hr
+Frost2013	food	fasted	thalf	10	mg	apixaban	21	11.5	4.3							hr
+#																
+Frost2013	food	fed	cmax	10	mg	apixaban	21			165						ng/ml
+Frost2013	food	fed	aucinf	10	mg	apixaban	21			1867.8						ng/ml*hr
+Frost2013	food	fed	aucend_60	10	mg	apixaban	21			1811.5						ng/ml*hr
+Frost2013	food	fed	tmax	10	mg	apixaban	21				4			1	9	hr
+Frost2013	food	fed	thalf	10	mg	apixaban	21	11.3	2.9							hr
+#																

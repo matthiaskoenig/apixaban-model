@@ -4,6 +4,7 @@ from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
@@ -19,14 +20,25 @@ from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Abdollahizad2025(ApixabanSimulationExperiment):
-    """Simulation experiment of Wang2016."""
+    """Simulation experiment of Abdollahizad2025."""
 
     colors = {
         "TEST5": "black",
-        "REF5": "tab:blue",
+        "REF5": "grey",
     }
     groups = list(colors.keys())
     bodyweight = 71.9  # [kg]
+    height = 172.4 # [cm]
+
+    legend = {
+        "TEST5": "test: 5mg PO",
+        "REF5": "ref: 5mg PO",
+    }
+
+    markers = {
+        "TEST5": "s",
+        "REF5": "o",
+    }
 
     infos_pk = {
         "[Cve_api]": "apixaban",
@@ -60,6 +72,7 @@ class Abdollahizad2025(ApixabanSimulationExperiment):
                         **self.default_changes(),
                         "PODOSE_api": Q_(5, "mg"),
                         "BW": Q_(self.bodyweight, "kg"),
+                        "HEIGHT": Q_(self.height, "cm"),
                     },
                 )
             ])
@@ -113,6 +126,8 @@ class Abdollahizad2025(ApixabanSimulationExperiment):
             experiment=self,
             sid="PK",
             name=f"{self.__class__.__name__}",
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -124,15 +139,15 @@ class Abdollahizad2025(ApixabanSimulationExperiment):
         for group in self.groups:
             for kp, sid in enumerate(self.infos_pk):
                 name = self.infos_pk[sid]
-
-                # Simulation
-                plots[kp].add_data(
-                    task=f"task_{group}",
-                    xid="time",
-                    yid=sid,
-                    label=group,
-                    color=self.colors[group]
-                )
+                if group == "TEST5":
+                    # Simulation
+                    plots[kp].add_data(
+                        task=f"task_{group}",
+                        xid="time",
+                        yid=sid,
+                        label="sim: 5mg PO",
+                        color=self.colors[group]
+                    )
                 # Data
                 plots[kp].add_data(
                     dataset=f"{name}_{group}",
@@ -140,8 +155,9 @@ class Abdollahizad2025(ApixabanSimulationExperiment):
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=group,
-                    color=self.colors[group]
+                    label=f"exp {self.legend[group]}",
+                    color=self.colors[group],
+                    marker=self.markers[group],
                 )
 
         return {fig.sid: fig}
@@ -149,5 +165,6 @@ class Abdollahizad2025(ApixabanSimulationExperiment):
 
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Abdollahizad2025.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(Abdollahizad2025, output_dir=Abdollahizad2025.__name__)
-

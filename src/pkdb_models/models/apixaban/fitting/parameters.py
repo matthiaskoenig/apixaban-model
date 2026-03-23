@@ -94,8 +94,7 @@ parameters_pharmacokinetics = [
     # ),
 ]
 
-parameters_pharmacodynamics = [
-
+parameters_inr = [
     # INR
     FitParameter(
         pid="Emax_INR",
@@ -106,6 +105,23 @@ parameters_pharmacodynamics = [
     ),
     FitParameter(
         pid="EC50_api_INR",
+        lower_bound=1E-7,
+        start_value=0.00034,
+        upper_bound=1E-2,
+        unit="mM",
+    ),
+]
+parameters_mpt = [
+    # mPT
+    FitParameter(
+        pid="Emax_mPT",
+        lower_bound=0.1,
+        start_value=1,
+        upper_bound=10,
+        unit="dimensionless",
+    ),
+    FitParameter(
+        pid="EC50_api_mPT",
         lower_bound=1E-7,
         start_value=0.00034,
         upper_bound=1E-2,
@@ -126,6 +142,8 @@ parameters_pharmacodynamics = [
     #     upper_bound=1E-2,
     #     unit="mM",
     # ),
+]
+parameters_aptt = [
     # aPTT
     FitParameter(
         pid="Emax_aPTT",
@@ -141,51 +159,31 @@ parameters_pharmacodynamics = [
         upper_bound=1E-2,
         unit="mM",
     ),
-    # mPT
-    FitParameter(
-        pid="Emax_mPT",
-        lower_bound=0.1,
-        start_value=1,
-        upper_bound=10,
-        unit="dimensionless",
-    ),
-    FitParameter(
-        pid="EC50_api_mPT",
-        lower_bound=1E-7,
-        start_value=0.00034,
-        upper_bound=1E-2,
-        unit="mM",
-    ),
-    # Xa
-    # FitParameter(
-    #     pid="Emax_Xa",
-    #     lower_bound=0.5,
-    #     start_value=0.7,
-    #     upper_bound=1.0,
-    #     unit="IU_per_ml",
-    # ),
-    # FitParameter(
-    #     pid="EC50_api_Xa",
-    #     lower_bound=1E-7,
-    #     start_value=0.00034,
-    #     upper_bound=1E-2,
-    #     unit="mM",
-    # ),
-    # FitParameter(
-    #     pid="Emax_Xa_gram",
-    #     lower_bound=0.5,
-    #     start_value=0.7,
-    #     upper_bound=1.0,
-    #     unit="ng_per_ml",
-    # ),
-    # FitParameter(
-    #     pid="EC50_api_Xa_gram",
-    #     lower_bound=1E-7,
-    #     start_value=0.00034,
-    #     upper_bound=1E-2,
-    #     unit="mM",
-    # ),
 ]
 
-
+parameters_xa = [
+    # Xa
+    FitParameter(
+        pid="Emax_Xa",
+        lower_bound=1E-6,
+        start_value=1,
+        upper_bound=1E6,
+        unit="per_mM",
+    ),
+    FitParameter(
+        pid="Emax_antiXa",
+        lower_bound=1E-6,
+        start_value=1,
+        upper_bound=1E6,
+        unit="IU_per_ml_mM",
+    ),
+    FitParameter(
+        pid="Emax_antiXa_gram",
+        lower_bound=1E-6,
+        start_value=1,
+        upper_bound=1E6,
+        unit="ng_per_ml_mM",
+    ),
+]
+parameters_pharmacodynamics = parameters_inr + parameters_mpt + parameters_aptt + parameters_xa
 parameters_all = parameters_pharmacokinetics + parameters_pharmacodynamics

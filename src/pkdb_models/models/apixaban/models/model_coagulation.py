@@ -10,6 +10,9 @@ class U(templates.U):
     """UnitDefinitions"""
     ng_per_ml = UnitDefinition("ng_per_ml", "ng/ml")
     IU_per_ml = UnitDefinition("IU_per_ml", "1/ml")
+    per_mM = UnitDefinition("per_mM", "1/(mmole/l)")
+    ng_per_ml_mM = UnitDefinition("ng_per_ml_mM", "ng/(ml*mmole/l)")
+    IU_per_ml_mM = UnitDefinition("IU_per_ml_mM", "1/(ml*mmole/l)")
 
 
 _m = Model(
@@ -217,48 +220,29 @@ _m.parameters.extend([
         unit=U.mM,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
+    # Xa
     Parameter(
         sid="Emax_Xa",
         name="Effect constant for Xa inhibition",
         value=0.686093,
-        unit=U.dimensionless,
-        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-    ),
-    Parameter(
-        sid="EC50_api_Xa",
-        name="Effect constant for Xa inhibition",
-        value=0.0002959,
-        unit=U.mM,
+        unit=U.per_mM,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
     Parameter(
         sid="Emax_antiXa",
         name="Effect constant for anti-Xa activity",
         value=0.686093,
-        unit=U.IU_per_ml,
+        unit=U.IU_per_ml_mM,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
     Parameter(
-        sid="EC50_api_antiXa",
+        sid="Emax_antiXa_gram",
         name="Effect constant for anti-Xa activity",
-        value=0.0002959,
-        unit=U.mM,
+        value=0.686093,
+        unit=U.ng_per_ml_mM,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
-    # Parameter(
-    #     sid="Emax_antiXa_gram",
-    #     name="Effect constant for anti-Xa activity",
-    #     value=0.686093,
-    #     unit=U.ng_per_ml,
-    #     sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-    # ),
-    # Parameter(
-    #     sid="EC50_api_antiXa_gram",
-    #     name="Effect constant for anti-Xa activity",
-    #     value=0.0002959,
-    #     unit=U.mM,
-    #     sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-    # ),
+
 ])
 
 _m.rules.extend([
@@ -275,14 +259,14 @@ _m.rules.extend([
         "mPT", "mPT_ref * (1 dimensionless + Emax_mPT * Cve_api / (Cve_api + EC50_api_mPT))", unit=U.second
     ),
     AssignmentRule(
-        "Xa_inhibition", "Emax_Xa * Cve_api / (Cve_api + EC50_api_Xa)", unit=U.dimensionless
+        "Xa_inhibition", "Emax_Xa * Cve_api", unit=U.dimensionless
     ),
     AssignmentRule(
-        "antiXa_activity", "Emax_antiXa * Cve_api / (Cve_api + EC50_api_antiXa)", unit=U.dimensionless
+        "antiXa_activity", "Emax_antiXa * Cve_api", unit=U.IU_per_ml
     ),
-    # AssignmentRule(
-    #     "antiXa_activity_gram", "Emax_antiXa_gram * Cve_api / (Cve_api + EC50_api_antiXa_gram)", unit=U.n
-    # )
+    AssignmentRule(
+        "antiXa_activity_gram", "Emax_antiXa_gram * Cve_api", unit=U.ng_per_ml
+    )
 ])
 
 model_coagulation = _m

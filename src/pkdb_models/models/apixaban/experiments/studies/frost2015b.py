@@ -4,6 +4,7 @@ from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
@@ -22,8 +23,8 @@ class Frost2015b(ApixabanSimulationExperiment):
     bodyweight = 76.6 #kg
 
     colors = {
-        "PO10":"purple",
-        "PO50": "blue"
+        "PO10": "#e95e0d",
+        "PO50": "#7f2704"
     }
 
     interventions = list(colors.keys())
@@ -151,7 +152,7 @@ class Frost2015b(ApixabanSimulationExperiment):
                         task=f"task_api_{intervention}",
                         xid="time",
                         yid=sid,
-                        label=f"chronic sim: {intervention[2:4]}mg PO",
+                        label=f"sim chronic: {intervention[2:4]}mg PO",
                         color=self.colors[intervention],
                     )
                     # data
@@ -161,7 +162,7 @@ class Frost2015b(ApixabanSimulationExperiment):
                         yid="mean",
                         yid_sd="mean_sd",
                         count="count",
-                        label=f"chronic exp: {intervention[2:4]}mg PO",
+                        label=f"exp chronic: {intervention[2:4]}mg PO",
                         color=self.colors[intervention],
                     )
 
@@ -170,4 +171,6 @@ class Frost2015b(ApixabanSimulationExperiment):
 
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Frost2015b.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(Frost2015b, output_dir=Frost2015b.__name__)

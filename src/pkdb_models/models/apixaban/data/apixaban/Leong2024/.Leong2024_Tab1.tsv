@@ -1,0 +1,11 @@
+study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cv	sd	se	median	min	max	unit	comments
+Leong2024	all	26.0	TEST	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	2324.0	15.6	362.0	NA	2281.0	1684.0	3145.0	ng/ml*hr	NA
+Leong2024	all	26.0	TEST	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	2362.0	15.2	359.0	NA	2324.0	1723.0	3178.0	ng/ml*hr	NA
+Leong2024	all	26.0	TEST	cmax	apixaban	plasma	LC MS/MS	NA	NA	256.0	23.1	59.2	NA	245.0	117.0	375.0	ng/ml	NA
+Leong2024	all	26.0	TEST	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	2.0	1.0	6.0	hr	NA
+Leong2024	all	26.0	TEST	thalf	apixaban	plasma	LC MS/MS	NA	NA	9.4	28.7	2.7	NA	8.4	6.3	16.5	hr	NA
+Leong2024	all	26.0	REF	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	2249.0	21.5	429.0	NA	2202.0	1546.0	3206.0	ng/ml*hr	NA
+Leong2024	all	26.0	REF	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	2282.0	18.9	431.0	NA	2235.0	1585.0	3225.0	ng/ml*hr	NA
+Leong2024	all	26.0	REF	cmax	apixaban	plasma	LC MS/MS	NA	NA	234.0	22.0	51.5	NA	238.0	127.0	339.0	ng/ml	NA
+Leong2024	all	26.0	REF	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	NA	2.7	1.0	4.5	hr	NA
+Leong2024	all	26.0	REF	thalf	apixaban	plasma	LC MS/MS	NA	NA	9.2	23.9	2.2	NA	9.1	5.9	12.9	hr	NA

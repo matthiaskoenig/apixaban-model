@@ -4,6 +4,7 @@ from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
@@ -81,7 +82,7 @@ class Frost2014(ApixabanSimulationExperiment):
 
             tc_end = Timecourse(
                     start=0,
-                    end=24 * 75,  # [min]
+                    end=36 * 75,  # [min]
                     steps=1000,
                     changes={
                         **self.default_changes(),
@@ -92,7 +93,7 @@ class Frost2014(ApixabanSimulationExperiment):
 
             tcsims[intervention] = TimecourseSim(
                 timecourses=[tc] * 3 * 2 + [tc] + [tc_end],
-                time_offset= - 2 * 24 * 60
+                time_offset= -3 * 24 * 60
             )
 
         return tcsims
@@ -102,59 +103,58 @@ class Frost2014(ApixabanSimulationExperiment):
         for intervention in self.interventions:
             # pharmacokinetics
             for k, sid in enumerate(self.infos_pk.keys()):
-                    name = self.infos_pk[sid]
-                    mappings[f"fm_{name}_{intervention}"] = FitMapping(
-                        self,
-                        reference=FitData(
-                            self,
-                            dataset=f"{name}_{intervention}",
-                            xid="time",
-                            yid="mean",
-                            count="count",
-                        ),
-                        observable=FitData(
-                            self,
-                            task=f"task_{intervention}",
-                            xid="time",
-                            yid=sid,
-                        ),
-                        metadata=ApixabanMappingMetaData(
-                            tissue=Tissue.PLASMA,
-                            route=Route.PO,
-                            application_form=ApplicationForm.TABLET,
-                            dosing= Dosing.MULTIPLE,
-                            health=Health.HEALTHY,
-                            fasting= Fasting.NR,
-                        )
-                    )
-            #PD
-        for ks, sid in enumerate(self.infos_pd):
-            name = self.infos_pd[sid]
-            mappings[f"fm_{intervention}_{name}"] = FitMapping(
-                self,
-                reference=FitData(
+                name = self.infos_pk[sid]
+                mappings[f"fm_{name}_{intervention}"] = FitMapping(
                     self,
-                    dataset=f"Xa_{intervention}",
-                    xid="time",
-                    yid="mean",
-                    yid_sd="mean_sd",
-                    count="count",
-                ),
-                observable=FitData(
-                    self, task=f"task_{intervention}", xid="time", yid=name,
-                ),
-                metadata=ApixabanMappingMetaData(
-                    tissue=Tissue.PLASMA,
-                    route=Route.PO,
-                    application_form=ApplicationForm.TABLET,
-                    dosing=Dosing.MULTIPLE,
-                     health=Health.HEALTHY,
-                    fasting=Fasting.NR
-                ),
-             )
-
-            return mappings
-
+                    reference=FitData(
+                        self,
+                        dataset=f"{name}_{intervention}",
+                        xid="time",
+                        yid="mean",
+                        count="count",
+                    ),
+                    observable=FitData(
+                        self,
+                        task=f"task_{intervention}",
+                        xid="time",
+                        yid=sid,
+                    ),
+                    metadata=ApixabanMappingMetaData(
+                        tissue=Tissue.PLASMA,
+                        route=Route.PO,
+                        application_form=ApplicationForm.TABLET,
+                        dosing= Dosing.MULTIPLE,
+                        health=Health.HEALTHY,
+                        fasting= Fasting.NR,
+                        outlier=True  # FIXME: incorrect timepoints
+                    )
+                )
+            #PD
+            for ks, sid in enumerate(self.infos_pd):
+                name = self.infos_pd[sid]
+                mappings[f"fm_{intervention}_{name}"] = FitMapping(
+                    self,
+                    reference=FitData(
+                        self,
+                        dataset=f"Xa_{intervention}",
+                        xid="time",
+                        yid="mean",
+                        yid_sd="mean_sd",
+                        count="count",
+                    ),
+                    observable=FitData(
+                        self, task=f"task_{intervention}", xid="time", yid=name,
+                    ),
+                    metadata=ApixabanMappingMetaData(
+                        tissue=Tissue.PLASMA,
+                        route=Route.PO,
+                        application_form=ApplicationForm.TABLET,
+                        dosing=Dosing.MULTIPLE,
+                         health=Health.HEALTHY,
+                        fasting=Fasting.NR,
+                        outlier = True  # FIXME: incorrect timepoints
+                    ),
+                 )
 
         return mappings
 
@@ -171,7 +171,9 @@ class Frost2014(ApixabanSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid="Fig1",
-            name=f"{self.__class__.__name__} (healthy)"
+            name=f"{self.__class__.__name__}",
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -188,7 +190,7 @@ class Frost2014(ApixabanSimulationExperiment):
                             task=f"task_{intervention}",
                             xid="time",
                             yid=sid,
-                            label=intervention,
+                            label="sim multiple: 2.5mg PO",
                             color=self.colors[intervention],
                         )
                         # data
@@ -198,7 +200,7 @@ class Frost2014(ApixabanSimulationExperiment):
                             yid="mean",
                             yid_sd="mean_sd",
                             count="count",
-                            label=intervention,
+                            label="exp multiple: 2.5mg PO",
                             color=self.colors[intervention],
                         )
 
@@ -208,7 +210,9 @@ class Frost2014(ApixabanSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid="Fig2",
-            name=f"{self.__class__.__name__} (healthy)",
+            name=f"{self.__class__.__name__}",
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -225,7 +229,7 @@ class Frost2014(ApixabanSimulationExperiment):
                         task=f"task_{intervention}",
                         xid="time",
                         yid=name,
-                        label=intervention,
+                        label="sim multiple: 2.5mg PO",
                         color=self.colors[intervention],
                     )
                     # data
@@ -234,7 +238,7 @@ class Frost2014(ApixabanSimulationExperiment):
                         xid="time",
                         yid="mean",
                         count="count",
-                        label=intervention,
+                        label="exp multiple: 2.5mg PO",
                         color=self.colors[intervention],
                     )
 
@@ -247,7 +251,7 @@ class Frost2014(ApixabanSimulationExperiment):
             "linestyle": "solid",
             },
             "kwargs_exp": {
-                "label": f"mean exp chronic: 2.5mg PO",
+                "label": f"exp chronic: 2.5mg PO",
                 "marker": "s",
                 "linestyle": "",
                 "color": self.fasting_colors["fasted"],
@@ -262,7 +266,7 @@ class Frost2014(ApixabanSimulationExperiment):
             "marker": "o"
             },
             "kwargs_exp": {
-                "label": f"exp chronic: 2.5mg PO",
+                "label": f"exp individ chronic: 2.5mg PO",
                 "color": "white",
                 "markeredgecolor": "black",
                 "marker": "o",
@@ -276,6 +280,8 @@ class Frost2014(ApixabanSimulationExperiment):
             name=self.__class__.__name__,
             num_rows=1,
             num_cols=1,
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots_Xa = fig_Xa.create_plots(
             xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
@@ -313,4 +319,6 @@ class Frost2014(ApixabanSimulationExperiment):
 
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Frost2014.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(Frost2014, output_dir=Frost2014.__name__)

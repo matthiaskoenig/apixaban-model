@@ -1,9 +1,11 @@
+import math
 from typing import Dict
 
 from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
 
+from pkdb_models.models import apixaban
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
@@ -27,13 +29,21 @@ class Frost2021(ApixabanSimulationExperiment):
         "group1": 0.5, "group2": 1.25, "group3": 2.5,
         "group4": 3.75, "group5": 5, "group_po": 5,
     }
+    inr = {
+        "group1": 1.12, "group2": 1.1, "group3": 1.13,
+        "group4": 1.08, "group5": 1.08, "group_po": 1.14,
+    }
+    bodyheight = {
+        "group1": math.sqrt(75.8 / 24.9), "group2": math.sqrt(74.8 / 24.2), "group3": math.sqrt(80.6 / 25),
+        "group4": math.sqrt(82.4 / 26.7), "group5": math.sqrt(83.1 / 26.1), "group_po": 1.7,
+    }
     routes = {
         "group1": "IV0_5", "group2": "IV1_25", "group3": "IV2_5",
         "group4": "IV3_75", "group5": "IV5", "group_po": "PO5",
     }
     doses_colors = {
-        0: "grey", 0.5: "yellow", 1.25: "blue",
-        2.5: "pink", 3.75: "purple", 5: "black",
+        0: "#fff5eb", 0.5: "#fee6ce", 1.25: "#fdd0a2",
+        2.5: "#fdae6b", 3.75: "#fd8d3c", 5: "#e6550d",
     }
     markers = {"IV": "s", "PO": "v"}
     linestyle = {"IV": "solid", "PO": "dashed"}
@@ -51,6 +61,7 @@ class Frost2021(ApixabanSimulationExperiment):
 
     def datasets(self) -> Dict[str, DataSet]:
         dsets = {}
+        self.pt = {}
         for fig_id, group_id in zip(["Fig1", "Fig2", "Fig3", "Fig1_2Mean", "Tab2"], ["label", "label", "x_label", "x_label", "label"]):
             df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
             for label, df_label in df.groupby(group_id):
@@ -65,6 +76,9 @@ class Frost2021(ApixabanSimulationExperiment):
                         dset.unit_conversion("mean", 1 / self.Mr.api)
                 if "antiXa_activity_gram" not in label and fig_id != "Tab2":
                     dsets[label] = dset
+                if fig_id == "Fig2" and "prothrombin time" in label:
+                    dset_0 = dset[dset.time == 0.0]
+                    self.pt[dset_0["group"].iloc[0]] = float(dset_0["mean"].iloc[0])
 
                 # print(label)
 
@@ -79,12 +93,15 @@ class Frost2021(ApixabanSimulationExperiment):
             tcsims[group] = TimecourseSim(
                 [Timecourse(
                     start=0,
-                    end=75 * 60,  # [min]
+                    end=62 * 60,  # [min]
                     steps=1000,
                     changes={
                         **self.default_changes(),
                         "BW": Q_(self.bodyweights[group], "kg"),
                         f"{self.routes[group][0:2]}DOSE_api": Q_(self.doses[group], "mg"),
+                        "HEIGHT": Q_(self.bodyheight[group], "m"),
+                        "INR_ref": Q_(self.inr[group], "dimensionless"),
+                        "PT_ref": Q_(self.pt[group], "s"),
                     },
                 )]
             )
@@ -98,6 +115,9 @@ class Frost2021(ApixabanSimulationExperiment):
                     **self.default_changes(),
                     "BW": Q_(78.7, "kg"), #iv placebo taken
                     f"IVDOSE_api": Q_(0, "mg"),
+                    "HEIGHT": Q_(math.sqrt(78.7/25), "m"),
+                    "INR_ref": Q_(1.11, "dimensionless"),
+                    "PT_ref": Q_(self.pt["placebo"], "s"),
                 },
             )]
         )
@@ -166,7 +186,7 @@ class Frost2021(ApixabanSimulationExperiment):
                             ),
                         )
 
-        mappings[f"fm_placebo"] = FitMapping(
+        mappings["fm_placebo"] = FitMapping(
             self,
             reference=FitData(
                 self,
@@ -178,7 +198,7 @@ class Frost2021(ApixabanSimulationExperiment):
             ),
             observable=FitData(
                 self,
-                task=f"task_placebo",
+                task="task_placebo",
                 xid="time",
                 yid="mPT",
             ),
@@ -199,7 +219,7 @@ class Frost2021(ApixabanSimulationExperiment):
         return {
             **self.figure_pk(),
             **self.figure_pd(),
-            # **self.figure_scatter(),
+            **self.figure_scatter(),
         }
 
     def figure_pk(self) -> Dict[str, Figure]:
@@ -235,6 +255,8 @@ class Frost2021(ApixabanSimulationExperiment):
             name=self.__class__.__name__,
             num_rows=1,
             num_cols=3,
+            height=self.panel_height,
+            width=self.panel_width * 3 * 1.05,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -316,6 +338,8 @@ class Frost2021(ApixabanSimulationExperiment):
             name=self.__class__.__name__,
             num_rows=2,
             num_cols=2,
+            height=self.panel_height * 2,
+            width=self.panel_width * 2,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -390,13 +414,13 @@ class Frost2021(ApixabanSimulationExperiment):
             # simulations
             dict(
                 color=self.doses_colors[dose],
-                linestyle=self.linestyle[route[:2]],
+                linestyle=self.linestyle[route[:2]] if route[:2] == "IV" else "solid",
             ),
             # data
             dict(
                 xid_sd="x_sd",
                 yid_sd="y_sd",
-                color="black",
+                color=self.doses_colors[dose],
                 marker=self.markers[route[:2]],
                 linestyle="",
             ),
@@ -410,9 +434,10 @@ class Frost2021(ApixabanSimulationExperiment):
             ),
             dict(
                 color="white",
-                markeredgecolor="black",
+                markeredgecolor="tab:grey",
                 marker="o",
                 linestyle="",
+                markeredgewidth=1,
             ),
         )
 
@@ -426,6 +451,8 @@ class Frost2021(ApixabanSimulationExperiment):
                 name=self.__class__.__name__,
                 num_rows=config["num_rows"],
                 num_cols=config["num_cols"],
+                height=self.panel_height * config["num_rows"],
+                width=self.panel_width * config["num_cols"],
             )
             plots = fig.create_plots(
                 xaxis=Axis(self.label_api_plasma, unit=self.unit_api), legend=True
@@ -468,7 +495,7 @@ class Frost2021(ApixabanSimulationExperiment):
                         yid="y",
                         dataset=idx,
                         count="count",
-                        label=f"exp: {dose}mg {route[:2]}",
+                        label=f"exp: {dose}mg {route[:2]}" if "mean" in idx else f"exp individ: {dose}mg {route[:2]}",
                         **style[1],
                     )
 
@@ -476,4 +503,6 @@ class Frost2021(ApixabanSimulationExperiment):
 
 
 if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Frost2021.__name__
+    out.mkdir(parents=True, exist_ok=True)
     run_experiments(Frost2021, output_dir=Frost2021.__name__)
