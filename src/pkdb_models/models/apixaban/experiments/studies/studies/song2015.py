@@ -1,0 +1,235 @@
+import math
+from typing import Dict
+
+from sbmlsim.data import DataSet, load_pkdb_dataframe
+from sbmlsim.fit import FitMapping, FitData
+from sbmlutils.console import console
+
+from pkdb_models.models import apixaban
+from pkdb_models.models.apixaban.experiments.base_experiment import (
+    ApixabanSimulationExperiment,
+)
+from pkdb_models.models.apixaban.experiments.metadata import (
+    Tissue, Route, Dosing, ApplicationForm, Health, Fasting, ApixabanMappingMetaData
+)
+
+from sbmlsim.plot import Axis, Figure
+    # noqa: E402
+from sbmlsim.simulation import Timecourse, TimecourseSim
+
+from pkdb_models.models.apixaban.helpers import run_experiments
+
+
+class Song2015(ApixabanSimulationExperiment):
+    """Simulation experiment of Song2015."""
+
+    colors_study_1 = {
+        "API10_PO_OS": "tab:grey",
+        "API10_PO_TAB": "black",
+    }
+    colors_study_2 = {
+        "API5_NGT_D5W": "black",
+        "API5_NGT_IF": "purple",
+        "API5_PO_OS": "blue",
+    }
+    colors_study_3 = {
+        "API5_NGT_NS": "black",
+        "API5_NGT_D5W_crushed": "red",
+        "API5_PO_OS_3": "orange",
+    }
+    bodyweight = { # [kg]
+        # study_1
+        "API10_PO_OS": 78,
+        "API10_PO_TAB": 78,
+        # study_2
+        "API5_NGT_D5W": 75.6,
+        "API5_NGT_IF": 75.6,
+        "API5_PO_OS": 75.6,
+        # study_3
+        "API5_NGT_NS": 75.2,
+        "API5_NGT_D5W_crushed": 75.2,
+        "API5_PO_OS_3": 75.2,
+    }
+    groups = list(bodyweight.keys())
+    bodyheight = { # [m]
+        # study_1
+        "API10_PO_OS": math.sqrt(78/25.5),
+        "API10_PO_TAB": math.sqrt(78/25.5),
+        # study_2
+        "API5_NGT_D5W": math.sqrt(75.6/25.4),
+        "API5_NGT_IF": math.sqrt(75.6/25.4),
+        "API5_PO_OS": math.sqrt(75.6/25.4),
+        # study_3
+        "API5_NGT_NS": math.sqrt(75.2/26.1),
+        "API5_NGT_D5W_crushed": math.sqrt(75.2/26.1),
+        "API5_PO_OS_3": math.sqrt(75.2/26.1),
+    }
+    dose = {
+        #"study_1": 10,
+        #"study_2": 5,
+        #"study_3": 5,
+
+        # study_1
+        "API10_PO_OS": 10,
+        "API10_PO_TAB": 10,
+        # study_2
+        "API5_NGT_D5W": 5,
+        "API5_NGT_IF": 5,
+        "API5_PO_OS": 5,
+        # study_3
+        "API5_NGT_NS": 5,
+        "API5_NGT_D5W_crushed": 5,
+        "API5_PO_OS_3": 5,
+    }
+    legends = {
+        # study_1
+        "API10_PO_OS": "10mg SOL",
+        "API10_PO_TAB": "10mg PO",
+        # study_2
+        "API5_NGT_D5W": "5mg, dext NGT",
+        "API5_NGT_IF": "5mg, if NGT",
+        "API5_PO_OS": "5mg SOL",
+        # study_3
+        "API5_NGT_NS": "5mg, ns NGT",
+        "API5_NGT_D5W_crushed": "5mg, dext NGT crushed",
+        "API5_PO_OS_3": "5mg SOL crushed",
+    }
+
+    infos_pk = {
+        "[Cve_api]": "apixaban",
+    }
+
+
+    def datasets(self) -> Dict[str, DataSet]:
+        dsets = {}
+        for fig_id, group_id in zip(["Fig1"],
+                                    ["label"]):
+            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+            for label, df_label in df.groupby(group_id):
+                dset = DataSet.from_df(df_label, self.ureg)
+                if label.startswith("apixaban_"):
+                    dset.unit_conversion("mean", 1 / self.Mr.api)
+                dsets[label] = dset
+
+        # console.print("datasets:", list(dsets.keys()))
+        return dsets
+
+    def simulations(self) -> Dict[str, TimecourseSim]:
+        Q_ = self.Q_
+        tcsims: Dict[str, TimecourseSim] = {}
+        for group in self.groups:
+            tcsims[group] = TimecourseSim([
+                Timecourse(
+                    start=0,
+                    end=75 * 60,  # [min]
+                    steps=500,
+                    changes={
+                        **self.default_changes(),
+                        "PODOSE_api": Q_(self.dose[group], "mg"),
+                        "BW": Q_(self.bodyweight[group], "kg"),
+                        "HEIGHT": Q_(self.bodyheight[group], "m"),
+                    },
+                )
+        ])
+        return tcsims
+
+    # Fit Mappings
+    def fit_mappings(self) -> Dict[str, FitMapping]:
+        mappings: Dict[str, FitMapping] = {}
+        infos = {
+            **self.infos_pk,
+        }
+        for sid, name in infos.items():
+            for group in self.groups:
+                if group != "API10_PO_TAB":
+                    continue
+                mappings[f"fm_{name}_{group}"] = FitMapping(
+                    self,
+                    reference=FitData(
+                        self,
+                        dataset=f"{name}_{group}",
+                        xid="time",
+                        yid="mean",
+                        yid_sd="mean_sd",
+                        count="count",
+                    ),
+                    observable=FitData(
+                        self,
+                        task=f"task_{group}",
+                        xid="time",
+                        yid=sid,
+                    ),
+                    metadata=ApixabanMappingMetaData(
+                        tissue=Tissue.PLASMA,
+                        route=Route.PO,
+                        application_form=ApplicationForm.TABLET,
+                        dosing=Dosing.SINGLE,
+                        health=Health.HEALTHY,
+                        fasting=Fasting.NR,
+                    ),
+                )
+
+        return mappings
+
+
+    def figures(self) -> Dict[str, Figure]:
+        return {
+            **self.figure_pk(),
+        }
+
+    def figure_pk(self) -> Dict[str, Figure]:
+
+        plot_info = {
+            0: ("[Cve_api]", ["API10_PO_OS", "API10_PO_TAB"], self.colors_study_1),
+            1: ("[Cve_api]", ["API5_NGT_D5W", "API5_NGT_IF", "API5_PO_OS"], self.colors_study_2),
+            2: ("[Cve_api]", ["API5_NGT_NS", "API5_NGT_D5W_crushed", "API5_PO_OS_3"], self.colors_study_3)
+        }
+
+        fig = Figure(
+            experiment=self,
+            sid="PK",
+            name=f"{self.__class__.__name__}",
+            num_cols=3,
+            num_rows=1,
+            height=self.panel_height,
+            width=self.panel_width * 3 * 1.05,
+        )
+        plots = fig.create_plots(
+            xaxis=Axis(self.label_time, unit=self.unit_time),
+            legend=True,
+        )
+        for kp, (sid, groups, colors) in plot_info.items():
+            plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid])
+            for group in groups:
+                name = self.infos_pk[sid]
+                dose = self.dose[group]
+                # Simulation
+                if kp == 0 and group == "API10_PO_TAB":
+                    plots[kp].add_data(
+                        task=f"task_{group}",
+                        xid="time",
+                        yid=sid,
+                        label=f"sim: {self.legends[group]}",
+                        color=colors[group]
+                    )
+                # Data
+                plots[kp].add_data(
+                    dataset=f"{name}_{group}",
+                    xid="time",
+                    yid="mean",
+                    yid_sd="mean_sd",
+                    count="count",
+                    label= f"exp: {self.legends[group]}",
+                    color= colors[group],
+                    linestyle="solid",
+                )
+
+        return {fig.sid: fig}
+
+
+
+if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Song2015.__name__
+    out.mkdir(parents=True, exist_ok=True)
+    run_experiments(Song2015, output_dir=Song2015.__name__)
+

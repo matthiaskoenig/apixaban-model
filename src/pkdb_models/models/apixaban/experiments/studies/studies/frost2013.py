@@ -1,0 +1,432 @@
+from typing import Dict
+
+from sbmlsim.data import DataSet, load_pkdb_dataframe
+from sbmlsim.fit import FitMapping, FitData
+from sbmlutils.console import console
+
+from pkdb_models.models import apixaban
+from pkdb_models.models.apixaban.experiments.base_experiment import (
+    ApixabanSimulationExperiment,
+)
+from pkdb_models.models.apixaban.experiments.metadata import Tissue, Route, Dosing, ApplicationForm, Health, \
+    Fasting, ApixabanMappingMetaData
+
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Timecourse, TimecourseSim
+
+from pkdb_models.models.apixaban.helpers import run_experiments
+
+
+class Frost2013(ApixabanSimulationExperiment):
+    """Simulation experiment of Frost2013."""
+
+    # food study group
+    food_study = ["fed", "fasted"]
+    # single dose group
+    single_dose_study = ["D0_5", "D1", "D2_5", "D5", "D10", "D25", "D50"]
+    # single dose study divides into solution and tablet
+    solution_doses = ["D0_5", "D1", "D2_5"]  # mg 0.5–2.5 → Solution
+    tablet_doses = ["D5", "D10", "D25", "D50"]  # mg 5–50 → Tablet
+    # scatter plot group - dose amount unknown
+    scatter_dose = ["single dose"]
+
+    bodyweights = { # [kg]
+        "fasted": 77,
+        "fed": 77,
+        "D0_5": 87,
+        "D1": 82,
+        "D2_5": 87,
+        "D5": 82,
+        "D10": 73,
+        "D25": 73,
+        "D50": 77,
+    }
+
+    # mean start values at t=0
+    inrs = {
+        "INR_ref": 1.09,
+        "aPTT_ref": 31.12,
+        "mPT_ref": 45.97,
+    }
+
+    doses = {  # [mg]
+        "D0_5": 0.5,
+        "D1": 1,
+        "D2_5": 2.5,
+        "D5": 5,
+        "D10": 10,
+        "D25": 25,
+        "D50": 50,
+    }
+
+    colors = {
+        "D0_5": "#fff5eb",
+        "D1": "#fee6ce",
+        "D2_5": "#fdd0a2",
+        "D5": "#fdae6b",
+        "D10": "#fd8d3c",
+        "D25": "#e6550d",
+        "D50": "#a63603",
+        "fasted": "black",
+        "fed": "tab:purple",
+    }
+
+    groups = list(bodyweights.keys())
+
+    info_fig1 = {
+        "[Cve_api]": "apixaban",
+    }
+
+    info_fig3 = {
+        "INR": "inr",
+        "aPTT": "aPTT",
+        "mPT": "mPT",
+    }
+
+    info_fig4 = {
+        "mPT_change": "mPT",
+        "INR_change": "inr",
+        "aPTT_change": "aPTT",
+    }
+
+
+    def datasets(self) -> Dict[str, DataSet]:
+        dsets = {}
+        for fig_id, group_id in zip(["Fig1A", "Fig1B", "Fig3", "Fig4"],["label", "label", "label", "x_label"]):
+            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+            for label, df_label in df.groupby(group_id):
+                dset = DataSet.from_df(df_label, self.ureg)
+                if "apixaban" in label:
+                    if fig_id in ["Fig4"]:
+                        dset.unit_conversion("x", 1 / self.Mr.api)
+                    else:
+                        dset.unit_conversion("mean", 1 / self.Mr.api)
+                dsets[label] = dset
+
+
+        # console.print(dsets)
+
+        return dsets
+
+    def simulations(self) -> Dict[str, TimecourseSim]:
+        Q_ = self.Q_
+        tcsims = {}
+        # pharmacokinetics food study
+        for group in self.food_study:
+            tcsims[group] = TimecourseSim(
+                [Timecourse(
+                    start=0,
+                    end=60 * 60,  # [min]
+                    steps=1000,
+                    changes={
+                        **self.default_changes(),
+                        "BW": Q_(self.bodyweights[group], "kg"),
+                        "PODOSE_api": Q_(10, "mg"),
+                        "GU__F_api_abs": Q_(self.fasting_map[group], "dimensionless"),
+                    },
+                )]
+            )
+        # pharmacokinetics/pharmacodynamics single dose study
+        for group in self.single_dose_study:
+            tcsims[group] = TimecourseSim(
+                [Timecourse(
+                    start=0,
+                    end=100 * 60,  # [min]
+                    steps=1000,
+                    changes={
+                        **self.default_changes(),
+                        "BW": Q_(self.bodyweights[group], "kg"),
+                        "PODOSE_api": Q_(self.doses[group], "mg"),
+                        # set pharmacodynamic baseline reference parameters (assignment rules use these)
+                        "INR_ref": Q_(self.inrs["INR_ref"], self.units["INR"]),
+                        "aPTT_ref": Q_(self.inrs["aPTT_ref"], self.units["aPTT"]),
+                        "mPT_ref": Q_(self.inrs["mPT_ref"], self.units["mPT"]),
+                    },
+                )]
+            )
+
+        return tcsims
+
+    def fit_mappings(self) -> Dict[str, FitMapping]:
+        mappings = {}
+
+        specs = [
+            # Fig1A
+            (
+                self.info_fig1,
+                lambda group: ApixabanMappingMetaData(
+                    tissue=Tissue.PLASMA,
+                    route=Route.PO,
+                    application_form=(
+                            ApplicationForm.SOLUTION if group in self.solution_doses else ApplicationForm.TABLET
+                        ),
+                    dosing=Dosing.SINGLE,
+                    health=Health.HEALTHY,
+                    fasting=Fasting.FASTED,
+                ),
+                self.single_dose_study,
+            ),
+            # Fig1B
+            (
+                self.info_fig1,
+                lambda group: ApixabanMappingMetaData(
+                    tissue=Tissue.PLASMA,
+                    route=Route.PO,
+                    application_form=ApplicationForm.TABLET,
+                    dosing=Dosing.SINGLE,
+                    health=Health.HEALTHY,
+                    fasting=Fasting.FED if group == "fed" else Fasting.FASTED,
+                ),
+                self.food_study,
+            ),
+            # Fig3
+            (
+                self.info_fig3,
+                lambda group: ApixabanMappingMetaData(
+                    tissue=Tissue.PLASMA,
+                    route=Route.PO,
+                    application_form=(
+                            ApplicationForm.SOLUTION if group in self.solution_doses else ApplicationForm.TABLET
+                        ),
+                    dosing=Dosing.SINGLE,
+                    health=Health.HEALTHY,
+                    fasting=Fasting.FASTED,
+                ),
+                self.single_dose_study,
+            ),
+        ]
+
+        for info_dict, meta_factory, groups_for_spec in specs:
+            for group in groups_for_spec:
+                for sid, name in info_dict.items():
+                    mappings[f"fm_{name}_{group}"] = FitMapping(
+                        self,
+                        reference=FitData(
+                            self,
+                            dataset=f"{name}_{group}",
+                            xid="time",
+                            yid="mean",
+                            count="count",
+                        ),
+                        observable=FitData(
+                            self,
+                            task=f"task_{group}",
+                            xid="time",
+                            yid=sid,
+                        ),
+                        metadata=meta_factory(group),
+                    )
+
+        return mappings
+
+    def figures(self) -> Dict[str, Figure]:
+
+        return {
+            **self.figure_pk(),
+            **self.figure_pk2(),
+            **self.figure_pd(),
+            **self.figure_scatter(),
+        }
+
+    # single dose pharmacokinetics plot
+    def figure_pk(self) -> Dict[str, Figure]:
+
+        fig = Figure(
+            experiment=self,
+            sid="Fig1A",
+            name=self.__class__.__name__,
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
+        )
+        plots = fig.create_plots(
+            xaxis=Axis(self.label_time, unit=self.unit_time),
+            legend=True,
+        )
+        plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
+
+        for group in self.food_study:
+
+            for k, sid in enumerate(self.info_fig1.keys()):
+                name = self.info_fig1[sid]
+
+                # simulation
+                plots[k].add_data(
+                    task=f"task_{group}",
+                    xid="time",
+                    yid=sid,
+                    label=f"sim {group}: 10mg PO",
+                    color=self.colors[group],
+                )
+                # data
+                plots[k].add_data(
+                    dataset=f"{name}_{group}",
+                    xid="time",
+                    yid="mean",
+                    yid_sd="mean_sd",
+                    count="count",
+                    label=f"exp {group}: 10mg PO",
+                    color=self.colors[group],
+                )
+
+        return {fig.sid: fig}
+
+    # food study pharmacokinetics plot
+    def figure_pk2(self) -> Dict[str, Figure]:
+
+        fig = Figure(
+            experiment=self,
+            sid="Fig1B",
+            name=self.__class__.__name__,
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
+        )
+        plots = fig.create_plots(
+            xaxis=Axis(self.label_time, unit=self.unit_time),
+            legend=True,
+        )
+        plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
+
+        for group in self.single_dose_study:
+
+            for k, sid in enumerate(self.info_fig1.keys()):
+                name = self.info_fig1[sid]
+
+                # simulation
+                plots[k].add_data(
+                    task=f"task_{group}",
+                    xid="time",
+                    yid=sid,
+                    label=f"sim: {self.doses[group]}mg PO",
+                    color=self.colors[group],
+                )
+                # data
+                plots[k].add_data(
+                    dataset=f"{name}_{group}",
+                    xid="time",
+                    yid="mean",
+                    count="count",
+                    label=f"exp: {self.doses[group]}mg PO",
+                    color=self.colors[group],
+                )
+
+        return {fig.sid: fig}
+
+    # single dose pharmacodynamics plots
+    def figure_pd(self) -> Dict[str, Figure]:
+
+        fig = Figure(
+            experiment=self,
+            sid="Fig3",
+            name=self.__class__.__name__,
+            num_rows=1,
+            num_cols=3,
+            height=self.panel_height * 1.15,
+            width=self.panel_width * 1.15 * 3 * 1.05,
+        )
+        plots = fig.create_plots(
+            xaxis=Axis(self.label_time, unit=self.unit_time, max=70,),
+            legend=True
+        )
+        plots[0].set_yaxis(self.labels["INR"], unit=self.units["INR"])
+        plots[1].set_yaxis(self.labels["aPTT"], unit=self.units["aPTT"])
+        plots[2].set_yaxis(self.labels["mPT"], unit=self.units["mPT"])
+
+        for group in self.single_dose_study:
+
+            for k, sid in enumerate(self.info_fig3.keys()):
+                name = self.info_fig3[sid]
+
+                # simulation
+                plots[k].add_data(
+                    task=f"task_{group}",
+                    xid="time",
+                    yid=sid,
+                    label=f"sim: {self.doses[group]}mg PO",
+                    color=self.colors[group],
+                )
+                # data
+                plots[k].add_data(
+                    dataset=f"{name}_{group}",
+                    xid="time",
+                    yid="mean",
+                    count="count",
+                    label=f"exp: {self.doses[group]}mg PO",
+                    color=self.colors[group],
+                )
+
+        return {fig.sid: fig}
+
+    # pharmacodynamics scatter plots relative change
+    def figure_scatter(self) -> Dict[str, Figure]:
+
+            fig = Figure(
+                experiment=self,
+                sid="Fig4",
+                name=self.__class__.__name__,
+                num_cols=3,
+                height=self.panel_height,
+                width=self.panel_width * 1.05 * 3,
+            )
+            plots = fig.create_plots(
+                xaxis=Axis(self.label_api_plasma, unit=self.unit_api),
+                legend=True,
+            )
+            plot_configs = [
+                (0, "mPT_relchange", self.labels["mPT_relchange"], "%", "_mPT", False),  # mPT plot
+                (1, "INR_relchange", self.labels["INR_relchange"], "%", "_inr", True),  # inr plot
+                (2, "aPTT_relchange", self.labels["aPTT_relchange"], "%", "_aPTT", False),  # aPTT plot
+            ]
+
+            for k, (sid, name) in enumerate(self.info_fig4.items()):
+                plots[k].set_yaxis(self.labels[sid], unit="%", scale="linear")
+                is_legend = True
+                for group in self.single_dose_study:
+                    # simulation
+                    plots[k].add_data(
+                        task=f"task_{group}",
+                        xid="[Cve_api]",
+                        yid=plot_configs[k][1],
+                        label="sim" if is_legend else "",
+                        color="black",
+                        linestyle="solid",
+                    )
+                    is_legend = False
+                for group in self.scatter_dose:
+                    if group not in self.doses:
+                        continue
+                    plots[k].add_data(
+                        task=f"task_{group}",
+                        xid="[Cve_api]",
+                        yid=sid,
+                        label="sim",
+                        color=self.colors.get(group, "white"),
+                        marker="x",
+                        linestyle="solid",
+                    )
+
+                dset_candidates = [
+                    f"apixaban_vs_{name}",
+                    f"{name}",
+                    f"{self.sid}_Fig4_{name}",
+                ]
+
+                for dkey in dset_candidates:
+                    plots[k].add_data(
+                        dataset=dkey,
+                        xid="x",
+                        yid="y",
+                        label="exp individ",
+                        color="white",
+                        markeredgecolor="black",
+                        marker="o",
+                        linestyle="",
+                        # markersize=5.2,
+                    )
+                    break
+
+            return {fig.sid: fig}
+
+if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Frost2013.__name__
+    out.mkdir(parents=True, exist_ok=True)
+    run_experiments(Frost2013, output_dir=Frost2013.__name__)

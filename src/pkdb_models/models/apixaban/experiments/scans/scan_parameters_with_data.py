@@ -27,7 +27,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
     steps = 2000
     dose_api = 5  # [mg]
 
-    study_markers = ['s', '^', 'D', 'v', '<', '>', 'p', '*', 'h', 'X']
+    study_markers = ['s', '^', 'D', 'v', '<', '>', 'p', '*', 'h', 'X', 'P', 'o']
 
     substances = {"api": "apixaban"}
     # Define scalable parameters
@@ -70,6 +70,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             "colormap": "bwr",
             "units": "kg",
             "label": "bodyweight [kg]",
+            "legend_position": (0.95, 0.95),
         },
         "hepatic_scan": {
             "parameter": "f_cirrhosis",
@@ -80,6 +81,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             "colormap": "Blues",
             "units": "dimensionless",
             "label": "cirrhosis degree [-]",
+            "legend_position": (0.95, 0.95),
         },
         "renal_scan": {
             "parameter": "KI__f_renal_function",
@@ -92,6 +94,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             "colormap": "Greens_r",
             "units": "dimensionless",
             "label": "renal function [-]",
+            "legend_position": (0.95, 0.95),
         },
         "dose_scan": {
             "parameter": "PODOSE_api",
@@ -107,6 +110,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             "colormap": "Oranges",
             "units": "mg",
             "label": "apixaban dose [mg]",
+            "legend_position": (0.95, 0.95),
         },
         "food_scan": {
             "parameter": "GU__F_api_abs",
@@ -119,6 +123,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             "colormap": "Purples",
             "units": "dimensionless",
             "label": "fraction absorbed [-]",
+            "legend_position": (0.25, 0.95),
         },
     }
 
@@ -327,7 +332,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                         if max_exp is not None:
                             max_yaxis = max(max_yaxis, max_exp)
 
-            ax = self._add_legend_based_on_study_map(ax, legend_study_markers)
+            ax = self._add_legend_based_on_study_map(ax, legend_study_markers, scan_info["legend_position"])
             ax = self._styling(ax, pk_par_id, max_yaxis, scan_info, is_dose_scan)
 
             axes[kp] = ax
@@ -456,6 +461,16 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                 **self.plot_kwargs
             )
             y_limit = y_value + y_err
+        elif x_err is not None:
+            ax.errorbar(
+                x_pos, y_value,
+                xerr=x_err,
+                fmt=marker,
+                markerfacecolor=study_color,
+                markeredgecolor="black",
+                ecolor="black",
+            )
+            y_limit = y_value
         else:
             ax.plot(
                 x_pos, y_value,
@@ -578,7 +593,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
         else:
             raise ValueError(f"Value {value} is out of range ({range_min}, {range_max}).")
 
-    def _add_legend_based_on_study_map(self, ax, study_marker_map) -> matplotlib.axes.Axes:
+    def _add_legend_based_on_study_map(self, ax, study_marker_map, legend_position: tuple) -> matplotlib.axes.Axes:
         """
         Add legend to the plot based on the study marker map.
 
@@ -603,8 +618,9 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
         ax.legend(
             handles=legend_elements,
             title="Studies",  # Optional legend title
-            loc="lower left",  # Automatically determine the best location
+            loc="upper right",
             fontsize=9,
+            bbox_to_anchor=legend_position,
         )
 
         return ax

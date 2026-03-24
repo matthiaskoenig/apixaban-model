@@ -25,13 +25,13 @@ Chang2016	renal	severe	cl_renal	10	mg	apixaban				1.94						ml/min
 #																
 Metze2021	renal	mild	cmax	5	mg	apixaban		109								ng/ml
 #																
-VandenBosch2021	renal	end_stage	aucend_48	2.5	mg	apixaban	6				2214.2			479.0	4411.0	ng*hr/ml
+VandenBosch2021	renal	end_stage	aucend_48	2.5	mg	apixaban	6				2214.2			479	4411	ng*hr/ml
 VandenBosch2021	renal	end_stage	cmax	2.5	mg	apixaban	6				127.5			45.4	210.4	ng/ml
-VandenBosch2021	renal	end_stage	tmax	2.5	mg	apixaban	6				3.3			1.0	3.5	hr
+VandenBosch2021	renal	end_stage	tmax	2.5	mg	apixaban	6				3.3			1	3.5	hr
 #																
-VandenBosch2021	renal	end_stage	aucend_48	5	mg	apixaban	6				3817.6			1243.0	5604.0	ng*hr/ml
+VandenBosch2021	renal	end_stage	aucend_48	5	mg	apixaban	6				3817.6			1243	5604	ng*hr/ml
 VandenBosch2021	renal	end_stage	cmax	5	mg	apixaban	6				195.9			85.6	280.1	ng/ml
-VandenBosch2021	renal	end_stage	tmax	5	mg	apixaban	6				2.8			1.0	4.0	hr
+VandenBosch2021	renal	end_stage	tmax	5	mg	apixaban	6				2.8			1	4	hr
 #																
 Wang2016	renal	normal	cmax	5	mg	apixaban	8	126	36.54							ng/ml
 Wang2016	renal	normal	aucinf	5	mg	apixaban	8	1265	379.5							ng/ml*hr
@@ -44,11 +44,3 @@ Wang2016	renal	end_stage	aucinf	5	mg	apixaban	8	1717	412.08							ng/ml*hr
 Wang2016	renal	end_stage	tmax	5	mg	apixaban	8				2			2	6	hr
 Wang2016	renal	end_stage	thalf	5	mg	apixaban	8	12.7	3.4							hr
 Wang2016	renal	end_stage	cl_renal	5	mg	apixaban	8	0.02	0.016							ml/min
-#																
-Wang2016	renal	normal	inrmax	5	mg	apixaban	8	1.24	0.42							dimensionless
-Wang2016	renal	normal	ptmax	5	mg	apixaban	8	14.8	5.2							seconds
-Wang2016	renal	normal	apttmax	5	mg	apixaban	8	40.6	4.7							seconds
-#																
-Wang2016	renal	end_stage	inrmax	5	mg	apixaban	8	1.28	0.2							dimensionless
-Wang2016	renal	end_stage	ptmax	5	mg	apixaban	8	15.3	2.5							seconds
-Wang2016	renal	end_stage	apttmax	5	mg	apixaban	8	38	4.1							seconds
