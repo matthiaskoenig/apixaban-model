@@ -15,7 +15,8 @@ API2M2_k = 0.0201879974391193  # [1/min] rate api -> m2 conversion
 API2M7_k = 0.00847502114519145  # [1/min] rate api -> m7 conversion  
 APIIM_k = 1000.0  # [1/min] rate apixaban import  
 M1EX_k = 1000.0  # [1/min] rate M1 export  
-M22M1_k = 0.1  # [1/min] rate m2 -> m1 conversion  
+M22M1_Km = 0.1  # [mmol] rate m2 -> m1 conversion  
+M22M1_Vmax = 0.1  # [mmol/min] rate m2 -> m1 conversion  
 M7EX_k = 1000.0  # [1/min] rate M7 export  
 MXEXBI_k = 9.99999999999998e-05  # [1/min] rate for edoxaban metabolites export in bile  
 Vbi = 1.0  # [l] bile  
@@ -23,6 +24,7 @@ Vext = 1.5  # [l] plasma
 Vli = 1.5  # [l] liver  
 Vlumen = 1.0  # [l] gut lumen  
 Vmem = nan  # [m^2] membrane  
+fu_api = 0.131  # [-] fraction unbound in plasma api  
 ```
 
 ## Initial conditions `x0`
@@ -47,10 +49,10 @@ m7_lumen = 0.0  # [mmol] M7 (gut) in Vlumen
 # y
 API2M2 = API2M2_k * Vli * api  # [mmol/min] apixaban -> M2 (CYP3A4/5)  
 API2M7 = API2M7_k * Vli * api  # [mmol/min] apixaban -> M7 (CYP3A4/5)  
-APIIM = APIIM_k * Vli * (api_ext - api)  # [mmol/min] apixaban import (APIIM)  
+APIIM = APIIM_k * Vli * (api_ext * fu_api - api)  # [mmol/min] apixaban import (APIIM)  
 M1EX = M1EX_k * Vli * (m1 - m1_ext)  # [mmol/min] M1 export (M1EX)  
 M1EXBI = MXEXBI_k * Vli * m1  # [mmol/min] M1 bile export  
-M22M1 = M22M1_k * Vli * m2  # [mmol/min] M2 -> M1 (SULT1A1)  
+M22M1 = M22M1_Vmax * Vli * m2 / (M22M1_Km + Vli * m2)  # [mmol/min] M2 -> M1 (SULT1A1)  
 M2EXBI = MXEXBI_k * Vli * m2  # [mmol/min] M2 bile export  
 M7EX = M7EX_k * Vli * (m7 - m7_ext)  # [mmol/min] M7 export (M7EX)  
 M7EXBI = MXEXBI_k * Vli * m7  # [mmol/min] M7 bile export  

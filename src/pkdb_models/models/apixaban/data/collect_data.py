@@ -15,7 +15,11 @@ def collect_edoxaban_data():
     source_dir = common_parent / "pkdb_data" / "studies" / "edoxaban"
     target_dir = Path(__file__).parent / "edoxaban"
 
-    collect_tsv_files(source_dir=source_dir, target_dir=target_dir)
+    # collect  (edoxaban)
+    def is_edoxaban(study_name) -> bool:
+        return study_name in ["Lenard2024", "Lenard2025", "Metze2021", "Mikus2019"]
+
+    collect_tsv_files(source_dir=source_dir, target_dir=target_dir, filter_study=is_edoxaban)
 
 if __name__ == "__main__":
     collect_apixaban_data()

@@ -145,6 +145,11 @@ def calculate_apixaban_pd(experiment, xres) -> pd.DataFrame:
         "PT",
         "aPTT",
         "Xa_inhibition",
+        "antiXa_activity",
+        "INR_ratio",
+        "mPT_ratio",
+        "PT_ratio",
+        "aPTT_ratio",
     ]:
         pd_dicts = []
         for idx, dose in enumerate(dose_vec):

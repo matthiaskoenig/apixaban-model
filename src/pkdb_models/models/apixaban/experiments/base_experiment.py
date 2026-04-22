@@ -160,10 +160,10 @@ class ApixabanSimulationExperiment(SimulationExperiment):
 
     # ----------- Fasting/food -----
     # food changes the fraction absorbed
-    fasting_map = {  # GU__F_api_abs
-        "not reported": 0.66,  # assuming fasted state if nothing is reported
-        "fasted": 0.66, # Frost2021
-        "fed": 1.0,
+    fasting_map = {  # GU__f_absorption this is scaling of F_abs (0.66, Frost2021)
+        "not reported": 1, # assuming fasted state if nothing is reported
+        "fasted": 1, #
+        "fed": 0.8859416042572498, # fitting
     }
     fasting_colors = {
         "fasted": "black",
@@ -172,11 +172,11 @@ class ApixabanSimulationExperiment(SimulationExperiment):
 
     # ----------- Renal map --------------
     renal_map = {
-        "Normal renal function": 101.0 / 101.0,  # 1.0,
-        "Mild renal impairment": 50.0 / 101.0,  # 0.5
-        "Moderate renal impairment": 35.0 / 101.0,  # 0.35
-        "Severe renal impairment": 20.0 / 101.0,  # 0.20
-        "End stage renal impairment": 10.5 / 101.0,  # 0.1
+        "Normal renal function": 90.0 / 90.0,  # 1.0,
+        "Mild renal impairment": ((60+89)/2) / 90.0,      # 0.69
+        "Moderate renal impairment": ((30+59)/2) / 90.0,  # 0.32
+        "Severe renal impairment": ((15+29)/2) / 90.0,    # 0.24
+        "End stage renal impairment": 9.0 / 90.0,  # 0.1
     }
     renal_colors = {
         "Normal renal function": "black",
@@ -215,28 +215,36 @@ class ApixabanSimulationExperiment(SimulationExperiment):
         """Default changes to simulations."""
 
         changes = {
-            # pharmacokinetics
-            #         >>> !Optimal parameter 'ftissue_api' within 5% of upper bound! <<<
-            #         >>> !Optimal parameter 'GU__APIABS_k' within 5% of upper bound! <<<
-                'ftissue_api': Q_(9.999362175489635, 'l/min'),  # [0.01 - 10]
-                'Kp_api': Q_(0.033548549714271736, 'dimensionless'),  # [0.01 - 1]
-                'GU__APIABS_k': Q_(0.09999949917572021, '1/min'),  # [0.001 - 0.1]
-                'LI__API2M2_k': Q_(0.01570094528592168, '1/min'),  # [0.001 - 100.0]
-                'LI__API2M7_k': Q_(0.020189792087538537, '1/min'),  # [0.001 - 100.0]
-                'LI__M22M1_k': Q_(0.11061496092925446, '1/min'),  # [0.001 - 100.0]
-                'KI__APIEX_k': Q_(0.044556517937263916, '1/min'),  # [0.001 - 100.0]
-
+            # dose_dep_2
+            'Kp_api': Q_(1.8290975796567857, 'dimensionless'),  # [0.1 - 2.0]
+            'GU__Ka_dis_api': Q_(0.19047941874849916, '1/hr'),  # [0.1 - 0.9]
+            'GU__Ksol_dis_api': Q_(0.3352341302661383, '1/hr'),  # [0.1 - 0.9] # 'GU__Ka_sol_api'
+            'GU__APIABS_Vmax': Q_(0.1589797819093681, 'mmole/min'),  # [0.1 - 1.5]
+            'GU__APIABS_50': Q_(25.837650248152094, 'mg'),  # [20 - 40]
+            # m1_saturation
+            'ftissue_api': Q_(0.19611257106279287, 'l/min'),  # [0.05 - 10]
+            'GU__MXEXC_k': Q_(1.9152859400260163e-05, '1/min'),  # [1e-06 - 0.01]
+            'LI__API2M2_k': Q_(0.16036687106093256, '1/min'),  # [0.0025 - 0.375]
+            'LI__API2M7_k': Q_(0.0389310457140792, '1/min'),  # [0.001 - 1.5]
+            'LI__M22M1_Vmax': Q_(0.03597094464409813, 'mmole/min'),  # [0.001 - 0.1] # 'LI__M22M1_k'
+            'LI__M22M1_Km': Q_(22.420375926289406, 'mmole'),  # [20.0 - 40.0]
+            'LI__MXEXBI_k': Q_(0.010684693804886113, '1/min'),  # [0.001 - 0.1]
+            'KI__APIEX_k': Q_(0.2513729849119622, '1/min'),  # [0.001 - 100.0]
+            'KI__M1EX_k': Q_(0.02228556688222855, '1/min'),  # [0.001 - 1.0]
+            'KI__M7EX_k': Q_(0.008550419728226054, '1/min'),  # [0.001 - 100.0]
+            # food
+            'GU__f_absorption': Q_(0.8859416042572498, 'dimensionless'),  # [0.1 - 10]
             # pharmacodynamics
-            'Emax_INR': Q_(1.034912223511749, 'dimensionless'),  # [0.1 - 10]
-            'EC50_api_INR': Q_(0.0011792528732025547, 'mM'),  # [1e-07 - 0.01]
-            'Emax_mPT': Q_(1.9946311340457776, 'dimensionless'),  # [0.1 - 10]
-            'EC50_api_mPT': Q_(0.00032191356203984284, 'mM'),  # [1e-07 - 0.01]
-            'Emax_aPTT': Q_(0.4606822559153521, 'dimensionless'),  # [0.1 - 10]
-            'EC50_api_aPTT': Q_(0.0005858154549784874, 'mM'),  # [1e-07 - 0.01]
-            'Emax_Xa': Q_(4.581056537417629, 'per_mM'),  # [1e-06 - 1000000.0]
-            'Emax_antiXa': Q_(6332.859524334975, 'IU_per_ml_mM'),  # [1e-06 - 1000000.0]
-            'Emax_antiXa_gram': Q_(452775.1008926358, 'ng_per_ml_mM'),  # [1e-06 - 1000000.0]
-
+            'Emax_INR': Q_(1.039561836305882, 'dimensionless'),  # [0.1 - 10]
+            'EC50_api_INR': Q_(0.0001940723569696365, 'mM'),  # [0.0001 - 0.001]
+            'Emax_mPT': Q_(2.0219222706330124, 'dimensionless'),  # [0.1 - 10]
+            'EC50_api_mPT': Q_(5.593387897644722e-05, 'mM'),  # [1e-05 - 0.0001]
+            'Emax_PT': Q_(1.6587220005784251, 'dimensionless'),  # [1 - 50]
+            'EC50_api_PT': Q_(0.00018436022230444452, 'mM'),  # [0.0001 - 0.001]
+            'Emax_aPTT': Q_(0.5831984416695168, 'dimensionless'),  # [0.1 - 10]
+            'EC50_api_aPTT': Q_(0.0001528970357985037, 'mM'),  # [0.0001 - 0.001]
+            'Emax_antiXa': Q_(40774.78983249683, 'IU_per_ml_mM'),  # [10000.0 - 50000.0]
+            'Emax_antiXa_gram': Q_(2593907.3533155103, 'ng_per_ml_mM'),  # [2000000.0 - 3000000.0]
         }
 
         return changes
@@ -302,6 +310,7 @@ class ApixabanSimulationExperiment(SimulationExperiment):
                 "antiXa_activity_gram",
 
                 "PODOSE_api",
+                "GU__f_absorption",
                 "GU__F_api_abs",
                 "BW",
             ]
@@ -335,9 +344,6 @@ class ApixabanSimulationExperiment(SimulationExperiment):
         "thalf": "Half-life",
         "kel": "kel",
         "vd": "vd",
-        # "inrmax": "INRmax",
-        # "ptmax": "PTmax",
-        # "apttmax": "aPTTmax",
     }
 
     pk_units = {
@@ -356,9 +362,26 @@ class ApixabanSimulationExperiment(SimulationExperiment):
         "thalf": "hr",
         "kel": "1/hr",
         "vd": "l",
-        # "inrmax": "dimensionless",
-        # "ptmax": "sec",
-        # "apttmax": "sec",
+    }
+
+    pd_labels = {
+        "inrmax": "INRmax",
+        "ptmax": "PTmax",
+        "apttmax": "aPTTmax",
+        "inr_ratiomax": "INRmax ratio",
+        "pt_ratiomax": "PTmax ratio",
+        "aptt_ratiomax": "aPTTmax ratio",
+        "antixa_activitymax": "anti-FXa activity max",
+    }
+
+    pd_units = {
+        "inrmax": "dimensionless",
+        "ptmax": "s",
+        "apttmax": "s",
+        "inr_ratiomax": "dimensionless",
+        "pt_ratiomax": "dimensionless",
+        "aptt_ratiomax": "dimensionless",
+        "antixa_activitymax": "IU/ml",
     }
 
     def calculate_apixaban_pk(self, scans: list = []) -> Dict[str, pd.DataFrame]:

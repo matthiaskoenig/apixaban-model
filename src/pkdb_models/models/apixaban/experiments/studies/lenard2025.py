@@ -20,21 +20,30 @@ from pkdb_models.models.apixaban.helpers import run_experiments
 class Lenard2025(ApixabanSimulationExperiment):
     """Simulation experiment of Lenard2025."""
 
+    markers ={
+        "API25, RIV25, EDO50_1": "s",
+        "API25, RIV25, EDO50, CAR": "s",
+        "API25, RIV25, EDO50_2": "^",
+        "API25, RIV25, EDO50, GAB": "s",
+        "API25, RIV25, EDO50_3": "*",
+        "API25, RIV25, EDO50, PRE": "s"
+    }
+
     colors = {
         "API25, RIV25, EDO50_1": "black",
-        "API25, RIV25, EDO50, CAR": "tab:blue",
+        "API25, RIV25, EDO50, CAR": "tab:pink",
         "API25, RIV25, EDO50_2": "black",
         "API25, RIV25, EDO50, GAB": "tab:orange",
         "API25, RIV25, EDO50_3": "black",
         "API25, RIV25, EDO50, PRE": "tab:red"
     }
     labels = {
-        "API25, RIV25, EDO50_1": "API25 (1)",
-        "API25, RIV25, EDO50, CAR": "API25, CAR",
-        "API25, RIV25, EDO50_2": "API25 (2)",
-        "API25, RIV25, EDO50, GAB": "API25, GAB",
-        "API25, RIV25, EDO50_3": "API25 (3)",
-        "API25, RIV25, EDO50, PRE": "API25, PRE",
+        "API25, RIV25, EDO50_1": "DOACs",
+        "API25, RIV25, EDO50, CAR": "DOACs, car 300mg PO",
+        "API25, RIV25, EDO50_2": "DOACs",
+        "API25, RIV25, EDO50, GAB": "DOACs, gab 300mg PO",
+        "API25, RIV25, EDO50_3": "DOACs",
+        "API25, RIV25, EDO50, PRE": "DOACs, pre 300mg PO",
     }
 
     interventions =  list(colors.keys())
@@ -123,24 +132,28 @@ class Lenard2025(ApixabanSimulationExperiment):
         fig = Figure(
             experiment=self,
             sid="Fig1",
-            name=f"{self.__class__.__name__} (healthy)",
+            name=f"{self.__class__.__name__}",
+            height=self.panel_height,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time), legend=True
         )
-        plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
-
+        plots[0].set_yaxis(self.label_api_plasma, unit="nM")
+        is_sim = True
         for intervention in self.interventions:
             for ks, sid in enumerate(self.infos_pk):
                     name = self.infos_pk[sid]
-                    # simulation
-                    plots[ks].add_data(
-                        task=f"task_{intervention}",
-                        xid="time",
-                        yid=sid,
-                        label=self.labels[intervention],
-                        color=self.colors[f"{intervention}"],
-                    )
+                    if is_sim:
+                        # simulation
+                        plots[ks].add_data(
+                            task=f"task_{intervention}",
+                            xid="time",
+                            yid=sid,
+                            label="sim: api 25ug PO",
+                            color=self.colors[f"{intervention}"],
+                        )
+                        is_sim = False
                     # data
                     plots[ks].add_data(
                         dataset=f"{name}_{intervention}",
@@ -148,8 +161,9 @@ class Lenard2025(ApixabanSimulationExperiment):
                         yid="mean",
                         yid_sd="mean_sd",
                         count="count",
-                        label=self.labels[intervention],
+                        label=f"exp: {self.labels[intervention]}",
                         color=self.colors[intervention],
+                        marker=self.markers[intervention],
                     )
 
         return {

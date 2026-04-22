@@ -42,11 +42,43 @@ class Frost2013(ApixabanSimulationExperiment):
         "D50": 77,
     }
 
-    # mean start values at t=0
-    inrs = {
-        "INR_ref": 1.09,
-        "aPTT_ref": 31.12,
-        "mPT_ref": 45.97,
+    inr = { # [-]
+        "fasted": 1.33-0.23,
+        "fed": 1.28-0.20,
+        "D0_5": 1.08,
+        "D1": 1.10,
+        "D2_5": 1.10,
+        "D5": 1.08,
+        "D10": 1.14,
+        "D25": 1.01,
+        "D50": 1.14,
+    }
+
+    PT = {
+        "fasted": 14.99-1.39,
+        "fed": 14.66-1.30,
+    }
+
+    mPT = { # [s]
+        "D0_5": 39.39,
+        "D1": 44.85,
+        "D2_5": 45.45,
+        "D5": 46.97,
+        "D10": 55.45,
+        "D25": 40.61,
+        "D50": 49.09,
+    }
+
+    aPTT = { # [s]
+        "fasted": 32.96-3.05,
+        "fed": 31.55-2.90,
+        "D0_5": 30.4,
+        "D1": 32.29,
+        "D2_5": 30.55,
+        "D5": 31.46,
+        "D10": 29.45,
+        "D25": 31.04,
+        "D50": 32.70,
     }
 
     doses = {  # [mg]
@@ -122,28 +154,49 @@ class Frost2013(ApixabanSimulationExperiment):
                         **self.default_changes(),
                         "BW": Q_(self.bodyweights[group], "kg"),
                         "PODOSE_api": Q_(10, "mg"),
-                        "GU__F_api_abs": Q_(self.fasting_map[group], "dimensionless"),
+                        "GU__f_absorption": Q_(self.fasting_map[group], "dimensionless"),
+                        "INR_ref": Q_(self.inr[group], self.units["INR"]),
+                        "aPTT_ref": Q_(self.aPTT[group], self.units["aPTT"]),
+                        "PT_ref": Q_(self.PT[group], self.units["mPT"]),
                     },
                 )]
             )
         # pharmacokinetics/pharmacodynamics single dose study
         for group in self.single_dose_study:
-            tcsims[group] = TimecourseSim(
-                [Timecourse(
-                    start=0,
-                    end=100 * 60,  # [min]
-                    steps=1000,
-                    changes={
-                        **self.default_changes(),
-                        "BW": Q_(self.bodyweights[group], "kg"),
-                        "PODOSE_api": Q_(self.doses[group], "mg"),
-                        # set pharmacodynamic baseline reference parameters (assignment rules use these)
-                        "INR_ref": Q_(self.inrs["INR_ref"], self.units["INR"]),
-                        "aPTT_ref": Q_(self.inrs["aPTT_ref"], self.units["aPTT"]),
-                        "mPT_ref": Q_(self.inrs["mPT_ref"], self.units["mPT"]),
-                    },
-                )]
-            )
+            if group in self.solution_doses:
+                tcsims[group] = TimecourseSim(
+                    [Timecourse(
+                        start=0,
+                        end=100 * 60,  # [min]
+                        steps=1000,
+                        changes={
+                            **self.default_changes(),
+                            "BW": Q_(self.bodyweights[group], "kg"),
+                            "SOLDOSE_api": Q_(self.doses[group], "mg"),
+                            # set pharmacodynamic baseline reference parameters (assignment rules use these)
+                            "INR_ref": Q_(self.inr[group], self.units["INR"]),
+                            "aPTT_ref": Q_(self.aPTT[group], self.units["aPTT"]),
+                            "mPT_ref": Q_(self.mPT[group], self.units["mPT"]),
+                        },
+                    )]
+                )
+            else:
+                tcsims[group] = TimecourseSim(
+                    [Timecourse(
+                        start=0,
+                        end=100 * 60,  # [min]
+                        steps=1000,
+                        changes={
+                            **self.default_changes(),
+                            "BW": Q_(self.bodyweights[group], "kg"),
+                            "PODOSE_api": Q_(self.doses[group], "mg"),
+                            # set pharmacodynamic baseline reference parameters (assignment rules use these)
+                            "INR_ref": Q_(self.inr[group], self.units["INR"]),
+                            "aPTT_ref": Q_(self.aPTT[group], self.units["aPTT"]),
+                            "mPT_ref": Q_(self.mPT[group], self.units["mPT"]),
+                        },
+                    )]
+                )
 
         return tcsims
 
@@ -296,7 +349,7 @@ class Frost2013(ApixabanSimulationExperiment):
                     task=f"task_{group}",
                     xid="time",
                     yid=sid,
-                    label=f"sim: {self.doses[group]}mg PO",
+                    label=f"sim: {self.doses[group]}mg SOL" if group in self.solution_doses else f"sim: {self.doses[group]}mg PO",
                     color=self.colors[group],
                 )
                 # data
@@ -305,7 +358,7 @@ class Frost2013(ApixabanSimulationExperiment):
                     xid="time",
                     yid="mean",
                     count="count",
-                    label=f"exp: {self.doses[group]}mg PO",
+                    label=f"exp: {self.doses[group]}mg SOL" if group in self.solution_doses else f"exp: {self.doses[group]}mg PO",
                     color=self.colors[group],
                 )
 
@@ -341,7 +394,7 @@ class Frost2013(ApixabanSimulationExperiment):
                     task=f"task_{group}",
                     xid="time",
                     yid=sid,
-                    label=f"sim: {self.doses[group]}mg PO",
+                    label=f"sim: {self.doses[group]}mg SOL" if group in self.solution_doses else f"sim: {self.doses[group]}mg PO",
                     color=self.colors[group],
                 )
                 # data
@@ -350,7 +403,7 @@ class Frost2013(ApixabanSimulationExperiment):
                     xid="time",
                     yid="mean",
                     count="count",
-                    label=f"exp: {self.doses[group]}mg PO",
+                    label=f"exp: {self.doses[group]}mg SOL" if group in self.solution_doses else f"exp: {self.doses[group]}mg PO",
                     color=self.colors[group],
                 )
 

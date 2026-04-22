@@ -1,0 +1,50 @@
+\begin{tabular}{llrrrlll}
+\toprule
+uid & name & value & lower\_bound & upper\_bound & unit & type & reference \\
+\midrule
+BW & body weight [kg] & 75 & 63.8 & 86.2 & kg & ParameterType.DATA & \cite{Ogden2004, Jones2013, Thompson2009, Brown1997} \\
+COBW & cardiac output per bodyweight [ml/s/kg] & 1.55 & 1.32 & 1.78 & ml/s/kg & ParameterType.DATA & \cite{Cattermole2017, Patel2021, Collis2001} \\
+FQgu & gut fractional tissue blood flow & 0.18 & 0.153 & 0.207 & - & ParameterType.DATA & \cite{Jones2013, Thompson2009, Brown1997} \\
+FQh & hepatic (venous side) fractional tissue blood flow & 0.215 & 0.183 & 0.247 & - & ParameterType.DATA & \cite{Jones2013, Wynne1989, Thompson2009, Brown1997} \\
+FQki & kidney fractional tissue blood flow & 0.19 & 0.162 & 0.218 & - & ParameterType.DATA & \cite{Jones2013, Thompson2009, Brown1997} \\
+FVar & arterial fractional tissue volume & 0.0257 & 0.0218 & 0.0296 & l/kg & ParameterType.DATA & \cite{Jones2013, Thompson2009, Brown1997} \\
+FVgu & gut fractional tissue volume & 0.0171 & 0.0145 & 0.0197 & l/kg & ParameterType.DATA & \cite{Jones2013, Thompson2009, Brown1997} \\
+FVki & kidney fractional tissue volume & 0.0044 & 0.00374 & 0.00506 & l/kg & ParameterType.DATA & \cite{Jones2013, Thompson2009, Brown1997} \\
+FVli & liver fractional tissue volume & 0.021 & 0.0179 & 0.0242 & l/kg & ParameterType.DATA & \cite{Jones2013, Wynne1989, Thompson2009, Brown1997} \\
+FVlu & lung fractional tissue volume & 0.0076 & 0.00646 & 0.00874 & l/kg & ParameterType.DATA & \cite{Jones2013, Thompson2009, Brown1997} \\
+FVve & venous fractional tissue volume & 0.0514 & 0.0437 & 0.0591 & l/kg & ParameterType.DATA & \cite{Jones2013, Thompson2009, Brown1997} \\
+HCT & hematocrit & 0.51 & 0.433 & 0.586 & - & ParameterType.DATA & \cite{Mondal2025, Fiseha2023} \\
+EC50\_api\_INR & Effect constant for INR & 0.000884 & 1e-07 & 0.01 & mmol/l & ParameterType.FIT &  \\
+EC50\_api\_aPTT & Effect constant for aPTT & 0.000494 & 1e-07 & 0.01 & mmol/l & ParameterType.FIT &  \\
+EC50\_api\_mPT & Effect constant for mPT & 0.000189 & 1e-07 & 0.01 & mmol/l & ParameterType.FIT &  \\
+Emax\_INR & Effect constant for INR inhibition & 0.752 & 0.1 & 10 & - & ParameterType.FIT &  \\
+Emax\_Xa & Effect constant for Xa inhibition & 0.686 & 1e-06 & 1e+06 & l/mmol & ParameterType.FIT &  \\
+Emax\_aPTT & Effect constant for aPTT inhibition & 0.444 & 0.1 & 10 & - & ParameterType.FIT &  \\
+Emax\_antiXa & Effect constant for anti-Xa activity & 0.686 & 1e-06 & 1e+06 & l/ml/mmol & ParameterType.FIT &  \\
+Emax\_antiXa\_gram & Effect constant for anti-Xa activity & 0.686 & 1e-06 & 1e+06 & ng*l/ml/mmol & ParameterType.FIT &  \\
+Emax\_mPT & Effect constant for mPT inhibition & 1.57 & 0.1 & 10 & - & ParameterType.FIT &  \\
+GU\_\_APIABS\_k & rate of apixaban absorption & 0.05 & 0.001 & 0.1 & 1/min & ParameterType.FIT &  \\
+KI\_\_APIEX\_k & rate of apixaban urinary excretion & 0.1 & 0.001 & 100 & 1/min & ParameterType.FIT &  \\
+Kp\_api & tissue/plasma partition coefficient api & 200 & 0.01 & 1 & - & ParameterType.FIT &  \\
+LI\_\_API2M2\_k & rate api -> m2 conversion & 0.0202 & 0.001 & 100 & 1/min & ParameterType.FIT &  \\
+LI\_\_API2M7\_k & rate api -> m7 conversion & 0.00848 & 0.001 & 100 & 1/min & ParameterType.FIT &  \\
+LI\_\_M22M1\_k & rate m2 -> m1 conversion & 0.1 & 0.001 & 100 & 1/min & ParameterType.FIT &  \\
+ftissue\_api & tissue distribution api & 1 & 0.01 & 10 & l/min & ParameterType.FIT &  \\
+EC50\_api\_PT & Effect constant for PT & 0.00358 & 0.00304 & 0.00412 & mmol/l & ParameterType.NA &  \\
+Emax\_PT & Effect constant for PT inhibition & 3.55 & 3.02 & 4.09 & - & ParameterType.NA &  \\
+GU\_\_Ka\_dis\_api & Ka\_dis [1/hr] dissolution apixaban & 0.15 & 0.128 & 0.172 & 1/hr & ParameterType.NA &  \\
+GU\_\_MXEXC\_k & rate of metabolite excretion & 0.1 & 0.085 & 0.115 & 1/min & ParameterType.NA &  \\
+GU\_\_Vstomach & stomach & 1 & 0.85 & 1.15 & l & ParameterType.NA &  \\
+GU\_\_f\_absorption & scaling factor for absorption rate & 1 & 0.85 & 1.15 & - & ParameterType.NA &  \\
+HEIGHT & height [cm] & 170 & 144 & 195 & cm & ParameterType.NA &  \\
+KI\_\_M1EX\_k & rate of M1 urinary excretion & 0.1 & 0.085 & 0.115 & 1/min & ParameterType.NA &  \\
+KI\_\_M7EX\_k & rate of M7 urinary excretion & 0.1 & 0.085 & 0.115 & 1/min & ParameterType.NA &  \\
+KI\_\_egfr\_healthy & estimated glomerular filtration (eGFR) rate healthy & 100 & 85 & 115 & 578.034682080925 µl/min/m^2 & ParameterType.NA &  \\
+LI\_\_APIIM\_k & rate apixaban import & 1e+03 & 850 & 1.15e+03 & 1/min & ParameterType.NA &  \\
+LI\_\_M1EX\_k & rate M1 export & 1e+03 & 850 & 1.15e+03 & 1/min & ParameterType.NA &  \\
+LI\_\_M7EX\_k & rate M7 export & 1e+03 & 850 & 1.15e+03 & 1/min & ParameterType.NA &  \\
+LI\_\_MXEXBI\_k & rate for edoxaban metabolites export in bile & 0.0001 & 8.5e-05 & 0.000115 & 1/min & ParameterType.NA &  \\
+GU\_\_F\_api\_abs & fraction absorbed apixaban & 0.66 & 0.85 & 1.15 & - & ParameterType.SCALING &  \\
+KI\_\_f\_renal\_function & parameter for renal function & 1 & 0.85 & 1.15 & - & ParameterType.SCALING & \cite{Stevens2024} \\
+\bottomrule
+\end{tabular}

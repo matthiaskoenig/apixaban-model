@@ -212,12 +212,26 @@ _m.parameters = [
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
         name=f"fraction absorbed apixaban",
     ),
+    # Parameter(
+    #     "APIABS_k",
+    #     0.05,
+    #     unit=U.per_min,
+    #     name="rate of apixaban absorption",
+    #     sboTerm=SBO.KINETIC_CONSTANT,
+    # ),
     Parameter(
-        "APIABS_k",
+        "APIABS_Vmax",
         0.05,
-        unit=U.per_min,
+        unit=U.mmole_per_min,
         name="rate of apixaban absorption",
         sboTerm=SBO.KINETIC_CONSTANT,
+    ),
+    Parameter(
+        "APIABS_50",
+        25,
+        unit=U.mg,
+        name="amount of apixaban when rate of absorption reaches 50% of maximal rate",
+        sboTerm=SBO.MICHAELIS_CONSTANT,
     ),
     Parameter(
         "f_absorption",
@@ -239,10 +253,65 @@ _m.parameters = [
     ),
 ]
 
+
+_m.parameters.extend([
+    Parameter(
+        f"PODOSE_api",
+        0,
+        U.mg,
+        constant=False,
+        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+        name=f"oral dose apixaban in tablet [mg]",
+        port=True,
+    ),
+    Parameter(
+        f"SOLDOSE_api",
+        0,
+        U.mg,
+        constant=False,
+        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+        name=f"oral dose apixaban in solution [mg]",
+        port=True,
+    ),
+    Parameter(
+        f"Ka_dis_api",
+        0.15,
+        U.per_hr,
+        constant=True,
+        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+        name=f"Ka_dis [1/hr] dissolution apixaban in tablet",
+        port=True
+    ),
+    Parameter(
+        f"Ksol_dis_api",
+        0.15 * 5,
+        U.per_hr,
+        constant=True,
+        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+        name=f"Ksol_dis [1/hr] dissolution apixaban in solution",
+        port=True
+    ),
+    Parameter(
+        f"Mr_api",
+        459.5,
+        U.g_per_mole,
+        constant=True,
+        name=f"Molecular weight apixaban [g/mole]",
+        sboTerm=SBO.MOLECULAR_MASS,
+        port=True,
+    ),
+])
+
 _m.rules.append(
+    # AssignmentRule(
+    #     "absorption_api",
+    #     value="f_absorption * APIABS_k * Vlumen * api_lumen",
+    #     unit=U.mmole_per_min,
+    #     name="absorption apixaban",
+    # ),
     AssignmentRule(
         "absorption_api",
-        value="f_absorption * APIABS_k * Vlumen * api_lumen",
+        value="APIABS_Vmax * Vlumen * api_lumen / (APIABS_50 / Mr_api + Vlumen * api_lumen)",
         unit=U.mmole_per_min,
         name="absorption apixaban",
     ),
@@ -255,7 +324,7 @@ _m.reactions = [
         equation="api_lumen -> api_ext",
         sboTerm=SBO.TRANSPORT_REACTION,
         compartment="Vapical",
-        formula=("F_api_abs * absorption_api", U.mmole_per_min),
+        formula=("f_absorption * F_api_abs * absorption_api", U.mmole_per_min),
     ),
 
     Reaction(
@@ -265,7 +334,7 @@ _m.reactions = [
         equation=f"api_lumen -> api_feces",
         sboTerm=SBO.TRANSPORT_REACTION,
         formula=(
-            f"(1 dimensionless - F_api_abs) * absorption_api",
+            f"(1 dimensionless - f_absorption * F_api_abs) * absorption_api",
             U.mmole_per_min,
         )
     ),
@@ -305,36 +374,6 @@ _m.reactions = [
 
 ]
 
-_m.parameters.extend([
-    Parameter(
-        f"PODOSE_api",
-        0,
-        U.mg,
-        constant=False,
-        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        name=f"oral dose apixaban [mg]",
-        port=True,
-    ),
-    Parameter(
-        f"Ka_dis_api",
-        0.15,
-        U.per_hr,
-        constant=True,
-        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        name=f"Ka_dis [1/hr] dissolution apixaban",
-        port=True
-    ),
-    Parameter(
-        f"Mr_api",
-        459.5,
-        U.g_per_mole,
-        constant=True,
-        name=f"Molecular weight apixaban [g/mole]",
-        sboTerm=SBO.MOLECULAR_MASS,
-        port=True,
-    ),
-])
-
 # -------------------------------------
 # Dissolution of tablet/dose in stomach
 # -------------------------------------
@@ -342,8 +381,8 @@ _m.reactions.extend(
     [
         # fraction dose available for absorption from stomach
         Reaction(
-            sid=f"dissolution_api",
-            name=f"dissolution apixaban",
+            sid=f"dissolution_api_tabl",
+            name=f"dissolution apixaban tablet",
             formula=(
                 f"Ka_dis_api/60 min_per_hr * PODOSE_api/Mr_api",
                 U.mmole_per_min,
@@ -357,7 +396,29 @@ _m.reactions.extend(
     ]
 )
 _m.rate_rules.append(
-    RateRule(f"PODOSE_api", f"-dissolution_api * Mr_api", U.mg_per_min),
+    RateRule(f"PODOSE_api", f"-dissolution_api_tabl * Mr_api", U.mg_per_min),
+)
+
+_m.reactions.extend(
+    [
+        # fraction dose available for absorption from stomach
+        Reaction(
+            sid=f"dissolution_api_sol",
+            name=f"dissolution apixaban in solution",
+            formula=(
+                f"Ksol_dis_api/60 min_per_hr * SOLDOSE_api/Mr_api",
+                U.mmole_per_min,
+            ),
+            equation=f"api_stomach -> api_lumen",
+            compartment="Vlumen",
+            notes="""Swallowing, dissolution of solution, and transport into intestine.
+            Overall process describing the rates of this processes.
+            """
+        ),
+    ]
+)
+_m.rate_rules.append(
+    RateRule(f"SOLDOSE_api", f"-dissolution_api_sol * Mr_api", U.mg_per_min),
 )
 
 model_intestine = _m

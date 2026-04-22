@@ -13,16 +13,16 @@ Abdollahizad2025	71.9	kg	14.3		tmax	5	mg	apixaban	24					2.5			1.5	4	hr
 Abdollahizad2025	71.9	kg	14.3		kel	5	mg	apixaban	24		0.072								1/hr	
 Abdollahizad2025	71.9	kg	14.3		thalf	5	mg	apixaban	24		10.4								hr	
 #																				
-Chang2016	83.3	kg	9.7		cmax	10	mg	apixaban	8				224						ng/ml	
+Chang2016	83.3	kg	9.7		cmax	10	mg	apixaban	8			56	224						ng/ml	
 Chang2016	83.3	kg	9.7		tmax	10	mg	apixaban	8					2.8			2	4	hr	
-Chang2016	83.3	kg	9.7		aucinf	10	mg	apixaban	8				2528						ng*hr/ml	
+Chang2016	83.3	kg	9.7		aucinf	10	mg	apixaban	8			657.28	2528						ng*hr/ml	
 Chang2016	83.3	kg	9.7		thalf	10	mg	apixaban	8		15.1	7.6							hr	
-Chang2016	83.3	kg	9.7		cl_renal	10	mg	apixaban	8				6.83						ml/min	
+Chang2016	83.3	kg	9.7		cl_renal	10	mg	apixaban	8			2.2539	6.83						ml/min	
 #																				
 Cui2013	63.1	kg	5		cmax	10	mg	apixaban	12			60.814	233.9						ng/ml	
 Cui2013	63.1	kg	5		tmax	10	mg	apixaban	12					3			2	4	hr	
-Cui2013	63.1	kg	5		aucend_72	10	mg	apixaban	12			0.61371	2.273						ng*hr/ml	
-Cui2013	63.1	kg	5		aucinf	10	mg	apixaban	12			0.62316	2.308						ng*hr/ml	
+Cui2013	63.1	kg	5		aucend_72	10	mg	apixaban	12			613.71	2273						ng*hr/ml	
+Cui2013	63.1	kg	5		aucinf	10	mg	apixaban	12			623.16	2308						ng*hr/ml	
 Cui2013	63.1	kg	5		thalf	10	mg	apixaban	12			3.6	11.4						hr	
 Cui2013	63.1	kg	5		clearance_renal	10	mg	apixaban	12			0.2	1.17						l/hr	
 #																				
@@ -49,6 +49,8 @@ Frost2013	77	kg	12.2		aucinf	50	mg	apixaban	6				7556.5						ng/ml*hr
 Frost2013	77	kg	12.2		aucend_96	50	mg	apixaban	6				7096.7						ng/ml*hr	
 Frost2013	77	kg	12.2		tmax	50	mg	apixaban	6					2.5			2	4	hr	
 Frost2013	77	kg	12.2		thalf	50	mg	apixaban	6		19.7	15.3							hr	
+#																				
+Frost2014	75.9	kg	10.2		antixa_activitymax	2.5	mg	apixaban	13				1.12						IU/ml	
 #																				
 Frost2013a	79.7	kg	7.1		cmax	10	mg	apixaban	6		178	33.896							ng/ml	
 Frost2013a	79.7	kg	7.1		aucend_24	10	mg	apixaban	6		1590								ng*hr/ml	
@@ -167,7 +169,7 @@ Garonzik2019	72.35	kg	11.274		thalf	5	mg	apixaban	19		12.7	5.32							hr
 #																				
 Kreutz2017	81.1	kg	8.97		aucend_12	5	mg	apixaban	24				944						ug*hr/l	
 Kreutz2017	81.1	kg	8.97		cmax	5	mg	apixaban	24				139						ug/l	
-Kreutz2017	81.1	kg	8.97		tmax	5	mg	apixaban	24					3			1.0	4.0	hr	
+Kreutz2017	81.1	kg	8.97		tmax	5	mg	apixaban	24					3			1	4	hr	
 #																				
 Leong2024	60.7	kg	10		aucend_72	5	mg	apixaban	26		2324	362					1684	3145	ng/ml*hr	
 Leong2024	60.7	kg	10		aucinf	5	mg	apixaban	26		2362	359					1723	3178	ng/ml*hr	
@@ -187,17 +189,17 @@ Song2015	78	kg	13		aucend_72	10	mg	apixaban	14				2663						ng/ml*hr
 Song2015	78	kg	13		tmax	10	mg	apixaban	14					2			0.5	4.05	hr	
 Song2015	78	kg	13		thalf	10	mg	apixaban	14		12.3	4.5							hr	
 #																				
-Song2016	69.2	kg	10.1		cmax	5	mg	apixaban	22				121.30						ng/ml	
-Song2016	69.2	kg	10.1		aucinf	5	mg	apixaban	22				1229.00						ng*hr/ml	
-Song2016	69.2	kg	10.1		aucend_72	5	mg	apixaban	22				1200.0						ng*hr/ml	
-Song2016	69.2	kg	10.1		tmax	5	mg	apixaban	22					3.0			1.0	6.0	hr	
+Song2016	69.2	kg	10.1		cmax	5	mg	apixaban	22				121.3						ng/ml	
+Song2016	69.2	kg	10.1		aucinf	5	mg	apixaban	22				1229						ng*hr/ml	
+Song2016	69.2	kg	10.1		aucend_72	5	mg	apixaban	22				1200						ng*hr/ml	
+Song2016	69.2	kg	10.1		tmax	5	mg	apixaban	22					3			1	6	hr	
 Song2016	69.2	kg	10.1		thalf	5	mg	apixaban	22		9.9	2.4							hr	
 #																				
 Song2016	69.2	kg	10.1		cmax	5	mg	apixaban	22				103.2						ng/ml	
 Song2016	69.2	kg	10.1		aucinf	5	mg	apixaban	22				971.6						ng*hr/ml	
-Song2016	69.2	kg	10.1		aucend_72	5	mg	apixaban	22				937.60						ng*hr/ml	
-Song2016	69.2	kg	10.1		tmax	5	mg	apixaban	22					2.00			0.9	4.0	hr	
-Song2016	69.2	kg	10.1		thalf	5	mg	apixaban	22		10.7	3.0							hr	
+Song2016	69.2	kg	10.1		aucend_72	5	mg	apixaban	22				937.6						ng*hr/ml	
+Song2016	69.2	kg	10.1		tmax	5	mg	apixaban	22					2			0.9	4	hr	
+Song2016	69.2	kg	10.1		thalf	5	mg	apixaban	22		10.7	3							hr	
 #																				
 Upreti2013	45.9	kg		low	cmax	10	mg	apixaban	1	380.5									ng/ml	
 Upreti2013	38.4	kg		low	cmax	10	mg	apixaban	1	366.6									ng/ml	
@@ -366,23 +368,23 @@ Tirona2018	65.6	kg	10.3		cmax	2.5	mg	apixaban	12		98	31							ng/ml
 Tirona2018	65.6	kg	10.3		tmax	2.5	mg	apixaban	12		2.6	1.1							hr	
 Tirona2018	65.6	kg	10.3		thalf	2.5	mg	apixaban	12		4.5	1.5							hr	
 #																				
-Upreti2013a	73.3	kg	10.7		cmax	10	mg	apixaban	18				230.0						ng/ml	
-Upreti2013a	73.3	kg	10.7		tmax	10	mg	apixaban	18					3.00			1.00	5.98	hr	
-Upreti2013a	73.3	kg	10.7		aucend_60	10	mg	apixaban	18				2193.0						ng*hr/ml	
-Upreti2013a	73.3	kg	10.7		aucinf	10	mg	apixaban	18				2222.0						ng*hr/ml	
+Upreti2013a	73.3	kg	10.7		cmax	10	mg	apixaban	18				230						ng/ml	
+Upreti2013a	73.3	kg	10.7		tmax	10	mg	apixaban	18					3			1	5.98	hr	
+Upreti2013a	73.3	kg	10.7		aucend_60	10	mg	apixaban	18				2193						ng*hr/ml	
+Upreti2013a	73.3	kg	10.7		aucinf	10	mg	apixaban	18				2222						ng*hr/ml	
 Upreti2013a	73.3	kg	10.7		thalf	10	mg	apixaban	18		9.2	4.42							hr	
 #																				
-Vakkalagadda2016	74.5	kg	10.20		cmax	10	mg	apixaban	20				148.60						ng/ml	
-Vakkalagadda2016	74.5	kg	10.20		aucend_48	10	mg	apixaban	20				1639.00						ng*hr/ml	
-Vakkalagadda2016	74.5	kg	10.20		aucinf	10	mg	apixaban	20				1795.00						ng*hr/ml	
-Vakkalagadda2016	74.5	kg	10.20		tmax	10	mg	apixaban	20					3.0			2.0	4.0	hr	
-Vakkalagadda2016	74.5	kg	10.20		thalf	10	mg	apixaban	20		13.91	3.52							hr	
-Vakkalagadda2016	74.5	kg	10.20		cl_renal	10	mg	apixaban	20				0.88						l/hr	
+Vakkalagadda2016	74.5	kg	10.2		cmax	10	mg	apixaban	20				148.6						ng/ml	
+Vakkalagadda2016	74.5	kg	10.2		aucend_48	10	mg	apixaban	20				1639						ng*hr/ml	
+Vakkalagadda2016	74.5	kg	10.2		aucinf	10	mg	apixaban	20				1795						ng*hr/ml	
+Vakkalagadda2016	74.5	kg	10.2		tmax	10	mg	apixaban	20					3			2	4	hr	
+Vakkalagadda2016	74.5	kg	10.2		thalf	10	mg	apixaban	20		13.91	3.52							hr	
+Vakkalagadda2016	74.5	kg	10.2		cl_renal	10	mg	apixaban	20				0.88						l/hr	
 #																				
-Wang2014	72.2	kg	18.6		aucend_72	20	mg	apixaban	18				4080.00						ng*hr/ml	
-Wang2014	72.2	kg	18.6		aucinf	20	mg	apixaban	18				4185.00						ng*hr/ml	
-Wang2014	72.2	kg	18.6		cmax	20	mg	apixaban	18				380.0						ng/ml	
-Wang2014	72.2	kg	18.6		tmax	20	mg	apixaban	18					2.5			1.0	4.0	hr	
+Wang2014	72.2	kg	18.6		aucend_72	20	mg	apixaban	18				4080						ng*hr/ml	
+Wang2014	72.2	kg	18.6		aucinf	20	mg	apixaban	18				4185						ng*hr/ml	
+Wang2014	72.2	kg	18.6		cmax	20	mg	apixaban	18				380						ng/ml	
+Wang2014	72.2	kg	18.6		tmax	20	mg	apixaban	18					2.5			1	4	hr	
 Wang2014	72.2	kg	18.6		thalf	20	mg	apixaban	18		13.4	5.1							hr	
 #																				
 Wang2016	87.4	kg	18.4		cmax	5	mg	apixaban	8				126						ng/ml	
@@ -390,3 +392,7 @@ Wang2016	87.4	kg	18.4		aucinf	5	mg	apixaban	8				1265						ng/ml*hr
 Wang2016	87.4	kg	18.4		tmax	5	mg	apixaban	8					2			1	4	hr	
 Wang2016	87.4	kg	18.4		thalf	5	mg	apixaban	8		20	14.45							hr	
 Wang2016	87.4	kg	18.4		cl_renal	5	mg	apixaban	8				11.3						ml/min	
+#																				
+Wang2016	87.4	kg	18.4		inr_ratiomax	5	mg	apixaban	8		1.31	0.2							dimensionless	
+Wang2016	87.4	kg	18.4		pt_ratiomax	5	mg	apixaban	8		1.32	0.2							dimensionless	
+Wang2016	87.4	kg	18.4		aptt_ratiomax	5	mg	apixaban	8		1.41	0.01							dimensionless	

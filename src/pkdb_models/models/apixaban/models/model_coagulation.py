@@ -165,6 +165,14 @@ for sid in ["INR", "PT", "aPTT", "mPT"]:
 # Effect of apixaban on INR, PT, aPTT and Xa_inhibition
 _m.parameters.extend([
     Parameter(
+        "fu_api",
+        13.1 / 100, # [-] unbound in plasma He2011
+        U.dimensionless,
+        constant=True,
+        name=f"fraction unbound in plasma {sid}",
+        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+    ),
+    Parameter(
         sid="Emax_INR",
         name="Effect constant for INR inhibition",
         value=0.7515522269736061,
@@ -247,25 +255,25 @@ _m.parameters.extend([
 
 _m.rules.extend([
     AssignmentRule(
-        "INR", "INR_ref * (1 dimensionless + Emax_INR * Cve_api / (Cve_api + EC50_api_INR))", unit=U.second
+        "INR", "INR_ref * (1 dimensionless + Emax_INR * Cve_api * fu_api / (Cve_api * fu_api + EC50_api_INR))", unit=U.second
     ),
     AssignmentRule(
-        "PT", "PT_ref * (1 dimensionless + Emax_PT * Cve_api / (Cve_api + EC50_api_PT))", unit=U.second
+        "PT", "PT_ref * (1 dimensionless + Emax_PT * Cve_api * fu_api / (Cve_api * fu_api + EC50_api_PT))", unit=U.second
     ),
     AssignmentRule(
-        "aPTT", "aPTT_ref * (1 dimensionless + Emax_aPTT * Cve_api / (Cve_api + EC50_api_aPTT))", unit=U.second
+        "aPTT", "aPTT_ref * (1 dimensionless + Emax_aPTT * Cve_api * fu_api / (Cve_api * fu_api + EC50_api_aPTT))", unit=U.second
     ),
     AssignmentRule(
-        "mPT", "mPT_ref * (1 dimensionless + Emax_mPT * Cve_api / (Cve_api + EC50_api_mPT))", unit=U.second
+        "mPT", "mPT_ref * (1 dimensionless + Emax_mPT * Cve_api * fu_api / (Cve_api * fu_api + EC50_api_mPT))", unit=U.second
     ),
     AssignmentRule(
-        "Xa_inhibition", "Emax_Xa * Cve_api", unit=U.dimensionless
+        "Xa_inhibition", "Emax_Xa * Cve_api * fu_api", unit=U.dimensionless
     ),
     AssignmentRule(
-        "antiXa_activity", "Emax_antiXa * Cve_api", unit=U.IU_per_ml
+        "antiXa_activity", "Emax_antiXa * Cve_api * fu_api", unit=U.IU_per_ml
     ),
     AssignmentRule(
-        "antiXa_activity_gram", "Emax_antiXa_gram * Cve_api", unit=U.ng_per_ml
+        "antiXa_activity_gram", "Emax_antiXa_gram * Cve_api * fu_api", unit=U.ng_per_ml
     )
 ])
 

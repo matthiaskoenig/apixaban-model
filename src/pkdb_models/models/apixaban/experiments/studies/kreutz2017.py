@@ -87,8 +87,6 @@ class Kreutz2017(ApixabanSimulationExperiment):
             steps=1000,
             changes={
                 **self.default_changes(),
-                "BW": Q_(self.bodyweight, "kg"),
-                "HEIGHT": Q_(self.bodyheight, "cm"),
                 f"{self.route}DOSE_api": Q_(self.dose, "mg"),
                 "GU__f_absorption": Q_(self.fasting_map["fed"], "dimensionless")
             },

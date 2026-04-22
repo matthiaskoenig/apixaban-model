@@ -32,23 +32,25 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             "parameter": "BW",
             "default": 75.0,
             "range": np.sort(
-                np.append(np.linspace(40, 200, num=num_points), [75.0])
+                np.append(np.linspace(38, 200, num=num_points), [75.0])
             ),
             # "range": np.logspace(-2, 2, num=21),
             "scale": "linear",
-            "colormap": "Oranges",
+            "colormap": "bwr",
             "units": "kg",
             "label": "bodyweight [kg]",
+            "legend_position": (0.95, 0.95),
         },
         "hepatic_scan": {
             "parameter": "f_cirrhosis",
             "default": 0.0,
-            "range": np.linspace(0, 0.9, num=num_points),
+            "range": np.linspace(0, 0.7, num=num_points),
             # "range": np.logspace(-2, 2, num=21),
             "scale": "linear",
             "colormap": "Blues",
             "units": "dimensionless",
             "label": "cirrhosis degree [-]",
+            "legend_position": (0.95, 0.95),
         },
         "renal_scan": {
             "parameter": "KI__f_renal_function",
@@ -61,6 +63,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             "colormap": "Greens_r",
             "units": "dimensionless",
             "label": "renal function [-]",
+            "legend_position": (0.95, 0.95),
         },
         "dose_scan": {
             "parameter": "PODOSE_api",
@@ -73,21 +76,23 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             #     np.append(np.logspace(1, 2, num=num_points), [50])
             # ),  # [10^-1=0.1, 10^1=10]
             "scale": "linear",
-            "colormap": "Reds",
+            "colormap": "Oranges",
             "units": "mg",
             "label": "apixaban dose [mg]",
+            "legend_position": (0.95, 0.95),
         },
         "food_scan": {
-            "parameter": "GU__F_api_abs",
+            "parameter": "GU__f_absorption",
             # "range": np.linspace(0.1, 1.9, num=num_points),
-            "default": 0.66,
+            "default": 1,
             "range": np.sort(
-                np.append(np.logspace(-1, 0, num=num_points), [0.66])
-            ),  # [10^-1=0.1, 10^1=10]
+                np.append(np.logspace(-1, 0.18, num=num_points), [1])
+            ),  # [10^-1=0.1, 10^0.18=1.5]
             "scale": "log",
             "colormap": "Purples",
             "units": "dimensionless",
             "label": "fraction absorbed [-]",
+            "legend_position": (0.25, 0.95),
         },
     }
 
@@ -248,11 +253,11 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                 ax.tick_params(axis="x", labelsize=self.tick_font_size)
                 ax.tick_params(axis="y", labelsize=self.tick_font_size)
 
-
             # --- colorbar ---
             # 4-tuple of floats rect = (left, bottom, width, height).
             # A new Axes is added with dimensions rect in normalized (0, 1)
-            cb_ax = f.add_axes(rect=[0.12, 0.85, 0.07, 0.08])
+
+            cb_ax = f.add_axes(rect=[0.1, 0.95, 0.12, 0.04])
             cb_ax.set_in_layout(True)
 
             # colorbar range
@@ -274,7 +279,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             cbar.ax.axvline(x=scan_data["default"], color="black", linewidth=2)
 
             # ticks
-            ticks = [rmin, rmax]
+            ticks = [rmin, rmax] if scan_key == "dose_scan" else [rmin, round(rmax, 1)]
             if scan_data["default"] not in ticks:
                 ticks.append(scan_data["default"])
                 ticks = sorted(ticks)

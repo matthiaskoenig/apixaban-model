@@ -89,11 +89,13 @@ SUBSTANCES_BODY = {
         "IVDOSE": 0,  # venous plasma
         # oral absorption
         "PODOSE": 0,  # dose
+        "SOLDOSE": 0,  # dose
         'ftissue': 1,  # [litre_per_min] distribution in tissues
         # logP = 2.71; P = 10^2.71 = 512  (MSDS, experimental)
         # logP = 2.22; P = 10^2.22 = 166  (ALOGPS)
         # logP = 1.83; P = 10^1.83 = 68 (Chemaxon)
         "Kp": 200,  # [-] tissue/plasma partition coefficient
+        "fu": 13.1 / 100 # [-] unbound in plasma He2011
     },
     "m1": {
         "name": "M1",
@@ -525,16 +527,14 @@ replaced_species = {
 # blood to external species
 for tkey, skey_list in replaced_species.items():
     for skey in skey_list:
-        _m.replaced_elements.extend(
-            [
-                ReplacedElement(
-                    sid=f"C{tkey}_plasma_{skey}_RE",
-                    metaId=f"C{tkey}_plasma_{skey}_RE",
-                    elementRef=f"C{tkey}_plasma_{skey}",
-                    submodelRef=SUBMODEL_SID_DICT[tkey],
-                    portRef=f"{skey}_ext{PORT_SUFFIX}",
-                ),
-            ]
+        _m.replaced_elements.append(
+            ReplacedElement(
+                sid=f"C{tkey}_plasma_{skey}_RE",
+                metaId=f"C{tkey}_plasma_{skey}_RE",
+                elementRef=f"C{tkey}_plasma_{skey}",
+                submodelRef=SUBMODEL_SID_DICT[tkey],
+                portRef=f"{skey}_ext{PORT_SUFFIX}",
+            )
         )
 
 # urine species replacements
@@ -865,7 +865,7 @@ for sid, sdict in SUBSTANCES_BODY.items():
                 U.mg,
                 constant=False,
                 sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-                name=f"oral dose {sid} [mg]",
+                name=f"oral dose {sid} in tablet [mg]",
             ),
             ]
         )
@@ -879,29 +879,34 @@ for sid, sdict in SUBSTANCES_BODY.items():
             ),
             ]
         )
+    if "SOLDOSE" in sdict:
+        # Parameter for intestine model
+        _m.parameters.extend([
+            Parameter(
+                f"SOLDOSE_{sid}",
+                sdict["SOLDOSE"],
+                U.mg,
+                constant=False,
+                sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+                name=f"oral dose {sid} in solution [mg]",
+            ),
+            ]
+        )
+        _m.replaced_elements.extend([
+            ReplacedElement(
+                sid=f"SOLDOSE_{sid}_RE",
+                metaId=f"SOLDOSE_{sid}_RE",
+                elementRef=f"SOLDOSE_{sid}",
+                submodelRef=SUBMODEL_SID_DICT["gu"],
+                portRef=f"SOLDOSE_{sid}{PORT_SUFFIX}",
+            ),
+            ]
+        )
 
 _m.rules = _m.rules + [
     AssignmentRule("f_shunts", "f_cirrhosis", unit=U.dimensionless),
     AssignmentRule("f_tissue_loss", "f_cirrhosis", unit=U.dimensionless),
 ]
-
-replaced_parameters = {
-    "li": [],
-    "gu": ["Mr_api"],
-    "ki": [],
-}
-
-for ckey, pids in replaced_parameters.items():
-    for pid in pids:
-        _m.replaced_elements.append(
-            ReplacedElement(
-                sid=f"{pid}_{ckey}_RE",
-                metaId=f"{pid}_{ckey}_RE",
-                elementRef=f"{pid}",
-                submodelRef=SUBMODEL_SID_DICT[ckey],
-                portRef=f"{pid}{PORT_SUFFIX}",
-            )
-        )
 
 # species specific parameters
 for sid, sdict in SUBSTANCES_BODY.items():
@@ -939,6 +944,42 @@ for sid, sdict in SUBSTANCES_BODY.items():
                 name=f"tissue/plasma partition coefficient {sid}",
             ),
         ])
+
+    if "fu" in sdict:
+        # free concentration
+        _m.parameters.append(
+            Parameter(
+                f"fu_{sid}",
+                sdict["fu"],
+                U.dimensionless,
+                constant=True,
+                name=f"fraction unbound in plasma {sid}",
+                sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            )
+        )
+        # ---------------------------------
+        # Free Unbound API Concentration
+        # ---------------------------------
+        for cid, cname in COMPARTMENTS_BODY.items():
+
+            if cid not in ["ve", "ar", "po", "hv"]:
+                _m.rules.append(
+                    AssignmentRule(
+                        f"C{cid}_free_{sid}",
+                        f"C{cid}_plasma_{sid} * fu_{sid}",
+                        U.mM,
+                        name=f"{sdict["name"]} free concentration ({cname})",
+                    )
+                )
+            else:
+                _m.rules.append(
+                    AssignmentRule(
+                        f"C{cid}_free_{sid}",
+                        f"C{cid}_{sid} * fu_{sid}",
+                        U.mM,
+                        name=f"{sdict["name"]} free concentration ({cname})",
+                    ),
+                )
 
     # dosing
     if "IVDOSE" in sdict:
@@ -979,6 +1020,24 @@ for sid, sdict in SUBSTANCES_BODY.items():
                     name=f"Ri [mg/min] rate of infusion {sid}",
                 ),
             ]
+        )
+
+replaced_parameters = {
+    "li": ["fu_api"],
+    "gu": ["Mr_api"],
+    "ki": ["fu_api"],
+}
+
+for ckey, pids in replaced_parameters.items():
+    for pid in pids:
+        _m.replaced_elements.append(
+            ReplacedElement(
+                sid=f"{pid}_{ckey}_RE",
+                metaId=f"{pid}_{ckey}_RE",
+                elementRef=f"{pid}",
+                submodelRef=SUBMODEL_SID_DICT[ckey],
+                portRef=f"{pid}{PORT_SUFFIX}",
+            )
         )
 
 # -------------------------------------------------------------------------------------------------
@@ -1116,7 +1175,8 @@ for sid, sdict in SUBSTANCES_BODY.items():
                         sid=f"transport_{cid}_{sid}",
                         name=f"transport {sname}",
                         formula=(
-                            f"ftissue_{sid} * (C{cid}_plasma_{sid}*Kp_{sid} - C{cid}_{sid})",
+                            f"ftissue_{sid} * (C{cid}_plasma_{sid} * Kp_{sid} * fu_{sid} - C{cid}_{sid})" if "fu" in sdict
+                            else f"ftissue_{sid} * (C{cid}_plasma_{sid} * Kp_{sid} - C{cid}_{sid})",
                             U.mmole_per_min,
                         ),
                         equation=f"C{cid}_plasma_{sid} <-> C{cid}_{sid}",
@@ -1332,6 +1392,7 @@ if __name__ == "__main__":
     from pkdb_models.models.apixaban.models.model_coagulation import model_coagulation
 
     model_coagulation.species = [s for s in model_coagulation.species if s.sid != "Cve_api"]
+    model_coagulation.parameters = [p for p in model_coagulation.parameters if p.sid != "fu_api"]
 
     result = create_model(
         filepath=MODEL_BASE_PATH / f"{model_body.sid}.xml",

@@ -9,7 +9,7 @@ from matplotlib.colors import to_hex, Colormap
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from pint import DimensionalityError
 from sbmlsim.simulation import Timecourse, TimecourseSim, ScanSim, Dimension
-from sbmlsim.plot.serialization_matplotlib import FigureMPL, MatplotlibFigureSerializer
+from sbmlsim.plot.serialization_matplotlib import FigureMPL
 from sbmlsim.plot.serialization_matplotlib import plt
 from sbmlutils.console import console
 from sympy.physics.units import Quantity
@@ -31,7 +31,11 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
 
     substances = {"api": "apixaban"}
     # Define scalable parameters
-    scalable_params = ["cmax", "aucinf", "aucend_12", "aucend_24", "aucend_48", "aucend_72", "aucend_96"]
+    scalable_params = ["cmax", "aucinf", "aucend_12", "aucend_24", "aucend_48",
+                       "aucend_72", "aucend_96", "inrmax", "ptmax", "apttmax",
+                       "antixa_activitymax", "inr_ratiomax", "pt_ratiomax",
+                       "aptt_ratiomax"
+                       ]
 
     study_data_files = {
         "renal_scan":
@@ -39,7 +43,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
         "hepatic_scan":
             str(Path(__file__).parent / "study_data" / "parameters_hepatic.tsv"),
         "dose_scan":
-            str(Path(__file__).parent / "study_data" / "parameters_dose.tsv"), # check doses
+            str(Path(__file__).parent / "study_data" / "parameters_dose_all_data.tsv"), # check doses
         "bodyweight_scan":
             str(Path(__file__).parent / "study_data" / "parameters_bodyweight.tsv"),
         "food_scan":
@@ -75,7 +79,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
         "hepatic_scan": {
             "parameter": "f_cirrhosis",
             "default": 0.0,
-            "range": np.linspace(0, 0.9, num=num_points),
+            "range": np.linspace(0, 0.7, num=num_points),
             # "range": np.logspace(-2, 2, num=21),
             "scale": "linear",
             "colormap": "Blues",
@@ -113,12 +117,12 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             "legend_position": (0.95, 0.95),
         },
         "food_scan": {
-            "parameter": "GU__F_api_abs",
+            "parameter": "GU__f_absorption",
             # "range": np.linspace(0.1, 1.9, num=num_points),
-            "default": 0.66,
+            "default": 1,
             "range": np.sort(
-                np.append(np.logspace(-1, 0, num=num_points), [0.66])
-            ),  # [10^-1=0.1, 10^1=10]
+                np.append(np.logspace(-1, 0.18, num=num_points), [1])
+            ),  # [10^-1=0.1, 10^0.18=1.5]
             "scale": "log",
             "colormap": "Purples",
             "units": "dimensionless",
@@ -189,6 +193,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
         pk_dfs = self.calculate_apixaban_pk()
         pd_dfs = self.calculate_apixaban_pd()
         reformated_pd_dfs = {}
+        pk_pd_df = {}
 
         for scan_id, pddata_dict in pd_dfs.items():
             for par_id, df in pddata_dict.items():
@@ -205,15 +210,14 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                     reformated_pd_dfs[f"scan_po_{scan_id}"] = pd.concat([reformated_pd_dfs[f"scan_po_{scan_id}"], df], axis=1)
 
         for scan_id, pk_df in pk_dfs.items():
-            pk_dfs[scan_id] = pd.concat([pk_df, reformated_pd_dfs[f"scan_po_{scan_id}"]], axis=1)
+            pk_pd_df[scan_id] = pd.concat([pk_df, reformated_pd_dfs[f"scan_po_{scan_id}"]], axis=1)
 
         return {
-            **self.figures_mpl_pharmacokinetics(pk_dfs),
-            # **self.figures_mpl_pharmacodynamics(),
+            **self.figures_mpl_pk_pd(pk_pd_df),
         }
 
-    def figures_mpl_pharmacokinetics(self, pk_dfs: dict[str, pd.DataFrame]) -> Dict[str, FigureMPL]:
-        """Visualize dependency of pharmacokinetics parameters for each scan type."""
+    def figures_mpl_pk_pd(self, pk_pd_dfs: dict[str, pd.DataFrame]) -> Dict[str, FigureMPL]:
+        """Visualize dependency of pharmacokinetic and pharmacodynamic parameters for each scan type."""
         figures = {}
 
         # Create one figure per scan type
@@ -228,8 +232,8 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                 xres[scan_info["parameter"]].values[0], xres.uinfo[scan_info["parameter"]]
             ).to(scan_info["units"])
 
-            # Get calculated for this scan pk parameters
-            df_sim = pk_dfs[f"scan_po_{scan_id}"]
+            # Get calculated for this scan pk and pd parameters
+            df_sim = pk_pd_dfs[f"scan_po_{scan_id}"]
 
             colors = self.get_color_map(scan_id, scan_info)
 
@@ -257,12 +261,14 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
         is_dose_scan = scan_id == "dose_scan"
         is_bodyweight_scan = scan_id == "bodyweight_scan"
 
-        # Get PK parameters to plot for each scan
-        pk_param_studies = data_dict["df_exp"]['parameter'].unique()
-        pk_parameters = [pk_parameter for pk_parameter in pk_param_studies if pk_parameter in self.pk_labels.keys()]
+        # Get PK and PD parameters to plot for each scan
+        param_studies = data_dict["df_exp"]['parameter'].unique()
+        pk_parameters = [pk_parameter for pk_parameter in param_studies if pk_parameter in self.pk_labels.keys()]
+        pd_parameters = [pd_parameter for pd_parameter in self.pd_labels.keys()]
+        parameters = pk_parameters + pd_parameters
 
         ncols = 4
-        nrows = (len(pk_parameters) + ncols - 1) // ncols
+        nrows = (len(parameters) + ncols - 1) // ncols
         fig, axes = plt.subplots(
             nrows=nrows, ncols=ncols, figsize=(6.5 * ncols, 6 * nrows), dpi=150,
             layout="constrained",
@@ -270,7 +276,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
         )
         axes = axes.flatten()
 
-        for kp, pk_par_id in enumerate(pk_parameters):
+        for kp, par_id in enumerate(parameters):
             ax = axes[kp]
             max_yaxis = 0.0
             legend_study_markers = {}
@@ -285,8 +291,12 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                 df_sim_subs = data_dict["df_sim"][data_dict["df_sim"].substance == substance_id].copy()
                 if not df_sim_subs.empty:
                     # Get PK or PD parameter values, ensure units are correct
-                    y = (self.Q_(df_sim_subs[f"{pk_par_id}"].to_numpy(), df_sim_subs[f"{pk_par_id}_unit"].values[0]).
-                         to(self.pk_units[pk_par_id]))
+                    if par_id in self.pk_labels.keys():
+                        units = self.pk_units[par_id]
+                    if par_id in self.pd_labels.keys():
+                        units = self.pd_units[par_id]
+                    y = (self.Q_(df_sim_subs[f"{par_id}"].to_numpy(), df_sim_subs[f"{par_id}_unit"].values[0]).
+                         to(units))
 
                     # Plot simulations
                     ax.plot(
@@ -308,7 +318,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                     # Filter studies data for the current substance and current parameter
                     df_exp_subs = data_dict["df_exp"][
                         (data_dict["df_exp"]['substance'] == substance_name) &
-                        (data_dict["df_exp"]['parameter'] == pk_par_id)
+                        (data_dict["df_exp"]['parameter'] == par_id)
                         ]
                     if not df_exp_subs.empty:
                         # Get unique markers for studies
@@ -318,7 +328,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                         # Plot experimental data and get maximum y-value for axis scaling
                         ax, max_exp = self._add_study_data_to_plot(
                             df_exp_subs,
-                            pk_par_id,
+                            par_id,
                             ax,
                             study_marker_map,
                             scan_id,
@@ -333,12 +343,12 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                             max_yaxis = max(max_yaxis, max_exp)
 
             ax = self._add_legend_based_on_study_map(ax, legend_study_markers, scan_info["legend_position"])
-            ax = self._styling(ax, pk_par_id, max_yaxis, scan_info, is_dose_scan)
+            ax = self._styling(ax, par_id, max_yaxis, scan_info, is_dose_scan)
 
             axes[kp] = ax
 
         # Hide unused axes
-        for i in range(len(pk_parameters), len(axes)):
+        for i in range(len(parameters), len(axes)):
             axes[i].set_visible(False)
 
         return fig
@@ -416,14 +426,17 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
     def _extract_data_point(self, data_point, units, parameter, dose_ratio):
         """Extracts the data point from the row and applies scaling if necessary."""
         # FIXME: can be generalized
-
+        if parameter in self.pk_units.keys():
+            st_units = self.pk_units[parameter]
+        if parameter in self.pd_units.keys():
+            st_units = self.pd_units[parameter]
         try:
             # units for PK parameters are defined in the Base Experiment
-            value = self.Q_(float(data_point), units).to(self.pk_units[parameter]).magnitude
+            value = self.Q_(float(data_point), units).to(st_units).magnitude
         except DimensionalityError:
             data_point = self.Q_(float(data_point), units) / self.Mr.api # FIXME: not only api Mr
             try:
-                value = data_point.to(self.pk_units[parameter]).magnitude
+                value = data_point.to(st_units).magnitude
             except Exception as e:
                 console.print(
                     f"An error occurred while transforming units: {e}. "
@@ -481,34 +494,40 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             y_limit = y_value
 
         if min_value is not None and max_value is not None:
-            ax.fill_between(
-                [x_pos * 0.9955, x_pos * 1.0005], min_value, max_value,
-                color="black", linestyle='--',
-                alpha=1,
-            )
-            ax.scatter(x_pos, min_value, s=15, color='black', zorder=5)
-            ax.scatter(x_pos, max_value, s=15, color='black', zorder=5)
+            ax.vlines(x_pos, min_value, max_value, color="black", linewidth=2, zorder=4, linestyles="dashed")
+            ax.scatter(x_pos, min_value, s=15, color="black", zorder=5)
+            ax.scatter(x_pos, max_value, s=15, color="black", zorder=5)
             y_limit = max(y_limit, max_value)
 
         return ax, y_limit
 
-    def _styling(self, ax: plt.Axes, pk_key: str, ymax: float, scan_info: dict, is_dose_scan: bool) -> plt.Axes:
+    def _styling(self, ax: plt.Axes, key: str, ymax: float, scan_info: dict, is_dose_scan: bool) -> plt.Axes:
         """Apply styling to the axis for PK parameter plots."""
         # Formatting
         ax.tick_params(axis="x", labelsize=self.tick_font_size)
         ax.tick_params(axis="y", labelsize=self.tick_font_size)
         ax.set_xlabel(scan_info["label"], fontdict=self.font)
+        if key in self.pk_labels.keys():
+            label = f"{self.pk_labels[key]} [{self.pk_units[key]}]"
+        elif key in self.pd_labels.keys():
+            label = f"{self.pd_labels[key]} [{self.pd_units[key]}]"
         ax.set_ylabel(
-            f"{self.pk_labels[pk_key]} [{self.pk_units[pk_key]}]",
+            label,
             fontdict=self.font,
         )
-        ax.set_ylim(bottom=0.0, top=1.05 * ymax)
+        if "ratio" in key and scan_info["parameter"] in ["f_cirrhosis", "GU__f_absorption"]:
+            ax.set_ylim(bottom=0.0, top=2.05 * ymax)
+        else:
+            ax.set_ylim(bottom=0.0, top=1.05 * ymax)
 
         if scan_info["scale"] == "log":
             ax.set_xscale("log")
             from matplotlib.ticker import ScalarFormatter
             ax.xaxis.set_major_formatter(ScalarFormatter())
             ax.xaxis.get_major_formatter().set_scientific(False)
+
+        # Major ticks: long and thick
+        ax.tick_params(axis='both', which='major', length=8, width=3)
         # if is_dose_scan:
         #     ax.set_xticks(scan_info["range"])
         #     ax.set_xticklabels(scan_info["range"])

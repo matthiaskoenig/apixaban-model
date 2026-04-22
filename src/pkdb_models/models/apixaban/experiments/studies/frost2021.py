@@ -33,6 +33,11 @@ class Frost2021(ApixabanSimulationExperiment):
         "group1": 1.12, "group2": 1.1, "group3": 1.13,
         "group4": 1.08, "group5": 1.08, "group_po": 1.14,
     }
+    pt = {
+        "group1": 54.5, "group2": 59.2, "group3": 54.9,
+        "group4": 46.4, "group5": 53.9, "group_po": 53.3,
+        "placebo": 53.5,
+    }
     bodyheight = {
         "group1": math.sqrt(75.8 / 24.9), "group2": math.sqrt(74.8 / 24.2), "group3": math.sqrt(80.6 / 25),
         "group4": math.sqrt(82.4 / 26.7), "group5": math.sqrt(83.1 / 26.1), "group_po": 1.7,
@@ -61,7 +66,6 @@ class Frost2021(ApixabanSimulationExperiment):
 
     def datasets(self) -> Dict[str, DataSet]:
         dsets = {}
-        self.pt = {}
         for fig_id, group_id in zip(["Fig1", "Fig2", "Fig3", "Fig1_2Mean", "Tab2"], ["label", "label", "x_label", "x_label", "label"]):
             df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
             for label, df_label in df.groupby(group_id):
@@ -76,9 +80,6 @@ class Frost2021(ApixabanSimulationExperiment):
                         dset.unit_conversion("mean", 1 / self.Mr.api)
                 if "antiXa_activity_gram" not in label and fig_id != "Tab2":
                     dsets[label] = dset
-                if fig_id == "Fig2" and "prothrombin time" in label:
-                    dset_0 = dset[dset.time == 0.0]
-                    self.pt[dset_0["group"].iloc[0]] = float(dset_0["mean"].iloc[0])
 
                 # print(label)
 
@@ -338,7 +339,7 @@ class Frost2021(ApixabanSimulationExperiment):
             name=self.__class__.__name__,
             num_rows=2,
             num_cols=2,
-            height=self.panel_height * 2,
+            height=self.panel_height * 2 * 1.05,
             width=self.panel_width * 2,
         )
         plots = fig.create_plots(
@@ -452,7 +453,7 @@ class Frost2021(ApixabanSimulationExperiment):
                 num_rows=config["num_rows"],
                 num_cols=config["num_cols"],
                 height=self.panel_height * config["num_rows"],
-                width=self.panel_width * config["num_cols"],
+                width=self.panel_width * config["num_cols"] * 1.05,
             )
             plots = fig.create_plots(
                 xaxis=Axis(self.label_api_plasma, unit=self.unit_api), legend=True

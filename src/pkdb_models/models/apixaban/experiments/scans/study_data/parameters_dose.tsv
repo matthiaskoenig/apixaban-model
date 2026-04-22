@@ -109,6 +109,16 @@ Frost2013a	cmax	25	mg	apixaban	6		310	37.2							ng/ml
 Frost2013a	aucend_24	25	mg	apixaban	6		2868.1								ng*hr/ml
 Frost2013a	tmax	25	mg	apixaban	6				4				2	6	hr
 #															
+Frost2013a	inr_ratiomax	10	mg	apixaban	6		1.18	0.34							dimensionless
+Frost2013a	aptt_ratiomax	10	mg	apixaban	6		1.13	0.29							dimensionless
+Frost2013a	mpt_ratiomax	10	mg	apixaban	6		2.29	1.58							dimensionless
+#															
+Frost2013a	inr_ratiomax	25	mg	apixaban	6		1.41	0.13							dimensionless
+Frost2013a	aptt_ratiomax	25	mg	apixaban	6		1.23	0.37							dimensionless
+Frost2013a	mpt_ratiomax	25	mg	apixaban	6		2.61	0.89							dimensionless
+#															
+Frost2014	antixa_activitymax	2.5	mg	apixaban	13			1.12							IU/ml
+#															
 Frost2015	cmax	20	mg	apixaban	40			107.236		315.4					ng/ml
 Frost2015	aucinf	20	mg	apixaban	40			1095.68		3424					ng/ml*hr
 Frost2015	aucend_96	20	mg	apixaban	40			1075.2		3360					ng/ml*hr
@@ -588,3 +598,7 @@ Wang2016	aucinf	5	mg	apixaban	8					1265					ng/ml*hr
 Wang2016	tmax	5	mg	apixaban	8				2				1	4	hr
 Wang2016	thalf	5	mg	apixaban	8		20	14.45							hr
 Wang2016	cl_renal	5	mg	apixaban	8					11.3					ml/min
+#															
+Wang2016	inr_ratiomax	5	mg	apixaban	8		1.17	1.03							dimensionless
+Wang2016	pt_ratiomax	5	mg	apixaban	8		1.17	1.03							dimensionless
+Wang2016	aptt_ratiomax	5	mg	apixaban	8		1.07	1.03							dimensionless

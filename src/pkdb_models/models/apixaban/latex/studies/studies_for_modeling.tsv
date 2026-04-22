@@ -1,0 +1,44 @@
+, 	Person	PubMed	dose route	substance	dosing	dose [mg]	combination	healthy	age	renal impairment	hepatic impairment	obesity	Chronic Heart Failure	NAFLD	hypertension	fed	fasted	Pharmacokinetics	plasma/serum apixaban	urine data apixaban	feces data apixaban	bile data apixaban	plasma/serum apixaban metabolites	urine data apixaban metabolites	feces data apixaban metabolites	bile data apixaban	Pharmacodynamics	(anti-)FXa activity	Activated partial thromboplastin (aPTT)	(modified) prothrombin time (mPT)	INR	thrombine generation	Priority	Github	PK-DB identifier	Curation status	Information in Google Docs	Available via repository	upload	simulation	Parameter fitting	Comments
+study	person	pmid	route	substance	dosing	dose	combination	healthy	elderly	renal impairment	hepatic impairment	obesity	HF	NAFLD	hypertension	fed	fasted	pk	api plasma	api urine	api feces	api bile	apimet plasma	apimet urine	apimet feces	apimet bile	pd	FXa	aPTT	mPT	INR	thrombin	priority	github	pkdb	status	docs	repo	upload	simulation	fitting	comments
+Abdollahizad2025	Matthias König	40718445	oral	apixaban	single	5		TRUE									TRUE	TRUE	TRUE														high	#2040	PKDB01140	finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Bashir2018	Michelle Elias	29972633	oral	apixaban	single	10	cyclosporine, tacrolimus	TRUE									TRUE	TRUE	TRUE														high	#2047		finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Chang2016	Chang Linh Nguyen	26358690	oral	apixaban	single	10 (BID)		TRUE		TRUE							TRUE	TRUE	TRUE	TRUE							TRUE	TRUE		TRUE	TRUE		high	#1993	PKDB01148	finished	TRUE	TRUE	TRUE	TRUE		
+Cui2013	Chang Linh Nguyen	24353445	oral	apixaban	multi	10(BID)		TRUE									TRUE	TRUE	TRUE	TRUE							TRUE	TRUE					high	#2041	PKDB01142	finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Frost2013	Johannes Metternich	22759198	oral	apixaban	single	solution: 0.5, 1, 2.5 tablet:  5, 10, 25, 50		TRUE								TRUE	TRUE	TRUE	TRUE								TRUE		TRUE	TRUE	TRUE		high	#1992	PKDB01149	finished	TRUE	TRUE	TRUE	TRUE	TRUE	data missing
+Frost2013a	Mariia Babaeva	23451769	oral	apixaban	multi	BID: 2.5, 5, 10, 25; 10, 25		TRUE									TRUE	TRUE	TRUE								TRUE		TRUE	TRUE	TRUE		high	#1997	PKDB01147	finished	TRUE	TRUE	TRUE	TRUE	TRUE	max pd changes
+Frost2014	Mariia Babaeva	25419161	oral	apixaban	multi	2.5 (BID)		TRUE									TRUE	TRUE	TRUE								TRUE	TRUE					high	#1998	PKDB01110	finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Frost2014a	Mariia Myshkina	24697979	oral	apixaban	single	10	naproxen	TRUE								?	?	TRUE	TRUE								TRUE	TRUE			TRUE		high	#2052		finished	TRUE	TRUE		TRUE		AA-induced aggregation, bleeding time not in nodes
+Frost2015	Johannes Metternich	25573421	oral	apixaban	single	20		TRUE	TRUE								TRUE	TRUE	TRUE	TRUE							TRUE	TRUE		TRUE	TRUE		high	#1999	PKDB01098	finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Frost2015a	Michelle Elias	25377242	oral	apixaban	single	10	ketoconazole, diltiazem	TRUE									TRUE	TRUE	TRUE														high	#2048		finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Frost2015b	Mariia Myshkina	25501868	oral	apixaban	multi	10 (QID), 50 (QID)		TRUE								?	?	TRUE	TRUE				TRUE				TRUE						high	#2039	PKDB01150	finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Frost2017	Mariia Babaeva	28260951	oral	apixaban	single	10	atenolol, digoxin	TRUE									TRUE	TRUE	TRUE	TRUE													high	#2057	PKDB01158	finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Frost2018	Michelle Elias	30498375	oral	apixaban	single	2.5, 10, 25, 50		TRUE									TRUE	TRUE	TRUE	TRUE							TRUE		TRUE	TRUE	TRUE		high	#1996	PKDB01151	finished	TRUE	TRUE		TRUE	TRUE	inr (change relative), coagulation assay, etc.
+Frost2021	Mariia Myshkina	34342172	iv, oral	apixaban	single	IV: 0.5, 1.25, 2.5, 3.75, 5.0 OD: 5		TRUE									TRUE	TRUE	TRUE	TRUE							TRUE	TRUE		TRUE	TRUE		high	#1994	PKDB01152	finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Frost2021a	Chang Linh Nguyen	34363188	oral	apixaban	single	5		TRUE			TRUE						TRUE	TRUE	TRUE	TRUE													high	#2000	PKDB01143	finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Garonzik2019	Shelee Bedon	31030414	oral	apixaban	single	10	clarithromycin	TRUE									TRUE	TRUE	TRUE														high	#2051		finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Jeong2019	Michelle Elias	32055579	oral	apixaban	single	10	rosuvastatin, lapatinib	TRUE								?	?	TRUE	TRUE														high	#2049		finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Kreutz2017	Mariia Myshkina	28805299	oral	apixaban	multi	5 (BID)		TRUE								TRUE		TRUE	TRUE								TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	high	#2002	PKDB01097	finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Lenard2024	Mariia Babaeva	36870039	oral	apixaban, edoxaban, rivaroxaban	single	0.05	clarithromycin	TRUE								?	?	TRUE	TRUE								TRUE		TRUE		TRUE		high	#2008	PKDB01099	finished	TRUE	TRUE	TRUE	TRUE	TRUE	edoxaban studies
+Lenard2025	Mariia Babaeva	40290437	oral	apixaban, edoxaban, rivaroxaban	single	0.025	carbamazepine, gabapentin, pregabalin	TRUE								?	?	TRUE	TRUE														high	#2009	PKDB01100	finished	TRUE	TRUE	TRUE	TRUE	TRUE	edoxaban studies
+Leong2024	Shelee Bedon	38685874	oral	apixaban	single	5		TRUE									TRUE	TRUE	TRUE														high	#2044	PKDB01154	finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Metze2021	Mariia Babaeva	34097808	oral	apixaban, edoxaban, rivaroxaban	single	5(BID)				TRUE						?	?	TRUE	TRUE	TRUE							TRUE						high	#2038	PKDB01137	finished	TRUE	TRUE	TRUE	TRUE	TRUE	edoxaban studies
+Mikus2019	Mariia Babaeva	30828771	oral	apixaban, edoxaban, rivaroxaban	single	0.025	ketoconazole	TRUE								?	?	TRUE	TRUE	TRUE													high	#2032	PKDB01138	finished	TRUE	TRUE	TRUE	TRUE	TRUE	edoxaban studies
+Raghavan2009	Matthias König	18832478	oral	[14C]apixaban	single	20		TRUE									TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE							high	#2001	PKDB01146	WIP	TRUE	TRUE	TRUE	TRUE		
+Shaikh2021	Michelle Elias	34333583	oral	apixaban	single	5		TRUE									TRUE	TRUE	TRUE														high	#2053		finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Song2015	Shelee Bedon	26188837	oral	apixaban	single	10		TRUE									TRUE	TRUE	TRUE														high	#2056		finished	TRUE	TRUE	TRUE	TRUE		
+Song2016	Mariia Myshkina	27292282	oral	apixaban	single	5, 10		TRUE								TRUE	TRUE	TRUE	TRUE														high	#2055		finished	TRUE	TRUE	TRUE	TRUE		several formulations
+Rohr2024	Mariia Babaeva	37568371	oral	apixaban, edoxaban, rivaroxaban	single	0.025	ritonavir	TRUE									TRUE	TRUE	TRUE	TRUE													high	#2010	PKDB01101	finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Tirona2018	Mariia Myshkina	29472495	oral	apixaban	single	2.5	rosuvastatin	TRUE				TRUE		TRUE	TRUE		TRUE	TRUE	TRUE	TRUE													high	#2045	PKDB01153	finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+Upreti2013	Matthias König	23488672	oral	apixaban	single	10		TRUE				TRUE					TRUE	TRUE	TRUE	TRUE							TRUE	TRUE					high	#1995	PKDB01144	finished	TRUE	TRUE	TRUE	TRUE	TRUE	scatter plot missing
+Upreti2013a	Chang Linh Nguyen	23637566	oral	apixaban	single	10	famotidine	TRUE								?	?	TRUE	TRUE														high	#2046		finished	TRUE	TRUE	TRUE	TRUE		
+Vakkalagadda2016	Mariia Myshkina	26749408	iv, oral	apixaban	single	5, 10	rifampin	TRUE									TRUE	TRUE	TRUE	TRUE													high	#2050		finished	TRUE	TRUE	TRUE	TRUE		
+VandenBosch2021	Mariia Myshkina	33351142	oral	apixaban	single	2.5, 5				TRUE								TRUE															high	#2043	PKDB01145	finished	TRUE	TRUE	TRUE	TRUE	TRUE	mainly hemodialysis, post-dialysis data taken
+Wang2014	Mariia Myshkina	24277644	oral	apixaban	single	20	charcoal	TRUE									TRUE	TRUE	TRUE														high	#2054			TRUE	TRUE	TRUE	TRUE		
+Wang2016	Shelee Bedon	26331581	oral	apixaban	single	5		TRUE		TRUE						?	?	TRUE	TRUE								TRUE	TRUE	TRUE		TRUE		high	#2042	PKDB01141	finished	TRUE	TRUE	TRUE	TRUE	TRUE	
+																																										
+Becker2011		21516308	oral	apixaban	multi	2.5 (BID), 10 (QD), 10 (BID), 20 (QD)	aspirin, clopidogrel	TRUE								?	?										TRUE	TRUE					no				TRUE					
+Beyer2016		21516308	oral	apixaban	single	5 (BID)		TRUE								?	?	TRUE	TRUE								TRUE	TRUE		TRUE	TRUE		no				TRUE					
+Delavenne2013		23499913	oral	apixaban	single	20		TRUE								?	?	TRUE	TRUE														no				TRUE					3 subjects, single dose
+Barrett2012		22398784	oral	apixaban	single	5	enoxaparin	TRUE									TRUE	TRUE	TRUE								TRUE	TRUE	TRUE		TRUE		no				TRUE					
+Siegal2017		29296829	oral	apixaban	multi	5 (BID)	andexanet alpha	TRUE									TRUE	TRUE	TRUE								TRUE	TRUE				TRUE	no				TRUE					reversal of coagulation
+Song2017		28846831	oral	apixaban	multi	10 (BID)	Cofact, Beriplex	TRUE								?	?	TRUE	TRUE								TRUE	TRUE		TRUE	TRUE		no				TRUE					uncommon infusion protocols

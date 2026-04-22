@@ -1,0 +1,91 @@
+\begin{landscape}
+\begin{table}[H]
+\centering
+\tabcolsep=3pt
+\renewcommand{\arraystretch}{1.2}
+\tiny
+\begin{threeparttable} 
+\caption{\scriptsize{\textbf{Summary of published apixaban computational models.} 
+Overview of published computational models, including modeling framework, model source and scope, modeling software/platform, whether pharmacokinetics (PK) and/or pharmacodynamics (PD) are modeled,
+reproducibility criteria (open access, open software, open model, open code, open data, reproducibility confirmation (Reproducibility), following FAIR criteria, long-term storage, open license), resources, and
+apixaban timecourse data sources (Data Sources).}}
+\label{tab:computational_models_overview}
+\begin{tabularx}{\linewidth}{
+    >{\RaggedRight\arraybackslash}m{1.4cm}  % Study
+    >{\RaggedRight\arraybackslash}m{0.8cm}  % PubMed ID
+    >{\RaggedRight\arraybackslash}m{1.3cm}  % Modeling Framework
+    >{\RaggedRight\arraybackslash}m{1.3cm}  % Model Source
+    >{\RaggedRight\arraybackslash}m{2.5cm}  % Model Scope
+    >{\RaggedRight\arraybackslash}m{1.1cm}  % Platform/Software
+    >{\RaggedRight\arraybackslash}m{0.7cm}  % PK
+    >{\RaggedRight\arraybackslash}m{0.8cm}  % PD 
+    >{\RaggedRight\arraybackslash}m{0.7cm}  % Open Access
+    >{\RaggedRight\arraybackslash}m{0.7cm}  % Open Software
+    >{\RaggedRight\arraybackslash}m{0.7cm}  % Open Model
+    >{\RaggedRight\arraybackslash}m{0.7cm}  % Open Code
+    >{\RaggedRight\arraybackslash}m{0.7cm}  % Open Data
+    >{\RaggedRight\arraybackslash}m{0.7cm}  % Reproducibility
+    >{\RaggedRight\arraybackslash}m{0.7cm}  % FAIR
+    >{\RaggedRight\arraybackslash}m{0.7cm}  % Long-term Storage
+    >{\RaggedRight\arraybackslash}m{0.7cm}  % Open License
+    >{\RaggedRight\arraybackslash}m{2.1cm}  % Resources
+    >{\RaggedRight\arraybackslash}m{2.1cm}  % Data Source
+}
+\scalebox{0.1}{
+\toprule
+\textbf{Study} & \textbf{PMID} & \textbf{Modeling Framework} & \textbf{Model Source} & \textbf{Model Scope} & \textbf{Platform/ Software} & \textbf{PK} & \textbf{PD} & \textbf{Open Access} & \textbf{Open Software} & \textbf{Open Model} & \textbf{Open Code} & \textbf{Open Data} & \textbf{Reprodu\-cibility} & \textbf{FAIR} & \textbf{Long-Term Storage} & \textbf{Open License} & \textbf{Resources} & \textbf{Data Source} \\
+\midrule
+Byon2017 \cite{Byon2017} & \href{https://pubmed.ncbi.nlm.nih.gov/28547774/}{28547774} & PopPK/PD (NLME), E-B, E-T & De Novo (literature-informed) & PK, PD, covariate analysis, clinical events (bleeding, thrombosis) & NONMEM v.7.2 & \cellcolor{green!20}\centering\faCheck & Anti-FXa activity & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 10 (8 Phase I, 2 Phase II) \\
+\addlinespace[0.5pt]
+Cirincione2018 \cite{Cirincione2018} & \href{https://pubmed.ncbi.nlm.nih.gov/30259707/}{30259707} & PopPK (NLME) & Leil2014 (refined) & PK in healthy and special populations (NVAF, ASC), covariate analysis & NONMEM v.7.1 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 12 (8 phase I, 3 phase II (2 ACS, 1 NVAF), 1 phase III (NVAF)) \\
+\addlinespace[0.5pt]
+Gaspar2023 \cite{Gaspar2023} & \href{https://pubmed.ncbi.nlm.nih.gov/37723920/}{37723920} & PopPK (NLME) & De Novo & PK, covariate analysis, special populations (KI, poor and ultra-high metabolizers) & MONOLIX & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 2 (1 for fitting, 1 for validation) \\
+\addlinespace[0.5pt]
+Gaspar2025 \cite{Gaspar2025} & \href{https://pubmed.ncbi.nlm.nih.gov/40035306/}{40035306} & PBPK & Terrier2023 (refined) & PK, individual personalized simulations & Simcyp v.21 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper & 1 \\
+\addlinespace[0.5pt]
+Gibert2022 \cite{Gibert2022} & \href{https://pubmed.ncbi.nlm.nih.gov/35191073/}{35191073} & PopPK (NLME) & Leil2014 (validated) & PK, Shiny app & R & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 1 \\
+\addlinespace[0.5pt]
+Goto2020 \cite{Goto2020} & \href{https://pubmed.ncbi.nlm.nih.gov/32007354/}{32007354} & PopPK/PD (NLME), E-S, E-E, E-B & Ueshima2018 & PK and PD, clinical events (stroke, embolization, bleeding) & Phoenix NLME v.8.1 & \cellcolor{green!20}\centering\faCheck & Anti-FXa activity & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 1 \\
+\addlinespace[0.5pt]
+Konecki2025 \cite{Konecki2025} & \href{https://pubmed.ncbi.nlm.nih.gov/39853633/}{39853633} & PopPK/PD (NLME) & De Novo (literature-informed) & PK special population (RI and AF receiving haemodialysis) & Pmetrics, MONOLIX v.2023R1, Simulx v.2023R1 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 1 \\
+\addlinespace[0.5pt]
+Leil2014 \cite{Leil2014} & \href{https://pubmed.ncbi.nlm.nih.gov/25229619/}{25229619} & PopPK/PD (NLME), E-B & De Novo & PK, PD, and covariate analysis, clinical events (bleeding) & NONMEM v.6 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 11 (7 Phase I, 2 Phase II, 2 Phase III) \\
+\addlinespace[0.5pt]
+Luo2024 \cite{Luo2024} & \href{https://pubmed.ncbi.nlm.nih.gov/38747478/}{38747478} & PBPK & GastroPlus based & PK, bioequivalence of apixaban formulations under both fasted and fed states & GastroPlus v.9.8.2, Phoenix WinNonlin v.7.0 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 1 \\
+\addlinespace[0.5pt]
+Morath2025 \cite{Morath2025} & \href{https://pubmed.ncbi.nlm.nih.gov/40474043/}{40474043} & PopPK/PD (NLME) & De Novo & PK, DDI (Amiodarone) in special population (after cardiac surgery) & NONMEM v.7.5 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 1 \\
+\addlinespace[0.5pt]
+Otsuka2020 \cite{Otsuka2020} & \href{https://pubmed.ncbi.nlm.nih.gov/33030266/}{33030266} & PBPK & Symcyp based & PK, DDI (Clarithromycin, Verapamil, Rifampicin) & Simcyp v.18.2 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 9 \\
+\addlinespace[0.5pt]
+Otsuka2023 \cite{Otsuka2023} & \href{https://pubmed.ncbi.nlm.nih.gov/37344637/}{37344637} & PBPK & Otsuka2020 & PK, DDI (Enzalutamide) & Simcyp v.19 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials &  \\
+\addlinespace[0.5pt]
+Paixao2025 \cite{Paixao2025} & \href{https://pubmed.ncbi.nlm.nih.gov/40143045/}{40143045} & PBBM & De Novo (literature-informed) & PK and bioequivalence of different formulations & Berkeley-Madonna v.8.3.18 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper & 3 \\
+\addlinespace[0.5pt]
+Terrier2023 \cite{Terrier2023} & \href{https://pubmed.ncbi.nlm.nih.gov/37794718/}{37794718} & PBPK & Otsuka2020 & PK for healthy and geriatric populations & Simcyp v.21 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 1 \\
+\addlinespace[0.5pt]
+Terrier2025 \cite{Terrier2025} & \href{https://pubmed.ncbi.nlm.nih.gov/39535447/}{39535447} & PBPK & Otsuka2020 & PK and DDI (Dexamethasone, Prednisone) in special population (COVID-19) & Simcyp v.22 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials &  \\
+\addlinespace[0.5pt]
+Tsuchitani2025 \cite{Tsuchitani2025} & \href{https://pubmed.ncbi.nlm.nih.gov/41332151/}{41332151} & PBPK & De Novo (literature-informed) & PK with and without activated charcoal & R & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{green!20}\centering\faCheck & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 1 \\
+\addlinespace[0.5pt]
+Ueshima2018 \cite{Ueshima2018} & \href{https://pubmed.ncbi.nlm.nih.gov/29457840/}{29457840} & PopPK (NLME) & De Novo & PK in special population (AF), covariate analysis & NONMEM v.7.3.0 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 1 \\
+\addlinespace[0.5pt]
+Ueshima2019 \cite{Ueshima2019} & \href{https://pubmed.ncbi.nlm.nih.gov/31236790/}{31236790} & PopPK/PD (NLME) & De Novo & PK and PD in special population (AF), covariate analysis & NONMEM v.7.3.0 & \cellcolor{green!20}\centering\faCheck & Anti-FXa activity & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 1 \\
+\addlinespace[0.5pt]
+Xu2021 \cite{Xu2021} & \href{https://pubmed.ncbi.nlm.nih.gov/33528059/}{33528059} & PBPK & Symcyp based & PK in healthy, pediatric, and special populations (RI), DDI (Ketoconazole, Rifampicin) & Simcyp v.14 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper & 4 (3 healthy, 1 healthy and RI) \\
+\addlinespace[0.5pt]
+Xu2024 \cite{Xu2024} & \href{https://pubmed.ncbi.nlm.nih.gov/38099940/}{38099940} & PBPK & PK-Sim based & PK in healthy and special populations (RI, HI) & PK-Sim v.11.1 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{green!20}\centering\faCheck & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 4 (2 healthy, 1 RI, 1 HI) \\
+\addlinespace[0.5pt]
+Yang2024 \cite{Yang2024} & \href{https://pubmed.ncbi.nlm.nih.gov/39598572/}{39598572} & PBPK & GastroPlus based & PK, DDI (Clarithromycin) & GastroPlus v.9.9 & \cellcolor{green!20}\centering\faCheck & FALSE & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 3 \\
+\addlinespace[0.5pt]
+Yoshioka2018 \cite{Yoshioka2018} & \href{https://pubmed.ncbi.nlm.nih.gov/29760204/}{29760204} & PopPK/PD (NLME), E-B, E-S & Leil2014 (refined) & PK and PD, relationships with ischemic stroke and bleeding, dose optimization in atrial fibrillation patients & NONMEM v.7.3.0 & \cellcolor{green!20}\centering\faCheck & INR, PT & \cellcolor{green!20}\centering\faCheck & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & \cellcolor{red!20}\centering\faTimes & Paper, supplementary materials & 2 \\
+\addlinespace[0.5pt]
+\midrule
+Myshkina2026 &  & PBPK/PD & De Novo (literature-informed) & PK and PD in healthy and special populations (RI, HI),  food effect, body weight influence & Python 3.14 & \cellcolor{green!20}\centering\faCheck & INR, PT, mPT, aPTT, anti-FXa activity & \cellcolor{green!20}\centering\faCheck & \cellcolor{green!20}\centering\faCheck & \cellcolor{green!20}\centering\faCheck & \cellcolor{green!20}\centering\faCheck & \cellcolor{green!20}\centering\faCheck & \cellcolor{green!20}\centering\faCheck & \cellcolor{green!20}\centering\faCheck & \cellcolor{green!20}\centering\faCheck & \cellcolor{green!20}\centering\faCheck & Paper, supplementary materials, model repository, PK-DB & 35 \\
+\addlinespace[0.5pt]
+\bottomrule
+}
+\end{tabularx}
+
+\end{threeparttable} 
+\end{table}
+\end{landscape}

@@ -23,7 +23,7 @@ class Frost2014(ApixabanSimulationExperiment):
     bodyweight = 75.9 #kg
 
     colors = {
-        "mAPI":"purple",
+        "mAPI": "purple",
     }
 
     interventions = list(colors.keys())
@@ -161,19 +161,19 @@ class Frost2014(ApixabanSimulationExperiment):
     def figures(self) -> Dict[str, Figure]:
 
         return {
-            **self.figure_pk(),
-            **self.figure_pd(),
-            **self.figure_scatter(),
+            **self.figure(),
         }
 
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure(self) -> Dict[str, Figure]:
 
         fig = Figure(
             experiment=self,
             sid="Fig1",
             name=f"{self.__class__.__name__}",
+            num_cols=3,
+            num_rows=1,
             height=self.panel_height,
-            width=self.panel_width * 0.87,
+            width=self.panel_width * 3 * 1.05,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -190,8 +190,8 @@ class Frost2014(ApixabanSimulationExperiment):
                             task=f"task_{intervention}",
                             xid="time",
                             yid=sid,
-                            label="sim multiple: 2.5mg PO",
-                            color=self.colors[intervention],
+                            label="sim: 2.5mg PO",
+                            color="black",
                         )
                         # data
                         plots[0].add_data(
@@ -200,58 +200,40 @@ class Frost2014(ApixabanSimulationExperiment):
                             yid="mean",
                             yid_sd="mean_sd",
                             count="count",
-                            label="exp multiple: 2.5mg PO",
-                            color=self.colors[intervention],
+                            label="exp: 2.5mg PO",
+                            color="black",
                         )
-
-        return {fig.sid: fig}
-
-    def figure_pd(self) -> Dict[str, Figure]:
-        fig = Figure(
-            experiment=self,
-            sid="Fig2",
-            name=f"{self.__class__.__name__}",
-            height=self.panel_height,
-            width=self.panel_width * 0.87,
-        )
-        plots = fig.create_plots(
-            xaxis=Axis(self.label_time, unit=self.unit_time),
-            legend=True,
-        )
-        plots[0].set_yaxis(self.labels["antiXa_activity"], unit=self.units["antiXa_activity"])
+        plots[1].set_yaxis(self.labels["antiXa_activity"], unit=self.units["antiXa_activity"])
 
         for intervention in self.interventions:
             for k, sid in enumerate(self.infos_pd):
                 if "API" in intervention:
                     name = self.infos_pd[sid]
                     # simulation
-                    plots[k].add_data(
+                    plots[1].add_data(
                         task=f"task_{intervention}",
                         xid="time",
                         yid=name,
-                        label="sim multiple: 2.5mg PO",
-                        color=self.colors[intervention],
+                        label="sim: 2.5mg PO",
+                        color="black",
                     )
                     # data
-                    plots[k].add_data(
+                    plots[1].add_data(
                         dataset=f"Xa_{intervention}",
                         xid="time",
                         yid="mean",
                         count="count",
-                        label="exp multiple: 2.5mg PO",
-                        color=self.colors[intervention],
+                        label="exp: 2.5mg PO",
+                        color="black",
                     )
 
-        return {fig.sid: fig}
-
-    def figure_scatter(self):
         style_mean = {
             "kwargs_sim": {
             "color": self.fasting_colors["fasted"],
             "linestyle": "solid",
             },
             "kwargs_exp": {
-                "label": f"exp chronic: 2.5mg PO",
+                "label": f"exp: 2.5mg PO",
                 "marker": "s",
                 "linestyle": "",
                 "color": self.fasting_colors["fasted"],
@@ -266,7 +248,7 @@ class Frost2014(ApixabanSimulationExperiment):
             "marker": "o"
             },
             "kwargs_exp": {
-                "label": f"exp individ chronic: 2.5mg PO",
+                "label": f"exp individ: 2.5mg PO",
                 "color": "white",
                 "markeredgecolor": "black",
                 "marker": "o",
@@ -274,46 +256,35 @@ class Frost2014(ApixabanSimulationExperiment):
             }
         }
 
-        fig_Xa = Figure(
-            experiment=self,
-            sid="PD scatter",
-            name=self.__class__.__name__,
-            num_rows=1,
-            num_cols=1,
-            height=self.panel_height,
-            width=self.panel_width * 0.87,
-        )
-        plots_Xa = fig_Xa.create_plots(
-            xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
-            legend=True,
-        )
+        plots[2].set_xaxis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"])
+        plots[2].set_yaxis(self.labels["antiXa_activity"], unit=self.units["antiXa_activity"], scale="linear")
 
         for label, sid in self.info_figpd_scatter.items():
-            plots_Xa[0].set_yaxis(self.labels[sid], unit=self.units[sid], scale="linear")
+                plots[2].set_yaxis(self.labels[sid], unit=self.units[sid], scale="linear")
 
-            if "mean" in label:
-                style = style_mean
-            else:
-                style = style_indiv
-            if "mean" in label:
-                # simulation
-                plots_Xa[0].add_data(
-                    task=f"task_mAPI",
-                    xid="[Cve_api]",
-                    yid=sid,
-                    label=f"sim chronic: 2.5mg PO",
-                    **style["kwargs_sim"]
+                if "mean" in label:
+                    style = style_mean
+                else:
+                    style = style_indiv
+                if "mean" in label:
+                    # simulation
+                    plots[2].add_data(
+                        task=f"task_mAPI",
+                        xid="[Cve_api]",
+                        yid=sid,
+                        label=f"sim: 2.5mg PO",
+                        **style["kwargs_sim"]
+                    )
+                # data
+                plots[2].add_data(
+                    dataset=label,
+                    xid="x",
+                    yid="y",
+                    **style["kwargs_exp"]
                 )
-            # data
-            plots_Xa[0].add_data(
-                dataset=label,
-                xid="x",
-                yid="y",
-                **style["kwargs_exp"]
-            )
 
         return {
-            fig_Xa.sid: fig_Xa,
+            fig.sid: fig,
         }
 
 

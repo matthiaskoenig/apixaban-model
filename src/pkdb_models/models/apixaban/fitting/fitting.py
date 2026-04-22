@@ -24,7 +24,7 @@ from pkdb_models.models.apixaban.fitting.fit_experiments import (
     f_fitexp_inr,
     f_fitexp_mpt,
     f_fitexp_aptt,
-    f_fitexp_xa,
+    f_fitexp_xa, f_fitexp_food,
 )
 from pkdb_models.models.apixaban.fitting.parameters import (
     parameters_all,
@@ -33,7 +33,7 @@ from pkdb_models.models.apixaban.fitting.parameters import (
     parameters_inr,
     parameters_mpt,
     parameters_aptt,
-    parameters_xa,
+    parameters_xa, parameters_food,
 )
 
 from pkdb_models.models.apixaban import (
@@ -127,6 +127,7 @@ class FitExperimentSubset(str, Enum):
     CONTROL = "CONTROL",
     PK = "PK",
     PD = "PD",
+    FOOD = "FOOD",
     INR = "INR"
     MPT = "MPT"
     APTT = "APTT"
@@ -200,6 +201,8 @@ def get_fit_experiments(fit_subset: FitExperimentSubset, study_ids: List[str] = 
         fitexp_dict = f_fitexp_pharmacokinetics()
     elif fit_subset == FitExperimentSubset.PD:
         fitexp_dict = f_fitexp_pharmacodynamics()
+    elif fit_subset == FitExperimentSubset.FOOD:
+        fitexp_dict = f_fitexp_food()
     elif fit_subset == FitExperimentSubset.INR:
         fitexp_dict = f_fitexp_inr()
     elif fit_subset == FitExperimentSubset.MPT:
@@ -232,6 +235,8 @@ def get_fit_parameters(fit_subset: FitExperimentSubset) -> List[FitParameter]:
         parameters = parameters_pharmacokinetics
     elif fit_subset == FitExperimentSubset.PD:
         parameters = parameters_pharmacodynamics
+    elif fit_subset == FitExperimentSubset.FOOD:
+        parameters = parameters_food
     elif fit_subset == FitExperimentSubset.INR:
         parameters = parameters_inr
     elif fit_subset == FitExperimentSubset.MPT:
@@ -428,6 +433,7 @@ if __name__ == "__main__":
     fit_apixaban --cores=10 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=CONTROL --name=APIXABAN_LSQ_CONTROL
     fit_apixaban --cores=5 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=PK --name=APIXABAN_LSQ_PK
     fit_apixaban --cores=5 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=PD --name=APIXABAN_LSQ_PD
+    fit_apixaban --cores=5 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=FOOD --name=APIXABAN_LSQ_FOOD
     fit_apixaban --cores=5 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=INR --name=APIXABAN_LSQ_INR
     fit_apixaban --cores=5 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=MPT --name=APIXABAN_LSQ_MPT
     fit_apixaban --cores=5 --runs=10 --seed=1234 --method=LSQ --strategy=ALL --subset=APTT --name=APIXABAN_LSQ_APTT

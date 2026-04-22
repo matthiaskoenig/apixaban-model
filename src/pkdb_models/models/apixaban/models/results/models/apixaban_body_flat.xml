@@ -93,10 +93,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-03-05T16:11:47Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-04-20T10:53:20Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-03-05T16:11:47Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-04-20T10:53:20Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
@@ -136,6 +136,13 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
       <unitDefinition id="IU_per_ml" name="1/ml">
         <listOfUnits>
           <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="IU_per_ml_mM" name="1/(ml*mmole/l)">
+        <listOfUnits>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
         </listOfUnits>
       </unitDefinition>
       <unitDefinition id="cm" name="cm">
@@ -359,9 +366,23 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
         </listOfUnits>
       </unitDefinition>
+      <unitDefinition id="ng_per_ml_mM" name="ng/(ml*mmole/l)">
+        <listOfUnits>
+          <unit kind="gram" exponent="1" scale="0" multiplier="1e-09"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
       <unitDefinition id="per_hr" name="1/hr">
         <listOfUnits>
           <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_mM" name="1/(mmole/l)">
+        <listOfUnits>
+          <unit kind="mole" exponent="-1" scale="0" multiplier="0.001"/>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
         </listOfUnits>
       </unitDefinition>
       <unitDefinition id="per_min" name="1/min">
@@ -2371,7 +2392,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Emax_Xa" sboTerm="SBO:0000002" id="Emax_Xa" name="Effect constant for Xa inhibition" value="0.686093" units="dimensionless" constant="true">
+      <parameter metaid="meta_Emax_Xa" sboTerm="SBO:0000002" id="Emax_Xa" name="Effect constant for Xa inhibition" value="0.686093" units="per_mM" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Emax_Xa">
@@ -2384,20 +2405,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_EC50_api_Xa" sboTerm="SBO:0000002" id="EC50_api_Xa" name="Effect constant for Xa inhibition" value="0.0002959" units="mM" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_EC50_api_Xa">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_Emax_antiXa" sboTerm="SBO:0000002" id="Emax_antiXa" name="Effect constant for anti-Xa activity" value="0.686093" units="IU_per_ml" constant="true">
+      <parameter metaid="meta_Emax_antiXa" sboTerm="SBO:0000002" id="Emax_antiXa" name="Effect constant for anti-Xa activity" value="0.686093" units="IU_per_ml_mM" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Emax_antiXa">
@@ -2410,10 +2418,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_EC50_api_antiXa" sboTerm="SBO:0000002" id="EC50_api_antiXa" name="Effect constant for anti-Xa activity" value="0.0002959" units="mM" constant="true">
+      <parameter metaid="meta_Emax_antiXa_gram" sboTerm="SBO:0000002" id="Emax_antiXa_gram" name="Effect constant for anti-Xa activity" value="0.686093" units="ng_per_ml_mM" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_EC50_api_antiXa">
+            <rdf:Description rdf:about="#meta_Emax_antiXa_gram">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
@@ -2776,10 +2784,23 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_PODOSE_api" sboTerm="SBO:0000002" id="PODOSE_api" name="oral dose api [mg]" value="0" units="mg" constant="false">
+      <parameter metaid="meta_PODOSE_api" sboTerm="SBO:0000002" id="PODOSE_api" name="oral dose api in tablet [mg]" value="0" units="mg" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_PODOSE_api">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_SOLDOSE_api" sboTerm="SBO:0000002" id="SOLDOSE_api" name="oral dose api in solution [mg]" value="0" units="mg" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_SOLDOSE_api">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
@@ -2819,6 +2840,19 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Kp_api">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_fu_api" sboTerm="SBO:0000002" id="fu_api" name="fraction unbound in plasma api" value="0.131" units="dimensionless" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_fu_api">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
@@ -2906,6 +2940,15 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
           </rdf:RDF>
         </annotation>
       </parameter>
+      <parameter id="Cki_free_api" name="apixaban free concentration (kidney)" value="NaN" units="mM" constant="false"/>
+      <parameter id="Cli_free_api" name="apixaban free concentration (liver)" value="NaN" units="mM" constant="false"/>
+      <parameter id="Clu_free_api" name="apixaban free concentration (lung)" value="NaN" units="mM" constant="false"/>
+      <parameter id="Cgu_free_api" name="apixaban free concentration (gut)" value="NaN" units="mM" constant="false"/>
+      <parameter id="Cre_free_api" name="apixaban free concentration (rest)" value="NaN" units="mM" constant="false"/>
+      <parameter id="Car_free_api" name="apixaban free concentration (arterial blood)" value="NaN" units="mM" constant="false"/>
+      <parameter id="Cve_free_api" name="apixaban free concentration (venous blood)" value="NaN" units="mM" constant="false"/>
+      <parameter id="Cpo_free_api" name="apixaban free concentration (portal vein)" value="NaN" units="mM" constant="false"/>
+      <parameter id="Chv_free_api" name="apixaban free concentration (hepatic vein)" value="NaN" units="mM" constant="false"/>
       <parameter id="Qgu" name="gut blood flow" value="NaN" units="l_per_min" constant="false"/>
       <parameter id="Qki" name="kidney blood flow" value="NaN" units="l_per_min" constant="false"/>
       <parameter id="Qh" name="hepatic (venous side) blood flow" value="NaN" units="l_per_min" constant="false"/>
@@ -3106,10 +3149,23 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="LI__meta_M22M1_k" sboTerm="SBO:0000186" id="LI__M22M1_k" name="rate m2 -&gt; m1 conversion" value="0.1" units="LI__per_min" constant="true">
+      <parameter metaid="LI__meta_M22M1_Vmax" sboTerm="SBO:0000186" id="LI__M22M1_Vmax" name="rate m2 -&gt; m1 conversion" value="0.1" units="LI__mmole_per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#LI__meta_M22M1_k">
+            <rdf:Description rdf:about="#LI__meta_M22M1_Vmax">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000186"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="LI__meta_M22M1_Km" sboTerm="SBO:0000186" id="LI__M22M1_Km" name="rate m2 -&gt; m1 conversion" value="0.1" units="LI__mmole" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#LI__meta_M22M1_Km">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000186"/>
@@ -3158,13 +3214,26 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="GU__meta_APIABS_k" sboTerm="SBO:0000009" id="GU__APIABS_k" name="rate of apixaban absorption" value="0.05" units="GU__per_min" constant="true">
+      <parameter metaid="GU__meta_APIABS_Vmax" sboTerm="SBO:0000009" id="GU__APIABS_Vmax" name="rate of apixaban absorption" value="0.05" units="GU__mmole_per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#GU__meta_APIABS_k">
+            <rdf:Description rdf:about="#GU__meta_APIABS_Vmax">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="GU__meta_APIABS_50" sboTerm="SBO:0000027" id="GU__APIABS_50" name="amount of apixaban when rate of absorption reaches 50% of maximal rate" value="25" units="GU__mg" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#GU__meta_APIABS_50">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000027"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
@@ -3206,10 +3275,23 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="GU__meta_Ka_dis_api" sboTerm="SBO:0000002" id="GU__Ka_dis_api" name="Ka_dis [1/hr] dissolution apixaban" value="0.15" units="GU__per_hr" constant="true">
+      <parameter metaid="GU__meta_Ka_dis_api" sboTerm="SBO:0000002" id="GU__Ka_dis_api" name="Ka_dis [1/hr] dissolution apixaban in tablet" value="0.15" units="GU__per_hr" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#GU__meta_Ka_dis_api">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="GU__meta_Ksol_dis_api" sboTerm="SBO:0000002" id="GU__Ksol_dis_api" name="Ksol_dis [1/hr] dissolution apixaban in solution" value="0.75" units="GU__per_hr" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#GU__meta_Ksol_dis_api">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
@@ -3360,10 +3442,15 @@ or creatinine plasma amounts.</p>
                   <times/>
                   <ci> Emax_INR </ci>
                   <ci> Cve_api </ci>
+                  <ci> fu_api </ci>
                 </apply>
                 <apply>
                   <plus/>
-                  <ci> Cve_api </ci>
+                  <apply>
+                    <times/>
+                    <ci> Cve_api </ci>
+                    <ci> fu_api </ci>
+                  </apply>
                   <ci> EC50_api_INR </ci>
                 </apply>
               </apply>
@@ -3385,10 +3472,15 @@ or creatinine plasma amounts.</p>
                   <times/>
                   <ci> Emax_PT </ci>
                   <ci> Cve_api </ci>
+                  <ci> fu_api </ci>
                 </apply>
                 <apply>
                   <plus/>
-                  <ci> Cve_api </ci>
+                  <apply>
+                    <times/>
+                    <ci> Cve_api </ci>
+                    <ci> fu_api </ci>
+                  </apply>
                   <ci> EC50_api_PT </ci>
                 </apply>
               </apply>
@@ -3410,10 +3502,15 @@ or creatinine plasma amounts.</p>
                   <times/>
                   <ci> Emax_aPTT </ci>
                   <ci> Cve_api </ci>
+                  <ci> fu_api </ci>
                 </apply>
                 <apply>
                   <plus/>
-                  <ci> Cve_api </ci>
+                  <apply>
+                    <times/>
+                    <ci> Cve_api </ci>
+                    <ci> fu_api </ci>
+                  </apply>
                   <ci> EC50_api_aPTT </ci>
                 </apply>
               </apply>
@@ -3435,10 +3532,15 @@ or creatinine plasma amounts.</p>
                   <times/>
                   <ci> Emax_mPT </ci>
                   <ci> Cve_api </ci>
+                  <ci> fu_api </ci>
                 </apply>
                 <apply>
                   <plus/>
-                  <ci> Cve_api </ci>
+                  <apply>
+                    <times/>
+                    <ci> Cve_api </ci>
+                    <ci> fu_api </ci>
+                  </apply>
                   <ci> EC50_api_mPT </ci>
                 </apply>
               </apply>
@@ -3449,34 +3551,30 @@ or creatinine plasma amounts.</p>
       <assignmentRule variable="Xa_inhibition">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <divide/>
-            <apply>
-              <times/>
-              <ci> Emax_Xa </ci>
-              <ci> Cve_api </ci>
-            </apply>
-            <apply>
-              <plus/>
-              <ci> Cve_api </ci>
-              <ci> EC50_api_Xa </ci>
-            </apply>
+            <times/>
+            <ci> Emax_Xa </ci>
+            <ci> Cve_api </ci>
+            <ci> fu_api </ci>
           </apply>
         </math>
       </assignmentRule>
       <assignmentRule variable="antiXa_activity">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <divide/>
-            <apply>
-              <times/>
-              <ci> Emax_antiXa </ci>
-              <ci> Cve_api </ci>
-            </apply>
-            <apply>
-              <plus/>
-              <ci> Cve_api </ci>
-              <ci> EC50_api_antiXa </ci>
-            </apply>
+            <times/>
+            <ci> Emax_antiXa </ci>
+            <ci> Cve_api </ci>
+            <ci> fu_api </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="antiXa_activity_gram">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Emax_antiXa_gram </ci>
+            <ci> Cve_api </ci>
+            <ci> fu_api </ci>
           </apply>
         </math>
       </assignmentRule>
@@ -3488,6 +3586,87 @@ or creatinine plasma amounts.</p>
       <assignmentRule variable="f_tissue_loss">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <ci> f_cirrhosis </ci>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="apixaban free concentration (kidney)" variable="Cki_free_api">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Cki_plasma_api </ci>
+            <ci> fu_api </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="apixaban free concentration (liver)" variable="Cli_free_api">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Cli_plasma_api </ci>
+            <ci> fu_api </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="apixaban free concentration (lung)" variable="Clu_free_api">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Clu_plasma_api </ci>
+            <ci> fu_api </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="apixaban free concentration (gut)" variable="Cgu_free_api">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Cgu_plasma_api </ci>
+            <ci> fu_api </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="apixaban free concentration (rest)" variable="Cre_free_api">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Cre_plasma_api </ci>
+            <ci> fu_api </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="apixaban free concentration (arterial blood)" variable="Car_free_api">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Car_api </ci>
+            <ci> fu_api </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="apixaban free concentration (venous blood)" variable="Cve_free_api">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Cve_api </ci>
+            <ci> fu_api </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="apixaban free concentration (portal vein)" variable="Cpo_free_api">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Cpo_api </ci>
+            <ci> fu_api </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule name="apixaban free concentration (hepatic vein)" variable="Chv_free_api">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Chv_api </ci>
+            <ci> fu_api </ci>
+          </apply>
         </math>
       </assignmentRule>
       <assignmentRule variable="FVre">
@@ -4046,11 +4225,26 @@ injection rate.</p>
       <assignmentRule name="absorption apixaban" variable="GU__absorption_api">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <times/>
-            <ci> GU__f_absorption </ci>
-            <ci> GU__APIABS_k </ci>
-            <ci> Vgu </ci>
-            <ci> GU__api_lumen </ci>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> GU__APIABS_Vmax </ci>
+              <ci> Vgu </ci>
+              <ci> GU__api_lumen </ci>
+            </apply>
+            <apply>
+              <plus/>
+              <apply>
+                <divide/>
+                <ci> GU__APIABS_50 </ci>
+                <ci> Mr_api </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> Vgu </ci>
+                <ci> GU__api_lumen </ci>
+              </apply>
+            </apply>
           </apply>
         </math>
       </assignmentRule>
@@ -4060,7 +4254,19 @@ injection rate.</p>
             <times/>
             <apply>
               <minus/>
-              <ci> GU__dissolution_api </ci>
+              <ci> GU__dissolution_api_tabl </ci>
+            </apply>
+            <ci> Mr_api </ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="SOLDOSE_api">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <minus/>
+              <ci> GU__dissolution_api_sol </ci>
             </apply>
             <ci> Mr_api </ci>
           </apply>
@@ -4097,6 +4303,7 @@ injection rate.</p>
                   <times/>
                   <ci> Clu_plasma_api </ci>
                   <ci> Kp_api </ci>
+                  <ci> fu_api </ci>
                 </apply>
                 <ci> Clu_api </ci>
               </apply>
@@ -4133,6 +4340,7 @@ injection rate.</p>
                   <times/>
                   <ci> Cre_plasma_api </ci>
                   <ci> Kp_api </ci>
+                  <ci> fu_api </ci>
                 </apply>
                 <ci> Cre_api </ci>
               </apply>
@@ -5435,6 +5643,7 @@ injection rate.</p>
               <ci> Vki_tissue </ci>
               <ci> KI__APIEX_k </ci>
               <ci> Cki_plasma_api </ci>
+              <ci> fu_api </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -5530,7 +5739,11 @@ injection rate.</p>
               <ci> Vli_tissue </ci>
               <apply>
                 <minus/>
-                <ci> Cli_plasma_api </ci>
+                <apply>
+                  <times/>
+                  <ci> Cli_plasma_api </ci>
+                  <ci> fu_api </ci>
+                </apply>
                 <ci> LI__api </ci>
               </apply>
             </apply>
@@ -5616,10 +5829,22 @@ injection rate.</p>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
-              <times/>
-              <ci> LI__M22M1_k </ci>
-              <ci> Vli_tissue </ci>
-              <ci> LI__m2 </ci>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> LI__M22M1_Vmax </ci>
+                <ci> Vli_tissue </ci>
+                <ci> LI__m2 </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> LI__M22M1_Km </ci>
+                <apply>
+                  <times/>
+                  <ci> Vli_tissue </ci>
+                  <ci> LI__m2 </ci>
+                </apply>
+              </apply>
             </apply>
           </math>
         </kineticLaw>
@@ -5881,6 +6106,7 @@ injection rate.</p>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
+              <ci> GU__f_absorption </ci>
               <ci> GU__F_api_abs </ci>
               <ci> GU__absorption_api </ci>
             </apply>
@@ -5912,7 +6138,11 @@ injection rate.</p>
               <apply>
                 <minus/>
                 <cn sbml:units="dimensionless" type="integer"> 1 </cn>
-                <ci> GU__F_api_abs </ci>
+                <apply>
+                  <times/>
+                  <ci> GU__f_absorption </ci>
+                  <ci> GU__F_api_abs </ci>
+                </apply>
               </apply>
               <ci> GU__absorption_api </ci>
             </apply>
@@ -6006,7 +6236,7 @@ injection rate.</p>
           </math>
         </kineticLaw>
       </reaction>
-      <reaction id="GU__dissolution_api" name="dissolution apixaban" reversible="false" compartment="Vgu">
+      <reaction id="GU__dissolution_api_tabl" name="dissolution apixaban tablet" reversible="false" compartment="Vgu">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>Swallowing, dissolution of tablet, and transport into intestine.
@@ -6031,6 +6261,37 @@ Overall process describing the rates of this processes.</p>
                   <cn sbml:units="GU__min_per_hr" type="integer"> 60 </cn>
                 </apply>
                 <ci> PODOSE_api </ci>
+              </apply>
+              <ci> Mr_api </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="GU__dissolution_api_sol" name="dissolution apixaban in solution" reversible="false" compartment="Vgu">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>Swallowing, dissolution of solution, and transport into intestine.
+Overall process describing the rates of this processes.</p>
+          </body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="GU__api_stomach" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="GU__api_lumen" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <ci> GU__Ksol_dis_api </ci>
+                  <cn sbml:units="GU__min_per_hr" type="integer"> 60 </cn>
+                </apply>
+                <ci> SOLDOSE_api </ci>
               </apply>
               <ci> Mr_api </ci>
             </apply>

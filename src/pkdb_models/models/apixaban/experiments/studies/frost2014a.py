@@ -14,7 +14,6 @@ from pkdb_models.models.apixaban.experiments.metadata import (
 )
 
 from sbmlsim.plot import Axis, Figure
-    # noqa: E402
 from sbmlsim.simulation import Timecourse, TimecourseSim
 
 from pkdb_models.models.apixaban.helpers import run_experiments
@@ -32,8 +31,8 @@ class Frost2014a(ApixabanSimulationExperiment):
         "[Cve_api]": "apixaban",
     }
     infos_pd = {
-        "antiXa_activity": "Anti-factor Xa activity",
         "INR": "inr",
+        "antiXa_activity": "Anti-factor Xa activity",
     }
 
     def datasets(self) -> Dict[str, DataSet]:
@@ -115,32 +114,30 @@ class Frost2014a(ApixabanSimulationExperiment):
 
     def figures(self) -> Dict[str, Figure]:
         return {
-            **self.figure_pk(),
-            **self.figure_pd(),
-            **self.figure_scatter(),
+            **self.figure(),
         }
 
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure(self) -> Dict[str, Figure]:
         fig = Figure(
             experiment=self,
             sid="PK",
             name=f"{self.__class__.__name__}",
-            num_cols=1,
-            num_rows=1,
-            height=self.panel_height,
-            width=self.panel_width * 0.87,
+            num_cols=2,
+            num_rows=2,
+            height=self.panel_height * 2 * 1.1,
+            width=self.panel_width * 2,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
             legend=True,
         )
         for kp, sid in enumerate(self.infos_pk):
-            plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid])
+            plots[0].set_yaxis(self.labels[sid], unit=self.units[sid])
 
         for kp, sid in enumerate(self.infos_pk):
             name = self.infos_pk[sid]
             # Simulation
-            plots[kp].add_data(
+            plots[0].add_data(
                 task="task_control",
                 xid="time",
                 yid=sid,
@@ -148,7 +145,7 @@ class Frost2014a(ApixabanSimulationExperiment):
                 color="black"
             )
             # Data
-            plots[kp].add_data(
+            plots[0].add_data(
                 dataset=f"API10_all_{name}",
                 xid="time",
                 yid="mean",
@@ -157,29 +154,13 @@ class Frost2014a(ApixabanSimulationExperiment):
                 color="black"
             )
 
-        return {fig.sid: fig}
-
-    def figure_pd(self) -> Dict[str, Figure]:
-        fig = Figure(
-            experiment=self,
-            sid="PD",
-            name=f"{self.__class__.__name__}",
-            num_cols=2,
-            num_rows=1,
-            height=self.panel_height,
-            width=self.panel_width * 2,
-        )
-        plots = fig.create_plots(
-            xaxis=Axis(self.label_time, unit=self.unit_time),
-            legend=True,
-        )
         for kp, sid in enumerate(self.infos_pd):
-            plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid])
+            plots[kp+1].set_yaxis(self.labels[sid], unit=self.units[sid])
 
         for kp, sid in enumerate(self.infos_pd):
             name = self.infos_pd[sid]
             # Simulation
-            plots[kp].add_data(
+            plots[kp+1].add_data(
                 task="task_control",
                 xid="time",
                 yid=sid,
@@ -187,7 +168,7 @@ class Frost2014a(ApixabanSimulationExperiment):
                 color="black"
             )
             # Data
-            plots[kp].add_data(
+            plots[kp+1].add_data(
                 dataset=f"API10_{name}_all",
                 xid="time",
                 yid="mean",
@@ -197,29 +178,12 @@ class Frost2014a(ApixabanSimulationExperiment):
                 color="black"
             )
 
-        return {fig.sid: fig}
-
-    def figure_scatter(self) -> Dict[str, Figure]:
-
         dset_id = lambda indiv_id: f"API10_concentration_vs_Anti-factor Xa activity_all_I{indiv_id}"
-
-        # Create figures and plots
-        fig = Figure(
-            experiment=self,
-            sid="PD scatter",
-            name=self.__class__.__name__,
-            num_rows=1,
-            num_cols=1,
-            height=self.panel_height,
-            width=self.panel_width * 0.87,
-        )
-        plots = fig.create_plots(
-            xaxis=Axis(self.label_api_plasma, unit=self.unit_api), legend=True,
-            yaxis=Axis(self.labels["antiXa_activity"], unit=self.units["antiXa_activity"]),
-        )
+        plots[3].set_xaxis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"])
+        plots[3].set_yaxis(self.labels["antiXa_activity"], unit=self.units["antiXa_activity"], scale="linear")
 
         # simulation
-        plots[0].add_data(
+        plots[3].add_data(
             task="task_control",
             xid="[Cve_api]",
             yid="antiXa_activity",
@@ -230,7 +194,7 @@ class Frost2014a(ApixabanSimulationExperiment):
 
         for indiv_id in range(21):
             label = "exp indiv: 10mg PO" if indiv_id == 0 else ""
-            plots[0].add_data(
+            plots[3].add_data(
                 xid="x",
                 yid="y",
                 dataset=dset_id(indiv_id+1),

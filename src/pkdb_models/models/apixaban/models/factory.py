@@ -68,6 +68,7 @@ def create_models(
             else:
                 # replace in the combined model
                 model_coagulation.species = [s for s in model_coagulation.species if s.sid != "Cve_api"]
+                model_coagulation.parameters = [p for p in model_coagulation.parameters if p.sid != "fu_api"]
 
             factory_results = create_model(
                 model=model,

@@ -29,6 +29,7 @@ EXPERIMENTS= {
         Frost2015,
         Frost2015a,
         Frost2015b,
+        Frost2017,
         Frost2018,
         Frost2021,
         Frost2021a,
@@ -78,7 +79,6 @@ EXPERIMENTS= {
         Frost2018,
         Frost2021,
         Song2016,
-        VandenBosch2021,
         Vakkalagadda2016,
     ],
     "food": [
@@ -86,9 +86,10 @@ EXPERIMENTS= {
         Frost2013,
         Song2016
     ],
-    "co_administration": [
+    "coadministration": [
         Bashir2018,
         Frost2015a,
+        Frost2018,
         Jeong2019,
         Lenard2024,
         Lenard2025,
@@ -113,6 +114,8 @@ EXPERIMENTS= {
     ]
 
 }
+
+EXPERIMENTS["other"] = [experiment for experiment in EXPERIMENTS["studies"] if experiment not in EXPERIMENTS["dose_dependency"] + EXPERIMENTS["bodyweight"] + EXPERIMENTS["food"] + EXPERIMENTS["hepatic_impairment"] + EXPERIMENTS["renal_impairment"]]
 EXPERIMENTS["all"] = EXPERIMENTS["studies"] + EXPERIMENTS["misc"] + EXPERIMENTS["scan"]
 
 
@@ -167,4 +170,4 @@ def run_simulation_experiments(
 if __name__ == "__main__":
     """Run experiments."""
 
-    run_simulation_experiments(selected="studies")
+    run_simulation_experiments(selected="other")

@@ -38,68 +38,108 @@
           "end": 1440,
           "steps": 1000,
           "changes": {
-            "ftissue_api": {
-              "_magnitude": 9.999362175489635,
-              "_units": "l_per_min"
-            },
             "Kp_api": {
-              "_magnitude": 0.033548549714271736,
+              "_magnitude": 1.8290975796567857,
               "_units": "dimensionless"
             },
-            "GU__APIABS_k": {
-              "_magnitude": 0.09999949917572021,
+            "GU__Ka_dis_api": {
+              "_magnitude": 0.19047941874849916,
+              "_units": "GU__per_hr"
+            },
+            "GU__Ksol_dis_api": {
+              "_magnitude": 0.3352341302661383,
+              "_units": "GU__per_hr"
+            },
+            "GU__APIABS_Vmax": {
+              "_magnitude": 0.1589797819093681,
+              "_units": "GU__mmole_per_min"
+            },
+            "GU__APIABS_50": {
+              "_magnitude": 25.837650248152094,
+              "_units": "GU__mg"
+            },
+            "ftissue_api": {
+              "_magnitude": 0.19611257106279287,
+              "_units": "l_per_min"
+            },
+            "GU__MXEXC_k": {
+              "_magnitude": 1.9152859400260163e-05,
               "_units": "GU__per_min"
             },
             "LI__API2M2_k": {
-              "_magnitude": 0.01570094528592168,
+              "_magnitude": 0.16036687106093256,
               "_units": "LI__per_min"
             },
             "LI__API2M7_k": {
-              "_magnitude": 0.020189792087538537,
+              "_magnitude": 0.0389310457140792,
               "_units": "LI__per_min"
             },
-            "LI__M22M1_k": {
-              "_magnitude": 0.11061496092925446,
+            "LI__M22M1_Vmax": {
+              "_magnitude": 0.03597094464409813,
+              "_units": "LI__mmole_per_min"
+            },
+            "LI__M22M1_Km": {
+              "_magnitude": 22.420375926289406,
+              "_units": "LI__mmole"
+            },
+            "LI__MXEXBI_k": {
+              "_magnitude": 0.010684693804886113,
               "_units": "LI__per_min"
             },
             "KI__APIEX_k": {
-              "_magnitude": 0.044556517937263916,
+              "_magnitude": 0.2513729849119622,
               "_units": "KI__per_min"
             },
+            "KI__M1EX_k": {
+              "_magnitude": 0.02228556688222855,
+              "_units": "KI__per_min"
+            },
+            "KI__M7EX_k": {
+              "_magnitude": 0.008550419728226054,
+              "_units": "KI__per_min"
+            },
+            "GU__f_absorption": {
+              "_magnitude": 0.8859416042572498,
+              "_units": "dimensionless"
+            },
             "Emax_INR": {
-              "_magnitude": 1.034912223511749,
+              "_magnitude": 1.039561836305882,
               "_units": "dimensionless"
             },
             "EC50_api_INR": {
-              "_magnitude": 0.0011792528732025547,
+              "_magnitude": 0.0001940723569696365,
               "_units": "millimolar"
             },
             "Emax_mPT": {
-              "_magnitude": 1.9946311340457776,
+              "_magnitude": 2.0219222706330124,
               "_units": "dimensionless"
             },
             "EC50_api_mPT": {
-              "_magnitude": 0.00032191356203984284,
+              "_magnitude": 5.593387897644722e-05,
+              "_units": "millimolar"
+            },
+            "Emax_PT": {
+              "_magnitude": 1.6587220005784251,
+              "_units": "dimensionless"
+            },
+            "EC50_api_PT": {
+              "_magnitude": 0.00018436022230444452,
               "_units": "millimolar"
             },
             "Emax_aPTT": {
-              "_magnitude": 0.4606822559153521,
+              "_magnitude": 0.5831984416695168,
               "_units": "dimensionless"
             },
             "EC50_api_aPTT": {
-              "_magnitude": 0.0005858154549784874,
+              "_magnitude": 0.0001528970357985037,
               "_units": "millimolar"
             },
-            "Emax_Xa": {
-              "_magnitude": 4.581056537417629,
-              "_units": "per_mM"
-            },
             "Emax_antiXa": {
-              "_magnitude": 6332.859524334975,
+              "_magnitude": 40774.78983249683,
               "_units": "IU_per_ml_mM"
             },
             "Emax_antiXa_gram": {
-              "_magnitude": 452775.1008926358,
+              "_magnitude": 2593907.3533155103,
               "_units": "ng_per_ml_mM"
             },
             "BW": {
@@ -120,68 +160,108 @@
           "end": 1440,
           "steps": 1000,
           "changes": {
-            "ftissue_api": {
-              "_magnitude": 9.999362175489635,
-              "_units": "l_per_min"
-            },
             "Kp_api": {
-              "_magnitude": 0.033548549714271736,
+              "_magnitude": 1.8290975796567857,
               "_units": "dimensionless"
             },
-            "GU__APIABS_k": {
-              "_magnitude": 0.09999949917572021,
+            "GU__Ka_dis_api": {
+              "_magnitude": 0.19047941874849916,
+              "_units": "GU__per_hr"
+            },
+            "GU__Ksol_dis_api": {
+              "_magnitude": 0.3352341302661383,
+              "_units": "GU__per_hr"
+            },
+            "GU__APIABS_Vmax": {
+              "_magnitude": 0.1589797819093681,
+              "_units": "GU__mmole_per_min"
+            },
+            "GU__APIABS_50": {
+              "_magnitude": 25.837650248152094,
+              "_units": "GU__mg"
+            },
+            "ftissue_api": {
+              "_magnitude": 0.19611257106279287,
+              "_units": "l_per_min"
+            },
+            "GU__MXEXC_k": {
+              "_magnitude": 1.9152859400260163e-05,
               "_units": "GU__per_min"
             },
             "LI__API2M2_k": {
-              "_magnitude": 0.01570094528592168,
+              "_magnitude": 0.16036687106093256,
               "_units": "LI__per_min"
             },
             "LI__API2M7_k": {
-              "_magnitude": 0.020189792087538537,
+              "_magnitude": 0.0389310457140792,
               "_units": "LI__per_min"
             },
-            "LI__M22M1_k": {
-              "_magnitude": 0.11061496092925446,
+            "LI__M22M1_Vmax": {
+              "_magnitude": 0.03597094464409813,
+              "_units": "LI__mmole_per_min"
+            },
+            "LI__M22M1_Km": {
+              "_magnitude": 22.420375926289406,
+              "_units": "LI__mmole"
+            },
+            "LI__MXEXBI_k": {
+              "_magnitude": 0.010684693804886113,
               "_units": "LI__per_min"
             },
             "KI__APIEX_k": {
-              "_magnitude": 0.044556517937263916,
+              "_magnitude": 0.2513729849119622,
               "_units": "KI__per_min"
             },
+            "KI__M1EX_k": {
+              "_magnitude": 0.02228556688222855,
+              "_units": "KI__per_min"
+            },
+            "KI__M7EX_k": {
+              "_magnitude": 0.008550419728226054,
+              "_units": "KI__per_min"
+            },
+            "GU__f_absorption": {
+              "_magnitude": 0.8859416042572498,
+              "_units": "dimensionless"
+            },
             "Emax_INR": {
-              "_magnitude": 1.034912223511749,
+              "_magnitude": 1.039561836305882,
               "_units": "dimensionless"
             },
             "EC50_api_INR": {
-              "_magnitude": 0.0011792528732025547,
+              "_magnitude": 0.0001940723569696365,
               "_units": "millimolar"
             },
             "Emax_mPT": {
-              "_magnitude": 1.9946311340457776,
+              "_magnitude": 2.0219222706330124,
               "_units": "dimensionless"
             },
             "EC50_api_mPT": {
-              "_magnitude": 0.00032191356203984284,
+              "_magnitude": 5.593387897644722e-05,
+              "_units": "millimolar"
+            },
+            "Emax_PT": {
+              "_magnitude": 1.6587220005784251,
+              "_units": "dimensionless"
+            },
+            "EC50_api_PT": {
+              "_magnitude": 0.00018436022230444452,
               "_units": "millimolar"
             },
             "Emax_aPTT": {
-              "_magnitude": 0.4606822559153521,
+              "_magnitude": 0.5831984416695168,
               "_units": "dimensionless"
             },
             "EC50_api_aPTT": {
-              "_magnitude": 0.0005858154549784874,
+              "_magnitude": 0.0001528970357985037,
               "_units": "millimolar"
             },
-            "Emax_Xa": {
-              "_magnitude": 4.581056537417629,
-              "_units": "per_mM"
-            },
             "Emax_antiXa": {
-              "_magnitude": 6332.859524334975,
+              "_magnitude": 40774.78983249683,
               "_units": "IU_per_ml_mM"
             },
             "Emax_antiXa_gram": {
-              "_magnitude": 452775.1008926358,
+              "_magnitude": 2593907.3533155103,
               "_units": "ng_per_ml_mM"
             },
             "BW": {
@@ -202,68 +282,108 @@
           "end": 3120,
           "steps": 1000,
           "changes": {
-            "ftissue_api": {
-              "_magnitude": 9.999362175489635,
-              "_units": "l_per_min"
-            },
             "Kp_api": {
-              "_magnitude": 0.033548549714271736,
+              "_magnitude": 1.8290975796567857,
               "_units": "dimensionless"
             },
-            "GU__APIABS_k": {
-              "_magnitude": 0.09999949917572021,
+            "GU__Ka_dis_api": {
+              "_magnitude": 0.19047941874849916,
+              "_units": "GU__per_hr"
+            },
+            "GU__Ksol_dis_api": {
+              "_magnitude": 0.3352341302661383,
+              "_units": "GU__per_hr"
+            },
+            "GU__APIABS_Vmax": {
+              "_magnitude": 0.1589797819093681,
+              "_units": "GU__mmole_per_min"
+            },
+            "GU__APIABS_50": {
+              "_magnitude": 25.837650248152094,
+              "_units": "GU__mg"
+            },
+            "ftissue_api": {
+              "_magnitude": 0.19611257106279287,
+              "_units": "l_per_min"
+            },
+            "GU__MXEXC_k": {
+              "_magnitude": 1.9152859400260163e-05,
               "_units": "GU__per_min"
             },
             "LI__API2M2_k": {
-              "_magnitude": 0.01570094528592168,
+              "_magnitude": 0.16036687106093256,
               "_units": "LI__per_min"
             },
             "LI__API2M7_k": {
-              "_magnitude": 0.020189792087538537,
+              "_magnitude": 0.0389310457140792,
               "_units": "LI__per_min"
             },
-            "LI__M22M1_k": {
-              "_magnitude": 0.11061496092925446,
+            "LI__M22M1_Vmax": {
+              "_magnitude": 0.03597094464409813,
+              "_units": "LI__mmole_per_min"
+            },
+            "LI__M22M1_Km": {
+              "_magnitude": 22.420375926289406,
+              "_units": "LI__mmole"
+            },
+            "LI__MXEXBI_k": {
+              "_magnitude": 0.010684693804886113,
               "_units": "LI__per_min"
             },
             "KI__APIEX_k": {
-              "_magnitude": 0.044556517937263916,
+              "_magnitude": 0.2513729849119622,
               "_units": "KI__per_min"
             },
+            "KI__M1EX_k": {
+              "_magnitude": 0.02228556688222855,
+              "_units": "KI__per_min"
+            },
+            "KI__M7EX_k": {
+              "_magnitude": 0.008550419728226054,
+              "_units": "KI__per_min"
+            },
+            "GU__f_absorption": {
+              "_magnitude": 0.8859416042572498,
+              "_units": "dimensionless"
+            },
             "Emax_INR": {
-              "_magnitude": 1.034912223511749,
+              "_magnitude": 1.039561836305882,
               "_units": "dimensionless"
             },
             "EC50_api_INR": {
-              "_magnitude": 0.0011792528732025547,
+              "_magnitude": 0.0001940723569696365,
               "_units": "millimolar"
             },
             "Emax_mPT": {
-              "_magnitude": 1.9946311340457776,
+              "_magnitude": 2.0219222706330124,
               "_units": "dimensionless"
             },
             "EC50_api_mPT": {
-              "_magnitude": 0.00032191356203984284,
+              "_magnitude": 5.593387897644722e-05,
+              "_units": "millimolar"
+            },
+            "Emax_PT": {
+              "_magnitude": 1.6587220005784251,
+              "_units": "dimensionless"
+            },
+            "EC50_api_PT": {
+              "_magnitude": 0.00018436022230444452,
               "_units": "millimolar"
             },
             "Emax_aPTT": {
-              "_magnitude": 0.4606822559153521,
+              "_magnitude": 0.5831984416695168,
               "_units": "dimensionless"
             },
             "EC50_api_aPTT": {
-              "_magnitude": 0.0005858154549784874,
+              "_magnitude": 0.0001528970357985037,
               "_units": "millimolar"
             },
-            "Emax_Xa": {
-              "_magnitude": 4.581056537417629,
-              "_units": "per_mM"
-            },
             "Emax_antiXa": {
-              "_magnitude": 6332.859524334975,
+              "_magnitude": 40774.78983249683,
               "_units": "IU_per_ml_mM"
             },
             "Emax_antiXa_gram": {
-              "_magnitude": 452775.1008926358,
+              "_magnitude": 2593907.3533155103,
               "_units": "ng_per_ml_mM"
             },
             "BW": {
@@ -292,68 +412,108 @@
           "end": 1440,
           "steps": 1000,
           "changes": {
-            "ftissue_api": {
-              "_magnitude": 9.999362175489635,
-              "_units": "l_per_min"
-            },
             "Kp_api": {
-              "_magnitude": 0.033548549714271736,
+              "_magnitude": 1.8290975796567857,
               "_units": "dimensionless"
             },
-            "GU__APIABS_k": {
-              "_magnitude": 0.09999949917572021,
+            "GU__Ka_dis_api": {
+              "_magnitude": 0.19047941874849916,
+              "_units": "GU__per_hr"
+            },
+            "GU__Ksol_dis_api": {
+              "_magnitude": 0.3352341302661383,
+              "_units": "GU__per_hr"
+            },
+            "GU__APIABS_Vmax": {
+              "_magnitude": 0.1589797819093681,
+              "_units": "GU__mmole_per_min"
+            },
+            "GU__APIABS_50": {
+              "_magnitude": 25.837650248152094,
+              "_units": "GU__mg"
+            },
+            "ftissue_api": {
+              "_magnitude": 0.19611257106279287,
+              "_units": "l_per_min"
+            },
+            "GU__MXEXC_k": {
+              "_magnitude": 1.9152859400260163e-05,
               "_units": "GU__per_min"
             },
             "LI__API2M2_k": {
-              "_magnitude": 0.01570094528592168,
+              "_magnitude": 0.16036687106093256,
               "_units": "LI__per_min"
             },
             "LI__API2M7_k": {
-              "_magnitude": 0.020189792087538537,
+              "_magnitude": 0.0389310457140792,
               "_units": "LI__per_min"
             },
-            "LI__M22M1_k": {
-              "_magnitude": 0.11061496092925446,
+            "LI__M22M1_Vmax": {
+              "_magnitude": 0.03597094464409813,
+              "_units": "LI__mmole_per_min"
+            },
+            "LI__M22M1_Km": {
+              "_magnitude": 22.420375926289406,
+              "_units": "LI__mmole"
+            },
+            "LI__MXEXBI_k": {
+              "_magnitude": 0.010684693804886113,
               "_units": "LI__per_min"
             },
             "KI__APIEX_k": {
-              "_magnitude": 0.044556517937263916,
+              "_magnitude": 0.2513729849119622,
               "_units": "KI__per_min"
             },
+            "KI__M1EX_k": {
+              "_magnitude": 0.02228556688222855,
+              "_units": "KI__per_min"
+            },
+            "KI__M7EX_k": {
+              "_magnitude": 0.008550419728226054,
+              "_units": "KI__per_min"
+            },
+            "GU__f_absorption": {
+              "_magnitude": 0.8859416042572498,
+              "_units": "dimensionless"
+            },
             "Emax_INR": {
-              "_magnitude": 1.034912223511749,
+              "_magnitude": 1.039561836305882,
               "_units": "dimensionless"
             },
             "EC50_api_INR": {
-              "_magnitude": 0.0011792528732025547,
+              "_magnitude": 0.0001940723569696365,
               "_units": "millimolar"
             },
             "Emax_mPT": {
-              "_magnitude": 1.9946311340457776,
+              "_magnitude": 2.0219222706330124,
               "_units": "dimensionless"
             },
             "EC50_api_mPT": {
-              "_magnitude": 0.00032191356203984284,
+              "_magnitude": 5.593387897644722e-05,
+              "_units": "millimolar"
+            },
+            "Emax_PT": {
+              "_magnitude": 1.6587220005784251,
+              "_units": "dimensionless"
+            },
+            "EC50_api_PT": {
+              "_magnitude": 0.00018436022230444452,
               "_units": "millimolar"
             },
             "Emax_aPTT": {
-              "_magnitude": 0.4606822559153521,
+              "_magnitude": 0.5831984416695168,
               "_units": "dimensionless"
             },
             "EC50_api_aPTT": {
-              "_magnitude": 0.0005858154549784874,
+              "_magnitude": 0.0001528970357985037,
               "_units": "millimolar"
             },
-            "Emax_Xa": {
-              "_magnitude": 4.581056537417629,
-              "_units": "per_mM"
-            },
             "Emax_antiXa": {
-              "_magnitude": 6332.859524334975,
+              "_magnitude": 40774.78983249683,
               "_units": "IU_per_ml_mM"
             },
             "Emax_antiXa_gram": {
-              "_magnitude": 452775.1008926358,
+              "_magnitude": 2593907.3533155103,
               "_units": "ng_per_ml_mM"
             },
             "BW": {
@@ -374,68 +534,108 @@
           "end": 1440,
           "steps": 1000,
           "changes": {
-            "ftissue_api": {
-              "_magnitude": 9.999362175489635,
-              "_units": "l_per_min"
-            },
             "Kp_api": {
-              "_magnitude": 0.033548549714271736,
+              "_magnitude": 1.8290975796567857,
               "_units": "dimensionless"
             },
-            "GU__APIABS_k": {
-              "_magnitude": 0.09999949917572021,
+            "GU__Ka_dis_api": {
+              "_magnitude": 0.19047941874849916,
+              "_units": "GU__per_hr"
+            },
+            "GU__Ksol_dis_api": {
+              "_magnitude": 0.3352341302661383,
+              "_units": "GU__per_hr"
+            },
+            "GU__APIABS_Vmax": {
+              "_magnitude": 0.1589797819093681,
+              "_units": "GU__mmole_per_min"
+            },
+            "GU__APIABS_50": {
+              "_magnitude": 25.837650248152094,
+              "_units": "GU__mg"
+            },
+            "ftissue_api": {
+              "_magnitude": 0.19611257106279287,
+              "_units": "l_per_min"
+            },
+            "GU__MXEXC_k": {
+              "_magnitude": 1.9152859400260163e-05,
               "_units": "GU__per_min"
             },
             "LI__API2M2_k": {
-              "_magnitude": 0.01570094528592168,
+              "_magnitude": 0.16036687106093256,
               "_units": "LI__per_min"
             },
             "LI__API2M7_k": {
-              "_magnitude": 0.020189792087538537,
+              "_magnitude": 0.0389310457140792,
               "_units": "LI__per_min"
             },
-            "LI__M22M1_k": {
-              "_magnitude": 0.11061496092925446,
+            "LI__M22M1_Vmax": {
+              "_magnitude": 0.03597094464409813,
+              "_units": "LI__mmole_per_min"
+            },
+            "LI__M22M1_Km": {
+              "_magnitude": 22.420375926289406,
+              "_units": "LI__mmole"
+            },
+            "LI__MXEXBI_k": {
+              "_magnitude": 0.010684693804886113,
               "_units": "LI__per_min"
             },
             "KI__APIEX_k": {
-              "_magnitude": 0.044556517937263916,
+              "_magnitude": 0.2513729849119622,
               "_units": "KI__per_min"
             },
+            "KI__M1EX_k": {
+              "_magnitude": 0.02228556688222855,
+              "_units": "KI__per_min"
+            },
+            "KI__M7EX_k": {
+              "_magnitude": 0.008550419728226054,
+              "_units": "KI__per_min"
+            },
+            "GU__f_absorption": {
+              "_magnitude": 0.8859416042572498,
+              "_units": "dimensionless"
+            },
             "Emax_INR": {
-              "_magnitude": 1.034912223511749,
+              "_magnitude": 1.039561836305882,
               "_units": "dimensionless"
             },
             "EC50_api_INR": {
-              "_magnitude": 0.0011792528732025547,
+              "_magnitude": 0.0001940723569696365,
               "_units": "millimolar"
             },
             "Emax_mPT": {
-              "_magnitude": 1.9946311340457776,
+              "_magnitude": 2.0219222706330124,
               "_units": "dimensionless"
             },
             "EC50_api_mPT": {
-              "_magnitude": 0.00032191356203984284,
+              "_magnitude": 5.593387897644722e-05,
+              "_units": "millimolar"
+            },
+            "Emax_PT": {
+              "_magnitude": 1.6587220005784251,
+              "_units": "dimensionless"
+            },
+            "EC50_api_PT": {
+              "_magnitude": 0.00018436022230444452,
               "_units": "millimolar"
             },
             "Emax_aPTT": {
-              "_magnitude": 0.4606822559153521,
+              "_magnitude": 0.5831984416695168,
               "_units": "dimensionless"
             },
             "EC50_api_aPTT": {
-              "_magnitude": 0.0005858154549784874,
+              "_magnitude": 0.0001528970357985037,
               "_units": "millimolar"
             },
-            "Emax_Xa": {
-              "_magnitude": 4.581056537417629,
-              "_units": "per_mM"
-            },
             "Emax_antiXa": {
-              "_magnitude": 6332.859524334975,
+              "_magnitude": 40774.78983249683,
               "_units": "IU_per_ml_mM"
             },
             "Emax_antiXa_gram": {
-              "_magnitude": 452775.1008926358,
+              "_magnitude": 2593907.3533155103,
               "_units": "ng_per_ml_mM"
             },
             "BW": {
@@ -456,68 +656,108 @@
           "end": 3120,
           "steps": 1000,
           "changes": {
-            "ftissue_api": {
-              "_magnitude": 9.999362175489635,
-              "_units": "l_per_min"
-            },
             "Kp_api": {
-              "_magnitude": 0.033548549714271736,
+              "_magnitude": 1.8290975796567857,
               "_units": "dimensionless"
             },
-            "GU__APIABS_k": {
-              "_magnitude": 0.09999949917572021,
+            "GU__Ka_dis_api": {
+              "_magnitude": 0.19047941874849916,
+              "_units": "GU__per_hr"
+            },
+            "GU__Ksol_dis_api": {
+              "_magnitude": 0.3352341302661383,
+              "_units": "GU__per_hr"
+            },
+            "GU__APIABS_Vmax": {
+              "_magnitude": 0.1589797819093681,
+              "_units": "GU__mmole_per_min"
+            },
+            "GU__APIABS_50": {
+              "_magnitude": 25.837650248152094,
+              "_units": "GU__mg"
+            },
+            "ftissue_api": {
+              "_magnitude": 0.19611257106279287,
+              "_units": "l_per_min"
+            },
+            "GU__MXEXC_k": {
+              "_magnitude": 1.9152859400260163e-05,
               "_units": "GU__per_min"
             },
             "LI__API2M2_k": {
-              "_magnitude": 0.01570094528592168,
+              "_magnitude": 0.16036687106093256,
               "_units": "LI__per_min"
             },
             "LI__API2M7_k": {
-              "_magnitude": 0.020189792087538537,
+              "_magnitude": 0.0389310457140792,
               "_units": "LI__per_min"
             },
-            "LI__M22M1_k": {
-              "_magnitude": 0.11061496092925446,
+            "LI__M22M1_Vmax": {
+              "_magnitude": 0.03597094464409813,
+              "_units": "LI__mmole_per_min"
+            },
+            "LI__M22M1_Km": {
+              "_magnitude": 22.420375926289406,
+              "_units": "LI__mmole"
+            },
+            "LI__MXEXBI_k": {
+              "_magnitude": 0.010684693804886113,
               "_units": "LI__per_min"
             },
             "KI__APIEX_k": {
-              "_magnitude": 0.044556517937263916,
+              "_magnitude": 0.2513729849119622,
               "_units": "KI__per_min"
             },
+            "KI__M1EX_k": {
+              "_magnitude": 0.02228556688222855,
+              "_units": "KI__per_min"
+            },
+            "KI__M7EX_k": {
+              "_magnitude": 0.008550419728226054,
+              "_units": "KI__per_min"
+            },
+            "GU__f_absorption": {
+              "_magnitude": 0.8859416042572498,
+              "_units": "dimensionless"
+            },
             "Emax_INR": {
-              "_magnitude": 1.034912223511749,
+              "_magnitude": 1.039561836305882,
               "_units": "dimensionless"
             },
             "EC50_api_INR": {
-              "_magnitude": 0.0011792528732025547,
+              "_magnitude": 0.0001940723569696365,
               "_units": "millimolar"
             },
             "Emax_mPT": {
-              "_magnitude": 1.9946311340457776,
+              "_magnitude": 2.0219222706330124,
               "_units": "dimensionless"
             },
             "EC50_api_mPT": {
-              "_magnitude": 0.00032191356203984284,
+              "_magnitude": 5.593387897644722e-05,
+              "_units": "millimolar"
+            },
+            "Emax_PT": {
+              "_magnitude": 1.6587220005784251,
+              "_units": "dimensionless"
+            },
+            "EC50_api_PT": {
+              "_magnitude": 0.00018436022230444452,
               "_units": "millimolar"
             },
             "Emax_aPTT": {
-              "_magnitude": 0.4606822559153521,
+              "_magnitude": 0.5831984416695168,
               "_units": "dimensionless"
             },
             "EC50_api_aPTT": {
-              "_magnitude": 0.0005858154549784874,
+              "_magnitude": 0.0001528970357985037,
               "_units": "millimolar"
             },
-            "Emax_Xa": {
-              "_magnitude": 4.581056537417629,
-              "_units": "per_mM"
-            },
             "Emax_antiXa": {
-              "_magnitude": 6332.859524334975,
+              "_magnitude": 40774.78983249683,
               "_units": "IU_per_ml_mM"
             },
             "Emax_antiXa_gram": {
-              "_magnitude": 452775.1008926358,
+              "_magnitude": 2593907.3533155103,
               "_units": "ng_per_ml_mM"
             },
             "BW": {
@@ -843,6 +1083,15 @@
       "function": null,
       "variables": null
     },
+    "task_api_PO10__GU__f_absorption": {
+      "type": "TASK",
+      "index": "GU__f_absorption",
+      "unit": null,
+      "task": "task_api_PO10",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
     "task_api_PO10__GU__F_api_abs": {
       "type": "TASK",
       "index": "GU__F_api_abs",
@@ -1161,6 +1410,15 @@
     "task_api_PO50__PODOSE_api": {
       "type": "TASK",
       "index": "PODOSE_api",
+      "unit": null,
+      "task": "task_api_PO50",
+      "dataset": null,
+      "function": null,
+      "variables": null
+    },
+    "task_api_PO50__GU__f_absorption": {
+      "type": "TASK",
+      "index": "GU__f_absorption",
       "unit": null,
       "task": "task_api_PO50",
       "dataset": null,

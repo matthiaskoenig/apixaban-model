@@ -45,19 +45,19 @@ class Wang2016(ApixabanSimulationExperiment):
     }
 
     inrs = {
-        "healthy": 0.17,
-        "esrd_P1": 0.43,  # post-apixaban hemodialysis
-        "esrd_P2": 0.49,  # pre-apixaban hemodialysis
+        "healthy": 0.97,
+        "esrd_P1": 1.07,  # post-apixaban hemodialysis
+        "esrd_P2": 1.09,  # pre-apixaban hemodialysis
     }
     pts = {
-        "healthy": 2.98,
-        "esrd_P1": 5.50,  # post-apixaban hemodialysis
-        "esrd_P2": 6.09,  # pre-apixaban hemodialysis
+        "healthy": 11.42,
+        "esrd_P1": 12.79,  # post-apixaban hemodialysis
+        "esrd_P2": 12.99,  # pre-apixaban hemodialysis
     }
     aptts = {
-        "healthy": 21.06,
-        "esrd_P1": 25.69,  # post-apixaban hemodialysis
-        "esrd_P2": 14.61,  # pre-apixaban hemodialysis
+        "healthy": 34.33,
+        "esrd_P1": 36.28,  # post-apixaban hemodialysis
+        "esrd_P2": 31.56,  # pre-apixaban hemodialysis
     }
 
     renal_functions = {

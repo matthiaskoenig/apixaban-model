@@ -206,7 +206,7 @@ class Frost2018(ApixabanSimulationExperiment):
             num_rows=2,
             num_cols=3,
             name=f"{self.__class__.__name__}",
-            height=self.panel_height * 2,
+            height=self.panel_height * 2 * 1.05,
             width=self.panel_width * 3 * 1.05,
         )
         Figure.legend_fontsize = 9.5

@@ -1,27 +1,27 @@
 study	class	condition	parameter	dose	dose_unit	substance	n	mean	sd	geom_mean	median	Q1	Q3	min	max	unit
-Chang2016	renal	normal	cmax	10	mg	apixaban	8			224						ng/ml
+Chang2016	renal	normal	cmax	10	mg	apixaban	8		56	224						ng/ml
 Chang2016	renal	normal	tmax	10	mg	apixaban					2.8			2	4	hr
-Chang2016	renal	normal	aucinf	10	mg	apixaban				2528						ng*hr/ml
+Chang2016	renal	normal	aucinf	10	mg	apixaban			657.28	2528						ng*hr/ml
 Chang2016	renal	normal	thalf	10	mg	apixaban		15.1	7.6							hr
-Chang2016	renal	normal	cl_renal	10	mg	apixaban				6.83						ml/min
+Chang2016	renal	normal	cl_renal	10	mg	apixaban			2.2539	6.83						ml/min
 #																
-Chang2016	renal	mild	cmax	10	mg	apixaban				229						ng/ml
+Chang2016	renal	mild	cmax	10	mg	apixaban			75.57	229						ng/ml
 Chang2016	renal	mild	tmax	10	mg	apixaban					4			1	6	hr
-Chang2016	renal	mild	aucinf	10	mg	apixaban				3288						ng*hr/ml
+Chang2016	renal	mild	aucinf	10	mg	apixaban			1216.56	3288						ng*hr/ml
 Chang2016	renal	mild	thalf	10	mg	apixaban		14.6	7.3							hr
-Chang2016	renal	mild	cl_renal	10	mg	apixaban				1.94						ml/min
+Chang2016	renal	mild	cl_renal	10	mg	apixaban			2.0193	3.81						ml/min
 #																
-Chang2016	renal	moderate	cmax	10	mg	apixaban				288						ng/ml
+Chang2016	renal	moderate	cmax	10	mg	apixaban			51.84	288						ng/ml
 Chang2016	renal	moderate	tmax	10	mg	apixaban				 	4			3	4	hr
-Chang2016	renal	moderate	aucinf	10	mg	apixaban				4479						ng*hr/ml
+Chang2016	renal	moderate	aucinf	10	mg	apixaban			1030.17	4479						ng*hr/ml
 Chang2016	renal	moderate	thalf	10	mg	apixaban		17.6	6							hr
-Chang2016	renal	moderate	cl_renal	10	mg	apixaban				1.94						ml/min
+Chang2016	renal	moderate	cl_renal	10	mg	apixaban			1.7266	1.94						ml/min
 #																
-Chang2016	renal	severe	cmax	10	mg	apixaban				210						ng/ml
+Chang2016	renal	severe	cmax	10	mg	apixaban			77.7	210						ng/ml
 Chang2016	renal	severe	tmax	10	mg	apixaban					4			3	4	hr
-Chang2016	renal	severe	aucinf	10	mg	apixaban				3221						ng*hr/ml
+Chang2016	renal	severe	aucinf	10	mg	apixaban			1578.29	3221						ng*hr/ml
 Chang2016	renal	severe	thalf	10	mg	apixaban		17.3	7.4							hr
-Chang2016	renal	severe	cl_renal	10	mg	apixaban				1.94						ml/min
+Chang2016	renal	severe	cl_renal	10	mg	apixaban			0.873	1.94						ml/min
 #																
 Metze2021	renal	mild	cmax	5	mg	apixaban		109								ng/ml
 #																
@@ -44,3 +44,11 @@ Wang2016	renal	end_stage	aucinf	5	mg	apixaban	8	1717	412.08							ng/ml*hr
 Wang2016	renal	end_stage	tmax	5	mg	apixaban	8				2			2	6	hr
 Wang2016	renal	end_stage	thalf	5	mg	apixaban	8	12.7	3.4							hr
 Wang2016	renal	end_stage	cl_renal	5	mg	apixaban	8	0.02	0.016							ml/min
+#																
+Wang2016	renal	normal	inr_ratiomax	5	mg	apixaban	8	1.31	0.2							dimensionless
+Wang2016	renal	normal	pt_ratiomax	5	mg	apixaban	8	1.32	0.2							dimensionless
+Wang2016	renal	normal	aptt_ratiomax	5	mg	apixaban	8	1.41	0.01							dimensionless
+#																
+Wang2016	renal	end_stage	inr_ratiomax	5	mg	apixaban	8	1.17	1.03							dimensionless
+Wang2016	renal	end_stage	pt_ratiomax	5	mg	apixaban	8	1.17	1.03							dimensionless
+Wang2016	renal	end_stage	aptt_ratiomax	5	mg	apixaban	8	1.07	1.03							dimensionless

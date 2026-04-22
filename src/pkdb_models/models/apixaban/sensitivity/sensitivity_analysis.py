@@ -208,6 +208,9 @@ def _sensitivity_parameters() -> list[SensitivityParameter]:
             # conversion factors
             "conversion_min_per_day",
 
+            # non-used scaling factor
+            "f_absorption",
+
             # molecular weights
             "Mr_api",
             "Mr_m1",

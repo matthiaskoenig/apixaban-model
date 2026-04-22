@@ -21,8 +21,8 @@ class Lenard2024(ApixabanSimulationExperiment):
     """Simulation experiment of Lenard2024."""
 
     colors = {
-        "API25, RIV25, EDO50": "tab:blue",
-        "API25, RIV25, EDO50, CLAR": "darkblue",
+        "API25, RIV25, EDO50": "tab:red",
+        "API25, RIV25, EDO50, CLAR": "tab:pink",
     }
 
     interventions = list(colors.keys())
@@ -30,6 +30,11 @@ class Lenard2024(ApixabanSimulationExperiment):
     doses =  {
         "API25, RIV25, EDO50": 0.025,  # [μg] (2 times dosing, first on day1, second on day 5)
         "API25, RIV25, EDO50, CLAR": 0.025,  # 50 µg
+    }
+
+    labels = {
+        "API25, RIV25, EDO50": ": DOACs PO",
+        "API25, RIV25, EDO50, CLAR": ": DOACs, clar 500mg PO",
     }
 
     infos_pk = {
@@ -90,7 +95,7 @@ class Lenard2024(ApixabanSimulationExperiment):
                             dosing=Dosing.SINGLE,
                             health=Health.HEALTHY,
                             fasting=Fasting.NR,
-                            coadministration=Coadministration.CLARITHROMYCIN if "CLAR" in intervention else Coadministration.NONE
+                            coadministration=Coadministration.CLARITHROMYCIN if "CLAR" in intervention else Coadministration.EDOXABAN,
                         ),
                     )
 
@@ -107,26 +112,28 @@ class Lenard2024(ApixabanSimulationExperiment):
             sid="Fig2",
             num_cols=1,
             name=f"{self.__class__.__name__}",
-            height=self.panel_height,
-            width=self.panel_width * 0.87,
+            height=self.panel_height * 1.2,
+            width=self.panel_width * 1.1,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time), legend=True
         )
-        plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
+        plots[0].set_yaxis(self.label_api_plasma, unit="nM")
 
+        is_sim = True
         for intervention in self.interventions:
             for ks, sid in enumerate(self.infos_pk):
                 name = self.infos_pk[sid]
-
-                # simulation
-                plots[ks].add_data(
-                    task=f"task_{intervention}",
-                    xid="time",
-                    yid=sid,
-                    label=intervention,
-                    color=self.colors[f"{intervention}"],
-                )
+                if is_sim:
+                    # simulation
+                    plots[ks].add_data(
+                        task=f"task_{intervention}",
+                        xid="time",
+                        yid=sid,
+                        label="sim: api 25ug PO",
+                        color="black",
+                    )
+                    is_sim = False
                 # data
                 plots[ks].add_data(
                     dataset=f"{name}_{intervention}",
@@ -134,7 +141,7 @@ class Lenard2024(ApixabanSimulationExperiment):
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=intervention,
+                    label=f"exp {self.labels[intervention]}",
                     color=self.colors[f"{intervention}"],
                 )
 

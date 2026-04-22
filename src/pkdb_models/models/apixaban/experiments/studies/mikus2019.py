@@ -21,17 +21,17 @@ class Mikus2019(ApixabanSimulationExperiment):
     """Simulation experiment of Mikus2019."""
 
     colors = {
-        "API25, RIV25, EDO50, KET": "tab:blue",
-        "API25, RIV25, EDO50": "black",
+        "API25, RIV25, EDO50, KET": "tab:red",
+        "API25, RIV25, EDO50": "tab:pink",
     }
 
     labels = {
-        "API25, RIV25, EDO50, KET": "EDO50, KET",
-        "API25, RIV25, EDO50": "EDO50",
+        "API25, RIV25, EDO50, KET": "DOACs, ket 400mg PO",
+        "API25, RIV25, EDO50": "DOACs",
     }
     interventions = list(colors.keys())
 
-    dose = 0.050  # μg, FXaI cocktail (μ-FXaI; 25 μg apixaban, 50 μg apixaban, and 25 μg rivaroxaban)"
+    dose = 0.025  # μg, FXaI cocktail (μ-FXaI; 25 μg apixaban, 50 μg edoxaban, and 25 μg rivaroxaban)"
 
     infos_pk = {
         "[Cve_api]": "apixaban",
@@ -109,26 +109,30 @@ class Mikus2019(ApixabanSimulationExperiment):
             experiment=self,
             sid="Fig1",
             num_cols= 2,
-            name=f"{self.__class__.__name__} (healthy)",
+            name=f"{self.__class__.__name__}",
+            height=self.panel_height,
+            width=self.panel_width * 2,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time), legend=True
         )
-        plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
-        plots[1].set_yaxis(self.label_api_urine, unit=self.unit_api_urine)
+        plots[0].set_yaxis(self.label_api_plasma, unit="nM")
+        plots[1].set_yaxis(self.label_api_urine, unit="nmole")
 
-        for intervention in self.interventions:
-            for ks, sid in enumerate(self.infos_pk):
+        for ks, sid in enumerate(self.infos_pk):
+            is_sim = True
+            for intervention in self.interventions:
                 name = self.infos_pk[sid]
-                # simulation
-                plots[ks].add_data(
-                    task=f"task_{intervention}",
-                    xid="time",
-                    yid=sid,
-                    label=self.labels[intervention],
-                    color=self.colors[intervention],
-                )
-
+                if is_sim:
+                    # simulation
+                    plots[ks].add_data(
+                        task=f"task_{intervention}",
+                        xid="time",
+                        yid=sid,
+                        label="sim: api 25ug PO",
+                        color="black",
+                    )
+                    is_sim = False
                 # data
                 plots[ks].add_data(
                     dataset=f"{name}_{intervention}",
@@ -136,8 +140,9 @@ class Mikus2019(ApixabanSimulationExperiment):
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=self.labels[intervention],
+                    label=f"exp: {self.labels[intervention]}",
                     color=self.colors[intervention],
+                    linestyle="" if sid == "Aurine_api" else "dashed",
                 )
 
         return {

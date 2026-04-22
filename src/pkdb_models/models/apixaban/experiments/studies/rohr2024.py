@@ -21,13 +21,13 @@ class Rohr2024(ApixabanSimulationExperiment):
     """Simulation experiment of Rohr2024."""
 
     colors = {
-        "API25, RIV25, EDO50, RITx5": "tab:blue",
-        "API25, RIV25, EDO50": "black",
+        "API25, RIV25, EDO50, RITx5": "tab:red",
+        "API25, RIV25, EDO50": "tab:pink",
     }
 
     labels = {
-        "API25, RIV25, EDO50, RITx5": "EDO50, RITx5",
-        "API25, RIV25, EDO50": "EDO50",
+        "API25, RIV25, EDO50, RITx5": "DOACs, rit 100mg PO",
+        "API25, RIV25, EDO50": "DOACs",
     }
     interventions = list(colors.keys())
 
@@ -119,17 +119,20 @@ class Rohr2024(ApixabanSimulationExperiment):
         plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
         plots[1].set_yaxis(self.label_api_urine, unit=self.unit_api_urine)
 
-        for intervention in self.interventions:
-            for ks, sid in enumerate(self.infos_pk):
+        for ks, sid in enumerate(self.infos_pk):
+            is_sim = True
+            for intervention in self.interventions:
                 name = self.infos_pk[sid]
-                # simulation
-                plots[ks].add_data(
-                    task=f"task_{intervention}",
-                    xid="time",
-                    yid=sid,
-                    label=self.labels[intervention],
-                    color=self.colors[intervention],
-                )
+                if is_sim:
+                    # simulation
+                    plots[ks].add_data(
+                        task=f"task_{intervention}",
+                        xid="time",
+                        yid=sid,
+                        label="sim: api 25ug PO",
+                        color="black",
+                    )
+                    is_sim = False
 
                 # data
                 plots[ks].add_data(
@@ -138,8 +141,9 @@ class Rohr2024(ApixabanSimulationExperiment):
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=self.labels[intervention],
+                    label=f"exp: {self.labels[intervention]}",
                     color=self.colors[intervention],
+                    linestyle="" if sid == "Aurine_api" else "dashed",
                 )
 
         return {

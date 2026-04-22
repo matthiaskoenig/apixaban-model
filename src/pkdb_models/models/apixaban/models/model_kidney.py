@@ -202,7 +202,16 @@ _m.parameters.extend([
 
         MDRD (Modification of Diet in Renal Disease) Study Equation
     """,
-    )
+    ),
+    Parameter(
+        "fu_api",
+        13.1 / 100, # [-] unbound in plasma He2011
+        U.dimensionless,
+        constant=True,
+        name=f"fraction unbound in plasma api",
+        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+        port=True,
+    ),
 ])
 _m.rules.extend([
     AssignmentRule(
@@ -235,7 +244,7 @@ _m.reactions = [
             ),
         ],
         formula=(
-            "f_renal_function * Vki * APIEX_k * api_ext"
+            "f_renal_function * Vki * APIEX_k * api_ext * fu_api"
         )
     ),
     Reaction(

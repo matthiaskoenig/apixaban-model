@@ -40,9 +40,9 @@ def filter_baseline(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
     # if metadata.dosing == Dosing.MULTIPLE:
     #     return False
 
-    # # only fasted subjects
-    # if metadata.fasting not in {Fasting.FASTED, Fasting.NR}:
-    #     return False
+    # only fasted subjects
+    if metadata.fasting not in {Fasting.FASTED, Fasting.NR}:
+        return False
 
     # remove outliers
     if metadata.outlier is True:
@@ -65,6 +65,7 @@ f_fitexp_kwargs = dict(
         Frost2015,
         Frost2015a,
         Frost2015b,
+        Frost2017,
         Frost2018,
         Frost2021,
         Frost2021a,
@@ -144,6 +145,13 @@ def filter_pharmacodynamics(fit_mapping_key: str, fit_mapping: FitMapping) -> bo
 
     return True
 
+def filter_food(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
+    metadata: ApixabanMappingMetaData = fit_mapping.metadata
+    # only fed subjects
+    if metadata.fasting not in {Fasting.FED}:
+        return False
+    return True
+
 def filter_inr(fit_mapping_key: str, fit_mapping: FitMapping) -> bool:
     """Only INR data."""
     yid = "__".join(fit_mapping.observable.y.sid.split("__")[1:])
@@ -204,12 +212,16 @@ def f_fitexp_control() -> Dict[str, List[FitExperiment]]:
     return f_fitexp(metadata_filters=[filter_baseline], **f_fitexp_kwargs)
 
 def f_fitexp_pharmacokinetics() -> Dict[str, List[FitExperiment]]:
-    """Pharmacodynamics data."""
+    """Pharmacokinetics data."""
     return f_fitexp(metadata_filters=[filter_baseline, filter_pharmacokinetics], **f_fitexp_kwargs)
 
 def f_fitexp_pharmacodynamics() -> Dict[str, List[FitExperiment]]:
     """Pharmacodynamics data."""
     return f_fitexp(metadata_filters=[filter_baseline, filter_pharmacodynamics], **f_fitexp_kwargs)
+
+def f_fitexp_food() -> Dict[str, List[FitExperiment]]:
+    """Pharmacokinetics fed data."""
+    return f_fitexp(metadata_filters=[filter_food, filter_pharmacokinetics], **f_fitexp_kwargs)
 
 def f_fitexp_inr() -> Dict[str, List[FitExperiment]]:
     """Pharmacodynamics data."""
@@ -235,10 +247,10 @@ if __name__ == "__main__":
         # f_fitexp_control,
         # f_fitexp_pharmacokinetics,
         # f_fitexp_pharmacodynamics,
-        f_fitexp_inr,
-        f_fitexp_mpt,
-        f_fitexp_aptt,
-        f_fitexp_xa,
+        # f_fitexp_inr,
+        # f_fitexp_mpt,
+        # f_fitexp_aptt,
+        # f_fitexp_xa,
     ]:
         console.rule(style="white")
         console.print(f"{f.__name__}")

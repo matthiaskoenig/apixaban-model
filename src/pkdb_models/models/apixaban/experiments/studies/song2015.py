@@ -118,19 +118,34 @@ class Song2015(ApixabanSimulationExperiment):
         Q_ = self.Q_
         tcsims: Dict[str, TimecourseSim] = {}
         for group in self.groups:
-            tcsims[group] = TimecourseSim([
-                Timecourse(
-                    start=0,
-                    end=75 * 60,  # [min]
-                    steps=500,
-                    changes={
-                        **self.default_changes(),
-                        "PODOSE_api": Q_(self.dose[group], "mg"),
-                        "BW": Q_(self.bodyweight[group], "kg"),
-                        "HEIGHT": Q_(self.bodyheight[group], "m"),
-                    },
-                )
-        ])
+            if group == "API10_PO_OS":
+                tcsims[group] = TimecourseSim([
+                    Timecourse(
+                        start=0,
+                        end=75 * 60,  # [min]
+                        steps=500,
+                        changes={
+                            **self.default_changes(),
+                            "SOLDOSE_api": Q_(self.dose[group], "mg"),
+                            "BW": Q_(self.bodyweight[group], "kg"),
+                            "HEIGHT": Q_(self.bodyheight[group], "m"),
+                        },
+                    )
+                ])
+            else:
+                tcsims[group] = TimecourseSim([
+                    Timecourse(
+                        start=0,
+                        end=75 * 60,  # [min]
+                        steps=500,
+                        changes={
+                            **self.default_changes(),
+                            "PODOSE_api": Q_(self.dose[group], "mg"),
+                            "BW": Q_(self.bodyweight[group], "kg"),
+                            "HEIGHT": Q_(self.bodyheight[group], "m"),
+                        },
+                    )
+                ])
         return tcsims
 
     # Fit Mappings
@@ -141,7 +156,7 @@ class Song2015(ApixabanSimulationExperiment):
         }
         for sid, name in infos.items():
             for group in self.groups:
-                if group != "API10_PO_TAB":
+                if group not in ["API10_PO_TAB", "API10_PO_OS"]:
                     continue
                 mappings[f"fm_{name}_{group}"] = FitMapping(
                     self,
@@ -162,7 +177,7 @@ class Song2015(ApixabanSimulationExperiment):
                     metadata=ApixabanMappingMetaData(
                         tissue=Tissue.PLASMA,
                         route=Route.PO,
-                        application_form=ApplicationForm.TABLET,
+                        application_form=ApplicationForm.TABLET if group == "API10_PO_TAB" else ApplicationForm.SOLUTION,
                         dosing=Dosing.SINGLE,
                         health=Health.HEALTHY,
                         fasting=Fasting.NR,
@@ -181,18 +196,18 @@ class Song2015(ApixabanSimulationExperiment):
 
         plot_info = {
             0: ("[Cve_api]", ["API10_PO_OS", "API10_PO_TAB"], self.colors_study_1),
-            1: ("[Cve_api]", ["API5_NGT_D5W", "API5_NGT_IF", "API5_PO_OS"], self.colors_study_2),
-            2: ("[Cve_api]", ["API5_NGT_NS", "API5_NGT_D5W_crushed", "API5_PO_OS_3"], self.colors_study_3)
+            #1: ("[Cve_api]", ["API5_NGT_D5W", "API5_NGT_IF", "API5_PO_OS"], self.colors_study_2),
+            #2: ("[Cve_api]", ["API5_NGT_NS", "API5_NGT_D5W_crushed", "API5_PO_OS_3"], self.colors_study_3)
         }
 
         fig = Figure(
             experiment=self,
             sid="PK",
             name=f"{self.__class__.__name__}",
-            num_cols=3,
+            num_cols=1,
             num_rows=1,
             height=self.panel_height,
-            width=self.panel_width * 3 * 1.05,
+            width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -204,7 +219,7 @@ class Song2015(ApixabanSimulationExperiment):
                 name = self.infos_pk[sid]
                 dose = self.dose[group]
                 # Simulation
-                if kp == 0 and group == "API10_PO_TAB":
+                if kp == 0 and group in ["API10_PO_TAB", "API10_PO_OS"]:
                     plots[kp].add_data(
                         task=f"task_{group}",
                         xid="time",

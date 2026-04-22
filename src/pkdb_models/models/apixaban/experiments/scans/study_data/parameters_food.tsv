@@ -1,24 +1,24 @@
 study	class	condition	parameter	dose	dose_unit	substance	n	mean	sd	geom_mean	median	Q1	Q3	min	max	unit
-Frost2013	food	fasted	cmax	10	mg	apixaban	21			150.8						ng/ml
-Frost2013	food	fasted	aucinf	10	mg	apixaban	21			1789						ng/ml*hr
-Frost2013	food	fasted	aucend_60	10	mg	apixaban	21			1762.2						ng/ml*hr
+Frost2013	food	fasted	cmax	10	mg	apixaban	21		42.224	150.8						ng/ml
+Frost2013	food	fasted	aucinf	10	mg	apixaban	21		554.59	1789						ng/ml*hr
+Frost2013	food	fasted	aucend_60	10	mg	apixaban	21		563.904	1762.2						ng/ml*hr
 Frost2013	food	fasted	tmax	10	mg	apixaban	21				3			1.5	6	hr
 Frost2013	food	fasted	thalf	10	mg	apixaban	21	11.5	4.3							hr
 #																
-Frost2013	food	fed	cmax	10	mg	apixaban	21			165						ng/ml
-Frost2013	food	fed	aucinf	10	mg	apixaban	21			1867.8						ng/ml*hr
-Frost2013	food	fed	aucend_60	10	mg	apixaban	21			1811.5						ng/ml*hr
+Frost2013	food	fed	cmax	10	mg	apixaban	21		29.7	165						ng/ml
+Frost2013	food	fed	aucinf	10	mg	apixaban	21		560.34	1867.8						ng/ml*hr
+Frost2013	food	fed	aucend_60	10	mg	apixaban	21		543.45	1811.5						ng/ml*hr
 Frost2013	food	fed	tmax	10	mg	apixaban	21				4			1	9	hr
 Frost2013	food	fed	thalf	10	mg	apixaban	21	11.3	2.9							hr
 #																
-Song2016	food	fasted	cmax	5	mg	apixaban	22			121.30						ng/ml
-Song2016	food	fasted	aucinf	5	mg	apixaban	22			1229.00						ng*hr/ml
-Song2016	food	fasted	aucend_72	5	mg	apixaban	22			1200.0						ng*hr/ml
-Song2016	food	fasted	tmax	5	mg	apixaban	22				3.0			1.0	6.0	hr
+Song2016	food	fasted	cmax	5	mg	apixaban	22		33.964	121.3						ng/ml
+Song2016	food	fasted	aucinf	5	mg	apixaban	22		270.38	1229						ng*hr/ml
+Song2016	food	fasted	aucend_72	5	mg	apixaban	22		276	1200						ng*hr/ml
+Song2016	food	fasted	tmax	5	mg	apixaban	22				3			1	6	hr
 Song2016	food	fasted	thalf	5	mg	apixaban	22	9.9	2.4							hr
 #																
-Song2016	food	fed	cmax	5	mg	apixaban	22			103.2						ng/ml
-Song2016	food	fed	aucinf	5	mg	apixaban	22			971.6						ng*hr/ml
-Song2016	food	fed	aucend_72	5	mg	apixaban	22			937.60						ng*hr/ml
-Song2016	food	fed	tmax	5	mg	apixaban	22				2.00			0.9	4.0	hr
-Song2016	food	fed	thalf	5	mg	apixaban	22	10.7	3.0							hr
+Song2016	food	fed	cmax	5	mg	apixaban	22		20.64	103.2						ng/ml
+Song2016	food	fed	aucinf	5	mg	apixaban	22		204.036	971.6						ng*hr/ml
+Song2016	food	fed	aucend_72	5	mg	apixaban	22		206.272	937.6						ng*hr/ml
+Song2016	food	fed	tmax	5	mg	apixaban	22				2			0.9	4	hr
+Song2016	food	fed	thalf	5	mg	apixaban	22	10.7	3							hr

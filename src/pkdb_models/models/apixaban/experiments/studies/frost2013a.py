@@ -53,10 +53,34 @@ class Frost2013a(ApixabanSimulationExperiment):
         "API25x2": 25
     }
 
-    references = {
-        "INR": np.mean([1.12, 1.12, 1.06, 1.18, 1.09, 1.12, 1.15]),
-        "aPTT": np.mean([30.09, 31.39, 28.78, 30.09, 29.94, 31.02, 33.18]),
-        "mPT": np.mean([46.74, 51.79, 50.11, 53.47, 52.86, 42.86, 51.43]),
+    inr = {
+        "placebo": 1.09,
+        "API2x2": 1.12,
+        "API5x2": 1.12,
+        "API10": 1.12,
+        "API10x2": 1.06,
+        "API25": 1.15,
+        "API25x2": 1.18
+    }
+
+    aptt = {
+        "placebo": 29.94,
+        "API2x2": 30.09,
+        "API5x2": 31.39,
+        "API10": 31.02,
+        "API10x2": 28.78,
+        "API25": 33.18,
+        "API25x2": 30.09,
+    }
+
+    mpt = {
+        "placebo": 52.86,
+        "API2x2": 46.74,
+        "API5x2": 51.79,
+        "API10": 42.86,
+        "API10x2": 50.11,
+        "API25": 51.43,
+        "API25x2": 53.47,
     }
 
     infos_pk = {
@@ -97,7 +121,7 @@ class Frost2013a(ApixabanSimulationExperiment):
     def simulations(self) -> Dict[str, TimecourseSim]:
         Q_ = self.Q_
         tcsims = {}
-        for group in self.groups:
+        for kg, group in enumerate(self.groups):
             dose = self.doses[group]
 
             if "x2" in group:
@@ -114,9 +138,9 @@ class Frost2013a(ApixabanSimulationExperiment):
                     changes={
                         **self.default_changes(),
                         "BW": Q_(self.bodyweights[group], "kg"),
-                        "INR_ref": Q_(self.references["INR"], "dimensionless"),
-                        "aPTT_ref": Q_(self.references["aPTT"], "s"),
-                        "mPT_ref": Q_(self.references["mPT"], "s"),
+                        "INR_ref": Q_(self.inr[group], "dimensionless"),
+                        "aPTT_ref": Q_(self.aptt[group], "s"),
+                        "mPT_ref": Q_(self.mpt[group], "s"),
                         "PODOSE_api": Q_(dose, "mg"),
                     },
                 )
@@ -310,7 +334,7 @@ class Frost2013a(ApixabanSimulationExperiment):
     def figure_scatter(self):
         style_mean = lambda group: {
             "kwargs_sim": {
-                "color": "black",
+                "color": self.colors[group],
                 "linestyle": "solid",
             },
             "kwargs_exp": {
@@ -342,7 +366,10 @@ class Frost2013a(ApixabanSimulationExperiment):
             experiment=self,
             sid="PD scatter",
             name=self.__class__.__name__,
+            num_rows=2,
             num_cols=3,
+            height=self.panel_height * 2 * 1.4,
+            width=self.panel_width * 3 * 1.3,
         )
         plots_scatter = fig_scatter.create_plots(
             xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
@@ -351,33 +378,43 @@ class Frost2013a(ApixabanSimulationExperiment):
 
         for label, (sid, kp) in self.infos_scatter.items():
             plots_scatter[kp].set_yaxis(self.labels[sid], unit=self.units[sid], scale="linear")
+            plots_scatter[kp+3].set_yaxis(self.labels[sid], unit=self.units[sid], scale="linear")
 
             if "mean" in label:
-                is_legend = True
                 for group in self.groups:
                     style = style_mean(group)
                     if group != "placebo":
+                        if "x2" in group:
+                            k = kp + 3
+                        else:
+                            k = kp
                         # simulation
-                        plots_scatter[kp].add_data(
+                        plots_scatter[k].add_data(
                             task=f"task_{group}",
                             xid="[Cve_api]",
                             yid=sid,
-                            label="sim" if is_legend else "",
+                            label=f"sim: {self.doses[group]}mg x2 PO" if "x2" in group else f"sim: {self.doses[group]}mg PO",
                             **style["kwargs_sim"]
                         )
                         is_legend = False
                         # data
-                        plots_scatter[kp].add_data(
+                        plots_scatter[k].add_data(
                             dataset=f"{label}_{group}",
                             xid="x",
                             yid="y",
-                            label=f"exp: {self.doses[group]}mg PO",
+                            label=f"exp: {self.doses[group]}mg x2 PO" if "x2" in group else f"exp: {self.doses[group]}mg PO",
                             **style["kwargs_exp"]
                         )
             else:
                 style = style_indiv
                 # data
                 plots_scatter[kp].add_data(
+                    dataset=label,
+                    xid="x",
+                    yid="y",
+                    **style["kwargs_exp"]
+                )
+                plots_scatter[kp+3].add_data(
                     dataset=label,
                     xid="x",
                     yid="y",

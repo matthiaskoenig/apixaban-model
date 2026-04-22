@@ -85,7 +85,7 @@ class Song2016(ApixabanSimulationExperiment):
                         "PODOSE_api": Q_(self.dose[group], "mg"),
                         "BW": Q_(self.bodyweight[group], "kg"),
                         "HEIGHT": Q_(self.bodyheight[group], "m"),
-                        "GU__F_api_abs": Q_(self.fasting_map[self.absorption[group]], "dimensionless"),
+                        "GU__f_absorption": Q_(self.fasting_map[self.absorption[group]], "dimensionless"),
                     },
                 )
         ])
@@ -164,7 +164,7 @@ class Song2016(ApixabanSimulationExperiment):
                     task=f"task_{group}_api_{self.absorption[group]}",
                     xid="time",
                     yid=sid,
-                    label=f"sim: {dose}mg PO" if kp == 0 else f"sim {abs_group}: {dose}mg",
+                    label=f"sim: {dose}mg PO" if kp == 0 else f"sim {abs_group}: {dose}mg PO",
                     color=colors[group]
                 )
                 # Data
@@ -174,7 +174,7 @@ class Song2016(ApixabanSimulationExperiment):
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=f"exp: {dose}mg PO" if kp == 0 else f"exp {abs_group}: {dose}mg",
+                    label=f"exp: {dose}mg PO" if kp == 0 else f"exp {abs_group}: {dose}mg PO",
                     color=colors[group],
                     linestyle="solid",
                 )

@@ -1,5 +1,6 @@
 from typing import Dict
 
+import numpy as np
 from sbmlsim.data import DataSet, load_pkdb_dataframe
 from sbmlsim.fit import FitMapping, FitData
 from sbmlutils.console import console
@@ -42,9 +43,27 @@ class Frost2015(ApixabanSimulationExperiment):
     }
     groups = list(bodyweights.keys())
 
-    # mean start values at t=0
-    inrs = {
-        "INR_ref": 1.1
+    # mean start values at t=1hr
+    inr = {
+        "young": 1.12,
+        "elderly": 1.04,
+        "male": 1.31,
+        "female": 1.25,
+        "young_male": np.mean([1.12, 1.31]),
+        "young_female": np.mean([1.12, 1.25]),
+        "elderly_male": np.mean([1.04, 1.31]),
+        "elderly_female": np.mean([1.04, 1.25]),
+    }
+
+    mpt = {
+        "young": 52.95,
+        "elderly": 57.30,
+        "male": 48.60,
+        "female": 54.40,
+        "young_male": np.mean([52.95, 48.60]),
+        "young_female": np.mean([52.95, 54.40]),
+        "elderly_male": np.mean([57.30, 48.60]),
+        "elderly_female": np.mean([57.30, 54.40]),
     }
 
     dose = "API_20"
@@ -145,7 +164,8 @@ class Frost2015(ApixabanSimulationExperiment):
                         "BW": Q_(self.bodyweights[group], "kg"),
                         "PODOSE_api": Q_(20, "mg"),
                         # set pharmacodynamic baseline reference parameters (assignment rules use these)
-                        "INR_ref": Q_(self.inrs["INR_ref"], self.units["INR"]),
+                        "INR_ref": Q_(self.inr[group], self.units["INR"]),
+                        "mPT_ref": Q_(self.mpt[group], self.units["mPT"]),
                         "KI__f_renal_function": Q_(self.clearance[group], "dimensionless"),
                     },
                 )]
@@ -296,7 +316,7 @@ class Frost2015(ApixabanSimulationExperiment):
             name=self.__class__.__name__,
             num_rows=2,
             num_cols=4,
-            height=self.panel_height * 2 * 1.1,
+            height=self.panel_height * 2 * 1.2,
             width=self.panel_width * 4 * 1.1
         )
         plots = fig.create_plots(
@@ -361,7 +381,7 @@ class Frost2015(ApixabanSimulationExperiment):
                 name=self.__class__.__name__,
                 num_rows=2,
                 num_cols=2,
-                height=self.panel_height * 2,
+                height=self.panel_height * 2 * 1.2,
                 width=self.panel_width * 2
             )
             plots = fig.create_plots(
@@ -415,7 +435,7 @@ class Frost2015(ApixabanSimulationExperiment):
                         task=f"task_{sim_g}",
                         xid="[Cve_api]",
                         yid=sid,
-                        label="sim" if is_legend else "",
+                        label="sim: 20mg PO" if is_legend else "",
                         color="black",
                         linestyle="solid",
                     )

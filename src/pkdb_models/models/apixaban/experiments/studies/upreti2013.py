@@ -205,7 +205,7 @@ class Upreti2013(ApixabanSimulationExperiment):
                     xid=xid,
                     yid=yid,
                     label="sim: 10mg PO" if is_legend else "",
-                    color="black",
+                    color=self.colors[group],
                     linestyle="solid"
                 )
                 is_legend = False

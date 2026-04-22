@@ -158,18 +158,18 @@ class Cui2013(ApixabanSimulationExperiment):
 
     def figures(self) -> Dict[str, Figure]:
         return {
-            **self.figure_pk(),
-            **self.figure_pd(),
-            **self.figure_scatter(),
+            **self.figure(),
         }
 
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure(self) -> Dict[str, Figure]:
         fig = Figure(
             experiment=self,
             sid="Fig1",
             name=f"{self.__class__.__name__}",
+            num_cols=3,
+            num_rows=1,
             height=self.panel_height,
-            width=self.panel_width * 0.87,
+            width=self.panel_width * 3 * 1.05
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time, min=-20, max=75),
@@ -177,6 +177,9 @@ class Cui2013(ApixabanSimulationExperiment):
         )
         for kp, sid in enumerate(self.infos_pk):
             plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid])
+
+        for kp, sid in enumerate(self.infos_pd):
+            plots[kp+1].set_yaxis(self.labels[sid], unit=self.units[sid])
 
         for intervention in self.interventions:
             plots[0].add_data(
@@ -196,35 +199,16 @@ class Cui2013(ApixabanSimulationExperiment):
                 label=f"exp {self.legends[intervention]}",
                 color=self.admin_colors["single"] if intervention == "API10" else self.admin_colors["multiple"],
             )
-
-        return {fig.sid: fig}
-
-    def figure_pd(self) -> Dict[str, Figure]:
-        fig = Figure(
-            experiment=self,
-            sid="Fig2",
-            name=f"{self.__class__.__name__}",
-            height=self.panel_height,
-            width=self.panel_width * 0.87,
-        )
-        plots = fig.create_plots(
-            xaxis=Axis(self.label_time, unit=self.unit_time, min=-20, max=75),
-            legend=True,
-        )
-        for kp, sid in enumerate(self.infos_pd):
-            plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid])
-
-        for intervention in self.interventions:
             for kp, sid in enumerate(self.infos_pd):
                 name = self.infos_pd[sid]
-                plots[0].add_data(
+                plots[1].add_data(
                     task=f"task_{intervention}",
                     xid="time",
                     yid=sid,
                     label=f"sim {self.legends[intervention]}",
                     color=self.admin_colors["single"] if intervention == "API10" else self.admin_colors["multiple"],
                 )
-                plots[0].add_data(
+                plots[1].add_data(
                     dataset=f"{name}_{intervention}",
                     xid="time",
                     yid="mean",
@@ -234,22 +218,9 @@ class Cui2013(ApixabanSimulationExperiment):
                     color=self.admin_colors["single"] if intervention == "API10" else self.admin_colors["multiple"],
                 )
 
-        return {fig.sid: fig}
-
-    def figure_scatter(self) -> Dict[str, Figure]:
-        fig = Figure(
-            experiment=self,
-            sid="Fig3",
-            name=f"{self.__class__.__name__}",
-            height=self.panel_height,
-            width=self.panel_width * 0.87,
-        )
-        plots = fig.create_plots(
-            xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
-            legend=True,
-        )
-        plots[0].set_yaxis(self.labels["antiXa_activity"], unit=self.units["antiXa_activity"], scale="linear")
-        plots[0].add_data(
+        plots[2].set_xaxis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"])
+        plots[2].set_yaxis(self.labels["antiXa_activity"], unit=self.units["antiXa_activity"], scale="linear")
+        plots[2].add_data(
             task="task_API10",
             xid="[Cve_api]",
             yid="antiXa_activity",
@@ -258,7 +229,7 @@ class Cui2013(ApixabanSimulationExperiment):
             linestyle="solid",
         )
 
-        plots[0].add_data(
+        plots[2].add_data(
             dataset="antiXa_vs_apixaban",
             xid="x",
             yid="y",

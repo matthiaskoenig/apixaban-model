@@ -1,0 +1,206 @@
+
+        <html>
+
+        <body>
+        <h1>Parameter fitting: all [20260417_105451__98fd0]</h1>
+
+        <h2>Optimal parameters</h2>
+        <p>
+        <strong>Emax_aPTT</strong>: 0.584242573057277 dimensionless, [0.1 - 10]<br/><strong>EC50_api_aPTT</strong>: 0.0001531256744297555 mM, [0.0001 - 0.001]
+        </p>
+        <p>
+        <ul>
+            <li><a target="_blank" href="report.txt">report.txt</a></li>
+            <li><a target="_blank" href="optimization_result.json">optimization_result.json</a></li>
+            <li><a target="_blank" href="optimization_result.tsv">optimization_result.tsv</a></li>
+        </p>
+
+        <h2>Optimization Performance</h2>
+        <p>
+        <img src="./plots/traces.svg">
+        <img src="./plots/waterfall.svg">
+        <p>
+
+        <h2>Data point prediction</h2>
+        <p>
+        <img src="./plots/datapoint_scatter.svg">
+        <img src="./plots/residual_scatter.svg">
+        <p>
+
+        <p>
+        <img src="./plots/residual_boxplot.svg">
+        <img src="./plots/cost_bar.svg">
+        <p>
+
+        <h2>Fits</h2>
+        <p>
+        <p><img src="plots/Frost2013_fm_aPTT_D0_5.svg"></p>
+<p><img src="plots/Frost2013_fm_aPTT_D1.svg"></p>
+<p><img src="plots/Frost2013_fm_aPTT_D2_5.svg"></p>
+<p><img src="plots/Frost2013_fm_aPTT_D5.svg"></p>
+<p><img src="plots/Frost2013_fm_aPTT_D10.svg"></p>
+<p><img src="plots/Frost2013_fm_aPTT_D25.svg"></p>
+<p><img src="plots/Frost2013_fm_aPTT_D50.svg"></p>
+<p><img src="plots/Frost2013a_fm_placebo_aPTT.svg"></p>
+<p><img src="plots/Frost2013a_fm_API2x2_aPTT.svg"></p>
+<p><img src="plots/Frost2013a_fm_API5x2_aPTT.svg"></p>
+<p><img src="plots/Frost2013a_fm_API10_aPTT.svg"></p>
+<p><img src="plots/Frost2013a_fm_API10x2_aPTT.svg"></p>
+<p><img src="plots/Frost2013a_fm_API25_aPTT.svg"></p>
+<p><img src="plots/Frost2013a_fm_API25x2_aPTT.svg"></p>
+<p><img src="plots/Frost2018_fm_aPTT_placebo_japanese.svg"></p>
+<p><img src="plots/Frost2018_fm_aPTT_placebo_caucasian.svg"></p>
+<p><img src="plots/Frost2018_fm_aPTT_API2.5_japanese.svg"></p>
+<p><img src="plots/Frost2018_fm_aPTT_API2.5_caucasian.svg"></p>
+<p><img src="plots/Frost2018_fm_aPTT_API10_japanese.svg"></p>
+<p><img src="plots/Frost2018_fm_aPTT_API10_caucasian.svg"></p>
+<p><img src="plots/Frost2018_fm_aPTT_API25_japanese.svg"></p>
+<p><img src="plots/Frost2018_fm_aPTT_API25_caucasian.svg"></p>
+<p><img src="plots/Frost2018_fm_aPTT_API50_japanese.svg"></p>
+<p><img src="plots/Frost2018_fm_aPTT_API50_caucasian.svg"></p>
+<p><img src="plots/Frost2021a_fm_po_aPTT_healthy.svg"></p>
+<p><img src="plots/Wang2016_fm_aptt_healthy.svg"></p>
+        </p>
+
+        <h2>Optimization results</h2>
+        <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>run</th>
+      <th>success</th>
+      <th>duration</th>
+      <th>cost</th>
+      <th>Emax_aPTT</th>
+      <th>EC50_api_aPTT</th>
+      <th>message</th>
+      <th>x</th>
+      <th>x0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>True</td>
+      <td>3.163001</td>
+      <td>3022.488712</td>
+      <td>0.584243</td>
+      <td>0.000153</td>
+      <td>`ftol` termination condition is satisfied.</td>
+      <td>[0.584242573057277, 0.0001531256744297555]</td>
+      <td>[0.18262715155324558, 0.0001236818650112141]</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>9</td>
+      <td>True</td>
+      <td>3.950017</td>
+      <td>3022.618073</td>
+      <td>0.684407</td>
+      <td>0.000183</td>
+      <td>`ftol` termination condition is satisfied.</td>
+      <td>[0.6844068999939928, 0.00018318615329795753]</td>
+      <td>[1.5878191028949478, 0.00016044146733576933]</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>True</td>
+      <td>4.132306</td>
+      <td>3022.620795</td>
+      <td>0.684690</td>
+      <td>0.000183</td>
+      <td>`xtol` termination condition is satisfied.</td>
+      <td>[0.6846895726840313, 0.00018326572820804706]</td>
+      <td>[0.7711834128101981, 0.0005443578591510972]</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>True</td>
+      <td>4.512417</td>
+      <td>3022.622587</td>
+      <td>0.684858</td>
+      <td>0.000183</td>
+      <td>`ftol` termination condition is satisfied.</td>
+      <td>[0.6848579743424716, 0.00018331792738194517]</td>
+      <td>[3.04720726818905, 0.00010817301017956647]</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7</td>
+      <td>True</td>
+      <td>3.943378</td>
+      <td>3022.623418</td>
+      <td>0.684952</td>
+      <td>0.000183</td>
+      <td>`ftol` termination condition is satisfied.</td>
+      <td>[0.6849520558384812, 0.0001833421304465899]</td>
+      <td>[0.17592022139935048, 0.00023000653016416376]</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>8</td>
+      <td>True</td>
+      <td>4.668192</td>
+      <td>3022.623438</td>
+      <td>0.684948</td>
+      <td>0.000183</td>
+      <td>`ftol` termination condition is satisfied.</td>
+      <td>[0.6849482628536685, 0.0001833426783133872]</td>
+      <td>[0.2101050219856777, 0.0006191986070267151]</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2</td>
+      <td>True</td>
+      <td>3.479317</td>
+      <td>3022.624131</td>
+      <td>0.685029</td>
+      <td>0.000183</td>
+      <td>`ftol` termination condition is satisfied.</td>
+      <td>[0.6850285544733772, 0.0001833628437907762]</td>
+      <td>[2.764441071533424, 0.00022426989133479043]</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>6</td>
+      <td>True</td>
+      <td>4.296855</td>
+      <td>3022.624483</td>
+      <td>0.685034</td>
+      <td>0.000183</td>
+      <td>`ftol` termination condition is satisfied.</td>
+      <td>[0.6850339754675507, 0.00018337299947273508]</td>
+      <td>[6.1528630721939495, 0.00040945998170407495]</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>5</td>
+      <td>True</td>
+      <td>3.207944</td>
+      <td>3022.624521</td>
+      <td>0.685299</td>
+      <td>0.000183</td>
+      <td>`xtol` termination condition is satisfied.</td>
+      <td>[0.6852994650365789, 0.000183370951702883]</td>
+      <td>[0.42065625446962185, 0.0005593288171333681]</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0</td>
+      <td>True</td>
+      <td>4.089769</td>
+      <td>3022.624658</td>
+      <td>0.685138</td>
+      <td>0.000183</td>
+      <td>`xtol` termination condition is satisfied.</td>
+      <td>[0.6851382828778798, 0.00018337796294519142]</td>
+      <td>[7.342513714433754, 0.00045473925320159913]</td>
+    </tr>
+  </tbody>
+</table>
+        </body>
+        </html>
+        

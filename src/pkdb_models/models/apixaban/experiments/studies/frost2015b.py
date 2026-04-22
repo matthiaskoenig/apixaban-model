@@ -122,9 +122,6 @@ class Frost2015b(ApixabanSimulationExperiment):
                     )
                 )
 
-            return mappings
-
-
         return mappings
 
     def figures(self) -> Dict[str, Figure]:

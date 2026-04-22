@@ -120,7 +120,7 @@ class Raghavan2009(ApixabanSimulationExperiment):
                 steps=500,
                 changes={
                     **self.default_changes(),
-                    "PODOSE_api": Q_(self.dose, "mg"),
+                    "SOLDOSE_api": Q_(self.dose, "mg"),
                 },
             )
         ])
@@ -179,10 +179,10 @@ class Raghavan2009(ApixabanSimulationExperiment):
             experiment=self,
             sid="PK",
             name=f"{self.__class__.__name__}",
-            num_cols=6,
-            num_rows=1,
-            height=self.panel_height,
-            width=self.panel_width * 6 * 1.1,
+            num_cols=2,
+            num_rows=3,
+            height=self.panel_height * 3 * 1.1,
+            width=self.panel_width * 2,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -215,14 +215,14 @@ class Raghavan2009(ApixabanSimulationExperiment):
                         task="task_control",
                         xid="time",
                         yid=sid,
-                        label=f"sim: {self.dose}mg PO" if "api" in sid or ("m1" in sid and kp == 1) else f"{sid.split("_")[1]} sim: {self.dose}mg PO",
+                        label=f"sim: {self.dose}mg SOL" if "api" in sid or ("m1" in sid and kp == 1) else f"{sid.split("_")[1]} sim: {self.dose}mg SOL",
                         color=info["color"],
                     )
                 for name in names:
                     if sid.startswith("[Cve"):
-                        label = f"exp{group[-1]}: {self.dose}mg PO(sol) [ng/ml]" if name == "apixaban" else f"exp{group[-1]}: {self.dose}mg PO(sol) [µM]"
+                        label = f"exp{group[-1]}: {self.dose}mg SOL [ng/ml]" if name == "apixaban" else f"exp{group[-1]}: {self.dose}mg SOL [µM]"
                     else:
-                        label = f"exp{group[-1]}: {self.dose}mg PO(sol)" if "api" in sid else f"{sid.split("_")[1]} exp{group[-1]}: {self.dose}mg PO(sol)"
+                        label = f"exp{group[-1]}: {self.dose}mg SOL" if "api" in sid else f"{sid.split("_")[1]} exp{group[-1]}: {self.dose}mg SOL"
                     # Data
                     plots[kp].add_data(
                         dataset=f"{name}_{group}",

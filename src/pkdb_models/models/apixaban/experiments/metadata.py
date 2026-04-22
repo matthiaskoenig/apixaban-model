@@ -46,6 +46,7 @@ class Fasting(str, Enum):
 
 class Coadministration(str, Enum):
     NONE = "none"
+    ATENOLOL = "atenolol"
     CARBAMAZEPINE = "carbamazepine"
     CLARITHROMYCIN = "clarithromycin"
     CYCLOSPORINE = "cyclosporine"

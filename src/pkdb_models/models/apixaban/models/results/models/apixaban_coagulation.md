@@ -13,21 +13,20 @@ length: [m]
 ```
 EC50_api_INR = 0.000883732940236046  # [mmol/l] Effect constant for INR  
 EC50_api_PT = 0.00358  # [mmol/l] Effect constant for PT  
-EC50_api_Xa = 0.0002959  # [mmol/l] Effect constant for Xa inhibition  
 EC50_api_aPTT = 0.000494153291759925  # [mmol/l] Effect constant for aPTT  
-EC50_api_antiXa = 0.0002959  # [mmol/l] Effect constant for anti-Xa activity  
 EC50_api_mPT = 0.000189426271250564  # [mmol/l] Effect constant for mPT  
 Emax_INR = 0.751552226973606  # [-] Effect constant for INR inhibition  
 Emax_PT = 3.55309  # [-] Effect constant for PT inhibition  
-Emax_Xa = 0.686093  # [-] Effect constant for Xa inhibition  
+Emax_Xa = 0.686093  # [l/mmol] Effect constant for Xa inhibition  
 Emax_aPTT = 0.444368499749261  # [-] Effect constant for aPTT inhibition  
-Emax_antiXa = 0.686093  # [1/ml] Effect constant for anti-Xa activity  
+Emax_antiXa = 0.686093  # [l/ml/mmol] Effect constant for anti-Xa activity  
+Emax_antiXa_gram = 0.686093  # [ng*l/ml/mmol] Effect constant for anti-Xa activity  
 Emax_mPT = 1.56589206567588  # [-] Effect constant for mPT inhibition  
 INR_ref = 1.0  # [-] INR reference  
 PT_ref = 12.5  # [s] prothrombin time reference  
 Vplasma = 5.0  # [l] plasma  
 aPTT_ref = 28.4  # [s] activated partial thromboplastin reference  
-antiXa_activity_gram = 0.0  # [ng/ml] anti-FXa activity  
+fu_api = 0.131  # [-] fraction unbound in plasma mPT  
 mPT_ref = 53.4  # [s] modified prothrombin time reference  
 ```
 
@@ -39,12 +38,13 @@ Cve_api = 0.0  # [mmol/l] apixaban in Vplasma
 ## ODE system
 ```
 # y
-INR = INR_ref * (1 + Emax_INR * Cve_api / (Cve_api + EC50_api_INR))  # [-] INR  
-PT = PT_ref * (1 + Emax_PT * Cve_api / (Cve_api + EC50_api_PT))  # [s] prothrombin time  
-Xa_inhibition = Emax_Xa * Cve_api / (Cve_api + EC50_api_Xa)  # [-] inhibition of FXa  
-aPTT = aPTT_ref * (1 + Emax_aPTT * Cve_api / (Cve_api + EC50_api_aPTT))  # [s] activated partial thromboplastin  
-antiXa_activity = Emax_antiXa * Cve_api / (Cve_api + EC50_api_antiXa)  # [1/ml] anti-FXa activity  
-mPT = mPT_ref * (1 + Emax_mPT * Cve_api / (Cve_api + EC50_api_mPT))  # [s] modified prothrombin time  
+INR = INR_ref * (1 + Emax_INR * Cve_api * fu_api / (Cve_api * fu_api + EC50_api_INR))  # [-] INR  
+PT = PT_ref * (1 + Emax_PT * Cve_api * fu_api / (Cve_api * fu_api + EC50_api_PT))  # [s] prothrombin time  
+Xa_inhibition = Emax_Xa * Cve_api * fu_api  # [-] inhibition of FXa  
+aPTT = aPTT_ref * (1 + Emax_aPTT * Cve_api * fu_api / (Cve_api * fu_api + EC50_api_aPTT))  # [s] activated partial thromboplastin  
+antiXa_activity = Emax_antiXa * Cve_api * fu_api  # [1/ml] anti-FXa activity  
+antiXa_activity_gram = Emax_antiXa_gram * Cve_api * fu_api  # [ng/ml] anti-FXa activity  
+mPT = mPT_ref * (1 + Emax_mPT * Cve_api * fu_api / (Cve_api * fu_api + EC50_api_mPT))  # [s] modified prothrombin time  
 INR_change = INR - INR_ref  # [-] INR change  
 INR_ratio = INR / INR_ref  # [-] INR ratio  
 INR_relchange = (INR - INR_ref) / INR_ref  # [-] INR relative change  

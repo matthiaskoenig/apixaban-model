@@ -237,9 +237,18 @@ _m.reactions = [
                 name="rate apixaban import",
                 sboTerm=SBO.MAXIMAL_VELOCITY,
             ),
+            Parameter(
+                "fu_api",
+                13.1 / 100,  # [-] unbound in plasma He2011
+                U.dimensionless,
+                constant=True,
+                name=f"fraction unbound in plasma api",
+                sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+                port=True,
+            ),
         ],
         formula=(
-            "APIIM_k * Vli * (api_ext - api)"
+            "APIIM_k * Vli * (api_ext * fu_api - api)"
         ),
         notes="""Assuming fast equilibration."""
     ),
@@ -290,15 +299,22 @@ _m.reactions = [
         sboTerm=SBO.BIOCHEMICAL_REACTION,
         pars=[
             Parameter(
-                "M22M1_k",
+                "M22M1_Vmax", # M22M1_k
                 0.1,
-                U.per_min,
+                U.mmole_per_min,
+                name="rate m2 -> m1 conversion",
+                sboTerm=SBO.MAXIMAL_VELOCITY,
+            ),
+            Parameter(
+                "M22M1_Km",
+                0.1,
+                U.mmole,
                 name="rate m2 -> m1 conversion",
                 sboTerm=SBO.MAXIMAL_VELOCITY,
             ),
         ],
         formula=(
-            "M22M1_k * Vli * m2"
+            "M22M1_Vmax * Vli * m2 / (M22M1_Km + Vli * m2)"
         ),
     ),
     Reaction(
@@ -345,15 +361,16 @@ _m.reactions = [
 
 ]
 
-# biliary excretion
-_m.parameters.append(
+
+_m.parameters.extend([
     Parameter(
-       "MXEXBI_k",
-       9.99999999999998e-05,
+        "MXEXBI_k",
+        9.99999999999998e-05,
         unit=U.per_min,
         name="rate for edoxaban metabolites export in bile",
         sboTerm=SBO.KINETIC_CONSTANT,
-        ),
+    ),
+]
 )
 
 for sid in ["m1", "m2", "m7"]:
