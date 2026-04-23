@@ -1,5 +1,5 @@
 """Liver model for apixaban."""
-
+import pandas as pd
 from sbmlutils.factory import *
 from sbmlutils.metadata import *
 from pkdb_models.models.apixaban.models import annotations
@@ -388,7 +388,7 @@ for sid in ["m1", "m2", "m7"]:
         ),
         Reaction(
             f"{sid.upper()}EXEHC",
-            name=f"{sid.upper()} enterohepatic circulation",
+            name=f"{sid.upper()} lumen export",
             equation=f"{sid}_bi -> {sid}_lumen",
             sboTerm=SBO.TRANSPORT_REACTION,
             compartment="Vlumen",
@@ -401,6 +401,92 @@ for sid in ["m1", "m2", "m7"]:
 
 model_liver = _m
 
+def apixaban_layout(dx=200, dy=200) -> pd.DataFrame:
+    """Layout definition."""
+
+    delta_y = 0.5 * dy
+    delta_x = 0.7 * dx
+
+    positions = [
+        # sid, x, y
+
+        ["api_ext",  1.7 * delta_x, 0 * delta_y],
+        ["m7_ext", 0.2 * delta_x, 0 * delta_y],
+        ["m1_ext", 4.7 * delta_x, 0 * delta_y],
+
+        ["APIIM", 1.7 * delta_x, 1 * delta_y],
+        ["M7EX", 0.2 * delta_x, 1 * delta_y],
+        ["M1EX", 4.7 * delta_x, 1 * delta_y],
+
+        ["api",  1.7 * delta_x, 2 * delta_y],
+        ["m7", 0.2 * delta_x, 2 * delta_y],
+        ["m2", 3.2 * delta_x, 2 * delta_y],
+        ["m1", 4.7 * delta_x, 2 * delta_y],
+
+        ["API2M7", (0.2+1.7)/2 * delta_x, 2.5 * delta_y],
+        ["API2M2", (1.7+3.2)/2 * delta_x, 2.5 * delta_y],
+        ["M22M1", (3.2+4.7)/2 * delta_x, 2.5 * delta_y],
+
+        ["M7EXBI",  0.2 * delta_x, 3.0 * delta_y],
+        ["M2EXBI", 3.2 * delta_x, 3.0 * delta_y],
+        ["M1EXBI", 4.7 * delta_x, 3.0 * delta_y],
+
+        ["m7_bi", 0.2  * delta_x, 3.7 * delta_y],
+        ["m2_bi", 3.2 * delta_x, 3.7 * delta_y],
+        ["m1_bi", 4.7 * delta_x, 3.7 * delta_y],
+
+        ["M7EXEHC", 0.2  * delta_x, 4.5 * delta_y],
+        ["M2EXEHC", 3.2 * delta_x, 4.5 * delta_y],
+        ["M1EXEHC", 4.7 * delta_x, 4.5 * delta_y],
+
+        ["m7_lumen", 0.2 * delta_x, 5.2 * delta_y],
+        ["m2_lumen", 3.2 * delta_x, 5.2 * delta_y],
+        ["m1_lumen", 4.7 * delta_x, 5.2 * delta_y],
+    ]
+
+    df = pd.DataFrame(positions, columns=["id", "x", "y"])
+    df.set_index("id", inplace=True)
+
+    return df
+
+
+def apixaban_annotations(dx=200, dy=200) -> list:
+    COLOR_PLASMA = "#FF796C"
+    COLOR_LIVER = "#FFFFFF"
+    COLOR_BILE = "#F5F5C6"
+    COLOR_LUMEN = "#CFEFFF"
+
+    kwargs = {
+        "type": cyviz.AnnotationShapeType.ROUND_RECTANGLE,
+        "opacity": 20,
+        "border_color": "#000000",
+        "border_thickness": 2,
+    }
+
+    xpos = -0.5 * dx
+    width = 4.4 * dx
+    delta_y = 0.5 * dy
+
+    annotations = [
+        cyviz.AnnotationShape(
+            x_pos=xpos, y_pos=-0.5 * delta_y, width=width, height=1.5 * delta_y,
+            fill_color=COLOR_PLASMA, **kwargs
+        ),
+        cyviz.AnnotationShape(
+            x_pos=xpos, y_pos=1.0 * delta_y, width=width, height=2.0 * delta_y,
+            fill_color=COLOR_LIVER, **kwargs
+        ),
+        cyviz.AnnotationShape(
+            x_pos=xpos, y_pos=3.0 * delta_y, width=width, height=1.5 * delta_y,
+            fill_color=COLOR_BILE, **kwargs
+        ),
+        cyviz.AnnotationShape(
+            x_pos=xpos, y_pos=4.5 * delta_y, width=width, height=1.3 * delta_y,
+            fill_color=COLOR_LUMEN, **kwargs
+        ),
+    ]
+
+    return annotations
 
 if __name__ == "__main__":
     from sbmlutils.converters import odefac
@@ -419,4 +505,6 @@ if __name__ == "__main__":
     ode_factory.to_markdown(md_file=results.sbml_path.parent / f"{results.sbml_path.stem}.md")
 
     # visualization in Cytoscape
-    cyviz.visualize_sbml(results.sbml_path, delete_session=True)
+    cyviz.visualize_sbml(sbml_path=results.sbml_path, delete_session=True)
+    cyviz.apply_layout(layout=apixaban_layout())
+    cyviz.add_annotations(annotations=apixaban_annotations())

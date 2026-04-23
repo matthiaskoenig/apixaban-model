@@ -1,5 +1,5 @@
 """Model for coagulation factors and readouts."""
-
+import pandas as pd
 from sbmlutils.factory import *
 from sbmlutils.metadata import *
 from pkdb_models.models.apixaban.models import annotations
@@ -296,4 +296,5 @@ if __name__ == "__main__":
     ode_factory = odefac.SBML2ODE.from_file(sbml_file=results.sbml_path)
     ode_factory.to_markdown(md_file=md_path)
 
-    cyviz.visualize_sbml(results.sbml_path, delete_session=True)
+    # visualization in Cytoscape
+    cyviz.visualize_sbml(sbml_path=results.sbml_path, delete_session=True)

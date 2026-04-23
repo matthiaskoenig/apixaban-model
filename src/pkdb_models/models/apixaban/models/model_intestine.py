@@ -1,5 +1,5 @@
 """Apixaban intestine model."""
-
+import pandas as pd
 from sbmlutils.factory import *
 from sbmlutils.metadata import *
 from pkdb_models.models.apixaban.models import annotations
@@ -423,6 +423,113 @@ _m.rate_rules.append(
 
 model_intestine = _m
 
+def apixaban_layout(dx=200, dy=200) -> pd.DataFrame:
+
+    delta_y = 0.5 * dy
+    delta_x = 1.0 * dx
+
+    x_left   = 0 * delta_x
+    x_lumen  = 1.5 * delta_x
+    x_feces  = 2.5 * delta_x
+
+    lumen_right     = x_lumen + 0.5 * dx   # = intestine_left
+
+    x_border_left_lumen = x_left  + 0.5 * delta_x
+    x_border_lumen_int  = x_lumen + 1.0 * delta_x
+
+    positions = [
+        ["api_ext",         x_left,                  1.3 * delta_y],   # plasma species
+        ["api_stomach",     x_left,                  3.3 * delta_y],   # stomach species
+
+        # Boundary reactions
+        ["APIABS",          x_border_left_lumen,     1.7 * delta_y], # plasma → lumen border
+        ["dissolution_api_tabl", x_border_left_lumen, 3.1 * delta_y],  # stomach → lumen border
+        ["dissolution_api_sol", x_border_left_lumen,     4.1 * delta_y], # stomach → lumen border
+
+        # Lumen column
+        ["api_lumen",       x_lumen*0.93,                 1.2 * delta_y],
+        ["m1_lumen",        x_lumen,                 2.2 * delta_y],
+        ["m2_lumen", x_lumen, 3.2 * delta_y],
+        ["m7_lumen", x_lumen, 4.2 * delta_y],
+
+        # Boundary reactions
+        ["APIEXC",          lumen_right,      1 * delta_y],
+        ["M1EXC",           lumen_right,      2 * delta_y],
+        ["M2EXC", lumen_right, 3 * delta_y],
+        ["M7EXC", lumen_right, 4 * delta_y],
+    ]
+
+    # Feces
+    positions += [
+        ["api_feces", x_feces, 1.2 * delta_y],
+        ["m1_feces",  x_feces, 2.2 * delta_y],
+        ["m2_feces", x_feces, 3.2 * delta_y],
+        ["m7_feces", x_feces, 4.2 * delta_y],
+    ]
+
+    df = pd.DataFrame(positions, columns=["id", "x", "y"])
+    df.set_index("id", inplace=True)
+
+    return df
+
+
+def apixaban_annotations(dx=200, dy=200) -> list:
+    COLOR_STOMACH = "#1f77b4"
+    COLOR_INTESTINE = "#FFFFFF"
+    COLOR_BLOOD = "#FF796C"
+    COLOR_FECES = "#8c564b"
+
+    kwargs = {
+        "type": cyviz.AnnotationShapeType.ROUND_RECTANGLE,
+        "opacity": 20,
+        "border_color": "#000000",
+        "border_thickness": 2,
+    }
+
+    dy = 0.5 * dy
+    dx = 1.0 * dx
+
+    x_left   = 0 * dx
+    x_lumen  = 1.5 * dx
+    x_feces  = 2.5 * dx
+
+    left_box_left   = x_left  - 0.5 * dx
+    left_box_right  = x_left  + 0.5 * dx   # = lumen_left
+    lumen_right     = x_lumen + 0.5 * dx   # = intestine_left
+    feces_right     = x_feces + 0.5 * dx
+
+    full_top    = 0.5 * dy
+    full_height = 4.0 * dy
+    plasma_height = 2.0 * dy
+    stomach_height = 2.0 * dy
+
+    annotations = [
+        # Plasma
+        cyviz.AnnotationShape(
+            x_pos=left_box_left, y_pos=full_top,
+            width=left_box_right - left_box_left, height=plasma_height,
+            fill_color=COLOR_BLOOD, **kwargs
+        ),
+        # Stomach
+        cyviz.AnnotationShape(
+            x_pos=left_box_left, y_pos=full_top + plasma_height,
+            width=left_box_right - left_box_left, height=stomach_height,
+            fill_color=COLOR_STOMACH, **kwargs
+        ),
+        # Lumen
+        cyviz.AnnotationShape(
+            x_pos=left_box_right, y_pos=full_top,
+            width=lumen_right - left_box_right, height=full_height,
+            fill_color=COLOR_INTESTINE, **kwargs
+        ),
+        # Feces
+        cyviz.AnnotationShape(
+            x_pos=lumen_right, y_pos=full_top,
+            width=feces_right - lumen_right, height=full_height,
+            fill_color=COLOR_FECES, **kwargs
+        ),
+    ]
+    return annotations
 
 if __name__ == "__main__":
     from sbmlutils.converters import odefac
@@ -441,4 +548,7 @@ if __name__ == "__main__":
     ode_factory.to_markdown(md_file=results.sbml_path.parent / f"{results.sbml_path.stem}.md")
 
     # visualization in Cytoscape
-    cyviz.visualize_sbml(results.sbml_path, delete_session=False)
+    # Visualize
+    cyviz.visualize_sbml(sbml_path=results.sbml_path, delete_session=True)
+    cyviz.apply_layout(layout=apixaban_layout())
+    cyviz.add_annotations(annotations=apixaban_annotations())

@@ -1,28 +1,28 @@
 study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	label	mean	geomean	median	min	max	sd	geosd	se	cv	unit	comments
-Frost2021a	healthy	16.0	API5	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	cmax_healthy	NA	123.0	NA	NA	NA	NA	1.29144264588987	NA	26.0	ng/ml	geo mean was taken from the table and used to calculate the geo SD, no normal mean given
-Frost2021a	healthy	16.0	API5	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	auc_inf_healthy	NA	1054.0	NA	NA	NA	NA	1.40486151305414	NA	35.0	ng*hr/ml	NA
-Frost2021a	healthy	16.0	API5	auc_end	apixaban	plasma	HPLC MS/MS	72.0	hr	auc_end_healthy	NA	1021.0	NA	NA	NA	NA	1.43074778817185	NA	37.0	ng*hr/ml	NA
+Frost2021a	healthy	16.0	API5	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	cmax_healthy	NA	123.0	NA	NA	NA	NA	31.98	NA	26.0	ng/ml	geo mean was taken from the table and used to calculate the geo SD, no normal mean given
+Frost2021a	healthy	16.0	API5	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	auc_inf_healthy	NA	1054.0	NA	NA	NA	NA	368.9	NA	35.0	ng*hr/ml	NA
+Frost2021a	healthy	16.0	API5	auc_end	apixaban	plasma	HPLC MS/MS	72.0	hr	auc_end_healthy	NA	1021.0	NA	NA	NA	NA	377.77	NA	37.0	ng*hr/ml	NA
 Frost2021a	healthy	16.0	API5	tmax	apixaban	plasma	HPLC MS/MS	NA	NA	tmax_healthy	NA	NA	2.5	2.0	4.0	NA	NA	NA	NA	hr	NA
 Frost2021a	healthy	16.0	API5	thalf	apixaban	plasma	HPLC MS/MS	NA	NA	thalf_healthy	14.8	NA	NA	NA	NA	10.2	NA	NA	NA	hr	NA
-Frost2021a	healthy	16.0	API5	clearance_renal	apixaban	plasma	HPLC MS/MS	NA	NA	clearance_renal_healthy	NA	0.59	NA	NA	NA	NA	1.4831686702154	NA	41.0	l/hr	NA
+Frost2021a	healthy	16.0	API5	clearance_renal	apixaban	plasma	HPLC MS/MS	NA	NA	clearance_renal_healthy	NA	0.59	NA	NA	NA	NA	0.2419	NA	41.0	l/hr	NA
 Frost2021a	healthy	16.0	API5	fraction_unbound	apixaban	plasma	HPLC MS/MS	NA	NA	fraction_unbound_healthy	7.1	NA	NA	NA	NA	1.3	NA	NA	NA	percent	NA
 Frost2021a	healthy	16.0	API5	cumulative amount	apixaban	urine	calculated	0.0	hr	cumulative amount_healthy	NA	0.0	NA	NA	NA	NA	NA	NA	NA	mg	NA
 Frost2021a	healthy	16.0	API5	cumulative amount	apixaban	urine	calculated	72.0	hr	cumulative amount_healthy	NA	0.60239	NA	NA	NA	NA	1.82	NA	NA	mg	l/hr * ng * hr / ml = ml * 1000 /hr * ng * hr / ml = mg
-Frost2021a	mild	8.0	API5	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	cmax_mild	NA	104.0	NA	NA	NA	NA	1.32865308114833	NA	29.0	ng/ml	NA
-Frost2021a	mild	8.0	API5	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	auc_inf_mild	NA	1083.0	NA	NA	NA	NA	1.34119415720715	NA	30.0	ng*hr/ml	NA
-Frost2021a	mild	8.0	API5	auc_end	apixaban	plasma	HPLC MS/MS	72.0	hr	auc_end_mild	NA	1054.0	NA	NA	NA	NA	1.34119415720715	NA	30.0	ng*hr/ml	NA
+Frost2021a	mild	8.0	API5	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	cmax_mild	NA	104.0	NA	NA	NA	NA	30.16	NA	29.0	ng/ml	NA
+Frost2021a	mild	8.0	API5	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	auc_inf_mild	NA	1083.0	NA	NA	NA	NA	324.9	NA	30.0	ng*hr/ml	NA
+Frost2021a	mild	8.0	API5	auc_end	apixaban	plasma	HPLC MS/MS	72.0	hr	auc_end_mild	NA	1054.0	NA	NA	NA	NA	316.2	NA	30.0	ng*hr/ml	NA
 Frost2021a	mild	8.0	API5	tmax	apixaban	plasma	HPLC MS/MS	NA	NA	tmax_mild	NA	NA	3.25	2.0	4.0	NA	NA	NA	NA	hr	NA
 Frost2021a	mild	8.0	API5	thalf	apixaban	plasma	HPLC MS/MS	NA	NA	thalf_mild	14.7	NA	NA	NA	NA	7.0	NA	NA	NA	hr	NA
-Frost2021a	mild	8.0	API5	clearance_renal	apixaban	plasma	HPLC MS/MS	NA	NA	clearance_renal_mild	NA	0.89	NA	NA	NA	NA	1.27918182849393	NA	25.0	l/hr	NA
+Frost2021a	mild	8.0	API5	clearance_renal	apixaban	plasma	HPLC MS/MS	NA	NA	clearance_renal_mild	NA	0.89	NA	NA	NA	NA	0.2225	NA	25.0	l/hr	NA
 Frost2021a	mild	8.0	API5	fraction_unbound	apixaban	plasma	HPLC MS/MS	NA	NA	fraction_unbound_mild	6.8	NA	NA	NA	NA	1.4	NA	NA	NA	percent	NA
 Frost2021a	mild	8.0	API5	cumulative amount	apixaban	urine	calculated	0.0	hr	cumulative amount_mild	NA	0.0	NA	NA	NA	NA	NA	NA	NA	mg	NA
 Frost2021a	mild	8.0	API5	cumulative amount	apixaban	urine	calculated	72.0	hr	cumulative amount_mild	NA	0.93806	NA	NA	NA	NA	NA	NA	NA	mg	l/hr * ng * hr / ml = ml * 1000 /hr * ng * hr / ml = mg
-Frost2021a	moderate	8.0	API5	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	cmax_moderate	NA	115.0	NA	NA	NA	NA	1.27918182849393	NA	25.0	ng/ml	NA
-Frost2021a	moderate	8.0	API5	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	auc_inf_moderate	NA	1152.0	NA	NA	NA	NA	1.31617978272001	NA	28.0	ng*hr/ml	NA
-Frost2021a	moderate	8.0	API5	auc_end	apixaban	plasma	HPLC MS/MS	72.0	hr	auc_end_moderate	NA	1116.0	NA	NA	NA	NA	1.30377579779319	NA	27.0	ng*hr/ml	NA
+Frost2021a	moderate	8.0	API5	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	cmax_moderate	NA	115.0	NA	NA	NA	NA	28.75	NA	25.0	ng/ml	NA
+Frost2021a	moderate	8.0	API5	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	auc_inf_moderate	NA	1152.0	NA	NA	NA	NA	322.56	NA	28.0	ng*hr/ml	NA
+Frost2021a	moderate	8.0	API5	auc_end	apixaban	plasma	HPLC MS/MS	72.0	hr	auc_end_moderate	NA	1116.0	NA	NA	NA	NA	301.32	NA	27.0	ng*hr/ml	NA
 Frost2021a	moderate	8.0	API5	tmax	apixaban	plasma	HPLC MS/MS	NA	NA	tmax_moderate	NA	NA	3.0	2.0	4.0	NA	NA	NA	NA	hr	NA
 Frost2021a	moderate	8.0	API5	thalf	apixaban	plasma	HPLC MS/MS	NA	NA	thalf_moderate	17.1	NA	NA	NA	NA	16.8	NA	NA	NA	hr	NA
-Frost2021a	moderate	8.0	API5	clearance_renal	apixaban	plasma	HPLC MS/MS	NA	NA	clearance_renal_moderate	NA	0.56	NA	NA	NA	NA	1.27918182849393	NA	25.0	l/hr	NA
+Frost2021a	moderate	8.0	API5	clearance_renal	apixaban	plasma	HPLC MS/MS	NA	NA	clearance_renal_moderate	NA	0.56	NA	NA	NA	NA	0.14	NA	25.0	l/hr	NA
 Frost2021a	moderate	8.0	API5	fraction_unbound	apixaban	plasma	HPLC MS/MS	NA	NA	fraction_unbound_moderate	7.9	NA	NA	NA	NA	1.8	NA	NA	NA	percent	NA
 Frost2021a	moderate	8.0	API5	cumulative amount	apixaban	urine	calculated	0.0	hr	cumulative amount_moderate	NA	0.0	NA	NA	NA	NA	NA	NA	NA	mg	NA
 Frost2021a	moderate	8.0	API5	cumulative amount	apixaban	urine	calculated	72.0	hr	cumulative amount_moderate	NA	0.62496	NA	NA	NA	NA	NA	NA	NA	mg	l/hr * ng * hr / ml = ml * 1000 /hr * ng * hr / ml = mg

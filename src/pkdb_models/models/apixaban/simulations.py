@@ -5,6 +5,7 @@ from pathlib import Path
 from pymetadata.console import console
 
 from pkdb_models.models.apixaban.experiments.scans.scan_parameters import ApixabanParameterScan
+from pkdb_models.models.apixaban.experiments.scans.scan_parameters_with_data import ApixabanDataParameterScan
 from pkdb_models.models.apixaban.helpers import run_experiments
 from pkdb_models.models.apixaban.experiments.studies import *
 from pkdb_models.models.apixaban.experiments.misc import *
@@ -41,7 +42,7 @@ EXPERIMENTS= {
         Leong2024,
         Metze2021,
         Mikus2019,
-        Raghavan2009, # FIXME: not tablet, but solution
+        Raghavan2009,
         Rohr2024,
         Shaikh2021,
         Song2015,
@@ -110,7 +111,8 @@ EXPERIMENTS= {
         DoseDependencyExperiment
     ],
     "scan": [
-        ApixabanParameterScan
+        ApixabanParameterScan,
+        ApixabanDataParameterScan
     ]
 
 }

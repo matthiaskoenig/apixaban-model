@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>ApixabanParameterScan</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <!--<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+</head>
+
+<body>
+<div id="app">
+    <!-- Vue app-->
+    <v-app>
+        <v-content>
+
+            <a href="../index.html">Experiments</a>
+            <h1>ApixabanParameterScan</h1>
+
+            <h2>Models</h2>
+            <p>
+            <ul>
+                <li><strong>model</strong>: <a href="../../../../models/results/models/apixaban_body_flat.xml">../../../../models/results/models/apixaban_body_flat.xml</a></li>
+            </ul>
+            </p>
+
+            <h2>Datasets</h2>
+            <p>
+            <ul>
+            </ul>
+            </p>
+
+            <h2>Figures</h2>
+            <p>
+            <ul>
+                <li><strong>timecourse__pk__bodyweight_scan</strong>: <a href="ApixabanParameterScan_timecourse__pk__bodyweight_scan.svg">ApixabanParameterScan_timecourse__pk__bodyweight_scan.svg</a></li>
+                <li><strong>timecourse__pk__hepatic_scan</strong>: <a href="ApixabanParameterScan_timecourse__pk__hepatic_scan.svg">ApixabanParameterScan_timecourse__pk__hepatic_scan.svg</a></li>
+                <li><strong>timecourse__pk__renal_scan</strong>: <a href="ApixabanParameterScan_timecourse__pk__renal_scan.svg">ApixabanParameterScan_timecourse__pk__renal_scan.svg</a></li>
+                <li><strong>timecourse__pk__dose_scan</strong>: <a href="ApixabanParameterScan_timecourse__pk__dose_scan.svg">ApixabanParameterScan_timecourse__pk__dose_scan.svg</a></li>
+                <li><strong>timecourse__pk__food_scan</strong>: <a href="ApixabanParameterScan_timecourse__pk__food_scan.svg">ApixabanParameterScan_timecourse__pk__food_scan.svg</a></li>
+            </ul>
+            </p>
+
+            <h3>timecourse__pk__bodyweight_scan</h3>
+            <p>
+            <table>
+                <tr>
+                    <td>
+                        <!--<v-img src="ApixabanParameterScan_timecourse__pk__bodyweight_scan.svg" max-width="600" width="600"></v-img>-->
+                        <img src="ApixabanParameterScan_timecourse__pk__bodyweight_scan.svg" width="600">
+                    </td>
+                    <!--
+                    <td>
+                    </td>
+                    -->
+                </tr>
+            </table>
+            </p>
+            <h3>timecourse__pk__hepatic_scan</h3>
+            <p>
+            <table>
+                <tr>
+                    <td>
+                        <!--<v-img src="ApixabanParameterScan_timecourse__pk__hepatic_scan.svg" max-width="600" width="600"></v-img>-->
+                        <img src="ApixabanParameterScan_timecourse__pk__hepatic_scan.svg" width="600">
+                    </td>
+                    <!--
+                    <td>
+                    </td>
+                    -->
+                </tr>
+            </table>
+            </p>
+            <h3>timecourse__pk__renal_scan</h3>
+            <p>
+            <table>
+                <tr>
+                    <td>
+                        <!--<v-img src="ApixabanParameterScan_timecourse__pk__renal_scan.svg" max-width="600" width="600"></v-img>-->
+                        <img src="ApixabanParameterScan_timecourse__pk__renal_scan.svg" width="600">
+                    </td>
+                    <!--
+                    <td>
+                    </td>
+                    -->
+                </tr>
+            </table>
+            </p>
+            <h3>timecourse__pk__dose_scan</h3>
+            <p>
+            <table>
+                <tr>
+                    <td>
+                        <!--<v-img src="ApixabanParameterScan_timecourse__pk__dose_scan.svg" max-width="600" width="600"></v-img>-->
+                        <img src="ApixabanParameterScan_timecourse__pk__dose_scan.svg" width="600">
+                    </td>
+                    <!--
+                    <td>
+                    </td>
+                    -->
+                </tr>
+            </table>
+            </p>
+            <h3>timecourse__pk__food_scan</h3>
+            <p>
+            <table>
+                <tr>
+                    <td>
+                        <!--<v-img src="ApixabanParameterScan_timecourse__pk__food_scan.svg" max-width="600" width="600"></v-img>-->
+                        <img src="ApixabanParameterScan_timecourse__pk__food_scan.svg" width="600">
+                    </td>
+                    <!--
+                    <td>
+                    </td>
+                    -->
+                </tr>
+            </table>
+            </p>
+
+            <h2>Code</h2>
+            <p>
+                <a href="../../../../experiments/scans/scan_parameters.py">../../../../experiments/scans/scan_parameters.py</a>
+            <pre>
+<code class="python">"""Parameter scans apixaban."""
+from typing import Dict
+
+import matplotlib.axes
+import matplotlib.cm as cm
+
+import numpy as np
+from sbmlsim.simulation import Timecourse, TimecourseSim, ScanSim, Dimension
+from sbmlsim.plot.serialization_matplotlib import FigureMPL, MatplotlibFigureSerializer
+from sbmlsim.plot.serialization_matplotlib import plt
+from sbmlutils.console import console
+
+from pkdb_models.models.apixaban.experiments.base_experiment import (
+    ApixabanSimulationExperiment,
+)
+from pkdb_models.models.apixaban.helpers import run_experiments
+
+
+class ApixabanParameterScan(ApixabanSimulationExperiment):
+    """Scan the effect of parameters on pharmacokinetics."""
+
+    font = {"weight": "bold", "size": 20}
+    tick_font_size = 17
+
+    tend = 48 * 60
+    steps = 2000
+    dose_api = 5  # [mg]
+
+    num_points = 10
+    scan_map = {
+        "bodyweight_scan": {
+            "parameter": "BW",
+            "default": 75.0,
+            "range": np.sort(
+                np.append(np.linspace(38, 200, num=num_points), [75.0])
+            ),
+            # "range": np.logspace(-2, 2, num=21),
+            "scale": "linear",
+            "colormap": "bwr",
+            "units": "kg",
+            "label": "bodyweight [kg]",
+            "legend_position": (0.95, 0.95),
+        },
+        "hepatic_scan": {
+            "parameter": "f_cirrhosis",
+            "default": 0.0,
+            "range": np.linspace(0, 0.7, num=num_points),
+            # "range": np.logspace(-2, 2, num=21),
+            "scale": "linear",
+            "colormap": "Blues",
+            "units": "dimensionless",
+            "label": "cirrhosis degree [-]",
+            "legend_position": (0.95, 0.95),
+        },
+        "renal_scan": {
+            "parameter": "KI__f_renal_function",
+            # "range": np.linspace(0.1, 1.9, num=num_points),
+            "default": 1.0,
+            "range": np.sort(
+                np.append(np.logspace(-1, 1, num=num_points), [1.0])
+            ),  # [10^-1=0.1, 10^1=10]
+            "scale": "log",
+            "colormap": "Greens_r",
+            "units": "dimensionless",
+            "label": "renal function [-]",
+            "legend_position": (0.95, 0.95),
+        },
+        "dose_scan": {
+            "parameter": "PODOSE_api",
+            "default": 5,
+            "range": np.sort(
+                # np.append(np.linspace(1, 100, num=num_points), [10])
+                [0.5, 1, 2.5, 5, 10, 20, 40, 60, 80, 100]
+            ),  # [10^-1=0.1, 10^1=10]
+            # "range": np.sort(
+            #     np.append(np.logspace(1, 2, num=num_points), [50])
+            # ),  # [10^-1=0.1, 10^1=10]
+            "scale": "linear",
+            "colormap": "Oranges",
+            "units": "mg",
+            "label": "apixaban dose [mg]",
+            "legend_position": (0.95, 0.95),
+        },
+        "food_scan": {
+            "parameter": "GU__f_absorption",
+            # "range": np.linspace(0.1, 1.9, num=num_points),
+            "default": 1,
+            "range": np.sort(
+                np.append(np.logspace(-1, 0.18, num=num_points), [1])
+            ),  # [10^-1=0.1, 10^0.18=1.5]
+            "scale": "log",
+            "colormap": "Purples",
+            "units": "dimensionless",
+            "label": "fraction absorbed [-]",
+            "legend_position": (0.25, 0.95),
+        },
+    }
+
+    def simulations(self) -> Dict[str, ScanSim]:
+        Q_ = self.Q_
+        tcscans = {}
+
+        for scan_key, scan_data in self.scan_map.items():
+            tcscans[f"scan_po_{scan_key}"] = ScanSim(
+                simulation=TimecourseSim(
+                    Timecourse(
+                        start=0,
+                        end=self.tend,
+                        steps=self.steps,
+                        changes={
+                            **self.default_changes(),
+                            "PODOSE_api": Q_(self.dose_api, "mg"),
+                        },
+                    )
+                ),
+                dimensions=[
+                    Dimension(
+                        "dim_scan",
+                        changes={
+                            scan_data["parameter"]: Q_(
+                                scan_data["range"], scan_data["units"]
+                            )
+                        },
+                    ),
+                ],
+            )
+
+        return tcscans
+
+    def figures_mpl(self) -> Dict[str, FigureMPL]:
+        """Matplotlib figures."""
+        # calculate pharmacokinetic parameters
+        self.pk_dfs = self.calculate_apixaban_pk()
+        self.pd_dfs = self.calculate_apixaban_pd()
+
+        return {
+            **self.figures_mpl_timecourses(),
+            #**self.figures_mpl_pharmacokinetics(),
+            #**self.figures_mpl_pharmacodynamics(),
+        }
+
+    def figures_mpl_timecourses(self) -> Dict[str, FigureMPL]:
+        """Timecourse plots."""
+
+        scan_sids = {
+            "dose_scan": [
+                ("time", "[Cve_api]"),
+                ("time", "Aurine_api"),
+                ("time", "Afeces_api"),
+                ("time", "[Cve_m1]"),
+                ("time", "[Cve_m7]"),
+
+                ("time", "INR"),
+                ("time", "PT"),
+                ("time", "mPT"),
+                ("time", "aPTT"),
+                ("time", "antiXa_activity"),
+
+                ("[Cve_api]", "antiXa_activity"),
+                ("[Cve_api]", "INR"),
+                ("[Cve_api]", "mPT"),
+                ("[Cve_api]", "aPTT"),
+            ],
+            "renal_scan": [
+                ("time", "[Cve_api]"),
+                ("time", "Aurine_api"),
+                ("time", "Aurine_m1"),
+                ("time", "Afeces_m1"),
+                ("time", "Aurine_m7"),
+
+                ("time", "INR"),
+                ("time", "PT"),
+                ("time", "mPT"),
+                ("time", "aPTT"),
+                ("time", "antiXa_activity"),
+
+                ("[Cve_api]", "antiXa_activity"),
+                ("[Cve_api]", "INR"),
+                ("[Cve_api]", "mPT"),
+                ("[Cve_api]", "aPTT"),
+            ],
+            "hepatic_scan": [
+                ("time", "[Cve_api]"),
+                ("time", "[Cve_m1]"),
+                ("time", "Afeces_m1"),
+                ("time", "[Cve_m7]"),
+                ("time", "Afeces_m7"),
+
+                ("time", "INR"),
+                ("time", "PT"),
+                ("time", "mPT"),
+                ("time", "aPTT"),
+                ("time", "antiXa_activity"),
+
+                ("[Cve_api]", "antiXa_activity"),
+                ("[Cve_api]", "INR"),
+                ("[Cve_api]", "mPT"),
+                ("[Cve_api]", "aPTT"),
+            ],
+            "food_scan": [
+                ("time", "[Cve_api]"),
+                ("time", "Aurine_api"),
+                ("time", "Afeces_api"),
+                ("time", "[Cve_m1]"),
+                ("time", "[Cve_m7]"),
+
+                ("time", "INR"),
+                ("time", "PT"),
+                ("time", "mPT"),
+                ("time", "aPTT"),
+                ("time", "antiXa_activity"),
+
+                ("[Cve_api]", "antiXa_activity"),
+                ("[Cve_api]", "INR"),
+                ("[Cve_api]", "mPT"),
+                ("[Cve_api]", "aPTT"),
+            ],
+            "bodyweight_scan": [
+                ("time", "[Cve_api]"),
+                ("time", "Aurine_api"),
+                ("time", "Afeces_api"),
+                ("time", "[Cve_m1]"),
+                ("time", "[Cve_m7]"),
+
+                ("time", "INR"),
+                ("time", "PT"),
+                ("time", "mPT"),
+                ("time", "aPTT"),
+                ("time", "antiXa_activity"),
+
+                ("[Cve_api]", "antiXa_activity"),
+                ("[Cve_api]", "INR"),
+                ("[Cve_api]", "mPT"),
+                ("[Cve_api]", "aPTT"),
+            ]
+        }
+
+
+        figures = {}
+        for scan_key, scan_data in self.scan_map.items():
+            sids = scan_sids[scan_key]
+            range = scan_data["range"]
+            rmin, rmax = range[0], range[-1]
+
+            # cmap_str
+            cmap_str = scan_data["colormap"]
+            cmap = matplotlib.colormaps.get_cmap(cmap_str)
+
+            # -----------------------------------
+            # pharmacokinetics & pharmacodynamics
+            # -----------------------------------
+
+
+            f, axes = plt.subplots(
+                nrows=3,
+                ncols=5,
+                figsize=(7 * 4, 5 * 3),
+                dpi=300,
+                layout="constrained"
+            )
+
+            ymax = {}
+            for ksid, (xid, yid) in enumerate(sids):
+
+                ymax[yid] = 0.0
+                ax = axes.flatten()[ksid]
+
+                # get data
+                Q_ = self.Q_
+                xres = self.results[
+                    f"task_scan_po_{scan_key}"
+                ]
+
+                # scanned dimension
+                scandim = xres._redop_dims()[0]
+                parameter_id = scan_data["parameter"]
+                par_vec = Q_(
+                    xres[parameter_id].values[0], xres.uinfo[parameter_id]
+                )
+
+                for k_par, par in enumerate(par_vec):
+                    x_vec = Q_(
+                        xres[xid].sel({scandim: k_par}).values,
+                        xres.uinfo[xid],
+                    ).to(self.units[xid])
+                    y_vec = Q_(
+                        xres[yid].sel({scandim: k_par}).values,
+                        xres.uinfo[yid],
+                    ).to(self.units[yid])
+
+                    # update ymax
+                    cmax = np.nanmax(y_vec.magnitude)
+                    if cmax > ymax[yid]:
+                        ymax[yid] = cmax
+
+                    # 0.1 - 1.9
+                    linewidth = 2.0
+                    if np.isclose(scan_data["default"], par.magnitude):
+                        color = "black"
+                        x_vec_default = x_vec
+                        y_vec_default = y_vec
+                    else:
+                        # red less function, blue more function
+                        if scan_data["scale"] == "linear":
+                            cvalue = (par.magnitude - rmin)/np.abs(rmax-rmin)
+                        elif scan_data["scale"] == "log":
+                            cvalue = (np.log10(par.magnitude) - np.log10(rmin)) / np.abs(np.log10(rmax) - np.log10(rmin))
+
+                        color = cmap(cvalue)
+
+                    ax.plot(
+                        x_vec.magnitude,
+                        y_vec.magnitude,
+                        color=color,
+                        linewidth=linewidth,
+                    )
+
+                # plot the reference line in black
+                ax.plot(
+                    x_vec_default.magnitude,
+                    y_vec_default.magnitude,
+                    color="black",
+                    linewidth=2.0,
+                )
+
+                ax.set_xlabel(
+                    f"{self.labels[xid]} [{self.units[xid]}]",
+                    fontdict=self.font,
+                )
+                ax.set_ylabel(
+                    f"{self.labels[yid]} [{self.units[yid].replace('dimensionless', '-')}]",
+                    fontdict=self.font,
+                )
+                ax.tick_params(axis='both', which='major', length=8, width=3)
+
+            # --- colorbar ---
+            # 4-tuple of floats rect = (left, bottom, width, height).
+            # A new Axes is added with dimensions rect in normalized (0, 1)
+
+            cb_ax = f.add_axes(rect=[0.08, 0.96, 0.1, 0.03])
+            cb_ax.set_in_layout(True)
+
+            # colorbar range
+            if scan_data["scale"] == "linear":
+                norm = matplotlib.colors.Normalize(vmin=rmin, vmax=rmax, clip=False)
+            elif scan_data["scale"] == "log":
+                norm = matplotlib.colors.LogNorm(vmin=rmin, vmax=rmax, clip=False)
+
+            cbar = f.colorbar(
+                cm.ScalarMappable(norm=norm, cmap=cmap_str),
+                cax=cb_ax,
+                orientation="horizontal",
+            )
+
+            # label
+            cbar.ax.set_xlabel(
+                scan_data["label"], **{"size": 15, "weight": "bold"}
+            )
+            cbar.ax.axvline(x=scan_data["default"], color="black", linewidth=2)
+
+            # ticks
+            ticks = [rmin, rmax] if scan_key == "dose_scan" else [rmin, round(rmax, 1)]
+            if scan_data["default"] not in ticks:
+                ticks.append(scan_data["default"])
+                ticks = sorted(ticks)
+            cbar.set_ticks(ticks)
+            cbar.set_ticklabels(
+                ticks, **{"size": 15, "weight": "medium"}
+            )
+
+            figures[f"timecourse__pk__{scan_key}"] = f
+
+        return figures
+
+    def figures_mpl_pharmacokinetics(self):
+        """Visualize dependency of pharmacokinetics parameters."""
+        Q_ = self.Q_
+        figures = {}
+
+        parameters_info = {
+            "m1": [
+                "aucinf",
+                "cmax",
+                # "kel",
+                "thalf",
+                # "cl_renal",
+                # "Aurine_eat",
+            ],
+            "m7": [
+                "aucinf",
+                "cmax",
+                # "kel",
+                "thalf",
+                # "cl_renal",
+                # "Aurine_eat",
+            ],
+            "api": [
+                "aucinf",
+                "cmax",
+                # "kel",
+                # "vd",
+                "thalf",
+                # "cl",
+                # "cl_hepatic",
+                # "cl_renal",
+                # "cl_fecal",
+            ],
+
+        }
+        colors = {
+            "api": "black",
+            "m1": "tab:blue",
+            "m7": "tab:red",
+        }
+
+        for scan_key, scan_data in self.scan_map.items():
+            parameters = parameters_info["api"]
+            f, axes = plt.subplots(
+                nrows=1, ncols=len(parameters), figsize=(6 * len(parameters), 5), dpi=300,
+                layout="constrained"
+            )
+            # f.suptitle(
+            #     f"{names[substance]}",
+            #     fontsize=self.suptitle_font_size,
+            # )
+            axes = axes.flatten()
+
+            for substance, parameters in parameters_info.items():
+                for k, pk_key in enumerate(parameters):
+                    ax = axes[k]
+                    ax.axvline(x=scan_data["default"], color="grey", linestyle="--")
+
+                    ymax = 0.0
+
+                    sim_key = f"scan_po_{scan_key}"
+                    xres = self.results[f"task_{sim_key}"]
+                    df = self.pk_dfs[sim_key]
+                    df = df[df.substance == substance]  # get PK for substance
+
+                    # This was scanned
+                    parameter_id = scan_data["parameter"]
+                    x_vec = Q_(
+                        xres[parameter_id].values[0], xres.uinfo[parameter_id]
+                    )
+
+                    pk_vec = df[f"{pk_key}"]
+                    pk_vec = pk_vec.to_numpy()
+
+                    x = x_vec
+                    y = Q_(pk_vec, df[f"{pk_key}_unit"].values[0])
+
+                    y = y.to(self.pk_units[pk_key])
+                    ax.plot(
+                        x,
+                        y,
+                        marker="o",
+                        linestyle="-",
+                        linewidth=2.0,
+                        color=colors[substance],
+                        markeredgecolor=colors[substance],
+                        markeredgewidth=2.0,
+                        markerfacecolor="white",
+                        markersize=9,
+                        label=f"{substance}",
+                    )
+                    ymax_value = np.nanmax(y.magnitude)
+                    if ymax_value > ymax:
+                        ymax = ymax_value
+
+
+                    # ax.set_xlabel(scan_data["label"], fontdict=EnalaprilSimulationExperiment.scan_font)
+                    ax.set_xlabel(
+                        scan_data["label"],
+                        fontdict=self.font,
+                    )
+                    ax.set_ylabel(
+                        f"{self.pk_labels[pk_key]} [{self.pk_units[pk_key]}]",
+                        fontdict=self.font,
+                    )
+                    ax.tick_params(axis='both', which='major', length=8, width=3)
+
+                    # set axis
+                    # ax.set_ylim(bottom=0.0, top=1.05 * ymax)
+                    # ax.set_ylim(bottom=0.0)
+                    ax.set_xscale("log")
+                    ax.legend(fontsize=ApixabanSimulationExperiment.legend_font_size)
+
+
+            figures[f"pk_{scan_key}"] = f
+        return figures
+
+    def figures_mpl_pharmacodynamics(self):
+        """Visualize dependency of pharmacodynamic parameters."""
+        Q_ = self.Q_
+        figures = {}
+
+        parameters = {
+            "INR": "max",
+            "mPT": "max",
+            "aPTT": "max",
+            "Xa_inhibition": "max",
+        }
+
+        for scan_key, scan_data in self.scan_map.items():
+
+            f, axes = plt.subplots(
+                nrows=1, ncols=4, figsize=(6 * 4, 5), dpi=300,
+                layout="constrained"
+            )
+            axes = axes.flatten()
+
+            for k, sid in enumerate(parameters):
+                pd_key = parameters[sid]
+
+                ax = axes[k]
+                ax.axvline(x=scan_data["default"], color="grey", linestyle="--")
+
+                ymax = 0.0
+
+                sim_key = f"scan_po_{scan_key}"
+                xres = self.results[f"task_{sim_key}"]
+                dfs = self.pd_dfs[sim_key]
+                df = dfs[sid]  # get PD for sid
+
+                # This was scanned
+                parameter_id = scan_data["parameter"]
+                x_vec = Q_(
+                    xres[parameter_id].values[0], xres.uinfo[parameter_id]
+                )
+                pd_vec = df[f"{pd_key}"]
+                pd_vec = pd_vec.to_numpy()
+
+                x = x_vec
+                y = Q_(pd_vec, df[f"unit"].values[0])
+
+                y = y.to(self.units[sid])
+                ax.plot(
+                    x,
+                    y,
+                    marker="o",
+                    linestyle="-",
+                    linewidth=2.0,
+                    color="black",
+                    markeredgecolor="black",
+                    markeredgewidth=2.0,
+                    markerfacecolor="white",
+                    markersize=9,
+                )
+                ymax_value = np.nanmax(y.magnitude)
+                if ymax_value > ymax:
+                    ymax = ymax_value
+
+
+                # ax.set_xlabel(scan_data["label"], fontdict=EnalaprilSimulationExperiment.scan_font)
+                ax.set_xlabel(
+                    scan_data["label"],
+                    fontdict=self.font,
+                )
+                ax.set_ylabel(
+                    f"{pd_key} {self.labels[sid]} [{self.units[sid].replace('dimensionless', '-')}]",
+                    fontdict=self.font,
+                )
+
+                ax.tick_params(axis='both', which='major', length=8, width=3)
+
+                # set axis
+                # ax.set_ylim(bottom=0.0, top=1.05 * ymax)
+                # ax.set_ylim(bottom=0.0)
+                ax.set_xscale("log")
+                # ax.legend(fontsize=RivaroxabanSimulationExperiment.legend_font_size)
+
+            figures[f"pd_{scan_key}"] = f
+        return figures
+
+
+if __name__ == "__main__":
+    run_experiments(ApixabanParameterScan, output_dir=ApixabanParameterScan.__name__)
+</code>
+        </pre>
+            </p>
+
+        </v-content>
+    </v-app>
+</div>
+
+
+<!-- loading dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.6/dist/vuetify.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+        delimiters: ['${', '}'],
+        data() {
+            return {}
+        }
+    })
+</script>
+
+
+</body>
+</html>

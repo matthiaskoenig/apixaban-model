@@ -14,7 +14,7 @@ from pkdb_models.models.apixaban.experiments.metadata import (
 )
 
 from sbmlsim.plot import Axis, Figure
-    # noqa: E402
+
 from sbmlsim.simulation import Timecourse, TimecourseSim
 
 from pkdb_models.models.apixaban.helpers import run_experiments

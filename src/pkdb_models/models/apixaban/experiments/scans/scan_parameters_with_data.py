@@ -20,7 +20,7 @@ from pkdb_models.models.apixaban.experiments.base_experiment import (
 from pkdb_models.models.apixaban.helpers import run_experiments
 
 
-class ApixabanParameterScan(ApixabanSimulationExperiment):
+class ApixabanDataParameterScan(ApixabanSimulationExperiment):
     """Scan the effect of parameters on pharmacokinetics."""
 
     tend = 48 * 60
@@ -43,7 +43,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
         "hepatic_scan":
             str(Path(__file__).parent / "study_data" / "parameters_hepatic.tsv"),
         "dose_scan":
-            str(Path(__file__).parent / "study_data" / "parameters_dose_all_data.tsv"), # check doses
+            str(Path(__file__).parent / "study_data" / "parameters_dose.tsv"), # check doses
         "bodyweight_scan":
             str(Path(__file__).parent / "study_data" / "parameters_bodyweight.tsv"),
         "food_scan":
@@ -675,4 +675,4 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
         return strip_ax
 
 if __name__ == "__main__":
-    run_experiments(ApixabanParameterScan, output_dir=ApixabanParameterScan.__name__)
+    run_experiments(ApixabanDataParameterScan, output_dir=ApixabanDataParameterScan.__name__)

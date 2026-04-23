@@ -253,13 +253,11 @@ class Frost2015(ApixabanSimulationExperiment):
     def figures(self) -> Dict[str, Figure]:
 
         return {
-            **self.figure_pk(),
-            **self.figure_pd(),
-            **self.figure_scatter()
+            **self.figure(),
         }
 
     # pharmacokinetics: apixaban concentration over time
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure(self) -> Dict[str, Figure]:
 
         dset_id_plasma = lambda group: f"apixaban_{group}"
         dset_id_urine = lambda group: f"cumulative amount_{group}"
@@ -268,10 +266,10 @@ class Frost2015(ApixabanSimulationExperiment):
             experiment=self,
             sid="Fig1",
             name=self.__class__.__name__,
-            num_cols=2,
-            num_rows=1,
-            height=self.panel_height,
-            width=self.panel_width * 2,
+            num_cols=3,
+            num_rows=5,
+            height=self.panel_height * 5 * 1.2,
+            width=self.panel_width * 3 * 1.05,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -305,24 +303,6 @@ class Frost2015(ApixabanSimulationExperiment):
                     marker=self.markers[group],
                 )
 
-        return {fig.sid: fig}
-
-    # pharmacodynamics: INR, mPT, anti-Xa over time
-    def figure_pd(self) -> Dict[str, Figure]:
-
-        fig = Figure(
-            experiment=self,
-            sid="Fig3",
-            name=self.__class__.__name__,
-            num_rows=2,
-            num_cols=4,
-            height=self.panel_height * 2 * 1.2,
-            width=self.panel_width * 4 * 1.1
-        )
-        plots = fig.create_plots(
-            xaxis=Axis(self.label_time, unit=self.unit_time),
-            legend=True,
-        )
         plot_configs = [
             ("INR", self.age, self.units.get("INR")),
             ("mPT", self.age, self.units.get("mPT")),
@@ -335,7 +315,7 @@ class Frost2015(ApixabanSimulationExperiment):
         ]
 
         for k, (sid, groups, yunit) in enumerate(plot_configs):
-            plots[k].set_yaxis(self.labels.get(sid, sid), unit=yunit)
+            plots[k+2].set_yaxis(self.labels.get(sid, sid), unit=yunit)
 
         for k, (sid, groups, yunit) in enumerate(plot_configs):
             name = self.info_fig3.get(sid)
@@ -348,7 +328,7 @@ class Frost2015(ApixabanSimulationExperiment):
 
             for sim_g in sim_groups:
                 task_id = f"task_{sim_g}"
-                plots[k].add_data(
+                plots[k+2].add_data(
                     task=task_id,
                     xid="time",
                     yid=sid,
@@ -359,7 +339,7 @@ class Frost2015(ApixabanSimulationExperiment):
             for group in data_groups:
                 dset_key = f"{name}_{group}_{self.dose}"
                 group = group.rstrip("1")
-                plots[k].add_data(
+                plots[k+2].add_data(
                         dataset=dset_key,
                         xid="time",
                         yid="mean",
@@ -370,81 +350,61 @@ class Frost2015(ApixabanSimulationExperiment):
                         marker=self.markers[group],
                 )
 
+        plot_configs = [
+            ("INR", self.age_gender, self.units.get("INR")),
+            ("mPT", self.age_gender, self.units.get("mPT")),
+            ("antiXa_activity_gram", self.age_gender_gram, self.units.get("antiXa_activity_gram")),
+            ("antiXa_activity", self.age_gender, self.units.get("antiXa_activity")),
+        ]
+
+        for k, (sid, groups, yunit) in enumerate(plot_configs):
+            plots[k+10].set_yaxis(self.labels.get(sid, sid), unit=yunit)
+            plots[k+10].set_xaxis(self.label_api_plasma, unit=self.unit_api)
+
+            sim_groups = []
+            for g in groups:
+                sim_g = g[:-1] if g.endswith("1") else g
+                if sim_g not in sim_groups:
+                    sim_groups.append(sim_g)
+
+            added = set()
+
+            info_key = self.info_fig4.get(sid, sid)
+            datasets_map = getattr(self, "_datasets", {})
+            for group in sim_groups:
+                if sid == "antiXa_activity_gram":
+                    candidates = (f"{group}1",)
+                else:
+                    candidates = (group,)
+
+                for candidate in candidates:
+                    dkey = f"{candidate}_apixaban_vs_{info_key}"
+                    if dkey in datasets_map and dkey not in added:
+                        plots[k+10].add_data(
+                            dataset=dkey,
+                            xid="x",
+                            yid="y",
+                            label=f"exp individ {self.legend[group]}",
+                            markeredgecolor=self.colors.get(group, "black"),
+                            color="white",
+                            linestyle="",
+                            marker=self.markers[group],
+                        )
+                        added.add(dkey)
+
+            is_legend = True
+            for sim_g in sim_groups:
+                plots[k+10].add_data(
+                    task=f"task_{sim_g}",
+                    xid="[Cve_api]",
+                    yid=sid,
+                    label="sim: 20mg PO" if is_legend else "",
+                    color="black",
+                    linestyle="solid",
+                )
+                is_legend = False
+
         return {fig.sid: fig}
-
-    # pharmacodynamics scatter: pd vs apixaban concentration
-    def figure_scatter(self) -> Dict[str, Figure]:
-
-            fig = Figure(
-                experiment=self,
-                sid="Fig4",
-                name=self.__class__.__name__,
-                num_rows=2,
-                num_cols=2,
-                height=self.panel_height * 2 * 1.2,
-                width=self.panel_width * 2
-            )
-            plots = fig.create_plots(
-                xaxis=Axis(self.label_api_plasma, unit=self.unit_api),
-                legend=True, # legends are overlapping plots
-            )
-            plot_configs = [
-                ("INR", self.age_gender, self.units.get("INR")),
-                ("mPT", self.age_gender, self.units.get("mPT")),
-                ("antiXa_activity_gram", self.age_gender_gram, self.units.get("antiXa_activity_gram")),
-                ("antiXa_activity", self.age_gender, self.units.get("antiXa_activity")),
-            ]
-
-            for k, (sid, groups, yunit) in enumerate(plot_configs):
-                plots[k].set_yaxis(self.labels.get(sid, sid), unit=yunit)
-
-                sim_groups = []
-                for g in groups:
-                    sim_g = g[:-1] if g.endswith("1") else g
-                    if sim_g not in sim_groups:
-                        sim_groups.append(sim_g)
-
-                added = set()
-
-                info_key = self.info_fig4.get(sid, sid)
-                datasets_map = getattr(self, "_datasets", {})
-                for group in sim_groups:
-                    if sid == "antiXa_activity_gram":
-                        candidates = (f"{group}1",)
-                    else:
-                        candidates = (group,)
-
-                    for candidate in candidates:
-                        dkey = f"{candidate}_apixaban_vs_{info_key}"
-                        if dkey in datasets_map and dkey not in added:
-                            plots[k].add_data(
-                                dataset=dkey,
-                                xid="x",
-                                yid="y",
-                                label=f"exp individ {self.legend[group]}",
-                                markeredgecolor=self.colors.get(group, "black"),
-                                color="white",
-                                linestyle="",
-                                marker=self.markers[group],
-                            )
-                            added.add(dkey)
-
-                is_legend = True
-                for sim_g in sim_groups:
-                    plots[k].add_data(
-                        task=f"task_{sim_g}",
-                        xid="[Cve_api]",
-                        yid=sid,
-                        label="sim: 20mg PO" if is_legend else "",
-                        color="black",
-                        linestyle="solid",
-                    )
-                    is_legend = False
-
-
-
-
-            return {fig.sid: fig}
 
 
 if __name__ == "__main__":

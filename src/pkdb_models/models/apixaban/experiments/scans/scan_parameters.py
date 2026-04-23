@@ -23,7 +23,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
     tick_font_size = 17
 
     tend = 48 * 60
-    steps = 2000
+    steps = 5000
     dose_api = 5  # [mg]
 
     num_points = 10
@@ -142,8 +142,103 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
     def figures_mpl_timecourses(self) -> Dict[str, FigureMPL]:
         """Timecourse plots."""
 
+        scan_sids = {
+            "dose_scan": [
+                ("time", "[Cve_api]"),
+                ("time", "Aurine_api"),
+                ("time", "Afeces_api"),
+                ("time", "[Cve_m1]"),
+                ("time", "[Cve_m7]"),
+
+                ("time", "INR"),
+                ("time", "PT"),
+                ("time", "mPT"),
+                ("time", "aPTT"),
+                ("time", "antiXa_activity"),
+
+                ("[Cve_api]", "antiXa_activity"),
+                ("[Cve_api]", "INR"),
+                ("[Cve_api]", "mPT"),
+                ("[Cve_api]", "aPTT"),
+            ],
+            "renal_scan": [
+                ("time", "[Cve_api]"),
+                ("time", "Aurine_api"),
+                ("time", "Aurine_m1"),
+                ("time", "Afeces_m1"),
+                ("time", "Aurine_m7"),
+
+                ("time", "INR"),
+                ("time", "PT"),
+                ("time", "mPT"),
+                ("time", "aPTT"),
+                ("time", "antiXa_activity"),
+
+                ("[Cve_api]", "antiXa_activity"),
+                ("[Cve_api]", "INR"),
+                ("[Cve_api]", "mPT"),
+                ("[Cve_api]", "aPTT"),
+            ],
+            "hepatic_scan": [
+                ("time", "[Cve_api]"),
+                ("time", "[Cve_m1]"),
+                ("time", "Afeces_m1"),
+                ("time", "[Cve_m7]"),
+                ("time", "Afeces_m7"),
+
+                ("time", "INR"),
+                ("time", "PT"),
+                ("time", "mPT"),
+                ("time", "aPTT"),
+                ("time", "antiXa_activity"),
+
+                ("[Cve_api]", "antiXa_activity"),
+                ("[Cve_api]", "INR"),
+                ("[Cve_api]", "mPT"),
+                ("[Cve_api]", "aPTT"),
+            ],
+            "food_scan": [
+                ("time", "[Cve_api]"),
+                ("time", "Aurine_api"),
+                ("time", "Afeces_api"),
+                ("time", "[Cve_m1]"),
+                ("time", "[Cve_m7]"),
+
+                ("time", "INR"),
+                ("time", "PT"),
+                ("time", "mPT"),
+                ("time", "aPTT"),
+                ("time", "antiXa_activity"),
+
+                ("[Cve_api]", "antiXa_activity"),
+                ("[Cve_api]", "INR"),
+                ("[Cve_api]", "mPT"),
+                ("[Cve_api]", "aPTT"),
+            ],
+            "bodyweight_scan": [
+                ("time", "[Cve_api]"),
+                ("time", "Aurine_api"),
+                ("time", "Afeces_api"),
+                ("time", "[Cve_m1]"),
+                ("time", "[Cve_m7]"),
+
+                ("time", "INR"),
+                ("time", "PT"),
+                ("time", "mPT"),
+                ("time", "aPTT"),
+                ("time", "antiXa_activity"),
+
+                ("[Cve_api]", "antiXa_activity"),
+                ("[Cve_api]", "INR"),
+                ("[Cve_api]", "mPT"),
+                ("[Cve_api]", "aPTT"),
+            ]
+        }
+
+
         figures = {}
         for scan_key, scan_data in self.scan_map.items():
+            sids = scan_sids[scan_key]
             range = scan_data["range"]
             rmin, rmax = range[0], range[-1]
 
@@ -154,33 +249,19 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             # -----------------------------------
             # pharmacokinetics & pharmacodynamics
             # -----------------------------------
-            sids = [
-                ("time", "[Cve_api]"),
-                ("time", "[Cve_m1]"),
-                ("time", "Aurine_api"),
-                ("time", "Afeces_api"),
 
-                ("time", "Xa_inhibition"),
-                ("time", "INR"),
-                ("time", "mPT"),
-                ("time", "aPTT"),
-
-                ("[Cve_api]", "Xa_inhibition"),
-                ("[Cve_api]", "INR"),
-                ("[Cve_api]", "mPT"),
-                ("[Cve_api]", "aPTT"),
-            ]
 
             f, axes = plt.subplots(
                 nrows=3,
-                ncols=4,
-                figsize=(6 * 4, 5 * 3),
+                ncols=5,
+                figsize=(7 * 4, 5 * 3),
                 dpi=300,
                 layout="constrained"
             )
 
             ymax = {}
             for ksid, (xid, yid) in enumerate(sids):
+
                 ymax[yid] = 0.0
                 ax = axes.flatten()[ksid]
 
@@ -250,14 +331,13 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                     f"{self.labels[yid]} [{self.units[yid].replace('dimensionless', '-')}]",
                     fontdict=self.font,
                 )
-                ax.tick_params(axis="x", labelsize=self.tick_font_size)
-                ax.tick_params(axis="y", labelsize=self.tick_font_size)
+                ax.tick_params(axis='both', which='major', length=8, width=3)
 
             # --- colorbar ---
             # 4-tuple of floats rect = (left, bottom, width, height).
             # A new Axes is added with dimensions rect in normalized (0, 1)
 
-            cb_ax = f.add_axes(rect=[0.1, 0.95, 0.12, 0.04])
+            cb_ax = f.add_axes(rect=[0.08, 0.96, 0.1, 0.03])
             cb_ax.set_in_layout(True)
 
             # colorbar range
@@ -283,7 +363,6 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             if scan_data["default"] not in ticks:
                 ticks.append(scan_data["default"])
                 ticks = sorted(ticks)
-            console.print(ticks)
             cbar.set_ticks(ticks)
             cbar.set_ticklabels(
                 ticks, **{"size": 15, "weight": "medium"}
@@ -398,12 +477,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                         f"{self.pk_labels[pk_key]} [{self.pk_units[pk_key]}]",
                         fontdict=self.font,
                     )
-                    ax.tick_params(
-                        axis="x", labelsize=self.tick_font_size
-                    )
-                    ax.tick_params(
-                        axis="y", labelsize=self.tick_font_size
-                    )
+                    ax.tick_params(axis='both', which='major', length=8, width=3)
 
                     # set axis
                     # ax.set_ylim(bottom=0.0, top=1.05 * ymax)
@@ -487,12 +561,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                     fontdict=self.font,
                 )
 
-                ax.tick_params(
-                    axis="x", labelsize=self.tick_font_size
-                )
-                ax.tick_params(
-                    axis="y", labelsize=self.tick_font_size
-                )
+                ax.tick_params(axis='both', which='major', length=8, width=3)
 
                 # set axis
                 # ax.set_ylim(bottom=0.0, top=1.05 * ymax)

@@ -56,9 +56,9 @@ M22M1 = M22M1_Vmax * Vli * m2 / (M22M1_Km + Vli * m2)  # [mmol/min] M2 -> M1 (SU
 M2EXBI = MXEXBI_k * Vli * m2  # [mmol/min] M2 bile export  
 M7EX = M7EX_k * Vli * (m7 - m7_ext)  # [mmol/min] M7 export (M7EX)  
 M7EXBI = MXEXBI_k * Vli * m7  # [mmol/min] M7 bile export  
-M1EXEHC = M1EXBI  # [mmol/min] M1 enterohepatic circulation  
-M2EXEHC = M2EXBI  # [mmol/min] M2 enterohepatic circulation  
-M7EXEHC = M7EXBI  # [mmol/min] M7 enterohepatic circulation  
+M1EXEHC = M1EXBI  # [mmol/min] M1 lumen export  
+M2EXEHC = M2EXBI  # [mmol/min] M2 lumen export  
+M7EXEHC = M7EXBI  # [mmol/min] M7 lumen export  
 
 # odes
 d api/dt = APIIM / Vli - API2M2 / Vli - API2M7 / Vli  # [mmol/l/min] apixaban (liver)  

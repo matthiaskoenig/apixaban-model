@@ -1,5 +1,5 @@
 """Kidney model for apixaban."""
-
+import pandas as pd
 from sbmlutils.factory import *
 from sbmlutils.metadata import *
 from pkdb_models.models.apixaban.models import annotations
@@ -289,6 +289,62 @@ _m.reactions = [
 
 model_kidney = _m
 
+def apixaban_layout(dx=200, dy=200) -> pd.DataFrame:
+    """Layout definition for apixaban kidney model."""
+
+    delta_y = 0.5 * dy
+    delta_x = 0.7 * dx
+
+    positions = [
+        # sid, x, y
+        ["api_ext",    -0.3 * delta_x,   0],
+        ["m1_ext",     1 * delta_x,   0],
+        ["m7_ext", 2.3 * delta_x, 0],
+
+        ["APIEX",     -0.3 * delta_x, 1.5 * delta_y],
+        ["M1EX",      1 * delta_x,   1.5 * delta_y],
+        ["M7EX", 2.3 * delta_x, 1.5 * delta_y],
+
+        ["api_urine", -0.3 * delta_x, 2.5 * delta_y],
+        ["m1_urine",  1 * delta_x,   2.5 * delta_y],
+        ["m7_urine", 2.3 * delta_x, 2.5 * delta_y],
+    ]
+
+    df = pd.DataFrame(positions, columns=["id", "x", "y"])
+    df.set_index("id", inplace=True)
+    return df
+
+
+def apixaban_annotations(dx=200, dy=200) -> list:
+    COLOR_BLOOD = "#FF796C"
+    COLOR_CELL = "#FFFFFF"
+    COLOR_URINE = "#FF7F0E"
+    delta_y = 0.5 * dy
+
+    kwargs = {
+        "type": cyviz.AnnotationShapeType.ROUND_RECTANGLE,
+        "opacity": 20,
+        "border_color": "#000000",
+        "border_thickness": 2,
+    }
+    xpos = -0.8 * dx
+    width = 3 * dx
+
+    annotations = [
+        cyviz.AnnotationShape(
+            x_pos=xpos, y_pos=-0.5 * delta_y, width=width, height=1.5 * delta_y,
+            fill_color=COLOR_BLOOD, **kwargs
+        ),
+        cyviz.AnnotationShape(
+            x_pos=xpos, y_pos=delta_y, width=width, height=0.5 * delta_y,
+            fill_color=COLOR_CELL, **kwargs
+        ),
+        cyviz.AnnotationShape(
+            x_pos=xpos, y_pos=1.5 * delta_y, width=width, height=1.5 * delta_y,
+            fill_color=COLOR_URINE, **kwargs
+        ),
+    ]
+    return annotations
 
 if __name__ == "__main__":
     from sbmlutils.converters import odefac
@@ -306,6 +362,8 @@ if __name__ == "__main__":
     ode_factory.to_markdown(md_file=results.sbml_path.parent / f"{results.sbml_path.stem}.md")
 
     # visualization in Cytoscape
-    cyviz.visualize_sbml(sbml_path=results.sbml_path, delete_session=False)
+    cyviz.visualize_sbml(sbml_path=results.sbml_path, delete_session=True)
+    cyviz.apply_layout(layout=apixaban_layout())
+    cyviz.add_annotations(annotations=apixaban_annotations())
 
 

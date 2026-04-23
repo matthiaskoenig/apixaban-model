@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>Frost2015</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <!--<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+</head>
+
+<body>
+<div id="app">
+    <!-- Vue app-->
+    <v-app>
+        <v-content>
+
+            <a href="../index.html">Experiments</a>
+            <h1>Frost2015</h1>
+
+            <h2>Models</h2>
+            <p>
+            <ul>
+                <li><strong>model</strong>: <a href="../../../../models/results/models/apixaban_body_flat.xml">../../../../models/results/models/apixaban_body_flat.xml</a></li>
+            </ul>
+            </p>
+
+            <h2>Datasets</h2>
+            <p>
+            <ul>
+                <li><strong>apixaban_elderly_female</strong>: <a href="Frost2015_apixaban_elderly_female.tsv">Frost2015_apixaban_elderly_female.tsv</a></li>
+                <li><strong>apixaban_elderly_male</strong>: <a href="Frost2015_apixaban_elderly_male.tsv">Frost2015_apixaban_elderly_male.tsv</a></li>
+                <li><strong>apixaban_young_female</strong>: <a href="Frost2015_apixaban_young_female.tsv">Frost2015_apixaban_young_female.tsv</a></li>
+                <li><strong>apixaban_young_male</strong>: <a href="Frost2015_apixaban_young_male.tsv">Frost2015_apixaban_young_male.tsv</a></li>
+                <li><strong>anti_Xa_elderly1_API_20</strong>: <a href="Frost2015_anti_Xa_elderly1_API_20.tsv">Frost2015_anti_Xa_elderly1_API_20.tsv</a></li>
+                <li><strong>anti_Xa_elderly_API_20</strong>: <a href="Frost2015_anti_Xa_elderly_API_20.tsv">Frost2015_anti_Xa_elderly_API_20.tsv</a></li>
+                <li><strong>anti_Xa_female1_API_20</strong>: <a href="Frost2015_anti_Xa_female1_API_20.tsv">Frost2015_anti_Xa_female1_API_20.tsv</a></li>
+                <li><strong>anti_Xa_female_API_20</strong>: <a href="Frost2015_anti_Xa_female_API_20.tsv">Frost2015_anti_Xa_female_API_20.tsv</a></li>
+                <li><strong>anti_Xa_male1_API_20</strong>: <a href="Frost2015_anti_Xa_male1_API_20.tsv">Frost2015_anti_Xa_male1_API_20.tsv</a></li>
+                <li><strong>anti_Xa_male_API_20</strong>: <a href="Frost2015_anti_Xa_male_API_20.tsv">Frost2015_anti_Xa_male_API_20.tsv</a></li>
+                <li><strong>anti_Xa_young1_API_20</strong>: <a href="Frost2015_anti_Xa_young1_API_20.tsv">Frost2015_anti_Xa_young1_API_20.tsv</a></li>
+                <li><strong>anti_Xa_young_API_20</strong>: <a href="Frost2015_anti_Xa_young_API_20.tsv">Frost2015_anti_Xa_young_API_20.tsv</a></li>
+                <li><strong>inr_elderly_API_20</strong>: <a href="Frost2015_inr_elderly_API_20.tsv">Frost2015_inr_elderly_API_20.tsv</a></li>
+                <li><strong>inr_female_API_20</strong>: <a href="Frost2015_inr_female_API_20.tsv">Frost2015_inr_female_API_20.tsv</a></li>
+                <li><strong>inr_male_API_20</strong>: <a href="Frost2015_inr_male_API_20.tsv">Frost2015_inr_male_API_20.tsv</a></li>
+                <li><strong>inr_young_API_20</strong>: <a href="Frost2015_inr_young_API_20.tsv">Frost2015_inr_young_API_20.tsv</a></li>
+                <li><strong>mPT_elderly_API_20</strong>: <a href="Frost2015_mPT_elderly_API_20.tsv">Frost2015_mPT_elderly_API_20.tsv</a></li>
+                <li><strong>mPT_female_API_20</strong>: <a href="Frost2015_mPT_female_API_20.tsv">Frost2015_mPT_female_API_20.tsv</a></li>
+                <li><strong>mPT_male_API_20</strong>: <a href="Frost2015_mPT_male_API_20.tsv">Frost2015_mPT_male_API_20.tsv</a></li>
+                <li><strong>mPT_young_API_20</strong>: <a href="Frost2015_mPT_young_API_20.tsv">Frost2015_mPT_young_API_20.tsv</a></li>
+                <li><strong>elderly_female1_apixaban_vs_Anti-factor Xa activity</strong>: <a href="Frost2015_elderly_female1_apixaban_vs_Anti-factor Xa activity.tsv">Frost2015_elderly_female1_apixaban_vs_Anti-factor Xa activity.tsv</a></li>
+                <li><strong>elderly_female_apixaban_vs_Anti-factor Xa activity</strong>: <a href="Frost2015_elderly_female_apixaban_vs_Anti-factor Xa activity.tsv">Frost2015_elderly_female_apixaban_vs_Anti-factor Xa activity.tsv</a></li>
+                <li><strong>elderly_female_apixaban_vs_inr</strong>: <a href="Frost2015_elderly_female_apixaban_vs_inr.tsv">Frost2015_elderly_female_apixaban_vs_inr.tsv</a></li>
+                <li><strong>elderly_female_apixaban_vs_mPT</strong>: <a href="Frost2015_elderly_female_apixaban_vs_mPT.tsv">Frost2015_elderly_female_apixaban_vs_mPT.tsv</a></li>
+                <li><strong>elderly_male1_apixaban_vs_Anti-factor Xa activity</strong>: <a href="Frost2015_elderly_male1_apixaban_vs_Anti-factor Xa activity.tsv">Frost2015_elderly_male1_apixaban_vs_Anti-factor Xa activity.tsv</a></li>
+                <li><strong>elderly_male_apixaban_vs_Anti-factor Xa activity</strong>: <a href="Frost2015_elderly_male_apixaban_vs_Anti-factor Xa activity.tsv">Frost2015_elderly_male_apixaban_vs_Anti-factor Xa activity.tsv</a></li>
+                <li><strong>elderly_male_apixaban_vs_inr</strong>: <a href="Frost2015_elderly_male_apixaban_vs_inr.tsv">Frost2015_elderly_male_apixaban_vs_inr.tsv</a></li>
+                <li><strong>elderly_male_apixaban_vs_mPT</strong>: <a href="Frost2015_elderly_male_apixaban_vs_mPT.tsv">Frost2015_elderly_male_apixaban_vs_mPT.tsv</a></li>
+                <li><strong>young_female1_apixaban_vs_Anti-factor Xa activity</strong>: <a href="Frost2015_young_female1_apixaban_vs_Anti-factor Xa activity.tsv">Frost2015_young_female1_apixaban_vs_Anti-factor Xa activity.tsv</a></li>
+                <li><strong>young_female_apixaban_vs_Anti-factor Xa activity</strong>: <a href="Frost2015_young_female_apixaban_vs_Anti-factor Xa activity.tsv">Frost2015_young_female_apixaban_vs_Anti-factor Xa activity.tsv</a></li>
+                <li><strong>young_female_apixaban_vs_inr</strong>: <a href="Frost2015_young_female_apixaban_vs_inr.tsv">Frost2015_young_female_apixaban_vs_inr.tsv</a></li>
+                <li><strong>young_female_apixaban_vs_mPT</strong>: <a href="Frost2015_young_female_apixaban_vs_mPT.tsv">Frost2015_young_female_apixaban_vs_mPT.tsv</a></li>
+                <li><strong>young_male1_apixaban_vs_Anti-factor Xa activity</strong>: <a href="Frost2015_young_male1_apixaban_vs_Anti-factor Xa activity.tsv">Frost2015_young_male1_apixaban_vs_Anti-factor Xa activity.tsv</a></li>
+                <li><strong>young_male_apixaban_vs_Anti-factor Xa activity</strong>: <a href="Frost2015_young_male_apixaban_vs_Anti-factor Xa activity.tsv">Frost2015_young_male_apixaban_vs_Anti-factor Xa activity.tsv</a></li>
+                <li><strong>young_male_apixaban_vs_inr</strong>: <a href="Frost2015_young_male_apixaban_vs_inr.tsv">Frost2015_young_male_apixaban_vs_inr.tsv</a></li>
+                <li><strong>young_male_apixaban_vs_mPT</strong>: <a href="Frost2015_young_male_apixaban_vs_mPT.tsv">Frost2015_young_male_apixaban_vs_mPT.tsv</a></li>
+                <li><strong>cumulative amount_elderly</strong>: <a href="Frost2015_cumulative amount_elderly.tsv">Frost2015_cumulative amount_elderly.tsv</a></li>
+                <li><strong>cumulative amount_young</strong>: <a href="Frost2015_cumulative amount_young.tsv">Frost2015_cumulative amount_young.tsv</a></li>
+                <li><strong>cumulative amount_female</strong>: <a href="Frost2015_cumulative amount_female.tsv">Frost2015_cumulative amount_female.tsv</a></li>
+                <li><strong>cumulative amount_male</strong>: <a href="Frost2015_cumulative amount_male.tsv">Frost2015_cumulative amount_male.tsv</a></li>
+            </ul>
+            </p>
+
+            <h2>Figures</h2>
+            <p>
+            <ul>
+                <li><strong>Fig1</strong>: <a href="Frost2015_Fig1.svg">Frost2015_Fig1.svg</a></li>
+            </ul>
+            </p>
+
+            <h3>Fig1</h3>
+            <p>
+            <table>
+                <tr>
+                    <td>
+                        <!--<v-img src="Frost2015_Fig1.svg" max-width="600" width="600"></v-img>-->
+                        <img src="Frost2015_Fig1.svg" width="600">
+                    </td>
+                    <!--
+                    <td>
+                    </td>
+                    -->
+                </tr>
+            </table>
+            </p>
+
+            <h2>Code</h2>
+            <p>
+                <a href="../../../../experiments/studies/frost2015.py">../../../../experiments/studies/frost2015.py</a>
+            <pre>
+<code class="python">from typing import Dict
+
+import numpy as np
+from sbmlsim.data import DataSet, load_pkdb_dataframe
+from sbmlsim.fit import FitMapping, FitData
+from sbmlutils.console import console
+
+from pkdb_models.models import apixaban
+from pkdb_models.models.apixaban.experiments.base_experiment import (
+    ApixabanSimulationExperiment,
+)
+from pkdb_models.models.apixaban.experiments.metadata import Tissue, Route, Dosing, ApplicationForm, Health, \
+    Fasting, ApixabanMappingMetaData
+
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Timecourse, TimecourseSim
+
+from pkdb_models.models.apixaban.helpers import run_experiments
+# from pkdb_models.models.pvl.simulations.simulate_pvl_model import labels
+
+
+class Frost2015(ApixabanSimulationExperiment):
+    """Simulation experiment of Frost2015."""
+
+    # group definitions
+    gender = ["female", "male"]
+    gender_gram = ["female1", "male1"] # groups for Anti-Xa data in ng/mL - ng/mL datasets are marked with a trailing "1".
+    age = ["young", "elderly"]
+    age_gram = ["young1", "elderly1"]  # groups for Anti-Xa data in ng/mL - ng/mL datasets are marked with a trailing "1".
+    age_gender = ["young_male","young_female","elderly_male","elderly_female"]
+    age_gender_gram = ["young_female1", "young_male1", "elderly_male1", "elderly_female1"]  # groups for Anti-Xa data in ng/mL - ng/mL datasets are marked with a trailing "1".
+
+    # body weights for different groups
+    bodyweights = { # [kg]
+        "young": 71,
+        "elderly": 75,
+        "male": 78,
+        "female": 68,
+        "young_male": 77,
+        "young_female": 65,
+        "elderly_male": 79,
+        "elderly_female": 70,
+    }
+    groups = list(bodyweights.keys())
+
+    # mean start values at t=1hr
+    inr = {
+        "young": 1.12,
+        "elderly": 1.04,
+        "male": 1.31,
+        "female": 1.25,
+        "young_male": np.mean([1.12, 1.31]),
+        "young_female": np.mean([1.12, 1.25]),
+        "elderly_male": np.mean([1.04, 1.31]),
+        "elderly_female": np.mean([1.04, 1.25]),
+    }
+
+    mpt = {
+        "young": 52.95,
+        "elderly": 57.30,
+        "male": 48.60,
+        "female": 54.40,
+        "young_male": np.mean([52.95, 48.60]),
+        "young_female": np.mean([52.95, 54.40]),
+        "elderly_male": np.mean([57.30, 48.60]),
+        "elderly_female": np.mean([57.30, 54.40]),
+    }
+
+    dose = "API_20"
+
+    # plot colors
+    colors = {
+        "young": "black",
+        "elderly": "#66c2a4",
+        "male": "black",
+        "female": "black",
+        "young_male": "black",
+        "young_female": "black",
+        "elderly_male": "#66c2a4",
+        "elderly_female": "#66c2a4",
+    }
+
+    markers = {
+        "young": "s",
+        "elderly": "s",
+        "male": "s",
+        "female": "^",
+        "young_male": "s",
+        "young_female": "^",
+        "elderly_male": "s",
+        "elderly_female": "^",
+    }
+
+    legend = {
+        "young": "Y: 20mg PO",
+        "elderly": "E: 20mg PO",
+        "male": "M: 20mg PO",
+        "female": "F: 20mg PO",
+        "young_male": "Y M: 20mg PO",
+        "young_female": "Y F: 20mg PO",
+        "elderly_male": "E M: 20mg PO",
+        "elderly_female": "E F: 20mg PO",
+    }
+
+    clearance = {
+        "young": 119.5 / 119.5, # taken as reference
+        "elderly": 79.1 / 119.5,
+        "male": 103.05 / 119.5,
+        "female": 95.9 / 119.5,
+        "young_male": 123.3 / 119.5,
+        "young_female": 115.7 / 119.5,
+        "elderly_male": 82.8 / 119.5,
+        "elderly_female": 75.1 / 119.5,
+    }
+
+    info_fig1 = {
+        "[Cve_api]": "apixaban",
+        "Aurine_api": "cumulative amount",
+    }
+
+    info_fig3 = {
+        "INR": "inr",
+        "mPT": "mPT",
+        "antiXa_activity_gram": "anti_Xa",
+        "antiXa_activity": "anti_Xa",
+    }
+
+    info_fig4 = {
+        "INR": "inr",
+        "mPT": "mPT",
+        "antiXa_activity_gram": "Anti-factor Xa activity", # ng/ml
+        "antiXa_activity": "Anti-factor Xa activity", # IU/ml
+    }
+
+    def datasets(self) -> Dict[str, DataSet]:
+        dsets = {}
+        for fig_id, group_id in zip(["Fig1", "Fig3", "Fig4", "Tab2", "Tab3"],["label", "label", "x_label", "label", "label"]):
+            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+            for label, df_label in df.groupby(group_id):
+                dset = DataSet.from_df(df_label, self.ureg)
+                if "apixaban" in label:
+                    if fig_id in ["Fig2", "Fig4"]:
+                        dset.unit_conversion("x", 1 / self.Mr.api)
+                    else:
+                        dset.unit_conversion("mean", 1 / self.Mr.api)
+                elif "cumulative amount" in label:
+                    dset.unit_conversion("mean", 1 / self.Mr.api)
+                elif fig_id in ["Tab2", "Tab3"]:
+                    continue
+                dsets[label] = dset
+        return dsets
+
+    def simulations(self) -> Dict[str, TimecourseSim]:
+        Q_ = self.Q_
+        tcsims = {}
+        for group in self.groups:
+            tcsims[group] = TimecourseSim(
+                [Timecourse(
+                    start=0,
+                    end=120 * 60,  # [min]
+                    steps=1000,
+                    changes={
+                        **self.default_changes(),
+                        "BW": Q_(self.bodyweights[group], "kg"),
+                        "PODOSE_api": Q_(20, "mg"),
+                        # set pharmacodynamic baseline reference parameters (assignment rules use these)
+                        "INR_ref": Q_(self.inr[group], self.units["INR"]),
+                        "mPT_ref": Q_(self.mpt[group], self.units["mPT"]),
+                        "KI__f_renal_function": Q_(self.clearance[group], "dimensionless"),
+                    },
+                )]
+            )
+        return tcsims
+
+    def fit_mappings(self) -> Dict[str, FitMapping]:
+        mappings = {}
+
+        datasets_map = getattr(self, "_datasets", {})
+        dset_id_plasma = lambda group: f"apixaban_{group}"
+        dset_id_urine = lambda group: f"cumulative amount_{group}"
+
+        for groups, dset_id in zip([self.age_gender, self.age + self.gender], [dset_id_plasma, dset_id_urine]):
+            for group in groups:
+                task_key = f"task_{group}"
+                dset_key = dset_id(group)
+                if dset_key in datasets_map:
+                    mappings[f"fm_apixaban_{group}"] = FitMapping(
+                        self,
+                        reference=FitData(
+                            self,
+                            dataset=dset_key,
+                            xid="time",
+                            yid="mean",
+                            count="count",
+                        ),
+                        observable=FitData(
+                            self,
+                            task=task_key,
+                            xid="time",
+                            yid="[Cve_api]" if "apixaban" in dset_key else "Aurine_api",
+                        ),
+                        metadata=ApixabanMappingMetaData(
+                            tissue=Tissue.PLASMA if "apixaban" in dset_key else Tissue.URINE,
+                            route=Route.PO,
+                            application_form=ApplicationForm.NR,
+                            dosing=Dosing.SINGLE,
+                            health=Health.HEALTHY,
+                            fasting=Fasting.FASTED,
+                        )
+                    )
+
+        pd_configs = [
+            ("INR", "inr", self.age + self.gender),
+            ("mPT", "mPT", self.age + self.gender),
+            ("antiXa_activity", "anti_Xa", self.age + self.gender),
+            ("antiXa_activity_gram", "anti_Xa", self.age_gram + self.gender_gram),
+        ]
+        
+        for sid, name, groups in pd_configs:
+            for group in groups:
+                task_group = group.rstrip("1")
+                task_key = f"task_{task_group}"
+                dset_key = f"{name}_{group}_{self.dose}"
+                
+                if dset_key in datasets_map:
+                    mappings[f"fm_{sid}_{group}"] = FitMapping(
+                        self,
+                        reference=FitData(
+                            self,
+                            dataset=dset_key,
+                            xid="time",
+                            yid="mean",
+                            count="count",
+                        ),
+                        observable=FitData(
+                            self,
+                            task=task_key,
+                            xid="time",
+                            yid=sid,
+                        ),
+                        metadata=ApixabanMappingMetaData(
+                            tissue=Tissue.PLASMA,
+                            route=Route.PO,
+                            application_form=ApplicationForm.NR,
+                            dosing=Dosing.SINGLE,
+                            health=Health.HEALTHY,
+                            fasting=Fasting.FASTED,
+                        )
+                    )
+
+        return mappings
+
+    def figures(self) -> Dict[str, Figure]:
+
+        return {
+            **self.figure(),
+        }
+
+    # pharmacokinetics: apixaban concentration over time
+    def figure(self) -> Dict[str, Figure]:
+
+        dset_id_plasma = lambda group: f"apixaban_{group}"
+        dset_id_urine = lambda group: f"cumulative amount_{group}"
+
+        fig = Figure(
+            experiment=self,
+            sid="Fig1",
+            name=self.__class__.__name__,
+            num_cols=3,
+            num_rows=5,
+            height=self.panel_height * 5 * 1.2,
+            width=self.panel_width * 3 * 1.05,
+        )
+        plots = fig.create_plots(
+            xaxis=Axis(self.label_time, unit=self.unit_time),
+            legend=True,
+        )
+        plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
+        plots[1].set_yaxis(self.label_api_urine, unit=self.unit_api_urine)
+
+        for kp, (groups, dset_id) in enumerate(zip([self.age_gender, self.age + self.gender], [dset_id_plasma, dset_id_urine])):
+            for group in groups:
+                task_key = f"task_{group}"
+                dset_key = dset_id(group)
+                sid = "[Cve_api]" if "apixaban" in dset_key else "Aurine_api"
+                # simulation
+                plots[kp].add_data(
+                    task=task_key,
+                    xid="time",
+                    yid=sid,
+                    label=f"sim {self.legend[group]}",
+                    color=self.colors[group],
+                )
+                # data
+                plots[kp].add_data(
+                    dataset=dset_key,
+                    xid="time",
+                    yid="mean",
+                    yid_sd="mean_sd",
+                    count="count",
+                    label=f"exp {self.legend[group]}",
+                    color=self.colors[group],
+                    marker=self.markers[group],
+                )
+
+        plot_configs = [
+            ("INR", self.age, self.units.get("INR")),
+            ("mPT", self.age, self.units.get("mPT")),
+            ("antiXa_activity_gram", self.age_gram, self.units.get("antiXa_activity_gram")),
+            ("antiXa_activity", self.age, self.units.get("antiXa_activity")),
+            ("INR", self.gender, self.units.get("INR")),
+            ("mPT", self.gender, self.units.get("mPT")),
+            ("antiXa_activity_gram", self.gender_gram, self.units.get("antiXa_activity_gram")),
+            ("antiXa_activity", self.gender, self.units.get("antiXa_activity")),
+        ]
+
+        for k, (sid, groups, yunit) in enumerate(plot_configs):
+            plots[k+2].set_yaxis(self.labels.get(sid, sid), unit=yunit)
+
+        for k, (sid, groups, yunit) in enumerate(plot_configs):
+            name = self.info_fig3.get(sid)
+            data_groups = groups
+            sim_groups = []
+            for g in groups:
+                sim_g = g[:-1] if g.endswith("1") else g
+                if sim_g not in sim_groups:
+                    sim_groups.append(sim_g)
+
+            for sim_g in sim_groups:
+                task_id = f"task_{sim_g}"
+                plots[k+2].add_data(
+                    task=task_id,
+                    xid="time",
+                    yid=sid,
+                    label=f"sim {self.legend[sim_g]}",
+                    color=self.colors[sim_g],
+                )
+
+            for group in data_groups:
+                dset_key = f"{name}_{group}_{self.dose}"
+                group = group.rstrip("1")
+                plots[k+2].add_data(
+                        dataset=dset_key,
+                        xid="time",
+                        yid="mean",
+                        yid_sd="mean_sd",
+                        count="count",
+                        label=f"exp {self.legend[group]}",
+                        color=self.colors[group],
+                        marker=self.markers[group],
+                )
+
+        plot_configs = [
+            ("INR", self.age_gender, self.units.get("INR")),
+            ("mPT", self.age_gender, self.units.get("mPT")),
+            ("antiXa_activity_gram", self.age_gender_gram, self.units.get("antiXa_activity_gram")),
+            ("antiXa_activity", self.age_gender, self.units.get("antiXa_activity")),
+        ]
+
+        for k, (sid, groups, yunit) in enumerate(plot_configs):
+            plots[k+10].set_yaxis(self.labels.get(sid, sid), unit=yunit)
+            plots[k+10].set_xaxis(self.label_api_plasma, unit=self.unit_api)
+
+            sim_groups = []
+            for g in groups:
+                sim_g = g[:-1] if g.endswith("1") else g
+                if sim_g not in sim_groups:
+                    sim_groups.append(sim_g)
+
+            added = set()
+
+            info_key = self.info_fig4.get(sid, sid)
+            datasets_map = getattr(self, "_datasets", {})
+            for group in sim_groups:
+                if sid == "antiXa_activity_gram":
+                    candidates = (f"{group}1",)
+                else:
+                    candidates = (group,)
+
+                for candidate in candidates:
+                    dkey = f"{candidate}_apixaban_vs_{info_key}"
+                    if dkey in datasets_map and dkey not in added:
+                        plots[k+10].add_data(
+                            dataset=dkey,
+                            xid="x",
+                            yid="y",
+                            label=f"exp individ {self.legend[group]}",
+                            markeredgecolor=self.colors.get(group, "black"),
+                            color="white",
+                            linestyle="",
+                            marker=self.markers[group],
+                        )
+                        added.add(dkey)
+
+            is_legend = True
+            for sim_g in sim_groups:
+                plots[k+10].add_data(
+                    task=f"task_{sim_g}",
+                    xid="[Cve_api]",
+                    yid=sid,
+                    label="sim: 20mg PO" if is_legend else "",
+                    color="black",
+                    linestyle="solid",
+                )
+                is_legend = False
+
+        return {fig.sid: fig}
+
+
+if __name__ == "__main__":
+    out = apixaban.RESULTS_PATH_SIMULATION / Frost2015.__name__
+    out.mkdir(parents=True, exist_ok=True)
+    run_experiments(Frost2015, output_dir=Frost2015.__name__)
+</code>
+        </pre>
+            </p>
+
+        </v-content>
+    </v-app>
+</div>
+
+
+<!-- loading dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.6/dist/vuetify.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+        delimiters: ['${', '}'],
+        data() {
+            return {}
+        }
+    })
+</script>
+
+
+</body>
+</html>

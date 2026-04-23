@@ -93,10 +93,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-04-20T10:53:20Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-04-23T13:42:07Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-04-20T10:53:20Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-04-23T13:42:07Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
@@ -5954,7 +5954,7 @@ injection rate.</p>
           </math>
         </kineticLaw>
       </reaction>
-      <reaction metaid="LI__meta_M1EXEHC" sboTerm="SBO:0000655" id="LI__M1EXEHC" name="M1 enterohepatic circulation" reversible="false" compartment="Vgu">
+      <reaction metaid="LI__meta_M1EXEHC" sboTerm="SBO:0000655" id="LI__M1EXEHC" name="M1 lumen export" reversible="false" compartment="Vgu">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#LI__meta_M1EXEHC">
@@ -6007,7 +6007,7 @@ injection rate.</p>
           </math>
         </kineticLaw>
       </reaction>
-      <reaction metaid="LI__meta_M2EXEHC" sboTerm="SBO:0000655" id="LI__M2EXEHC" name="M2 enterohepatic circulation" reversible="false" compartment="Vgu">
+      <reaction metaid="LI__meta_M2EXEHC" sboTerm="SBO:0000655" id="LI__M2EXEHC" name="M2 lumen export" reversible="false" compartment="Vgu">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#LI__meta_M2EXEHC">
@@ -6060,7 +6060,7 @@ injection rate.</p>
           </math>
         </kineticLaw>
       </reaction>
-      <reaction metaid="LI__meta_M7EXEHC" sboTerm="SBO:0000655" id="LI__M7EXEHC" name="M7 enterohepatic circulation" reversible="false" compartment="Vgu">
+      <reaction metaid="LI__meta_M7EXEHC" sboTerm="SBO:0000655" id="LI__M7EXEHC" name="M7 lumen export" reversible="false" compartment="Vgu">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#LI__meta_M7EXEHC">
