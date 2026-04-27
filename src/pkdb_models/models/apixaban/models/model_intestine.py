@@ -212,23 +212,16 @@ _m.parameters = [
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
         name=f"fraction absorbed apixaban",
     ),
-    # Parameter(
-    #     "APIABS_k",
-    #     0.05,
-    #     unit=U.per_min,
-    #     name="rate of apixaban absorption",
-    #     sboTerm=SBO.KINETIC_CONSTANT,
-    # ),
     Parameter(
         "APIABS_Vmax",
-        0.05,
+        0.1589797819093681,
         unit=U.mmole_per_min,
         name="rate of apixaban absorption",
         sboTerm=SBO.KINETIC_CONSTANT,
     ),
     Parameter(
         "APIABS_50",
-        25,
+        25.837650248152094,
         unit=U.mg,
         name="amount of apixaban when rate of absorption reaches 50% of maximal rate",
         sboTerm=SBO.MICHAELIS_CONSTANT,
@@ -246,7 +239,7 @@ _m.parameters = [
     ),
     Parameter(
         "MXEXC_k",
-        0.10,
+        1.9152859400260163e-05,
         unit=U.per_min,
         name="rate of metabolite excretion",
         sboTerm=SBO.KINETIC_CONSTANT,
@@ -275,7 +268,7 @@ _m.parameters.extend([
     ),
     Parameter(
         f"Ka_dis_api",
-        0.15,
+        0.19047941874849916,
         U.per_hr,
         constant=True,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
@@ -284,7 +277,7 @@ _m.parameters.extend([
     ),
     Parameter(
         f"Ksol_dis_api",
-        0.15 * 5,
+        0.3352341302661383,
         U.per_hr,
         constant=True,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
@@ -303,12 +296,6 @@ _m.parameters.extend([
 ])
 
 _m.rules.append(
-    # AssignmentRule(
-    #     "absorption_api",
-    #     value="f_absorption * APIABS_k * Vlumen * api_lumen",
-    #     unit=U.mmole_per_min,
-    #     name="absorption apixaban",
-    # ),
     AssignmentRule(
         "absorption_api",
         value="APIABS_Vmax * Vlumen * api_lumen / (APIABS_50 / Mr_api + Vlumen * api_lumen)",

@@ -262,7 +262,7 @@ _m.reactions = [
         pars=[
             Parameter(
                 "API2M2_k",
-                0.020187997439119306,
+                0.16036687106093256,
                 U.per_min,
                 name="rate api -> m2 conversion",
                 sboTerm=SBO.MAXIMAL_VELOCITY,
@@ -281,7 +281,7 @@ _m.reactions = [
         pars=[
             Parameter(
                 "API2M7_k",
-                0.008475021145191452,
+                0.0389310457140792,
                 U.per_min,
                 name="rate api -> m7 conversion",
                 sboTerm=SBO.MAXIMAL_VELOCITY,
@@ -300,14 +300,14 @@ _m.reactions = [
         pars=[
             Parameter(
                 "M22M1_Vmax", # M22M1_k
-                0.1,
+                0.03597094464409813,
                 U.mmole_per_min,
                 name="rate m2 -> m1 conversion",
                 sboTerm=SBO.MAXIMAL_VELOCITY,
             ),
             Parameter(
                 "M22M1_Km",
-                0.1,
+                22.420375926289406,
                 U.mmole,
                 name="rate m2 -> m1 conversion",
                 sboTerm=SBO.MAXIMAL_VELOCITY,
@@ -365,7 +365,7 @@ _m.reactions = [
 _m.parameters.extend([
     Parameter(
         "MXEXBI_k",
-        9.99999999999998e-05,
+        0.010684693804886113,
         unit=U.per_min,
         name="rate for edoxaban metabolites export in bile",
         sboTerm=SBO.KINETIC_CONSTANT,

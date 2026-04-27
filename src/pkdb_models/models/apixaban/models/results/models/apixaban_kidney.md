@@ -11,10 +11,10 @@ length: [m]
 
 ## Parameters `p`
 ```
-APIEX_k = 0.1  # [1/min] rate of apixaban urinary excretion  
+APIEX_k = 0.251372984911962  # [1/min] rate of apixaban urinary excretion  
 BSA = 1.73  # [m^2] body surface area [m^2]  
-M1EX_k = 0.1  # [1/min] rate of M1 urinary excretion  
-M7EX_k = 0.1  # [1/min] rate of M7 urinary excretion  
+M1EX_k = 0.0222855668822286  # [1/min] rate of M1 urinary excretion  
+M7EX_k = 0.00855041972822605  # [1/min] rate of M7 urinary excretion  
 Vext = 1.5  # [l] plasma  
 Vki = 0.3  # [l] kidney  
 Vurine = 1.0  # [l] urine  

@@ -17,7 +17,7 @@ def collect_edoxaban_data():
 
     # collect  (edoxaban)
     def is_edoxaban(study_name) -> bool:
-        return study_name in ["Lenard2024", "Lenard2025", "Metze2021", "Mikus2019"]
+        return study_name in ["Lenard2024", "Lenard2025", "Metze2021", "Mikus2019", "Rohr2024"]
 
     collect_tsv_files(source_dir=source_dir, target_dir=target_dir, filter_study=is_edoxaban)
 

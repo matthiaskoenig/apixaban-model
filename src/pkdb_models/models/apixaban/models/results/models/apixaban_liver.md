@@ -11,14 +11,14 @@ length: [m]
 
 ## Parameters `p`
 ```
-API2M2_k = 0.0201879974391193  # [1/min] rate api -> m2 conversion  
-API2M7_k = 0.00847502114519145  # [1/min] rate api -> m7 conversion  
+API2M2_k = 0.160366871060933  # [1/min] rate api -> m2 conversion  
+API2M7_k = 0.0389310457140792  # [1/min] rate api -> m7 conversion  
 APIIM_k = 1000.0  # [1/min] rate apixaban import  
 M1EX_k = 1000.0  # [1/min] rate M1 export  
-M22M1_Km = 0.1  # [mmol] rate m2 -> m1 conversion  
-M22M1_Vmax = 0.1  # [mmol/min] rate m2 -> m1 conversion  
+M22M1_Km = 22.4203759262894  # [mmol] rate m2 -> m1 conversion  
+M22M1_Vmax = 0.0359709446440981  # [mmol/min] rate m2 -> m1 conversion  
 M7EX_k = 1000.0  # [1/min] rate M7 export  
-MXEXBI_k = 9.99999999999998e-05  # [1/min] rate for edoxaban metabolites export in bile  
+MXEXBI_k = 0.0106846938048861  # [1/min] rate for edoxaban metabolites export in bile  
 Vbi = 1.0  # [l] bile  
 Vext = 1.5  # [l] plasma  
 Vli = 1.5  # [l] liver  

@@ -5,7 +5,6 @@ from pathlib import Path
 from pymetadata.console import console
 
 from pkdb_models.models.apixaban.experiments.scans.scan_parameters import ApixabanParameterScan
-from pkdb_models.models.apixaban.experiments.scans.scan_parameters_with_data import ApixabanDataParameterScan
 from pkdb_models.models.apixaban.helpers import run_experiments
 from pkdb_models.models.apixaban.experiments.studies import *
 from pkdb_models.models.apixaban.experiments.misc import *
@@ -112,7 +111,6 @@ EXPERIMENTS= {
     ],
     "scan": [
         ApixabanParameterScan,
-        ApixabanDataParameterScan
     ]
 
 }
@@ -172,4 +170,4 @@ def run_simulation_experiments(
 if __name__ == "__main__":
     """Run experiments."""
 
-    run_simulation_experiments(selected="other")
+    run_simulation_experiments(selected="dose_dependency")

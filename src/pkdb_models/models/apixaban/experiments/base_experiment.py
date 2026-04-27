@@ -215,36 +215,6 @@ class ApixabanSimulationExperiment(SimulationExperiment):
         """Default changes to simulations."""
 
         changes = {
-            # dose_dep_2
-            'Kp_api': Q_(1.8290975796567857, 'dimensionless'),  # [0.1 - 2.0]
-            'GU__Ka_dis_api': Q_(0.19047941874849916, '1/hr'),  # [0.1 - 0.9]
-            'GU__Ksol_dis_api': Q_(0.3352341302661383, '1/hr'),  # [0.1 - 0.9] # 'GU__Ka_sol_api'
-            'GU__APIABS_Vmax': Q_(0.1589797819093681, 'mmole/min'),  # [0.1 - 1.5]
-            'GU__APIABS_50': Q_(25.837650248152094, 'mg'),  # [20 - 40]
-            # m1_saturation
-            'ftissue_api': Q_(0.19611257106279287, 'l/min'),  # [0.05 - 10]
-            'GU__MXEXC_k': Q_(1.9152859400260163e-05, '1/min'),  # [1e-06 - 0.01]
-            'LI__API2M2_k': Q_(0.16036687106093256, '1/min'),  # [0.0025 - 0.375]
-            'LI__API2M7_k': Q_(0.0389310457140792, '1/min'),  # [0.001 - 1.5]
-            'LI__M22M1_Vmax': Q_(0.03597094464409813, 'mmole/min'),  # [0.001 - 0.1] # 'LI__M22M1_k'
-            'LI__M22M1_Km': Q_(22.420375926289406, 'mmole'),  # [20.0 - 40.0]
-            'LI__MXEXBI_k': Q_(0.010684693804886113, '1/min'),  # [0.001 - 0.1]
-            'KI__APIEX_k': Q_(0.2513729849119622, '1/min'),  # [0.001 - 100.0]
-            'KI__M1EX_k': Q_(0.02228556688222855, '1/min'),  # [0.001 - 1.0]
-            'KI__M7EX_k': Q_(0.008550419728226054, '1/min'),  # [0.001 - 100.0]
-            # food
-            'GU__f_absorption': Q_(0.8859416042572498, 'dimensionless'),  # [0.1 - 10]
-            # pharmacodynamics
-            'Emax_INR': Q_(1.039561836305882, 'dimensionless'),  # [0.1 - 10]
-            'EC50_api_INR': Q_(0.0001940723569696365, 'mM'),  # [0.0001 - 0.001]
-            'Emax_mPT': Q_(2.0219222706330124, 'dimensionless'),  # [0.1 - 10]
-            'EC50_api_mPT': Q_(5.593387897644722e-05, 'mM'),  # [1e-05 - 0.0001]
-            'Emax_PT': Q_(1.6587220005784251, 'dimensionless'),  # [1 - 50]
-            'EC50_api_PT': Q_(0.00018436022230444452, 'mM'),  # [0.0001 - 0.001]
-            'Emax_aPTT': Q_(0.5831984416695168, 'dimensionless'),  # [0.1 - 10]
-            'EC50_api_aPTT': Q_(0.0001528970357985037, 'mM'),  # [0.0001 - 0.001]
-            'Emax_antiXa': Q_(40774.78983249683, 'IU_per_ml_mM'),  # [10000.0 - 50000.0]
-            'Emax_antiXa_gram': Q_(2593907.3533155103, 'ng_per_ml_mM'),  # [2000000.0 - 3000000.0]
         }
 
         return changes

@@ -175,78 +175,71 @@ _m.parameters.extend([
     Parameter(
         sid="Emax_INR",
         name="Effect constant for INR inhibition",
-        value=0.7515522269736061,
+        value=1.039561836305882,
         unit=U.dimensionless,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
     Parameter(
         sid="EC50_api_INR",
         name="Effect constant for INR",
-        value=0.0008837329402360458,
+        value=0.0001940723569696365,
         unit=U.mM,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
     Parameter(
         sid="Emax_PT",
         name="Effect constant for PT inhibition",
-        value=3.55309,
+        value=1.6587220005784251,
         unit=U.dimensionless,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
     Parameter(
         sid="EC50_api_PT",
         name="Effect constant for PT",
-        value=0.00358,
+        value=0.00018436022230444452,
         unit=U.mM,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
     Parameter(
         sid="Emax_aPTT",
         name="Effect constant for aPTT inhibition",
-        value=0.444368499749261,
+        value=0.5831984416695168,
         unit=U.dimensionless,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
     Parameter(
         sid="EC50_api_aPTT",
         name="Effect constant for aPTT",
-        value=0.0004941532917599249,
+        value=0.0001528970357985037,
         unit=U.mM,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
     Parameter(
         sid="Emax_mPT",
         name="Effect constant for mPT inhibition",
-        value=1.5658920656758848,
+        value=2.0219222706330124,
         unit=U.dimensionless,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
     Parameter(
         sid="EC50_api_mPT",
         name="Effect constant for mPT",
-        value=0.0001894262712505642,
+        value=5.593387897644722e-05,
         unit=U.mM,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
     # Xa
     Parameter(
-        sid="Emax_Xa",
-        name="Effect constant for Xa inhibition",
-        value=0.686093,
-        unit=U.per_mM,
-        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-    ),
-    Parameter(
         sid="Emax_antiXa",
         name="Effect constant for anti-Xa activity",
-        value=0.686093,
+        value=40774.78983249683,
         unit=U.IU_per_ml_mM,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
     Parameter(
         sid="Emax_antiXa_gram",
         name="Effect constant for anti-Xa activity",
-        value=0.686093,
+        value=2593907.3533155103,
         unit=U.ng_per_ml_mM,
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
     ),
@@ -265,9 +258,6 @@ _m.rules.extend([
     ),
     AssignmentRule(
         "mPT", "mPT_ref * (1 dimensionless + Emax_mPT * Cve_api * fu_api / (Cve_api * fu_api + EC50_api_mPT))", unit=U.second
-    ),
-    AssignmentRule(
-        "Xa_inhibition", "Emax_Xa * Cve_api * fu_api", unit=U.dimensionless
     ),
     AssignmentRule(
         "antiXa_activity", "Emax_antiXa * Cve_api * fu_api", unit=U.IU_per_ml

@@ -237,7 +237,7 @@ _m.reactions = [
         pars=[
             Parameter(
                 "APIEX_k",
-                0.1,
+                0.2513729849119622,
                 U.per_min,
                 name="rate of apixaban urinary excretion",
                 sboTerm=SBO.KINETIC_CONSTANT,
@@ -256,7 +256,7 @@ _m.reactions = [
         pars=[
             Parameter(
                 "M1EX_k",
-                0.1,
+                0.02228556688222855,
                 U.per_min,
                 name="rate of M1 urinary excretion",
                 sboTerm=SBO.KINETIC_CONSTANT,
@@ -275,7 +275,7 @@ _m.reactions = [
         pars=[
             Parameter(
                 "M7EX_k",
-                0.1,
+                0.008550419728226054,
                 U.per_min,
                 name="rate of M7 urinary excretion",
                 sboTerm=SBO.KINETIC_CONSTANT,

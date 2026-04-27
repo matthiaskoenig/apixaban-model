@@ -27,72 +27,26 @@ class Song2015(ApixabanSimulationExperiment):
         "API10_PO_OS": "tab:grey",
         "API10_PO_TAB": "black",
     }
-    colors_study_2 = {
-        "API5_NGT_D5W": "black",
-        "API5_NGT_IF": "purple",
-        "API5_PO_OS": "blue",
-    }
-    colors_study_3 = {
-        "API5_NGT_NS": "black",
-        "API5_NGT_D5W_crushed": "red",
-        "API5_PO_OS_3": "orange",
-    }
     bodyweight = { # [kg]
         # study_1
         "API10_PO_OS": 78,
         "API10_PO_TAB": 78,
-        # study_2
-        "API5_NGT_D5W": 75.6,
-        "API5_NGT_IF": 75.6,
-        "API5_PO_OS": 75.6,
-        # study_3
-        "API5_NGT_NS": 75.2,
-        "API5_NGT_D5W_crushed": 75.2,
-        "API5_PO_OS_3": 75.2,
     }
     groups = list(bodyweight.keys())
     bodyheight = { # [m]
         # study_1
         "API10_PO_OS": math.sqrt(78/25.5),
         "API10_PO_TAB": math.sqrt(78/25.5),
-        # study_2
-        "API5_NGT_D5W": math.sqrt(75.6/25.4),
-        "API5_NGT_IF": math.sqrt(75.6/25.4),
-        "API5_PO_OS": math.sqrt(75.6/25.4),
-        # study_3
-        "API5_NGT_NS": math.sqrt(75.2/26.1),
-        "API5_NGT_D5W_crushed": math.sqrt(75.2/26.1),
-        "API5_PO_OS_3": math.sqrt(75.2/26.1),
     }
     dose = {
-        #"study_1": 10,
-        #"study_2": 5,
-        #"study_3": 5,
-
         # study_1
         "API10_PO_OS": 10,
         "API10_PO_TAB": 10,
-        # study_2
-        "API5_NGT_D5W": 5,
-        "API5_NGT_IF": 5,
-        "API5_PO_OS": 5,
-        # study_3
-        "API5_NGT_NS": 5,
-        "API5_NGT_D5W_crushed": 5,
-        "API5_PO_OS_3": 5,
     }
     legends = {
         # study_1
         "API10_PO_OS": "10mg SOL",
         "API10_PO_TAB": "10mg PO",
-        # study_2
-        "API5_NGT_D5W": "5mg, dext NGT",
-        "API5_NGT_IF": "5mg, if NGT",
-        "API5_PO_OS": "5mg SOL",
-        # study_3
-        "API5_NGT_NS": "5mg, ns NGT",
-        "API5_NGT_D5W_crushed": "5mg, dext NGT crushed",
-        "API5_PO_OS_3": "5mg SOL crushed",
     }
 
     infos_pk = {
@@ -195,9 +149,7 @@ class Song2015(ApixabanSimulationExperiment):
     def figure_pk(self) -> Dict[str, Figure]:
 
         plot_info = {
-            0: ("[Cve_api]", ["API10_PO_OS", "API10_PO_TAB"], self.colors_study_1),
-            #1: ("[Cve_api]", ["API5_NGT_D5W", "API5_NGT_IF", "API5_PO_OS"], self.colors_study_2),
-            #2: ("[Cve_api]", ["API5_NGT_NS", "API5_NGT_D5W_crushed", "API5_PO_OS_3"], self.colors_study_3)
+            0: ("[Cve_api]", ["API10_PO_OS", "API10_PO_TAB"], self.colors_study_1)
         }
 
         fig = Figure(

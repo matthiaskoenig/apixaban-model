@@ -206,13 +206,6 @@ parameters_aptt = [
 
 parameters_xa = [
     # Xa
-    # FitParameter(
-    #     pid="Emax_Xa",
-    #     lower_bound=1E-0,
-    #     start_value=5,
-    #     upper_bound=5E1,
-    #     unit="per_mM",
-    # ),
     FitParameter(
         pid="Emax_antiXa",
         lower_bound=1E4,

@@ -90,11 +90,11 @@ SUBSTANCES_BODY = {
         # oral absorption
         "PODOSE": 0,  # dose
         "SOLDOSE": 0,  # dose
-        'ftissue': 1,  # [litre_per_min] distribution in tissues
+        'ftissue': 0.19611257106279287,  # [litre_per_min] distribution in tissues
         # logP = 2.71; P = 10^2.71 = 512  (MSDS, experimental)
         # logP = 2.22; P = 10^2.22 = 166  (ALOGPS)
         # logP = 1.83; P = 10^1.83 = 68 (Chemaxon)
-        "Kp": 200,  # [-] tissue/plasma partition coefficient
+        "Kp": 1.8290975796567857,  # [-] tissue/plasma partition coefficient
         "fu": 13.1 / 100 # [-] unbound in plasma He2011
     },
     "m1": {

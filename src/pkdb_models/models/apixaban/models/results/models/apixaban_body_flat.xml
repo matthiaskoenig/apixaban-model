@@ -93,10 +93,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-04-23T13:42:07Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-04-27T13:30:26Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-04-23T13:42:07Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-04-27T13:30:26Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
@@ -2288,7 +2288,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Emax_INR" sboTerm="SBO:0000002" id="Emax_INR" name="Effect constant for INR inhibition" value="0.751552226973606" units="dimensionless" constant="true">
+      <parameter metaid="meta_Emax_INR" sboTerm="SBO:0000002" id="Emax_INR" name="Effect constant for INR inhibition" value="1.03956183630588" units="dimensionless" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Emax_INR">
@@ -2301,7 +2301,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_EC50_api_INR" sboTerm="SBO:0000002" id="EC50_api_INR" name="Effect constant for INR" value="0.000883732940236046" units="mM" constant="true">
+      <parameter metaid="meta_EC50_api_INR" sboTerm="SBO:0000002" id="EC50_api_INR" name="Effect constant for INR" value="0.000194072356969636" units="mM" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_EC50_api_INR">
@@ -2314,7 +2314,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Emax_PT" sboTerm="SBO:0000002" id="Emax_PT" name="Effect constant for PT inhibition" value="3.55309" units="dimensionless" constant="true">
+      <parameter metaid="meta_Emax_PT" sboTerm="SBO:0000002" id="Emax_PT" name="Effect constant for PT inhibition" value="1.65872200057843" units="dimensionless" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Emax_PT">
@@ -2327,7 +2327,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_EC50_api_PT" sboTerm="SBO:0000002" id="EC50_api_PT" name="Effect constant for PT" value="0.00358" units="mM" constant="true">
+      <parameter metaid="meta_EC50_api_PT" sboTerm="SBO:0000002" id="EC50_api_PT" name="Effect constant for PT" value="0.000184360222304445" units="mM" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_EC50_api_PT">
@@ -2340,7 +2340,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Emax_aPTT" sboTerm="SBO:0000002" id="Emax_aPTT" name="Effect constant for aPTT inhibition" value="0.444368499749261" units="dimensionless" constant="true">
+      <parameter metaid="meta_Emax_aPTT" sboTerm="SBO:0000002" id="Emax_aPTT" name="Effect constant for aPTT inhibition" value="0.583198441669517" units="dimensionless" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Emax_aPTT">
@@ -2353,7 +2353,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_EC50_api_aPTT" sboTerm="SBO:0000002" id="EC50_api_aPTT" name="Effect constant for aPTT" value="0.000494153291759925" units="mM" constant="true">
+      <parameter metaid="meta_EC50_api_aPTT" sboTerm="SBO:0000002" id="EC50_api_aPTT" name="Effect constant for aPTT" value="0.000152897035798504" units="mM" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_EC50_api_aPTT">
@@ -2366,7 +2366,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Emax_mPT" sboTerm="SBO:0000002" id="Emax_mPT" name="Effect constant for mPT inhibition" value="1.56589206567588" units="dimensionless" constant="true">
+      <parameter metaid="meta_Emax_mPT" sboTerm="SBO:0000002" id="Emax_mPT" name="Effect constant for mPT inhibition" value="2.02192227063301" units="dimensionless" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Emax_mPT">
@@ -2379,7 +2379,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_EC50_api_mPT" sboTerm="SBO:0000002" id="EC50_api_mPT" name="Effect constant for mPT" value="0.000189426271250564" units="mM" constant="true">
+      <parameter metaid="meta_EC50_api_mPT" sboTerm="SBO:0000002" id="EC50_api_mPT" name="Effect constant for mPT" value="5.59338789764472e-05" units="mM" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_EC50_api_mPT">
@@ -2392,20 +2392,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Emax_Xa" sboTerm="SBO:0000002" id="Emax_Xa" name="Effect constant for Xa inhibition" value="0.686093" units="per_mM" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_Emax_Xa">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_Emax_antiXa" sboTerm="SBO:0000002" id="Emax_antiXa" name="Effect constant for anti-Xa activity" value="0.686093" units="IU_per_ml_mM" constant="true">
+      <parameter metaid="meta_Emax_antiXa" sboTerm="SBO:0000002" id="Emax_antiXa" name="Effect constant for anti-Xa activity" value="40774.7898324968" units="IU_per_ml_mM" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Emax_antiXa">
@@ -2418,7 +2405,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Emax_antiXa_gram" sboTerm="SBO:0000002" id="Emax_antiXa_gram" name="Effect constant for anti-Xa activity" value="0.686093" units="ng_per_ml_mM" constant="true">
+      <parameter metaid="meta_Emax_antiXa_gram" sboTerm="SBO:0000002" id="Emax_antiXa_gram" name="Effect constant for anti-Xa activity" value="2593907.35331551" units="ng_per_ml_mM" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Emax_antiXa_gram">
@@ -2823,7 +2810,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_ftissue_api" sboTerm="SBO:0000002" id="ftissue_api" name="tissue distribution api" value="1" units="l_per_min" constant="true">
+      <parameter metaid="meta_ftissue_api" sboTerm="SBO:0000002" id="ftissue_api" name="tissue distribution api" value="0.196112571062793" units="l_per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_ftissue_api">
@@ -2836,7 +2823,7 @@ with FQgu=0.146, FQsp=0.017, FQpa=0.017</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Kp_api" sboTerm="SBO:0000002" id="Kp_api" name="tissue/plasma partition coefficient api" value="200" units="dimensionless" constant="true">
+      <parameter metaid="meta_Kp_api" sboTerm="SBO:0000002" id="Kp_api" name="tissue/plasma partition coefficient api" value="1.82909757965679" units="dimensionless" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Kp_api">
@@ -3058,7 +3045,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="KI__meta_APIEX_k" sboTerm="SBO:0000009" id="KI__APIEX_k" name="rate of apixaban urinary excretion" value="0.1" units="KI__per_min" constant="true">
+      <parameter metaid="KI__meta_APIEX_k" sboTerm="SBO:0000009" id="KI__APIEX_k" name="rate of apixaban urinary excretion" value="0.251372984911962" units="KI__per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#KI__meta_APIEX_k">
@@ -3071,7 +3058,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="KI__meta_M1EX_k" sboTerm="SBO:0000009" id="KI__M1EX_k" name="rate of M1 urinary excretion" value="0.1" units="KI__per_min" constant="true">
+      <parameter metaid="KI__meta_M1EX_k" sboTerm="SBO:0000009" id="KI__M1EX_k" name="rate of M1 urinary excretion" value="0.0222855668822286" units="KI__per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#KI__meta_M1EX_k">
@@ -3084,7 +3071,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="KI__meta_M7EX_k" sboTerm="SBO:0000009" id="KI__M7EX_k" name="rate of M7 urinary excretion" value="0.1" units="KI__per_min" constant="true">
+      <parameter metaid="KI__meta_M7EX_k" sboTerm="SBO:0000009" id="KI__M7EX_k" name="rate of M7 urinary excretion" value="0.00855041972822605" units="KI__per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#KI__meta_M7EX_k">
@@ -3097,7 +3084,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="LI__meta_MXEXBI_k" sboTerm="SBO:0000009" id="LI__MXEXBI_k" name="rate for edoxaban metabolites export in bile" value="9.99999999999998e-05" units="LI__per_min" constant="true">
+      <parameter metaid="LI__meta_MXEXBI_k" sboTerm="SBO:0000009" id="LI__MXEXBI_k" name="rate for edoxaban metabolites export in bile" value="0.0106846938048861" units="LI__per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#LI__meta_MXEXBI_k">
@@ -3123,7 +3110,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="LI__meta_API2M2_k" sboTerm="SBO:0000186" id="LI__API2M2_k" name="rate api -&gt; m2 conversion" value="0.0201879974391193" units="LI__per_min" constant="true">
+      <parameter metaid="LI__meta_API2M2_k" sboTerm="SBO:0000186" id="LI__API2M2_k" name="rate api -&gt; m2 conversion" value="0.160366871060933" units="LI__per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#LI__meta_API2M2_k">
@@ -3136,7 +3123,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="LI__meta_API2M7_k" sboTerm="SBO:0000186" id="LI__API2M7_k" name="rate api -&gt; m7 conversion" value="0.00847502114519145" units="LI__per_min" constant="true">
+      <parameter metaid="LI__meta_API2M7_k" sboTerm="SBO:0000186" id="LI__API2M7_k" name="rate api -&gt; m7 conversion" value="0.0389310457140792" units="LI__per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#LI__meta_API2M7_k">
@@ -3149,7 +3136,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="LI__meta_M22M1_Vmax" sboTerm="SBO:0000186" id="LI__M22M1_Vmax" name="rate m2 -&gt; m1 conversion" value="0.1" units="LI__mmole_per_min" constant="true">
+      <parameter metaid="LI__meta_M22M1_Vmax" sboTerm="SBO:0000186" id="LI__M22M1_Vmax" name="rate m2 -&gt; m1 conversion" value="0.0359709446440981" units="LI__mmole_per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#LI__meta_M22M1_Vmax">
@@ -3162,7 +3149,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="LI__meta_M22M1_Km" sboTerm="SBO:0000186" id="LI__M22M1_Km" name="rate m2 -&gt; m1 conversion" value="0.1" units="LI__mmole" constant="true">
+      <parameter metaid="LI__meta_M22M1_Km" sboTerm="SBO:0000186" id="LI__M22M1_Km" name="rate m2 -&gt; m1 conversion" value="22.4203759262894" units="LI__mmole" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#LI__meta_M22M1_Km">
@@ -3214,7 +3201,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="GU__meta_APIABS_Vmax" sboTerm="SBO:0000009" id="GU__APIABS_Vmax" name="rate of apixaban absorption" value="0.05" units="GU__mmole_per_min" constant="true">
+      <parameter metaid="GU__meta_APIABS_Vmax" sboTerm="SBO:0000009" id="GU__APIABS_Vmax" name="rate of apixaban absorption" value="0.158979781909368" units="GU__mmole_per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#GU__meta_APIABS_Vmax">
@@ -3227,7 +3214,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="GU__meta_APIABS_50" sboTerm="SBO:0000027" id="GU__APIABS_50" name="amount of apixaban when rate of absorption reaches 50% of maximal rate" value="25" units="GU__mg" constant="true">
+      <parameter metaid="GU__meta_APIABS_50" sboTerm="SBO:0000027" id="GU__APIABS_50" name="amount of apixaban when rate of absorption reaches 50% of maximal rate" value="25.8376502481521" units="GU__mg" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#GU__meta_APIABS_50">
@@ -3262,7 +3249,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="GU__meta_MXEXC_k" sboTerm="SBO:0000009" id="GU__MXEXC_k" name="rate of metabolite excretion" value="0.1" units="GU__per_min" constant="true">
+      <parameter metaid="GU__meta_MXEXC_k" sboTerm="SBO:0000009" id="GU__MXEXC_k" name="rate of metabolite excretion" value="1.91528594002602e-05" units="GU__per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#GU__meta_MXEXC_k">
@@ -3275,7 +3262,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="GU__meta_Ka_dis_api" sboTerm="SBO:0000002" id="GU__Ka_dis_api" name="Ka_dis [1/hr] dissolution apixaban in tablet" value="0.15" units="GU__per_hr" constant="true">
+      <parameter metaid="GU__meta_Ka_dis_api" sboTerm="SBO:0000002" id="GU__Ka_dis_api" name="Ka_dis [1/hr] dissolution apixaban in tablet" value="0.190479418748499" units="GU__per_hr" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#GU__meta_Ka_dis_api">
@@ -3288,7 +3275,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="GU__meta_Ksol_dis_api" sboTerm="SBO:0000002" id="GU__Ksol_dis_api" name="Ksol_dis [1/hr] dissolution apixaban in solution" value="0.75" units="GU__per_hr" constant="true">
+      <parameter metaid="GU__meta_Ksol_dis_api" sboTerm="SBO:0000002" id="GU__Ksol_dis_api" name="Ksol_dis [1/hr] dissolution apixaban in solution" value="0.335234130266138" units="GU__per_hr" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#GU__meta_Ksol_dis_api">
@@ -3545,16 +3532,6 @@ or creatinine plasma amounts.</p>
                 </apply>
               </apply>
             </apply>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule variable="Xa_inhibition">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <times/>
-            <ci> Emax_Xa </ci>
-            <ci> Cve_api </ci>
-            <ci> fu_api </ci>
           </apply>
         </math>
       </assignmentRule>

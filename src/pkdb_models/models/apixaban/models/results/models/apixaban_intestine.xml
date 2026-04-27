@@ -93,10 +93,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-04-23T13:42:07Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-04-27T13:30:26Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-04-23T13:42:07Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-04-27T13:30:26Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
@@ -474,7 +474,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_APIABS_Vmax" sboTerm="SBO:0000009" id="APIABS_Vmax" name="rate of apixaban absorption" value="0.05" units="mmole_per_min" constant="true">
+      <parameter metaid="meta_APIABS_Vmax" sboTerm="SBO:0000009" id="APIABS_Vmax" name="rate of apixaban absorption" value="0.158979781909368" units="mmole_per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_APIABS_Vmax">
@@ -487,7 +487,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_APIABS_50" sboTerm="SBO:0000027" id="APIABS_50" name="amount of apixaban when rate of absorption reaches 50% of maximal rate" value="25" units="mg" constant="true">
+      <parameter metaid="meta_APIABS_50" sboTerm="SBO:0000027" id="APIABS_50" name="amount of apixaban when rate of absorption reaches 50% of maximal rate" value="25.8376502481521" units="mg" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_APIABS_50">
@@ -522,7 +522,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_MXEXC_k" sboTerm="SBO:0000009" id="MXEXC_k" name="rate of metabolite excretion" value="0.1" units="per_min" constant="true">
+      <parameter metaid="meta_MXEXC_k" sboTerm="SBO:0000009" id="MXEXC_k" name="rate of metabolite excretion" value="1.91528594002602e-05" units="per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_MXEXC_k">
@@ -561,7 +561,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Ka_dis_api" sboTerm="SBO:0000002" id="Ka_dis_api" name="Ka_dis [1/hr] dissolution apixaban in tablet" value="0.15" units="per_hr" constant="true">
+      <parameter metaid="meta_Ka_dis_api" sboTerm="SBO:0000002" id="Ka_dis_api" name="Ka_dis [1/hr] dissolution apixaban in tablet" value="0.190479418748499" units="per_hr" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Ka_dis_api">
@@ -574,7 +574,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_Ksol_dis_api" sboTerm="SBO:0000002" id="Ksol_dis_api" name="Ksol_dis [1/hr] dissolution apixaban in solution" value="0.75" units="per_hr" constant="true">
+      <parameter metaid="meta_Ksol_dis_api" sboTerm="SBO:0000002" id="Ksol_dis_api" name="Ksol_dis [1/hr] dissolution apixaban in solution" value="0.335234130266138" units="per_hr" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Ksol_dis_api">

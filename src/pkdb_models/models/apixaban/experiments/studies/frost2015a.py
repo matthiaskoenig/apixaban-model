@@ -1,3 +1,4 @@
+import math
 from typing import Dict
 
 from sbmlsim.data import DataSet, load_pkdb_dataframe
@@ -30,7 +31,7 @@ class Frost2015a(ApixabanSimulationExperiment):
     colors = {
         "apixaban_API10_D1_A":       "black",
         "apixaban_API10_D7, KET400": "tab:blue",
-        "apixaban_API10_D1_B":       "black",
+        "apixaban_API10_D1_B":       "tab:grey",
         "apixaban_API10_D11, DIL360": "tab:orange",
     }
     markers = {
@@ -40,10 +41,24 @@ class Frost2015a(ApixabanSimulationExperiment):
         "apixaban_API10_D11, DIL360": "s",
     }
     labels = {
-        "apixaban_API10_D1_A":        "api 10mg PO",
-        "apixaban_API10_D7, KET400":  "api 10mg, ket 400 mg PO",
-        # "apixaban_API10_D1_B":        "API10 D1 (B)", # probably equal to D1_A
-        "apixaban_API10_D11, DIL360": "api 10mg, dil 360 mg PO",
+        "apixaban_API10_D1_A":        "exp1: api 10mg PO",
+        "apixaban_API10_D7, KET400":  "exp1: api 10mg, ket 400 mg PO",
+        "apixaban_API10_D1_B":        "exp2: api 10mg PO",
+        "apixaban_API10_D11, DIL360": "exp2: api 10mg, dil 360 mg PO",
+    }
+
+    bodyweight = {
+        "apixaban_API10_D1_A":        79,
+        "apixaban_API10_D7, KET400":  79,
+        "apixaban_API10_D1_B":        78,
+        "apixaban_API10_D11, DIL360": 78,
+    }
+
+    bodyheight = {
+        "apixaban_API10_D1_A":        math.sqrt(79/25),
+        "apixaban_API10_D7, KET400":  math.sqrt(79/25),
+        "apixaban_API10_D1_B":        math.sqrt(78/26),
+        "apixaban_API10_D11, DIL360": math.sqrt(78/26),
     }
 
     dataset_labels = list(labels.keys())
@@ -64,8 +79,9 @@ class Frost2015a(ApixabanSimulationExperiment):
 
     def simulations(self) -> Dict[str, TimecourseSim]:
         Q_ = self.Q_
-        return {
-            "API10": TimecourseSim(
+        tcsims: Dict[str, TimecourseSim] = {}
+        for label in ["apixaban_API10_D1_A", "apixaban_API10_D1_B"]:
+            tcsims[f"{label}_sim"] = TimecourseSim(
                 [
                     Timecourse(
                         start=0,
@@ -74,11 +90,13 @@ class Frost2015a(ApixabanSimulationExperiment):
                         changes={
                             **self.default_changes(),
                             "PODOSE_api": Q_(10, "mg"),
+                            "BW": Q_(self.bodyweight[label], "kg"),
+                            "HEIGHT": Q_(self.bodyheight[label], "m"),
                         },
                     )
                 ]
             )
-        }
+        return tcsims
 
     def fit_mappings(self) -> Dict[str, FitMapping]:
         mappings = {}
@@ -101,7 +119,7 @@ class Frost2015a(ApixabanSimulationExperiment):
                     ),
                     observable=FitData(
                         self,
-                        task="task_API10",
+                        task="task_apixaban_API10_D1_A_sim" if "1_A" in label or "KET" in label else "task_apixaban_API10_D1_B_sim",
                         xid="time",
                         yid=sid,
                     ),
@@ -135,14 +153,15 @@ class Frost2015a(ApixabanSimulationExperiment):
         plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
 
         for ks, sid in enumerate(self.infos_pk):
-            # single reference simulation
-            plots[ks].add_data(
-                task="task_API10",
-                xid="time",
-                yid=sid,
-                label="sim: api 10mg PO",
-                color="black",
-            )
+            # two reference simulation
+            for kl, label in enumerate(["apixaban_API10_D1_A", "apixaban_API10_D1_B"]):
+                plots[ks].add_data(
+                    task=f"task_{label}_sim",
+                    xid="time",
+                    yid=sid,
+                    label=f"sim{kl+1}: api 10mg PO",
+                    color="black" if kl == 0 else "tab:grey",
+                )
             # data points
             for label in self.dataset_labels:
                 plots[ks].add_data(
@@ -151,7 +170,7 @@ class Frost2015a(ApixabanSimulationExperiment):
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=f"exp: {self.labels[label]}",
+                    label=f"{self.labels[label]}",
                     color=self.colors[label],
                     marker=self.markers[label],
                 )

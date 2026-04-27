@@ -11,12 +11,12 @@ length: [m]
 
 ## Parameters `p`
 ```
-APIABS_50 = 25.0  # [mg] amount of apixaban when rate of absorption reaches 50% of maximal rate  
-APIABS_Vmax = 0.05  # [mmol/min] rate of apixaban absorption  
+APIABS_50 = 25.8376502481521  # [mg] amount of apixaban when rate of absorption reaches 50% of maximal rate  
+APIABS_Vmax = 0.158979781909368  # [mmol/min] rate of apixaban absorption  
 F_api_abs = 0.66  # [-] fraction absorbed apixaban  
-Ka_dis_api = 0.15  # [1/hr] Ka_dis [1/hr] dissolution apixaban in tablet  
-Ksol_dis_api = 0.75  # [1/hr] Ksol_dis [1/hr] dissolution apixaban in solution  
-MXEXC_k = 0.1  # [1/min] rate of metabolite excretion  
+Ka_dis_api = 0.190479418748499  # [1/hr] Ka_dis [1/hr] dissolution apixaban in tablet  
+Ksol_dis_api = 0.335234130266138  # [1/hr] Ksol_dis [1/hr] dissolution apixaban in solution  
+MXEXC_k = 1.91528594002602e-05  # [1/min] rate of metabolite excretion  
 Mr_api = 459.5  # [g/mol] Molecular weight apixaban [g/mole]  
 Vapical = nan  # [m^2] apical membrane (intestinal membrane enterocytes)  
 Vext = 1.0  # [l] plasma  
