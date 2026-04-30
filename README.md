@@ -45,11 +45,7 @@ cd apixaban-model
 ```
 
 #### uv
-Setup environment with uv (https://docs.astral.sh/uv/getting-started/installation/)
-```bash
-uv venv
-uv sync
-```
+Setup environment with uv (https://docs.astral.sh/uv/getting-started/installation/).
 Run the complete analysis:
 ```bash
 uv run run_apixaban -a all -r results
