@@ -93,10 +93,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-03-23T10:07:04Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-04-30T16:32:35Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-03-23T10:07:04Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-04-30T16:32:35Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
@@ -484,7 +484,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
       </species>
     </listOfSpecies>
     <listOfParameters>
-      <parameter metaid="meta_MXEXBI_k" sboTerm="SBO:0000009" id="MXEXBI_k" name="rate for edoxaban metabolites export in bile" value="9.99999999999998e-05" units="per_min" constant="true">
+      <parameter metaid="meta_MXEXBI_k" sboTerm="SBO:0000009" id="MXEXBI_k" name="rate for edoxaban metabolites export in bile" value="0.0106846938048861" units="per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_MXEXBI_k">
@@ -510,7 +510,20 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_API2M2_k" sboTerm="SBO:0000186" id="API2M2_k" name="rate api -&gt; m2 conversion" value="0.0201879974391193" units="per_min" constant="true">
+      <parameter metaid="meta_fu_api" sboTerm="SBO:0000002" id="fu_api" name="fraction unbound in plasma api" value="0.131" units="dimensionless" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_fu_api">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_API2M2_k" sboTerm="SBO:0000186" id="API2M2_k" name="rate api -&gt; m2 conversion" value="0.160366871060933" units="per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_API2M2_k">
@@ -523,7 +536,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_API2M7_k" sboTerm="SBO:0000186" id="API2M7_k" name="rate api -&gt; m7 conversion" value="0.00847502114519145" units="per_min" constant="true">
+      <parameter metaid="meta_API2M7_k" sboTerm="SBO:0000186" id="API2M7_k" name="rate api -&gt; m7 conversion" value="0.0389310457140792" units="per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_API2M7_k">
@@ -536,10 +549,23 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_M22M1_k" sboTerm="SBO:0000186" id="M22M1_k" name="rate m2 -&gt; m1 conversion" value="0.1" units="per_min" constant="true">
+      <parameter metaid="meta_M22M1_Vmax" sboTerm="SBO:0000186" id="M22M1_Vmax" name="rate m2 -&gt; m1 conversion" value="0.0359709446440981" units="mmole_per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_M22M1_k">
+            <rdf:Description rdf:about="#meta_M22M1_Vmax">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000186"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_M22M1_Km" sboTerm="SBO:0000186" id="M22M1_Km" name="rate m2 -&gt; m1 conversion" value="22.4203759262894" units="mmole" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_M22M1_Km">
               <bqbiol:is>
                 <rdf:Bag>
                   <rdf:li rdf:resource="https://identifiers.org/SBO:0000186"/>
@@ -608,7 +634,11 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
               <ci> Vli </ci>
               <apply>
                 <minus/>
-                <ci> api_ext </ci>
+                <apply>
+                  <times/>
+                  <ci> api_ext </ci>
+                  <ci> fu_api </ci>
+                </apply>
                 <ci> api </ci>
               </apply>
             </apply>
@@ -694,10 +724,22 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
-              <times/>
-              <ci> M22M1_k </ci>
-              <ci> Vli </ci>
-              <ci> m2 </ci>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> M22M1_Vmax </ci>
+                <ci> Vli </ci>
+                <ci> m2 </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> M22M1_Km </ci>
+                <apply>
+                  <times/>
+                  <ci> Vli </ci>
+                  <ci> m2 </ci>
+                </apply>
+              </apply>
             </apply>
           </math>
         </kineticLaw>
@@ -807,7 +849,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </math>
         </kineticLaw>
       </reaction>
-      <reaction metaid="meta_M1EXEHC" sboTerm="SBO:0000655" id="M1EXEHC" name="M1 enterohepatic circulation" reversible="false" compartment="Vlumen">
+      <reaction metaid="meta_M1EXEHC" sboTerm="SBO:0000655" id="M1EXEHC" name="M1 lumen export" reversible="false" compartment="Vlumen">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_M1EXEHC">
@@ -860,7 +902,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </math>
         </kineticLaw>
       </reaction>
-      <reaction metaid="meta_M2EXEHC" sboTerm="SBO:0000655" id="M2EXEHC" name="M2 enterohepatic circulation" reversible="false" compartment="Vlumen">
+      <reaction metaid="meta_M2EXEHC" sboTerm="SBO:0000655" id="M2EXEHC" name="M2 lumen export" reversible="false" compartment="Vlumen">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_M2EXEHC">
@@ -913,7 +955,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </math>
         </kineticLaw>
       </reaction>
-      <reaction metaid="meta_M7EXEHC" sboTerm="SBO:0000655" id="M7EXEHC" name="M7 enterohepatic circulation" reversible="false" compartment="Vlumen">
+      <reaction metaid="meta_M7EXEHC" sboTerm="SBO:0000655" id="M7EXEHC" name="M7 lumen export" reversible="false" compartment="Vlumen">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_M7EXEHC">
@@ -950,6 +992,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
       <comp:port metaid="m2_lumen_port" sboTerm="SBO:0000599" comp:idRef="m2_lumen" comp:id="m2_lumen_port" comp:name="Port of m2_lumen"/>
       <comp:port metaid="m7_ext_port" sboTerm="SBO:0000599" comp:idRef="m7_ext" comp:id="m7_ext_port" comp:name="Port of m7_ext"/>
       <comp:port metaid="m7_lumen_port" sboTerm="SBO:0000599" comp:idRef="m7_lumen" comp:id="m7_lumen_port" comp:name="Port of m7_lumen"/>
+      <comp:port metaid="fu_api_port" sboTerm="SBO:0000599" comp:idRef="fu_api" comp:id="fu_api_port" comp:name="Port of fu_api"/>
     </comp:listOfPorts>
   </model>
 </sbml>

@@ -93,10 +93,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-03-23T10:07:04Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-04-30T16:32:35Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-03-23T10:07:04Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-04-30T16:32:35Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
@@ -477,7 +477,20 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_APIEX_k" sboTerm="SBO:0000009" id="APIEX_k" name="rate of apixaban urinary excretion" value="0.1" units="per_min" constant="true">
+      <parameter metaid="meta_fu_api" sboTerm="SBO:0000002" id="fu_api" name="fraction unbound in plasma api" value="0.131" units="dimensionless" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#meta_fu_api">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </parameter>
+      <parameter metaid="meta_APIEX_k" sboTerm="SBO:0000009" id="APIEX_k" name="rate of apixaban urinary excretion" value="0.251372984911962" units="per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_APIEX_k">
@@ -490,7 +503,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_M1EX_k" sboTerm="SBO:0000009" id="M1EX_k" name="rate of M1 urinary excretion" value="0.1" units="per_min" constant="true">
+      <parameter metaid="meta_M1EX_k" sboTerm="SBO:0000009" id="M1EX_k" name="rate of M1 urinary excretion" value="0.0222855668822286" units="per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_M1EX_k">
@@ -503,7 +516,7 @@ or creatinine plasma amounts.</p>
           </rdf:RDF>
         </annotation>
       </parameter>
-      <parameter metaid="meta_M7EX_k" sboTerm="SBO:0000009" id="M7EX_k" name="rate of M7 urinary excretion" value="0.1" units="per_min" constant="true">
+      <parameter metaid="meta_M7EX_k" sboTerm="SBO:0000009" id="M7EX_k" name="rate of M7 urinary excretion" value="0.00855041972822605" units="per_min" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_M7EX_k">
@@ -577,6 +590,7 @@ or creatinine plasma amounts.</p>
               <ci> Vki </ci>
               <ci> APIEX_k </ci>
               <ci> api_ext </ci>
+              <ci> fu_api </ci>
             </apply>
           </math>
         </kineticLaw>
@@ -646,6 +660,7 @@ or creatinine plasma amounts.</p>
       <comp:port metaid="BSA_port" sboTerm="SBO:0000599" comp:idRef="BSA" comp:id="BSA_port" comp:name="Port of BSA"/>
       <comp:port metaid="egfr_port" sboTerm="SBO:0000599" comp:idRef="egfr" comp:id="egfr_port" comp:name="Port of egfr"/>
       <comp:port metaid="crcl_port" sboTerm="SBO:0000599" comp:idRef="crcl" comp:id="crcl_port" comp:name="Port of crcl"/>
+      <comp:port metaid="fu_api_port" sboTerm="SBO:0000599" comp:idRef="fu_api" comp:id="fu_api_port" comp:name="Port of fu_api"/>
       <comp:port metaid="Vext_port" sboTerm="SBO:0000599" comp:idRef="Vext" comp:id="Vext_port" comp:name="Port of Vext"/>
       <comp:port metaid="Vki_port" sboTerm="SBO:0000599" comp:idRef="Vki" comp:id="Vki_port" comp:name="Port of Vki"/>
       <comp:port metaid="Vurine_port" sboTerm="SBO:0000599" comp:idRef="Vurine" comp:id="Vurine_port" comp:name="Port of Vurine"/>

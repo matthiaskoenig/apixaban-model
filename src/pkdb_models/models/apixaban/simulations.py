@@ -170,4 +170,4 @@ def run_simulation_experiments(
 if __name__ == "__main__":
     """Run experiments."""
 
-    run_simulation_experiments(selected="dose_dependency")
+    run_simulation_experiments(selected="all")

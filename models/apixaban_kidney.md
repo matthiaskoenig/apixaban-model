@@ -11,15 +11,16 @@ length: [m]
 
 ## Parameters `p`
 ```
-APIEX_k = 0.1  # [1/min] rate of apixaban urinary excretion  
+APIEX_k = 0.251372984911962  # [1/min] rate of apixaban urinary excretion  
 BSA = 1.73  # [m^2] body surface area [m^2]  
-M1EX_k = 0.1  # [1/min] rate of M1 urinary excretion  
-M7EX_k = 0.1  # [1/min] rate of M7 urinary excretion  
+M1EX_k = 0.0222855668822286  # [1/min] rate of M1 urinary excretion  
+M7EX_k = 0.00855041972822605  # [1/min] rate of M7 urinary excretion  
 Vext = 1.5  # [l] plasma  
 Vki = 0.3  # [l] kidney  
 Vurine = 1.0  # [l] urine  
 egfr_healthy = 100.0  # [578.034682080925 µl/min/m^2] estimated glomerular filtration (eGFR) rate healthy  
 f_renal_function = 1.0  # [-] parameter for renal function  
+fu_api = 0.131  # [-] fraction unbound in plasma api  
 ```
 
 ## Initial conditions `x0`
@@ -35,7 +36,7 @@ m7_urine = 0.0  # [mmol] M7 (urine) in Vurine
 ## ODE system
 ```
 # y
-APIEX = f_renal_function * Vki * APIEX_k * api_ext  # [mmol/min] apixaban excretion (APIEX)  
+APIEX = f_renal_function * Vki * APIEX_k * api_ext * fu_api  # [mmol/min] apixaban excretion (APIEX)  
 M1EX = f_renal_function * Vki * M1EX_k * m1_ext  # [mmol/min] M1 excretion (M1EX)  
 M7EX = f_renal_function * Vki * M7EX_k * m7_ext  # [mmol/min] M7 excretion (M7EX)  
 egfr = f_renal_function * egfr_healthy  # [578.034682080925 µl/min/m^2] estimated eGFR  

@@ -7,7 +7,7 @@
 FROM python:3.14-slim
 
 # install uv
-COPY --from=ghcr.io/astral-sh/uv:0.10.8 /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.11.8 /uv /bin/uv
 ENV UV_SYSTEM_PYTHON=1
 
 # install git

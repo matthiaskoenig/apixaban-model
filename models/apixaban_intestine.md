@@ -11,10 +11,12 @@ length: [m]
 
 ## Parameters `p`
 ```
-APIABS_k = 0.05  # [1/min] rate of apixaban absorption  
+APIABS_50 = 25.8376502481521  # [mg] amount of apixaban when rate of absorption reaches 50% of maximal rate  
+APIABS_Vmax = 0.158979781909368  # [mmol/min] rate of apixaban absorption  
 F_api_abs = 0.66  # [-] fraction absorbed apixaban  
-Ka_dis_api = 0.15  # [1/hr] Ka_dis [1/hr] dissolution apixaban  
-MXEXC_k = 0.1  # [1/min] rate of metabolite excretion  
+Ka_dis_api = 0.190479418748499  # [1/hr] Ka_dis [1/hr] dissolution apixaban in tablet  
+Ksol_dis_api = 0.335234130266138  # [1/hr] Ksol_dis [1/hr] dissolution apixaban in solution  
+MXEXC_k = 1.91528594002602e-05  # [1/min] rate of metabolite excretion  
 Mr_api = 459.5  # [g/mol] Molecular weight apixaban [g/mole]  
 Vapical = nan  # [m^2] apical membrane (intestinal membrane enterocytes)  
 Vext = 1.0  # [l] plasma  
@@ -26,7 +28,8 @@ f_absorption = 1.0  # [-] scaling factor for absorption rate
 
 ## Initial conditions `x0`
 ```
-PODOSE_api = 0.0  # [mg] oral dose apixaban [mg]  
+PODOSE_api = 0.0  # [mg] oral dose apixaban in tablet [mg]  
+SOLDOSE_api = 0.0  # [mg] oral dose apixaban in solution [mg]  
 api_ext = 0.0  # [mmol/l] apixaban (plasma) in Vext  
 api_feces = 0.0  # [mmol] apixaban (feces) in Vfeces  
 api_lumen = 0.0  # [mmol/l] apixaban (intestinal volume) in Vlumen  
@@ -45,16 +48,18 @@ m7_lumen = 0.0  # [mmol/l] M7 (intestinal volume) in Vlumen
 M1EXC = MXEXC_k * Vlumen * m1_lumen  # [mmol/min] excretion M1 (feces)  
 M2EXC = MXEXC_k * Vlumen * m2_lumen  # [mmol/min] excretion M2 (feces)  
 M7EXC = MXEXC_k * Vlumen * m7_lumen  # [mmol/min] excretion M7 (feces)  
-absorption_api = f_absorption * APIABS_k * Vlumen * api_lumen  # [mmol/min] absorption apixaban  
-dissolution_api = (Ka_dis_api / 60) * PODOSE_api / Mr_api  # [mmol/min] dissolution apixaban  
-APIABS = F_api_abs * absorption_api  # [mmol/min] absorption apixaban  
-APIEXC = (1 - F_api_abs) * absorption_api  # [mmol/min] excretion apixaban (feces)  
+absorption_api = APIABS_Vmax * Vlumen * api_lumen / (APIABS_50 / Mr_api + Vlumen * api_lumen)  # [mmol/min] absorption apixaban  
+dissolution_api_sol = (Ksol_dis_api / 60) * SOLDOSE_api / Mr_api  # [mmol/min] dissolution apixaban in solution  
+dissolution_api_tabl = (Ka_dis_api / 60) * PODOSE_api / Mr_api  # [mmol/min] dissolution apixaban tablet  
+APIABS = f_absorption * F_api_abs * absorption_api  # [mmol/min] absorption apixaban  
+APIEXC = (1 - f_absorption * F_api_abs) * absorption_api  # [mmol/min] excretion apixaban (feces)  
 
 # odes
-d PODOSE_api/dt = -dissolution_api * Mr_api  # [mg/min] oral dose apixaban [mg]  
+d PODOSE_api/dt = -dissolution_api_tabl * Mr_api  # [mg/min] oral dose apixaban in tablet [mg]  
+d SOLDOSE_api/dt = -dissolution_api_sol * Mr_api  # [mg/min] oral dose apixaban in solution [mg]  
 d api_ext/dt = APIABS / Vext  # [mmol/l/min] apixaban (plasma)  
 d api_feces/dt = APIEXC  # [mmol/min] apixaban (feces)  
-d api_lumen/dt = (-APIABS / Vlumen - APIEXC / Vlumen) + dissolution_api / Vlumen  # [mmol/l/min] apixaban (intestinal volume)  
+d api_lumen/dt = (-APIABS / Vlumen - APIEXC / Vlumen) + dissolution_api_tabl / Vlumen + dissolution_api_sol / Vlumen  # [mmol/l/min] apixaban (intestinal volume)  
 d api_stomach/dt = 0  # [mmol/min] apixaban (stomach)  
 d m1_feces/dt = M1EXC  # [mmol/min] M1 (feces)  
 d m1_lumen/dt = -M1EXC / Vlumen  # [mmol/l/min] M1 (intestinal volume)  
