@@ -1,7 +1,7 @@
 # Dockerfile for apixaban
 # -----------------------
 # Build and push image
-#   docker build -f Dockerfile -t matthiaskoenig/apixaban:0.5.1 -t matthiaskoenig/apixaban:latest .
+#   docker build -f Dockerfile -t matthiaskoenig/apixaban:0.6.0 -t matthiaskoenig/apixaban:latest .
 #   docker login
 #   docker push --all-tags matthiaskoenig/apixaban
 FROM python:3.14-slim
