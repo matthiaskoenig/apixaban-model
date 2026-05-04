@@ -80,6 +80,41 @@ sudo chown $(id -u):$(id -g) -R "${PWD}/results"
 sudo chmod 775 "${PWD}/results"
 ```
 
+[//]: # ()
+[//]: # (### apptainer)
+
+[//]: # (Simulations can also be run with singularity/apptainer:)
+
+[//]: # (```bash)
+
+[//]: # (apptainer pull apixaban.sif docker://matthiaskoenig/apixaban:latest)
+
+[//]: # (```)
+
+[//]: # (```bash)
+
+[//]: # (mkdir results)
+
+[//]: # (mkdir models)
+
+[//]: # (mkdir models_results)
+
+[//]: # (```)
+
+[//]: # (```bash)
+
+[//]: # (apptainer exec --bind ./results:/results --bind ./models:/code/src/pkdb_models/models/apixaban/models/results --bind ./models_results:/code/src/pkdb_models/models/apixaban/models/results/models apixaban.sif uv run run_apixaban -a all -r /results)
+
+[//]: # (```)
+
+[//]: # (Run the complete analysis:)
+
+[//]: # (```bash)
+
+[//]: # (uv run run_apixaban -a all -r /results)
+
+[//]: # (```)
+
 ## Funding
 
 Mariia Myshkina was supported by the Federal Ministry of Education and Research (BMBF, Germany) within ATLAS by grant number 031L0304B and by the German Research Foundation (DFG) within Priority Programme SPP 2311 by grant number 465194077 (Subproject SimLivA).
