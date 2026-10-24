@@ -1,0 +1,1250 @@
+{
+  "experiment_id": "Metze2021",
+  "base_path": "/home/mkoenig/git/apixaban-model/src/pkdb_models/models/apixaban",
+  "data_path": [
+    "/home/mkoenig/git/apixaban-model/src/pkdb_models/models/apixaban/data/apixaban",
+    "/home/mkoenig/git/apixaban-model/src/pkdb_models/models/apixaban/data/edoxaban"
+  ],
+  "models": {
+    "model": {
+      "sid": null,
+      "name": null,
+      "language": "SBML",
+      "language_type": "SBML",
+      "source": {
+        "source": "/home/mkoenig/git/apixaban-model/src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml",
+        "path": "/home/mkoenig/git/apixaban-model/src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml",
+        "content": null
+      },
+      "base_path": null,
+      "changes": {},
+      "selections": [
+        "Afeces_api",
+        "Afeces_m1",
+        "Afeces_m2",
+        "Afeces_m7",
+        "Aurine_api",
+        "Aurine_m1",
+        "Aurine_m7",
+        "BSA",
+        "BW",
+        "GU__APIABS",
+        "GU__APIEXC",
+        "GU__APISEC",
+        "GU__F_api_abs",
+        "GU__f_pgp",
+        "INR",
+        "INR_change",
+        "INR_ratio",
+        "INR_relchange",
+        "KI__GFR",
+        "KI__f_renal_function",
+        "LI__f_cyp3a4",
+        "PODOSE_api",
+        "PT",
+        "PT_change",
+        "PT_ratio",
+        "PT_relchange",
+        "SOLDOSE_api",
+        "[Cve_api]",
+        "[Cve_m1]",
+        "[Cve_m7]",
+        "aPTT",
+        "aPTT_change",
+        "aPTT_ratio",
+        "aPTT_relchange",
+        "antiXa_activity",
+        "antiXa_activity_gram",
+        "f_cirrhosis",
+        "mPT",
+        "mPT_change",
+        "mPT_ratio",
+        "mPT_relchange",
+        "time"
+      ],
+      "parameters": {}
+    }
+  },
+  "tasks": {
+    "task_API5": {
+      "sid": "model__API5",
+      "name": null,
+      "model": "model",
+      "simulation": "API5",
+      "observables": []
+    }
+  },
+  "observables": {},
+  "simulations": {
+    "API5": {
+      "type": "Simulation",
+      "time_unit": "hr",
+      "start": 0.0,
+      "end": 16,
+      "preinit_changes": {
+        "PODOSE_api": {
+          "value": 5,
+          "unit": "milligram"
+        },
+        "KI__f_renal_function": {
+          "value": 0.6534653465346535,
+          "unit": "dimensionless"
+        }
+      },
+      "changes": [],
+      "presimulation": null,
+      "times": null,
+      "steps": null,
+      "time_shift": 0.0
+    }
+  },
+  "data": {
+    "task_API5__time": {
+      "type": "TASK",
+      "sid": "task_API5__time",
+      "index": "time",
+      "selection": "time",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__conc__Cve_api": {
+      "type": "TASK",
+      "sid": "task_API5__conc__Cve_api",
+      "index": "Cve_api",
+      "selection": "[Cve_api]",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__conc__Cve_m1": {
+      "type": "TASK",
+      "sid": "task_API5__conc__Cve_m1",
+      "index": "Cve_m1",
+      "selection": "[Cve_m1]",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__conc__Cve_m7": {
+      "type": "TASK",
+      "sid": "task_API5__conc__Cve_m7",
+      "index": "Cve_m7",
+      "selection": "[Cve_m7]",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__Aurine_api": {
+      "type": "TASK",
+      "sid": "task_API5__Aurine_api",
+      "index": "Aurine_api",
+      "selection": "Aurine_api",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__Aurine_m1": {
+      "type": "TASK",
+      "sid": "task_API5__Aurine_m1",
+      "index": "Aurine_m1",
+      "selection": "Aurine_m1",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__Aurine_m7": {
+      "type": "TASK",
+      "sid": "task_API5__Aurine_m7",
+      "index": "Aurine_m7",
+      "selection": "Aurine_m7",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__Afeces_api": {
+      "type": "TASK",
+      "sid": "task_API5__Afeces_api",
+      "index": "Afeces_api",
+      "selection": "Afeces_api",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__Afeces_m1": {
+      "type": "TASK",
+      "sid": "task_API5__Afeces_m1",
+      "index": "Afeces_m1",
+      "selection": "Afeces_m1",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__Afeces_m2": {
+      "type": "TASK",
+      "sid": "task_API5__Afeces_m2",
+      "index": "Afeces_m2",
+      "selection": "Afeces_m2",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__Afeces_m7": {
+      "type": "TASK",
+      "sid": "task_API5__Afeces_m7",
+      "index": "Afeces_m7",
+      "selection": "Afeces_m7",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__GU__APIABS": {
+      "type": "TASK",
+      "sid": "task_API5__GU__APIABS",
+      "index": "GU__APIABS",
+      "selection": "GU__APIABS",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__GU__APISEC": {
+      "type": "TASK",
+      "sid": "task_API5__GU__APISEC",
+      "index": "GU__APISEC",
+      "selection": "GU__APISEC",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__GU__APIEXC": {
+      "type": "TASK",
+      "sid": "task_API5__GU__APIEXC",
+      "index": "GU__APIEXC",
+      "selection": "GU__APIEXC",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__KI__GFR": {
+      "type": "TASK",
+      "sid": "task_API5__KI__GFR",
+      "index": "KI__GFR",
+      "selection": "KI__GFR",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__KI__f_renal_function": {
+      "type": "TASK",
+      "sid": "task_API5__KI__f_renal_function",
+      "index": "KI__f_renal_function",
+      "selection": "KI__f_renal_function",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__f_cirrhosis": {
+      "type": "TASK",
+      "sid": "task_API5__f_cirrhosis",
+      "index": "f_cirrhosis",
+      "selection": "f_cirrhosis",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__LI__f_cyp3a4": {
+      "type": "TASK",
+      "sid": "task_API5__LI__f_cyp3a4",
+      "index": "LI__f_cyp3a4",
+      "selection": "LI__f_cyp3a4",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__GU__f_pgp": {
+      "type": "TASK",
+      "sid": "task_API5__GU__f_pgp",
+      "index": "GU__f_pgp",
+      "selection": "GU__f_pgp",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__INR": {
+      "type": "TASK",
+      "sid": "task_API5__INR",
+      "index": "INR",
+      "selection": "INR",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__INR_change": {
+      "type": "TASK",
+      "sid": "task_API5__INR_change",
+      "index": "INR_change",
+      "selection": "INR_change",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__INR_ratio": {
+      "type": "TASK",
+      "sid": "task_API5__INR_ratio",
+      "index": "INR_ratio",
+      "selection": "INR_ratio",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__INR_relchange": {
+      "type": "TASK",
+      "sid": "task_API5__INR_relchange",
+      "index": "INR_relchange",
+      "selection": "INR_relchange",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__PT": {
+      "type": "TASK",
+      "sid": "task_API5__PT",
+      "index": "PT",
+      "selection": "PT",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__PT_change": {
+      "type": "TASK",
+      "sid": "task_API5__PT_change",
+      "index": "PT_change",
+      "selection": "PT_change",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__PT_ratio": {
+      "type": "TASK",
+      "sid": "task_API5__PT_ratio",
+      "index": "PT_ratio",
+      "selection": "PT_ratio",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__PT_relchange": {
+      "type": "TASK",
+      "sid": "task_API5__PT_relchange",
+      "index": "PT_relchange",
+      "selection": "PT_relchange",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__mPT": {
+      "type": "TASK",
+      "sid": "task_API5__mPT",
+      "index": "mPT",
+      "selection": "mPT",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__mPT_change": {
+      "type": "TASK",
+      "sid": "task_API5__mPT_change",
+      "index": "mPT_change",
+      "selection": "mPT_change",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__mPT_ratio": {
+      "type": "TASK",
+      "sid": "task_API5__mPT_ratio",
+      "index": "mPT_ratio",
+      "selection": "mPT_ratio",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__mPT_relchange": {
+      "type": "TASK",
+      "sid": "task_API5__mPT_relchange",
+      "index": "mPT_relchange",
+      "selection": "mPT_relchange",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__aPTT": {
+      "type": "TASK",
+      "sid": "task_API5__aPTT",
+      "index": "aPTT",
+      "selection": "aPTT",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__aPTT_change": {
+      "type": "TASK",
+      "sid": "task_API5__aPTT_change",
+      "index": "aPTT_change",
+      "selection": "aPTT_change",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__aPTT_ratio": {
+      "type": "TASK",
+      "sid": "task_API5__aPTT_ratio",
+      "index": "aPTT_ratio",
+      "selection": "aPTT_ratio",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__aPTT_relchange": {
+      "type": "TASK",
+      "sid": "task_API5__aPTT_relchange",
+      "index": "aPTT_relchange",
+      "selection": "aPTT_relchange",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__antiXa_activity": {
+      "type": "TASK",
+      "sid": "task_API5__antiXa_activity",
+      "index": "antiXa_activity",
+      "selection": "antiXa_activity",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__antiXa_activity_gram": {
+      "type": "TASK",
+      "sid": "task_API5__antiXa_activity_gram",
+      "index": "antiXa_activity_gram",
+      "selection": "antiXa_activity_gram",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__PODOSE_api": {
+      "type": "TASK",
+      "sid": "task_API5__PODOSE_api",
+      "index": "PODOSE_api",
+      "selection": "PODOSE_api",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__SOLDOSE_api": {
+      "type": "TASK",
+      "sid": "task_API5__SOLDOSE_api",
+      "index": "SOLDOSE_api",
+      "selection": "SOLDOSE_api",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__GU__F_api_abs": {
+      "type": "TASK",
+      "sid": "task_API5__GU__F_api_abs",
+      "index": "GU__F_api_abs",
+      "selection": "GU__F_api_abs",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__BW": {
+      "type": "TASK",
+      "sid": "task_API5__BW",
+      "index": "BW",
+      "selection": "BW",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_API5__BSA": {
+      "type": "TASK",
+      "sid": "task_API5__BSA",
+      "index": "BSA",
+      "selection": "BSA",
+      "unit": null,
+      "task": "task_API5",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    }
+  },
+  "figures": {
+    "Fig1": {
+      "sid": "Fig1",
+      "name": "Metze2021",
+      "num_rows": 1,
+      "num_cols": 1,
+      "width": 6.699,
+      "height": 5.7,
+      "settings": {},
+      "subplots": [
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig1__plot0",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig1__plot0_xaxis",
+              "name": "time [hr]",
+              "label": "time",
+              "unit": "hr",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig1__plot0_yaxis",
+              "name": "apixaban plasma [\u00b5M]",
+              "label": "apixaban plasma",
+              "unit": "\u00b5M",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig1__plot0_curve0",
+                "name": "sim 5mg PO (CrCl 66 ml/min)",
+                "x": "task_API5__time",
+                "y": "task_API5__conc__Cve_api",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#66c2a4ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#66c2a4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#66c2a4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig1__plot0_curve1",
+                "name": "5mg PO (individuals)",
+                "x": "apixaban_API5_IS001__time",
+                "y": "apixaban_API5_IS001__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              },
+              {
+                "sid": "Fig1__plot0_curve2",
+                "name": null,
+                "x": "apixaban_API5_IS002__time",
+                "y": "apixaban_API5_IS002__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 2
+              },
+              {
+                "sid": "Fig1__plot0_curve3",
+                "name": null,
+                "x": "apixaban_API5_IS003__time",
+                "y": "apixaban_API5_IS003__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 3
+              },
+              {
+                "sid": "Fig1__plot0_curve4",
+                "name": null,
+                "x": "apixaban_API5_IS004__time",
+                "y": "apixaban_API5_IS004__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 4
+              },
+              {
+                "sid": "Fig1__plot0_curve5",
+                "name": null,
+                "x": "apixaban_API5_IS005__time",
+                "y": "apixaban_API5_IS005__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 5
+              },
+              {
+                "sid": "Fig1__plot0_curve6",
+                "name": null,
+                "x": "apixaban_API5_IS006__time",
+                "y": "apixaban_API5_IS006__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 6
+              },
+              {
+                "sid": "Fig1__plot0_curve7",
+                "name": null,
+                "x": "apixaban_API5_IS007__time",
+                "y": "apixaban_API5_IS007__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 7
+              },
+              {
+                "sid": "Fig1__plot0_curve8",
+                "name": null,
+                "x": "apixaban_API5_IS008__time",
+                "y": "apixaban_API5_IS008__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 8
+              },
+              {
+                "sid": "Fig1__plot0_curve9",
+                "name": null,
+                "x": "apixaban_API5_IS009__time",
+                "y": "apixaban_API5_IS009__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 9
+              },
+              {
+                "sid": "Fig1__plot0_curve10",
+                "name": null,
+                "x": "apixaban_API5_IS010__time",
+                "y": "apixaban_API5_IS010__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 10
+              },
+              {
+                "sid": "Fig1__plot0_curve11",
+                "name": null,
+                "x": "apixaban_API5_IS011__time",
+                "y": "apixaban_API5_IS011__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 11
+              },
+              {
+                "sid": "Fig1__plot0_curve12",
+                "name": null,
+                "x": "apixaban_API5_IS012__time",
+                "y": "apixaban_API5_IS012__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 12
+              },
+              {
+                "sid": "Fig1__plot0_curve13",
+                "name": null,
+                "x": "apixaban_API5_IS013__time",
+                "y": "apixaban_API5_IS013__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 13
+              },
+              {
+                "sid": "Fig1__plot0_curve14",
+                "name": null,
+                "x": "apixaban_API5_IS014__time",
+                "y": "apixaban_API5_IS014__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 14
+              },
+              {
+                "sid": "Fig1__plot0_curve15",
+                "name": null,
+                "x": "apixaban_API5_IS015__time",
+                "y": "apixaban_API5_IS015__value",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": 5.2,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#66c2a4ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 15
+              },
+              {
+                "sid": "Fig1__plot0_curve16",
+                "name": "5mg PO\u00b1SD (n=15)",
+                "x": "apixaban_API5__time",
+                "y": "apixaban_API5__mean",
+                "xerr": null,
+                "yerr": "apixaban_API5__mean_sd",
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "DASH",
+                    "color": "#66c2a4ff",
+                    "thickness": 1.5
+                  },
+                  "marker": {
+                    "size": 7.5,
+                    "type": "SQUARE",
+                    "fill": "#66c2a4ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#66c2a4ff",
+                    "second_color": null
+                  }
+                },
+                "order": 16
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        }
+      ]
+    }
+  }
+}

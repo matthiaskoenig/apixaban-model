@@ -1,116 +1,138 @@
-from typing import Dict
+"""Simulation experiment of the study Chang2016."""
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from typing import ClassVar, override
 
-from pkdb_models.models import apixaban
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
+
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import Tissue, Route, Dosing, ApplicationForm, Health, \
-    Fasting, ApixabanMappingMetaData
 
-from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 class Chang2016(ApixabanSimulationExperiment):
     """Simulation experiment of Chang2016."""
 
-    groups = ["normal", "mild", "moderate", "severe"] #creatinine clearance in [ml/min]
-    colors = {
+    groups: ClassVar[list[str]] = [
+        "normal",
+        "mild",
+        "moderate",
+        "severe",
+    ]  # creatinine clearance in [ml/min]
+    colors: ClassVar[dict[str, str]] = {
         "normal": "black",
         "mild": "#66c2a4",
         "moderate": "#2ca25f",
         "severe": "#006d2c",
     }
-    short_names = {
+    short_names: ClassVar[dict[str, str]] = {
         "normal": "",
         "mild": "MiRI",
         "moderate": "MoRI",
         "severe": "SRI",
     }
-    bodyweights = {
+    bodyweights: ClassVar[dict[str, float]] = {
         "normal": 83.3,
         "mild": 79.3,
         "moderate": 74.5,
         "severe": 84.1,
     }
-    renal_functions = {
-        "normal": 106.7 / 106.7,  # Normalized on NRI
-        "mild": 58.8 / 106.7,
-        "moderate": 38 / 106.7,
-        "severe": 24.5 / 106.7,
+    #: the renal function is the measured 24-hr creatinine clearance of the
+    #: group (Tab1, ml/min) relative to the GFR of 101 ml/min of the model
+    renal_functions: ClassVar[dict[str, float]] = {
+        "normal": 106.7 / 101,
+        "mild": 58.8 / 101,
+        "moderate": 38.0 / 101,
+        "severe": 24.5 / 101,
     }
-    markers = {
+    markers: ClassVar[dict[str, str]] = {
         "normal": "s",
         "mild": "*",
         "moderate": "^",
         "severe": "o",
     }
 
-    info_pk = {
+    #: the urinary amounts are not reported: they are derived in the curation
+    #: as the renal clearance times the AUCinf of Tab2 (geometric means), with
+    #: SDs which are not reported values; the renal clearance of the study is
+    #: Ae(0-96)/AUC(0-96), so the amounts overestimate Ae(0-96) slightly
+    info_pk: ClassVar[dict[str, str]] = {
         "[Cve_api]": "apixaban",
+        "Aurine_api": "cumulative amount",
     }
 
-    info_pd = {
+    info_pd: ClassVar[dict[str, str]] = {
         "INR": "inr",
         "antiXa_activity": "xa",
-
     }
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id, group_id in zip(["Fig1", "Fig4"],
-                                    ["label", "x_label"]):
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+        for fig_id, group_id in zip(
+            ["Fig1", "Fig4", "Tab2"], ["label", "x_label", "label"], strict=True
+        ):
+            df = self.load_dataframe(fig_id)
             for label, df_label in df.groupby(group_id):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("apixaban_"):
                     if fig_id == "Fig4":
                         dset.unit_conversion("x", 1 / self.Mr.api)
                     else:
                         dset.unit_conversion("mean", 1 / self.Mr.api)
-                dsets[label] = dset
-
-        # console.print(dsets)
+                if fig_id == "Tab2":
+                    if "cumulative" in label:
+                        dset.unit_conversion("mean", 1 / self.Mr.api)
+                        dsets[self.to_sid(label)] = dset
+                else:
+                    dsets[self.to_sid(label)] = dset
 
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims: Dict[str, TimecourseSim] = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        tcsims: dict[str, Simulation] = {}
         for group in self.groups:
-
-            tcsims[group] = TimecourseSim(
-                [Timecourse(
-                    start=0,
-                    end=100 * 60,  # [min]
-                    steps=1000,
-                    changes={
-                        **self.default_changes(),
-                        "BW": Q_(self.bodyweights[group], "kg"),
-                        "KI__f_renal_function": Q_(self.renal_functions[group], "dimensionless"),
-                        "PODOSE_api": Q_(10, "mg"),
-                    },
-                )]
+            tcsims[self.to_sid(group)] = Simulation(
+                time_unit="hr",
+                end=100,
+                preinit_changes={
+                    **self.default_changes(),
+                    "BW": Q(self.bodyweights[group], "kg"),
+                    "KI__f_renal_function": Q(
+                        self.renal_functions[group], "dimensionless"
+                    ),
+                    "PODOSE_api": Q(10, "mg"),
+                },
             )
 
         return tcsims
 
-    #Fit Mappings
-    def fit_mappings(self) -> Dict[str, FitMapping]:
-        mappings: Dict[str, FitMapping] = {}
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
+        mappings: dict[str, FitMapping] = {}
 
         for group in self.groups:
             for sid, name in self.info_pk.items():
-                mappings[f"fm_{name}_{group}"] = FitMapping(
+                mappings[self.to_sid(f"fm_{name}_{group}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
-                        dataset=f"{name}_{group}",
+                        dataset=self.to_sid(f"{name}_{group}"),
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
@@ -118,38 +140,42 @@ class Chang2016(ApixabanSimulationExperiment):
                     ),
                     observable=FitData(
                         self,
-                        task=f"task_{group}",
+                        task=self.to_sid(f"task_{group}"),
                         xid="time",
                         yid=sid,
                     ),
-                    metadata=ApixabanMappingMetaData(
-                        tissue=Tissue.PLASMA,
+                    metadata=PKPDMappingMetaData(
+                        tissue=Tissue.PLASMA if sid == "[Cve_api]" else Tissue.URINE,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
                         dosing=Dosing.SINGLE,
-                        health=Health.HEALTHY if group == "normal" else Health.RENAL_IMPAIRMENT,
+                        health=Health.HEALTHY
+                        if group == "normal"
+                        else Health.RENAL_IMPAIRMENT,
                         fasting=Fasting.FASTED,
                     ),
                 )
 
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
             **self.figure_pk(),
             **self.figure_scatter_xa(),
             **self.figure_scatter_inr(),
         }
 
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure_pk(self) -> dict[str, Figure]:
+        """Figure of the pharmacokinetics in plasma and urine."""
         fig = Figure(
             experiment=self,
-            #sid="Fig1",
-            #name=self.__class__.__name__
-            sid = "PK",
-            name = f"{self.__class__.__name__}",
+            sid="PK",
+            name=f"{self.__class__.__name__}",
             height=self.panel_height,
-            width=self.panel_width * 0.87,
+            width=self.panel_width * 2,
+            num_cols=2,
+            num_rows=1,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -158,6 +184,9 @@ class Chang2016(ApixabanSimulationExperiment):
 
         for kp, sid in enumerate(self.info_pk):
             plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid])
+        # the legend of the plasma names the groups, one in the urine panel
+        # would hide the urinary amounts at 96 hr
+        plots[1].legend = False
 
         for group in self.groups:
             for kp, sid in enumerate(self.info_pk):
@@ -165,28 +194,32 @@ class Chang2016(ApixabanSimulationExperiment):
 
                 # simulation
                 plots[kp].add_data(
-                    task=f"task_{group}",
+                    task=self.to_sid(f"task_{group}"),
                     xid="time",
                     yid=sid,
-                    label="sim: 10mg PO" if group == "normal" else f"sim {self.short_names[group]}: 10mg PO",
+                    label="sim: 10mg PO"
+                    if group == "normal"
+                    else f"sim {self.short_names[group]}: 10mg PO",
                     color=self.colors[group],
                 )
                 # data
                 plots[kp].add_data(
-                    dataset=f"{name}_{group}",
+                    dataset=self.to_sid(f"{name}_{group}"),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label="exp: 10mg PO" if group == "normal" else f"exp {self.short_names[group]}: 10mg PO",
+                    label="exp: 10mg PO"
+                    if group == "normal"
+                    else f"exp {self.short_names[group]}: 10mg PO",
                     color=self.colors[group],
+                    linestyle="" if "cumulative" in name else "-",
                 )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
-
-    #scatterplot for api vs xa
-    def figure_scatter_xa(self) -> Dict[str, Figure]:
+    def figure_scatter_xa(self) -> dict[str, Figure]:
+        """Figure of the anti-factor Xa activity against apixaban in plasma."""
         fig = Figure(
             experiment=self,
             sid="PD_scatter_xa",
@@ -203,31 +236,33 @@ class Chang2016(ApixabanSimulationExperiment):
             unit=self.units["antiXa_activity"],
             scale="linear",
         )
-        is_legend = True
         for group in self.groups:
             plots[0].add_data(
-                task=f"task_{group}",
+                task=self.to_sid(f"task_{group}"),
                 xid="[Cve_api]",
                 yid="antiXa_activity",
-                label="sim: 10mg PO" if is_legend else "",
-                color="black"
+                label="sim: 10mg PO"
+                if group == "normal"
+                else f"sim {self.short_names[group]}: 10mg PO",
+                color=self.colors[group],
             )
-            is_legend = False
             plots[0].add_data(
-                dataset=f"apixaban_vs_xa_{group}",
+                dataset=self.to_sid(f"apixaban_vs_xa_{group}"),
                 xid="x",
                 yid="y",
-                label=f"exp individ {self.short_names[group]}: 10mg PO" if group != "normal" else "exp individ: 10mg PO",
+                label=f"exp individ {self.short_names[group]}: 10mg PO"
+                if group != "normal"
+                else "exp individ: 10mg PO",
                 linestyle="",
                 color="white",
                 marker=self.markers[group],
                 markeredgecolor=self.colors[group],
             )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
-    #scatterplot apixaban vs inr
-    def figure_scatter_inr(self) -> Dict[str, Figure]:
+    def figure_scatter_inr(self) -> dict[str, Figure]:
+        """Figure of the INR against apixaban in plasma."""
         fig = Figure(
             experiment=self,
             sid="PD_scatter_inr",
@@ -244,32 +279,31 @@ class Chang2016(ApixabanSimulationExperiment):
             unit=self.units["INR"],
             scale="linear",
         )
-        is_legend = True
         for group in self.groups:
             plots[0].add_data(
-                task=f"task_{group}",
+                task=self.to_sid(f"task_{group}"),
                 xid="[Cve_api]",
                 yid="INR",
-                label="sim: 10mg PO" if is_legend else "",
-                color="black",
+                label="sim: 10mg PO"
+                if group == "normal"
+                else f"sim {self.short_names[group]}: 10mg PO",
+                color=self.colors[group],
             )
-            is_legend = False
             plots[0].add_data(
-                dataset=f"apixaban_vs_INR_{group}",
+                dataset=self.to_sid(f"apixaban_vs_INR_{group}"),
                 xid="x",
                 yid="y",
-                label=f"exp individ {self.short_names[group]}: 10mg PO" if group != "normal" else "exp individ: 10mg PO",
+                label=f"exp individ {self.short_names[group]}: 10mg PO"
+                if group != "normal"
+                else "exp individ: 10mg PO",
                 linestyle="",
                 color="white",
                 marker=self.markers[group],
                 markeredgecolor=self.colors[group],
             )
 
-        return {fig.sid: fig}
-
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Chang2016.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Chang2016, output_dir=Chang2016.__name__)
+    MODEL.run_experiments(Chang2016, output_dir=Chang2016.__name__)

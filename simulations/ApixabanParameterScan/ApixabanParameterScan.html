@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ApixabanParameterScan | sbmlsim experiment</title>
+<style>
+:root {
+  --bg: #ffffff; --bg-soft: #f6f7f9; --bg-card: #ffffff;
+  --fg: #1b1f24; --fg-soft: #5b6472; --line: #e3e6ea;
+  --accent: #3b5bdb; --training: #2f9e44; --validation: #1c7ed6; --outlier: #e8590c;
+  --excluded: #868e96;
+  --radius: 10px; --shadow: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.1);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171c; --bg-soft: #1a1e24; --bg-card: #1a1e24;
+    --fg: #e6e9ee; --fg-soft: #9aa4b2; --line: #2a3038;
+    --accent: #748ffc; --training: #51cf66; --validation: #4dabf7; --outlier: #ff922b;
+    --excluded: #adb5bd;
+    --shadow: none;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .92em; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+header.top {
+  position: sticky; top: 0; z-index: 20; background: var(--bg);
+  border-bottom: 1px solid var(--line); padding: 14px 24px 0;
+}
+.top .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; }
+.top h1 { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: -.01em; }
+.top .sub { color: var(--fg-soft); font-size: 13px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+.badge {
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px;
+  padding: 2px 10px; font-size: 12px; color: var(--fg-soft); white-space: nowrap;
+}
+.badge b { color: var(--fg); font-weight: 600; }
+.badge.failed, .badge.failed b { color: var(--outlier); border-color: var(--outlier); }
+nav.sections { display: flex; gap: 4px; margin-top: 12px; }
+nav.sections a {
+  padding: 8px 14px; border-bottom: 2px solid transparent; color: var(--fg-soft);
+  font-size: 14px; font-weight: 550;
+}
+nav.sections a.active { color: var(--fg); border-bottom-color: var(--accent); }
+.search { display: flex; gap: 8px; align-items: center; padding: 10px 0 12px; }
+.search input {
+  flex: 1; max-width: 460px; padding: 8px 12px; font-size: 14px; color: var(--fg);
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 8px;
+}
+.search input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.chip {
+  border: 1px solid var(--line); background: var(--bg-soft); color: var(--fg-soft);
+  border-radius: 999px; padding: 5px 12px; font-size: 12.5px; cursor: pointer;
+}
+.chip[aria-pressed="true"] { color: #fff; border-color: transparent; }
+.chip[data-kind="training"][aria-pressed="true"] { background: var(--training); }
+.chip[data-kind="validation"][aria-pressed="true"] { background: var(--validation); }
+.chip[data-kind="outlier"][aria-pressed="true"] { background: var(--outlier); }
+.chip[data-kind="excluded"][aria-pressed="true"] { background: var(--excluded); }
+#hits { color: var(--fg-soft); font-size: 12.5px; margin-left: auto; }
+
+main { padding: 24px; max-width: 1400px; margin: 0 auto; }
+section { margin-bottom: 44px; scroll-margin-top: 150px; }
+section > h2 {
+  font-size: 17px; font-weight: 650; margin: 0 0 4px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+h3 { font-size: 14px; font-weight: 600; color: var(--fg-soft); margin: 26px 0 10px;
+     text-transform: uppercase; letter-spacing: .04em; }
+.card {
+  background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 16px; margin-bottom: 16px;
+}
+/* a heading which opens a card sits at the padding of the card */
+.card > h3:first-child { margin-top: 0; }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+        margin-bottom: 16px; }
+/* the gap of the grid is the space between its cards */
+.grid > .card { margin-bottom: 0; }
+.card.wide { grid-column: 1 / -1; }
+
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+/* two tables in one card, e.g. the networks and their arrays */
+table + table { margin-top: 24px; }
+th, td { text-align: left; padding: 7px 12px 7px 0; border-bottom: 1px solid var(--line); }
+th { color: var(--fg-soft); font-weight: 600; white-space: nowrap; }
+th[data-sort] { cursor: pointer; user-select: none; }
+th[data-sort]:hover { color: var(--fg); }
+th[data-sort]::after { content: " ⇅"; opacity: .35; }
+th[data-sort].asc::after { content: " ↑"; opacity: 1; }
+th[data-sort].desc::after { content: " ↓"; opacity: 1; }
+td.num, th.num { text-align: right; padding-right: 18px; font-variant-numeric: tabular-nums; }
+tbody tr:hover { background: var(--bg-soft); }
+tr.total td { font-weight: 650; border-top: 2px solid var(--line); }
+
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 20px; font-size: 13.5px;
+      margin: 0; }
+.kv dt { color: var(--fg-soft); }
+.kv dd { margin: 0; word-break: break-word; white-space: pre-line; }
+
+.tag { border-radius: 999px; padding: 1px 9px; font-size: 11.5px; font-weight: 600; color: #fff; }
+.tag.training { background: var(--training); }
+.tag.validation { background: var(--validation); }
+.tag.outlier { background: var(--outlier); }
+.tag.excluded { background: var(--excluded); }
+.warn { color: var(--outlier); }
+
+/* what a value means, on the header of a column or next to a figure */
+.hint {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 14px; height: 14px; margin-left: 4px; border-radius: 50%;
+  border: 1px solid var(--line); color: var(--fg-soft);
+  font-size: 10px; font-weight: 700; line-height: 1; cursor: help;
+  position: relative; vertical-align: middle; user-select: none;
+}
+.hint:hover, .hint:focus { border-color: var(--accent); color: var(--accent); }
+.hint::after {
+  content: attr(data-tip);
+  position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%);
+  width: max-content; max-width: 320px; padding: 8px 10px;
+  border-radius: 6px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--fg); box-shadow: 0 4px 16px rgb(0 0 0 / 18%);
+  font-size: 12px; font-weight: 400; line-height: 1.45; text-align: left;
+  white-space: normal; opacity: 0; visibility: hidden; transition: opacity .12s;
+  z-index: 20; pointer-events: none;
+}
+.hint:hover::after, .hint:focus::after { opacity: 1; visibility: visible; }
+/* a tooltip of the last columns would leave the page */
+td:last-child .hint::after, th:last-child .hint::after { left: auto; right: 0; transform: none; }
+/* on a phone a wide table scrolls inside its card and not the page; the
+   tooltips of its header open downwards, into the table, not above the card */
+@media (max-width: 700px) {
+  .card { overflow-x: auto; }
+  th .hint::after { bottom: auto; top: calc(100% + 8px); }
+  /* the header of a phone is not sticky, it would cover half of the screen,
+     and its rows wrap; the gutter is 16px */
+  header.top { position: static; padding: 12px 16px 0; }
+  main { padding: 16px; }
+  footer { padding: 8px 16px 24px; }
+  section { scroll-margin-top: 16px; }
+  nav.sections { overflow-x: auto; }
+  nav.sections a { padding: 8px 10px; white-space: nowrap; }
+  .search { flex-wrap: wrap; }
+  .search input { flex-basis: 100%; max-width: none; }
+}
+
+figure { margin: 0; }
+figure img {
+  width: 100%; height: auto; background: #fff; border: 1px solid var(--line);
+  border-radius: 8px; cursor: zoom-in;
+}
+figcaption { color: var(--fg-soft); font-size: 12.5px; margin-top: 6px; }
+
+.mapping { }
+.mapping header { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 10px; }
+.mapping header .name { font-weight: 650; }
+.mapping header .exp { color: var(--fg-soft); font-size: 13px; }
+.mapping .metrics { margin-left: auto; display: flex; gap: 14px; font-size: 12.5px; color: var(--fg-soft); }
+.mapping .metrics b { color: var(--fg); font-weight: 600; }
+.hidden { display: none !important; }
+.failed { color: var(--outlier); }
+.empty { color: var(--fg-soft); font-style: italic; padding: 16px 0; }
+
+pre.code {
+  margin: 0; padding: 14px 16px; overflow-x: auto; max-height: 70vh;
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px; line-height: 1.5; tab-size: 4;
+}
+#lightbox {
+  position: fixed; inset: 0; background: rgba(8,10,14,.86); z-index: 50;
+  display: none; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out;
+}
+#lightbox.open { display: flex; }
+#lightbox img { max-width: 100%; max-height: 100%; background: #fff; border-radius: 8px; }
+footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-width: 1400px; margin: 0 auto; }
+</style>
+<style>
+  /* an interactive figure is a page of its own, shown in place of the image */
+  figure iframe { width: 100%; height: 520px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg-card); }
+  /* a figure of one panel is not stretched to the width of the page, a figure
+     of many panels still uses it */
+  #figures figure img { width: auto; max-width: 100%; max-height: 70vh; display: block; margin: 0 auto; }
+  .mapping header .exp a + a::before { content: "·"; color: var(--fg-soft); margin: 0 6px; }
+</style>
+</head>
+<body data-items="figures">
+
+<header class="top">
+  <div class="row">
+    <h1>ApixabanParameterScan</h1>
+    <span class="sub">simulation experiment</span>
+    <div class="badges">
+<span class="badge">models <b>1</b></span>
+<span class="badge">datasets <b>0</b></span>
+<span class="badge">figures <b>8</b></span>
+    </div>
+  </div>
+  <nav class="sections">
+<a href="#overview">Overview</a>
+<a href="#figures">Figures</a>
+<a href="#code">Code</a>
+  </nav>
+  <div class="search">
+    <input id="search" type="search" placeholder="Search figures, models, datasets …" autocomplete="off">
+    <span id="hits"></span>
+  </div>
+</header>
+
+<main>
+
+<section id="overview">
+  <h2>Overview</h2>
+
+  <h3>Models</h3>
+  <div class="card">
+    <table data-filter="row">
+      <thead><tr><th data-sort="text">model</th><th data-sort="text">source</th></tr></thead>
+      <tbody>
+      <tr><td class="mono">model</td><td><a href="../../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml" title="../../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml">apixaban_body_flat.xml</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Datasets</h3>
+  <div class="card">
+    <p class="empty">The experiment has no datasets.</p>
+  </div>
+</section>
+
+<section id="figures">
+  <h2>Figures (8)</h2>
+  <div class="card mapping" data-filter="card">
+    <header>
+      <span class="name mono">timecourse__pk__dose_scan</span>
+      <span class="exp">
+<a href="ApixabanParameterScan_timecourse__pk__dose_scan.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="ApixabanParameterScan_timecourse__pk__dose_scan.svg" alt="timecourse__pk__dose_scan">
+    </figure>
+  </div>
+  <div class="card mapping" data-filter="card">
+    <header>
+      <span class="name mono">timecourse__pk__renal_scan</span>
+      <span class="exp">
+<a href="ApixabanParameterScan_timecourse__pk__renal_scan.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="ApixabanParameterScan_timecourse__pk__renal_scan.svg" alt="timecourse__pk__renal_scan">
+    </figure>
+  </div>
+  <div class="card mapping" data-filter="card">
+    <header>
+      <span class="name mono">timecourse__pk__hepatic_scan</span>
+      <span class="exp">
+<a href="ApixabanParameterScan_timecourse__pk__hepatic_scan.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="ApixabanParameterScan_timecourse__pk__hepatic_scan.svg" alt="timecourse__pk__hepatic_scan">
+    </figure>
+  </div>
+  <div class="card mapping" data-filter="card">
+    <header>
+      <span class="name mono">timecourse__pk__bodyweight_scan</span>
+      <span class="exp">
+<a href="ApixabanParameterScan_timecourse__pk__bodyweight_scan.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="ApixabanParameterScan_timecourse__pk__bodyweight_scan.svg" alt="timecourse__pk__bodyweight_scan">
+    </figure>
+  </div>
+  <div class="card mapping" data-filter="card">
+    <header>
+      <span class="name mono">fig_can_po__dose_scan</span>
+      <span class="exp">
+<a href="ApixabanParameterScan_fig_can_po__dose_scan.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="ApixabanParameterScan_fig_can_po__dose_scan.svg" alt="fig_can_po__dose_scan">
+    </figure>
+  </div>
+  <div class="card mapping" data-filter="card">
+    <header>
+      <span class="name mono">fig_can_po__renal_scan</span>
+      <span class="exp">
+<a href="ApixabanParameterScan_fig_can_po__renal_scan.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="ApixabanParameterScan_fig_can_po__renal_scan.svg" alt="fig_can_po__renal_scan">
+    </figure>
+  </div>
+  <div class="card mapping" data-filter="card">
+    <header>
+      <span class="name mono">fig_can_po__hepatic_scan</span>
+      <span class="exp">
+<a href="ApixabanParameterScan_fig_can_po__hepatic_scan.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="ApixabanParameterScan_fig_can_po__hepatic_scan.svg" alt="fig_can_po__hepatic_scan">
+    </figure>
+  </div>
+  <div class="card mapping" data-filter="card">
+    <header>
+      <span class="name mono">fig_can_po__bodyweight_scan</span>
+      <span class="exp">
+<a href="ApixabanParameterScan_fig_can_po__bodyweight_scan.svg">svg</a>      </span>
+    </header>
+    <figure>
+      <img loading="lazy" src="ApixabanParameterScan_fig_can_po__bodyweight_scan.svg" alt="fig_can_po__bodyweight_scan">
+    </figure>
+  </div>
+  <p class="empty hidden" data-empty>No figure matches the search.</p>
+</section>
+
+<section id="code">
+  <h2>Code</h2>
+  <div class="card">
+    <p><a href="../../../../src/pkdb_models/models/apixaban/experiments/scans/scan_parameters.py" title="../../../../src/pkdb_models/models/apixaban/experiments/scans/scan_parameters.py">scan_parameters.py</a></p>
+    <pre class="code"><code>&#34;&#34;&#34;Parameter scans of the apixaban model.
+
+The oral dose, the renal function, the degree of cirrhosis and the body weight
+are scanned after a single oral dose of apixaban. The matplotlib figures show
+the timecourses of the scans and the pharmacokinetic and pharmacodynamic
+parameters of `apixaban_pk` together with the data of the studies.
+&#34;&#34;&#34;
+
+from pathlib import Path
+from typing import Any, ClassVar, Literal, NamedTuple, NotRequired, TypedDict, override
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from matplotlib.axes import Axes
+from matplotlib.cm import ScalarMappable
+from matplotlib.colors import (
+    Colormap,
+    LinearSegmentedColormap,
+    LogNorm,
+    Normalize,
+    TwoSlopeNorm,
+    to_hex,
+)
+from matplotlib.figure import Figure
+from matplotlib.lines import Line2D
+from matplotlib.ticker import FuncFormatter
+from matplotlib.typing import ColorType
+from pint import DimensionalityError
+from pkpdsim.experiment import rename_units
+from pkpdsim.scan import point_band, point_timecourse, scan_dimensions, start_values
+from sbmlsim import Q
+from sbmlsim.plot.serialization_matplotlib import FigureMPL
+from sbmlsim.result import ScanResult
+from sbmlsim.simulation import Dimension, Scan, Simulation
+from sbmlutils.console import console
+
+from pkdb_models.models.apixaban import MODEL
+from pkdb_models.models.apixaban.apixaban_pk import summarize
+from pkdb_models.models.apixaban.experiments.base_experiment import (
+    ApixabanSimulationExperiment,
+)
+
+#: pharmacokinetic and pharmacodynamic parameters of the studies, one file per scan
+STUDY_DATA_PATH = Path(__file__).parent / &#34;study_data&#34;
+
+
+class ScanSpec(TypedDict):
+    &#34;&#34;&#34;Definition of a single parameter scan.&#34;&#34;&#34;
+
+    parameter: str
+    #: value of the reference simulation
+    default: float
+    range: np.ndarray
+    scale: Literal[&#34;linear&#34;, &#34;log&#34;]
+    #: the colormap, a matplotlib colormap or the colors at positions from 0
+    #: to 1 along the range
+    colormap: str | list[tuple[float, str]]
+    units: str
+    label: str
+    #: the labels of the ticks of the colorbar, the minimum, the default and
+    #: the maximum of the range without
+    ticks: NotRequired[dict[float, str]]
+
+
+class Panel(NamedTuple):
+    &#34;&#34;&#34;A panel of the timecourses of a scan.&#34;&#34;&#34;
+
+    sid: str
+    #: the end of the time axis [hr]
+    tend: float
+    #: the distance of the ticks of the time axis [hr]
+    tick: float
+
+
+class Marker(NamedTuple):
+    &#34;&#34;&#34;The marker of a study, a shape filled completely or on one half.&#34;&#34;&#34;
+
+    shape: str
+    fillstyle: Literal[&#34;full&#34;, &#34;left&#34;, &#34;bottom&#34;]
+
+
+def _position(value: float, vmin: float, vmax: float) -&gt; float:
+    &#34;&#34;&#34;Get the position of a value on a logarithmic axis from vmin to vmax.&#34;&#34;&#34;
+    return float((np.log10(value) - np.log10(vmin)) / (np.log10(vmax) - np.log10(vmin)))
+
+
+def _with(values: np.ndarray, *extra: float) -&gt; np.ndarray:
+    &#34;&#34;&#34;Get the sorted values of a scan with the values `extra` added.&#34;&#34;&#34;
+    return np.unique(np.concatenate([values, np.asarray(extra, dtype=float)]))
+
+
+def _unit(unit: str) -&gt; str:
+    &#34;&#34;&#34;Get a unit as written on an axis, `-` for a dimensionless quantity.&#34;&#34;&#34;
+    return unit.replace(&#34;dimensionless&#34;, &#34;-&#34;)
+
+
+_CIRRHOSIS = ApixabanSimulationExperiment.cirrhosis_map
+_CIRRHOSIS_COLORS = ApixabanSimulationExperiment.cirrhosis_colors
+_RENAL = ApixabanSimulationExperiment.renal_map
+_RENAL_COLORS = ApixabanSimulationExperiment.renal_colors
+#: the diverging colormaps, whose light center is left out and centered at the
+#: default of the scan
+_DIVERGING = {&#34;RdBu_r&#34;}
+#: the shapes of the markers of the studies, shapes which are told apart at the
+#: size of a marker, filled, on the left half and on the bottom half
+_SHAPES = (&#34;s&#34;, &#34;^&#34;, &#34;D&#34;, &#34;v&#34;, &#34;o&#34;, &#34;*&#34;, &#34;X&#34;, &#34;P&#34;, &#34;&lt;&#34;, &#34;&gt;&#34;)
+_FILLSTYLES: tuple[Literal[&#34;full&#34;, &#34;left&#34;, &#34;bottom&#34;], ...] = (&#34;full&#34;, &#34;left&#34;, &#34;bottom&#34;)
+
+
+class ApixabanParameterScan(ApixabanSimulationExperiment):
+    &#34;&#34;&#34;Scan the effect of parameters on the pharmacokinetics and pharmacodynamics.
+
+    A single oral dose of 5 mg apixaban, simulated for 96 hr, the end of the
+    longest partial AUC of the studies (`apixaban_pk.AUC_END_TIMES`). The
+    figures show the timecourses of apixaban, its metabolites and the
+    coagulation in the first 48 hr and the excreted amounts in the 96 hr,
+    and the pharmacokinetic and pharmacodynamic parameters over the scanned
+    parameter with the data of the studies.
+
+    In a run over the draws of the fitted parameters (`run_simulation
+    pkdb_models.models.apixaban --uncertainty`) every point of a scan is
+    simulated for every draw; the figures draw the median of the draws with
+    the band of their quantiles.
+    &#34;&#34;&#34;
+
+    #: the end of the simulations [hr]
+    tend = 96
+    #: the output times of a run over the draws [hr]: every 0.05 hr in the
+    #: first day (absorption and maximum, tmax about 2 hr), every 0.5 hr after
+    #: it. The grid of `steps` for every draw of every point would need about
+    #: 3.5 GB, this grid 0.5 GB.
+    times_uncertainty: ClassVar[tuple[float, ...]] = tuple(
+        np.unique(
+            np.concatenate([np.linspace(0, 24, 481), np.linspace(24, tend, 145)])
+        ).tolist()
+    )
+    #: the oral dose of the scans [mg]
+    dose_api = 5
+    #: the opacity of the bands of the draws of the fitted parameters
+    band_alpha = 0.15
+
+    #: the variables of the figures and of the parameters of `apixaban_pk`
+    selections = (
+        &#34;time&#34;,
+        &#34;PODOSE_api&#34;,
+        &#34;KI__f_renal_function&#34;,
+        &#34;f_cirrhosis&#34;,
+        &#34;BW&#34;,
+        &#34;[Cve_api]&#34;,
+        &#34;[Cve_m1]&#34;,
+        &#34;[Cve_m7]&#34;,
+        &#34;Aurine_api&#34;,
+        &#34;Aurine_m1&#34;,
+        &#34;Aurine_m7&#34;,
+        &#34;Afeces_api&#34;,
+        &#34;Afeces_m1&#34;,
+        &#34;Afeces_m7&#34;,
+        &#34;INR&#34;,
+        &#34;PT&#34;,
+        &#34;mPT&#34;,
+        &#34;aPTT&#34;,
+        &#34;antiXa_activity&#34;,
+        &#34;INR_ratio&#34;,
+        &#34;PT_ratio&#34;,
+        &#34;mPT_ratio&#34;,
+        &#34;aPTT_ratio&#34;,
+    )
+
+    #: the substance of the data of the studies
+    data_substance = &#34;apixaban&#34;
+    # parameters of the studies which scale with the dose
+    scalable_params: ClassVar[list[str]] = [
+        &#34;cmax&#34;,
+        &#34;auc_inf_obs&#34;,
+        &#34;aucend_12&#34;,
+        &#34;aucend_24&#34;,
+        &#34;aucend_48&#34;,
+        &#34;aucend_72&#34;,
+        &#34;aucend_96&#34;,
+        &#34;inrmax&#34;,
+        &#34;ptmax&#34;,
+        &#34;apttmax&#34;,
+        &#34;antixa_activitymax&#34;,
+        &#34;inr_ratiomax&#34;,
+        &#34;pt_ratiomax&#34;,
+        &#34;aptt_ratiomax&#34;,
+    ]
+    #: the pharmacodynamic outputs of the pharmacodynamic parameters
+    #: (`&lt;output&gt;max`, the maximum of the output)
+    pd_outputs: ClassVar[dict[str, str]] = {
+        &#34;inrmax&#34;: &#34;INR&#34;,
+        &#34;ptmax&#34;: &#34;PT&#34;,
+        &#34;apttmax&#34;: &#34;aPTT&#34;,
+        &#34;inr_ratiomax&#34;: &#34;INR_ratio&#34;,
+        &#34;pt_ratiomax&#34;: &#34;PT_ratio&#34;,
+        &#34;aptt_ratiomax&#34;: &#34;aPTT_ratio&#34;,
+        &#34;antixa_activitymax&#34;: &#34;antiXa_activity&#34;,
+    }
+
+    study_data_files: ClassVar[dict[str, Path]] = {
+        &#34;renal_scan&#34;: STUDY_DATA_PATH / &#34;parameters_renal.tsv&#34;,
+        &#34;hepatic_scan&#34;: STUDY_DATA_PATH / &#34;parameters_hepatic.tsv&#34;,
+        &#34;dose_scan&#34;: STUDY_DATA_PATH / &#34;parameters_dose.tsv&#34;,
+        &#34;bodyweight_scan&#34;: STUDY_DATA_PATH / &#34;parameters_bodyweight.tsv&#34;,
+    }
+
+    font: ClassVar[dict[str, str | int]] = {&#34;weight&#34;: &#34;bold&#34;, &#34;size&#34;: 20}
+    tick_font_size = 17
+
+    # keyword arguments of the markers of the data
+    plot_kwargs: ClassVar[dict[str, Any]] = {
+        &#34;markeredgecolor&#34;: &#34;black&#34;,
+        &#34;markeredgewidth&#34;: 0.8,
+        &#34;markersize&#34;: 8,
+        &#34;markerfacecoloralt&#34;: &#34;white&#34;,
+        &#34;alpha&#34;: 0.9,
+        &#34;linestyle&#34;: &#34;&#34;,
+    }
+
+    scan_map: ClassVar[dict[str, ScanSpec]] = {
+        &#34;dose_scan&#34;: {
+            &#34;parameter&#34;: &#34;PODOSE_api&#34;,
+            &#34;default&#34;: dose_api,
+            # the doses of the studies, 2.5 to 50 mg
+            &#34;range&#34;: np.array([0.5, 1, 2.5, 5, 7.5, 10, 15, 20, 25, 35, 50]),
+            &#34;scale&#34;: &#34;linear&#34;,
+            &#34;colormap&#34;: &#34;Oranges&#34;,
+            &#34;units&#34;: &#34;mg&#34;,
+            &#34;label&#34;: &#34;apixaban dose [mg]&#34;,
+            &#34;ticks&#34;: {0.5: &#34;0.5&#34;, 5: &#34;5&#34;, 25: &#34;25&#34;, 50: &#34;50&#34;},
+        },
+        &#34;renal_scan&#34;: {
+            &#34;parameter&#34;: &#34;KI__f_renal_function&#34;,
+            &#34;default&#34;: 1.0,
+            # 0.1 to 2, with the limits of the classes of the GFR
+            &#34;range&#34;: _with(
+                np.array([0.1, 0.14, 0.27, 0.7, 1.4, 2.0]),
+                *(v for k, v in _RENAL.items() if k != &#34;End stage renal disease&#34;),
+            ),
+            &#34;scale&#34;: &#34;log&#34;,
+            # the colors of the classes at their renal function (of 0.1 to 2),
+            # light greens for a normal and an increased renal function
+            &#34;colormap&#34;: [
+                (0.0, _RENAL_COLORS[&#34;End stage renal disease&#34;]),
+                *(
+                    (_position(_RENAL[key], 0.1, 2), _RENAL_COLORS[key])
+                    for key in (
+                        &#34;Severe renal impairment&#34;,
+                        &#34;Moderate renal impairment&#34;,
+                        &#34;Mild renal impairment&#34;,
+                    )
+                ),
+                (_position(1.0, 0.1, 2), &#34;#a1d99b&#34;),
+                (1.0, &#34;#c7e9c0&#34;),
+            ],
+            &#34;units&#34;: &#34;dimensionless&#34;,
+            &#34;label&#34;: &#34;renal function [-]&#34;,
+            &#34;ticks&#34;: {0.1: &#34;0.1&#34;, 1.0: &#34;1&#34;, 2.0: &#34;2&#34;},
+        },
+        &#34;hepatic_scan&#34;: {
+            &#34;parameter&#34;: &#34;f_cirrhosis&#34;,
+            &#34;default&#34;: 0.0,
+            # with the degrees of the Child-Pugh classes
+            &#34;range&#34;: _with(
+                np.array([0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.9]),
+                *(v for k, v in _CIRRHOSIS.items() if k != &#34;Control&#34;),
+            ),
+            &#34;scale&#34;: &#34;linear&#34;,
+            # the colors of the classes at their degrees (of 0 to 0.9)
+            &#34;colormap&#34;: [
+                (0.0, &#34;#d0e1f2&#34;),
+                *(
+                    (_CIRRHOSIS[key] / 0.9, _CIRRHOSIS_COLORS[key])
+                    for key in (
+                        &#34;Mild cirrhosis&#34;,
+                        &#34;Moderate cirrhosis&#34;,
+                        &#34;Severe cirrhosis&#34;,
+                    )
+                ),
+                (1.0, &#34;#023858&#34;),
+            ],
+            &#34;units&#34;: &#34;dimensionless&#34;,
+            &#34;label&#34;: &#34;cirrhosis degree [-]&#34;,
+            &#34;ticks&#34;: {
+                0.0: &#34;0&#34;,
+                _CIRRHOSIS[&#34;Mild cirrhosis&#34;]: &#34;CPT A&#34;,
+                _CIRRHOSIS[&#34;Moderate cirrhosis&#34;]: &#34;CPT B&#34;,
+                _CIRRHOSIS[&#34;Severe cirrhosis&#34;]: &#34;CPT C&#34;,
+            },
+        },
+        &#34;bodyweight_scan&#34;: {
+            &#34;parameter&#34;: &#34;BW&#34;,
+            &#34;default&#34;: 75.0,
+            # the body weights of the studies, 38 to 170 kg
+            &#34;range&#34;: np.array([38, 45, 55, 65, 75, 90, 105, 120, 140, 170, 200]),
+            &#34;scale&#34;: &#34;linear&#34;,
+            &#34;colormap&#34;: &#34;RdBu_r&#34;,
+            &#34;units&#34;: &#34;kg&#34;,
+            &#34;label&#34;: &#34;body weight [kg]&#34;,
+        },
+    }
+
+    #: the timecourses of the figures of the scans
+    scan_sids: ClassVar[dict[str, list[str]]] = {
+        &#34;dose_scan&#34;: [
+            &#34;[Cve_api]&#34;,
+            &#34;[Cve_m1]&#34;,
+            &#34;[Cve_m7]&#34;,
+            &#34;Aurine_api&#34;,
+            &#34;Afeces_api&#34;,
+        ],
+        &#34;renal_scan&#34;: [
+            &#34;[Cve_api]&#34;,
+            &#34;Aurine_api&#34;,
+            &#34;Aurine_m1&#34;,
+            &#34;Aurine_m7&#34;,
+            &#34;Afeces_m1&#34;,
+        ],
+        &#34;hepatic_scan&#34;: [
+            &#34;[Cve_api]&#34;,
+            &#34;[Cve_m1]&#34;,
+            &#34;[Cve_m7]&#34;,
+            &#34;Afeces_m1&#34;,
+            &#34;Afeces_m7&#34;,
+        ],
+        &#34;bodyweight_scan&#34;: [
+            &#34;[Cve_api]&#34;,
+            &#34;[Cve_m1]&#34;,
+            &#34;[Cve_m7]&#34;,
+            &#34;Aurine_api&#34;,
+            &#34;Afeces_api&#34;,
+        ],
+    }
+    #: the pharmacodynamic timecourses of every scan, the second row
+    pd_sids: ClassVar[list[str]] = [&#34;INR&#34;, &#34;PT&#34;, &#34;mPT&#34;, &#34;aPTT&#34;, &#34;antiXa_activity&#34;]
+
+    @override
+    def simulations(self) -&gt; dict[str, Scan]:
+        scans = {}
+        grid: dict[str, Any] = (
+            {} if self.uncertainty is None else {&#34;times&#34;: self.times_uncertainty}
+        )
+        for scan_key, scan_data in self.scan_map.items():
+            # the simulation does not set what the dimension scans (the dose
+            # of the dose scan), the dimension would replace it
+            preinit_changes = {
+                **self.default_changes(),
+                &#34;PODOSE_api&#34;: Q(self.dose_api, &#34;mg&#34;),
+            }
+            preinit_changes.pop(scan_data[&#34;parameter&#34;], None)
+            scans[f&#34;scan_po_{scan_key}&#34;] = Scan(
+                simulation=Simulation(
+                    time_unit=&#34;hr&#34;,
+                    end=self.tend,
+                    preinit_changes=preinit_changes,
+                    **grid,
+                ),
+                dimensions=[
+                    Dimension(
+                        &#34;dim_scan&#34;,
+                        values={
+                            scan_data[&#34;parameter&#34;]: Q(
+                                scan_data[&#34;range&#34;], scan_data[&#34;units&#34;]
+                            )
+                        },
+                    ),
+                ],
+            )
+        return scans
+
+    def _scanned(self, res: ScanResult, scan: ScanSpec) -&gt; np.ndarray:
+        &#34;&#34;&#34;Get the values of the scanned parameter at the points of the scan.&#34;&#34;&#34;
+        parameter_id = scan[&#34;parameter&#34;]
+        values = start_values(res, parameter_id)
+        across = self._across()
+        if across is not None:
+            values = values.isel({across: 0})
+        return Q(values.values, res.units[parameter_id]).to(scan[&#34;units&#34;]).magnitude
+
+    def _colormap(self, scan: ScanSpec) -&gt; tuple[Colormap, Normalize]:
+        &#34;&#34;&#34;Get the colormap of a scan and the normalization of its values.
+
+        The scans of the cirrhosis and of the renal function have the colors
+        of the classes of the impairments (`pkpdsim.impairment`) at the values
+        of the classes. The colormaps of matplotlib leave out their lightest
+        colors, so that every curve is visible on white: the start of a
+        sequential colormap, the center of a diverging one, which is centered
+        at the default of the scan.
+        &#34;&#34;&#34;
+        rmin, rmax = float(scan[&#34;range&#34;][0]), float(scan[&#34;range&#34;][-1])
+        colormap = scan[&#34;colormap&#34;]
+        if isinstance(colormap, str):
+            base = mpl.colormaps[colormap]
+            positions = (
+                np.concatenate([np.linspace(0, 0.4, 128), np.linspace(0.6, 1, 128)])
+                if colormap in _DIVERGING
+                else np.linspace(0.3, 1.0, 256)
+            )
+            cmap: Colormap = LinearSegmentedColormap.from_list(
+                f&#34;{colormap}_visible&#34;, [base(v) for v in positions]
+            )
+            if colormap in _DIVERGING:
+                return cmap, TwoSlopeNorm(vmin=rmin, vcenter=scan[&#34;default&#34;], vmax=rmax)
+        else:
+            cmap = LinearSegmentedColormap.from_list(&#34;impairment&#34;, colormap)
+        if scan[&#34;scale&#34;] == &#34;linear&#34;:
+            return cmap, Normalize(vmin=rmin, vmax=rmax, clip=False)
+        return cmap, LogNorm(vmin=rmin, vmax=rmax, clip=False)
+
+    def _color(self, scan: ScanSpec, value: float) -&gt; str:
+        &#34;&#34;&#34;Get the color of a value of the scanned parameter, the default black.
+
+        Raises:
+            ValueError: if the value is out of the scanned range.
+        &#34;&#34;&#34;
+        rmin, rmax = float(scan[&#34;range&#34;][0]), float(scan[&#34;range&#34;][-1])
+        if not rmin &lt;= value &lt;= rmax:
+            raise ValueError(f&#34;Value {value} is out of range ({rmin}, {rmax}).&#34;)
+        if np.isclose(value, scan[&#34;default&#34;]):
+            return &#34;black&#34;
+        cmap, norm = self._colormap(scan)
+        return to_hex(cmap(norm(value)), keep_alpha=False)
+
+    def _colorbar(self, f: Figure, axes: np.ndarray, scan: ScanSpec) -&gt; None:
+        &#34;&#34;&#34;Draw the colorbar of a scan above its panels, the default in black.&#34;&#34;&#34;
+        cmap, norm = self._colormap(scan)
+        cbar = f.colorbar(
+            ScalarMappable(norm=norm, cmap=cmap),
+            ax=axes.ravel().tolist(),
+            location=&#34;top&#34;,
+            shrink=0.4,
+            aspect=30,
+        )
+        # the gradient as vector cells: matplotlib rasterizes it into an
+        # embedded image, which some SVG viewers do not show; the edges of
+        # the cells in their color close the seams between them
+        if cbar.solids is not None:
+            cbar.solids.set_rasterized(False)
+            cbar.solids.set_edgecolor(&#34;face&#34;)
+        rmin, rmax = float(scan[&#34;range&#34;][0]), float(scan[&#34;range&#34;][-1])
+        ticks = scan.get(
+            &#34;ticks&#34;,
+            {value: f&#34;{value:g}&#34; for value in sorted({rmin, rmax, scan[&#34;default&#34;]})},
+        )
+        cbar.ax.minorticks_off()
+        cbar.set_ticks(list(ticks), labels=list(ticks.values()))
+        cbar.ax.tick_params(labelsize=self.tick_font_size)
+        cbar.ax.axvline(x=scan[&#34;default&#34;], color=&#34;black&#34;, linewidth=4)
+        cbar.set_label(scan[&#34;label&#34;], size=self.tick_font_size + 3, weight=&#34;bold&#34;)
+
+    @override
+    def figures_mpl(self) -&gt; dict[str, FigureMPL]:
+        &#34;&#34;&#34;Matplotlib figures.&#34;&#34;&#34;
+        return {
+            **self.figures_mpl_timecourses(),
+            **self.figures_mpl_pk_pd(self._parameters()),
+        }
+
+    def _parameters(self) -&gt; dict[str, pd.DataFrame]:
+        &#34;&#34;&#34;Get the parameters of apixaban of every scan, per draw with draws.
+
+        The pharmacokinetic parameters of apixaban with the pharmacodynamic
+        parameters (`&lt;output&gt;max`, `&lt;output&gt;max_unit`), one row per point of
+        the scan (and draw), by simulation key.
+        &#34;&#34;&#34;
+        pk_dfs = self.calculate_apixaban_pk()
+        pd_dfs = self.calculate_apixaban_pd()
+        position = [&#34;point&#34;] if self.uncertainty is None else [&#34;point&#34;, &#34;draw&#34;]
+        tables = {}
+        for key, pk_df in pk_dfs.items():
+            table = pk_df[pk_df.substance == &#34;api&#34;]
+            for par_id, output in self.pd_outputs.items():
+                df = pd_dfs[key][output]
+                table = table.merge(
+                    pd.DataFrame(
+                        {
+                            **{column: df[column] for column in position},
+                            par_id: df[&#34;max&#34;].astype(float),
+                            f&#34;{par_id}_unit&#34;: df[&#34;unit&#34;].map(str),
+                        }
+                    ),
+                    on=position,
+                    validate=&#34;one_to_one&#34;,
+                )
+            tables[key] = table
+        return tables
+
+    def _timecourse(
+        self,
+        ax: Axes,
+        res: ScanResult,
+        panel: Panel,
+        point: dict[str, int],
+        color: ColorType,
+        band: bool,
+    ) -&gt; tuple[np.ndarray, np.ndarray, float, float]:
+        &#34;&#34;&#34;Draw the timecourse of a point of a scan, with the band of its draws.
+
+        Args:
+            ax: the panel.
+            res: the result of the scan.
+            panel: the variable and the time axis of the panel.
+            point: the position of the point along the dimension of the scan.
+            color: the color of the point.
+            band: draw the band of the draws in a run over them.
+
+        Returns:
+            The time and the values (the median of the draws in a run over
+            them) until the end of the panel, and the lowest and the highest
+            value drawn, of the band if it is drawn.
+        &#34;&#34;&#34;
+        sid = panel.sid
+        run = self.uncertainty
+        if run is None:
+            time, values = point_timecourse(res, sid, **point)
+            lower = upper = values
+        else:
+            time, lower, values, upper = point_band(
+                res, sid, across=run.id, quantiles=run.quantiles, **point
+            )
+        t = Q(time, res.units[&#34;time&#34;]).to(self.units[&#34;time&#34;]).magnitude
+        shown = t &lt;= panel.tend
+
+        def convert(v: np.ndarray) -&gt; np.ndarray:
+            &#34;&#34;&#34;Get the values until the end of the panel in the unit of the figure.&#34;&#34;&#34;
+            return Q(v[shown], res.units[sid]).to(self.units[sid]).magnitude
+
+        c, c_lower, c_upper = convert(values), convert(lower), convert(upper)
+        if not band:
+            c_lower = c_upper = c
+        elif run is not None:
+            ax.fill_between(
+                t[shown],
+                c_lower,
+                c_upper,
+                color=color,
+                alpha=self.band_alpha,
+                linewidth=0,
+            )
+        ax.plot(t[shown], c, color=color, linewidth=2.0)
+        return t[shown], c, float(np.nanmin(c_lower)), float(np.nanmax(c_upper))
+
+    def _panels(self, scan_key: str) -&gt; list[Panel]:
+        &#34;&#34;&#34;Get the panels of the timecourses of a scan.
+
+        The concentrations and the coagulation in the first 48 hr, the
+        excreted amounts until the end of the simulation.
+        &#34;&#34;&#34;
+        return [
+            Panel(sid, self.tend, 24)
+            if sid.startswith((&#34;Aurine&#34;, &#34;Afeces&#34;))
+            else Panel(sid, 48, 12)
+            for sid in [*self.scan_sids[scan_key], *self.pd_sids]
+        ]
+
+    def figures_mpl_timecourses(self) -&gt; dict[str, FigureMPL]:
+        &#34;&#34;&#34;Timecourses of the scans, a figure per scan.
+
+        The default of the scanned parameter is black and drawn on top. In a
+        run over the draws the default and the ends of the range have the
+        band of their draws (the bands of every point cover each other); the
+        axes include the bands. The concentrations and amounts start at zero,
+        the coagulation at its lowest value.
+        &#34;&#34;&#34;
+        figures: dict[str, FigureMPL] = {}
+        for scan_key, scan_data in self.scan_map.items():
+            panels = self._panels(scan_key)
+            ncols = 5
+            nrows = len(panels) // ncols
+            f, axes = plt.subplots(
+                nrows=nrows,
+                ncols=ncols,
+                figsize=(6 * ncols, 5 * nrows + 1),
+                dpi=150,
+                layout=&#34;constrained&#34;,
+                squeeze=False,
+            )
+            res = self.results[f&#34;task_scan_po_{scan_key}&#34;]
+            (scandim,) = scan_dimensions(res, self._across())
+            par_vec = self._scanned(res, scan_data)
+
+            for ax, panel in zip(axes.flatten(), panels, strict=True):
+                bottom, top = np.inf, -np.inf
+                default: tuple[np.ndarray, np.ndarray] | None = None
+                for k_par, par in enumerate(par_vec):
+                    color = self._color(scan_data, float(par))
+                    band = color == &#34;black&#34; or k_par in (0, len(par_vec) - 1)
+                    t, c, low, high = self._timecourse(
+                        ax, res, panel, {scandim: k_par}, color, band
+                    )
+                    bottom, top = min(bottom, low), max(top, high)
+                    if color == &#34;black&#34;:
+                        default = (t, c)
+
+                # the default on top
+                if default is not None:
+                    ax.plot(*default, color=&#34;black&#34;, linewidth=2.0)
+
+                ax.set_xlim(0, panel.tend)
+                ax.set_xticks(np.arange(0, panel.tend + 1, panel.tick))
+                if panel.sid in self.pd_sids:
+                    margin = 0.05 * (top - bottom)
+                    ax.set_ylim(bottom - margin, top + margin)
+                else:
+                    ax.set_ylim(0, 1.05 * top if top &gt; 0 else 1.0)
+                ax.set_xlabel(
+                    f&#34;{self.label_time} [{self.units[&#39;time&#39;]}]&#34;, fontdict=self.font
+                )
+                ax.set_ylabel(
+                    f&#34;{self.labels[panel.sid]} [{_unit(self.units[panel.sid])}]&#34;,
+                    fontdict=self.font,
+                )
+                ax.tick_params(axis=&#34;both&#34;, labelsize=self.tick_font_size)
+
+            self._colorbar(f, axes, scan_data)
+            figures[f&#34;timecourse__pk__{scan_key}&#34;] = f
+
+        return figures
+
+    def _summary(
+        self, df: pd.DataFrame, key: str, target: str
+    ) -&gt; tuple[np.ndarray, np.ndarray, np.ndarray]:
+        &#34;&#34;&#34;Get a parameter at the points of a scan, the median and the band of the draws.
+
+        Returns:
+            The values (the median of the draws in a run over them), and the
+            lower and the upper quantile, the values without draws, in the
+            unit `target`.
+        &#34;&#34;&#34;
+        unit = str(df[f&#34;{key}_unit&#34;].iloc[0])
+        run = self.uncertainty
+        if run is None:
+            values = Q(df[key].to_numpy(dtype=float), unit).to(target).magnitude
+            return values, values, values
+        summary = summarize(df, key, run.quantiles)
+        median, lower, upper = (
+            Q(summary[column].to_numpy(), unit).to(target).magnitude
+            for column in [&#34;median&#34;, &#34;lower&#34;, &#34;upper&#34;]
+        )
+        return median, lower, upper
+
+    def figures_mpl_pk_pd(
+        self, tables: dict[str, pd.DataFrame]
+    ) -&gt; dict[str, FigureMPL]:
+        &#34;&#34;&#34;Pharmacokinetic and pharmacodynamic parameters of the scans, a figure per scan.&#34;&#34;&#34;
+        figures = {}
+        for scan_id, scan_info in self.scan_map.items():
+            # parameters of the studies, the international units of the
+            # anti-factor Xa activity read as the units of the data (`data_units`)
+            df_exp = rename_units(
+                pd.read_csv(self.study_data_files[scan_id], sep=&#34;\t&#34;, comment=&#34;#&#34;),
+                self.data_unit_names(),
+            )
+            res: ScanResult = self.results[f&#34;task_scan_po_{scan_id}&#34;]
+            figures[f&#34;fig_can_po__{scan_id}&#34;] = self._plot_scan_combined(
+                df_exp=df_exp[df_exp[&#34;substance&#34;] == self.data_substance],
+                par_values=self._scanned(res, scan_info),
+                df_sim=tables[f&#34;scan_po_{scan_id}&#34;],
+                scan_id=scan_id,
+                scan_info=scan_info,
+            )
+
+        return figures
+
+    def _plot_scan_combined(
+        self,
+        df_exp: pd.DataFrame,
+        par_values: np.ndarray,
+        df_sim: pd.DataFrame,
+        scan_id: str,
+        scan_info: ScanSpec,
+    ) -&gt; FigureMPL:
+        &#34;&#34;&#34;Create the figure of the parameters of a scan with the data of the studies.
+
+        A panel per pharmacokinetic parameter of the studies and per
+        pharmacodynamic parameter; the studies have one legend right of the
+        panels, a study one marker in every panel.
+        &#34;&#34;&#34;
+        present = set(df_exp[&#34;parameter&#34;].astype(str))
+        parameters = [p for p in self.pk_labels if p in present] + list(self.pd_labels)
+        studies = sorted(df_exp[&#34;study&#34;].astype(str).unique())
+        markers = {
+            study: Marker(
+                _SHAPES[k % len(_SHAPES)],
+                _FILLSTYLES[(k // len(_SHAPES)) % len(_FILLSTYLES)],
+            )
+            for k, study in enumerate(studies)
+        }
+
+        ncols = 4
+        nrows = (len(parameters) + ncols - 1) // ncols
+        fig, axes = plt.subplots(
+            nrows=nrows,
+            ncols=ncols,
+            figsize=(6.5 * ncols + 3, 6 * nrows),
+            dpi=150,
+            layout=&#34;constrained&#34;,
+            squeeze=False,
+        )
+        axes = axes.flatten()
+        colors = np.array([self._color(scan_info, float(v)) for v in par_values])
+
+        for ax, par_id in zip(axes, parameters, strict=False):
+            ax.axvline(
+                x=scan_info[&#34;default&#34;],
+                color=&#34;grey&#34;,
+                linestyle=&#34;--&#34;,
+                linewidth=1.5,
+                zorder=1,
+            )
+            y, y_lower, y_upper = self._summary(
+                df_sim, par_id, self._parameter_unit(par_id)
+            )
+            if self.uncertainty is not None:
+                ax.fill_between(
+                    par_values,
+                    y_lower,
+                    y_upper,
+                    color=&#34;black&#34;,
+                    alpha=self.band_alpha,
+                    linewidth=0,
+                )
+            ax.plot(par_values, y, color=&#34;black&#34;, linewidth=2.5, zorder=2)
+            ax.scatter(
+                par_values,
+                y,
+                s=60,
+                c=colors,
+                edgecolors=&#34;black&#34;,
+                linewidths=1.2,
+                zorder=3,
+            )
+            max_exp = self._add_study_data_to_plot(
+                df_exp[df_exp[&#34;parameter&#34;] == par_id],
+                par_id,
+                ax,
+                markers,
+                scan_id,
+                scan_info,
+            )
+            self._styling(
+                ax, par_id, max(float(np.nanmax(y_upper)), max_exp), scan_info
+            )
+
+        # Hide unused axes
+        for ax in axes[len(parameters) :]:
+            ax.set_visible(False)
+
+        if markers:
+            fig.legend(
+                handles=[
+                    Line2D(
+                        [0],
+                        [0],
+                        marker=marker.shape,
+                        fillstyle=marker.fillstyle,
+                        markerfacecolor=&#34;grey&#34;,
+                        markerfacecoloralt=&#34;white&#34;,
+                        markeredgecolor=&#34;black&#34;,
+                        linestyle=&#34;None&#34;,
+                        markersize=10,
+                        label=study,
+                    )
+                    for study, marker in markers.items()
+                ],
+                title=&#34;Studies&#34;,
+                title_fontproperties={&#34;weight&#34;: &#34;bold&#34;, &#34;size&#34;: self.tick_font_size},
+                fontsize=self.tick_font_size - 2,
+                loc=&#34;outside right upper&#34;,
+            )
+
+        return fig
+
+    def _parameter_unit(self, parameter: str) -&gt; str:
+        &#34;&#34;&#34;Unit of a pharmacokinetic or pharmacodynamic parameter in the figures.&#34;&#34;&#34;
+        if parameter in self.pd_units:
+            return self.pd_units[parameter]
+        return self.pk_units[parameter]
+
+    def _parameter_label(self, parameter: str) -&gt; str:
+        &#34;&#34;&#34;Axis label of a pharmacokinetic or pharmacodynamic parameter.&#34;&#34;&#34;
+        label = (
+            self.pk_labels[parameter]
+            if parameter in self.pk_labels
+            else self.pd_labels[parameter]
+        )
+        return f&#34;{label} [{_unit(self._parameter_unit(parameter))}]&#34;
+
+    def _add_study_data_to_plot(
+        self,
+        df_exp_par: pd.DataFrame,
+        par_id: str,
+        ax: Axes,
+        markers: dict[str, Marker],
+        scan_id: str,
+        scan_info: ScanSpec,
+    ) -&gt; float:
+        &#34;&#34;&#34;Add the data of the studies of a parameter to the plot.
+
+        The data of other doses are scaled to the dose of the scans, but in
+        the dose scan.
+
+        Returns:
+            The largest value of the data with its errors, for the scaling of
+            the axis.
+        &#34;&#34;&#34;
+        # values of the scanned parameter of the conditions of the studies
+        condition_map = self.get_class_data(scan_id=scan_id)
+        colors = self.get_color_map(scan_id) or {}
+
+        max_y = 0.0
+        for _, row in df_exp_par.iterrows():
+            x_err = None
+            dose_ratio = 1.0
+            # x position (value of the scanned parameter) by scan
+            if scan_id == &#34;dose_scan&#34;:
+                spar_value = (
+                    Q(row[&#34;dose&#34;], row[&#34;dose_unit&#34;]).to(scan_info[&#34;units&#34;]).magnitude
+                )
+                study_color = self._color(scan_info, spar_value)
+            else:
+                if scan_id == &#34;bodyweight_scan&#34;:
+                    spar_value = (
+                        Q(row[&#34;weight&#34;], row[&#34;weight_unit&#34;])
+                        .to(scan_info[&#34;units&#34;])
+                        .magnitude
+                    )
+                    study_color = self._color(scan_info, spar_value)
+                    if &#34;weight_sd&#34; in row and pd.notna(row[&#34;weight_sd&#34;]):
+                        x_err = (
+                            Q(row[&#34;weight_sd&#34;], row[&#34;weight_unit&#34;])
+                            .to(scan_info[&#34;units&#34;])
+                            .magnitude
+                        )
+                else:
+                    # renal and hepatic scans: the condition is the x position
+                    condition = (
+                        str(row[&#34;condition&#34;]).lower().strip()
+                        if pd.notna(row[&#34;condition&#34;])
+                        else None
+                    )
+                    if condition is None or condition not in condition_map:
+                        continue
+                    spar_value = condition_map[condition]
+                    study_color = colors.get(condition, &#34;grey&#34;)
+
+                if row[&#34;dose&#34;] &gt; 0:
+                    dose_ratio = self.dose_api / row[&#34;dose&#34;]
+
+            # column of the data
+            data_column = None
+            for col in [&#34;mean&#34;, &#34;value&#34;, &#34;median&#34;, &#34;geom_mean&#34;]:
+                if col in row and not pd.isna(row[col]):
+                    data_column = col
+                    break
+            if data_column is None:
+                continue
+
+            y_value = self._row_value(row, data_column, par_id, dose_ratio)
+            if y_value is None or not np.isfinite(y_value):
+                continue
+            max_row_y = self._add_data_point_to_plot(
+                ax,
+                spar_value,
+                y_value,
+                x_err,
+                self._row_value(row, &#34;sd&#34;, par_id, dose_ratio),
+                self._row_value(row, &#34;min&#34;, par_id, dose_ratio),
+                self._row_value(row, &#34;max&#34;, par_id, dose_ratio),
+                markers[str(row[&#34;study&#34;])],
+                study_color,
+            )
+            max_y = max(max_y, max_row_y)
+
+        return max_y
+
+    def _row_value(
+        self, row: pd.Series, column: str, parameter: str, dose_ratio: float
+    ) -&gt; float | None:
+        &#34;&#34;&#34;Get a value of a row of the data in the unit of the parameter, `None` if missing.&#34;&#34;&#34;
+        if column not in row or pd.isna(row[column]):
+            return None
+        return self._extract_data_point(row[column], row[&#34;unit&#34;], parameter, dose_ratio)
+
+    def _extract_data_point(
+        self, data_point: float, units: str, parameter: str, dose_ratio: float
+    ) -&gt; float:
+        &#34;&#34;&#34;Convert a value of the data to the unit of the parameter, scaled to the dose.&#34;&#34;&#34;
+        st_units = self._parameter_unit(parameter)
+        try:
+            value = Q(float(data_point), units).to(st_units).magnitude
+        except DimensionalityError:
+            # a mass concentration of apixaban
+            quantity = Q(float(data_point), units) / self.Mr.api
+            try:
+                value = quantity.to(st_units).magnitude
+            except DimensionalityError as err:
+                console.print(
+                    f&#34;An error occurred while transforming units: {err}. &#34;
+                    &#34;Check whether the units of the data can be transformed &#34;
+                    &#34;to the units of the pk parameter in the base experiment.&#34;
+                )
+                value = np.nan
+
+        if parameter in self.scalable_params and dose_ratio != 1.0:
+            return value * dose_ratio
+
+        return value
+
+    def _add_data_point_to_plot(
+        self,
+        ax: Axes,
+        x_pos: float,
+        y_value: float,
+        x_err: float | None,
+        y_err: float | None,
+        min_value: float | None,
+        max_value: float | None,
+        marker: Marker,
+        study_color: str,
+    ) -&gt; float:
+        &#34;&#34;&#34;Plot a data point of a study with its errors and range.
+
+        Returns:
+            The upper end of the point with its error, for the scaling of the axis.
+        &#34;&#34;&#34;
+        style: dict[str, Any] = {
+            &#34;marker&#34;: marker.shape,
+            &#34;fillstyle&#34;: marker.fillstyle,
+            &#34;markerfacecolor&#34;: study_color,
+            **self.plot_kwargs,
+        }
+        if y_err is not None or x_err is not None:
+            (point, *_) = ax.errorbar(
+                x_pos,
+                y_value,
+                xerr=x_err,
+                yerr=y_err,
+                capsize=6,
+                ecolor=&#34;black&#34;,
+                zorder=4,
+                **style,
+            )
+        else:
+            (point,) = ax.plot(x_pos, y_value, zorder=4, **style)
+        # the marker of a value at the limit of the axis is not cut (a renal
+        # clearance of zero), the error bars below zero are
+        point.set_clip_on(False)
+        y_limit = y_value + (y_err or 0.0)
+
+        if min_value is not None and max_value is not None:
+            ax.vlines(
+                x_pos,
+                min_value,
+                max_value,
+                color=&#34;black&#34;,
+                linewidth=2,
+                zorder=4,
+                linestyles=&#34;dashed&#34;,
+            )
+            ax.scatter(x_pos, min_value, s=15, color=&#34;black&#34;, zorder=5)
+            ax.scatter(x_pos, max_value, s=15, color=&#34;black&#34;, zorder=5)
+            y_limit = max(y_limit, max_value)
+
+        return y_limit
+
+    def _styling(self, ax: Axes, key: str, ymax: float, scan_info: ScanSpec) -&gt; None:
+        &#34;&#34;&#34;Apply styling to the axis of a parameter, the y axis from zero.&#34;&#34;&#34;
+        ax.tick_params(axis=&#34;both&#34;, labelsize=self.tick_font_size)
+        ax.tick_params(axis=&#34;both&#34;, which=&#34;major&#34;, length=8, width=3)
+        ax.set_xlabel(scan_info[&#34;label&#34;], fontdict=self.font)
+        ax.set_ylabel(self._parameter_label(key), fontdict=self.font)
+        ax.set_ylim(bottom=0.0, top=1.1 * ymax if ymax &gt; 0 else 1.0)
+        ax.set_xscale(scan_info[&#34;scale&#34;])
+        if scan_info[&#34;scale&#34;] == &#34;log&#34;:
+            # the ticks of the colorbar instead of the powers of ten
+            ticks = scan_info.get(&#34;ticks&#34;)
+            if ticks is not None:
+                ax.set_xticks(list(ticks), labels=list(ticks.values()))
+            else:
+                ax.xaxis.set_major_formatter(
+                    FuncFormatter(lambda value, _: f&#34;{value:g}&#34;)
+                )
+            ax.xaxis.set_minor_formatter(FuncFormatter(lambda *_: &#34;&#34;))
+
+    def get_class_data(self, scan_id: str) -&gt; dict[str, float]:
+        &#34;&#34;&#34;Get the values of the scanned parameter of the conditions of the studies.
+
+        Args:
+            scan_id: the scan, a key of `scan_map`.
+
+        Returns:
+            The value of the scanned parameter by condition, empty for the dose
+            and body weight scans.
+        &#34;&#34;&#34;
+        if scan_id == &#34;renal_scan&#34;:
+            return {
+                &#34;normal&#34;: self.renal_map[&#34;Normal renal function&#34;],
+                &#34;mild&#34;: self.renal_map[&#34;Mild renal impairment&#34;],
+                &#34;moderate&#34;: self.renal_map[&#34;Moderate renal impairment&#34;],
+                &#34;severe&#34;: self.renal_map[&#34;Severe renal impairment&#34;],
+                &#34;end_stage&#34;: self.renal_map[&#34;End stage renal disease&#34;],
+            }
+        if scan_id == &#34;hepatic_scan&#34;:
+            return {
+                &#34;normal&#34;: self.cirrhosis_map[&#34;Control&#34;],
+                &#34;mild&#34;: self.cirrhosis_map[&#34;Mild cirrhosis&#34;],
+                &#34;moderate&#34;: self.cirrhosis_map[&#34;Moderate cirrhosis&#34;],
+                &#34;severe&#34;: self.cirrhosis_map[&#34;Severe cirrhosis&#34;],
+            }
+        return {}
+
+    def get_color_map(self, scan_key: str) -&gt; dict[str, str] | None:
+        &#34;&#34;&#34;Get the colors of the conditions of the renal and hepatic scans.
+
+        Args:
+            scan_key: the scan, a key of `scan_map`.
+
+        Returns:
+            The colors by condition, None for the other scans.
+        &#34;&#34;&#34;
+        predefined_maps = {
+            &#34;renal_scan&#34;: {
+                &#34;normal&#34;: self.renal_colors[&#34;Normal renal function&#34;],
+                &#34;mild&#34;: self.renal_colors[&#34;Mild renal impairment&#34;],
+                &#34;moderate&#34;: self.renal_colors[&#34;Moderate renal impairment&#34;],
+                &#34;severe&#34;: self.renal_colors[&#34;Severe renal impairment&#34;],
+                &#34;end_stage&#34;: self.renal_colors[&#34;End stage renal disease&#34;],
+            },
+            &#34;hepatic_scan&#34;: {
+                &#34;normal&#34;: self.cirrhosis_colors[&#34;Control&#34;],
+                &#34;mild&#34;: self.cirrhosis_colors[&#34;Mild cirrhosis&#34;],
+                &#34;moderate&#34;: self.cirrhosis_colors[&#34;Moderate cirrhosis&#34;],
+                &#34;severe&#34;: self.cirrhosis_colors[&#34;Severe cirrhosis&#34;],
+            },
+        }
+        return predefined_maps.get(scan_key)
+
+
+if __name__ == &#34;__main__&#34;:
+    MODEL.run_experiments(
+        ApixabanParameterScan, output_dir=ApixabanParameterScan.__name__
+    )
+</code></pre>
+  </div>
+</section>
+
+</main>
+
+<footer>
+<a href="../index.html">all experiments</a> · <a href="../../../../src/pkdb_models/models/apixaban/experiments/scans/scan_parameters.py" title="../../../../src/pkdb_models/models/apixaban/experiments/scans/scan_parameters.py">scan_parameters.py</a>
+</footer>
+
+<div id="lightbox"><img alt=""></div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---- search and the filter chips ------------------------------------
+  const search = document.getElementById("search");
+  const hits = document.getElementById("hits");
+  const chips = Array.from(document.querySelectorAll(".chip"));
+  const cards = Array.from(document.querySelectorAll('[data-filter="card"]'));
+  const rows = Array.from(document.querySelectorAll('table[data-filter="row"] tbody tr'));
+  const empty = document.querySelector("[data-empty]");
+  const itemLabel = document.body.dataset.items || "items";
+
+  const haystack = new Map();
+  for (const node of [...cards, ...rows]) {
+    haystack.set(node, node.textContent.toLowerCase());
+  }
+
+  function activeKinds() {
+    return new Set(chips.filter((c) => c.getAttribute("aria-pressed") === "true")
+                        .map((c) => c.dataset.kind));
+  }
+
+  function matches(node, query, kinds) {
+    const kind = node.dataset.kind;
+    if (kind && !kinds.has(kind)) return false;
+    return !query || haystack.get(node).includes(query);
+  }
+
+  function apply() {
+    const query = search.value.trim().toLowerCase();
+    const kinds = activeKinds();
+    let shownCards = 0;
+    for (const node of cards) {
+      const show = matches(node, query, kinds);
+      node.classList.toggle("hidden", !show);
+      if (show) shownCards += 1;
+    }
+    for (const node of rows) {
+      node.classList.toggle("hidden", !matches(node, query, kinds));
+    }
+    if (empty) empty.classList.toggle("hidden", shownCards > 0 || cards.length === 0);
+    const filtering = Boolean(query) || (chips.length > 0 && kinds.size < chips.length);
+    hits.textContent = filtering
+      ? shownCards + " / " + cards.length + " " + itemLabel
+      : "";
+  }
+
+  search.addEventListener("input", apply);
+  for (const chip of chips) {
+    chip.addEventListener("click", () => {
+      chip.setAttribute("aria-pressed", chip.getAttribute("aria-pressed") === "true" ? "false" : "true");
+      apply();
+    });
+  }
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "/" && document.activeElement !== search) {
+      event.preventDefault();
+      search.focus();
+    } else if (event.key === "Escape") {
+      if (document.activeElement === search && search.value) { search.value = ""; apply(); }
+      closeLightbox();
+    }
+  });
+
+  // ---- sortable tables -------------------------------------------------
+  function cellValue(row, index, kind) {
+    const text = row.cells[index] ? row.cells[index].textContent.trim() : "";
+    if (kind !== "num") return text.toLowerCase();
+    // the AIC of a perfect fit is -inf, a cell without a value sorts last
+    if (text === "-inf") return Number.NEGATIVE_INFINITY;
+    const value = parseFloat(text);
+    return Number.isNaN(value) ? Number.POSITIVE_INFINITY : value;
+  }
+
+  for (const table of document.querySelectorAll("table")) {
+    const headers = Array.from(table.querySelectorAll("th[data-sort]"));
+    headers.forEach((th, index) => {
+      th.addEventListener("click", () => {
+        const body = table.tBodies[0];
+        if (!body) return;
+        const kind = th.dataset.sort;
+        const descending = th.classList.contains("asc");
+        for (const other of headers) other.classList.remove("asc", "desc");
+        th.classList.add(descending ? "desc" : "asc");
+        const sorted = Array.from(body.rows).sort((a, b) => {
+          const left = cellValue(a, index, kind);
+          const right = cellValue(b, index, kind);
+          if (left < right) return descending ? 1 : -1;
+          if (left > right) return descending ? -1 : 1;
+          return 0;
+        });
+        for (const row of sorted) body.appendChild(row);
+      });
+    });
+  }
+
+  // ---- the section the page is scrolled to -----------------------------
+  // a tab (data-tab) is not a section, its page marks the tab which is shown
+  const links = Array.from(document.querySelectorAll("nav.sections a:not([data-tab])"));
+  const sections = links.map((link) => document.querySelector(link.getAttribute("href")));
+  function scrollspy() {
+    let current = 0;
+    sections.forEach((section, index) => {
+      if (section && section.getBoundingClientRect().top < 200) current = index;
+    });
+    links.forEach((link, index) => link.classList.toggle("active", index === current));
+  }
+  window.addEventListener("scroll", scrollspy, { passive: true });
+  scrollspy();
+
+  // ---- click a figure to enlarge it ------------------------------------
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = lightbox.querySelector("img");
+  function closeLightbox() { lightbox.classList.remove("open"); lightboxImage.src = ""; }
+  for (const image of document.querySelectorAll("figure img")) {
+    image.addEventListener("click", () => {
+      lightboxImage.src = image.getAttribute("src");
+      lightbox.classList.add("open");
+    });
+  }
+  lightbox.addEventListener("click", closeLightbox);
+
+  apply();
+})();
+</script>
+</body>
+</html>

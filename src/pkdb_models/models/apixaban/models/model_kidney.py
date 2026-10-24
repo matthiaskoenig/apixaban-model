@@ -1,35 +1,54 @@
 """Kidney model for apixaban."""
-import pandas as pd
-from sbmlutils.factory import *
-from sbmlutils.metadata import *
-from pkdb_models.models.apixaban.models import annotations
-from pkdb_models.models.apixaban.models import templates
+
+from sbmlutils.factory import (
+    AssignmentRule,
+    Compartment,
+    Model,
+    Parameter,
+    Reaction,
+    Species,
+    UnitDefinition,
+    create_model,
+)
+from sbmlutils.metadata import (
+    BQB,
+    SBO,
+)
+
+from pkdb_models.models.apixaban.models import annotations, templates
+from pkdb_models.models.apixaban.models.fits import FITS
 
 
 class U(templates.U):
-    """UnitDefinitions"""
-    mg_per_g = UnitDefinition("mg_per_g", "mg/g")
-    ml_per_l = UnitDefinition("ml_per_l", "ml/l")
+    """Units of the kidney model."""
+
     ml_per_min = UnitDefinition("ml_per_min", "ml/min")
-    ml_per_min_bsa = UnitDefinition("ml_per_min_bsa", "ml/min/(1.73 * m^2)")
+    l_per_ml = UnitDefinition("l_per_ml", "l/ml")
 
 
 _m = Model(
     sid="apixaban_kidney",
     name="Model for renal apixaban excretion.",
-    notes=f"""
-    Model for renal excretion of apixaban:
-    """ + templates.terms_of_use,
+    notes="""
+    Model for the renal excretion of apixaban and its metabolites M1 and M7.
+
+    The renal clearances are given relative to the glomerular filtration rate
+    (GFR), which scales with the renal function; the GFR does not depend on the
+    body weight (Upreti2013: the renal clearance was similar across the groups
+    of body weight).
+    """
+    + templates.terms_of_use,
     creators=templates.creators,
     units=U,
     model_units=templates.model_units,
-    annotations=annotations.model + [
+    annotations=[
+        *annotations.model,
         # tissue
         (BQB.OCCURS_IN, "FMA:7203"),  # kidney
         (BQB.OCCURS_IN, "BTO:0000671"),  # kidney
         (BQB.OCCURS_IN, "NCIT:C12415"),  # kidney
         (BQB.HAS_PROPERTY, "NCIT:C79372"),  # Pharmacokinetics: Excretion
-    ]
+    ],
 )
 
 _m.compartments = [
@@ -41,17 +60,7 @@ _m.compartments = [
         constant=True,
         sboTerm=SBO.PHYSICAL_COMPARTMENT,
         annotations=annotations.compartments["plasma"],
-        port=True
-    ),
-    Compartment(
-        "Vki",
-        value=0.3,
-        unit=U.liter,
-        name="kidney",
-        constant=True,
-        sboTerm=SBO.PHYSICAL_COMPARTMENT,
-        annotations=annotations.compartments["ki"],
-        port=True
+        port=True,
     ),
     Compartment(
         "Vurine",
@@ -67,303 +76,192 @@ _m.compartments = [
 _m.species = [
     Species(
         "api_ext",
-        name="apixaban (plasma)",
+        name="apixaban (api_ext)",
         initialConcentration=0.0,
         compartment="Vext",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=False,  # this is a concentration
         sboTerm=SBO.SIMPLE_CHEMICAL,
         annotations=annotations.species["api"],
-        port=True
+        port=True,
     ),
     Species(
         "api_urine",
-        name="apixaban (urine)",
+        name="apixaban (api_urine)",
         initialConcentration=0.0,
         compartment="Vurine",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=True,
         sboTerm=SBO.SIMPLE_CHEMICAL,
         annotations=annotations.species["api"],
-        port=True
+        port=True,
     ),
     Species(
         "m1_ext",
-        name="M1 (plasma)",
+        name="M1 (m1_ext)",
         initialConcentration=0.0,
         compartment="Vext",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=False,  # this is a concentration
         sboTerm=SBO.SIMPLE_CHEMICAL,
         annotations=annotations.species["m1"],
-        port=True
+        port=True,
     ),
     Species(
         "m1_urine",
-        name="M1 (urine)",
+        name="M1 (m1_urine)",
         initialConcentration=0.0,
         compartment="Vurine",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=True,
         sboTerm=SBO.SIMPLE_CHEMICAL,
         annotations=annotations.species["m1"],
-        port=True
+        port=True,
     ),
     Species(
         "m7_ext",
-        name="M7 (plasma)",
+        name="M7 (m7_ext)",
         initialConcentration=0.0,
         compartment="Vext",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=False,  # this is a concentration
         sboTerm=SBO.SIMPLE_CHEMICAL,
         annotations=annotations.species["m7"],
-        port=True
+        port=True,
     ),
     Species(
         "m7_urine",
-        name="M7 (urine)",
+        name="M7 (m7_urine)",
         initialConcentration=0.0,
         compartment="Vurine",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=True,
         sboTerm=SBO.SIMPLE_CHEMICAL,
         annotations=annotations.species["m7"],
-        port=True
+        port=True,
     ),
 ]
 
-# glomerular filtration rate, creatinine clearance & kidney function
-_m.parameters.extend([
-    Parameter(
-        "BSA",
-        1.73,
-        U.m2,
-        constant=False,
-        name="body surface area [m^2]",
-        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        port=True
-    ),
-    Parameter(
-        "f_renal_function",
-        name="parameter for renal function",
-        value=1.0,
-        unit=U.dimensionless,
-        sboTerm=SBO.KINETIC_CONSTANT,
-        notes="""scaling factor for renal function. 1.0: normal renal function;
-        <1.0: reduced renal function
-        """
-    ),
-    Parameter(
-        "egfr",
-        NaN,
-        unit=U.ml_per_min_bsa,
-        constant=False,
-        name="estimated GFR [ml/min/(1.73 m^2)]",
-        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        annotations=[
-            (BQB.IS, "NCIT:C110935"),
-        ],
-        port=True,
-        notes="""A laboratory test that estimates kidney function. It is calculated using an individual's
-        serum creatinine measurement, age, gender, and race."""
-    ),
-    Parameter(
-        "crcl",
-        NaN,
-        U.ml_per_min,
-        constant=False,
-        name="creatinine clearance [ml/min]",
-        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        annotations=[
-            (BQB.IS, "cmo/CMO:0000765"),
-        ],
-        port=True,
-        notes="""The clearance rate of creatinine, that is, the volume of plasma that is cleared of creatinine
-        by the kidneys per unit time. Creatinine clearance is calculated using the level of creatinine in a
-        sample of urine, usually one collected over a period of 24 hours, the corresponding plasma creatinine
-        level, and the volume of urine excreted. It is used as an approximation of the glomerular
-        filtration rate (GFR)."""
-    ),
-    Parameter(
-        sid="egfr_healthy",
-        name="estimated glomerular filtration (eGFR) rate healthy",
-        value=100.0,
-        unit=U.ml_per_min_bsa,
-        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        annotations=[
-        ],
-        notes="""eGFR is often estimated via creatinine clearance, creatinine urinary amount,
-        or creatinine plasma amounts.
+# glomerular filtration rate and kidney function
+_m.parameters.extend(
+    [
+        Parameter(
+            "f_renal_function",
+            name="renal function",
+            value=1.0,
+            unit=U.dimensionless,
+            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            >1.0: increased kidney function
+            1.0: normal kidney function (healthy control)
+            <1.0: decreased kidney function
 
-        CKD-EPI Creatinine Equation (2021): This is the most recent and recommended equation for
-        estimating GFR35. It is more accurate than previous formulas and does not include
-        race as a variable.
+            Renal function relative to the healthy glomerular filtration rate
+            GFR_base of 101 ml/min; a measured creatinine clearance of X ml/min
+            is the renal function X/101 (`pkpdsim.impairment.RENAL_FUNCTION_GFR`).
+            """,
+        ),
+        Parameter(
+            "GFR_base",
+            101,
+            U.ml_per_min,
+            name="glomerular filtration rate (healthy)",
+            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="""
+            The GFR of healthy kidneys, independent of the body weight; the GFR
+            is `f_renal_function` times this rate.
+            """,
+        ),
+        Parameter(
+            "fu_api",
+            13.1 / 100,  # [-] unbound in plasma He2011
+            U.dimensionless,
+            constant=True,
+            name="fraction unbound in plasma apixaban",
+            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            port=True,
+        ),
+        Parameter(
+            "APIEX_f",
+            **FITS.parameter("KI__APIEX_f", unit=U.dimensionless),
+            name="renal clearance of unbound apixaban relative to the GFR",
+            sboTerm=SBO.KINETIC_CONSTANT,
+            notes="""
+            The renal clearance of apixaban is APIEX_f times the filtration of
+            its unbound fraction, fu_api * GFR: 1 is filtration alone, above 1 a
+            net secretion, below 1 a net reabsorption. Renal clearance 0.93 l/h
+            (Frost2021): 0.93 l/h / (0.131 * 6.06 l/h) = 1.17.
+            """,
+        ),
+        Parameter(
+            "M1EX_f",
+            **FITS.parameter("KI__M1EX_f", unit=U.dimensionless),
+            name="renal clearance of M1 relative to the GFR",
+            sboTerm=SBO.KINETIC_CONSTANT,
+            notes="""The fraction unbound of M1 is not known, it is part of the factor.""",
+        ),
+        Parameter(
+            "M7EX_f",
+            **FITS.parameter("KI__M7EX_f", unit=U.dimensionless),
+            name="renal clearance of M7 relative to the GFR",
+            sboTerm=SBO.KINETIC_CONSTANT,
+            notes="""The fraction unbound of M7 is not known, it is part of the factor.""",
+        ),
+    ]
+)
 
-        MDRD (Modification of Diet in Renal Disease) Study Equation
-    """,
-    ),
-    Parameter(
-        "fu_api",
-        13.1 / 100, # [-] unbound in plasma He2011
-        U.dimensionless,
-        constant=True,
-        name=f"fraction unbound in plasma api",
-        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        port=True,
-    ),
-])
-_m.rules.extend([
+_m.rules.append(
     AssignmentRule(
-        "egfr", "f_renal_function * egfr_healthy", unit=U.ml_per_min_bsa,
-        name="estimated eGFR"
+        "GFR",
+        "f_renal_function * GFR_base",
+        unit=U.ml_per_min,
+        name="glomerular filtration rate",
     ),
-    AssignmentRule(
-        "crcl", "egfr * BSA/(1.73 dimensionless) * 1.1 dimensionless", unit=U.ml_per_min,
-        name="creatinine clearance",
-        notes="CrCl typically overestimates GFR by 10-20% due to the active secretion"
-              "of creatinine in the proximal tubules."
-              "Using a 10 % overestimation in the model."
-    ),
-])
+)
 
 _m.reactions = [
     Reaction(
         sid="APIEX",
-        name="apixaban excretion (APIEX)",
+        name="excretion apixaban (APIEX)",
         equation="api_ext -> api_urine",
-        compartment="Vki",
         sboTerm=SBO.TRANSPORT_REACTION,
-        pars=[
-            Parameter(
-                "APIEX_k",
-                0.2513729849119622,
-                U.per_min,
-                name="rate of apixaban urinary excretion",
-                sboTerm=SBO.KINETIC_CONSTANT,
-            ),
-        ],
+        # [ml/min] * [l/ml] * [-] * [-] * [mmole/l]
         formula=(
-            "f_renal_function * Vki * APIEX_k * api_ext * fu_api"
-        )
+            "GFR * 0.001 l_per_ml * fu_api * APIEX_f * api_ext",
+            U.mmole_per_min,
+        ),
     ),
     Reaction(
         sid="M1EX",
-        name="M1 excretion (M1EX)",
+        name="excretion M1 (M1EX)",
         equation="m1_ext -> m1_urine",
-        compartment="Vki",
         sboTerm=SBO.TRANSPORT_REACTION,
-        pars=[
-            Parameter(
-                "M1EX_k",
-                0.02228556688222855,
-                U.per_min,
-                name="rate of M1 urinary excretion",
-                sboTerm=SBO.KINETIC_CONSTANT,
-            ),
-        ],
-        formula=(
-            "f_renal_function * Vki * M1EX_k * m1_ext"
-        )
+        formula=("GFR * 0.001 l_per_ml * M1EX_f * m1_ext", U.mmole_per_min),
     ),
     Reaction(
         sid="M7EX",
-        name="M7 excretion (M7EX)",
+        name="excretion M7 (M7EX)",
         equation="m7_ext -> m7_urine",
-        compartment="Vki",
         sboTerm=SBO.TRANSPORT_REACTION,
-        pars=[
-            Parameter(
-                "M7EX_k",
-                0.008550419728226054,
-                U.per_min,
-                name="rate of M7 urinary excretion",
-                sboTerm=SBO.KINETIC_CONSTANT,
-            ),
-        ],
-        formula=(
-            "f_renal_function * Vki * M7EX_k * m7_ext"
-        )
+        formula=("GFR * 0.001 l_per_ml * M7EX_f * m7_ext", U.mmole_per_min),
     ),
 ]
 
-model_kidney = _m
+model_kidney: Model = _m
 
-def apixaban_layout(dx=200, dy=200) -> pd.DataFrame:
-    """Layout definition for apixaban kidney model."""
-
-    delta_y = 0.5 * dy
-    delta_x = 0.7 * dx
-
-    positions = [
-        # sid, x, y
-        ["api_ext",    -0.3 * delta_x,   0],
-        ["m1_ext",     1 * delta_x,   0],
-        ["m7_ext", 2.3 * delta_x, 0],
-
-        ["APIEX",     -0.3 * delta_x, 1.5 * delta_y],
-        ["M1EX",      1 * delta_x,   1.5 * delta_y],
-        ["M7EX", 2.3 * delta_x, 1.5 * delta_y],
-
-        ["api_urine", -0.3 * delta_x, 2.5 * delta_y],
-        ["m1_urine",  1 * delta_x,   2.5 * delta_y],
-        ["m7_urine", 2.3 * delta_x, 2.5 * delta_y],
-    ]
-
-    df = pd.DataFrame(positions, columns=["id", "x", "y"])
-    df.set_index("id", inplace=True)
-    return df
-
-
-def apixaban_annotations(dx=200, dy=200) -> list:
-    COLOR_BLOOD = "#FF796C"
-    COLOR_CELL = "#FFFFFF"
-    COLOR_URINE = "#FF7F0E"
-    delta_y = 0.5 * dy
-
-    kwargs = {
-        "type": cyviz.AnnotationShapeType.ROUND_RECTANGLE,
-        "opacity": 20,
-        "border_color": "#000000",
-        "border_thickness": 2,
-    }
-    xpos = -0.8 * dx
-    width = 3 * dx
-
-    annotations = [
-        cyviz.AnnotationShape(
-            x_pos=xpos, y_pos=-0.5 * delta_y, width=width, height=1.5 * delta_y,
-            fill_color=COLOR_BLOOD, **kwargs
-        ),
-        cyviz.AnnotationShape(
-            x_pos=xpos, y_pos=delta_y, width=width, height=0.5 * delta_y,
-            fill_color=COLOR_CELL, **kwargs
-        ),
-        cyviz.AnnotationShape(
-            x_pos=xpos, y_pos=1.5 * delta_y, width=width, height=1.5 * delta_y,
-            fill_color=COLOR_URINE, **kwargs
-        ),
-    ]
-    return annotations
 
 if __name__ == "__main__":
-    from sbmlutils.converters import odefac
-    from sbmlutils import cytoscape as cyviz
+    from sbmlode import OdeSystem
+
     from pkdb_models.models.apixaban import MODEL_BASE_PATH
 
-    results: FactoryResult = create_model(
+    results = create_model(
         model=model_kidney,
         filepath=MODEL_BASE_PATH / f"{model_kidney.sid}.xml",
-        sbml_level=3, sbml_version=2,
+        sbml_level=3,
+        sbml_version=2,
     )
 
     # ODE equations
-    ode_factory = odefac.SBML2ODE.from_file(sbml_file=results.sbml_path)
-    ode_factory.to_markdown(md_file=results.sbml_path.parent / f"{results.sbml_path.stem}.md")
-
-    # visualization in Cytoscape
-    cyviz.visualize_sbml(sbml_path=results.sbml_path, delete_session=True)
-    cyviz.apply_layout(layout=apixaban_layout())
-    cyviz.add_annotations(annotations=apixaban_annotations())
-
-
+    ode_system = OdeSystem.from_sbml(results.sbml_path)
+    ode_system.write(results.sbml_path.parent / f"{results.sbml_path.stem}.md")

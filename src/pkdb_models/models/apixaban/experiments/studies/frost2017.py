@@ -1,95 +1,108 @@
-from typing import Dict
+"""Simulation experiment of the study Frost2017."""
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+import math
+from typing import ClassVar, override
 
-from pkdb_models.models import apixaban
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
+
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import (
-    Tissue,
-    Route,
-    Dosing,
-    Coadministration,
-    ApplicationForm,
-    Health,
-    Fasting,
-    ApixabanMappingMetaData,
-)
-
-from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Frost2017(ApixabanSimulationExperiment):
-    """Simulation experiment of Frost2017."""
+    """Simulation experiment of Frost2017.
 
-    bodyweights = {
-        "ATEN": 80.9,
-    }
-    colors = {
+    Atenolol study: 15 healthy subjects, randomized crossover of single oral
+    doses of apixaban 10 mg (two 5 mg tablets), atenolol 100 mg and both
+    together; fasting is not reported.
+    """
+
+    #: body weight [kg] and height [cm] from the BMI 26.4 kg/m^2 (Table 1)
+    bodyweight = 80.9
+    bodyheight = 100 * math.sqrt(80.9 / 26.4)
+
+    colors: ClassVar[dict[str, str]] = {
         "API10": "black",
         "API10, ATEN": "tab:red",
     }
+    group_labels: ClassVar[dict[str, str]] = {
+        "API10": "10mg PO",
+        "API10, ATEN": "10mg PO + atenolol",
+    }
+    #: Atenolol is a substrate of P-gp, neither an inhibitor nor an inducer of
+    #: CYP3A4 or P-gp, so the arm is simulated without an interaction (the
+    #: observed geometric mean ratios are Cmax 0.82, AUCinf 0.85).
+    coadministrations: ClassVar[dict[str, Coadministration]] = {
+        "API10": Coadministration.NONE,
+        "API10, ATEN": Coadministration.ATENOLOL,
+    }
 
-    interventions = list(colors.keys())
+    interventions: ClassVar[list[str]] = list(colors.keys())
 
-
-
-    infos_pk = {
+    infos_pk: ClassVar[dict[str, str]] = {
         "[Cve_api]": "apixaban",
     }
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Fig3"]:
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+            df = self.load_dataframe(fig_id)
+            # the 72 h points of apixaban are digitized as 0 (the figure shows
+            # about 1 ng/ml), they are not mapped
+            df = df[~((df.substance == "apixaban") & (df.time > 0) & (df["mean"] <= 0))]
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if "apixaban" in label:
                     dset.unit_conversion("mean", 1 / self.Mr.api)
-                dsets[label] = dset
-
-        # console.print(dsets)
+                dsets[self.to_sid(label)] = dset
 
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims = {}
-        bodyweight = self.bodyweights["ATEN"]
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        return {
+            "API10": Simulation(
+                time_unit="hr",
+                end=73,
+                preinit_changes={
+                    **self.default_changes(),
+                    "BW": Q(self.bodyweight, "kg"),
+                    "HEIGHT": Q(self.bodyheight, "cm"),
+                    "PODOSE_api": Q(10, "mg"),
+                },
+            )
+        }
 
-        for intervention in self.interventions:
-            tcsims[intervention] = TimecourseSim([
-                Timecourse(
-                    start=0,
-                    end=73 * 60,  # [min]
-                    steps=1000,
-                    changes={
-                        **self.default_changes(),
-                        "BW": Q_(bodyweight, "kg"),
-                        "PODOSE_api": Q_(10, "mg"),
-                    },
-                )
-            ])
-
-        return tcsims
-
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
         for intervention in self.interventions:
-            # pharmacokinetics
-            for k, sid in enumerate(self.infos_pk.keys()):
-                name = self.infos_pk[sid]
-                mappings[f"fm_{name}_{intervention}"] = FitMapping(
+            # pharmacokinetics, both arms against the simulation without
+            # interaction
+            for sid, name in self.infos_pk.items():
+                mappings[self.to_sid(f"fm_{name}_{intervention}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
-                        dataset=f"{name}_{intervention}",
+                        dataset=self.to_sid(f"{name}_{intervention}"),
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
@@ -97,29 +110,29 @@ class Frost2017(ApixabanSimulationExperiment):
                     ),
                     observable=FitData(
                         self,
-                        task=f"task_{intervention}",
+                        task="task_API10",
                         xid="time",
                         yid=sid,
                     ),
-                    metadata=ApixabanMappingMetaData(
+                    metadata=PKPDMappingMetaData(
                         tissue=Tissue.PLASMA,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
                         dosing=Dosing.SINGLE,
                         health=Health.HEALTHY,
-                        fasting=Fasting.FASTED,
-                        coadministration=Coadministration.ATENOLOL if "ATEN" in intervention else Coadministration.NONE,
-                    )
+                        fasting=Fasting.NR,
+                        coadministration=self.coadministrations[intervention],
+                    ),
                 )
 
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
-        return {
-            **self.figure_pk()
-        }
+    @override
+    def figures(self) -> dict[str, Figure]:
+        return {**self.figure_pk()}
 
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure_pk(self) -> dict[str, Figure]:
+        """Figure of the pharmacokinetics."""
         fig = Figure(
             experiment=self,
             sid="Fig3",
@@ -133,32 +146,27 @@ class Frost2017(ApixabanSimulationExperiment):
         )
         plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
 
-        for intervention in self.interventions:
-            for k, sid in enumerate(self.infos_pk.keys()):
-                name = self.infos_pk[sid]
-                if "ATEN" not in intervention:
-                    #simulation
-                    plots[k].add_data(
-                        task=f"task_{intervention}",
-                        xid="time",
-                        yid=sid,
-                        label="sim: api 10mg, aten 100mg PO" if "ATEN" in intervention else "sim: api 10mg PO",
-                        color=self.colors[intervention],
-                    )
-                # data
+        for k, (sid, name) in enumerate(self.infos_pk.items()):
+            plots[k].add_data(
+                task="task_API10",
+                xid="time",
+                yid=sid,
+                label="sim 10mg PO",
+                color="black",
+            )
+            for intervention in self.interventions:
                 plots[k].add_data(
-                    dataset=f"{name}_{intervention}",
+                    dataset=self.to_sid(f"{name}_{intervention}"),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label="exp: api 10mg, aten 100mg PO" if "ATEN" in intervention else "exp: api 10mg PO",
+                    label=f"exp {self.group_labels[intervention]}",
                     color=self.colors[intervention],
                 )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    run_experiments(Frost2017, output_dir=Frost2017.__name__)
-
+    MODEL.run_experiments(Frost2017, output_dir=Frost2017.__name__)

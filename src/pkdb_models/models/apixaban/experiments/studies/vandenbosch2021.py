@@ -1,161 +1,153 @@
-from typing import Dict
+"""Simulation experiment of the study VandenBosch2021."""
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from typing import ClassVar, override
 
-from pkdb_models.models import apixaban
+import pandas as pd
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
+
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import Tissue, Route, Dosing, ApplicationForm, Health, \
-    Fasting, ApixabanMappingMetaData
-
-from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class VandenBosch2021(ApixabanSimulationExperiment):
-    """Simulation experiment of VandenBosch2021."""
+    """Simulation experiment of VandenBosch2021.
 
-    colors = {
-        "PO2.5":"#006d2c",
-        "PO5": "#006d2c"
+    A single oral dose of 2.5 or 5 mg apixaban (tablet) in patients with end
+    stage renal disease on hemodialysis (n = 6 per group), immediately after a
+    dialysis (post) or 30 min before it (pre). The model has no dialysis: only
+    the groups dosed after the dialysis are simulated, up to the start of the
+    next dialysis (44 h). The renal function is the class of end stage renal
+    disease of the renal map (no measured value, 75 % of the patients have a
+    urine output below 300 ml/day). The concentrations are measured with a
+    chromogenic anti-Xa assay calibrated with apixaban (LOQ 21 ng/ml).
+    """
+
+    colors: ClassVar[dict[str, str]] = {"PO2.5": "#31a354", "PO5": "#006d2c"}
+
+    interventions: ClassVar[list[str]] = list(colors.keys())
+
+    doses: ClassVar[dict[str, float]] = {  # [mg]
+        "PO2.5": 2.5,
+        "PO5": 5,
     }
 
-    interventions = list(colors.keys())
+    groups: ClassVar[dict[str, str]] = {"PO2.5": "post2.5", "PO5": "post5"}
 
-    doses = {
-        "PO2.5": 2.5, #mg
-        "PO5": 5
-    }
+    #: the start of the next dialysis [hr]
+    end_data = 45.0
 
-    groups = {
-        "PO2.5": "post2.5",
-        "PO5": "post5"
-    }
+    #: limit of quantification of the anti-Xa assay [ng/ml]
+    loq = 21.0
 
-    infos_pk = {
+    infos_pk: ClassVar[dict[str, str]] = {
         "[Cve_api]": "apixaban",
     }
 
-    individual_ids = {
-        "PO2.5": {"start": 147, "end": 183},
-        "PO5": {"start": 185, "end": 223},
-    }
-
-
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Fig1", "Fig1Mean"]:
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
-            for label, df_label in df.groupby("label"):
-                dset = DataSet.from_df(df_label, self.ureg)
-                if "post" in label:
-                    filtered_dset = dset[dset["time"] < 45.0].copy() # 44 hr - dialysis starts
-                    if not filtered_dset.empty:
-                        if "mean" in label:
-                            filtered_dset.unit_conversion("mean", 1 / self.Mr.api)
-                        else:
-                            filtered_dset.unit_conversion("value", 1 / self.Mr.api)
-                        dsets[label] = filtered_dset
+        # the means of the groups, the points below the limit of quantification
+        # are left out (but the predose point)
+        df = self.load_dataframe("Fig1Mean")
+        for label, df_label in df.groupby("label"):
+            label = str(label)
+            if "post" not in label:
+                continue
+            df_label = df_label[
+                (df_label["time"] < self.end_data)
+                & ((df_label["mean"] >= self.loq) | (df_label["time"] == 0.0))
+            ]
+            dset = DataSet.from_df(df_label, self.ureg)
+            dset.unit_conversion("mean", 1 / self.Mr.api)
+            dsets[self.to_sid(label)] = dset
 
-        # console.print(dsets)
+        # the individual points of a group as one scatter, every digitized point
+        # has its own individual id in the data (not a subject); plotted only
+        df = self.load_dataframe("Fig1")
+        for intervention, group in self.groups.items():
+            df_group = df[
+                (df["group"] == group)
+                & (df["intervention"] == intervention)
+                & (df["time"] < self.end_data)
+            ]
+            df_group = pd.DataFrame(df_group).assign(individual="NA", count=1.0)
+            dset = DataSet.from_df(df_group, self.ureg)
+            dset.unit_conversion("value", 1 / self.Mr.api)
+            dsets[self.to_sid(f"{intervention}_apixaban_{group}_individual")] = dset
 
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
+    @override
+    def simulations(self) -> dict[str, Simulation]:
         tcsims = {}
         for intervention in self.interventions:
-            tcsims[f"api_{intervention}"] = TimecourseSim(
-                Timecourse(
-                    start=0,
-                    end=54 * 60,  # [min]
-                    steps=1000,
-                    changes={
-                        **self.default_changes(),
-                        "PODOSE_api": Q_(self.doses[intervention], "mg"),
-                        "KI__f_renal_function": Q_(self.renal_map["End stage renal impairment"], "dimensionless"),
-                    },
-                )
+            tcsims[self.to_sid(f"api_{intervention}")] = Simulation(
+                time_unit="hr",
+                end=54,
+                preinit_changes={
+                    **self.default_changes(),
+                    "PODOSE_api": Q(self.doses[intervention], "mg"),
+                    "KI__f_renal_function": Q(
+                        self.renal_map["End stage renal disease"], "dimensionless"
+                    ),
+                },
             )
 
         return tcsims
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
         for intervention in self.interventions:
-            ids = self.individual_ids[intervention]
-            # pharmacokinetics
-            for k, sid in enumerate(self.infos_pk.keys()):
-
-                name = self.infos_pk[sid]
-                mappings[f"fm_api_{name}_{intervention}"] = FitMapping(
+            group = self.groups[intervention]
+            for sid, name in self.infos_pk.items():
+                mappings[self.to_sid(f"fm_api_{name}_{intervention}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
-                        dataset=f"{intervention}_{name}_{self.groups[intervention]}_mean",
+                        dataset=self.to_sid(f"{intervention}_{name}_{group}_mean"),
                         xid="time",
                         yid="mean",
-                        yid_sd=None,
                         count="count",
                     ),
                     observable=FitData(
                         self,
-                        task=f"task_api_{intervention}",
+                        task=self.to_sid(f"task_api_{intervention}"),
                         xid="time",
                         yid=sid,
                     ),
-                    metadata=ApixabanMappingMetaData(
+                    metadata=PKPDMappingMetaData(
                         tissue=Tissue.PLASMA,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
-                        dosing= Dosing.SINGLE,
+                        dosing=Dosing.SINGLE,
                         health=Health.RENAL_IMPAIRMENT,
-                        fasting= Fasting.NR,
-                    )
+                        fasting=Fasting.NR,
+                    ),
                 )
-
-
-                for ki in range(ids["start"], ids["end"]):
-                    mappings[f"fm_api_{name}_{intervention}_I{ki}"] = FitMapping(
-                        self,
-                        reference=FitData(
-                            self,
-                            dataset=f"{intervention}_{name}_{self.groups[intervention]}_I{ki}",
-                            xid="time",
-                            yid="value",
-                            count="count",
-                        ),
-                        observable=FitData(
-                            self,
-                            task=f"task_api_{intervention}",
-                            xid="time",
-                            yid=sid,
-                        ),
-                        metadata=ApixabanMappingMetaData(
-                            tissue=Tissue.PLASMA,
-                            route=Route.PO,
-                            application_form=ApplicationForm.TABLET,
-                            dosing=Dosing.SINGLE,
-                            health=Health.RENAL_IMPAIRMENT,
-                            fasting=Fasting.NR,
-                        )
-                    )
-
-            return mappings
-
 
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
-
+    @override
+    def figures(self) -> dict[str, Figure]:
         fig = Figure(
             experiment=self,
-            sid="Fig3",
+            sid="Fig1",
             name=f"{self.__class__.__name__}",
             num_rows=1,
             num_cols=2,
@@ -167,53 +159,43 @@ class VandenBosch2021(ApixabanSimulationExperiment):
             legend=True,
         )
 
-        plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
-        plots[1].set_yaxis(self.label_api_plasma, unit=self.unit_api)
-
         for kp, intervention in enumerate(self.interventions):
-            ids = self.individual_ids[intervention]
             dose = self.doses[intervention]
-            for sid in self.infos_pk.keys():
-                name = self.infos_pk[sid]
-                #simulation
+            group = self.groups[intervention]
+            color = self.colors[intervention]
+            plots[kp].set_yaxis(self.label_api_plasma, unit=self.unit_api)
+            for sid, name in self.infos_pk.items():
+                # simulation
                 plots[kp].add_data(
-                    task=f"task_api_{intervention}",
+                    task=self.to_sid(f"task_api_{intervention}"),
                     xid="time",
                     yid=sid,
-                    label=f"sim SRI: {dose}mg PO",
-                    color=self.colors[intervention],
+                    label=f"sim ESRD: {dose}mg PO",
+                    color=color,
                 )
                 # data
                 plots[kp].add_data(
-                    dataset=f"{intervention}_{name}_{self.groups[intervention]}_mean",
+                    dataset=self.to_sid(f"{intervention}_{name}_{group}_mean"),
                     xid="time",
                     yid="mean",
-                    yid_sd="mean_sd",
                     count="count",
-                    label=f"exp SRI: {dose}mg PO",
-                    color=self.colors[intervention],
+                    label=f"exp ESRD: {dose}mg PO",
+                    color=color,
                 )
-                legend = True
-                for ki in range(ids["start"], ids["end"]):
-                    # scatter
-                    plots[kp].add_data(
-                        xid="time",
-                        yid="value",
-                        dataset=f"{intervention}_{name}_{self.groups[intervention]}_I{ki}",
-                        label=f"exp individ SRI: {dose}mg PO" if legend else None,
-                        color='#006d2c40',
-                        markeredgecolor='#006d2c40',
-                        marker="o",
-                        linestyle="",
-                        markersize=5.2,
-                    )
-                    legend = False
+                plots[kp].add_data(
+                    dataset=self.to_sid(f"{intervention}_{name}_{group}_individual"),
+                    xid="time",
+                    yid="value",
+                    label=f"exp individ ESRD: {dose}mg PO",
+                    color=f"{color}60",
+                    markeredgecolor=f"{color}60",
+                    marker="o",
+                    linestyle="",
+                    markersize=5.2,
+                )
 
-        return {fig.sid: fig}
-
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / VandenBosch2021.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(VandenBosch2021, output_dir=VandenBosch2021.__name__)
+    MODEL.run_experiments(VandenBosch2021, output_dir=VandenBosch2021.__name__)

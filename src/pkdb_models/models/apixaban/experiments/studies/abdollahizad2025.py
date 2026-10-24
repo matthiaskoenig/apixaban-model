@@ -1,86 +1,89 @@
-from typing import Dict
+"""Simulation experiment of the study Abdollahizad2025."""
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from typing import ClassVar, override
 
-from pkdb_models.models import apixaban
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
+
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import (
-    Tissue, Route, Dosing, ApplicationForm, Health, Fasting, ApixabanMappingMetaData
-)
-
-from sbmlsim.plot import Axis, Figure
-    # noqa: E402
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Abdollahizad2025(ApixabanSimulationExperiment):
     """Simulation experiment of Abdollahizad2025."""
 
-    colors = {
+    colors: ClassVar[dict[str, str]] = {
         "TEST5": "black",
         "REF5": "grey",
     }
-    groups = list(colors.keys())
+    groups: ClassVar[list[str]] = list(colors.keys())
     bodyweight = 71.9  # [kg]
-    height = 172.4 # [cm]
+    height = 172.4  # [cm]
 
-    legend = {
+    legend: ClassVar[dict[str, str]] = {
         "TEST5": "test: 5mg PO",
         "REF5": "ref: 5mg PO",
     }
 
-    markers = {
+    markers: ClassVar[dict[str, str]] = {
         "TEST5": "s",
         "REF5": "o",
     }
 
-    infos_pk = {
+    infos_pk: ClassVar[dict[str, str]] = {
         "[Cve_api]": "apixaban",
     }
-    infos_pd = {}
+    infos_pd: ClassVar[dict[str, str]] = {}
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Fig3",]:
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+        for fig_id in [
+            "Fig3",
+        ]:
+            df = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("apixaban_"):
                     dset.unit_conversion("mean", 1 / self.Mr.api)
                 dsets[label] = dset
 
-        # console.print("datasets:", list(dsets.keys()))
         return dsets
 
-
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims: Dict[str, TimecourseSim] = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        tcsims: dict[str, Simulation] = {}
         for group in self.groups:
-            tcsims[group] = TimecourseSim([
-                Timecourse(
-                    start=0,
-                    end=50 * 60,  # [min]
-                    steps=500,
-                    changes={
-                        **self.default_changes(),
-                        "PODOSE_api": Q_(5, "mg"),
-                        "BW": Q_(self.bodyweight, "kg"),
-                        "HEIGHT": Q_(self.height, "cm"),
-                    },
-                )
-            ])
+            tcsims[group] = Simulation(
+                time_unit="hr",
+                end=50,
+                preinit_changes={
+                    **self.default_changes(),
+                    "PODOSE_api": Q(5, "mg"),
+                    "BW": Q(self.bodyweight, "kg"),
+                    "HEIGHT": Q(self.height, "cm"),
+                },
+            )
         return tcsims
 
-    # Fit Mappings
-    def fit_mappings(self) -> Dict[str, FitMapping]:
-        mappings: Dict[str, FitMapping] = {}
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
+        mappings: dict[str, FitMapping] = {}
         infos = {
             **self.infos_pk,
             **self.infos_pd,
@@ -103,7 +106,7 @@ class Abdollahizad2025(ApixabanSimulationExperiment):
                         xid="time",
                         yid=sid,
                     ),
-                    metadata=ApixabanMappingMetaData(
+                    metadata=PKPDMappingMetaData(
                         tissue=Tissue.PLASMA,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
@@ -115,13 +118,14 @@ class Abdollahizad2025(ApixabanSimulationExperiment):
 
         return mappings
 
-
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
             **self.figure_pk(),
         }
 
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure_pk(self) -> dict[str, Figure]:
+        """Figure of the pharmacokinetics of the test and the reference tablet."""
         fig = Figure(
             experiment=self,
             sid="PK",
@@ -146,7 +150,7 @@ class Abdollahizad2025(ApixabanSimulationExperiment):
                         xid="time",
                         yid=sid,
                         label="sim: 5mg PO",
-                        color=self.colors[group]
+                        color=self.colors[group],
                     )
                 # Data
                 plots[kp].add_data(
@@ -160,11 +164,8 @@ class Abdollahizad2025(ApixabanSimulationExperiment):
                     marker=self.markers[group],
                 )
 
-        return {fig.sid: fig}
-
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Abdollahizad2025.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Abdollahizad2025, output_dir=Abdollahizad2025.__name__)
+    MODEL.run_experiments(Abdollahizad2025, output_dir=Abdollahizad2025.__name__)

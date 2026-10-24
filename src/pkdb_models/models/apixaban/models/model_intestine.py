@@ -1,13 +1,28 @@
 """Apixaban intestine model."""
-import pandas as pd
-from sbmlutils.factory import *
-from sbmlutils.metadata import *
-from pkdb_models.models.apixaban.models import annotations
-from pkdb_models.models.apixaban.models import templates
+
+from sbmlutils.factory import (
+    AssignmentRule,
+    Compartment,
+    Model,
+    NaN,
+    Parameter,
+    RateRule,
+    Reaction,
+    Species,
+    UnitDefinition,
+    create_model,
+)
+from sbmlutils.metadata import (
+    BQB,
+    SBO,
+)
+
+from pkdb_models.models.apixaban.models import annotations, templates
+from pkdb_models.models.apixaban.models.fits import FITS
 
 
 class U(templates.U):
-    """UnitDefinitions"""
+    """Units of the intestine model."""
 
     per_hr = UnitDefinition("per_hr", "1/hr")
     mg_per_min = UnitDefinition("mg_per_min", "mg/min")
@@ -15,25 +30,33 @@ class U(templates.U):
 
 _m = Model(
     "apixaban_intestine",
-    name="Model for apixaban absorption in the small intestine",
+    name="Model for apixaban absorption and intestinal secretion",
     notes="""
-    # Model for apixaban absorption
+    # Model for apixaban absorption and intestinal secretion
+    The tablet dissolves with a rate which saturates with the dose
+    (`PODOSE_50`), the solution reaches the lumen of the small intestine with
+    `Ka_sol_api`. The dissolved apixaban is absorbed with first order kinetics
+    (`APIABS_k`) in competition with the small intestinal transit into the
+    colon (`SITRANS_k`), which also carries the undissolved tablet, the
+    apixaban secreted from the plasma into the small intestine (P-gp/BCRP,
+    `APISEC_k`, `f_pgp`) and the metabolites secreted with the bile. Nothing is
+    absorbed from the colon, its content is excreted with the fecal transit
+    (`LUMEX_k`).
     """
     + templates.terms_of_use,
     creators=templates.creators,
     units=U,
     model_units=templates.model_units,
-    annotations=annotations.model + [
+    annotations=[
+        *annotations.model,
         # tissue
-        (BQB.OCCURS_IN, "fma/FMA:45615"),  # gut
         (BQB.OCCURS_IN, "bto/BTO:0000545"),  # gut
         (BQB.OCCURS_IN, "NCIT:C12736"),  # intestine
         (BQB.OCCURS_IN, "fma/FMA:7199"),  # intestine
         (BQB.OCCURS_IN, "bto/BTO:0000648"),  # intestine
-
         (BQB.HAS_PROPERTY, "NCIT:C79369"),  # Pharmacokinetics: Absorption
         (BQB.HAS_PROPERTY, "NCIT:C79372"),  # Pharmacokinetics: Excretion
-    ]
+    ],
 )
 
 _m.compartments = [
@@ -68,6 +91,15 @@ _m.compartments = [
         annotations=annotations.compartments["feces"],
     ),
     Compartment(
+        "Vcolon",
+        value=1.0,
+        unit=U.liter,
+        constant=True,
+        name="colon lumen",
+        sboTerm=SBO.PHYSICAL_COMPARTMENT,
+        annotations=annotations.compartments["colon"],
+    ),
+    Compartment(
         "Vstomach",
         metaId="meta_Vstomach",
         value=1,
@@ -91,12 +123,12 @@ _m.compartments = [
 
 _m.species = [
     Species(
-        f"api_stomach",
-        metaId=f"meta_api_stomach",
+        "api_stomach",
+        metaId="meta_api_stomach",
         initialConcentration=0.0,
         compartment="Vstomach",
         substanceUnit=U.mmole,
-        name=f"apixaban (stomach)",
+        name="apixaban (api_stomach)",
         hasOnlySubstanceUnits=True,
         sboTerm=SBO.SIMPLE_CHEMICAL,
         annotations=annotations.species["api"],
@@ -105,7 +137,7 @@ _m.species = [
     Species(
         "api_ext",
         initialConcentration=0.0,
-        name="apixaban (plasma)",
+        name="apixaban (api_ext)",
         compartment="Vext",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=False,
@@ -116,7 +148,7 @@ _m.species = [
     Species(
         "api_lumen",
         initialConcentration=0.0,
-        name="apixaban (intestinal volume)",
+        name="apixaban (api_lumen)",
         compartment="Vlumen",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=False,
@@ -127,7 +159,7 @@ _m.species = [
     Species(
         "api_feces",
         initialConcentration=0.0,
-        name="apixaban (feces)",
+        name="apixaban (api_feces)",
         compartment="Vfeces",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=True,
@@ -138,7 +170,7 @@ _m.species = [
     Species(
         "m1_lumen",
         initialConcentration=0.0,
-        name="M1 (intestinal volume)",
+        name="M1 (m1_lumen)",
         compartment="Vlumen",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=False,
@@ -149,7 +181,7 @@ _m.species = [
     Species(
         "m2_lumen",
         initialConcentration=0.0,
-        name="M2 (intestinal volume)",
+        name="M2 (m2_lumen)",
         compartment="Vlumen",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=False,
@@ -160,7 +192,7 @@ _m.species = [
     Species(
         "m7_lumen",
         initialConcentration=0.0,
-        name="M7 (intestinal volume)",
+        name="M7 (m7_lumen)",
         compartment="Vlumen",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=False,
@@ -171,7 +203,7 @@ _m.species = [
     Species(
         "m1_feces",
         initialConcentration=0.0,
-        name="M1 (feces)",
+        name="M1 (m1_feces)",
         compartment="Vfeces",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=True,
@@ -182,7 +214,7 @@ _m.species = [
     Species(
         "m2_feces",
         initialConcentration=0.0,
-        name="M2 (feces)",
+        name="M2 (m2_feces)",
         compartment="Vfeces",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=True,
@@ -193,337 +225,315 @@ _m.species = [
     Species(
         "m7_feces",
         initialConcentration=0.0,
-        name="M7 (feces)",
+        name="M7 (m7_feces)",
         compartment="Vfeces",
         substanceUnit=U.mmole,
         hasOnlySubstanceUnits=True,
         sboTerm=SBO.SIMPLE_CHEMICAL,
         annotations=annotations.species["m7"],
         port=True,
-    )
+    ),
 ]
+
+_m.species.extend(
+    [
+        Species(
+            "api_colon",
+            initialConcentration=0.0,
+            name="apixaban (api_colon)",
+            compartment="Vcolon",
+            substanceUnit=U.mmole,
+            hasOnlySubstanceUnits=True,
+            sboTerm=SBO.SIMPLE_CHEMICAL,
+            annotations=annotations.species["api"],
+        ),
+        Species(
+            "m1_colon",
+            initialConcentration=0.0,
+            name="M1 (m1_colon)",
+            compartment="Vcolon",
+            substanceUnit=U.mmole,
+            hasOnlySubstanceUnits=True,
+            sboTerm=SBO.SIMPLE_CHEMICAL,
+            annotations=annotations.species["m1"],
+        ),
+        Species(
+            "m2_colon",
+            initialConcentration=0.0,
+            name="M2 (m2_colon)",
+            compartment="Vcolon",
+            substanceUnit=U.mmole,
+            hasOnlySubstanceUnits=True,
+            sboTerm=SBO.SIMPLE_CHEMICAL,
+            annotations=annotations.species["m2"],
+        ),
+        Species(
+            "m7_colon",
+            initialConcentration=0.0,
+            name="M7 (m7_colon)",
+            compartment="Vcolon",
+            substanceUnit=U.mmole,
+            hasOnlySubstanceUnits=True,
+            sboTerm=SBO.SIMPLE_CHEMICAL,
+            annotations=annotations.species["m7"],
+        ),
+    ]
+)
 
 _m.parameters = [
     Parameter(
-        f"F_api_abs",
-        0.66,  # [0.5 - 0.66]
+        "fu_api",
+        13.1 / 100,  # [-] unbound in plasma He2011
         U.dimensionless,
         constant=True,
+        name="fraction unbound in plasma apixaban",
         sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        name=f"fraction absorbed apixaban",
+        port=True,
     ),
     Parameter(
-        "APIABS_Vmax",
-        0.1589797819093681,
-        unit=U.mmole_per_min,
+        "APIABS_k",
+        **FITS.parameter("GU__APIABS_k", unit=U.per_min),
         name="rate of apixaban absorption",
         sboTerm=SBO.KINETIC_CONSTANT,
+        notes="""
+        First order absorption of the dissolved apixaban in the lumen of the
+        small intestine. The absorption competes with the small intestinal
+        transit into the colon (`SITRANS_k`), the fraction absorbed is
+        `F_api_abs = APIABS_k/(APIABS_k + SITRANS_k)`.
+        """,
     ),
     Parameter(
-        "APIABS_50",
-        25.837650248152094,
-        unit=U.mg,
-        name="amount of apixaban when rate of absorption reaches 50% of maximal rate",
-        sboTerm=SBO.MICHAELIS_CONSTANT,
-    ),
-    Parameter(
-        "f_absorption",
-        1,
-        unit=U.dimensionless,
-        name="scaling factor for absorption rate",
+        "SITRANS_k",
+        **FITS.parameter("GU__SITRANS_k", unit=U.per_min),
+        name="rate of the small intestinal transit",
         sboTerm=SBO.KINETIC_CONSTANT,
-        notes="""1.0: normal absorption corresponding to tablet under fasting conditions.
-
-        allows to change the velocity of absorption
-        """
+        notes="""
+        Transit of the content of the small intestine into the colon, a mean
+        transit time of about 3.5 hr (1-8 hr). The transit carries the unabsorbed and the
+        secreted apixaban, the undissolved tablet and the metabolites; nothing
+        is absorbed from the colon.
+        """,
     ),
     Parameter(
-        "MXEXC_k",
-        1.9152859400260163e-05,
+        "LUMEX_k",
+        1 / (30 * 60),
         unit=U.per_min,
-        name="rate of metabolite excretion",
+        name="rate of the fecal transit",
         sboTerm=SBO.KINETIC_CONSTANT,
+        notes="""
+        Transit of the content of the colon into the feces, a mean transit time
+        of about 30 hr (24-36 hr).
+        """,
+    ),
+    Parameter(
+        "APISEC_k",
+        **FITS.parameter("GU__APISEC_k", unit=U.l_per_min),
+        name="intestinal secretion clearance of unbound apixaban",
+        sboTerm=SBO.KINETIC_CONSTANT,
+        notes="""
+        Efflux of apixaban from the enterocytes into the lumen (P-gp, BCRP),
+        a clearance of the unbound concentration in the plasma of the gut.
+        Apixaban is eliminated unchanged into the gut (Frost2021, Wang2014:
+        activated charcoal lowers the AUC). The clearance does not depend on
+        the body weight.
+        """,
+    ),
+    Parameter(
+        "f_pgp",
+        1.0,
+        unit=U.dimensionless,
+        name="P-gp/BCRP activity",
+        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+        port=True,
+        notes="""
+        Activity of the intestinal efflux transporters (P-gp, BCRP) relative to
+        normal: 1.0 normal, <1.0 inhibition, >1.0 induction; set by the
+        experiments of the coadministrations, not fitted.
+        """,
     ),
 ]
 
-
-_m.parameters.extend([
-    Parameter(
-        f"PODOSE_api",
-        0,
-        U.mg,
-        constant=False,
-        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        name=f"oral dose apixaban in tablet [mg]",
-        port=True,
-    ),
-    Parameter(
-        f"SOLDOSE_api",
-        0,
-        U.mg,
-        constant=False,
-        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        name=f"oral dose apixaban in solution [mg]",
-        port=True,
-    ),
-    Parameter(
-        f"Ka_dis_api",
-        0.19047941874849916,
-        U.per_hr,
-        constant=True,
-        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        name=f"Ka_dis [1/hr] dissolution apixaban in tablet",
-        port=True
-    ),
-    Parameter(
-        f"Ksol_dis_api",
-        0.3352341302661383,
-        U.per_hr,
-        constant=True,
-        sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        name=f"Ksol_dis [1/hr] dissolution apixaban in solution",
-        port=True
-    ),
-    Parameter(
-        f"Mr_api",
-        459.5,
-        U.g_per_mole,
-        constant=True,
-        name=f"Molecular weight apixaban [g/mole]",
-        sboTerm=SBO.MOLECULAR_MASS,
-        port=True,
-    ),
-])
-
 _m.rules.append(
     AssignmentRule(
-        "absorption_api",
-        value="APIABS_Vmax * Vlumen * api_lumen / (APIABS_50 / Mr_api + Vlumen * api_lumen)",
-        unit=U.mmole_per_min,
-        name="absorption apixaban",
+        "F_api_abs",
+        "APIABS_k/(APIABS_k + SITRANS_k)",
+        U.dimensionless,
+        name="fraction absorbed apixaban",
+        notes="""
+        Fraction of the dissolved apixaban in the small intestine which is
+        absorbed, the rest leaves with the transit into the colon.
+        """,
     ),
 )
+
+#: the substances in the lumen and their names
+SUBSTANCES_LUMEN: dict[str, str] = {
+    "api": "apixaban",
+    "m1": "M1",
+    "m2": "M2",
+    "m7": "M7",
+}
 
 _m.reactions = [
     Reaction(
         "APIABS",
-        name="absorption apixaban",
+        name="absorption apixaban (APIABS)",
         equation="api_lumen -> api_ext",
         sboTerm=SBO.TRANSPORT_REACTION,
         compartment="Vapical",
-        formula=("f_absorption * F_api_abs * absorption_api", U.mmole_per_min),
-    ),
-
-    Reaction(
-        sid="APIEXC",
-        name=f"excretion apixaban (feces)",
-        compartment="Vlumen",
-        equation=f"api_lumen -> api_feces",
-        sboTerm=SBO.TRANSPORT_REACTION,
-        formula=(
-            f"(1 dimensionless - f_absorption * F_api_abs) * absorption_api",
-            U.mmole_per_min,
-        )
+        formula=("APIABS_k * Vlumen * api_lumen", U.mmole_per_min),
     ),
     Reaction(
-        sid="M1EXC",
-        name=f"excretion M1 (feces)",
-        compartment="Vlumen",
-        equation=f"m1_lumen -> m1_feces",
+        "APISEC",
+        name="intestinal secretion apixaban (APISEC)",
+        equation="api_ext -> api_lumen",
         sboTerm=SBO.TRANSPORT_REACTION,
-        formula=(
-            f"MXEXC_k * Vlumen * m1_lumen",
-            U.mmole_per_min,
-        )
+        compartment="Vapical",
+        formula=("f_pgp * APISEC_k * fu_api * api_ext", U.mmole_per_min),
     ),
-    Reaction(
-        sid="M2EXC",
-        name=f"excretion M2 (feces)",
-        compartment="Vlumen",
-        equation=f"m2_lumen -> m2_feces",
-        sboTerm=SBO.TRANSPORT_REACTION,
-        formula=(
-            f"MXEXC_k * Vlumen * m2_lumen",
-            U.mmole_per_min,
+    *(
+        Reaction(
+            sid=f"{sid.upper()}SITR",
+            name=f"small intestinal transit {name} ({sid.upper()}SITR)",
+            compartment="Vlumen",
+            equation=f"{sid}_lumen -> {sid}_colon",
+            sboTerm=SBO.TRANSPORT_REACTION,
+            formula=(f"SITRANS_k * Vlumen * {sid}_lumen", U.mmole_per_min),
         )
+        for sid, name in SUBSTANCES_LUMEN.items()
     ),
-    Reaction(
-        sid="M7EXC",
-        name=f"excretion M7 (feces)",
-        compartment="Vlumen",
-        equation=f"m7_lumen -> m7_feces",
-        sboTerm=SBO.TRANSPORT_REACTION,
-        formula=(
-            f"MXEXC_k * Vlumen * m7_lumen",
-            U.mmole_per_min,
+    *(
+        Reaction(
+            sid=f"{sid.upper()}EXC",
+            name=f"fecal excretion {name} ({sid.upper()}EXC)",
+            compartment="Vcolon",
+            equation=f"{sid}_colon -> {sid}_feces",
+            sboTerm=SBO.TRANSPORT_REACTION,
+            formula=(f"LUMEX_k * {sid}_colon", U.mmole_per_min),
         )
+        for sid, name in SUBSTANCES_LUMEN.items()
     ),
-
 ]
+
+_m.parameters.extend(
+    [
+        Parameter(
+            "PODOSE_api",
+            0,
+            U.mg,
+            constant=False,
+            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            name="oral dose apixaban in tablet [mg]",
+            port=True,
+        ),
+        Parameter(
+            "SOLDOSE_api",
+            0,
+            U.mg,
+            constant=False,
+            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            name="oral dose apixaban in solution [mg]",
+            port=True,
+        ),
+        Parameter(
+            "Ka_dis_api",
+            **FITS.parameter("GU__Ka_dis_api", unit=U.per_hr),
+            constant=True,
+            sboTerm=SBO.KINETIC_CONSTANT,
+            name="Ka_dis [1/hr] dissolution apixaban in tablet",
+            port=True,
+        ),
+        Parameter(
+            "PODOSE_50",
+            **FITS.parameter("GU__PODOSE_50", unit=U.mg),
+            constant=True,
+            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            name="undissolved dose of half-maximal dissolution [mg]",
+            notes="""
+            The dissolution of the tablet saturates with the undissolved dose
+            (solubility): the rate is `Ka_dis_api * PODOSE_api/(1 +
+            PODOSE_api/PODOSE_50)`, linear for doses well below `PODOSE_50`.
+            """,
+        ),
+        Parameter(
+            "Ka_sol_api",
+            **FITS.parameter("GU__Ka_sol_api", unit=U.per_hr),
+            constant=True,
+            sboTerm=SBO.KINETIC_CONSTANT,
+            name="Ka_sol [1/hr] transport apixaban in solution",
+            port=True,
+        ),
+        Parameter(
+            "Mr_api",
+            459.5,
+            U.g_per_mole,
+            constant=True,
+            name="Molecular weight apixaban [g/mole]",
+            sboTerm=SBO.MOLECULAR_MASS,
+            port=True,
+        ),
+    ]
+)
 
 # -------------------------------------
 # Dissolution of tablet/dose in stomach
 # -------------------------------------
 _m.reactions.extend(
     [
-        # fraction dose available for absorption from stomach
         Reaction(
-            sid=f"dissolution_api_tabl",
-            name=f"dissolution apixaban tablet",
+            sid="APITAB",
+            name="tablet dissolution apixaban (APITAB)",
             formula=(
-                f"Ka_dis_api/60 min_per_hr * PODOSE_api/Mr_api",
+                "Ka_dis_api/60 min_per_hr * PODOSE_api/Mr_api "
+                "/ (1 dimensionless + PODOSE_api/PODOSE_50)",
                 U.mmole_per_min,
             ),
-            equation=f"api_stomach -> api_lumen",
+            equation="api_stomach -> api_lumen",
             compartment="Vlumen",
-            notes="""Swallowing, dissolution of tablet, and transport into intestine.
-            Overall process describing the rates of this processes.
-            """
+            notes="""Swallowing, dissolution of the tablet and transport into the
+            intestine. The dissolution saturates with the undissolved dose.
+            """,
+        ),
+        Reaction(
+            sid="APIUNDIS",
+            name="transit undissolved apixaban (APIUNDIS)",
+            formula=("SITRANS_k * PODOSE_api/Mr_api", U.mmole_per_min),
+            equation="api_stomach -> api_colon",
+            compartment="Vlumen",
+            notes="""The undissolved apixaban of the tablet leaves the small
+            intestine with the transit into the colon.
+            """,
+        ),
+        Reaction(
+            sid="APISOL",
+            name="solution transport apixaban (APISOL)",
+            formula=(
+                "Ka_sol_api/60 min_per_hr * SOLDOSE_api/Mr_api",
+                U.mmole_per_min,
+            ),
+            equation="api_stomach -> api_lumen",
+            compartment="Vlumen",
+            notes="""Swallowing of the solution and transport into the intestine.
+            """,
         ),
     ]
 )
-_m.rate_rules.append(
-    RateRule(f"PODOSE_api", f"-dissolution_api_tabl * Mr_api", U.mg_per_min),
-)
-
-_m.reactions.extend(
+_m.rate_rules.extend(
     [
-        # fraction dose available for absorption from stomach
-        Reaction(
-            sid=f"dissolution_api_sol",
-            name=f"dissolution apixaban in solution",
-            formula=(
-                f"Ksol_dis_api/60 min_per_hr * SOLDOSE_api/Mr_api",
-                U.mmole_per_min,
-            ),
-            equation=f"api_stomach -> api_lumen",
-            compartment="Vlumen",
-            notes="""Swallowing, dissolution of solution, and transport into intestine.
-            Overall process describing the rates of this processes.
-            """
-        ),
+        RateRule("PODOSE_api", "-(APITAB + APIUNDIS) * Mr_api", U.mg_per_min),
+        RateRule("SOLDOSE_api", "-APISOL * Mr_api", U.mg_per_min),
     ]
 )
-_m.rate_rules.append(
-    RateRule(f"SOLDOSE_api", f"-dissolution_api_sol * Mr_api", U.mg_per_min),
-)
 
-model_intestine = _m
+model_intestine: Model = _m
 
-def apixaban_layout(dx=200, dy=200) -> pd.DataFrame:
-
-    delta_y = 0.5 * dy
-    delta_x = 1.0 * dx
-
-    x_left   = 0 * delta_x
-    x_lumen  = 1.5 * delta_x
-    x_feces  = 2.5 * delta_x
-
-    lumen_right     = x_lumen + 0.5 * dx   # = intestine_left
-
-    x_border_left_lumen = x_left  + 0.5 * delta_x
-    x_border_lumen_int  = x_lumen + 1.0 * delta_x
-
-    positions = [
-        ["api_ext",         x_left,                  1.3 * delta_y],   # plasma species
-        ["api_stomach",     x_left,                  3.3 * delta_y],   # stomach species
-
-        # Boundary reactions
-        ["APIABS",          x_border_left_lumen,     1.7 * delta_y], # plasma → lumen border
-        ["dissolution_api_tabl", x_border_left_lumen, 3.1 * delta_y],  # stomach → lumen border
-        ["dissolution_api_sol", x_border_left_lumen,     4.1 * delta_y], # stomach → lumen border
-
-        # Lumen column
-        ["api_lumen",       x_lumen*0.93,                 1.2 * delta_y],
-        ["m1_lumen",        x_lumen,                 2.2 * delta_y],
-        ["m2_lumen", x_lumen, 3.2 * delta_y],
-        ["m7_lumen", x_lumen, 4.2 * delta_y],
-
-        # Boundary reactions
-        ["APIEXC",          lumen_right,      1 * delta_y],
-        ["M1EXC",           lumen_right,      2 * delta_y],
-        ["M2EXC", lumen_right, 3 * delta_y],
-        ["M7EXC", lumen_right, 4 * delta_y],
-    ]
-
-    # Feces
-    positions += [
-        ["api_feces", x_feces, 1.2 * delta_y],
-        ["m1_feces",  x_feces, 2.2 * delta_y],
-        ["m2_feces", x_feces, 3.2 * delta_y],
-        ["m7_feces", x_feces, 4.2 * delta_y],
-    ]
-
-    df = pd.DataFrame(positions, columns=["id", "x", "y"])
-    df.set_index("id", inplace=True)
-
-    return df
-
-
-def apixaban_annotations(dx=200, dy=200) -> list:
-    COLOR_STOMACH = "#1f77b4"
-    COLOR_INTESTINE = "#FFFFFF"
-    COLOR_BLOOD = "#FF796C"
-    COLOR_FECES = "#8c564b"
-
-    kwargs = {
-        "type": cyviz.AnnotationShapeType.ROUND_RECTANGLE,
-        "opacity": 20,
-        "border_color": "#000000",
-        "border_thickness": 2,
-    }
-
-    dy = 0.5 * dy
-    dx = 1.0 * dx
-
-    x_left   = 0 * dx
-    x_lumen  = 1.5 * dx
-    x_feces  = 2.5 * dx
-
-    left_box_left   = x_left  - 0.5 * dx
-    left_box_right  = x_left  + 0.5 * dx   # = lumen_left
-    lumen_right     = x_lumen + 0.5 * dx   # = intestine_left
-    feces_right     = x_feces + 0.5 * dx
-
-    full_top    = 0.5 * dy
-    full_height = 4.0 * dy
-    plasma_height = 2.0 * dy
-    stomach_height = 2.0 * dy
-
-    annotations = [
-        # Plasma
-        cyviz.AnnotationShape(
-            x_pos=left_box_left, y_pos=full_top,
-            width=left_box_right - left_box_left, height=plasma_height,
-            fill_color=COLOR_BLOOD, **kwargs
-        ),
-        # Stomach
-        cyviz.AnnotationShape(
-            x_pos=left_box_left, y_pos=full_top + plasma_height,
-            width=left_box_right - left_box_left, height=stomach_height,
-            fill_color=COLOR_STOMACH, **kwargs
-        ),
-        # Lumen
-        cyviz.AnnotationShape(
-            x_pos=left_box_right, y_pos=full_top,
-            width=lumen_right - left_box_right, height=full_height,
-            fill_color=COLOR_INTESTINE, **kwargs
-        ),
-        # Feces
-        cyviz.AnnotationShape(
-            x_pos=lumen_right, y_pos=full_top,
-            width=feces_right - lumen_right, height=full_height,
-            fill_color=COLOR_FECES, **kwargs
-        ),
-    ]
-    return annotations
 
 if __name__ == "__main__":
-    from sbmlutils.converters import odefac
-    from sbmlutils import cytoscape as cyviz
+    from sbmlode import OdeSystem
+
     from pkdb_models.models.apixaban import MODEL_BASE_PATH
 
-    results: FactoryResult = create_model(
+    results = create_model(
         model=model_intestine,
         filepath=MODEL_BASE_PATH / f"{model_intestine.sid}.xml",
         sbml_level=3,
@@ -531,11 +541,5 @@ if __name__ == "__main__":
     )
 
     # ODE equations
-    ode_factory = odefac.SBML2ODE.from_file(sbml_file=results.sbml_path)
-    ode_factory.to_markdown(md_file=results.sbml_path.parent / f"{results.sbml_path.stem}.md")
-
-    # visualization in Cytoscape
-    # Visualize
-    cyviz.visualize_sbml(sbml_path=results.sbml_path, delete_session=True)
-    cyviz.apply_layout(layout=apixaban_layout())
-    cyviz.add_annotations(annotations=apixaban_annotations())
+    ode_system = OdeSystem.from_sbml(results.sbml_path)
+    ode_system.write(results.sbml_path.parent / f"{results.sbml_path.stem}.md")

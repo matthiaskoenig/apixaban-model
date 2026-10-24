@@ -1,0 +1,114 @@
+study	state	tissue	parameter	dose	dose_unit	substance	n	mean	sd	median	Q1	Q3	min	max	unit	time
+Frost2015	healthy	urine	cumulative_amount	20	mg	apixaban	39	2.07	0.06						mg	96
+Frost2015		urine	recovery	20	mg	apixaban	39	10.35	0.3						%	96
+#																
+Frost2018		urine	cumulative_amount	2.5	mg	apixaban	12	0.477	0.13						mg	36
+Frost2018		urine	recovery	2.5	mg	apixaban	12	19.08	5.2						%	
+Frost2018		urine	cumulative_amount	2.5	mg	apixaban	12	0.379764	0.0900802733930132						mg	48
+Frost2018		urine	recovery	2.5	mg	apixaban	12	15.19056	3.60321093572053						%	
+#																
+Frost2018		urine	cumulative_amount	10	mg	apixaban	12	1.84805	0.530713845777553						mg	48
+Frost2018		urine	recovery	10	mg	apixaban	12	18.4805	5.30713845777553						%	
+Frost2018		urine	cumulative_amount	10	mg	apixaban	12	1.5168	0.493106034844434						mg	72
+Frost2018		urine	recovery	10	mg	apixaban	12	15.168	4.93106034844434						%	
+#																
+Frost2018		urine	cumulative_amount	25	mg	apixaban	12	3.50896	0.978601482320561						mg	72
+Frost2018		urine	recovery	25	mg	apixaban	12	14.03584	3.91440592928224						%	
+Frost2018		urine	cumulative_amount	25	mg	apixaban	12	3.14748	0.375004939167473						mg	
+Frost2018		urine	recovery	25	mg	apixaban	12	12.58992	1.50001975666989						%	
+#																
+Frost2018		urine	cumulative_amount	50	mg	apixaban	12	4.9413	1.36520685524209						mg	72
+Frost2018		urine	recovery	50	mg	apixaban	12	9.8826	2.73041371048418						%	
+Frost2018		urine	cumulative_amount	50	mg	apixaban	12	4.37343	1.07849958182653						mg	72
+Frost2018		urine	recovery	50	mg	apixaban	12	8.74686	2.15699916365306						%	
+#																
+Frost2021		urine	cumulative_amount	5	mg	apixaban	3	0.62466	0.373859465608402						mg	60
+Frost2021		urine	recovery	5	mg	apixaban	3	12.4932	7.47718931216804						%	
+#																
+Frost2021a		urine	cumulative_amount	5	mg	apixaban	16	0.60239	1.8						mg	72
+Frost2021a		urine	recovery	5	mg	apixaban	16	12.0478	36.4						%	
+#																
+Raghavan2009		urine	recovery	20	mg	apixaban	6	21.5								292
+Raghavan2009		urine	recovery	20	mg	apixaban	4	23.9								240
+Raghavan2009		feces	recovery	20	mg	apixaban	6	34								
+Raghavan2009		feces	recovery	20	mg	apixaban	4	34.5								
+Raghavan2009		bile	recovery	20	mg	apixaban	4	0.84								
+#																
+Raghavan2009		urine	recovery	20	mg	M1	6	1.58								
+Raghavan2009		urine	recovery	20	mg	M1	4	2.55								
+Raghavan2009		feces	recovery	20	mg	M1	6	1.24								
+Raghavan2009		feces	recovery	20	mg	M1	4	2.4								
+Raghavan2009		bile	recovery	20	mg	M1	4	0.96								
+#																
+Raghavan2009		urine	recovery	20	mg	M2	6	NA								
+Raghavan2009		urine	recovery	20	mg	M2	4	NA								
+Raghavan2009		feces	recovery	20	mg	M2	6	12.2								
+Raghavan2009		feces	recovery	20	mg	M2	4	5.09								
+Raghavan2009		bile	recovery	20	mg	M2	4	0.02								
+#																
+Raghavan2009		urine	recovery	20	mg	M7	6	1.46								
+Raghavan2009		urine	recovery	20	mg	M7	4	1.85								
+Raghavan2009		feces	recovery	20	mg	M7	6	3.7								
+Raghavan2009		feces	recovery	20	mg	M7	4	2.76								
+Raghavan2009		bile	recovery	20	mg	M7	4	0.32								
+#																
+Tirona2018		urine	cumulative_amount	2.5	mg	apixaban	12	0.611	0.148							12
+Tirona2018		urine	recovery	2.5	mg	apixaban	12	24.44	5.92							
+#																
+Upreti2013		urine	cumulative_amount	10	mg	apixaban	16	1.53	0.8							72
+Upreti2013		urine	recovery	10	mg	apixaban	16	15.3	8							
+#																
+Vakkalagadda2016		urine	cumulative_amount	10	mg	apixaban	20	1.44	0.8							48
+Vakkalagadda2016		urine	recovery	10	mg	apixaban	20	14.4	8							
+#																
+Wang2016		urine	cumulative_amount	5	mg	apixaban	8	0.8578	0.4706							72
+Wang2016		urine	recovery	5	mg	apixaban	8	17.156	9.412							
+#																
+Chang2016		urine	cumulative_amount	10	mg	apixaban	8	1.036	0.5							96
+		urine	recovery	10	mg	apixaban	8	10.36	5							
+#																
+Wang2016	renal imp	urine	cumulative_amount	10	mg	apixaban	8	0.00206	0.0017							72
+Wang2016	severe	urine	recovery				8	0.0206	0.017							
+#																
+Chang2016	mild	urine	cumulative_amount	10	mg	apixaban	10	0.75	0.5							96
+Chang2016		urine	recovery	10	mg	apixaban	10	7.5	5							
+Chang2016	moderate	urine	cumulative_amount	10	mg	apixaban	7	0.52	0.5							
+Chang2016		urine	recovery	10	mg	apixaban	7	5.2	5							
+Chang2016	severe	urine	cumulative_amount	10	mg	apixaban	7	0.37	0.3							
+Chang2016		urine	recovery	10	mg	apixaban	7	3.7	3							
+#																
+Frost2021a	hepatic	urine	cumulative_amount	5	mg	apixaban	8	0.938	0.4							72
+Frost2021a	mild	urine	recovery	5	mg	apixaban	8	18.76	8							
+Frost2021a		urine	cumulative_amount	5	mg	apixaban	8	0.625	0.2							
+Frost2021a	moderate	urine	recovery	5	mg	apixaban	8	12.5	4							
+#																
+geomean	healthy	urine	recovery			apixaban		15.64	5.74						%	48
+geomean	healthy	urine	recovery			apixaban		12.74	6.84						%	72
+geomean	healthy	urine	recovery			apixaban		10.35	1.98						%	96
+geomean	healthy	urine	recovery			apixaban		22.43							%	292
+#																
+geomean	healthy	feces	recovery			apixaban		34.2							%	240
+geomean	healthy	bile	recovery			apixaban		0.84							%	240
+#																
+geomean	ri, mild	urine	recovery			apixaban		7.5	5						%	96
+geomean	ri, moderate	urine	recovery			apixaban		5.2	5						%	96
+geomean	ri, severe	urine	recovery			apixaban		5.2	5						%	96
+geomean	ri, severe	urine	recovery			apixaban		0.0206	0.017						%	72
+#																
+geomean	li, mild	urine	recovery			apixaban		18.76	8						%	72
+geomean	li, moderate	urine	recovery			apixaban		12.5	4						%	72
+#																
+geomean	healthy	urine	recovery			M1		1.91							%	240
+geomean	healthy	feces	recovery			M1		1.61							%	240
+geomean	healthy	bile	recovery			M1		0.96							%	240
+#																
+geomean	healthy	urine	recovery			M1		1.91							%	240
+geomean	healthy	feces	recovery			M1		1.61							%	240
+geomean	healthy	bile	recovery			M1		0.96							%	240
+#																
+geomean	healthy	feces	recovery			M2		8.6							%	240
+geomean	healthy	bile	recovery			M2		0.02							%	240
+#																
+geomean	healthy	urine	recovery			M7		1.61							%	240
+geomean	healthy	feces	recovery			M7		3.29							%	240
+geomean	healthy	bile	recovery			M7		0.32							%	240

@@ -1,241 +1,247 @@
-"""Sensitivity analysis."""
-from __future__ import annotations
+"""Sensitivity analysis of the apixaban model.
 
-import numpy as np
-import pandas as pd
-import roadrunner
-from pint import UnitRegistry
-from sbmlutils.console import console
+The outputs are the pharmacokinetic parameters of apixaban and its metabolites
+M1 and M7 after a single oral dose (the non-compartmental analysis of
+`pkpdutils`) and the maxima of the pharmacodynamics. The parameters are the
+parameters of the model with bounds of +-15 % around their value, the fitted
+parameters with the bounds of the fits. The analyses are run as a script, the
+local analysis by default:
 
-from pkdb_analysis.pk.pharmacokinetics import TimecoursePK
+    python -m pkdb_models.models.apixaban.sensitivity.sensitivity_analysis
+    python -m pkdb_models.models.apixaban.sensitivity.sensitivity_analysis local sampling
 
-from sbmlsim.sensitivity.analysis import (
-    SensitivitySimulation,
-    SensitivityOutput,
-    AnalysisGroup,
-)
-from sbmlsim.sensitivity.parameters import (
-    SensitivityParameter,
+The analyses run on `pkpdsim.sensitivity.SensitivityRunner`, which writes the
+table of the parameters into `results/sensitivity` of the model and the tables
+and figures of sbmlsim 0.8.5 of an analysis into `results/sensitivity/<analysis>`.
+The groups are the control and the classes of renal and hepatic impairment of
+the base experiment (`renal_map`, `cirrhosis_map`). An analysis does not vary a
+parameter which one of its groups sets (`pkpdsim.sensitivity.free_parameters`):
+`sampling`, over the seven groups, leaves out `KI__f_renal_function`
+(`f_cirrhosis`, 0 in the model, is no parameter of the analyses). The environment variable `PKPDSIM_SENSITIVITY_N`
+replaces the numbers of samples of the global analyses for a quick run, see
+`pkpdsim.sensitivity.sample_size`.
+"""
+
+from collections.abc import Mapping
+from typing import NamedTuple
+
+from pkpdsim.sensitivity import (
+    FastAnalysis,
+    LocalAnalysis,
     ParameterType,
+    SamplingAnalysis,
+    SensitivityGroup,
+    SensitivityOutput,
+    SensitivityParameter,
+    SensitivityRunner,
+    SobolAnalysis,
+    parameters_from_sbml,
+    set_bounds,
+    set_relative_bounds,
+)
+from sbmlsim import Q
+from sbmlsim.simulation import PK, Formula, Simulation
+
+from pkdb_models.models.apixaban import MODEL, MODEL_PATH
+from pkdb_models.models.apixaban.experiments.base_experiment import (
+    ApixabanSimulationExperiment,
+)
+from pkdb_models.models.apixaban.fitting.parameters import (
+    parameters_pd,
+    parameters_pk,
 )
 
-from pkdb_models.models.apixaban import MODEL_PATH
-from pkdb_models.models.apixaban.fitting.parameters import parameters_all as fit_parameters
+#: oral dose of the analysis [mg]
+DOSE_API = 5
+#: fraction of the bounds of a parameter relative to its value
+BOUNDS_FRACTION = 0.15
 
-# Subgroups to perform sensitivity analysis
-sensitivity_groups: list[AnalysisGroup] = [
-    AnalysisGroup(
-        uid="control",
-        name="Control",
-        changes={},
-        color="dimgrey",
+#: outputs of the non-compartmental analysis of pkpdutils of apixaban -> unit
+PK_OUTPUTS_API: dict[str, str] = {
+    "auc_inf_obs": "mM*min",
+    "cmax": "mM",
+    "thalf": "min",
+    "vz_f": "l",
+    "cl_f": "ml/min",
+    "lambda_z": "1/min",
+}
+#: outputs of the non-compartmental analysis of pkpdutils of the metabolites
+#: -> unit; the metabolites have no dose and therefore no clearance and volume
+PK_OUTPUTS_METABOLITES: dict[str, str] = {
+    "auc_inf_obs": "mM*min",
+    "cmax": "mM",
+    "thalf": "min",
+}
+#: the pharmacodynamic outputs, their maximum is the output
+PD_OUTPUTS: dict[str, str] = {
+    "PT": "s",
+    "mPT": "s",
+    "aPTT": "s",
+    "INR": "dimensionless",
+    "antiXa_activity_gram": "ng/ml",
+}
+#: the outputs whose unit has the amount of the dose: the dose is a mass
+#: (`PODOSE_api` in mg), so they are divided by the molecular weight (its value
+#: at the start, a value per simulation like the parameter of the analysis)
+PK_PER_DOSE_MASS: frozenset[str] = frozenset({"vz_f", "cl_f"})
+#: the labels of the pharmacokinetic parameters in the names of the outputs
+PK_LABELS: dict[str, str] = {
+    "auc_inf_obs": "AUC∞",
+    "cmax": "Cmax",
+    "thalf": "Half-life",
+    "vz_f": "Vz/F",
+    "cl_f": "CL/F",
+    "lambda_z": "λz",
+}
+
+
+class Substance(NamedTuple):
+    """A substance of the pharmacokinetic outputs, its concentration in plasma."""
+
+    #: the concentration, which the non-compartmental analysis reads
+    selection: str
+    #: the name of the substance in the names of the outputs
+    name: str
+    #: the id of the non-compartmental analysis, no id of the model
+    pk_id: str
+    #: the outputs of the analysis -> unit
+    outputs: dict[str, str]
+    #: the dose, of apixaban only
+    dose: str | None
+
+
+#: the substances of the pharmacokinetic outputs
+SUBSTANCES: list[Substance] = [
+    Substance("[Cve_api]", "API", "pk_api", PK_OUTPUTS_API, "PODOSE_api"),
+    Substance("[Cve_m1]", "M1", "pk_m1", PK_OUTPUTS_METABOLITES, None),
+    Substance("[Cve_m7]", "M7", "pk_m7", PK_OUTPUTS_METABOLITES, None),
+]
+
+#: the outputs: the id of a pharmacokinetic output names the concentration with
+#: its brackets (`[Cve_api]_cmax`), as the tables of sbmlsim 0.8.5, its
+#: observable has the id without them (`Cve_api_cmax`)
+OUTPUTS: list[SensitivityOutput] = [
+    *(
+        SensitivityOutput(
+            f"{s.selection}_{key}",
+            f"{s.name} {PK_LABELS[key]}",
+            f"{s.selection.strip('[]')}_{key}",
+        )
+        for s in SUBSTANCES
+        for key in s.outputs
     ),
-    AnalysisGroup(
-        uid="mildRI",
-        name="Mild renal impairment",
-        changes={"KI__f_renal_function": 0.5},
-        color="#66c2a4",
+    *(SensitivityOutput(f"{sid}_max", f"max {sid}") for sid in PD_OUTPUTS),
+]
+
+
+def _pk_formula(substance: Substance, key: str) -> str:
+    """Get the formula of a pharmacokinetic output of a substance."""
+    if key in PK_PER_DOSE_MASS:
+        return f"{substance.pk_id}.{key} / at(Mr_api, 0)"
+    return f"{substance.pk_id}.{key}"
+
+
+#: the observables of a simulation, the outputs with their units
+OBSERVABLES = [
+    *(
+        PK(
+            s.pk_id,
+            s.selection,
+            dose=s.dose,
+            route="oral" if s.dose else None,
+            parameters=list(s.outputs),
+        )
+        for s in SUBSTANCES
     ),
-    AnalysisGroup(
-        uid="modRI",
-        name="Moderate renal impairment",
-        changes={"KI__f_renal_function": 0.35},
-        color="#2ca25f",
+    *(
+        Formula(f"{s.selection.strip('[]')}_{key}", _pk_formula(s, key), unit=unit)
+        for s in SUBSTANCES
+        for key, unit in s.outputs.items()
     ),
-    AnalysisGroup(
-        uid="sevRI",
-        name="Severe renal impairment",
-        changes={"KI__f_renal_function": 0.20},
-        color="#006d2c",
-    ),
-    AnalysisGroup(
-        uid="CPT A",
-        name="Mild cirrhosis (CPT A)",
-        changes={"f_cirrhosis": 0.399},
-        color="#74a9cf",
-    ),
-    AnalysisGroup(
-        uid="CPT B",
-        name="Moderate cirrhosis (CPT B)",
-        changes={"f_cirrhosis": 0.698},
-        color="#2b8cbe",
-    ),
-    AnalysisGroup(
-        uid="CPT C",
-        name="Severe cirrhosis (CPT C)",
-        changes={"f_cirrhosis": 0.813},
-        color="#045a8d",
+    *(
+        Formula(f"{sid}_max", f"max({sid})", unit=unit)
+        for sid, unit in PD_OUTPUTS.items()
     ),
 ]
 
 
-class ApixabanSensitivitySimulation(SensitivitySimulation):
-    """Simulation for sensitivity calculation."""
+def sensitivity_simulation(changes: Mapping[str, float]) -> Simulation:
+    """Get the simulation of a group: a single oral dose of apixaban."""
+    return Simulation(
+        end=5 * 24 * 60,
+        time_unit="min",
+        preinit_changes={"PODOSE_api": Q(DOSE_API, "mg"), **changes},
+    )
 
 
-    def simulate(self, r: roadrunner.RoadRunner, changes: dict[str, float]) -> dict[str, float]:
-        tend = 5 * 24 * 60  # [min]
-        steps = 3000
-
-        # apply changes and simulate
-        all_changes = {
-            **self.changes_simulation,  # model
-            **changes  # sensitivity
-        }
-        self.apply_changes(r, all_changes, reset_all=True)
-        # ensure tolerances
-        r.integrator.setValue("absolute_tolerance", self.init_tolerances)
-        s = r.simulate(start=0, end=tend, steps=steps)
-
-        # pharmacokinetic parameters
-        y: dict[str, float] = {}
-
-        # pharmacokinetics
-        ureg = UnitRegistry()
-        Q_ = ureg.Quantity
-
-        Mr_api = Q_(459.5, "g/mole")
-        time = Q_(s["time"], "min")
-        tcpk = TimecoursePK(
-            time=time,
-            concentration=Q_(s["[Cve_api]"], "mM"),
-            substance="apixaban",
-            ureg=ureg,
-            dose=Q_(5, "mg")/Mr_api,
+#: the groups the analyses are run for: the control and the classes of renal
+#: and hepatic impairment of the base experiment
+SENSITIVITY_GROUPS: list[SensitivityGroup] = [
+    SensitivityGroup("control", "Control", sensitivity_simulation({}), "dimgrey"),
+    *(
+        SensitivityGroup(
+            uid,
+            name,
+            sensitivity_simulation(
+                {"KI__f_renal_function": ApixabanSimulationExperiment.renal_map[name]}
+            ),
+            ApixabanSimulationExperiment.renal_colors[name],
         )
-        pk_dict = tcpk.pk.to_dict()
-        # console.print(pk_dict)
-        for pk_key in [
-            "aucinf",
-            "cmax",
-            "thalf",
-            "vd",
-            "cl",
-            "kel",
-        ]:
-            y[f"[Cve_api]_{pk_key}"] = pk_dict[pk_key]
-
-        # metabolites
-        for sid in [
-            "[Cve_m1]", "[Cve_m7]",
-        ]:
-            tcpk = TimecoursePK(
-                time=time,
-                concentration=Q_(s[sid], "mM"),
-                substance="apixaban",
-                ureg=ureg,
-                dose=None,
-            )
-            pk_dict = tcpk.pk.to_dict()
-            # console.print(pk_dict)
-            for pk_key in [
-                "aucinf",
-                "cmax",
-                "thalf",
-                # "kel",
-            ]:
-                y[f"{sid}_{pk_key}"] = pk_dict[pk_key]
-
-        # pharmacodynamics
-        for sid, f in [
-            ("PT", "max"),
-            ("mPT", "max"),
-            ("aPTT", "max"),
-            ("INR", "max"),
-            ("Xa_inhibition", "max"),
-        ]:
-            # minimal and maximal value of readout
-            if f == "max":
-                y[f"{sid}_max"] = np.max(s[sid])
-            elif f == "min":
-                y[f"{sid}_min"] = np.min(s[sid])
-
-        return y
+        for uid, name in [
+            ("mildRI", "Mild renal impairment"),
+            ("modRI", "Moderate renal impairment"),
+            ("sevRI", "Severe renal impairment"),
+        ]
+    ),
+    *(
+        SensitivityGroup(
+            uid,
+            f"{name} ({uid})",
+            sensitivity_simulation(
+                {"f_cirrhosis": ApixabanSimulationExperiment.cirrhosis_map[name]}
+            ),
+            ApixabanSimulationExperiment.cirrhosis_colors[name],
+        )
+        for uid, name in [
+            ("CPT A", "Mild cirrhosis"),
+            ("CPT B", "Moderate cirrhosis"),
+            ("CPT C", "Severe cirrhosis"),
+        ]
+    ),
+]
 
 
-
-sensitivity_simulation = ApixabanSensitivitySimulation(
-    model_path=MODEL_PATH,
-    selections=[
-        "time",
-        "[Cve_api]",
-        "[Cve_m1]",
-        "[Cve_m7]",
-        "PT",
-        "mPT",
-        "aPTT",
-        "INR",
-        "Xa_inhibition",
-    ],
-    changes_simulation = {
-        # ! make sure all the changes from base-experiment are injected here !
-        # FIXME: auto-inject changes from base-experiment
-        "PODOSE_api": 5,  # [mg]
-    },
-    outputs=[
-        # FIXME: auto-calculate units
-        SensitivityOutput(uid='[Cve_api]_aucinf', name='API AUC∞', unit="mM*min"),
-        SensitivityOutput(uid='[Cve_api]_cmax', name='API Cmax', unit="mM"),
-        SensitivityOutput(uid='[Cve_api]_thalf', name='API Half-life', unit="min"),
-        SensitivityOutput(uid='[Cve_api]_vd', name='API Vd', unit="l"),
-        SensitivityOutput(uid='[Cve_api]_cl', name='API CL', unit="mole/min/mM"),
-        SensitivityOutput(uid='[Cve_api]_kel', name='API kel', unit="1/min"),
-
-        SensitivityOutput(uid='[Cve_m1]_aucinf', name='M1 AUC∞', unit="mM*min"),
-        SensitivityOutput(uid='[Cve_m1]_cmax', name='M1 Cmax', unit="mmole/l"),
-        SensitivityOutput(uid='[Cve_m1]_thalf', name='M1 Half-life', unit="min"),
-
-        SensitivityOutput(uid='[Cve_m7]_aucinf', name='M7 AUC∞', unit="mM*min"),
-        SensitivityOutput(uid='[Cve_m7]_cmax', name='M7 Cmax', unit="mmole/l"),
-        SensitivityOutput(uid='[Cve_m7]_thalf', name='M7 Half-life', unit="min"),
-
-        SensitivityOutput(uid='PT_max', name='max PT', unit="s"),
-        SensitivityOutput(uid='mPT_max', name='max mPT', unit="s"),
-        SensitivityOutput(uid='aPTT_max', name='max aPTT', unit="s"),
-        SensitivityOutput(uid='INR_max', name='max INR', unit="dimensionless"),
-        SensitivityOutput(uid='Xa_inhibition_max', name='max Xa inhibition', unit="dimensionless"),
-    ]
-)
-
-
-def _sensitivity_parameters() -> list[SensitivityParameter]:
-    """Definition of parameters and bounds for sensitivity analysis."""
-    console.rule("Parameters", style="white")
-    # parameters for sensitivity analysis
-    parameters: list[SensitivityParameter] = SensitivityParameter.parameters_from_sbml(
-        sbml_path=MODEL_PATH,
+def sensitivity_parameters() -> list[SensitivityParameter]:
+    """Get the parameters of the analyses with their bounds and references."""
+    parameters = parameters_from_sbml(
+        MODEL_PATH,
         exclude_ids={
-            # conversion factors
-            "conversion_min_per_day",
-
-            # non-used scaling factor
-            "f_absorption",
-
             # molecular weights
             "Mr_api",
             "Mr_m1",
             "Mr_m7",
-
-            # unchangable values
+            # unchangeable values
             "FQlu",
             "FVhv",
             "FVpo",
-
             # dosing parameters
             "PODOSE_api",
             "IVDOSE_api",
             "ti_api",
             "Ki_api",
             "Ri_api",
-
+            # fast equilibria between the plasma and the hepatocytes
+            "LI__APIIM_k",
+            "LI__M1EX_k",
+            "LI__M7EX_k",
             # unused volumes
             "Vurine",
             "Vfeces",
-            "Vplasma",
             "Vstomach",
-            "LI__Vbi",
-
+            "GU__Vstomach",
             # reference values
+            "BW_ref",
+            "HEIGHT_ref",
             "PT_ref",
             "mPT_ref",
             "aPTT_ref",
@@ -245,27 +251,25 @@ def _sensitivity_parameters() -> list[SensitivityParameter]:
         exclude_zero=True,
     )
 
-    # bounds from fitted parameters
-    fit_bounds = [
-        (fp.pid, fp.lower_bound, fp.upper_bound, ParameterType.FIT) for fp in fit_parameters
-        # (fp.pid, np.nan, np.nan, ParameterType.FIT) for fp in fit_parameters
-    ]
+    # the fitted parameters vary within the bounds of the fits
+    set_bounds(
+        parameters,
+        [
+            (fp.pid, fp.lower_bound, fp.upper_bound, ParameterType.FIT)
+            for fp in parameters_pk + parameters_pd
+        ],
+    )
+    # the scaling factors of the organ functions and the transporters
+    set_bounds(
+        parameters,
+        [
+            (uid, 1 - BOUNDS_FRACTION, 1 + BOUNDS_FRACTION, ParameterType.SCALING)
+            for uid in ["KI__f_renal_function", "LI__f_cyp3a4", "GU__f_pgp"]
+        ],
+    )
 
-    SensitivityParameter.parameters_set_bounds(parameters, bounds=fit_bounds)
-
-    # bounds from scaled parameters
-    bounds_fraction = 0.15  # fraction of bounds relative to value
-    uids_scaling = [
-        "GU__F_api_abs",
-        "KI__f_renal_function",
-    ]
-    scaling_bounds = [
-        (uid, 1 - bounds_fraction, 1 + bounds_fraction, ParameterType.SCALING) for uid in uids_scaling
-    ]
-    SensitivityParameter.parameters_set_bounds(parameters, bounds=scaling_bounds)
-
-    # references for values
-    reference_data={
+    # the references of the values from the literature
+    references = {
         "HCT": r"\cite{Mondal2025, Fiseha2023}",
         "BW": r"\cite{Ogden2004, Jones2013, Thompson2009, Brown1997}",
         "FQgu": r"\cite{Jones2013, Thompson2009, Brown1997}",
@@ -278,95 +282,35 @@ def _sensitivity_parameters() -> list[SensitivityParameter]:
         "FVlu": r"\cite{Jones2013, Thompson2009, Brown1997}",
         "FVve": r"\cite{Jones2013, Thompson2009, Brown1997}",
         "COBW": r"\cite{Cattermole2017, Patel2021, Collis2001}",
-        # "HR": r"\cite{Cattermole2017, Patel2021, Collis2001, Thompson2009}",
         "KI__f_renal_function": r"\cite{Stevens2024}",
     }
-    p_dict = {p.uid: p for p in parameters}
-    for pid, reference in reference_data.items():
-        p = p_dict[pid]
+    by_uid = {p.uid: p for p in parameters}
+    for uid, reference in references.items():
+        p = by_uid[uid]
         p.reference = reference
         if p.type == ParameterType.NA:
             p.type = ParameterType.DATA
 
-    # setting missing bounds;
-    for p in parameters:
-        if np.isnan(p.lower_bound) and np.isnan(p.upper_bound):
-            p.lower_bound = p.value * (1 - bounds_fraction)
-            p.upper_bound = p.value * (1 + bounds_fraction)
-
-    # print parameters
-    pd.options.display.float_format = "{:.5g}".format
-    df_parameters = SensitivityParameter.parameters_to_df(parameters)
-    console.print(df_parameters)
-
+    # every parameter without bounds varies around its value
+    set_relative_bounds(parameters, BOUNDS_FRACTION)
     return parameters
 
-sensitivity_parameters = _sensitivity_parameters()
+
+#: the analyses of the script, with the groups and the sizes of sbmlsim 0.8.5
+SENSITIVITY = SensitivityRunner(
+    model=MODEL,
+    parameters=sensitivity_parameters,
+    outputs=OUTPUTS,
+    observables=OBSERVABLES,
+    analyses={
+        "local": LocalAnalysis(groups=SENSITIVITY_GROUPS[:1], delta=0.01),
+        "sampling": SamplingAnalysis(groups=SENSITIVITY_GROUPS, n=1000),
+        "fast": FastAnalysis(groups=SENSITIVITY_GROUPS[:1], n=1000),
+        "sobol": SobolAnalysis(groups=SENSITIVITY_GROUPS[:1], n=4096),
+    },
+    default=("local",),
+)
 
 
 if __name__ == "__main__":
-    import multiprocessing
-    from sbmlsim.sensitivity import (
-        SobolSensitivityAnalysis,
-        LocalSensitivityAnalysis,
-        SamplingSensitivityAnalysis,
-        FASTSensitivityAnalysis,
-    )
-    from pkdb_models.models.apixaban import RESULTS_PATH
-
-    sensitivity_path = RESULTS_PATH / "sensitivity"
-    sensitivity_path.mkdir(parents=True, exist_ok=True)
-    df_parameters = SensitivityParameter.parameters_to_df(sensitivity_parameters)
-    df_parameters.to_csv(sensitivity_path / "parameters.tsv", sep="\t", index=False)
-    console.print(df_parameters)
-    SensitivityParameter.parameter_to_latex(
-        tex_path=sensitivity_path / "parameters.tex",
-        parameters=sensitivity_parameters,
-    )
-
-    settings = {
-        "cache_results": False,
-        "n_cores": int(round(0.9 * multiprocessing.cpu_count())),
-        "seed": 1234
-    }
-
-    sa_local = LocalSensitivityAnalysis(
-        sensitivity_simulation=sensitivity_simulation,
-        parameters=sensitivity_parameters,
-        groups=[sensitivity_groups[0]],
-        results_path=sensitivity_path / "local",
-        difference=0.01,
-        **settings,
-    )
-    sa_sampling = SamplingSensitivityAnalysis(
-        sensitivity_simulation=sensitivity_simulation,
-        parameters=sensitivity_parameters,
-        groups=sensitivity_groups,
-        results_path=sensitivity_path / "sampling",
-        N=1000,
-        **settings,
-    )
-    sa_fast = FASTSensitivityAnalysis(
-        sensitivity_simulation=sensitivity_simulation,
-        parameters=sensitivity_parameters,
-        groups=[sensitivity_groups[0]],
-        results_path=sensitivity_path / "fast",
-        N=1000,
-        **settings,
-    )
-    sa_sobol = SobolSensitivityAnalysis(
-        sensitivity_simulation=sensitivity_simulation,
-        parameters=sensitivity_parameters,
-        groups=[sensitivity_groups[0]],
-        results_path=sensitivity_path / "sobol",
-        N=4096,
-        **settings,
-    )
-    for sa in [
-        sa_local,
-        # sa_sampling,
-        # sa_fast,
-        # sa_sobol,
-    ]:
-        sa.execute()
-        sa.plot()
+    SENSITIVITY.main()

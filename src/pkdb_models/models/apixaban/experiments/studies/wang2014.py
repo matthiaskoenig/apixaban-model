@@ -1,78 +1,89 @@
-import math
-from typing import Dict
+"""Simulation experiment of the study Wang2014."""
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from typing import ClassVar, override
 
-from pkdb_models.models import apixaban
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
+
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import (
-    Tissue, Route, Dosing, ApplicationForm, Health, Fasting, ApixabanMappingMetaData
-)
-
-from sbmlsim.plot import Axis, Figure
-    # noqa: E402
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Wang2014(ApixabanSimulationExperiment):
-    """Simulation experiment of Wang2014."""
+    """Simulation experiment of Wang2014.
 
-    colors = {
+    A single oral dose of 20 mg apixaban (four 5 mg tablets) after a fast of at
+    least 10 h in 18 healthy subjects (72.2 kg, 169.4 cm), alone or with 50 g
+    activated charcoal at 2 h (n = 14) or 6 h (n = 17) after the dose. The
+    charcoal binds the apixaban in the lumen of the small intestine (absorbed
+    rest and intestinal secretion) and shortens the half-life (13.4 to about
+    5 h). The model has no binding in the lumen: the charcoal arms are not
+    simulated or mapped, they are shown with the control.
+    """
+
+    colors: ClassVar[dict[str, str]] = {
         "control": "black",
     }
-    groups = list(colors.keys())
-    bodyweight = 72.2  # [kg] # control
-    bodyheight = 1.694 # [m]
+    groups: ClassVar[list[str]] = list(colors.keys())
 
-    infos_pk = {
+    #: the data of the charcoal arms (not simulated) and their colors
+    charcoal: ClassVar[dict[str, tuple[str, str]]] = {
+        "API20, AC50_2hr_all_apixaban": ("20mg PO + charcoal at 2 h", "tab:blue"),
+        "API20, AC50_6hr_all_apixaban": ("20mg PO + charcoal at 6 h", "tab:orange"),
+    }
+    bodyweight = 72.2  # [kg] (control)
+    bodyheight = 1.694  # [m]
+
+    infos_pk: ClassVar[dict[str, str]] = {
         "[Cve_api]": "apixaban",
     }
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Fig1"]:
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+            df = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                if label.startswith("API20_"):
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
-                    dsets[label] = dset
+                dset.unit_conversion("mean", 1 / self.Mr.api)
+                dsets[self.to_sid(label)] = dset
 
-        # console.print("datasets:", list(dsets.keys()))
         return dsets
 
-
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims: Dict[str, TimecourseSim] = {}
-        tcsims["control"] = TimecourseSim([
-            Timecourse(
-                start=0,
-                end=75 * 60,  # [min]
-                steps=500,
-                changes={
-                    **self.default_changes(),
-                    "PODOSE_api": Q_(20, "mg"),
-                    "BW": Q_(self.bodyweight, "kg"),
-                    "HEIGHT": Q_(self.bodyheight, "m"),
-                },
-            )
-        ])
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        tcsims: dict[str, Simulation] = {}
+        tcsims["control"] = Simulation(
+            time_unit="hr",
+            end=75,
+            preinit_changes={
+                **self.default_changes(),
+                "PODOSE_api": Q(20, "mg"),
+                "BW": Q(self.bodyweight, "kg"),
+                "HEIGHT": Q(self.bodyheight, "m"),
+            },
+        )
         return tcsims
 
-    # Fit Mappings
-    def fit_mappings(self) -> Dict[str, FitMapping]:
-        mappings: Dict[str, FitMapping] = {}
-        infos = {
-            **self.infos_pk,
-        }
-        for sid, name in infos.items():
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
+        mappings: dict[str, FitMapping] = {}
+        for sid, name in self.infos_pk.items():
             mappings[f"fm_{name}_api_20"] = FitMapping(
                 self,
                 reference=FitData(
@@ -89,7 +100,7 @@ class Wang2014(ApixabanSimulationExperiment):
                     xid="time",
                     yid=sid,
                 ),
-                metadata=ApixabanMappingMetaData(
+                metadata=PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
                     route=Route.PO,
                     application_form=ApplicationForm.TABLET,
@@ -101,58 +112,65 @@ class Wang2014(ApixabanSimulationExperiment):
 
         return mappings
 
-
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
             **self.figure_pk(),
         }
 
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure_pk(self) -> dict[str, Figure]:
+        """Apixaban in plasma, the charcoal arms are data only."""
         fig = Figure(
             experiment=self,
             sid="PK",
             name=f"{self.__class__.__name__}",
-            num_cols=1,
+            num_cols=2,
             num_rows=1,
             height=self.panel_height,
-            width=self.panel_width * 0.87,
+            width=self.panel_width * 2,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
             legend=True,
         )
-        for kp, sid in enumerate(self.infos_pk):
-            plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid])
-
-        for group in self.groups:
-            for kp, sid in enumerate(self.infos_pk):
-                name = self.infos_pk[sid]
-                # Simulation
+        sid = "[Cve_api]"
+        name = self.infos_pk[sid]
+        for kp, scale in enumerate(["linear", "log"]):
+            plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid], scale=scale)
+            for group in self.groups:
+                # simulation
                 plots[kp].add_data(
-                    task=f"task_control",
+                    task="task_control",
                     xid="time",
                     yid=sid,
-                    label=f"sim: 20mg PO",
-                    color=self.colors[group]
+                    label="sim: 20mg PO",
+                    color=self.colors[group],
                 )
-                # Data
+                # data
                 plots[kp].add_data(
                     dataset=f"API20_all_{name}",
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=f"exp: 20mg PO",
+                    label="exp: 20mg PO",
                     color=self.colors[group],
                     linestyle="solid",
                 )
+            for label, (legend, color) in self.charcoal.items():
+                plots[kp].add_data(
+                    dataset=self.to_sid(label),
+                    xid="time",
+                    yid="mean",
+                    yid_sd="mean_sd",
+                    count="count",
+                    label=f"exp: {legend}",
+                    color=color,
+                    linestyle="dashed",
+                )
 
-        return {fig.sid: fig}
-
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Wang2014.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Wang2014, output_dir=Wang2014.__name__)
-
+    MODEL.run_experiments(Wang2014, output_dir=Wang2014.__name__)

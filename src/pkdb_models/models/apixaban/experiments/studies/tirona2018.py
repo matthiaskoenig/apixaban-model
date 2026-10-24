@@ -1,117 +1,161 @@
+"""Simulation experiment of the study Tirona2018."""
+
 import math
-from typing import Dict
+from typing import ClassVar, override
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
 
-from pkdb_models.models import apixaban
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import (
-    Tissue, Route, Dosing, ApplicationForm, Health, Fasting, ApixabanMappingMetaData
-)
-
-from sbmlsim.plot import Axis, Figure
-    # noqa: E402
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Tirona2018(ApixabanSimulationExperiment):
-    """Simulation experiment of Tirona2018."""
+    """Simulation experiment of Tirona2018.
 
-    colors = {
+    A single oral dose of 2.5 mg apixaban (tablet) together with 5 mg
+    rosuvastatin after an overnight fast in healthy controls (n = 12) and
+    patients with nonalcoholic fatty liver disease (NAFLD, n = 22). Rosuvastatin
+    does not interact with apixaban (no effect on the transport of apixaban in
+    Caco-2 cells, no inhibitor or inducer of CYP3A4 or P-gp), the simulations
+    have no interaction factor; the coadministration is part of the metadata.
+    The paper explains the lower exposure of the NAFLD patients by their body
+    weight (99.9 against 65.6 kg), pkpdsim has no health status NAFLD: the
+    patients are obese (BMI 34.0).
+    """
+
+    colors: ClassVar[dict[str, str]] = {
         "control": "black",
         "nafld": "tab:blue",
     }
-    groups = list(colors.keys())
-    bodyweight = 65.6  # [kg] # control
-    bodyheight = math.sqrt(65.6 / 23.4) # [m]
-
-    infos_pk = {
-        "[Cve_api]": "apixaban",
-        "Aurine_api": "cumulative amount"
+    groups: ClassVar[list[str]] = list(colors.keys())
+    bodyweights: ClassVar[dict[str, float]] = {  # [kg]
+        "control": 65.6,
+        "nafld": 99.9,
+    }
+    bmis: ClassVar[dict[str, float]] = {  # [kg/m^2]
+        "control": 23.4,
+        "nafld": 34.0,
+    }
+    health: ClassVar[dict[str, Health]] = {
+        "control": Health.HEALTHY,
+        "nafld": Health.OBESE,
+    }
+    legends: ClassVar[dict[str, str]] = {
+        "control": "control 2.5mg PO + ROS 5mg",
+        "nafld": "NAFLD 2.5mg PO + ROS 5mg",
     }
 
-    def datasets(self) -> Dict[str, DataSet]:
+    infos_pk: ClassVar[dict[str, str]] = {
+        "[Cve_api]": "apixaban",
+        "Aurine_api": "cumulative amount",
+    }
+
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Tab2", "Fig2"]:
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+            df = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                if label.endswith("apixaban") and (fig_id == "Fig2" or label.startswith("cumulative")):
+                if label.endswith("apixaban") and (
+                    fig_id == "Fig2" or label.startswith("cumulative")
+                ):
                     dset.unit_conversion("mean", 1 / self.Mr.api)
-                    dsets[label] = dset
+                    dsets[self.to_sid(label)] = dset
 
-        # console.print("datasets:", list(dsets.keys()))
         return dsets
 
-
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims: Dict[str, TimecourseSim] = {}
-        tcsims["control"] = TimecourseSim([
-            Timecourse(
-                start=0,
-                end=30 * 60,  # [min]
-                steps=500,
-                changes={
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        tcsims: dict[str, Simulation] = {}
+        for group in self.groups:
+            bodyweight = self.bodyweights[group]
+            tcsims[group] = Simulation(
+                time_unit="hr",
+                end=30,
+                preinit_changes={
                     **self.default_changes(),
-                    "PODOSE_api": Q_(2.5, "mg"),
-                    "BW": Q_(self.bodyweight, "kg"),
-                    "HEIGHT": Q_(self.bodyheight, "m"),
+                    "PODOSE_api": Q(2.5, "mg"),
+                    "BW": Q(bodyweight, "kg"),
+                    "HEIGHT": Q(math.sqrt(bodyweight / self.bmis[group]), "m"),
                 },
             )
-        ])
         return tcsims
 
-    # Fit Mappings
-    def fit_mappings(self) -> Dict[str, FitMapping]:
-        mappings: Dict[str, FitMapping] = {}
-        infos = {
-            **self.infos_pk,
-        }
+    def dataset_key(self, group: str, sid: str) -> str:
+        """Key of the dataset of a group and an observable.
+
+        Args:
+            group: the group.
+            sid: the observable.
+
+        Returns:
+            The key of the dataset.
+        """
+        name = self.infos_pk[sid]
+        return self.to_sid(
+            f"{group}_{name}" if sid == "[Cve_api]" else f"{name}_{group}_apixaban"
+        )
+
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
+        mappings: dict[str, FitMapping] = {}
         for group in self.groups:
-            if group == "control":
-                for sid, name in infos.items():
-                    mappings[f"fm_{name}_{group}"] = FitMapping(
+            for sid, name in self.infos_pk.items():
+                mappings[self.to_sid(f"fm_{name}_{group}")] = FitMapping(
+                    self,
+                    reference=FitData(
                         self,
-                        reference=FitData(
-                            self,
-                            dataset=f"{group}_{name}" if sid == "[Cve_api]" else f"{name}_{group}_apixaban",
-                            xid="time",
-                            yid="mean",
-                            yid_sd="mean_sd",
-                            count="count",
-                        ),
-                        observable=FitData(
-                            self,
-                            task=f"task_{group}",
-                            xid="time",
-                            yid=sid,
-                        ),
-                        metadata=ApixabanMappingMetaData(
-                            tissue=Tissue.PLASMA if sid == "[Cve_api]" else Tissue.URINE,
-                            route=Route.PO,
-                            application_form=ApplicationForm.TABLET,
-                            dosing=Dosing.SINGLE,
-                            health=Health.HEALTHY,
-                            fasting=Fasting.FASTED,
-                        ),
-                    )
+                        dataset=self.dataset_key(group, sid),
+                        xid="time",
+                        yid="mean",
+                        yid_sd="mean_sd",
+                        count="count",
+                    ),
+                    observable=FitData(
+                        self,
+                        task=f"task_{group}",
+                        xid="time",
+                        yid=sid,
+                    ),
+                    metadata=PKPDMappingMetaData(
+                        tissue=Tissue.PLASMA if sid == "[Cve_api]" else Tissue.URINE,
+                        route=Route.PO,
+                        application_form=ApplicationForm.TABLET,
+                        dosing=Dosing.SINGLE,
+                        health=self.health[group],
+                        fasting=Fasting.FASTED,
+                        coadministration=Coadministration.ROSUVASTATIN,
+                    ),
+                )
 
         return mappings
 
-
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
             **self.figure_pk(),
         }
 
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure_pk(self) -> dict[str, Figure]:
+        """Apixaban in plasma and urine of the controls and the NAFLD patients."""
         fig = Figure(
             experiment=self,
             sid="PK",
@@ -130,35 +174,28 @@ class Tirona2018(ApixabanSimulationExperiment):
 
         for group in self.groups:
             for kp, sid in enumerate(self.infos_pk):
-                name = self.infos_pk[sid]
-
-                if group == "control":
-                    # Simulation
-                    plots[kp].add_data(
-                        task=f"task_{group}",
-                        xid="time",
-                        yid=sid,
-                        label=f"sim: 2.5mg PO",
-                        color=self.colors[group]
-                    )
-                # Data
+                # simulation
                 plots[kp].add_data(
-                    dataset=f"{group}_{name}" if sid == "[Cve_api]" else f"{name}_{group}_apixaban",
+                    task=f"task_{group}",
+                    xid="time",
+                    yid=sid,
+                    label=f"sim: {self.legends[group]}",
+                    color=self.colors[group],
+                )
+                # data
+                plots[kp].add_data(
+                    dataset=self.dataset_key(group, sid),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=f"exp: 2.5mg PO" if group == "control" else f"exp {group}: 2.5mg PO",
+                    label=f"exp: {self.legends[group]}",
                     color=self.colors[group],
                     linestyle="solid" if sid == "[Cve_api]" else "",
                 )
 
-        return {fig.sid: fig}
-
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Tirona2018.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Tirona2018, output_dir=Tirona2018.__name__)
-
+    MODEL.run_experiments(Tirona2018, output_dir=Tirona2018.__name__)

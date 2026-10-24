@@ -1,197 +1,242 @@
+"""Simulation experiment of the study Frost2021."""
+
 import math
-from typing import Dict
+from collections.abc import Callable
+from typing import Any, ClassVar, override
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure, Plot
+from sbmlsim.simulation import Simulation
 
-from pkdb_models.models import apixaban
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import Tissue, Route, Dosing, ApplicationForm, Health, \
-    Fasting, ApixabanMappingMetaData
-
-from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Frost2021(ApixabanSimulationExperiment):
-    """Simulation experiment of Frost2021."""
+    """Simulation experiment of Frost2021.
 
-    bodyweights = {
-        "group1": 75.8, "group2": 74.8, "group3": 80.6,
-        "group4": 82.4, "group5": 83.1, "group_po": 79,
+    Intravenous single ascending doses (bolus of a solution, 0.5 to 5 mg) and a
+    single oral dose of 5 mg (tablet) in the subjects of the 2.5 mg panel after
+    a washout, in healthy men fasted for at least 10 h.
+    """
+
+    #: body weight [kg] of the panels (Table 1); 5 of the 6 subjects of the
+    #: 2.5 mg panel received the oral dose
+    bodyweights: ClassVar[dict[str, float]] = {
+        "group1": 75.8,
+        "group2": 74.8,
+        "group3": 80.6,
+        "group4": 82.4,
+        "group5": 83.1,
+        "group_po": 80.6,
     }
-    doses = {
-        "group1": 0.5, "group2": 1.25, "group3": 2.5,
-        "group4": 3.75, "group5": 5, "group_po": 5,
+    doses: ClassVar[dict[str, float]] = {
+        "group1": 0.5,
+        "group2": 1.25,
+        "group3": 2.5,
+        "group4": 3.75,
+        "group5": 5,
+        "group_po": 5,
     }
-    inr = {
-        "group1": 1.12, "group2": 1.1, "group3": 1.13,
-        "group4": 1.08, "group5": 1.08, "group_po": 1.14,
+    inr: ClassVar[dict[str, float]] = {
+        "group1": 1.12,
+        "group2": 1.1,
+        "group3": 1.13,
+        "group4": 1.08,
+        "group5": 1.08,
+        "group_po": 1.14,
     }
-    pt = {
-        "group1": 54.5, "group2": 59.2, "group3": 54.9,
-        "group4": 46.4, "group5": 53.9, "group_po": 53.3,
-        "placebo": 53.5,
+    mpt: ClassVar[dict[str, float]] = {
+        "group1": 54.5,
+        "group2": 59.2,
+        "group3": 54.9,
+        "group4": 46.4,
+        "group5": 53.9,
+        "group_po": 53.3,
+        # the baseline of the placebo series of Fig 2A
+        "placebo": 53.35,
     }
-    bodyheight = {
-        "group1": math.sqrt(75.8 / 24.9), "group2": math.sqrt(74.8 / 24.2), "group3": math.sqrt(80.6 / 25),
-        "group4": math.sqrt(82.4 / 26.7), "group5": math.sqrt(83.1 / 26.1), "group_po": 1.7,
+    #: height [cm] from the body weight and the BMI of the panels (Table 1)
+    bodyheight: ClassVar[dict[str, float]] = {
+        "group1": 100 * math.sqrt(75.8 / 24.9),
+        "group2": 100 * math.sqrt(74.8 / 24.2),
+        "group3": 100 * math.sqrt(80.6 / 25),
+        "group4": 100 * math.sqrt(82.4 / 26.7),
+        "group5": 100 * math.sqrt(83.1 / 26.1),
+        "group_po": 100 * math.sqrt(80.6 / 25),
     }
-    routes = {
-        "group1": "IV0_5", "group2": "IV1_25", "group3": "IV2_5",
-        "group4": "IV3_75", "group5": "IV5", "group_po": "PO5",
+    routes: ClassVar[dict[str, str]] = {
+        "group1": "IV0_5",
+        "group2": "IV1_25",
+        "group3": "IV2_5",
+        "group4": "IV3_75",
+        "group5": "IV5",
+        "group_po": "PO5",
     }
-    doses_colors = {
-        0: "#fff5eb", 0.5: "#fee6ce", 1.25: "#fdd0a2",
-        2.5: "#fdae6b", 3.75: "#fd8d3c", 5: "#e6550d",
+    doses_colors: ClassVar[dict[float, str]] = {
+        0: "tab:grey",
+        0.5: "#fdae6b",
+        1.25: "#fd8d3c",
+        2.5: "#f16913",
+        3.75: "#d94801",
+        5: "#8c2d04",
     }
-    markers = {"IV": "s", "PO": "v"}
-    linestyle = {"IV": "solid", "PO": "dashed"}
+    markers: ClassVar[dict[str, str]] = {"IV": "s", "PO": "v"}
+    linestyle: ClassVar[dict[str, str]] = {"IV": "solid", "PO": "dashed"}
 
     # Group information
-    groups = list(bodyweights.keys())
+    groups: ClassVar[list[str]] = list(bodyweights.keys())
 
     # Information mapping for metadata
-    info_fig1 = {
+    info_fig1: ClassVar[dict[str, str]] = {
         "[Cve_api]": "apixaban",
+        "Aurine_api": "cumulative amount",
         "mPT": "prothrombin time",
-        "antiXa_activity": "antiXa activity",
-        "antiXa_activity_gram": "antiXa activity",
+        "antiXa_activity": "antiXa activity IU",
+        "antiXa_activity_gram": "antiXa activity ng",
     }
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id, group_id in zip(["Fig1", "Fig2", "Fig3", "Fig1_2Mean", "Tab2"], ["label", "label", "x_label", "x_label", "label"]):
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+        for fig_id, group_id in zip(
+            ["Fig1", "Fig2", "Fig3", "Fig1_2Mean", "Tab2"],
+            ["label", "label", "x_label", "x_label", "label"],
+            strict=True,
+        ):
+            df = self.load_dataframe(fig_id)
             for label, df_label in df.groupby(group_id):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if "cumulative amount" in label:
                     dset.unit_conversion("mean", 1 / self.Mr.api)
-                    dsets[label] = dset
+                    dsets[self.to_sid(label)] = dset
                 if "apixaban" in label:
                     if fig_id in ["Fig3", "Fig1_2Mean"]:
                         dset.unit_conversion("x", 1 / self.Mr.api)
                     else:
                         dset.unit_conversion("mean", 1 / self.Mr.api)
                 if "antiXa_activity_gram" not in label and fig_id != "Tab2":
-                    dsets[label] = dset
-
-                # print(label)
-
-        # console.print(dsets)
+                    dsets[self.to_sid(label)] = dset
 
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
+    @override
+    def simulations(self) -> dict[str, Simulation]:
         tcsims = {}
         for group in self.groups:
-            tcsims[group] = TimecourseSim(
-                [Timecourse(
-                    start=0,
-                    end=62 * 60,  # [min]
-                    steps=1000,
-                    changes={
-                        **self.default_changes(),
-                        "BW": Q_(self.bodyweights[group], "kg"),
-                        f"{self.routes[group][0:2]}DOSE_api": Q_(self.doses[group], "mg"),
-                        "HEIGHT": Q_(self.bodyheight[group], "m"),
-                        "INR_ref": Q_(self.inr[group], "dimensionless"),
-                        "PT_ref": Q_(self.pt[group], "s"),
-                    },
-                )]
+            tcsims[self.to_sid(group)] = Simulation(
+                time_unit="hr",
+                end=62,
+                preinit_changes={
+                    **self.default_changes(),
+                    "BW": Q(self.bodyweights[group], "kg"),
+                    f"{self.routes[group][0:2]}DOSE_api": Q(self.doses[group], "mg"),
+                    "HEIGHT": Q(self.bodyheight[group], "cm"),
+                    "INR_ref": Q(self.inr[group], "dimensionless"),
+                    "mPT_ref": Q(self.mpt[group], "s"),
+                },
             )
         # placebo
-        tcsims["placebo"] = TimecourseSim(
-            [Timecourse(
-                start=0,
-                end=75 * 60,  # [min]
-                steps=1000,
-                changes={
-                    **self.default_changes(),
-                    "BW": Q_(78.7, "kg"), #iv placebo taken
-                    f"IVDOSE_api": Q_(0, "mg"),
-                    "HEIGHT": Q_(math.sqrt(78.7/25), "m"),
-                    "INR_ref": Q_(1.11, "dimensionless"),
-                    "PT_ref": Q_(self.pt["placebo"], "s"),
-                },
-            )]
+        tcsims["placebo"] = Simulation(
+            time_unit="hr",
+            end=75,
+            preinit_changes={
+                **self.default_changes(),
+                "BW": Q(78.7, "kg"),  # iv placebo taken
+                "IVDOSE_api": Q(0, "mg"),
+                "HEIGHT": Q(100 * math.sqrt(78.7 / 25), "cm"),
+                "INR_ref": Q(1.11, "dimensionless"),
+                "mPT_ref": Q(self.mpt["placebo"], "s"),
+            },
         )
 
         return tcsims
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
 
-        # Centralized logic in a dictionary
-        fit_mapping_rules = {
-            "[Cve_api]": {
-                "dset_id": lambda route, group: f"{route}_apixaban",
-                "in_mapping": lambda group: True,
-            },
-            "Aurine_api": {
-                "dset_id": lambda route, group: f"cumulative amount_{group}_{route}",
-                "in_mapping": lambda group: True,
-            },
-            "mPT": {
-                "dset_id": lambda route, group: f"{route}_prothrombin time",
-                "in_mapping": lambda group: True,
-            },
-            "antiXa_activity_gram": {
-                "dset_id": lambda route, group: f"{route}_Anti-factor Xa activity_ng" if group in ["group5", "group_po"] else "",
-                "in_mapping": lambda group: group in ["group5", "group_po"],
-            },
-            "antiXa_activity": {
-                "dset_id": lambda route, group: f"{route}_Anti-factor Xa activity_IU" if group in ["group5", "group_po"] else "",
-                "in_mapping": lambda group: group in ["group5", "group_po"],
-            },
+        # the dataset of an observable by route and group, None for a group
+        # without data of the observable (the anti-factor Xa activity is only
+        # reported for the groups which got 5 mg)
+        antixa_groups = ["group5", "group_po"]
+        dataset_ids: dict[str, Callable[[str, str], str | None]] = {
+            "[Cve_api]": lambda route, group: f"{route}_apixaban",
+            "Aurine_api": lambda route, group: f"cumulative amount_{group}_{route}",
+            "mPT": lambda route, group: f"{route}_prothrombin time",
+            "antiXa_activity_gram": lambda route, group: (
+                f"{route}_Anti-factor Xa activity_ng"
+                if group in antixa_groups
+                else None
+            ),
+            "antiXa_activity": lambda route, group: (
+                f"{route}_Anti-factor Xa activity_IU"
+                if group in antixa_groups
+                else None
+            ),
         }
 
         for group in self.groups:
             route = self.routes[group]
             for sid, name in self.info_fig1.items():
-                if sid in fit_mapping_rules:
-                    rule = fit_mapping_rules[sid]
-                    dset_id = rule["dset_id"](route, group)
-                    in_mapping = rule["in_mapping"](group)
+                if sid in dataset_ids:
+                    dset_id = dataset_ids[sid](route, group)
 
-                    if in_mapping:
-                        mappings[f"fm_{name}_{group}_{route}"] = FitMapping(
-                            self,
-                            reference=FitData(
+                    if dset_id is not None:
+                        mappings[self.to_sid(f"fm_{name}_{group}_{route}")] = (
+                            FitMapping(
                                 self,
-                                dataset=dset_id,
-                                xid="time",
-                                yid="mean",
-                                yid_sd="mean_sd",
-                                count="count",
-                            ),
-                            observable=FitData(
-                                self,
-                                task=f"task_{group}",
-                                xid="time",
-                                yid=sid,
-                            ),
-                            metadata=ApixabanMappingMetaData(
-                                tissue=Tissue.URINE if sid == "Aurine_api" else Tissue.PLASMA,
-                                route=Route.PO if route[:2] == "PO" else Route.IV,
-                                application_form=ApplicationForm.TABLET if route[:2] == "PO" else ApplicationForm.NR,
-                                dosing=Dosing.SINGLE,
-                                health=Health.HEALTHY,
-                                fasting=Fasting.FASTED if route[:2] == "PO" else Fasting.NR,
-                            ),
+                                reference=FitData(
+                                    self,
+                                    dataset=self.to_sid(dset_id),
+                                    xid="time",
+                                    yid="mean",
+                                    # the urinary amounts are derived from
+                                    # the renal clearance, without an error
+                                    yid_sd=None if sid == "Aurine_api" else "mean_sd",
+                                    count="count",
+                                ),
+                                observable=FitData(
+                                    self,
+                                    task=self.to_sid(f"task_{group}"),
+                                    xid="time",
+                                    yid=sid,
+                                ),
+                                metadata=PKPDMappingMetaData(
+                                    tissue=Tissue.URINE
+                                    if sid == "Aurine_api"
+                                    else Tissue.PLASMA,
+                                    route=Route.PO if route[:2] == "PO" else Route.IV,
+                                    application_form=ApplicationForm.TABLET
+                                    if route[:2] == "PO"
+                                    else ApplicationForm.SOLUTION,
+                                    dosing=Dosing.SINGLE,
+                                    health=Health.HEALTHY,
+                                    # fasted for 10 h regardless of the route
+                                    fasting=Fasting.FASTED,
+                                ),
+                            )
                         )
 
         mappings["fm_placebo"] = FitMapping(
             self,
             reference=FitData(
                 self,
-                dataset="plb_prothrombin time",
+                dataset="plb_prothrombin_time",
                 xid="time",
                 yid="mean",
                 yid_sd="mean_sd",
@@ -203,9 +248,9 @@ class Frost2021(ApixabanSimulationExperiment):
                 xid="time",
                 yid="mPT",
             ),
-            metadata=ApixabanMappingMetaData(
+            metadata=PKPDMappingMetaData(
                 tissue=Tissue.PLASMA,
-                route=Route.IV, # assumed for mapping, otherwise placebo group contains IV and PO
+                route=Route.IV,  # assumed for mapping, otherwise placebo group contains IV and PO
                 application_form=ApplicationForm.NR,
                 dosing=Dosing.SINGLE,
                 health=Health.HEALTHY,
@@ -215,27 +260,23 @@ class Frost2021(ApixabanSimulationExperiment):
 
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
-
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
             **self.figure_pk(),
             **self.figure_pd(),
             **self.figure_scatter(),
         }
 
-    def figure_pk(self) -> Dict[str, Figure]:
-
+    def figure_pk(self) -> dict[str, Figure]:
+        """Figure of the pharmacokinetics."""
         data = {
             0: ["group1", "group2", "group3", "group4", "group5"],
             1: ["group5", "group_po"],
             2: ["group1", "group2", "group3", "group4", "group5"],
         }
 
-        sids = {
-            0: "[Cve_api]",
-            1: "[Cve_api]",
-            2: "Aurine_api"
-        }
+        sids = {0: "[Cve_api]", 1: "[Cve_api]", 2: "Aurine_api"}
 
         y_axes = {
             0: (self.label_api_plasma, self.unit_api, "linear"),
@@ -280,7 +321,7 @@ class Frost2021(ApixabanSimulationExperiment):
 
                     # Add simulation data
                     plots[kp].add_data(
-                        task=f"task_{group}",
+                        task=self.to_sid(f"task_{group}"),
                         xid="time",
                         yid=sid,
                         label=f"sim: {dose}mg {route[:2]}",
@@ -290,7 +331,7 @@ class Frost2021(ApixabanSimulationExperiment):
 
                     # Add experimental data
                     plots[kp].add_data(
-                        dataset=dset_id,
+                        dataset=self.to_sid(dset_id),
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
@@ -300,9 +341,10 @@ class Frost2021(ApixabanSimulationExperiment):
                         marker=self.markers[route[:2]],
                     )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
-    def figure_pd(self) -> Dict[str, Figure]:
+    def figure_pd(self) -> dict[str, Figure]:
+        """Figure of the pharmacodynamics."""
         data = {
             0: ["group1", "group2", "group3", "group4", "group5"],
             1: ["group5", "group_po"],
@@ -320,8 +362,16 @@ class Frost2021(ApixabanSimulationExperiment):
         y_axes = {
             0: (self.labels["mPT"], self.units["mPT"], "linear"),
             1: (self.labels["mPT"], self.units["mPT"], "linear"),
-            2: (self.labels["antiXa_activity"], self.units["antiXa_activity"], "linear"),
-            3: (self.labels["antiXa_activity_gram"], self.units["antiXa_activity_gram"], "linear"),
+            2: (
+                self.labels["antiXa_activity"],
+                self.units["antiXa_activity"],
+                "linear",
+            ),
+            3: (
+                self.labels["antiXa_activity_gram"],
+                self.units["antiXa_activity_gram"],
+                "linear",
+            ),
         }
 
         # Dynamic dataset ID and SID determination
@@ -331,7 +381,6 @@ class Frost2021(ApixabanSimulationExperiment):
             2: lambda route: f"{route}_Anti-factor Xa activity_IU",
             3: lambda route: f"{route}_Anti-factor Xa activity_ng",
         }
-
 
         fig = Figure(
             experiment=self,
@@ -343,7 +392,8 @@ class Frost2021(ApixabanSimulationExperiment):
             width=self.panel_width * 2,
         )
         plots = fig.create_plots(
-            xaxis=Axis(self.label_time, unit=self.unit_time),
+            # the data cover 24 h
+            xaxis=Axis(self.label_time, unit=self.unit_time, min=-1, max=26),
             legend=True,
         )
 
@@ -356,16 +406,16 @@ class Frost2021(ApixabanSimulationExperiment):
                 task="task_placebo",
                 xid="time",
                 yid="mPT",
-                label="sim: 0mg",
+                label="sim: placebo",
                 color=self.doses_colors[0],
             )
             plots[kp_pt].add_data(
-                dataset="plb_prothrombin time",
+                dataset="plb_prothrombin_time",
                 xid="time",
                 yid="mean",
                 yid_sd="mean_sd",
                 count="count",
-                label="exp: 0mg",
+                label="exp: placebo",
                 color=self.doses_colors[0],
             )
 
@@ -382,7 +432,7 @@ class Frost2021(ApixabanSimulationExperiment):
 
                     # Add simulation data
                     plots[kp].add_data(
-                        task=f"task_{group}",
+                        task=self.to_sid(f"task_{group}"),
                         xid="time",
                         yid=sid,
                         label=f"sim: {dose}mg {route[:2]}",
@@ -392,7 +442,7 @@ class Frost2021(ApixabanSimulationExperiment):
 
                     # Add experimental data
                     plots[kp].add_data(
-                        dataset=dset_id,
+                        dataset=self.to_sid(dset_id),
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
@@ -402,64 +452,71 @@ class Frost2021(ApixabanSimulationExperiment):
                         marker=self.markers[route[:2]],
                     )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
-    def figure_scatter(self) -> Dict[str, Figure]:
-
+    def figure_scatter(self) -> dict[str, Figure]:
+        """Figures of the pharmacodynamics against the plasma concentration."""
+        # sid, number of rows, number of columns
         figures_config = [
-            {"sid": "mPT", "num_rows": 3, "num_cols": 2},
-            {"sid": "Anti-factor Xa activity", "num_rows": 1, "num_cols": 2},
+            ("mPT", 3, 2),
+            ("Anti-factor Xa activity", 1, 2),
         ]
 
-        style_mean = lambda dose, route: (
-            # simulations
-            dict(
-                color=self.doses_colors[dose],
-                linestyle=self.linestyle[route[:2]] if route[:2] == "IV" else "solid",
-            ),
-            # data
-            dict(
-                xid_sd="x_sd",
-                yid_sd="y_sd",
-                color=self.doses_colors[dose],
-                marker=self.markers[route[:2]],
-                linestyle="",
-            ),
-        )
+        def style_mean(
+            dose: float, route: str
+        ) -> tuple[dict[str, Any], dict[str, Any]]:
+            return (
+                # simulations
+                {
+                    "color": self.doses_colors[dose],
+                    "linestyle": self.linestyle[route[:2]]
+                    if route[:2] == "IV"
+                    else "solid",
+                },
+                # data
+                {
+                    "xid_sd": "x_sd",
+                    "yid_sd": "y_sd",
+                    "color": self.doses_colors[dose],
+                    "marker": self.markers[route[:2]],
+                    "linestyle": "",
+                },
+            )
 
-        style_indiv = lambda dose: (
-            dict(
-                color=self.doses_colors[dose],
-                linestyle="",
-                marker="o",
-            ),
-            dict(
-                color="white",
-                markeredgecolor="tab:grey",
-                marker="o",
-                linestyle="",
-                markeredgewidth=1,
-            ),
-        )
+        def style_indiv(dose: float) -> tuple[dict[str, Any], dict[str, Any]]:
+            return (
+                {
+                    "color": self.doses_colors[dose],
+                    "linestyle": "",
+                    "marker": "o",
+                },
+                {
+                    "color": "white",
+                    "markeredgecolor": "tab:grey",
+                    "marker": "o",
+                    "linestyle": "",
+                    "markeredgewidth": 1,
+                },
+            )
 
         # Create figures and plots
-        figures = {}
-        plots_lookup = {}
-        for config in figures_config:
+        figures: dict[str, Figure] = {}
+        plots_lookup: dict[str, list[Plot]] = {}
+        for sid, num_rows, num_cols in figures_config:
             fig = Figure(
                 experiment=self,
-                sid=config["sid"],
+                sid=self.to_sid(sid),
                 name=self.__class__.__name__,
-                num_rows=config["num_rows"],
-                num_cols=config["num_cols"],
-                height=self.panel_height * config["num_rows"],
-                width=self.panel_width * config["num_cols"] * 1.05,
+                num_rows=num_rows,
+                num_cols=num_cols,
+                height=self.panel_height * num_rows,
+                width=self.panel_width * num_cols * 1.05,
             )
             plots = fig.create_plots(
                 xaxis=Axis(self.label_api_plasma, unit=self.unit_api), legend=True
             )
-            figures[config["sid"]] = fig
-            plots_lookup[config["sid"]] = plots
+            figures[self.to_sid(sid)] = fig
+            plots_lookup[sid] = plots
 
         for kp, group in enumerate(self.groups):
             dose = self.doses[group]
@@ -467,8 +524,11 @@ class Frost2021(ApixabanSimulationExperiment):
 
             datasets = [
                 ("mPT", plots_lookup["mPT"], f"{route}_apixaban_plasma_vs_PT"),
-                ("antiXa_activity", plots_lookup["Anti-factor Xa activity"],
-                 f"{route}_apixaban_plasma_vs_Anti-factor Xa activity_IU"),
+                (
+                    "antiXa_activity",
+                    plots_lookup["Anti-factor Xa activity"],
+                    f"{route}_apixaban_plasma_vs_Anti-factor Xa activity_IU",
+                ),
             ]
 
             indiv_style = style_indiv(dose)
@@ -479,13 +539,17 @@ class Frost2021(ApixabanSimulationExperiment):
                     continue
                 current_kp = kp - 4 if yid == "antiXa_activity" else kp
 
-                plots[current_kp].set_yaxis(self.labels[yid], unit=self.units[yid], scale="linear")
+                plots[current_kp].set_yaxis(
+                    self.labels[yid], unit=self.units[yid], scale="linear"
+                )
 
-                for idx, style in zip([dset_id, f"{dset_id}_mean"], [indiv_style, mean_style]):
+                for idx, style in zip(
+                    [dset_id, f"{dset_id}_mean"], [indiv_style, mean_style], strict=True
+                ):
                     if "mean" in idx:
                         # simulation
                         plots[current_kp].add_data(
-                            task=f"task_{group}",
+                            task=self.to_sid(f"task_{group}"),
                             xid="[Cve_api]",
                             yid=yid,
                             label=f"sim: {dose}mg {route[:2]}",
@@ -494,9 +558,11 @@ class Frost2021(ApixabanSimulationExperiment):
                     plots[current_kp].add_data(
                         xid="x",
                         yid="y",
-                        dataset=idx,
+                        dataset=self.to_sid(idx),
                         count="count",
-                        label=f"exp: {dose}mg {route[:2]}" if "mean" in idx else f"exp individ: {dose}mg {route[:2]}",
+                        label=f"exp: {dose}mg {route[:2]}"
+                        if "mean" in idx
+                        else f"exp individ: {dose}mg {route[:2]}",
                         **style[1],
                     )
 
@@ -504,6 +570,4 @@ class Frost2021(ApixabanSimulationExperiment):
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Frost2021.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Frost2021, output_dir=Frost2021.__name__)
+    MODEL.run_experiments(Frost2021, output_dir=Frost2021.__name__)

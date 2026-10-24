@@ -1,113 +1,148 @@
-from typing import Dict
+"""Simulation experiment of the study Garonzik2019."""
 
-from pymetadata.console import console
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
+from typing import ClassVar, override
 
-from pkdb_models.models import apixaban
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
+
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import (
-    Tissue,
-    Route,
-    Dosing,
-    ApplicationForm,
-    Health,
-    Fasting,
-    ApixabanMappingMetaData,
-    Coadministration
-)
-
-from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Garonzik2019(ApixabanSimulationExperiment):
-    """Simulation experiment of Garonzik2019."""
-    colors = {
-        "TX_API5_1": "black",
+    """Simulation experiment of Garonzik2019.
+
+    Single sequence crossover in healthy subjects: a single oral dose of 10 mg
+    apixaban (two 5 mg tablets) on day 1 and on day 8 at the steady state of
+    clarithromycin 500 mg BID (days 4 to 10), fasted from 8 h before until
+    4 h after the dose.
+    """
+
+    #: the groups of the data (Fig 2), the dataset labels by group
+    groups: ClassVar[dict[str, str]] = {
+        "API10": "apixaban_TX_API5_1",
+        "API10_CLARI500": "concomitant_TX_CLARI_1, TX_API5_2",
     }
-    groups = list(colors.keys())
+    colors: ClassVar[dict[str, str]] = {
+        "API10": "black",
+        "API10_CLARI500": "tab:blue",
+    }
+    group_labels: ClassVar[dict[str, str]] = {
+        "API10": "10mg PO",
+        "API10_CLARI500": "10mg PO + clarithromycin",
+    }
+    coadministrations: ClassVar[dict[str, Coadministration]] = {
+        "API10": Coadministration.NONE,
+        "API10_CLARI500": Coadministration.CLARITHROMYCIN,
+    }
+    #: The factors of the interaction are not fitted but set from the
+    #: literature; with the unfitted model they reproduce the ratios observed in
+    #: this study roughly, the arm is validation data.
+    #: Clarithromycin 500 mg BID inhibits CYP3A4 and P-gp; observed geometric
+    #: mean ratios AUCinf 1.60, Cmax 1.30 with an unchanged half-life (mostly a
+    #: higher bioavailability), i.e. a moderate effect on apixaban, smaller
+    #: than the one of ketoconazole. The factors give AUC x1.58, Cmax x1.15 for
+    #: 10 mg.
+    interactions: ClassVar[dict[str, dict[str, float]]] = {
+        "API10": {},
+        "API10_CLARI500": {"LI__f_cyp3a4": 0.5, "GU__f_pgp": 0.5},
+    }
     bodyweight = 72.35  # [kg]
     bodyheight = 167.65  # [cm]
 
-    infos_pk = {
+    infos_pk: ClassVar[dict[str, str]] = {
         "[Cve_api]": "apixaban",
     }
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Fig2"]:
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+            df = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                if label.startswith("apixaban"):
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
-                dsets[label] = dset
+                dset.unit_conversion("mean", 1 / self.Mr.api)
+                dsets[self.to_sid(label)] = dset
 
-        # console.print(dsets.keys())
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims: Dict[str, TimecourseSim] = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        tcsims: dict[str, Simulation] = {}
         for group in self.groups:
-            tcsims[group] = TimecourseSim([
-                Timecourse(
-                    start=0,
-                    end=36 * 60,  # [min]
-                    steps=800,
-                    changes={
-                        **self.default_changes(),
-                        "PODOSE_api": Q_(10, "mg"),
-                        "BW": Q_(self.bodyweight, "kg"),
-                        "HEIGHT": Q_(self.bodyheight, "m")
+            tcsims[self.to_sid(group)] = Simulation(
+                time_unit="hr",
+                end=36,
+                preinit_changes={
+                    **self.default_changes(),
+                    "PODOSE_api": Q(10, "mg"),
+                    "BW": Q(self.bodyweight, "kg"),
+                    "HEIGHT": Q(self.bodyheight, "cm"),
+                    **{
+                        pid: Q(value, "dimensionless")
+                        for pid, value in self.interactions[group].items()
                     },
-                )
-            ])
+                },
+            )
         return tcsims
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
         # PK
-        for ks, sid in enumerate(self.infos_pk):
-            for group in self.groups:
-                name = self.infos_pk[sid]
-                mappings[f"fm_{name}_{group}"] = FitMapping(
+        for sid, name in self.infos_pk.items():
+            for group, dset_label in self.groups.items():
+                mappings[self.to_sid(f"fm_{name}_{group}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
-                        dataset=f"{name}_{group}",
+                        dataset=self.to_sid(dset_label),
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
                         count="count",
                     ),
                     observable=FitData(
-                        self, task=f"task_{group}", xid="time", yid=sid,
+                        self,
+                        task=self.to_sid(f"task_{group}"),
+                        xid="time",
+                        yid=sid,
                     ),
-                    metadata=ApixabanMappingMetaData(
+                    metadata=PKPDMappingMetaData(
                         tissue=Tissue.PLASMA,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
                         dosing=Dosing.SINGLE,
                         health=Health.HEALTHY,
                         fasting=Fasting.FASTED,
-                        coadministration=Coadministration.NONE
+                        coadministration=self.coadministrations[group],
                     ),
                 )
 
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
-        return {
-            **self.figure_pk(),
-        }
+    @override
+    def figures(self) -> dict[str, Figure]:
+        return {**self.figure_pk()}
 
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure_pk(self) -> dict[str, Figure]:
+        """Figure of the pharmacokinetics with and without clarithromycin."""
         fig = Figure(
             experiment=self,
             sid="Fig2",
@@ -116,37 +151,32 @@ class Garonzik2019(ApixabanSimulationExperiment):
             width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
-            xaxis=Axis(self.label_time, unit=self.unit_time),
-            legend=True
+            xaxis=Axis(self.label_time, unit=self.unit_time), legend=True
         )
         plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
         for ks, sid in enumerate(self.infos_pk):
-            name = self.infos_pk[sid]
-
-            for group in self.groups:
+            for group, dset_label in self.groups.items():
                 # simulation
                 plots[ks].add_data(
-                    task=f"task_{group}",
+                    task=self.to_sid(f"task_{group}"),
                     xid="time",
                     yid=sid,
-                    label="sim: 10mg PO",
+                    label=f"sim {self.group_labels[group]}",
                     color=self.colors[group],
                 )
                 # data
                 plots[ks].add_data(
-                    dataset=f"{name}_{group}",
+                    dataset=self.to_sid(dset_label),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label="exp: 10mg PO",
+                    label=f"exp {self.group_labels[group]}",
                     color=self.colors[group],
                 )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Garonzik2019.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Garonzik2019, output_dir=Garonzik2019.__name__)
+    MODEL.run_experiments(Garonzik2019, output_dir=Garonzik2019.__name__)

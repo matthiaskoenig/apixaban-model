@@ -1,116 +1,115 @@
-from typing import Dict
+"""Simulation experiment of the study Kreutz2017."""
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from typing import ClassVar, override
 
-from pkdb_models.models import apixaban
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
+
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import Tissue, Route, Dosing, ApplicationForm, Health, \
-    Fasting, ApixabanMappingMetaData
-
-from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Kreutz2017(ApixabanSimulationExperiment):
-    """Simulation experiment of Kreutz2017."""
+    """Simulation experiment of Kreutz2017.
 
-    bodyweight = 81.1 #[kg]
-    bodyheight = 181 #[cm]
+    Healthy men: apixaban 5 mg (tablet) twice daily with breakfast and dinner
+    for 7 days, the pharmacokinetics and pharmacodynamics (anti-factor Xa
+    activity calibrated with apixaban, PT and aPTT ratio) on day 7.
+    """
 
-    dose = 5 #[mg]
+    bodyweight = 81.1  # [kg]
+    bodyheight = 181  # [cm]
+
+    dose = 5  # [mg]
     route = "PO"
 
-    info_figpk = {
+    info_figpk: ClassVar[dict[str, str]] = {
         "api_apixaban": "[Cve_api]",
     }
 
-    info_figpd = {
+    info_figpd: ClassVar[dict[str, str]] = {
         "api_prothrombin time ratio": "PT_ratio",
         "api_aPTT ratio": "aPTT_ratio",
         "api_Anti-factor Xa activity_mean_ug": "antiXa_activity_gram",
     }
 
-    info_figpd_scatter = {
-        "api_apixaban_plasma_vs_Anti-factor Xa activity_ug": "antiXa_activity_gram",
-        "api_apixaban_plasma_vs_mean_Anti-factor Xa activity_ug": "antiXa_activity_gram"
-    }
-
-
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id, group_id in zip(["Fig2", "Fig6", "FigS1", "FigS1Mean", "TabS2"], ["label", "label", "x_label", "x_label", "label"]):
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
-            for label, df_label in df.groupby(group_id):
+        for fig_id in ["Fig2", "Fig6", "TabS2"]:
+            df = self.load_dataframe(fig_id)
+            if fig_id == "TabS2":
+                # the anti-factor Xa activity 24 h after the last dose (180 h,
+                # 26.8 ug/l at 12.7 ug/l apixaban) is at the floor of the assay
+                # (about 25 ug/l, Fig S1), not mapped
+                df = df[df.time < 180]
+            for label, df_label in df.groupby("label"):
+                label = str(label)
                 if "riv" in label:
                     continue
                 dset = DataSet.from_df(df_label, self.ureg)
                 if "apixaban" in label:
-                    if fig_id in ["FigS1", "FigS1Mean"]:
-                        dset.unit_conversion("x", 1 / self.Mr.api)
-                    else:
-                        dset.unit_conversion("mean", 1 / self.Mr.api)
-                if label not in ["api_apixaban_plasma_vs_Anti-factor Xa activity_ug", "api_apixaban_plasma_vs_Anti-factor Xa activity_mean_ug"]:
-                    dset.time = dset.time - 6 * 24
-                dsets[label] = dset
-                #print(label)
-
-        #console.print(dsets)
+                    dset.unit_conversion("mean", 1 / self.Mr.api)
+                # the time 0 of the data is the morning dose of day 7
+                dset.time = dset.time - 6 * 24
+                dsets[self.to_sid(label)] = dset
 
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
+    @override
+    def simulations(self) -> dict[str, Simulation]:
         tcsims = {}
 
-        tc = Timecourse(
-            start=0,
-            end=12 * 60,  # [min]
-            steps=1000,
-            changes={
+        # doses every 12 hr, the 14th dose at 156 hr is followed by 73 hr; the
+        # time 0 of the data is at 144 hr
+        tcsims["apixaban"] = Simulation(
+            time_unit="hr",
+            end=13 * 12 + 73,
+            preinit_changes={
                 **self.default_changes(),
-                "BW": Q_(self.bodyweight, "kg"),
-                "HEIGHT": Q_(self.bodyheight, "cm"),
-                f"{self.route}DOSE_api": Q_(self.dose, "mg"),
-                "GU__f_absorption": Q_(self.fasting_map["fed"], "dimensionless")
+                "BW": Q(self.bodyweight, "kg"),
+                "HEIGHT": Q(self.bodyheight, "cm"),
+                f"{self.route}DOSE_api": Q(self.dose, "mg"),
             },
-        )
-
-        tc_end = Timecourse(
-            start=0,
-            end=73 * 60,  # [min]
-            steps=1000,
-            changes={
-                **self.default_changes(),
-                f"{self.route}DOSE_api": Q_(self.dose, "mg"),
-                "GU__f_absorption": Q_(self.fasting_map["fed"], "dimensionless")
-            },
-        )
-
-        tcsims["apixaban"] = TimecourseSim(
-            timecourses=[tc] * 13 + [tc_end],
-            time_offset= - 6 * 24 * 60
+            changes=[
+                self.add_doses(
+                    [12 * k for k in range(1, 14)],
+                    {f"{self.route}DOSE_api": Q(self.dose, "mg")},
+                ),
+            ],
+            time_shift=-6 * 24,
         )
 
         return tcsims
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
 
-        for variables in [self.info_figpk.items(), self.info_figpd.items(), self.info_figpd_scatter.items()]:
+        for variables in [
+            self.info_figpk.items(),
+            self.info_figpd.items(),
+        ]:
             for label, sid in variables:
-                if label.endswith("Anti-factor Xa activity_ug"):
-                    continue
-                mappings[f"fm_{self.route}_{label}"] = FitMapping(
+                mappings[self.to_sid(f"fm_{self.route}_{label}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
-                        dataset=label,
+                        dataset=self.to_sid(label),
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
@@ -122,7 +121,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
                         xid="time",
                         yid=sid,
                     ),
-                    metadata=ApixabanMappingMetaData(
+                    metadata=PKPDMappingMetaData(
                         tissue=Tissue.PLASMA,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
@@ -134,17 +133,15 @@ class Kreutz2017(ApixabanSimulationExperiment):
 
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
-
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
             **self.figure_pk(),
             **self.figure_pd(),
-            # scatter plot data unreliable (see offset in data)
-            # **self.figure_scatter(),
         }
 
-    def figure_pk(self) -> Dict[str, Figure]:
-
+    def figure_pk(self) -> dict[str, Figure]:
+        """Figure of the pharmacokinetics."""
         fig = Figure(
             experiment=self,
             sid="PK",
@@ -156,7 +153,9 @@ class Kreutz2017(ApixabanSimulationExperiment):
             xaxis=Axis(self.label_time, unit=self.unit_time, min=-24),
             legend=True,
         )
-        plots[0].set_yaxis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"], scale="linear")
+        plots[0].set_yaxis(
+            self.labels["[Cve_api]"], unit=self.units["[Cve_api]"], scale="linear"
+        )
 
         for label, sid in self.info_figpk.items():
             # simulation
@@ -169,7 +168,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
             )
             # data
             plots[0].add_data(
-                dataset=label,
+                dataset=self.to_sid(label),
                 xid="time",
                 yid="mean",
                 yid_sd="mean_sd",
@@ -178,10 +177,10 @@ class Kreutz2017(ApixabanSimulationExperiment):
                 color=self.fasting_colors["fed"],
             )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
-    def figure_pd(self) -> Dict[str, Figure]:
-
+    def figure_pd(self) -> dict[str, Figure]:
+        """Figure of the pharmacodynamics."""
         fig = Figure(
             experiment=self,
             sid="PD",
@@ -206,7 +205,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
             )
             # data
             plots[kp].add_data(
-                dataset=label,
+                dataset=self.to_sid(label),
                 xid="time",
                 yid="mean",
                 yid_sd="mean_sd",
@@ -215,86 +214,8 @@ class Kreutz2017(ApixabanSimulationExperiment):
                 color=self.fasting_colors["fed"],
             )
 
-        return {fig.sid: fig}
-
-    def figure_scatter(self) -> Dict[str, Figure]:
-
-        style_mean = {
-            "kwargs_sim": {
-            "color": self.fasting_colors["fed"],
-            "linestyle": "solid",
-            },
-            "kwargs_exp": {
-                "label": f"{self.dose}mg {self.route}",
-                "marker": "s",
-                "linestyle": "",
-                "color": self.fasting_colors["fed"],
-                "markeredgecolor": "black",
-                "xid_sd": "x_sd",
-                "yid_sd": "y_sd",
-            }
-        }
-
-        style_indiv = {
-            "kwargs_sim": {
-            "color": "tab:grey",
-            "linestyle": "",
-            "marker": "o"
-            },
-            "kwargs_exp": {
-                "label": f"exp chronic fed: {self.dose}mg {self.route}",
-                "color": "white",
-                "markeredgecolor": self.fasting_colors["fed"],
-                "marker": "o",
-                "linestyle": "",
-            }
-        }
-
-
-        fig_Xa = Figure(
-            experiment=self,
-            sid="PD scatter",
-            name=self.__class__.__name__,
-            num_rows=1,
-            num_cols=1,
-            height=self.panel_height,
-            width=self.panel_width * 0.87,
-        )
-        plots_Xa = fig_Xa.create_plots(
-            xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
-            legend=True,
-        )
-
-        for label, sid in self.info_figpd_scatter.items():
-            plots_Xa[0].set_yaxis(self.labels[sid], unit=self.units[sid], scale="linear")
-
-            if "mean" in label:
-                style = style_mean
-            else:
-                style = style_indiv
-            if "mean" in label:
-                # simulation
-                plots_Xa[0].add_data(
-                    task=f"task_apixaban",
-                    xid="[Cve_api]",
-                    yid=sid,
-                    label=f"sim chronic fed: {self.dose}mg {self.route}",
-                    **style["kwargs_sim"]
-                )
-            # data
-            plots_Xa[0].add_data(
-                dataset=label,
-                xid="x",
-                yid="y",
-                **style["kwargs_exp"]
-            )
-
-        return {
-            fig_Xa.sid: fig_Xa,
-        }
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Kreutz2017.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Kreutz2017, output_dir=Kreutz2017.__name__)
+    MODEL.run_experiments(Kreutz2017, output_dir=Kreutz2017.__name__)

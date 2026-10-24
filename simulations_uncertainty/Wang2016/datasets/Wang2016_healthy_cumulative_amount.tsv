@@ -1,0 +1,3 @@
+study	group	count	intervention	label	measurement_type	substance	tissue	method	time	time_unit	mean	cv	mean_sd	mean_se	median	min	max	comments	mean_unit	median_unit	count_unit
+Wang2016	healthy	8.0	API5	healthy_cumulative amount	cumulative amount	apixaban	urine	LC MS/MS	0.0	hr	0.0								mole	mg	dimensionless
+Wang2016	healthy	8.0	API5	healthy_cumulative amount	cumulative amount	apixaban	urine	LC MS/MS	72.0	hr	1.866811751904244e-06		1.0241566920565834e-06					derived: CLR x AUCinf of the geometric means of Table 2, time assumed	mole	mg	dimensionless

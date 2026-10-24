@@ -1,120 +1,148 @@
-from typing import Dict
+"""Simulation experiment of the study Jeong2019."""
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from typing import ClassVar, override
 
-from pkdb_models.models import apixaban
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
+
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import (
-    Tissue,
-    Route,
-    Dosing,
-    ApplicationForm,
-    Health,
-    Fasting,
-    ApixabanMappingMetaData,
-    Coadministration,
-)
-from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Jeong2019(ApixabanSimulationExperiment):
-    """Simulation experiment of Jeong2019."""
+    """Simulation experiment of Jeong2019.
 
-    colors = {
-        "apixaban_API10":           "black",
-        "apixaban_API10, ROS20":    "tab:blue",
-        "apixaban_API10, LAP250":   "tab:orange",
+    Healthy Korean subjects: a single oral dose of 10 mg apixaban (tablet) in
+    period 1 (n=23), in period 2 together with a single dose of rosuvastatin
+    20 mg (n=16) or lapatinib 250 mg (n=7); fasting is not reported.
+    """
+
+    colors: ClassVar[dict[str, str]] = {
+        "apixaban_API10": "black",
+        "apixaban_API10, ROS20": "tab:blue",
+        "apixaban_API10, LAP250": "tab:orange",
     }
-    labels = {
-        "apixaban_API10":           "api 10mg PO",
-        "apixaban_API10, ROS20":    "api 10mg, ros 20mg PO",
-        "apixaban_API10, LAP250":   "api 10mg, lap 250mg PO",
+    group_labels: ClassVar[dict[str, str]] = {
+        "apixaban_API10": "10mg PO",
+        "apixaban_API10, ROS20": "10mg PO + rosuvastatin",
+        "apixaban_API10, LAP250": "10mg PO + lapatinib",
+    }
+    #: the simulation of a dataset
+    simulation_keys: ClassVar[dict[str, str]] = {
+        "apixaban_API10": "API10",
+        "apixaban_API10, ROS20": "API10",
+        "apixaban_API10, LAP250": "API10_LAP250",
+    }
+    coadministrations: ClassVar[dict[str, Coadministration]] = {
+        "apixaban_API10": Coadministration.NONE,
+        "apixaban_API10, ROS20": Coadministration.ROSUVASTATIN,
+        "apixaban_API10, LAP250": Coadministration.LAPATINIB,
+    }
+    #: The factors of the interactions are not fitted but set from the
+    #: literature; the arms are validation data.
+    #: Rosuvastatin is a substrate of OATP1B1 and BCRP and inhibits neither
+    #: CYP3A4 nor P-gp: simulated without an interaction (observed Cmax 348 ng/ml
+    #: vs 372 ng/ml alone).
+    #: Lapatinib inhibits P-gp and BCRP and CYP3A4 weakly; observed Cmax
+    #: 529 ng/ml vs 372 ng/ml alone (x1.42, unpaired, n=7, no AUC reported).
+    #: The factors give AUC x1.35, Cmax x1.12 for 10 mg.
+    interactions: ClassVar[dict[str, dict[str, float]]] = {
+        "API10": {},
+        "API10_LAP250": {"LI__f_cyp3a4": 0.8, "GU__f_pgp": 0.5},
     }
 
-    dataset_labels = list(colors.keys())
+    dataset_labels: ClassVar[list[str]] = list(colors.keys())
 
-    infos_pk = {
+    infos_pk: ClassVar[dict[str, str]] = {
         "[Cve_api]": "apixaban",
     }
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        df = load_pkdb_dataframe(f"{self.sid}_Fig4", data_path=self.data_path)
+        df = self.load_dataframe("Fig4")
         for label, df_label in df.groupby("label"):
+            label = str(label)
             dset = DataSet.from_df(df_label, self.ureg)
             if label.startswith("apixaban"):
                 dset.unit_conversion("mean", 1 / self.Mr.api)
-            dsets[label] = dset
+            dsets[self.to_sid(label)] = dset
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
+    @override
+    def simulations(self) -> dict[str, Simulation]:
         return {
-            "API10": TimecourseSim(
-                [
-                    Timecourse(
-                        start=0,
-                        end=25 * 60,  # 25 h in [min]
-                        steps=500,
-                        changes={
-                            **self.default_changes(),
-                            "PODOSE_api": Q_(10, "mg"),
-                        },
-                    )
-                ]
+            key: Simulation(
+                time_unit="hr",
+                end=25,
+                preinit_changes={
+                    **self.default_changes(),
+                    "PODOSE_api": Q(10, "mg"),
+                    **{
+                        pid: Q(value, "dimensionless") for pid, value in changes.items()
+                    },
+                },
             )
+            for key, changes in self.interactions.items()
         }
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
-        coadmin_map = {
-            "apixaban_API10":           Coadministration.NONE,
-            "apixaban_API10, ROS20":    Coadministration.ROSUVASTATIN,
-            "apixaban_API10, LAP250":   Coadministration.LAPATINIB,
-        }
         for label in self.dataset_labels:
             for sid, name in self.infos_pk.items():
-                mappings[f"fm_{name}_{label}"] = FitMapping(
+                mappings[self.to_sid(f"fm_{name}_{label}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
-                        dataset=label,
+                        dataset=self.to_sid(label),
                         xid="time",
                         yid="mean",
+                        yid_sd="mean_sd",
                         count="count",
                     ),
                     observable=FitData(
                         self,
-                        task="task_API10",
+                        task=f"task_{self.simulation_keys[label]}",
                         xid="time",
                         yid=sid,
                     ),
-                    metadata=ApixabanMappingMetaData(
+                    metadata=PKPDMappingMetaData(
                         tissue=Tissue.PLASMA,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
                         dosing=Dosing.SINGLE,
                         health=Health.HEALTHY,
                         fasting=Fasting.NR,
-                        coadministration=coadmin_map[label],
+                        coadministration=self.coadministrations[label],
                     ),
                 )
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {**self.figure_pk()}
 
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure_pk(self) -> dict[str, Figure]:
+        """Figure of the pharmacokinetics."""
         fig = Figure(
             experiment=self,
-            sid="Fig1",
+            sid="Fig4",
             name=f"{self.__class__.__name__}",
             height=self.panel_height,
             width=self.panel_width * 0.87,
@@ -126,30 +154,27 @@ class Jeong2019(ApixabanSimulationExperiment):
         plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
 
         for ks, sid in enumerate(self.infos_pk):
-            # single reference simulation
-            plots[ks].add_data(
-                task="task_API10",
-                xid="time",
-                yid=sid,
-                label=f"sim: api 10mg PO",
-                color="black",
-            )
-            # data points
+            for label in ["apixaban_API10", "apixaban_API10, LAP250"]:
+                plots[ks].add_data(
+                    task=f"task_{self.simulation_keys[label]}",
+                    xid="time",
+                    yid=sid,
+                    label=f"sim {self.group_labels[label]}",
+                    color=self.colors[label],
+                )
             for label in self.dataset_labels:
                 plots[ks].add_data(
-                    dataset=label,
+                    dataset=self.to_sid(label),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=f"exp: {self.labels[label]}",
+                    label=f"exp {self.group_labels[label]}",
                     color=self.colors[label],
                 )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Jeong2019.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Jeong2019, output_dir=Jeong2019.__name__)
+    MODEL.run_experiments(Jeong2019, output_dir=Jeong2019.__name__)

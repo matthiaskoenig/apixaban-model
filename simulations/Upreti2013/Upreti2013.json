@@ -1,0 +1,2541 @@
+{
+  "experiment_id": "Upreti2013",
+  "base_path": "/home/mkoenig/git/apixaban-model/src/pkdb_models/models/apixaban",
+  "data_path": [
+    "/home/mkoenig/git/apixaban-model/src/pkdb_models/models/apixaban/data/apixaban",
+    "/home/mkoenig/git/apixaban-model/src/pkdb_models/models/apixaban/data/edoxaban"
+  ],
+  "models": {
+    "model": {
+      "sid": null,
+      "name": null,
+      "language": "SBML",
+      "language_type": "SBML",
+      "source": {
+        "source": "/home/mkoenig/git/apixaban-model/src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml",
+        "path": "/home/mkoenig/git/apixaban-model/src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml",
+        "content": null
+      },
+      "base_path": null,
+      "changes": {},
+      "selections": [
+        "Afeces_api",
+        "Afeces_m1",
+        "Afeces_m2",
+        "Afeces_m7",
+        "Aurine_api",
+        "Aurine_m1",
+        "Aurine_m7",
+        "BSA",
+        "BW",
+        "GU__APIABS",
+        "GU__APIEXC",
+        "GU__APISEC",
+        "GU__F_api_abs",
+        "GU__f_pgp",
+        "INR",
+        "INR_change",
+        "INR_ratio",
+        "INR_relchange",
+        "KI__GFR",
+        "KI__f_renal_function",
+        "LI__f_cyp3a4",
+        "PODOSE_api",
+        "PT",
+        "PT_change",
+        "PT_ratio",
+        "PT_relchange",
+        "SOLDOSE_api",
+        "[Cve_api]",
+        "[Cve_m1]",
+        "[Cve_m7]",
+        "aPTT",
+        "aPTT_change",
+        "aPTT_ratio",
+        "aPTT_relchange",
+        "antiXa_activity",
+        "antiXa_activity_gram",
+        "f_cirrhosis",
+        "mPT",
+        "mPT_change",
+        "mPT_ratio",
+        "mPT_relchange",
+        "time"
+      ],
+      "parameters": {}
+    }
+  },
+  "tasks": {
+    "task_low": {
+      "sid": "model__low",
+      "name": null,
+      "model": "model",
+      "simulation": "low",
+      "observables": []
+    },
+    "task_reference": {
+      "sid": "model__reference",
+      "name": null,
+      "model": "model",
+      "simulation": "reference",
+      "observables": []
+    },
+    "task_high": {
+      "sid": "model__high",
+      "name": null,
+      "model": "model",
+      "simulation": "high",
+      "observables": []
+    }
+  },
+  "observables": {},
+  "simulations": {
+    "low": {
+      "type": "Simulation",
+      "time_unit": "hr",
+      "start": 0.0,
+      "end": 75,
+      "preinit_changes": {
+        "BW": {
+          "value": 47,
+          "unit": "kilogram"
+        },
+        "HEIGHT": {
+          "value": 1.5811388300841898,
+          "unit": "meter"
+        },
+        "PODOSE_api": {
+          "value": 10,
+          "unit": "milligram"
+        }
+      },
+      "changes": [],
+      "presimulation": null,
+      "times": null,
+      "steps": null,
+      "time_shift": 0.0
+    },
+    "reference": {
+      "type": "Simulation",
+      "time_unit": "hr",
+      "start": 0.0,
+      "end": 75,
+      "preinit_changes": {
+        "BW": {
+          "value": 75,
+          "unit": "kilogram"
+        },
+        "HEIGHT": {
+          "value": 1.6887009879241408,
+          "unit": "meter"
+        },
+        "PODOSE_api": {
+          "value": 10,
+          "unit": "milligram"
+        }
+      },
+      "changes": [],
+      "presimulation": null,
+      "times": null,
+      "steps": null,
+      "time_shift": 0.0
+    },
+    "high": {
+      "type": "Simulation",
+      "time_unit": "hr",
+      "start": 0.0,
+      "end": 75,
+      "preinit_changes": {
+        "BW": {
+          "value": 137,
+          "unit": "kilogram"
+        },
+        "HEIGHT": {
+          "value": 1.7933104698614108,
+          "unit": "meter"
+        },
+        "PODOSE_api": {
+          "value": 10,
+          "unit": "milligram"
+        }
+      },
+      "changes": [],
+      "presimulation": null,
+      "times": null,
+      "steps": null,
+      "time_shift": 0.0
+    }
+  },
+  "data": {
+    "task_low__time": {
+      "type": "TASK",
+      "sid": "task_low__time",
+      "index": "time",
+      "selection": "time",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__conc__Cve_api": {
+      "type": "TASK",
+      "sid": "task_low__conc__Cve_api",
+      "index": "Cve_api",
+      "selection": "[Cve_api]",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__conc__Cve_m1": {
+      "type": "TASK",
+      "sid": "task_low__conc__Cve_m1",
+      "index": "Cve_m1",
+      "selection": "[Cve_m1]",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__conc__Cve_m7": {
+      "type": "TASK",
+      "sid": "task_low__conc__Cve_m7",
+      "index": "Cve_m7",
+      "selection": "[Cve_m7]",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__Aurine_api": {
+      "type": "TASK",
+      "sid": "task_low__Aurine_api",
+      "index": "Aurine_api",
+      "selection": "Aurine_api",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__Aurine_m1": {
+      "type": "TASK",
+      "sid": "task_low__Aurine_m1",
+      "index": "Aurine_m1",
+      "selection": "Aurine_m1",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__Aurine_m7": {
+      "type": "TASK",
+      "sid": "task_low__Aurine_m7",
+      "index": "Aurine_m7",
+      "selection": "Aurine_m7",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__Afeces_api": {
+      "type": "TASK",
+      "sid": "task_low__Afeces_api",
+      "index": "Afeces_api",
+      "selection": "Afeces_api",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__Afeces_m1": {
+      "type": "TASK",
+      "sid": "task_low__Afeces_m1",
+      "index": "Afeces_m1",
+      "selection": "Afeces_m1",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__Afeces_m2": {
+      "type": "TASK",
+      "sid": "task_low__Afeces_m2",
+      "index": "Afeces_m2",
+      "selection": "Afeces_m2",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__Afeces_m7": {
+      "type": "TASK",
+      "sid": "task_low__Afeces_m7",
+      "index": "Afeces_m7",
+      "selection": "Afeces_m7",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__GU__APIABS": {
+      "type": "TASK",
+      "sid": "task_low__GU__APIABS",
+      "index": "GU__APIABS",
+      "selection": "GU__APIABS",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__GU__APISEC": {
+      "type": "TASK",
+      "sid": "task_low__GU__APISEC",
+      "index": "GU__APISEC",
+      "selection": "GU__APISEC",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__GU__APIEXC": {
+      "type": "TASK",
+      "sid": "task_low__GU__APIEXC",
+      "index": "GU__APIEXC",
+      "selection": "GU__APIEXC",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__KI__GFR": {
+      "type": "TASK",
+      "sid": "task_low__KI__GFR",
+      "index": "KI__GFR",
+      "selection": "KI__GFR",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__KI__f_renal_function": {
+      "type": "TASK",
+      "sid": "task_low__KI__f_renal_function",
+      "index": "KI__f_renal_function",
+      "selection": "KI__f_renal_function",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__f_cirrhosis": {
+      "type": "TASK",
+      "sid": "task_low__f_cirrhosis",
+      "index": "f_cirrhosis",
+      "selection": "f_cirrhosis",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__LI__f_cyp3a4": {
+      "type": "TASK",
+      "sid": "task_low__LI__f_cyp3a4",
+      "index": "LI__f_cyp3a4",
+      "selection": "LI__f_cyp3a4",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__GU__f_pgp": {
+      "type": "TASK",
+      "sid": "task_low__GU__f_pgp",
+      "index": "GU__f_pgp",
+      "selection": "GU__f_pgp",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__INR": {
+      "type": "TASK",
+      "sid": "task_low__INR",
+      "index": "INR",
+      "selection": "INR",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__INR_change": {
+      "type": "TASK",
+      "sid": "task_low__INR_change",
+      "index": "INR_change",
+      "selection": "INR_change",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__INR_ratio": {
+      "type": "TASK",
+      "sid": "task_low__INR_ratio",
+      "index": "INR_ratio",
+      "selection": "INR_ratio",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__INR_relchange": {
+      "type": "TASK",
+      "sid": "task_low__INR_relchange",
+      "index": "INR_relchange",
+      "selection": "INR_relchange",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__PT": {
+      "type": "TASK",
+      "sid": "task_low__PT",
+      "index": "PT",
+      "selection": "PT",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__PT_change": {
+      "type": "TASK",
+      "sid": "task_low__PT_change",
+      "index": "PT_change",
+      "selection": "PT_change",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__PT_ratio": {
+      "type": "TASK",
+      "sid": "task_low__PT_ratio",
+      "index": "PT_ratio",
+      "selection": "PT_ratio",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__PT_relchange": {
+      "type": "TASK",
+      "sid": "task_low__PT_relchange",
+      "index": "PT_relchange",
+      "selection": "PT_relchange",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__mPT": {
+      "type": "TASK",
+      "sid": "task_low__mPT",
+      "index": "mPT",
+      "selection": "mPT",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__mPT_change": {
+      "type": "TASK",
+      "sid": "task_low__mPT_change",
+      "index": "mPT_change",
+      "selection": "mPT_change",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__mPT_ratio": {
+      "type": "TASK",
+      "sid": "task_low__mPT_ratio",
+      "index": "mPT_ratio",
+      "selection": "mPT_ratio",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__mPT_relchange": {
+      "type": "TASK",
+      "sid": "task_low__mPT_relchange",
+      "index": "mPT_relchange",
+      "selection": "mPT_relchange",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__aPTT": {
+      "type": "TASK",
+      "sid": "task_low__aPTT",
+      "index": "aPTT",
+      "selection": "aPTT",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__aPTT_change": {
+      "type": "TASK",
+      "sid": "task_low__aPTT_change",
+      "index": "aPTT_change",
+      "selection": "aPTT_change",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__aPTT_ratio": {
+      "type": "TASK",
+      "sid": "task_low__aPTT_ratio",
+      "index": "aPTT_ratio",
+      "selection": "aPTT_ratio",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__aPTT_relchange": {
+      "type": "TASK",
+      "sid": "task_low__aPTT_relchange",
+      "index": "aPTT_relchange",
+      "selection": "aPTT_relchange",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__antiXa_activity": {
+      "type": "TASK",
+      "sid": "task_low__antiXa_activity",
+      "index": "antiXa_activity",
+      "selection": "antiXa_activity",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__antiXa_activity_gram": {
+      "type": "TASK",
+      "sid": "task_low__antiXa_activity_gram",
+      "index": "antiXa_activity_gram",
+      "selection": "antiXa_activity_gram",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__PODOSE_api": {
+      "type": "TASK",
+      "sid": "task_low__PODOSE_api",
+      "index": "PODOSE_api",
+      "selection": "PODOSE_api",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__SOLDOSE_api": {
+      "type": "TASK",
+      "sid": "task_low__SOLDOSE_api",
+      "index": "SOLDOSE_api",
+      "selection": "SOLDOSE_api",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__GU__F_api_abs": {
+      "type": "TASK",
+      "sid": "task_low__GU__F_api_abs",
+      "index": "GU__F_api_abs",
+      "selection": "GU__F_api_abs",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__BW": {
+      "type": "TASK",
+      "sid": "task_low__BW",
+      "index": "BW",
+      "selection": "BW",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_low__BSA": {
+      "type": "TASK",
+      "sid": "task_low__BSA",
+      "index": "BSA",
+      "selection": "BSA",
+      "unit": null,
+      "task": "task_low",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__time": {
+      "type": "TASK",
+      "sid": "task_reference__time",
+      "index": "time",
+      "selection": "time",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__conc__Cve_api": {
+      "type": "TASK",
+      "sid": "task_reference__conc__Cve_api",
+      "index": "Cve_api",
+      "selection": "[Cve_api]",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__conc__Cve_m1": {
+      "type": "TASK",
+      "sid": "task_reference__conc__Cve_m1",
+      "index": "Cve_m1",
+      "selection": "[Cve_m1]",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__conc__Cve_m7": {
+      "type": "TASK",
+      "sid": "task_reference__conc__Cve_m7",
+      "index": "Cve_m7",
+      "selection": "[Cve_m7]",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__Aurine_api": {
+      "type": "TASK",
+      "sid": "task_reference__Aurine_api",
+      "index": "Aurine_api",
+      "selection": "Aurine_api",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__Aurine_m1": {
+      "type": "TASK",
+      "sid": "task_reference__Aurine_m1",
+      "index": "Aurine_m1",
+      "selection": "Aurine_m1",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__Aurine_m7": {
+      "type": "TASK",
+      "sid": "task_reference__Aurine_m7",
+      "index": "Aurine_m7",
+      "selection": "Aurine_m7",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__Afeces_api": {
+      "type": "TASK",
+      "sid": "task_reference__Afeces_api",
+      "index": "Afeces_api",
+      "selection": "Afeces_api",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__Afeces_m1": {
+      "type": "TASK",
+      "sid": "task_reference__Afeces_m1",
+      "index": "Afeces_m1",
+      "selection": "Afeces_m1",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__Afeces_m2": {
+      "type": "TASK",
+      "sid": "task_reference__Afeces_m2",
+      "index": "Afeces_m2",
+      "selection": "Afeces_m2",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__Afeces_m7": {
+      "type": "TASK",
+      "sid": "task_reference__Afeces_m7",
+      "index": "Afeces_m7",
+      "selection": "Afeces_m7",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__GU__APIABS": {
+      "type": "TASK",
+      "sid": "task_reference__GU__APIABS",
+      "index": "GU__APIABS",
+      "selection": "GU__APIABS",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__GU__APISEC": {
+      "type": "TASK",
+      "sid": "task_reference__GU__APISEC",
+      "index": "GU__APISEC",
+      "selection": "GU__APISEC",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__GU__APIEXC": {
+      "type": "TASK",
+      "sid": "task_reference__GU__APIEXC",
+      "index": "GU__APIEXC",
+      "selection": "GU__APIEXC",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__KI__GFR": {
+      "type": "TASK",
+      "sid": "task_reference__KI__GFR",
+      "index": "KI__GFR",
+      "selection": "KI__GFR",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__KI__f_renal_function": {
+      "type": "TASK",
+      "sid": "task_reference__KI__f_renal_function",
+      "index": "KI__f_renal_function",
+      "selection": "KI__f_renal_function",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__f_cirrhosis": {
+      "type": "TASK",
+      "sid": "task_reference__f_cirrhosis",
+      "index": "f_cirrhosis",
+      "selection": "f_cirrhosis",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__LI__f_cyp3a4": {
+      "type": "TASK",
+      "sid": "task_reference__LI__f_cyp3a4",
+      "index": "LI__f_cyp3a4",
+      "selection": "LI__f_cyp3a4",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__GU__f_pgp": {
+      "type": "TASK",
+      "sid": "task_reference__GU__f_pgp",
+      "index": "GU__f_pgp",
+      "selection": "GU__f_pgp",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__INR": {
+      "type": "TASK",
+      "sid": "task_reference__INR",
+      "index": "INR",
+      "selection": "INR",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__INR_change": {
+      "type": "TASK",
+      "sid": "task_reference__INR_change",
+      "index": "INR_change",
+      "selection": "INR_change",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__INR_ratio": {
+      "type": "TASK",
+      "sid": "task_reference__INR_ratio",
+      "index": "INR_ratio",
+      "selection": "INR_ratio",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__INR_relchange": {
+      "type": "TASK",
+      "sid": "task_reference__INR_relchange",
+      "index": "INR_relchange",
+      "selection": "INR_relchange",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__PT": {
+      "type": "TASK",
+      "sid": "task_reference__PT",
+      "index": "PT",
+      "selection": "PT",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__PT_change": {
+      "type": "TASK",
+      "sid": "task_reference__PT_change",
+      "index": "PT_change",
+      "selection": "PT_change",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__PT_ratio": {
+      "type": "TASK",
+      "sid": "task_reference__PT_ratio",
+      "index": "PT_ratio",
+      "selection": "PT_ratio",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__PT_relchange": {
+      "type": "TASK",
+      "sid": "task_reference__PT_relchange",
+      "index": "PT_relchange",
+      "selection": "PT_relchange",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__mPT": {
+      "type": "TASK",
+      "sid": "task_reference__mPT",
+      "index": "mPT",
+      "selection": "mPT",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__mPT_change": {
+      "type": "TASK",
+      "sid": "task_reference__mPT_change",
+      "index": "mPT_change",
+      "selection": "mPT_change",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__mPT_ratio": {
+      "type": "TASK",
+      "sid": "task_reference__mPT_ratio",
+      "index": "mPT_ratio",
+      "selection": "mPT_ratio",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__mPT_relchange": {
+      "type": "TASK",
+      "sid": "task_reference__mPT_relchange",
+      "index": "mPT_relchange",
+      "selection": "mPT_relchange",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__aPTT": {
+      "type": "TASK",
+      "sid": "task_reference__aPTT",
+      "index": "aPTT",
+      "selection": "aPTT",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__aPTT_change": {
+      "type": "TASK",
+      "sid": "task_reference__aPTT_change",
+      "index": "aPTT_change",
+      "selection": "aPTT_change",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__aPTT_ratio": {
+      "type": "TASK",
+      "sid": "task_reference__aPTT_ratio",
+      "index": "aPTT_ratio",
+      "selection": "aPTT_ratio",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__aPTT_relchange": {
+      "type": "TASK",
+      "sid": "task_reference__aPTT_relchange",
+      "index": "aPTT_relchange",
+      "selection": "aPTT_relchange",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__antiXa_activity": {
+      "type": "TASK",
+      "sid": "task_reference__antiXa_activity",
+      "index": "antiXa_activity",
+      "selection": "antiXa_activity",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__antiXa_activity_gram": {
+      "type": "TASK",
+      "sid": "task_reference__antiXa_activity_gram",
+      "index": "antiXa_activity_gram",
+      "selection": "antiXa_activity_gram",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__PODOSE_api": {
+      "type": "TASK",
+      "sid": "task_reference__PODOSE_api",
+      "index": "PODOSE_api",
+      "selection": "PODOSE_api",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__SOLDOSE_api": {
+      "type": "TASK",
+      "sid": "task_reference__SOLDOSE_api",
+      "index": "SOLDOSE_api",
+      "selection": "SOLDOSE_api",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__GU__F_api_abs": {
+      "type": "TASK",
+      "sid": "task_reference__GU__F_api_abs",
+      "index": "GU__F_api_abs",
+      "selection": "GU__F_api_abs",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__BW": {
+      "type": "TASK",
+      "sid": "task_reference__BW",
+      "index": "BW",
+      "selection": "BW",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_reference__BSA": {
+      "type": "TASK",
+      "sid": "task_reference__BSA",
+      "index": "BSA",
+      "selection": "BSA",
+      "unit": null,
+      "task": "task_reference",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__time": {
+      "type": "TASK",
+      "sid": "task_high__time",
+      "index": "time",
+      "selection": "time",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__conc__Cve_api": {
+      "type": "TASK",
+      "sid": "task_high__conc__Cve_api",
+      "index": "Cve_api",
+      "selection": "[Cve_api]",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__conc__Cve_m1": {
+      "type": "TASK",
+      "sid": "task_high__conc__Cve_m1",
+      "index": "Cve_m1",
+      "selection": "[Cve_m1]",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__conc__Cve_m7": {
+      "type": "TASK",
+      "sid": "task_high__conc__Cve_m7",
+      "index": "Cve_m7",
+      "selection": "[Cve_m7]",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__Aurine_api": {
+      "type": "TASK",
+      "sid": "task_high__Aurine_api",
+      "index": "Aurine_api",
+      "selection": "Aurine_api",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__Aurine_m1": {
+      "type": "TASK",
+      "sid": "task_high__Aurine_m1",
+      "index": "Aurine_m1",
+      "selection": "Aurine_m1",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__Aurine_m7": {
+      "type": "TASK",
+      "sid": "task_high__Aurine_m7",
+      "index": "Aurine_m7",
+      "selection": "Aurine_m7",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__Afeces_api": {
+      "type": "TASK",
+      "sid": "task_high__Afeces_api",
+      "index": "Afeces_api",
+      "selection": "Afeces_api",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__Afeces_m1": {
+      "type": "TASK",
+      "sid": "task_high__Afeces_m1",
+      "index": "Afeces_m1",
+      "selection": "Afeces_m1",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__Afeces_m2": {
+      "type": "TASK",
+      "sid": "task_high__Afeces_m2",
+      "index": "Afeces_m2",
+      "selection": "Afeces_m2",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__Afeces_m7": {
+      "type": "TASK",
+      "sid": "task_high__Afeces_m7",
+      "index": "Afeces_m7",
+      "selection": "Afeces_m7",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__GU__APIABS": {
+      "type": "TASK",
+      "sid": "task_high__GU__APIABS",
+      "index": "GU__APIABS",
+      "selection": "GU__APIABS",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__GU__APISEC": {
+      "type": "TASK",
+      "sid": "task_high__GU__APISEC",
+      "index": "GU__APISEC",
+      "selection": "GU__APISEC",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__GU__APIEXC": {
+      "type": "TASK",
+      "sid": "task_high__GU__APIEXC",
+      "index": "GU__APIEXC",
+      "selection": "GU__APIEXC",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__KI__GFR": {
+      "type": "TASK",
+      "sid": "task_high__KI__GFR",
+      "index": "KI__GFR",
+      "selection": "KI__GFR",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__KI__f_renal_function": {
+      "type": "TASK",
+      "sid": "task_high__KI__f_renal_function",
+      "index": "KI__f_renal_function",
+      "selection": "KI__f_renal_function",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__f_cirrhosis": {
+      "type": "TASK",
+      "sid": "task_high__f_cirrhosis",
+      "index": "f_cirrhosis",
+      "selection": "f_cirrhosis",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__LI__f_cyp3a4": {
+      "type": "TASK",
+      "sid": "task_high__LI__f_cyp3a4",
+      "index": "LI__f_cyp3a4",
+      "selection": "LI__f_cyp3a4",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__GU__f_pgp": {
+      "type": "TASK",
+      "sid": "task_high__GU__f_pgp",
+      "index": "GU__f_pgp",
+      "selection": "GU__f_pgp",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__INR": {
+      "type": "TASK",
+      "sid": "task_high__INR",
+      "index": "INR",
+      "selection": "INR",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__INR_change": {
+      "type": "TASK",
+      "sid": "task_high__INR_change",
+      "index": "INR_change",
+      "selection": "INR_change",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__INR_ratio": {
+      "type": "TASK",
+      "sid": "task_high__INR_ratio",
+      "index": "INR_ratio",
+      "selection": "INR_ratio",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__INR_relchange": {
+      "type": "TASK",
+      "sid": "task_high__INR_relchange",
+      "index": "INR_relchange",
+      "selection": "INR_relchange",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__PT": {
+      "type": "TASK",
+      "sid": "task_high__PT",
+      "index": "PT",
+      "selection": "PT",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__PT_change": {
+      "type": "TASK",
+      "sid": "task_high__PT_change",
+      "index": "PT_change",
+      "selection": "PT_change",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__PT_ratio": {
+      "type": "TASK",
+      "sid": "task_high__PT_ratio",
+      "index": "PT_ratio",
+      "selection": "PT_ratio",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__PT_relchange": {
+      "type": "TASK",
+      "sid": "task_high__PT_relchange",
+      "index": "PT_relchange",
+      "selection": "PT_relchange",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__mPT": {
+      "type": "TASK",
+      "sid": "task_high__mPT",
+      "index": "mPT",
+      "selection": "mPT",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__mPT_change": {
+      "type": "TASK",
+      "sid": "task_high__mPT_change",
+      "index": "mPT_change",
+      "selection": "mPT_change",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__mPT_ratio": {
+      "type": "TASK",
+      "sid": "task_high__mPT_ratio",
+      "index": "mPT_ratio",
+      "selection": "mPT_ratio",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__mPT_relchange": {
+      "type": "TASK",
+      "sid": "task_high__mPT_relchange",
+      "index": "mPT_relchange",
+      "selection": "mPT_relchange",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__aPTT": {
+      "type": "TASK",
+      "sid": "task_high__aPTT",
+      "index": "aPTT",
+      "selection": "aPTT",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__aPTT_change": {
+      "type": "TASK",
+      "sid": "task_high__aPTT_change",
+      "index": "aPTT_change",
+      "selection": "aPTT_change",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__aPTT_ratio": {
+      "type": "TASK",
+      "sid": "task_high__aPTT_ratio",
+      "index": "aPTT_ratio",
+      "selection": "aPTT_ratio",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__aPTT_relchange": {
+      "type": "TASK",
+      "sid": "task_high__aPTT_relchange",
+      "index": "aPTT_relchange",
+      "selection": "aPTT_relchange",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__antiXa_activity": {
+      "type": "TASK",
+      "sid": "task_high__antiXa_activity",
+      "index": "antiXa_activity",
+      "selection": "antiXa_activity",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__antiXa_activity_gram": {
+      "type": "TASK",
+      "sid": "task_high__antiXa_activity_gram",
+      "index": "antiXa_activity_gram",
+      "selection": "antiXa_activity_gram",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__PODOSE_api": {
+      "type": "TASK",
+      "sid": "task_high__PODOSE_api",
+      "index": "PODOSE_api",
+      "selection": "PODOSE_api",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__SOLDOSE_api": {
+      "type": "TASK",
+      "sid": "task_high__SOLDOSE_api",
+      "index": "SOLDOSE_api",
+      "selection": "SOLDOSE_api",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__GU__F_api_abs": {
+      "type": "TASK",
+      "sid": "task_high__GU__F_api_abs",
+      "index": "GU__F_api_abs",
+      "selection": "GU__F_api_abs",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__BW": {
+      "type": "TASK",
+      "sid": "task_high__BW",
+      "index": "BW",
+      "selection": "BW",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    },
+    "task_high__BSA": {
+      "type": "TASK",
+      "sid": "task_high__BSA",
+      "index": "BSA",
+      "selection": "BSA",
+      "unit": null,
+      "task": "task_high",
+      "dataset": null,
+      "function": null,
+      "variables": null,
+      "parameters": {},
+      "sel": null
+    }
+  },
+  "figures": {
+    "Fig1": {
+      "sid": "Fig1",
+      "name": "Upreti2013",
+      "num_rows": 1,
+      "num_cols": 2,
+      "width": 15.4,
+      "height": 5.7,
+      "settings": {},
+      "subplots": [
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig1__plot0",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig1__plot0_xaxis",
+              "name": "time [hr]",
+              "label": "time",
+              "unit": "hr",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig1__plot0_yaxis",
+              "name": "apixaban plasma [\u00b5M]",
+              "label": "apixaban plasma",
+              "unit": "\u00b5M",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig1__plot0_curve0",
+                "name": "sim low: 10mg PO",
+                "x": "task_low__time",
+                "y": "task_low__conc__Cve_api",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#0000FFff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#0000FFff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#0000FFff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig1__plot0_curve1",
+                "name": "exp low: 10mg PO\u00b1SD (n=18)",
+                "x": "apixaban_low__time",
+                "y": "apixaban_low__mean",
+                "xerr": null,
+                "yerr": "apixaban_low__mean_sd",
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "DASH",
+                    "color": "#0000FFff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "SQUARE",
+                    "fill": "#0000FFff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#0000FFff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              },
+              {
+                "sid": "Fig1__plot0_curve2",
+                "name": "sim reference: 10mg PO",
+                "x": "task_reference__time",
+                "y": "task_reference__conc__Cve_api",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 2
+              },
+              {
+                "sid": "Fig1__plot0_curve3",
+                "name": "exp reference: 10mg PO\u00b1SD (n=16)",
+                "x": "apixaban_reference__time",
+                "y": "apixaban_reference__mean",
+                "xerr": null,
+                "yerr": "apixaban_reference__mean_sd",
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "DASH",
+                    "color": "#000000ff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "SQUARE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 3
+              },
+              {
+                "sid": "Fig1__plot0_curve4",
+                "name": "sim high: 10mg PO",
+                "x": "task_high__time",
+                "y": "task_high__conc__Cve_api",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#FF0000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#FF0000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#FF0000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 4
+              },
+              {
+                "sid": "Fig1__plot0_curve5",
+                "name": "exp high: 10mg PO\u00b1SD (n=19)",
+                "x": "apixaban_high__time",
+                "y": "apixaban_high__mean",
+                "xerr": null,
+                "yerr": "apixaban_high__mean_sd",
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "DASH",
+                    "color": "#FF0000ff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "SQUARE",
+                    "fill": "#FF0000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#FF0000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 5
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        },
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "Fig1__plot1",
+            "name": null,
+            "xaxis": {
+              "sid": "Fig1__plot1_xaxis",
+              "name": "time [hr]",
+              "label": "time",
+              "unit": "hr",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "Fig1__plot1_yaxis",
+              "name": "apixaban urine [\u00b5mole]",
+              "label": "apixaban urine",
+              "unit": "\u00b5mole",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "Fig1__plot1_curve0",
+                "name": "sim low: 10mg PO",
+                "x": "task_low__time",
+                "y": "task_low__Aurine_api",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#0000FFff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#0000FFff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#0000FFff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "Fig1__plot1_curve1",
+                "name": "exp low: 10mg PO\u00b1SD (n=18)",
+                "x": "cumulative_amount_low__time",
+                "y": "cumulative_amount_low__mean",
+                "xerr": null,
+                "yerr": "cumulative_amount_low__mean_sd",
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#0000FFff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "SQUARE",
+                    "fill": "#0000FFff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#0000FFff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              },
+              {
+                "sid": "Fig1__plot1_curve2",
+                "name": "sim reference: 10mg PO",
+                "x": "task_reference__time",
+                "y": "task_reference__Aurine_api",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 2
+              },
+              {
+                "sid": "Fig1__plot1_curve3",
+                "name": "exp reference: 10mg PO\u00b1SD (n=16)",
+                "x": "cumulative_amount_reference__time",
+                "y": "cumulative_amount_reference__mean",
+                "xerr": null,
+                "yerr": "cumulative_amount_reference__mean_sd",
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#000000ff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "SQUARE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 3
+              },
+              {
+                "sid": "Fig1__plot1_curve4",
+                "name": "sim high: 10mg PO",
+                "x": "task_high__time",
+                "y": "task_high__Aurine_api",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#FF0000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#FF0000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#FF0000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 4
+              },
+              {
+                "sid": "Fig1__plot1_curve5",
+                "name": "exp high: 10mg PO\u00b1SD (n=19)",
+                "x": "cumulative_amount_high__time",
+                "y": "cumulative_amount_high__mean",
+                "xerr": null,
+                "yerr": "cumulative_amount_high__mean_sd",
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#FF0000ff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "SQUARE",
+                    "fill": "#FF0000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#FF0000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 5
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 2,
+          "row_span": 1,
+          "col_span": 1
+        }
+      ]
+    },
+    "FigScatter": {
+      "sid": "FigScatter",
+      "name": "Upreti2013",
+      "num_rows": 1,
+      "num_cols": 1,
+      "width": 6.699,
+      "height": 5.7,
+      "settings": {},
+      "subplots": [
+        {
+          "sid": null,
+          "name": null,
+          "plot": {
+            "sid": "FigScatter__plot0",
+            "name": null,
+            "xaxis": {
+              "sid": "FigScatter__plot0_xaxis",
+              "name": "apixaban plasma [\u00b5M]",
+              "label": "apixaban plasma",
+              "unit": "\u00b5M",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis": {
+              "sid": "FigScatter__plot0_yaxis",
+              "name": "anti-Xa (IU) [1/ml]",
+              "label": "anti-Xa (IU)",
+              "unit": "1/ml",
+              "scale": "LINEAR",
+              "min": null,
+              "max": null,
+              "grid": false,
+              "label_visible": true,
+              "ticks_visible": true
+            },
+            "yaxis_right": null,
+            "legend": true,
+            "facecolor": "#ffffffff",
+            "title_visible": true,
+            "curves": [
+              {
+                "sid": "FigScatter__plot0_curve0",
+                "name": "sim low: 10mg PO",
+                "x": "task_low__conc__Cve_api",
+                "y": "task_low__antiXa_activity",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#0000FFff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#0000FFff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#0000FFff",
+                    "second_color": null
+                  }
+                },
+                "order": 0
+              },
+              {
+                "sid": "FigScatter__plot0_curve1",
+                "name": "exp individ low: 10mg PO",
+                "x": "apixaban_vs_antiXa_low__x",
+                "y": "apixaban_vs_antiXa_low__y",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "CIRCLE",
+                    "fill": "#ffffffff",
+                    "line_color": "#0000FFff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 1
+              },
+              {
+                "sid": "FigScatter__plot0_curve2",
+                "name": "sim reference: 10mg PO",
+                "x": "task_reference__conc__Cve_api",
+                "y": "task_reference__antiXa_activity",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#000000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#000000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#000000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 2
+              },
+              {
+                "sid": "FigScatter__plot0_curve3",
+                "name": "exp individ reference: 10mg PO",
+                "x": "apixaban_vs_antiXa_reference__x",
+                "y": "apixaban_vs_antiXa_reference__y",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "PLUS",
+                    "fill": "#ffffffff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 3
+              },
+              {
+                "sid": "FigScatter__plot0_curve4",
+                "name": "sim high: 10mg PO",
+                "x": "task_high__conc__Cve_api",
+                "y": "task_high__antiXa_activity",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "SOLID",
+                    "color": "#FF0000ff",
+                    "thickness": 2.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "NONE",
+                    "fill": "#FF0000ff",
+                    "line_color": "#000000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#FF0000ff",
+                    "second_color": null
+                  }
+                },
+                "order": 4
+              },
+              {
+                "sid": "FigScatter__plot0_curve5",
+                "name": "exp individ high: 10mg PO",
+                "x": "apixaban_vs_antiXa_high__x",
+                "y": "apixaban_vs_antiXa_high__y",
+                "xerr": null,
+                "yerr": null,
+                "over": [],
+                "yaxis_position": null,
+                "style": {
+                  "sid": null,
+                  "name": null,
+                  "base_style": null,
+                  "line": {
+                    "type": "NONE",
+                    "color": "#ffffffff",
+                    "thickness": 1.0
+                  },
+                  "marker": {
+                    "size": null,
+                    "type": "SQUARE",
+                    "fill": "#ffffffff",
+                    "line_color": "#FF0000ff",
+                    "line_thickness": null
+                  },
+                  "fill": {
+                    "color": "#ffffffff",
+                    "second_color": null
+                  }
+                },
+                "order": 5
+              }
+            ],
+            "areas": [],
+            "bands": []
+          },
+          "row": 1,
+          "col": 1,
+          "row_span": 1,
+          "col_span": 1
+        }
+      ]
+    }
+  }
+}

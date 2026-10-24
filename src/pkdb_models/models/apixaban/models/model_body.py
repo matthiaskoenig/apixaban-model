@@ -1,15 +1,37 @@
 """Apixaban body model."""
 
-from sbmlutils.factory import *
-from sbmlutils.metadata import *
-from pkdb_models.models.apixaban.models import annotations
-from pkdb_models.models.apixaban.models import templates
+from typing import NotRequired, TypedDict
+
+from sbmlutils.factory import (
+    PORT_SUFFIX,
+    AssignmentRule,
+    Compartment,
+    ExternalModelDefinition,
+    Model,
+    NaN,
+    Parameter,
+    RateRule,
+    Reaction,
+    ReplacedElement,
+    Species,
+    Submodel,
+    UnitDefinition,
+    create_model,
+)
+from sbmlutils.metadata import (
+    BQB,
+    SBO,
+)
+
+from pkdb_models.models.apixaban.models import annotations, templates
+from pkdb_models.models.apixaban.models.fits import FITS
+
 
 # -----------------------------------------------------------------------------
 # Whole Body Metabolism
 # -----------------------------------------------------------------------------
 class U(templates.U):
-    """UnitsDefinitions."""
+    """Units of the whole-body model."""
 
     cm = UnitDefinition("cm")
     hr = UnitDefinition("hr")
@@ -61,23 +83,39 @@ _m = Model(
     units=U,
     model_units=templates.model_units,
     creators=templates.creators,
-    annotations=annotations.model + [
+    annotations=[
+        *annotations.model,
         # tissue
         (BQB.OCCURS_IN, "BTO:0001489"),  # whole body
         (BQB.OCCURS_IN, "FMA:256135"),  # body
-
         (BQB.HAS_PROPERTY, "NCIT:C79369"),  # Pharmacokinetics: Absorption
         (BQB.HAS_PROPERTY, "NCIT:C79371"),  # Pharmacokinetics: Metabolism
         (BQB.HAS_PROPERTY, "NCIT:C79372"),  # Pharmacokinetics: Excretion
         (BQB.HAS_PROPERTY, "NCIT:C79370"),  # Pharmacokinetics: Distribution
-    ]
+    ],
 )
 
 _m.ports = []
 _m.deletions = []
 _m.replaced_elements = []
 
-SUBSTANCES_BODY = {
+
+class SubstanceBody(TypedDict):
+    """Definition of a substance transported in the whole-body model."""
+
+    name: str
+    unit: UnitDefinition
+    cinit: float  # initial concentration [mmole/l]
+    Mr: float  # molecular weight [g/mole]
+    IVDOSE: NotRequired[float]  # intravenous dose [mg]
+    PODOSE: NotRequired[float]  # oral dose in tablet [mg]
+    SOLDOSE: NotRequired[float]  # oral dose in solution [mg]
+    #: distribution into the tissues (`ftissue_<sid>`, `Kp_<sid>`, fitted)
+    tissue_distribution: NotRequired[bool]
+    fu: NotRequired[float]  # fraction unbound in plasma [-]
+
+
+SUBSTANCES_BODY: dict[str, SubstanceBody] = {
     "api": {
         "name": "apixaban",
         "unit": U.mmole,
@@ -90,12 +128,13 @@ SUBSTANCES_BODY = {
         # oral absorption
         "PODOSE": 0,  # dose
         "SOLDOSE": 0,  # dose
-        'ftissue': 0.19611257106279287,  # [litre_per_min] distribution in tissues
+        # the distribution in tissues (ftissue) and the tissue/unbound plasma
+        # partition coefficient (Kp) are fitted, see `fits.FITS`
+        "tissue_distribution": True,
         # logP = 2.71; P = 10^2.71 = 512  (MSDS, experimental)
         # logP = 2.22; P = 10^2.22 = 166  (ALOGPS)
         # logP = 1.83; P = 10^1.83 = 68 (Chemaxon)
-        "Kp": 1.8290975796567857,  # [-] tissue/plasma partition coefficient
-        "fu": 13.1 / 100 # [-] unbound in plasma He2011
+        "fu": 13.1 / 100,  # [-] unbound in plasma He2011
     },
     "m1": {
         "name": "M1",
@@ -105,14 +144,6 @@ SUBSTANCES_BODY = {
         # Molecular weight
         "Mr": 525.5,  # [g/mole]
     },
-    # "m2": {
-    #     "name": "M2",
-    #     "unit": U.mmole,
-    #     # initial concentration
-    #     "cinit": 0.0,  # [mmole/l]
-    #     # Molecular weight
-    #     "Mr": 445.5,  # [g/mole]
-    # },
     "m7": {
         "name": "M7",
         "unit": U.mmole,
@@ -121,6 +152,17 @@ SUBSTANCES_BODY = {
         # Molecular weight
         "Mr": 459.5 + 16,  # [g/mole] (hydroxylation of apixaban)
     },
+}
+
+# M2 is not in the blood: it is formed in the liver and excreted via the bile and
+# the intestinal lumen into the feces
+SUBSTANCE_M2: SubstanceBody = {
+    "name": "M2",
+    "unit": U.mmole,
+    # initial concentration
+    "cinit": 0.0,  # [mmole/l]
+    # Molecular weight
+    "Mr": 445.5,  # [g/mole]
 }
 
 # -----------------------------------------------------------------------------
@@ -162,7 +204,7 @@ _m.external_model_definitions = [
         modelRef=liver_id,
     ),
     ExternalModelDefinition(
-         sid="gut", name="gut model definition", source=f"{gut_id}.xml", modelRef=gut_id
+        sid="gut", name="gut model definition", source=f"{gut_id}.xml", modelRef=gut_id
     ),
 ]
 
@@ -299,7 +341,7 @@ _m.compartments = [
 ]
 
 # create plasma and tissue compartments (for correct blood volume)
-for cid in COMPARTMENTS_BODY.keys():
+for cid in COMPARTMENTS_BODY:
     if cid not in ["ar", "ve", "po", "hv"]:
         _m.compartments.extend(
             [
@@ -340,13 +382,6 @@ for cid in COMPARTMENTS_BODY.keys():
 _m.replaced_elements.extend(
     [
         # kidney
-        ReplacedElement(
-            sid="Vki_tissue_RE",
-            metaId="Vki_tissue_RE",
-            elementRef="Vki_tissue",
-            submodelRef=SUBMODEL_SID_DICT["ki"],
-            portRef=f"Vki{PORT_SUFFIX}",
-        ),
         ReplacedElement(
             sid="Vki_plasma_RE",
             metaId="Vki_plasma_RE",
@@ -439,43 +474,52 @@ for sid, sdict in SUBSTANCES_BODY.items():
 
     # tissue species
     for cid, cname in COMPARTMENTS_BODY.items():
-        if "ftissue" in sdict:
-            if cid not in ["ve", "ar", "li", "ki", "gu", "po", "hv"]:
-                sid_ex = f"C{cid}_{sid}"
-                cid_ex = f"V{cid}_tissue"
+        if sdict.get("tissue_distribution") and cid not in [
+            "ve",
+            "ar",
+            "li",
+            "ki",
+            "gu",
+            "po",
+            "hv",
+        ]:
+            sid_ex = f"C{cid}_{sid}"
+            cid_ex = f"V{cid}_tissue"
 
-                _m.species.extend(
-                    [
-                        Species(
-                            sid_ex,
-                            metaId=f"meta_{sid_ex}",
-                            initialConcentration=sdict["cinit"],
-                            compartment=cid_ex,
-                            substanceUnit=sdict["unit"],
-                            name=f"{sdict['name']} ({cname})",
-                            hasOnlySubstanceUnits=False,
-                            port=True,
-                            sboTerm=SBO.SIMPLE_CHEMICAL,
-                            annotations=annotations.species[sid],
-                        )
-                    ]
-                )
+            _m.species.extend(
+                [
+                    Species(
+                        sid_ex,
+                        metaId=f"meta_{sid_ex}",
+                        initialConcentration=sdict["cinit"],
+                        compartment=cid_ex,
+                        substanceUnit=sdict["unit"],
+                        name=f"{sdict['name']} ({cname})",
+                        hasOnlySubstanceUnits=False,
+                        port=True,
+                        sboTerm=SBO.SIMPLE_CHEMICAL,
+                        annotations=annotations.species[sid],
+                    )
+                ]
+            )
 
     # urine metabolites dummy species
     if sid in ["api", "m1", "m7"]:
-        _m.species.extend([
-            Species(
-                f"Aurine_{sid}",
-                metaId=f"meta_Aurine_{sid}",
-                initialConcentration=0,
-                compartment="Vurine",
-                substanceUnit=sdict["unit"],
-                name=f"{sdict['name']} (urine)",
-                hasOnlySubstanceUnits=True,
-                sboTerm=SBO.SIMPLE_CHEMICAL,
-                annotations=annotations.species[sid],
-            ),
-        ])
+        _m.species.extend(
+            [
+                Species(
+                    f"Aurine_{sid}",
+                    metaId=f"meta_Aurine_{sid}",
+                    initialConcentration=0,
+                    compartment="Vurine",
+                    substanceUnit=sdict["unit"],
+                    name=f"{sdict['name']} (urine)",
+                    hasOnlySubstanceUnits=True,
+                    sboTerm=SBO.SIMPLE_CHEMICAL,
+                    annotations=annotations.species[sid],
+                ),
+            ]
+        )
 
     # feces metabolites
     if sid in ["api", "m1", "m7"]:
@@ -493,27 +537,18 @@ for sid, sdict in SUBSTANCES_BODY.items():
             )
         )
 
-# monkey path the m2 feces
-sid = "m2"
-sdict = {
-    "name": "M2",
-    "unit": U.mmole,
-    # initial concentration
-    "cinit": 0.0,  # [mmole/l]
-    # Molecular weight
-    "Mr": 445.5,  # [g/mole]
-}
+# feces species of M2
 _m.species.append(
     Species(
-        f"Afeces_{sid}",
-        metaId=f"meta_Afeces_{sid}",
+        "Afeces_m2",
+        metaId="meta_Afeces_m2",
         initialConcentration=0,
         compartment="Vfeces",
-        substanceUnit=sdict["unit"],
-        name=f"{sdict['name']} (feces)",
+        substanceUnit=SUBSTANCE_M2["unit"],
+        name=f"{SUBSTANCE_M2['name']} (feces)",
         hasOnlySubstanceUnits=True,
         sboTerm=SBO.SIMPLE_CHEMICAL,
-        annotations=annotations.species[sid],
+        annotations=annotations.species["m2"],
     )
 )
 
@@ -563,22 +598,13 @@ for skey in ["api", "m1", "m2", "m7"]:
 
 # enterohepatic circulation
 for skey in ["m1", "m2", "m7"]:
-    sdict = SUBSTANCES_BODY.get(skey, None)
-    # handling special case of m2
-    if not sdict and skey == "m2":
-        sdict = {
-            "name": "M2",
-            "unit": U.mmole,
-            # initial concentration
-            "cinit": 0.0,  # [mmole/l]
-            # Molecular weight
-            "Mr": 445.5,  # [g/mole]
-        }
+    # M2 is not in SUBSTANCES_BODY
+    sdict = SUBSTANCES_BODY.get(skey, SUBSTANCE_M2)
     _m.species.extend(
         [
             Species(
                 f"Cgu_{skey}",
-                name=f"{sdict["name"]} (intestinal volume)",
+                name=f"{sdict['name']} (intestinal volume)",
                 metaId=f"meta_Cgu_{skey}",
                 initialConcentration=0,
                 compartment="Vgu",
@@ -590,22 +616,24 @@ for skey in ["m1", "m2", "m7"]:
         ]
     )
 
-    _m.replaced_elements.extend([
-        ReplacedElement(
-            sid=f"Cgu_{skey}_RE",
-            metaId=f"Cgu_{skey}_RE",
-            elementRef=f"Cgu_{skey}",
-            submodelRef=SUBMODEL_SID_DICT["gu"],
-            portRef=f"{skey}_lumen{PORT_SUFFIX}",
-        ),
-        ReplacedElement(
-            sid=f"Cgu_{skey}_RE2",
-            metaId=f"Cgu_{skey}_RE2",
-            elementRef=f"Cgu_{skey}",
-            submodelRef=SUBMODEL_SID_DICT["li"],
-            portRef=f"{skey}_lumen{PORT_SUFFIX}",
-        )
-    ])
+    _m.replaced_elements.extend(
+        [
+            ReplacedElement(
+                sid=f"Cgu_{skey}_RE",
+                metaId=f"Cgu_{skey}_RE",
+                elementRef=f"Cgu_{skey}",
+                submodelRef=SUBMODEL_SID_DICT["gu"],
+                portRef=f"{skey}_lumen{PORT_SUFFIX}",
+            ),
+            ReplacedElement(
+                sid=f"Cgu_{skey}_RE2",
+                metaId=f"Cgu_{skey}_RE2",
+                elementRef=f"Cgu_{skey}",
+                submodelRef=SUBMODEL_SID_DICT["li"],
+                portRef=f"{skey}_lumen{PORT_SUFFIX}",
+            ),
+        ]
+    )
 
 
 # -------------------------------------------------------------------------------------------------
@@ -623,6 +651,37 @@ _m.parameters.extend(
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
         ),
         Parameter(
+            "BW_ref",
+            75,
+            U.kg,
+            constant=True,
+            name="reference body weight [kg]",
+            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes=(
+                "Body weight at which the exchange flows of the tissue "
+                "distribution (`ftissue_<sid>`) are given; they scale with the "
+                "body weight as the volumes and the blood flows do. The liver "
+                "volume scales with the body surface area relative to `BSA_ref`."
+            ),
+        ),
+        Parameter(
+            "HEIGHT_ref",
+            170,
+            U.cm,
+            constant=True,
+            name="reference height [cm]",
+            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+        ),
+        Parameter(
+            "BSA_ref",
+            1.0,
+            U.m2,
+            constant=False,
+            name="reference body surface area [m^2]",
+            sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            notes="Body surface area of the reference `BW_ref` and `HEIGHT_ref`.",
+        ),
+        Parameter(
             "HEIGHT",
             170,
             U.cm,
@@ -637,7 +696,7 @@ _m.parameters.extend(
             constant=False,
             name="body surface area [m^2]",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-            port=True
+            port=True,
         ),
         Parameter(
             "COBW",
@@ -657,7 +716,7 @@ _m.parameters.extend(
             notes="""
             1.0: normal function;
             <1.0: reduced function as reduced cardiac output;
-            """
+            """,
         ),
         Parameter(
             "CO",
@@ -669,10 +728,10 @@ _m.parameters.extend(
         ),
         Parameter(
             "QC",
-            108.33 * 1000 * 60,
+            NaN,
             U.l_per_min,
             constant=False,
-            name="cardiac output [L/hr]",
+            name="cardiac output [l/min]",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
         ),
         # fractional tissue volumes
@@ -775,10 +834,11 @@ _m.parameters.extend(
             constant=True,
             name="gut fractional tissue blood flow",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+            # the trailing space of the notes is part of the SBML
             notes="""
         Assumed FQgu is the sum of FQgu + FQsp + FQpa for correct portal blood flow.
         with FQgu=0.146, FQsp=0.017, FQpa=0.017 
-        """,
+        """,  # noqa: W291
         ),
         Parameter(
             "FQki",
@@ -812,14 +872,6 @@ _m.parameters.extend(
             name="rest of body fractional tissue blood flow",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
         ),
-        # Parameter(
-        #     "conversion_min_per_day",
-        #     1440,
-        #     U.min_per_day,
-        #     constant=True,
-        #     name="Conversion factor min to hours",
-        #     sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-        # ),
         Parameter(
             "f_cirrhosis",
             0,
@@ -840,7 +892,10 @@ _m.parameters.extend(
             name="fraction of portal venous blood shunted by the liver",
             sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
             annotations=[
-                (BQB.IS, "hp/HP:0002629"),  # Gastrointestinal arteriovenous malformation
+                (
+                    BQB.IS,
+                    "hp/HP:0002629",
+                ),  # Gastrointestinal arteriovenous malformation
             ],
         ),
         Parameter(
@@ -858,52 +913,57 @@ _m.parameters.extend(
 for sid, sdict in SUBSTANCES_BODY.items():
     if "PODOSE" in sdict:
         # Parameter for intestine model
-        _m.parameters.extend([
-            Parameter(
-                f"PODOSE_{sid}",
-                sdict["PODOSE"],
-                U.mg,
-                constant=False,
-                sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-                name=f"oral dose {sid} in tablet [mg]",
-            ),
+        _m.parameters.extend(
+            [
+                Parameter(
+                    f"PODOSE_{sid}",
+                    sdict["PODOSE"],
+                    U.mg,
+                    constant=False,
+                    sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+                    name=f"oral dose {sid} in tablet [mg]",
+                ),
             ]
         )
-        _m.replaced_elements.extend([
-            ReplacedElement(
-                sid=f"PODOSE_{sid}_RE",
-                metaId=f"PODOSE_{sid}_RE",
-                elementRef=f"PODOSE_{sid}",
-                submodelRef=SUBMODEL_SID_DICT["gu"],
-                portRef=f"PODOSE_{sid}{PORT_SUFFIX}",
-            ),
+        _m.replaced_elements.extend(
+            [
+                ReplacedElement(
+                    sid=f"PODOSE_{sid}_RE",
+                    metaId=f"PODOSE_{sid}_RE",
+                    elementRef=f"PODOSE_{sid}",
+                    submodelRef=SUBMODEL_SID_DICT["gu"],
+                    portRef=f"PODOSE_{sid}{PORT_SUFFIX}",
+                ),
             ]
         )
     if "SOLDOSE" in sdict:
         # Parameter for intestine model
-        _m.parameters.extend([
-            Parameter(
-                f"SOLDOSE_{sid}",
-                sdict["SOLDOSE"],
-                U.mg,
-                constant=False,
-                sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-                name=f"oral dose {sid} in solution [mg]",
-            ),
+        _m.parameters.extend(
+            [
+                Parameter(
+                    f"SOLDOSE_{sid}",
+                    sdict["SOLDOSE"],
+                    U.mg,
+                    constant=False,
+                    sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+                    name=f"oral dose {sid} in solution [mg]",
+                ),
             ]
         )
-        _m.replaced_elements.extend([
-            ReplacedElement(
-                sid=f"SOLDOSE_{sid}_RE",
-                metaId=f"SOLDOSE_{sid}_RE",
-                elementRef=f"SOLDOSE_{sid}",
-                submodelRef=SUBMODEL_SID_DICT["gu"],
-                portRef=f"SOLDOSE_{sid}{PORT_SUFFIX}",
-            ),
+        _m.replaced_elements.extend(
+            [
+                ReplacedElement(
+                    sid=f"SOLDOSE_{sid}_RE",
+                    metaId=f"SOLDOSE_{sid}_RE",
+                    elementRef=f"SOLDOSE_{sid}",
+                    submodelRef=SUBMODEL_SID_DICT["gu"],
+                    portRef=f"SOLDOSE_{sid}{PORT_SUFFIX}",
+                ),
             ]
         )
 
-_m.rules = _m.rules + [
+_m.rules = [
+    *_m.rules,
     AssignmentRule("f_shunts", "f_cirrhosis", unit=U.dimensionless),
     AssignmentRule("f_tissue_loss", "f_cirrhosis", unit=U.dimensionless),
 ]
@@ -925,25 +985,27 @@ for sid, sdict in SUBSTANCES_BODY.items():
     )
 
     # tissue distribution
-    if "ftissue" in sdict:
-        _m.parameters.extend([
-            Parameter(
-                f"ftissue_{sid}",
-                sdict["ftissue"],
-                U.l_per_min,
-                constant=True,
-                sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-                name=f"tissue distribution {sid}",
-            ),
-            Parameter(
-                f"Kp_{sid}",
-                sdict["Kp"],
-                U.dimensionless,
-                constant=True,
-                sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
-                name=f"tissue/plasma partition coefficient {sid}",
-            ),
-        ])
+    if sdict.get("tissue_distribution"):
+        _m.parameters.extend(
+            [
+                Parameter(
+                    f"ftissue_{sid}",
+                    **FITS.parameter(f"ftissue_{sid}", unit=U.l_per_min),
+                    constant=True,
+                    sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+                    name=f"tissue distribution {sid}",
+                    notes="Exchange flow at the reference body weight `BW_ref`.",
+                ),
+                Parameter(
+                    f"Kp_{sid}",
+                    **FITS.parameter(f"Kp_{sid}", unit=U.dimensionless),
+                    constant=True,
+                    sboTerm=SBO.QUANTITATIVE_SYSTEMS_DESCRIPTION_PARAMETER,
+                    name=f"tissue/unbound plasma partition coefficient (Kp,u) {sid}",
+                    notes="Partition coefficient of the tissue to the unbound plasma concentration.",
+                ),
+            ]
+        )
 
     if "fu" in sdict:
         # free concentration
@@ -961,14 +1023,13 @@ for sid, sdict in SUBSTANCES_BODY.items():
         # Free Unbound API Concentration
         # ---------------------------------
         for cid, cname in COMPARTMENTS_BODY.items():
-
             if cid not in ["ve", "ar", "po", "hv"]:
                 _m.rules.append(
                     AssignmentRule(
                         f"C{cid}_free_{sid}",
                         f"C{cid}_plasma_{sid} * fu_{sid}",
                         U.mM,
-                        name=f"{sdict["name"]} free concentration ({cname})",
+                        name=f"{sdict['name']} free concentration ({cname})",
                     )
                 )
             else:
@@ -977,7 +1038,7 @@ for sid, sdict in SUBSTANCES_BODY.items():
                         f"C{cid}_free_{sid}",
                         f"C{cid}_{sid} * fu_{sid}",
                         U.mM,
-                        name=f"{sdict["name"]} free concentration ({cname})",
+                        name=f"{sdict['name']} free concentration ({cname})",
                     ),
                 )
 
@@ -1024,7 +1085,7 @@ for sid, sdict in SUBSTANCES_BODY.items():
 
 replaced_parameters = {
     "li": ["fu_api"],
-    "gu": ["Mr_api"],
+    "gu": ["Mr_api", "fu_api"],
     "ki": ["fu_api"],
 }
 
@@ -1043,7 +1104,8 @@ for ckey, pids in replaced_parameters.items():
 # -------------------------------------------------------------------------------------------------
 # AssignmentRules
 # -------------------------------------------------------------------------------------------------
-_m.rules = _m.rules + [
+_m.rules = [
+    *_m.rules,
     # Rest body volume
     AssignmentRule(
         "FVre",
@@ -1052,10 +1114,14 @@ _m.rules = _m.rules + [
     ),
     # Rest body perfusion
     AssignmentRule("FQre", "1.0 dimensionless - (FQki + FQh)", U.dimensionless),
-
     # Body surface area (Haycock1978)
     AssignmentRule(
         "BSA", "0.024265 m2 * power(BW/1 kg, 0.5378) * power(HEIGHT/1 cm, 0.3964)", U.m2
+    ),
+    AssignmentRule(
+        "BSA_ref",
+        "0.024265 m2 * power(BW_ref/1 kg, 0.5378) * power(HEIGHT_ref/1 cm, 0.3964)",
+        U.m2,
     ),
     # cardiac output (depending on heart rate and bodyweight)
     AssignmentRule("CO", "f_cardiac_function*BW*COBW", U.ml_per_s),
@@ -1064,9 +1130,12 @@ _m.rules = _m.rules + [
     # volumes
     AssignmentRule("Vgu", "BW*FVgu", U.liter),
     AssignmentRule("Vki", "BW*FVki", U.liter),
-    AssignmentRule("Vli", "BW*FVli", U.liter),
+    # the liver volume scales with the body surface area (Upreti2013: the
+    # clearance of apixaban is less than proportional to the body weight)
+    AssignmentRule("Vli", "BW_ref*FVli * BSA/BSA_ref", U.liter),
     AssignmentRule("Vlu", "BW*FVlu", U.liter),
-    AssignmentRule("Vre", "BW*FVre", U.liter),
+    # the rest of the body takes the difference of the liver volume
+    AssignmentRule("Vre", "BW*(FVre + FVli) - Vli", U.liter),
     # venous and arterial blood volume (corrected for tissue blood volumes)
     AssignmentRule(
         "Vve",
@@ -1105,7 +1174,6 @@ _m.rules = _m.rules + [
 # Volumes for explicit tissue models
 for cid, cname in COMPARTMENTS_BODY.items():
     if cid not in ["ve", "ar", "po", "hv"]:
-
         _m.rules.append(
             # plasma volume associated with tissue
             AssignmentRule(
@@ -1137,8 +1205,6 @@ for cid, cname in COMPARTMENTS_BODY.items():
             )
 
 for sid, sdict in SUBSTANCES_BODY.items():
-    sname = sdict["name"]
-
     # injection
     if "IVDOSE" in sdict:
         _m.rules.extend(
@@ -1167,16 +1233,17 @@ for sid, sdict in SUBSTANCES_BODY.items():
     # --------------------
     # tissue distribution
     # --------------------
-    if "ftissue" in sdict:
-        for cid in COMPARTMENTS_BODY.keys():
+    if sdict.get("tissue_distribution"):
+        for cid in COMPARTMENTS_BODY:
             if cid not in ["ve", "ar", "li", "gu", "ki", "po", "hv"]:
                 _m.reactions.append(
                     Reaction(
                         sid=f"transport_{cid}_{sid}",
                         name=f"transport {sname}",
                         formula=(
-                            f"ftissue_{sid} * (C{cid}_plasma_{sid} * Kp_{sid} * fu_{sid} - C{cid}_{sid})" if "fu" in sdict
-                            else f"ftissue_{sid} * (C{cid}_plasma_{sid} * Kp_{sid} - C{cid}_{sid})",
+                            f"ftissue_{sid} * BW/BW_ref * (C{cid}_plasma_{sid} * Kp_{sid} * fu_{sid} - C{cid}_{sid})"
+                            if "fu" in sdict
+                            else f"ftissue_{sid} * BW/BW_ref * (C{cid}_plasma_{sid} * Kp_{sid} - C{cid}_{sid})",
                             U.mmole_per_min,
                         ),
                         equation=f"C{cid}_plasma_{sid} <-> C{cid}_{sid}",
@@ -1321,12 +1388,11 @@ for sid, sdict in SUBSTANCES_BODY.items():
                     # shunted arterial flow
                     Reaction(
                         sid=f"Flow_arli_hv_{sid}",
-                        name=f"flow arterial shunts",
+                        name="flow arterial shunts",
                         formula=(f"f_shunts*Qha*Car_{sid}", U.mmole_per_min),
                         equation=f"Car_{sid} -> Chv_{sid}",
                         sboTerm=SBO.TRANSPORT_REACTION,
                     ),
-
                     # (unshunted) portal flow
                     Reaction(
                         sid=f"Flow_po_li_{sid}",
@@ -1341,7 +1407,7 @@ for sid, sdict in SUBSTANCES_BODY.items():
                     # portal shunts
                     Reaction(
                         sid=f"Flow_po_hv_{sid}",
-                        name=f"flow portal shunts",
+                        name="flow portal shunts",
                         formula=(f"f_shunts*Qpo*Cpo_{sid}", U.mmole_per_min),
                         equation=f"Cpo_{sid} -> Chv_{sid}",
                         sboTerm=SBO.TRANSPORT_REACTION,
@@ -1388,17 +1454,11 @@ model_body: Model = _m
 
 if __name__ == "__main__":
     from pkdb_models.models.apixaban import MODEL_BASE_PATH
-    from sbmlutils.cytoscape import visualize_sbml
-    from pkdb_models.models.apixaban.models.model_coagulation import model_coagulation
-
-    model_coagulation.species = [s for s in model_coagulation.species if s.sid != "Cve_api"]
-    model_coagulation.parameters = [p for p in model_coagulation.parameters if p.sid != "fu_api"]
+    from pkdb_models.models.apixaban.models.factory import coagulation_of_body
 
     result = create_model(
         filepath=MODEL_BASE_PATH / f"{model_body.sid}.xml",
-        model=[
-            model_coagulation,
-            model_body
-        ], sbml_level=3, sbml_version=2
+        model=[coagulation_of_body(), model_body],
+        sbml_level=3,
+        sbml_version=2,
     )
-    visualize_sbml(result.sbml_path, delete_session=False)

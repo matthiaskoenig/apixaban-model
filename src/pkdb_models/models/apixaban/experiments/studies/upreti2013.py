@@ -1,105 +1,125 @@
-from typing import Dict
+"""Simulation experiment of the study Upreti2013."""
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+import math
+from typing import ClassVar, override
 
-from pkdb_models.models import apixaban
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
+
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import Tissue, Route, Dosing, ApplicationForm, Health, \
-    Fasting, ApixabanMappingMetaData
-
-from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Upreti2013(ApixabanSimulationExperiment):
-    """Simulation experiment of Upreti2013."""
+    """Simulation experiment of Upreti2013.
 
-    bodyweights = {  # [kg]
+    A single oral dose of 10 mg apixaban after an overnight fast in healthy
+    subjects of low (47 kg, n = 18), reference (75 kg, n = 16 in the analysis)
+    and high (137 kg, n = 19) body weight. The urinary amounts (0-72 h) are not
+    reported, they are derived from the geometric means of the renal clearance
+    and the AUCinf of Table 2.
+    """
+
+    bodyweights: ClassVar[dict[str, float]] = {  # [kg]
         "low": 47,
         "reference": 75,
         "high": 137,
     }
-    colors = {
+    bmis: ClassVar[dict[str, float]] = {  # [kg/m^2]
+        "low": 18.8,
+        "reference": 26.3,
+        "high": 42.6,
+    }
+    colors: ClassVar[dict[str, str]] = {
         "low": "#0000FF",
         "reference": "black",
         "high": "#FF0000",
     }
-    groups = list(bodyweights.keys())
+    groups: ClassVar[list[str]] = list(bodyweights.keys())
 
-    markers = {
-        "low": "*",
-        "reference": "o",
-        "high": "^",
+    markers: ClassVar[dict[str, str]] = {
+        "low": "o",
+        "reference": "P",
+        "high": "s",
     }
 
-    info_fig1 = {
+    info_fig1: ClassVar[dict[str, str]] = {
         "[Cve_api]": "apixaban",
         "Aurine_api": "cumulative amount",
     }
 
-    info_fig_scatter = {
+    info_fig_scatter: ClassVar[dict[str, list[str]]] = {
         "apixaban_vs_antiXa": ["[Cve_api]", "antiXa_activity"],
     }
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
         for fig_id in ["Tab2", "Fig1", "Fig4"]:
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+            df = self.load_dataframe(fig_id)
             group_by = "x_label" if fig_id == "Fig4" else "label"
             for label, df_label in df.groupby(group_by):
+                label = str(label)
+                if fig_id == "Tab2" and not label.startswith("cumulative amount"):
+                    # the pharmacokinetic parameters of Tab2 are not used
+                    continue
                 dset = DataSet.from_df(df_label, self.ureg)
-                if "apixaban" or "cumulative amount" in label:
-                    if fig_id == "Fig4":
-                        dset.unit_conversion("x", 1 / self.Mr.api)
-                    else:
-                        dset.unit_conversion("mean", 1 / self.Mr.api)
-                    dsets[label] = dset
-                if fig_id == "Fig1" or "cumulative amount" in label:
-                    dsets[label] = dset
-
-        # console.print(dsets)
+                if fig_id == "Fig4":
+                    dset.unit_conversion("x", 1 / self.Mr.api)
+                else:
+                    # the urinary amounts of Tab2 are derived, the geometric means
+                    # of the renal clearance times the AUCinf (Ae0-72)
+                    dset.unit_conversion("mean", 1 / self.Mr.api)
+                dsets[self.to_sid(label)] = dset
 
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
+    @override
+    def simulations(self) -> dict[str, Simulation]:
         tcsims = {}
         for group in self.groups:
-
-            tcsims[group] = TimecourseSim(
-                [Timecourse(
-                    start=0,
-                    end=75 * 60,  # [min]
-                    steps=1000,
-                    changes={
-                        **self.default_changes(),
-                        "BW": Q_(self.bodyweights[group], "kg"),
-                        "PODOSE_api": Q_(10, "mg"),
-                    },
-                )]
+            tcsims[self.to_sid(group)] = Simulation(
+                time_unit="hr",
+                end=75,
+                preinit_changes={
+                    **self.default_changes(),
+                    "BW": Q(self.bodyweights[group], "kg"),
+                    # the height is not reported, it is derived from the body
+                    # weight and the body mass index
+                    "HEIGHT": Q(
+                        math.sqrt(self.bodyweights[group] / self.bmis[group]), "m"
+                    ),
+                    "PODOSE_api": Q(10, "mg"),
+                },
             )
 
         return tcsims
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
         for group in self.groups:
             # pharmacokinetics
-
-            for k, sid in enumerate(self.info_fig1.keys()):
-                name = self.info_fig1[sid]
-
-                mappings[f"fm_{name}_{group}"] = FitMapping(
+            for sid, name in self.info_fig1.items():
+                mappings[self.to_sid(f"fm_{name}_{group}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
-                        dataset=f"{name}_{group}",
+                        dataset=self.to_sid(f"{name}_{group}"),
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
@@ -107,11 +127,11 @@ class Upreti2013(ApixabanSimulationExperiment):
                     ),
                     observable=FitData(
                         self,
-                        task=f"task_{group}",
+                        task=self.to_sid(f"task_{group}"),
                         xid="time",
                         yid=sid,
                     ),
-                    metadata=ApixabanMappingMetaData(
+                    metadata=PKPDMappingMetaData(
                         tissue=Tissue.URINE if sid == "Aurine_api" else Tissue.PLASMA,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
@@ -121,18 +141,17 @@ class Upreti2013(ApixabanSimulationExperiment):
                     ),
                 )
 
-
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
-
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
             **self.figure_pk(),
             **self.figure_scatter(),
         }
 
-    def figure_pk(self) -> Dict[str, Figure]:
-
+    def figure_pk(self) -> dict[str, Figure]:
+        """Apixaban in plasma and urine by body weight."""
         fig = Figure(
             experiment=self,
             sid="Fig1",
@@ -150,13 +169,10 @@ class Upreti2013(ApixabanSimulationExperiment):
         plots[1].set_yaxis(self.label_api_urine, unit=self.unit_api_urine)
 
         for group in self.groups:
-
-            for k, sid in enumerate(self.info_fig1.keys()):
-                name = self.info_fig1[sid]
-
+            for k, (sid, name) in enumerate(self.info_fig1.items()):
                 # simulation
                 plots[k].add_data(
-                    task=f"task_{group}",
+                    task=self.to_sid(f"task_{group}"),
                     xid="time",
                     yid=sid,
                     label=f"sim {group}: 10mg PO",
@@ -164,7 +180,7 @@ class Upreti2013(ApixabanSimulationExperiment):
                 )
                 # data
                 plots[k].add_data(
-                    dataset=f"{name}_{group}",
+                    dataset=self.to_sid(f"{name}_{group}"),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
@@ -174,10 +190,10 @@ class Upreti2013(ApixabanSimulationExperiment):
                     linestyle="" if sid == "Aurine_api" else "dashed",
                 )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
-    def figure_scatter(self) -> Dict[str, Figure]:
-
+    def figure_scatter(self) -> dict[str, Figure]:
+        """Anti-factor Xa activity against the apixaban concentration in plasma."""
         fig = Figure(
             experiment=self,
             sid="FigScatter",
@@ -191,27 +207,23 @@ class Upreti2013(ApixabanSimulationExperiment):
             legend=True,
         )
 
-        for label_id, (xid, yid) in self.info_fig_scatter.items():
+        for xid, yid in self.info_fig_scatter.values():
             plots[0].set_xaxis(self.labels[xid], unit=self.units[xid])
             plots[0].set_yaxis(self.labels[yid], unit=self.units[yid])
-        is_legend = True
         for group in self.groups:
-
             for label_id, (xid, yid) in self.info_fig_scatter.items():
-
                 # simulation
                 plots[0].add_data(
-                    task=f"task_{group}",
+                    task=self.to_sid(f"task_{group}"),
                     xid=xid,
                     yid=yid,
-                    label="sim: 10mg PO" if is_legend else "",
+                    label=f"sim {group}: 10mg PO",
                     color=self.colors[group],
-                    linestyle="solid"
+                    linestyle="solid",
                 )
-                is_legend = False
                 # data
                 plots[0].add_data(
-                    dataset=f"{label_id}_{group}",
+                    dataset=self.to_sid(f"{label_id}_{group}"),
                     xid="x",
                     yid="y",
                     label=f"exp individ {group}: 10mg PO",
@@ -221,10 +233,8 @@ class Upreti2013(ApixabanSimulationExperiment):
                     color="white",
                 )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Upreti2013.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Upreti2013, output_dir=Upreti2013.__name__)
+    MODEL.run_experiments(Upreti2013, output_dir=Upreti2013.__name__)

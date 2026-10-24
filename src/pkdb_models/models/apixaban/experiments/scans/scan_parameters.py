@@ -1,785 +1,1033 @@
-"""Parameter scans apixaban."""
-from pathlib import Path
-from typing import Dict
+"""Parameter scans of the apixaban model.
 
-import matplotlib.axes
+The oral dose, the renal function, the degree of cirrhosis and the body weight
+are scanned after a single oral dose of apixaban. The matplotlib figures show
+the timecourses of the scans and the pharmacokinetic and pharmacodynamic
+parameters of `apixaban_pk` together with the data of the studies.
+"""
+
+from pathlib import Path
+from typing import Any, ClassVar, Literal, NamedTuple, NotRequired, TypedDict, override
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from matplotlib import cm
-from matplotlib.colors import to_hex, Colormap
-from mpl_toolkits.axes_grid1.inset_locator import inset_axes
+from matplotlib.axes import Axes
+from matplotlib.cm import ScalarMappable
+from matplotlib.colors import (
+    Colormap,
+    LinearSegmentedColormap,
+    LogNorm,
+    Normalize,
+    TwoSlopeNorm,
+    to_hex,
+)
+from matplotlib.figure import Figure
+from matplotlib.lines import Line2D
+from matplotlib.ticker import FuncFormatter
+from matplotlib.typing import ColorType
 from pint import DimensionalityError
-from sbmlsim.simulation import Timecourse, TimecourseSim, ScanSim, Dimension
+from pkpdsim.experiment import rename_units
+from pkpdsim.scan import point_band, point_timecourse, scan_dimensions, start_values
+from sbmlsim import Q
 from sbmlsim.plot.serialization_matplotlib import FigureMPL
-from sbmlsim.plot.serialization_matplotlib import plt
+from sbmlsim.result import ScanResult
+from sbmlsim.simulation import Dimension, Scan, Simulation
 from sbmlutils.console import console
-from sympy.physics.units import Quantity
 
+from pkdb_models.models.apixaban import MODEL
+from pkdb_models.models.apixaban.apixaban_pk import summarize
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.helpers import run_experiments
+
+#: pharmacokinetic and pharmacodynamic parameters of the studies, one file per scan
+STUDY_DATA_PATH = Path(__file__).parent / "study_data"
+
+
+class ScanSpec(TypedDict):
+    """Definition of a single parameter scan."""
+
+    parameter: str
+    #: value of the reference simulation
+    default: float
+    range: np.ndarray
+    scale: Literal["linear", "log"]
+    #: the colormap, a matplotlib colormap or the colors at positions from 0
+    #: to 1 along the range
+    colormap: str | list[tuple[float, str]]
+    units: str
+    label: str
+    #: the labels of the ticks of the colorbar, the minimum, the default and
+    #: the maximum of the range without
+    ticks: NotRequired[dict[float, str]]
+
+
+class Panel(NamedTuple):
+    """A panel of the timecourses of a scan."""
+
+    sid: str
+    #: the end of the time axis [hr]
+    tend: float
+    #: the distance of the ticks of the time axis [hr]
+    tick: float
+
+
+class Marker(NamedTuple):
+    """The marker of a study, a shape filled completely or on one half."""
+
+    shape: str
+    fillstyle: Literal["full", "left", "bottom"]
+
+
+def _position(value: float, vmin: float, vmax: float) -> float:
+    """Get the position of a value on a logarithmic axis from vmin to vmax."""
+    return float((np.log10(value) - np.log10(vmin)) / (np.log10(vmax) - np.log10(vmin)))
+
+
+def _with(values: np.ndarray, *extra: float) -> np.ndarray:
+    """Get the sorted values of a scan with the values `extra` added."""
+    return np.unique(np.concatenate([values, np.asarray(extra, dtype=float)]))
+
+
+def _unit(unit: str) -> str:
+    """Get a unit as written on an axis, `-` for a dimensionless quantity."""
+    return unit.replace("dimensionless", "-")
+
+
+_CIRRHOSIS = ApixabanSimulationExperiment.cirrhosis_map
+_CIRRHOSIS_COLORS = ApixabanSimulationExperiment.cirrhosis_colors
+_RENAL = ApixabanSimulationExperiment.renal_map
+_RENAL_COLORS = ApixabanSimulationExperiment.renal_colors
+#: the diverging colormaps, whose light center is left out and centered at the
+#: default of the scan
+_DIVERGING = {"RdBu_r"}
+#: the shapes of the markers of the studies, shapes which are told apart at the
+#: size of a marker, filled, on the left half and on the bottom half
+_SHAPES = ("s", "^", "D", "v", "o", "*", "X", "P", "<", ">")
+_FILLSTYLES: tuple[Literal["full", "left", "bottom"], ...] = ("full", "left", "bottom")
 
 
 class ApixabanParameterScan(ApixabanSimulationExperiment):
-    """Scan the effect of parameters on pharmacokinetics."""
+    """Scan the effect of parameters on the pharmacokinetics and pharmacodynamics.
 
-    dose_api = 5  # [mg]
+    A single oral dose of 5 mg apixaban, simulated for 96 hr, the end of the
+    longest partial AUC of the studies (`apixaban_pk.AUC_END_TIMES`). The
+    figures show the timecourses of apixaban, its metabolites and the
+    coagulation in the first 48 hr and the excreted amounts in the 96 hr,
+    and the pharmacokinetic and pharmacodynamic parameters over the scanned
+    parameter with the data of the studies.
 
-    study_markers = ['s', '^', 'D', 'v', '<', '>', 'p', '*', 'h', 'X', 'P', 'o']
+    In a run over the draws of the fitted parameters (`run_simulation
+    pkdb_models.models.apixaban --uncertainty`) every point of a scan is
+    simulated for every draw; the figures draw the median of the draws with
+    the band of their quantiles.
+    """
 
-    substances = {"api": "apixaban"}
-    # Define scalable parameters
-    scalable_params = ["cmax", "aucinf", "aucend_12", "aucend_24", "aucend_48",
-                       "aucend_72", "aucend_96", "inrmax", "ptmax", "apttmax",
-                       "antixa_activitymax", "inr_ratiomax", "pt_ratiomax",
-                       "aptt_ratiomax"
-                       ]
+    #: the end of the simulations [hr]
+    tend = 96
+    #: the output times of a run over the draws [hr]: every 0.05 hr in the
+    #: first day (absorption and maximum, tmax about 2 hr), every 0.5 hr after
+    #: it. The grid of `steps` for every draw of every point would need about
+    #: 3.5 GB, this grid 0.5 GB.
+    times_uncertainty: ClassVar[tuple[float, ...]] = tuple(
+        np.unique(
+            np.concatenate([np.linspace(0, 24, 481), np.linspace(24, tend, 145)])
+        ).tolist()
+    )
+    #: the oral dose of the scans [mg]
+    dose_api = 5
+    #: the opacity of the bands of the draws of the fitted parameters
+    band_alpha = 0.15
 
-    study_data_files = {
-        "renal_scan":
-            str(Path(__file__).parent / "study_data" / "parameters_renal.tsv"),
-        "hepatic_scan":
-            str(Path(__file__).parent / "study_data" / "parameters_hepatic.tsv"),
-        "dose_scan":
-            str(Path(__file__).parent / "study_data" / "parameters_dose.tsv"), # check doses
-        "bodyweight_scan":
-            str(Path(__file__).parent / "study_data" / "parameters_bodyweight.tsv"),
-        "food_scan":
-            str(Path(__file__).parent / "study_data" / "parameters_food.tsv"),
+    #: the variables of the figures and of the parameters of `apixaban_pk`
+    selections = (
+        "time",
+        "PODOSE_api",
+        "KI__f_renal_function",
+        "f_cirrhosis",
+        "BW",
+        "[Cve_api]",
+        "[Cve_m1]",
+        "[Cve_m7]",
+        "Aurine_api",
+        "Aurine_m1",
+        "Aurine_m7",
+        "Afeces_api",
+        "Afeces_m1",
+        "Afeces_m7",
+        "INR",
+        "PT",
+        "mPT",
+        "aPTT",
+        "antiXa_activity",
+        "INR_ratio",
+        "PT_ratio",
+        "mPT_ratio",
+        "aPTT_ratio",
+    )
+
+    #: the substance of the data of the studies
+    data_substance = "apixaban"
+    # parameters of the studies which scale with the dose
+    scalable_params: ClassVar[list[str]] = [
+        "cmax",
+        "auc_inf_obs",
+        "aucend_12",
+        "aucend_24",
+        "aucend_48",
+        "aucend_72",
+        "aucend_96",
+        "inrmax",
+        "ptmax",
+        "apttmax",
+        "antixa_activitymax",
+        "inr_ratiomax",
+        "pt_ratiomax",
+        "aptt_ratiomax",
+    ]
+    #: the pharmacodynamic outputs of the pharmacodynamic parameters
+    #: (`<output>max`, the maximum of the output)
+    pd_outputs: ClassVar[dict[str, str]] = {
+        "inrmax": "INR",
+        "ptmax": "PT",
+        "apttmax": "aPTT",
+        "inr_ratiomax": "INR_ratio",
+        "pt_ratiomax": "PT_ratio",
+        "aptt_ratiomax": "aPTT_ratio",
+        "antixa_activitymax": "antiXa_activity",
     }
 
-    font = {"weight": "bold", "size": 20}
+    study_data_files: ClassVar[dict[str, Path]] = {
+        "renal_scan": STUDY_DATA_PATH / "parameters_renal.tsv",
+        "hepatic_scan": STUDY_DATA_PATH / "parameters_hepatic.tsv",
+        "dose_scan": STUDY_DATA_PATH / "parameters_dose.tsv",
+        "bodyweight_scan": STUDY_DATA_PATH / "parameters_bodyweight.tsv",
+    }
+
+    font: ClassVar[dict[str, str | int]] = {"weight": "bold", "size": 20}
     tick_font_size = 17
 
-    plot_kwargs = {
-        "markeredgecolor": 'black',
+    # keyword arguments of the markers of the data
+    plot_kwargs: ClassVar[dict[str, Any]] = {
+        "markeredgecolor": "black",
         "markeredgewidth": 0.8,
         "markersize": 8,
+        "markerfacecoloralt": "white",
         "alpha": 0.9,
-        "linestyle": ''
+        "linestyle": "",
     }
 
-    num_points = 10
-    scan_map = {
+    scan_map: ClassVar[dict[str, ScanSpec]] = {
         "dose_scan": {
             "parameter": "PODOSE_api",
-            "default": 5,
-            "range": np.sort(
-                # np.append(np.linspace(1, 100, num=num_points), [10])
-                [0.5, 1, 2.5, 5, 10, 20, 40, 60, 80, 100]
-            ),  # [10^-1=0.1, 10^1=10]
-            # "range": np.sort(
-            #     np.append(np.logspace(1, 2, num=num_points), [50])
-            # ),  # [10^-1=0.1, 10^1=10]
+            "default": dose_api,
+            # the doses of the studies, 2.5 to 50 mg
+            "range": np.array([0.5, 1, 2.5, 5, 7.5, 10, 15, 20, 25, 35, 50]),
             "scale": "linear",
             "colormap": "Oranges",
             "units": "mg",
             "label": "apixaban dose [mg]",
-            "legend_position": (0.95, 0.95),
+            "ticks": {0.5: "0.5", 5: "5", 25: "25", 50: "50"},
         },
         "renal_scan": {
             "parameter": "KI__f_renal_function",
-            # "range": np.linspace(0.1, 1.9, num=num_points),
             "default": 1.0,
-            "range": np.sort(
-                np.append(np.logspace(-1, 1, num=num_points), [1.0])
-            ),  # [10^-1=0.1, 10^1=10]
+            # 0.1 to 2, with the limits of the classes of the GFR
+            "range": _with(
+                np.array([0.1, 0.14, 0.27, 0.7, 1.4, 2.0]),
+                *(v for k, v in _RENAL.items() if k != "End stage renal disease"),
+            ),
             "scale": "log",
-            "colormap": "Greens_r",
+            # the colors of the classes at their renal function (of 0.1 to 2),
+            # light greens for a normal and an increased renal function
+            "colormap": [
+                (0.0, _RENAL_COLORS["End stage renal disease"]),
+                *(
+                    (_position(_RENAL[key], 0.1, 2), _RENAL_COLORS[key])
+                    for key in (
+                        "Severe renal impairment",
+                        "Moderate renal impairment",
+                        "Mild renal impairment",
+                    )
+                ),
+                (_position(1.0, 0.1, 2), "#a1d99b"),
+                (1.0, "#c7e9c0"),
+            ],
             "units": "dimensionless",
             "label": "renal function [-]",
-            "legend_position": (0.95, 0.95),
+            "ticks": {0.1: "0.1", 1.0: "1", 2.0: "2"},
         },
         "hepatic_scan": {
             "parameter": "f_cirrhosis",
             "default": 0.0,
-            "range": np.linspace(0, 0.7, num=num_points),
-            # "range": np.logspace(-2, 2, num=21),
+            # with the degrees of the Child-Pugh classes
+            "range": _with(
+                np.array([0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.9]),
+                *(v for k, v in _CIRRHOSIS.items() if k != "Control"),
+            ),
             "scale": "linear",
-            "colormap": "Blues",
+            # the colors of the classes at their degrees (of 0 to 0.9)
+            "colormap": [
+                (0.0, "#d0e1f2"),
+                *(
+                    (_CIRRHOSIS[key] / 0.9, _CIRRHOSIS_COLORS[key])
+                    for key in (
+                        "Mild cirrhosis",
+                        "Moderate cirrhosis",
+                        "Severe cirrhosis",
+                    )
+                ),
+                (1.0, "#023858"),
+            ],
             "units": "dimensionless",
             "label": "cirrhosis degree [-]",
-            "legend_position": (0.95, 0.95),
-        },
-        "food_scan": {
-            "parameter": "GU__f_absorption",
-            # "range": np.linspace(0.1, 1.9, num=num_points),
-            "default": 1,
-            "range": np.sort(
-                np.append(np.logspace(-1, 0.18, num=num_points), [1])
-            ),  # [10^-1=0.1, 10^0.18=1.5]
-            "scale": "log",
-            "colormap": "Purples",
-            "units": "dimensionless",
-            "label": "fraction absorbed [-]",
-            "legend_position": (0.25, 0.95),
+            "ticks": {
+                0.0: "0",
+                _CIRRHOSIS["Mild cirrhosis"]: "CPT A",
+                _CIRRHOSIS["Moderate cirrhosis"]: "CPT B",
+                _CIRRHOSIS["Severe cirrhosis"]: "CPT C",
+            },
         },
         "bodyweight_scan": {
             "parameter": "BW",
             "default": 75.0,
-            "range": np.sort(
-                np.append(np.linspace(38, 200, num=num_points), [75.0])
-            ),
-            # "range": np.logspace(-2, 2, num=21),
+            # the body weights of the studies, 38 to 170 kg
+            "range": np.array([38, 45, 55, 65, 75, 90, 105, 120, 140, 170, 200]),
             "scale": "linear",
-            "colormap": "bwr",
+            "colormap": "RdBu_r",
             "units": "kg",
-            "label": "bodyweight [kg]",
-            "legend_position": (0.95, 0.95),
+            "label": "body weight [kg]",
         },
     }
 
-    def simulations(self) -> Dict[str, ScanSim]:
-        Q_ = self.Q_
-        tcscans = {}
+    #: the timecourses of the figures of the scans
+    scan_sids: ClassVar[dict[str, list[str]]] = {
+        "dose_scan": [
+            "[Cve_api]",
+            "[Cve_m1]",
+            "[Cve_m7]",
+            "Aurine_api",
+            "Afeces_api",
+        ],
+        "renal_scan": [
+            "[Cve_api]",
+            "Aurine_api",
+            "Aurine_m1",
+            "Aurine_m7",
+            "Afeces_m1",
+        ],
+        "hepatic_scan": [
+            "[Cve_api]",
+            "[Cve_m1]",
+            "[Cve_m7]",
+            "Afeces_m1",
+            "Afeces_m7",
+        ],
+        "bodyweight_scan": [
+            "[Cve_api]",
+            "[Cve_m1]",
+            "[Cve_m7]",
+            "Aurine_api",
+            "Afeces_api",
+        ],
+    }
+    #: the pharmacodynamic timecourses of every scan, the second row
+    pd_sids: ClassVar[list[str]] = ["INR", "PT", "mPT", "aPTT", "antiXa_activity"]
 
+    @override
+    def simulations(self) -> dict[str, Scan]:
+        scans = {}
+        grid: dict[str, Any] = (
+            {} if self.uncertainty is None else {"times": self.times_uncertainty}
+        )
         for scan_key, scan_data in self.scan_map.items():
-            if scan_key == "dose_scan":
-
-                tcscans[f"scan_po_{scan_key}"] = ScanSim(
-                    simulation=TimecourseSim(
-                        Timecourse(
-                            start=0,
-                            end=48 * 60,  # 24 hours
-                            steps=5000,
-                            changes={
-                                **self.default_changes(),
-                            },
-                        )
+            # the simulation does not set what the dimension scans (the dose
+            # of the dose scan), the dimension would replace it
+            preinit_changes = {
+                **self.default_changes(),
+                "PODOSE_api": Q(self.dose_api, "mg"),
+            }
+            preinit_changes.pop(scan_data["parameter"], None)
+            scans[f"scan_po_{scan_key}"] = Scan(
+                simulation=Simulation(
+                    time_unit="hr",
+                    end=self.tend,
+                    preinit_changes=preinit_changes,
+                    **grid,
+                ),
+                dimensions=[
+                    Dimension(
+                        "dim_scan",
+                        values={
+                            scan_data["parameter"]: Q(
+                                scan_data["range"], scan_data["units"]
+                            )
+                        },
                     ),
-                    dimensions=[
-                        Dimension(
-                            "dim_scan",
-                            changes={
-                                scan_data["parameter"]: Q_(
-                                    scan_data["range"], scan_data["units"]
-                                )
-                            },
-                        ),
-                    ],
-                )
-            else:
-                tcscans[f"scan_po_{scan_key}"] = ScanSim(
-                    simulation=TimecourseSim(
-                        Timecourse(
-                            start=0,
-                            end=48 * 60,  # 24 hours
-                            steps=5000,
-                            changes={
-                                **self.default_changes(),
-                                "PODOSE_api": Q_(self.dose_api, "mg"),
-                            },
-                        )
-                    ),
-                    dimensions=[
-                        Dimension(
-                            "dim_scan",
-                            changes={
-                                scan_data["parameter"]: Q_(
-                                    scan_data["range"], scan_data["units"]
-                                )
-                            },
-                        ),
-                    ],
-                )
+                ],
+            )
+        return scans
 
-        return tcscans
+    def _scanned(self, res: ScanResult, scan: ScanSpec) -> np.ndarray:
+        """Get the values of the scanned parameter at the points of the scan."""
+        parameter_id = scan["parameter"]
+        values = start_values(res, parameter_id)
+        across = self._across()
+        if across is not None:
+            values = values.isel({across: 0})
+        return Q(values.values, res.units[parameter_id]).to(scan["units"]).magnitude
 
-    def figures_mpl(self) -> Dict[str, FigureMPL]:
+    def _colormap(self, scan: ScanSpec) -> tuple[Colormap, Normalize]:
+        """Get the colormap of a scan and the normalization of its values.
+
+        The scans of the cirrhosis and of the renal function have the colors
+        of the classes of the impairments (`pkpdsim.impairment`) at the values
+        of the classes. The colormaps of matplotlib leave out their lightest
+        colors, so that every curve is visible on white: the start of a
+        sequential colormap, the center of a diverging one, which is centered
+        at the default of the scan.
+        """
+        rmin, rmax = float(scan["range"][0]), float(scan["range"][-1])
+        colormap = scan["colormap"]
+        if isinstance(colormap, str):
+            base = mpl.colormaps[colormap]
+            positions = (
+                np.concatenate([np.linspace(0, 0.4, 128), np.linspace(0.6, 1, 128)])
+                if colormap in _DIVERGING
+                else np.linspace(0.3, 1.0, 256)
+            )
+            cmap: Colormap = LinearSegmentedColormap.from_list(
+                f"{colormap}_visible", [base(v) for v in positions]
+            )
+            if colormap in _DIVERGING:
+                return cmap, TwoSlopeNorm(vmin=rmin, vcenter=scan["default"], vmax=rmax)
+        else:
+            cmap = LinearSegmentedColormap.from_list("impairment", colormap)
+        if scan["scale"] == "linear":
+            return cmap, Normalize(vmin=rmin, vmax=rmax, clip=False)
+        return cmap, LogNorm(vmin=rmin, vmax=rmax, clip=False)
+
+    def _color(self, scan: ScanSpec, value: float) -> str:
+        """Get the color of a value of the scanned parameter, the default black.
+
+        Raises:
+            ValueError: if the value is out of the scanned range.
+        """
+        rmin, rmax = float(scan["range"][0]), float(scan["range"][-1])
+        if not rmin <= value <= rmax:
+            raise ValueError(f"Value {value} is out of range ({rmin}, {rmax}).")
+        if np.isclose(value, scan["default"]):
+            return "black"
+        cmap, norm = self._colormap(scan)
+        return to_hex(cmap(norm(value)), keep_alpha=False)
+
+    def _colorbar(self, f: Figure, axes: np.ndarray, scan: ScanSpec) -> None:
+        """Draw the colorbar of a scan above its panels, the default in black."""
+        cmap, norm = self._colormap(scan)
+        cbar = f.colorbar(
+            ScalarMappable(norm=norm, cmap=cmap),
+            ax=axes.ravel().tolist(),
+            location="top",
+            shrink=0.4,
+            aspect=30,
+        )
+        # the gradient as vector cells: matplotlib rasterizes it into an
+        # embedded image, which some SVG viewers do not show; the edges of
+        # the cells in their color close the seams between them
+        if cbar.solids is not None:
+            cbar.solids.set_rasterized(False)
+            cbar.solids.set_edgecolor("face")
+        rmin, rmax = float(scan["range"][0]), float(scan["range"][-1])
+        ticks = scan.get(
+            "ticks",
+            {value: f"{value:g}" for value in sorted({rmin, rmax, scan["default"]})},
+        )
+        cbar.ax.minorticks_off()
+        cbar.set_ticks(list(ticks), labels=list(ticks.values()))
+        cbar.ax.tick_params(labelsize=self.tick_font_size)
+        cbar.ax.axvline(x=scan["default"], color="black", linewidth=4)
+        cbar.set_label(scan["label"], size=self.tick_font_size + 3, weight="bold")
+
+    @override
+    def figures_mpl(self) -> dict[str, FigureMPL]:
         """Matplotlib figures."""
-        # calculate pharmacokinetic and pharmacodynamic parameters
-        pk_dfs = self.calculate_apixaban_pk()
-        pd_dfs = self.calculate_apixaban_pd()
-        reformated_pd_dfs = {}
-        pk_pd_df = {}
-
-        for scan_id, pddata_dict in pd_dfs.items():
-            for par_id, df in pddata_dict.items():
-                renamed_cols = {
-                    "sid": f"{par_id.lower()}",
-                    "min": f"{par_id.lower()}min",
-                    "max": f"{par_id.lower()}max",
-                    "unit": f"{par_id.lower()}max_unit",
-                }
-                df.rename(columns=renamed_cols, inplace=True)
-                if not f"scan_po_{scan_id}" in reformated_pd_dfs:
-                    reformated_pd_dfs[f"scan_po_{scan_id}"] = df
-                else:
-                    reformated_pd_dfs[f"scan_po_{scan_id}"] = pd.concat([reformated_pd_dfs[f"scan_po_{scan_id}"], df], axis=1)
-
-        for scan_id, pk_df in pk_dfs.items():
-            pk_pd_df[scan_id] = pd.concat([pk_df, reformated_pd_dfs[f"scan_po_{scan_id}"]], axis=1)
-
         return {
             **self.figures_mpl_timecourses(),
-            **self.figures_mpl_pk_pd(pk_pd_df),
+            **self.figures_mpl_pk_pd(self._parameters()),
         }
 
-    def figures_mpl_timecourses(self) -> Dict[str, FigureMPL]:
-        """Timecourse plots."""
+    def _parameters(self) -> dict[str, pd.DataFrame]:
+        """Get the parameters of apixaban of every scan, per draw with draws.
 
-        scan_sids = {
-            "dose_scan": [
-                ("time", "[Cve_api]"),
-                ("time", "Aurine_api"),
-                ("time", "Afeces_api"),
-                ("time", "[Cve_m1]"),
-                ("time", "[Cve_m7]"),
+        The pharmacokinetic parameters of apixaban with the pharmacodynamic
+        parameters (`<output>max`, `<output>max_unit`), one row per point of
+        the scan (and draw), by simulation key.
+        """
+        pk_dfs = self.calculate_apixaban_pk()
+        pd_dfs = self.calculate_apixaban_pd()
+        position = ["point"] if self.uncertainty is None else ["point", "draw"]
+        tables = {}
+        for key, pk_df in pk_dfs.items():
+            table = pk_df[pk_df.substance == "api"]
+            for par_id, output in self.pd_outputs.items():
+                df = pd_dfs[key][output]
+                table = table.merge(
+                    pd.DataFrame(
+                        {
+                            **{column: df[column] for column in position},
+                            par_id: df["max"].astype(float),
+                            f"{par_id}_unit": df["unit"].map(str),
+                        }
+                    ),
+                    on=position,
+                    validate="one_to_one",
+                )
+            tables[key] = table
+        return tables
 
-                ("time", "INR"),
-                ("time", "PT"),
-                ("time", "mPT"),
-                ("time", "aPTT"),
-                ("time", "antiXa_activity"),
-            ],
-            "renal_scan": [
-                ("time", "[Cve_api]"),
-                ("time", "Aurine_api"),
-                ("time", "Aurine_m1"),
-                ("time", "Afeces_m1"),
-                ("time", "Aurine_m7"),
+    def _timecourse(
+        self,
+        ax: Axes,
+        res: ScanResult,
+        panel: Panel,
+        point: dict[str, int],
+        color: ColorType,
+        band: bool,
+    ) -> tuple[np.ndarray, np.ndarray, float, float]:
+        """Draw the timecourse of a point of a scan, with the band of its draws.
 
-                ("time", "INR"),
-                ("time", "PT"),
-                ("time", "mPT"),
-                ("time", "aPTT"),
-                ("time", "antiXa_activity"),
-            ],
-            "hepatic_scan": [
-                ("time", "[Cve_api]"),
-                ("time", "[Cve_m1]"),
-                ("time", "Afeces_m1"),
-                ("time", "[Cve_m7]"),
-                ("time", "Afeces_m7"),
+        Args:
+            ax: the panel.
+            res: the result of the scan.
+            panel: the variable and the time axis of the panel.
+            point: the position of the point along the dimension of the scan.
+            color: the color of the point.
+            band: draw the band of the draws in a run over them.
 
-                ("time", "INR"),
-                ("time", "PT"),
-                ("time", "mPT"),
-                ("time", "aPTT"),
-                ("time", "antiXa_activity"),
-            ],
-            "food_scan": [
-                ("time", "[Cve_api]"),
-                ("time", "Aurine_api"),
-                ("time", "Afeces_api"),
-                ("time", "[Cve_m1]"),
-                ("time", "[Cve_m7]"),
-
-                ("time", "INR"),
-                ("time", "PT"),
-                ("time", "mPT"),
-                ("time", "aPTT"),
-                ("time", "antiXa_activity"),
-            ],
-            "bodyweight_scan": [
-                ("time", "[Cve_api]"),
-                ("time", "Aurine_api"),
-                ("time", "Afeces_api"),
-                ("time", "[Cve_m1]"),
-                ("time", "[Cve_m7]"),
-
-                ("time", "INR"),
-                ("time", "PT"),
-                ("time", "mPT"),
-                ("time", "aPTT"),
-                ("time", "antiXa_activity"),
-            ]
-        }
-
-
-        figures = {}
-        for scan_key, scan_data in self.scan_map.items():
-            sids = scan_sids[scan_key]
-            range = scan_data["range"]
-            rmin, rmax = range[0], range[-1]
-
-            # cmap_str
-            cmap_str = scan_data["colormap"]
-            cmap = matplotlib.colormaps.get_cmap(cmap_str)
-
-            # -----------------------------------
-            # pharmacokinetics & pharmacodynamics
-            # -----------------------------------
-
-
-            f, axes = plt.subplots(
-                nrows=2,
-                ncols=5,
-                figsize=(7 * 4, 5 * 2),
-                dpi=300,
-                layout="constrained"
+        Returns:
+            The time and the values (the median of the draws in a run over
+            them) until the end of the panel, and the lowest and the highest
+            value drawn, of the band if it is drawn.
+        """
+        sid = panel.sid
+        run = self.uncertainty
+        if run is None:
+            time, values = point_timecourse(res, sid, **point)
+            lower = upper = values
+        else:
+            time, lower, values, upper = point_band(
+                res, sid, across=run.id, quantiles=run.quantiles, **point
             )
+        t = Q(time, res.units["time"]).to(self.units["time"]).magnitude
+        shown = t <= panel.tend
 
-            ymax = {}
-            for ksid, (xid, yid) in enumerate(sids):
+        def convert(v: np.ndarray) -> np.ndarray:
+            """Get the values until the end of the panel in the unit of the figure."""
+            return Q(v[shown], res.units[sid]).to(self.units[sid]).magnitude
 
-                ymax[yid] = 0.0
-                ax = axes.flatten()[ksid]
+        c, c_lower, c_upper = convert(values), convert(lower), convert(upper)
+        if not band:
+            c_lower = c_upper = c
+        elif run is not None:
+            ax.fill_between(
+                t[shown],
+                c_lower,
+                c_upper,
+                color=color,
+                alpha=self.band_alpha,
+                linewidth=0,
+            )
+        ax.plot(t[shown], c, color=color, linewidth=2.0)
+        return t[shown], c, float(np.nanmin(c_lower)), float(np.nanmax(c_upper))
 
-                # get data
-                Q_ = self.Q_
-                xres = self.results[
-                    f"task_scan_po_{scan_key}"
-                ]
+    def _panels(self, scan_key: str) -> list[Panel]:
+        """Get the panels of the timecourses of a scan.
 
-                # scanned dimension
-                scandim = xres._redop_dims()[0]
-                parameter_id = scan_data["parameter"]
-                par_vec = Q_(
-                    xres[parameter_id].values[0], xres.uinfo[parameter_id]
-                )
+        The concentrations and the coagulation in the first 48 hr, the
+        excreted amounts until the end of the simulation.
+        """
+        return [
+            Panel(sid, self.tend, 24)
+            if sid.startswith(("Aurine", "Afeces"))
+            else Panel(sid, 48, 12)
+            for sid in [*self.scan_sids[scan_key], *self.pd_sids]
+        ]
 
+    def figures_mpl_timecourses(self) -> dict[str, FigureMPL]:
+        """Timecourses of the scans, a figure per scan.
+
+        The default of the scanned parameter is black and drawn on top. In a
+        run over the draws the default and the ends of the range have the
+        band of their draws (the bands of every point cover each other); the
+        axes include the bands. The concentrations and amounts start at zero,
+        the coagulation at its lowest value.
+        """
+        figures: dict[str, FigureMPL] = {}
+        for scan_key, scan_data in self.scan_map.items():
+            panels = self._panels(scan_key)
+            ncols = 5
+            nrows = len(panels) // ncols
+            f, axes = plt.subplots(
+                nrows=nrows,
+                ncols=ncols,
+                figsize=(6 * ncols, 5 * nrows + 1),
+                dpi=150,
+                layout="constrained",
+                squeeze=False,
+            )
+            res = self.results[f"task_scan_po_{scan_key}"]
+            (scandim,) = scan_dimensions(res, self._across())
+            par_vec = self._scanned(res, scan_data)
+
+            for ax, panel in zip(axes.flatten(), panels, strict=True):
+                bottom, top = np.inf, -np.inf
+                default: tuple[np.ndarray, np.ndarray] | None = None
                 for k_par, par in enumerate(par_vec):
-                    x_vec = Q_(
-                        xres[xid].sel({scandim: k_par}).values,
-                        xres.uinfo[xid],
-                    ).to(self.units[xid])
-                    y_vec = Q_(
-                        xres[yid].sel({scandim: k_par}).values,
-                        xres.uinfo[yid],
-                    ).to(self.units[yid])
-
-                    # update ymax
-                    cmax = np.nanmax(y_vec.magnitude)
-                    if cmax > ymax[yid]:
-                        ymax[yid] = cmax
-
-                    # 0.1 - 1.9
-                    linewidth = 2.0
-                    if np.isclose(scan_data["default"], par.magnitude):
-                        color = "black"
-                        x_vec_default = x_vec
-                        y_vec_default = y_vec
-                    else:
-                        # red less function, blue more function
-                        if scan_data["scale"] == "linear":
-                            cvalue = (par.magnitude - rmin)/np.abs(rmax-rmin)
-                        elif scan_data["scale"] == "log":
-                            cvalue = (np.log10(par.magnitude) - np.log10(rmin)) / np.abs(np.log10(rmax) - np.log10(rmin))
-
-                        color = cmap(cvalue)
-
-                    ax.plot(
-                        x_vec.magnitude,
-                        y_vec.magnitude,
-                        color=color,
-                        linewidth=linewidth,
+                    color = self._color(scan_data, float(par))
+                    band = color == "black" or k_par in (0, len(par_vec) - 1)
+                    t, c, low, high = self._timecourse(
+                        ax, res, panel, {scandim: k_par}, color, band
                     )
+                    bottom, top = min(bottom, low), max(top, high)
+                    if color == "black":
+                        default = (t, c)
 
-                # plot the reference line in black
-                ax.plot(
-                    x_vec_default.magnitude,
-                    y_vec_default.magnitude,
-                    color="black",
-                    linewidth=2.0,
-                )
+                # the default on top
+                if default is not None:
+                    ax.plot(*default, color="black", linewidth=2.0)
 
+                ax.set_xlim(0, panel.tend)
+                ax.set_xticks(np.arange(0, panel.tend + 1, panel.tick))
+                if panel.sid in self.pd_sids:
+                    margin = 0.05 * (top - bottom)
+                    ax.set_ylim(bottom - margin, top + margin)
+                else:
+                    ax.set_ylim(0, 1.05 * top if top > 0 else 1.0)
                 ax.set_xlabel(
-                    f"{self.labels[xid]} [{self.units[xid]}]",
-                    fontdict=self.font,
+                    f"{self.label_time} [{self.units['time']}]", fontdict=self.font
                 )
                 ax.set_ylabel(
-                    f"{self.labels[yid]} [{self.units[yid].replace('dimensionless', '-')}]",
+                    f"{self.labels[panel.sid]} [{_unit(self.units[panel.sid])}]",
                     fontdict=self.font,
                 )
-                ax.tick_params(axis='both', which='major', length=8, width=3)
+                ax.tick_params(axis="both", labelsize=self.tick_font_size)
 
-            # --- colorbar ---
-            # 4-tuple of floats rect = (left, bottom, width, height).
-            # A new Axes is added with dimensions rect in normalized (0, 1)
-
-            cb_ax = f.add_axes(rect=[0.08, 0.96, 0.1, 0.03])
-            cb_ax.set_in_layout(True)
-
-            # colorbar range
-            if scan_data["scale"] == "linear":
-                norm = matplotlib.colors.Normalize(vmin=rmin, vmax=rmax, clip=False)
-            elif scan_data["scale"] == "log":
-                norm = matplotlib.colors.LogNorm(vmin=rmin, vmax=rmax, clip=False)
-
-            cbar = f.colorbar(
-                cm.ScalarMappable(norm=norm, cmap=cmap_str),
-                cax=cb_ax,
-                orientation="horizontal",
-            )
-
-            # label
-            cbar.ax.set_xlabel(
-                scan_data["label"], **{"size": 15, "weight": "bold"}
-            )
-            cbar.ax.axvline(x=scan_data["default"], color="black", linewidth=2)
-
-            # ticks
-            ticks = [rmin, rmax] if scan_key == "dose_scan" else [rmin, round(rmax, 1)]
-            if scan_data["default"] not in ticks:
-                ticks.append(scan_data["default"])
-                ticks = sorted(ticks)
-            cbar.set_ticks(ticks)
-            cbar.set_ticklabels(
-                ticks, **{"size": 15, "weight": "medium"}
-            )
-
+            self._colorbar(f, axes, scan_data)
             figures[f"timecourse__pk__{scan_key}"] = f
 
         return figures
 
-    def figures_mpl_pk_pd(self, pk_pd_dfs: dict[str, pd.DataFrame]) -> Dict[str, FigureMPL]:
-        """Visualize dependency of pharmacokinetic and pharmacodynamic parameters for each scan type."""
+    def _summary(
+        self, df: pd.DataFrame, key: str, target: str
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Get a parameter at the points of a scan, the median and the band of the draws.
+
+        Returns:
+            The values (the median of the draws in a run over them), and the
+            lower and the upper quantile, the values without draws, in the
+            unit `target`.
+        """
+        unit = str(df[f"{key}_unit"].iloc[0])
+        run = self.uncertainty
+        if run is None:
+            values = Q(df[key].to_numpy(dtype=float), unit).to(target).magnitude
+            return values, values, values
+        summary = summarize(df, key, run.quantiles)
+        median, lower, upper = (
+            Q(summary[column].to_numpy(), unit).to(target).magnitude
+            for column in ["median", "lower", "upper"]
+        )
+        return median, lower, upper
+
+    def figures_mpl_pk_pd(
+        self, tables: dict[str, pd.DataFrame]
+    ) -> dict[str, FigureMPL]:
+        """Pharmacokinetic and pharmacodynamic parameters of the scans, a figure per scan."""
         figures = {}
-
-        # Create one figure per scan type
         for scan_id, scan_info in self.scan_map.items():
-            # Read study data
-            df_exp = pd.read_csv(self.study_data_files[scan_id], sep='\t', comment='#')
-
-            # Run scan simulation
-            xres = self.results[f"task_scan_po_{scan_id}"]
-            # Get scanned parameter's values vector (x axis), ensure units are correct
-            par_values = self.Q_(
-                xres[scan_info["parameter"]].values[0], xres.uinfo[scan_info["parameter"]]
-            ).to(scan_info["units"])
-
-            # Get calculated for this scan pk and pd parameters
-            df_sim = pk_pd_dfs[f"scan_po_{scan_id}"]
-
-            colors = self.get_color_map(scan_id, scan_info)
-
-            # Prepare data dictionary for plotting
-            data_dict = {
-                "df_exp": df_exp,
-                "par_values": par_values,
-                "df_sim": df_sim,
-            }
-
-            fig_key = f"fig_can_po__{scan_id}"
-            figures[fig_key] = self._plot_scan_combined(
-                data_dict=data_dict,
-                colors=colors,
+            # parameters of the studies, the international units of the
+            # anti-factor Xa activity read as the units of the data (`data_units`)
+            df_exp = rename_units(
+                pd.read_csv(self.study_data_files[scan_id], sep="\t", comment="#"),
+                self.data_unit_names(),
+            )
+            res: ScanResult = self.results[f"task_scan_po_{scan_id}"]
+            figures[f"fig_can_po__{scan_id}"] = self._plot_scan_combined(
+                df_exp=df_exp[df_exp["substance"] == self.data_substance],
+                par_values=self._scanned(res, scan_info),
+                df_sim=tables[f"scan_po_{scan_id}"],
                 scan_id=scan_id,
-                scan_info=scan_info
+                scan_info=scan_info,
             )
 
         return figures
 
-    def _plot_scan_combined(self, data_dict: dict[str, pd.DataFrame | Quantity], colors: Colormap, scan_id: str, scan_info: dict):
-        """Create combined figure with all PK parameters for a single scan type."""
+    def _plot_scan_combined(
+        self,
+        df_exp: pd.DataFrame,
+        par_values: np.ndarray,
+        df_sim: pd.DataFrame,
+        scan_id: str,
+        scan_info: ScanSpec,
+    ) -> FigureMPL:
+        """Create the figure of the parameters of a scan with the data of the studies.
 
-        # Scan options
-        is_dose_scan = scan_id == "dose_scan"
-        is_bodyweight_scan = scan_id == "bodyweight_scan"
-
-        # Get PK and PD parameters to plot for each scan
-        param_studies = data_dict["df_exp"]['parameter'].unique()
-        pk_parameters = [pk_parameter for pk_parameter in param_studies if pk_parameter in self.pk_labels.keys()]
-        pd_parameters = [pd_parameter for pd_parameter in self.pd_labels.keys()]
-        parameters = pk_parameters + pd_parameters
+        A panel per pharmacokinetic parameter of the studies and per
+        pharmacodynamic parameter; the studies have one legend right of the
+        panels, a study one marker in every panel.
+        """
+        present = set(df_exp["parameter"].astype(str))
+        parameters = [p for p in self.pk_labels if p in present] + list(self.pd_labels)
+        studies = sorted(df_exp["study"].astype(str).unique())
+        markers = {
+            study: Marker(
+                _SHAPES[k % len(_SHAPES)],
+                _FILLSTYLES[(k // len(_SHAPES)) % len(_FILLSTYLES)],
+            )
+            for k, study in enumerate(studies)
+        }
 
         ncols = 4
         nrows = (len(parameters) + ncols - 1) // ncols
         fig, axes = plt.subplots(
-            nrows=nrows, ncols=ncols, figsize=(6.5 * ncols, 6 * nrows), dpi=150,
+            nrows=nrows,
+            ncols=ncols,
+            figsize=(6.5 * ncols + 3, 6 * nrows),
+            dpi=150,
             layout="constrained",
             squeeze=False,
         )
         axes = axes.flatten()
+        colors = np.array([self._color(scan_info, float(v)) for v in par_values])
 
-        for kp, par_id in enumerate(parameters):
-            ax = axes[kp]
-            max_yaxis = 0.0
-            legend_study_markers = {}
-
-            # Only show reference line for non-dose scans
-            if not is_dose_scan:
-                ax.axvline(x=scan_info["default"], color="grey", linestyle="--", linewidth=1.5)
-
-            for substance_id, substance_name in self.substances.items():
-
-                # Filter simulation results for the current substance
-                df_sim_subs = data_dict["df_sim"][data_dict["df_sim"].substance == substance_id].copy()
-                if not df_sim_subs.empty:
-                    # Get PK or PD parameter values, ensure units are correct
-                    if par_id in self.pk_labels.keys():
-                        units = self.pk_units[par_id]
-                    if par_id in self.pd_labels.keys():
-                        units = self.pd_units[par_id]
-                    y = (self.Q_(df_sim_subs[f"{par_id}"].to_numpy(), df_sim_subs[f"{par_id}_unit"].values[0]).
-                         to(units))
-
-                    # Plot simulations
-                    ax.plot(
-                        data_dict["par_values"],
-                        y,
-                        marker="o",
-                        linestyle="-",
-                        color="black",
-                        markeredgecolor="black",
-                        linewidth=2.5,
-                        markersize=7,
-                        label="",
-                    )
-
-                    # Get maximum y-value for axis scaling
-                    max_yaxis = max(max_yaxis, np.nanmax(y.magnitude))
-
-                if not data_dict["df_exp"].empty:
-                    # Filter studies data for the current substance and current parameter
-                    df_exp_subs = data_dict["df_exp"][
-                        (data_dict["df_exp"]['substance'] == substance_name) &
-                        (data_dict["df_exp"]['parameter'] == par_id)
-                        ]
-                    if not df_exp_subs.empty:
-                        # Get unique markers for studies
-                        studies = df_exp_subs['study'].unique()
-                        study_marker_map = {study: self.study_markers[i % len(self.study_markers)] for i, study in
-                                            enumerate(studies)}
-                        # Plot experimental data and get maximum y-value for axis scaling
-                        ax, max_exp = self._add_study_data_to_plot(
-                            df_exp_subs,
-                            par_id,
-                            ax,
-                            study_marker_map,
-                            scan_id,
-                            scan_info,
-                            is_dose_scan,
-                            is_bodyweight_scan,
-                            colors,
-                        )
-                        # Track which studies have been added to legend across all substances
-                        legend_study_markers.update(study_marker_map)
-                        if max_exp is not None:
-                            max_yaxis = max(max_yaxis, max_exp)
-
-            ax = self._add_legend_based_on_study_map(ax, legend_study_markers, scan_info["legend_position"])
-            ax = self._styling(ax, par_id, max_yaxis, scan_info, is_dose_scan)
-
-            axes[kp] = ax
+        for ax, par_id in zip(axes, parameters, strict=False):
+            ax.axvline(
+                x=scan_info["default"],
+                color="grey",
+                linestyle="--",
+                linewidth=1.5,
+                zorder=1,
+            )
+            y, y_lower, y_upper = self._summary(
+                df_sim, par_id, self._parameter_unit(par_id)
+            )
+            if self.uncertainty is not None:
+                ax.fill_between(
+                    par_values,
+                    y_lower,
+                    y_upper,
+                    color="black",
+                    alpha=self.band_alpha,
+                    linewidth=0,
+                )
+            ax.plot(par_values, y, color="black", linewidth=2.5, zorder=2)
+            ax.scatter(
+                par_values,
+                y,
+                s=60,
+                c=colors,
+                edgecolors="black",
+                linewidths=1.2,
+                zorder=3,
+            )
+            max_exp = self._add_study_data_to_plot(
+                df_exp[df_exp["parameter"] == par_id],
+                par_id,
+                ax,
+                markers,
+                scan_id,
+                scan_info,
+            )
+            self._styling(
+                ax, par_id, max(float(np.nanmax(y_upper)), max_exp), scan_info
+            )
 
         # Hide unused axes
-        for i in range(len(parameters), len(axes)):
-            axes[i].set_visible(False)
+        for ax in axes[len(parameters) :]:
+            ax.set_visible(False)
+
+        if markers:
+            fig.legend(
+                handles=[
+                    Line2D(
+                        [0],
+                        [0],
+                        marker=marker.shape,
+                        fillstyle=marker.fillstyle,
+                        markerfacecolor="grey",
+                        markerfacecoloralt="white",
+                        markeredgecolor="black",
+                        linestyle="None",
+                        markersize=10,
+                        label=study,
+                    )
+                    for study, marker in markers.items()
+                ],
+                title="Studies",
+                title_fontproperties={"weight": "bold", "size": self.tick_font_size},
+                fontsize=self.tick_font_size - 2,
+                loc="outside right upper",
+            )
 
         return fig
 
-    def _add_study_data_to_plot(self, df_exp_subs: pd.DataFrame, pk_par_id: str, ax: plt.Axes,
-                                study_marker_map: dict, scan_id: str, scan_info: dict,
-                                is_dose_scan: bool, is_bodyweight_scan: bool, colors: dict = None) -> tuple[plt.Axes, float]:
-        """Add experimental study data to the plot for a given PK parameter."""
-        Q_ = self.Q_
+    def _parameter_unit(self, parameter: str) -> str:
+        """Unit of a pharmacokinetic or pharmacodynamic parameter in the figures."""
+        if parameter in self.pd_units:
+            return self.pd_units[parameter]
+        return self.pk_units[parameter]
 
-        # Get condition to x-axis mapping
+    def _parameter_label(self, parameter: str) -> str:
+        """Axis label of a pharmacokinetic or pharmacodynamic parameter."""
+        label = (
+            self.pk_labels[parameter]
+            if parameter in self.pk_labels
+            else self.pd_labels[parameter]
+        )
+        return f"{label} [{_unit(self._parameter_unit(parameter))}]"
+
+    def _add_study_data_to_plot(
+        self,
+        df_exp_par: pd.DataFrame,
+        par_id: str,
+        ax: Axes,
+        markers: dict[str, Marker],
+        scan_id: str,
+        scan_info: ScanSpec,
+    ) -> float:
+        """Add the data of the studies of a parameter to the plot.
+
+        The data of other doses are scaled to the dose of the scans, but in
+        the dose scan.
+
+        Returns:
+            The largest value of the data with its errors, for the scaling of
+            the axis.
+        """
+        # values of the scanned parameter of the conditions of the studies
         condition_map = self.get_class_data(scan_id=scan_id)
+        colors = self.get_color_map(scan_id) or {}
 
-        # Track maximum y-value for axis scaling
         max_y = 0.0
-
-        # Plot each data point
-        for idx, row in df_exp_subs.iterrows():
-            # Get x-position (scanned parameter value) based on scan type
-            if is_dose_scan:
-                spar_value = Q_(row['dose'], row["dose_unit"]).to(scan_info["units"]).magnitude
-                dose_ratio = 1.0  # No scaling for dose scan
-                study_color = self._get_color_for_value(row["dose"], scan_info)
+        for _, row in df_exp_par.iterrows():
+            x_err = None
+            dose_ratio = 1.0
+            # x position (value of the scanned parameter) by scan
+            if scan_id == "dose_scan":
+                spar_value = (
+                    Q(row["dose"], row["dose_unit"]).to(scan_info["units"]).magnitude
+                )
+                study_color = self._color(scan_info, spar_value)
             else:
-                if is_bodyweight_scan:
-                    spar_value = Q_(row['weight'], row["weight_unit"]).to(scan_info["units"]).magnitude
-                    study_color = self._get_color_for_value(row["weight"], scan_info)
+                if scan_id == "bodyweight_scan":
+                    spar_value = (
+                        Q(row["weight"], row["weight_unit"])
+                        .to(scan_info["units"])
+                        .magnitude
+                    )
+                    study_color = self._color(scan_info, spar_value)
+                    if "weight_sd" in row and pd.notna(row["weight_sd"]):
+                        x_err = (
+                            Q(row["weight_sd"], row["weight_unit"])
+                            .to(scan_info["units"])
+                            .magnitude
+                        )
                 else:
-                    # For renal/hepatic scans, map condition to x-position
-                    condition = row['condition'].lower().strip() if pd.notna(row['condition']) else None
-                    if condition not in condition_map:
+                    # renal and hepatic scans: the condition is the x position
+                    condition = (
+                        str(row["condition"]).lower().strip()
+                        if pd.notna(row["condition"])
+                        else None
+                    )
+                    if condition is None or condition not in condition_map:
                         continue
                     spar_value = condition_map[condition]
                     study_color = colors.get(condition, "grey")
 
-                # Check if scaling is needed
-                dose_ratio = self.dose_api / row['dose'] if row['dose'] > 0 else 1.0
+                if row["dose"] > 0:
+                    dose_ratio = self.dose_api / row["dose"]
 
-            # Get study marker
-            marker = study_marker_map.get(row['study'], 's')
-
-            # Determine data column
+            # column of the data
             data_column = None
             for col in ["mean", "value", "median", "geom_mean"]:
                 if col in row and not pd.isna(row[col]):
                     data_column = col
                     break
             if data_column is None:
-                continue  # Skip if no valid data
+                continue
 
-            y_value = self._extract_data_point(row[data_column], row['unit'], pk_par_id, dose_ratio)
-
-            # Plot optional SD error bars
-            y_err = None
-            x_err = None
-            min_value = None
-            max_value = None
-            if 'sd' in row and pd.notna(row['sd']):
-                y_err = self._extract_data_point(row["sd"], row['unit'], pk_par_id, dose_ratio)
-            if "min" in row and pd.notna(row["min"]):
-                min_value = self._extract_data_point(row["min"], row['unit'], pk_par_id, dose_ratio)
-
-            if "max" in row and pd.notna(row["max"]):
-                max_value = self._extract_data_point(row["max"], row['unit'], pk_par_id, dose_ratio)
-
-            if is_bodyweight_scan and 'weight_sd' in row and pd.notna(row['weight_sd']):
-                x_err = row['weight_sd']  # FIXME: units handling
-
-
-            ax, max_row_y = self._add_data_point_to_plot(ax, spar_value, y_value, x_err, y_err, min_value, max_value, marker, study_color)
+            y_value = self._row_value(row, data_column, par_id, dose_ratio)
+            if y_value is None or not np.isfinite(y_value):
+                continue
+            max_row_y = self._add_data_point_to_plot(
+                ax,
+                spar_value,
+                y_value,
+                x_err,
+                self._row_value(row, "sd", par_id, dose_ratio),
+                self._row_value(row, "min", par_id, dose_ratio),
+                self._row_value(row, "max", par_id, dose_ratio),
+                markers[str(row["study"])],
+                study_color,
+            )
             max_y = max(max_y, max_row_y)
 
-        return ax, max_y
+        return max_y
 
-    def _extract_data_point(self, data_point, units, parameter, dose_ratio):
-        """Extracts the data point from the row and applies scaling if necessary."""
-        # FIXME: can be generalized
-        if parameter in self.pk_units.keys():
-            st_units = self.pk_units[parameter]
-        if parameter in self.pd_units.keys():
-            st_units = self.pd_units[parameter]
+    def _row_value(
+        self, row: pd.Series, column: str, parameter: str, dose_ratio: float
+    ) -> float | None:
+        """Get a value of a row of the data in the unit of the parameter, `None` if missing."""
+        if column not in row or pd.isna(row[column]):
+            return None
+        return self._extract_data_point(row[column], row["unit"], parameter, dose_ratio)
+
+    def _extract_data_point(
+        self, data_point: float, units: str, parameter: str, dose_ratio: float
+    ) -> float:
+        """Convert a value of the data to the unit of the parameter, scaled to the dose."""
+        st_units = self._parameter_unit(parameter)
         try:
-            # units for PK parameters are defined in the Base Experiment
-            value = self.Q_(float(data_point), units).to(st_units).magnitude
+            value = Q(float(data_point), units).to(st_units).magnitude
         except DimensionalityError:
-            data_point = self.Q_(float(data_point), units) / self.Mr.api # FIXME: not only api Mr
+            # a mass concentration of apixaban
+            quantity = Q(float(data_point), units) / self.Mr.api
             try:
-                value = data_point.to(st_units).magnitude
-            except Exception as e:
+                value = quantity.to(st_units).magnitude
+            except DimensionalityError as err:
                 console.print(
-                    f"An error occurred while transforming units: {e}. "
+                    f"An error occurred while transforming units: {err}. "
                     "Check whether the units of the data can be transformed "
                     "to the units of the pk parameter in the base experiment."
                 )
+                value = np.nan
 
         if parameter in self.scalable_params and dose_ratio != 1.0:
             return value * dose_ratio
 
         return value
 
-    def _add_data_point_to_plot(self, ax, x_pos, y_value, x_err, y_err, min_value, max_value, marker: str, study_color: str) -> tuple:
+    def _add_data_point_to_plot(
+        self,
+        ax: Axes,
+        x_pos: float,
+        y_value: float,
+        x_err: float | None,
+        y_err: float | None,
+        min_value: float | None,
+        max_value: float | None,
+        marker: Marker,
+        study_color: str,
+    ) -> float:
+        """Plot a data point of a study with its errors and range.
 
-        if y_err is not None:
-            if x_err is not None:
-                kwargs = dict(
-                    xerr=x_err,
-                    yerr=y_err,
-                    fmt=marker,
-                    markerfacecolor=study_color,
-                    ecolor="black",
-                )
-            else:
-                kwargs = dict(
-                    yerr=y_err,
-                    fmt=marker,
-                    markerfacecolor=study_color,
-                    ecolor="black",
-                )
-            ax.errorbar(
-                x_pos, y_value,
-                capsize=6,
-                **kwargs,
-                **self.plot_kwargs
-            )
-            y_limit = y_value + y_err
-        elif x_err is not None:
-            ax.errorbar(
-                x_pos, y_value,
+        Returns:
+            The upper end of the point with its error, for the scaling of the axis.
+        """
+        style: dict[str, Any] = {
+            "marker": marker.shape,
+            "fillstyle": marker.fillstyle,
+            "markerfacecolor": study_color,
+            **self.plot_kwargs,
+        }
+        if y_err is not None or x_err is not None:
+            (point, *_) = ax.errorbar(
+                x_pos,
+                y_value,
                 xerr=x_err,
-                fmt=marker,
-                markerfacecolor=study_color,
-                markeredgecolor="black",
+                yerr=y_err,
+                capsize=6,
                 ecolor="black",
+                zorder=4,
+                **style,
             )
-            y_limit = y_value
         else:
-            ax.plot(
-                x_pos, y_value,
-                marker=marker,
-                markerfacecolor=study_color,
-                **self.plot_kwargs
-            )
-            y_limit = y_value
+            (point,) = ax.plot(x_pos, y_value, zorder=4, **style)
+        # the marker of a value at the limit of the axis is not cut (a renal
+        # clearance of zero), the error bars below zero are
+        point.set_clip_on(False)
+        y_limit = y_value + (y_err or 0.0)
 
         if min_value is not None and max_value is not None:
-            ax.vlines(x_pos, min_value, max_value, color="black", linewidth=2, zorder=4, linestyles="dashed")
+            ax.vlines(
+                x_pos,
+                min_value,
+                max_value,
+                color="black",
+                linewidth=2,
+                zorder=4,
+                linestyles="dashed",
+            )
             ax.scatter(x_pos, min_value, s=15, color="black", zorder=5)
             ax.scatter(x_pos, max_value, s=15, color="black", zorder=5)
             y_limit = max(y_limit, max_value)
 
-        return ax, y_limit
+        return y_limit
 
-    def _styling(self, ax: plt.Axes, key: str, ymax: float, scan_info: dict, is_dose_scan: bool) -> plt.Axes:
-        """Apply styling to the axis for PK parameter plots."""
-        # Formatting
-        ax.tick_params(axis="x", labelsize=self.tick_font_size)
-        ax.tick_params(axis="y", labelsize=self.tick_font_size)
+    def _styling(self, ax: Axes, key: str, ymax: float, scan_info: ScanSpec) -> None:
+        """Apply styling to the axis of a parameter, the y axis from zero."""
+        ax.tick_params(axis="both", labelsize=self.tick_font_size)
+        ax.tick_params(axis="both", which="major", length=8, width=3)
         ax.set_xlabel(scan_info["label"], fontdict=self.font)
-        if key in self.pk_labels.keys():
-            label = f"{self.pk_labels[key]} [{self.pk_units[key]}]"
-        elif key in self.pd_labels.keys():
-            label = f"{self.pd_labels[key]} [{self.pd_units[key]}]"
-        ax.set_ylabel(
-            label,
-            fontdict=self.font,
-        )
-        if "ratio" in key and scan_info["parameter"] in ["f_cirrhosis", "GU__f_absorption"]:
-            ax.set_ylim(bottom=0.0, top=2.05 * ymax)
-        else:
-            ax.set_ylim(bottom=0.0, top=1.05 * ymax)
-
+        ax.set_ylabel(self._parameter_label(key), fontdict=self.font)
+        ax.set_ylim(bottom=0.0, top=1.1 * ymax if ymax > 0 else 1.0)
+        ax.set_xscale(scan_info["scale"])
         if scan_info["scale"] == "log":
-            ax.set_xscale("log")
-            from matplotlib.ticker import ScalarFormatter
-            ax.xaxis.set_major_formatter(ScalarFormatter())
-            ax.xaxis.get_major_formatter().set_scientific(False)
+            # the ticks of the colorbar instead of the powers of ten
+            ticks = scan_info.get("ticks")
+            if ticks is not None:
+                ax.set_xticks(list(ticks), labels=list(ticks.values()))
+            else:
+                ax.xaxis.set_major_formatter(
+                    FuncFormatter(lambda value, _: f"{value:g}")
+                )
+            ax.xaxis.set_minor_formatter(FuncFormatter(lambda *_: ""))
 
-        # Major ticks: long and thick
-        ax.tick_params(axis='both', which='major', length=8, width=3)
-        # if is_dose_scan:
-        #     ax.set_xticks(scan_info["range"])
-        #     ax.set_xticklabels(scan_info["range"])
+    def get_class_data(self, scan_id: str) -> dict[str, float]:
+        """Get the values of the scanned parameter of the conditions of the studies.
 
-        # Add colorbar
-        ax = self._add_colorbar_strip(ax, scan_info)
+        Args:
+            scan_id: the scan, a key of `scan_map`.
 
-        return ax
-
-    def get_class_data(self, scan_id: str) -> dict:
+        Returns:
+            The value of the scanned parameter by condition, empty for the dose
+            and body weight scans.
+        """
         if scan_id == "renal_scan":
-            # renal_map from base experiment
             return {
                 "normal": self.renal_map["Normal renal function"],
                 "mild": self.renal_map["Mild renal impairment"],
                 "moderate": self.renal_map["Moderate renal impairment"],
                 "severe": self.renal_map["Severe renal impairment"],
-                "end_stage": self.renal_map["End stage renal impairment"],
+                "end_stage": self.renal_map["End stage renal disease"],
             }
-        elif scan_id == "hepatic_scan":
-            # cirrhosis_map from base experiment
+        if scan_id == "hepatic_scan":
             return {
                 "normal": self.cirrhosis_map["Control"],
                 "mild": self.cirrhosis_map["Mild cirrhosis"],
                 "moderate": self.cirrhosis_map["Moderate cirrhosis"],
                 "severe": self.cirrhosis_map["Severe cirrhosis"],
             }
-        elif scan_id == "food_scan":
-            return {
-                "fasted": self.fasting_map["fasted"],
-                "fed": self.fasting_map["fed"],
-            }
+        return {}
 
-        return None
+    def get_color_map(self, scan_key: str) -> dict[str, str] | None:
+        """Get the colors of the conditions of the renal and hepatic scans.
 
-    def get_color_map(self, scan_key: str, scan_data: dict) -> dict | None:
-        """Returns predefined color maps for renal/hepatic scans, None for others."""
+        Args:
+            scan_key: the scan, a key of `scan_map`.
+
+        Returns:
+            The colors by condition, None for the other scans.
+        """
         predefined_maps = {
             "renal_scan": {
                 "normal": self.renal_colors["Normal renal function"],
                 "mild": self.renal_colors["Mild renal impairment"],
                 "moderate": self.renal_colors["Moderate renal impairment"],
                 "severe": self.renal_colors["Severe renal impairment"],
-                "end_stage": self.renal_colors["End stage renal impairment"],
+                "end_stage": self.renal_colors["End stage renal disease"],
             },
             "hepatic_scan": {
                 "normal": self.cirrhosis_colors["Control"],
@@ -787,100 +1035,11 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                 "moderate": self.cirrhosis_colors["Moderate cirrhosis"],
                 "severe": self.cirrhosis_colors["Severe cirrhosis"],
             },
-            "food_scan": {
-                "fasted": "#61409b",
-                "fed": "#3f007d",
-            }
         }
         return predefined_maps.get(scan_key)
 
-    def _get_color_for_value(self, value: float, scan_info: dict) -> str:
-        """
-        Assigns a normalized color for any scan_key based on the provided value, range (vmin, vmax), and colormap.
-
-        :param value: The value to assign a color to.
-        :param scan_info: Scan info dict containing scale, colormap, range.
-        :return: Hex color string.
-        """
-        cmap_name = scan_info.get("colormap", "Oranges")
-        cmap = matplotlib.colormaps.get_cmap(cmap_name)
-        range_min, range_max = min(scan_info["range"]), max(scan_info["range"])
-
-        # Choose normalization type based on the scale
-        if scan_info["scale"] == "linear":
-            norm = matplotlib.colors.Normalize(vmin=range_min, vmax=range_max)
-        elif scan_info["scale"] == "log":
-            norm = matplotlib.colors.LogNorm(vmin=range_min, vmax=range_max)
-        else:
-            raise ValueError(f"Unsupported scale: {scan_info['scale']}")
-
-        if range_min <= value <= range_max:
-            rgba_color = cmap(norm(value))
-            return to_hex(rgba_color, keep_alpha=False)
-        else:
-            raise ValueError(f"Value {value} is out of range ({range_min}, {range_max}).")
-
-    def _add_legend_based_on_study_map(self, ax, study_marker_map, legend_position: tuple) -> matplotlib.axes.Axes:
-        """
-        Add legend to the plot based on the study marker map.
-
-        Parameters:
-        ax : matplotlib.axes.Axes
-            The axis on which the legend is added.
-        study_marker_map : dict
-            A dictionary mapping studies to marker/color/label properties.
-        """
-        # Create dummy artists for legend
-        legend_elements = []
-        for study, marker in study_marker_map.items():
-            legend_elements.append(
-                plt.Line2D(
-                    [0], [0],  # Dummy data
-                    marker=marker, color="grey", label=study,
-                    linestyle="None", markersize=8,
-                )
-            )
-
-        # Add the legend to the axis
-        ax.legend(
-            handles=legend_elements,
-            title="Studies",  # Optional legend title
-            loc="upper right",
-            fontsize=9,
-            bbox_to_anchor=legend_position,
-        )
-
-        return ax
-
-
-    @staticmethod
-    def _add_colorbar_strip(ax, scan_data: dict) -> matplotlib.axes.Axes:
-        """Add a colorbar strip at the top of a subplot."""
-        height_frac = 0.03
-        range_vals = scan_data["range"]
-        rmin, rmax = range_vals[0], range_vals[-1]
-        cmap = scan_data["colormap"]
-
-        # Create colorbar normalization
-        if scan_data["scale"] == "linear":
-            norm = matplotlib.colors.Normalize(vmin=rmin, vmax=rmax, clip=False)
-        elif scan_data["scale"] == "log":
-            norm = matplotlib.colors.LogNorm(vmin=rmin, vmax=rmax, clip=False)
-
-        # Create inset axes for colorbar strip
-        strip_ax = inset_axes(ax, width="100%", height=f"{height_frac * 100:.2f}%", loc="upper center", borderpad=0)
-
-        # Draw colorbar gradient
-        if isinstance(norm, matplotlib.colors.LogNorm) or scan_data["scale"] == "log":
-            xs = np.geomspace(max(rmin, 1e-12), rmax, 256)
-        else:
-            xs = np.linspace(rmin, rmax, 256)
-
-        strip_ax.imshow(xs[np.newaxis, :], aspect="auto", cmap=cmap, norm=norm, origin="lower", extent=(0, 1, 0, 1))
-        strip_ax.set_axis_off()
-        strip_ax.set_zorder(ax.get_zorder() + 1)
-
-        return strip_ax
 
 if __name__ == "__main__":
-    run_experiments(ApixabanParameterScan, output_dir=ApixabanParameterScan.__name__)
+    MODEL.run_experiments(
+        ApixabanParameterScan, output_dir=ApixabanParameterScan.__name__
+    )

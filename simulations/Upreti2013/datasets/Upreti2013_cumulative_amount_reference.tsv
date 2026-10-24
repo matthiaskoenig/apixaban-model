@@ -1,0 +1,3 @@
+study	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	mean	median	min	max	mean_sd	mean_se	cv	comments	mean_unit	median_unit	count_unit
+Upreti2013	reference	16.0	API10	cumulative amount	apixaban	urine	calculated	cumulative amount_reference	0.0	hr	0.0							added: no urine before the dose	mole	mg	dimensionless
+Upreti2013	reference	16.0	API10	cumulative amount	apixaban	urine	calculated	cumulative amount_reference	72.0	hr	3.330019586507073e-06							derived: Ae0-72 = CLR x AUCinf of the geometric means of Table 2	mole	mg	dimensionless

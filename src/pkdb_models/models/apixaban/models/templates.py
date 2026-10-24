@@ -1,6 +1,14 @@
 """Template definition."""
-from datetime import datetime
-from sbmlutils.factory import *
+
+from pkpdsim.templates import terms_of_use
+from sbmlutils.factory import (
+    Creator,
+    ModelUnits,
+    UnitDefinition,
+    Units,
+)
+
+__all__ = ["U", "creators", "model_units", "terms_of_use"]
 
 
 class U(Units):
@@ -44,19 +52,19 @@ creators = [
         organization="Charité University Medicine Berlin, Master Molecular Medicine",
     ),
     Creator(
-        familyName="Linh",
-        givenName="Chang",
+        familyName="Chang",
+        givenName="Linh",
         email="changlin@student.hu-berlin.de",
         organization="Humboldt-Universität zu Berlin",
     ),
     Creator(
-       familyName="Metternich",
-       givenName="Johannes",
-       email="metternich@campus.tu-berlin.de",
-       organization="Technische Universität Berlin",
+        familyName="Metternich",
+        givenName="Johannes",
+        email="metternich@campus.tu-berlin.de",
+        organization="Technische Universität Berlin",
     ),
     Creator(
-        familyName="Baton",
+        familyName="Badon",
         givenName="Shelee",
         email="sheleepab97@zedat.fu-berlin.de",
         organization="Freie Universität Berlin",
@@ -71,33 +79,7 @@ creators = [
         familyName="König",
         givenName="Matthias",
         email="koenigmx@hu-berlin.de",
-        organization="Humboldt-Universität zu Berlin, Faculty of Life Sciences, Department of Biology, Institute of Theoretical Biology, Systems Medicine of the Liver; University of Stuttgart, Institute of Structural Mechanics and Dynamics in Aerospace Engineering",
+        organization="Humboldt-University Berlin, Faculty of Life Science, Institute for Biology, Biology, Berlin; University Lübeck; University Hospital Schleswig-Holstein, Campus Lübeck, First Department of Medicine, Germany",
         site="https://livermetabolism.com",
     ),
 ]
-
-terms_of_use = """
-    The content of this model has been carefully created in a manual research effort.
-
-    ## Terms of use
-    Copyright © {year} <a href="{site}" title="{given_name} {family_name}" target="_blank">{given_name} {family_name}</a>.
-
-    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-    <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-
-    Redistribution and use of any part of this model, with or without modification, are permitted provided
-    that the following conditions are met:
-
-    - Redistributions of this SBML file must retain the above copyright notice, this list of conditions and the following disclaimer.
-    - Redistributions in a different form must reproduce the above copyright notice, this list of conditions
-      and the following disclaimer in the documentation and/or other materials provided
-      with the distribution.
-
-    This model is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
-    implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-""".format(
-    year=datetime.now().year,
-    given_name=creators[0].givenName,
-    family_name=creators[0].familyName,
-    site=creators[0].site,
-)

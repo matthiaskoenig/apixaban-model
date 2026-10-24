@@ -1,144 +1,180 @@
+"""Simulation experiment of the study Wang2016."""
+
 import math
-from typing import Dict
+from typing import ClassVar, override
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
 
-from pkdb_models.models import apixaban
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import (
-    Tissue, Route, Dosing, ApplicationForm, Health, Fasting, ApixabanMappingMetaData
-)
-
-from sbmlsim.plot import Axis, Figure
-
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Wang2016(ApixabanSimulationExperiment):
-    """Simulation experiment of Wang2016."""
+    """Simulation experiment of Wang2016.
 
-    colors = {
+    A single oral dose of 5 mg apixaban (tablet) in 8 healthy subjects (CLcr
+    125 ml/min) and 8 patients with end stage renal disease on hemodialysis
+    (ESRD), twice: period 1 with a hemodialysis 2 to 6 h after the dose (P1),
+    period 2 with the dose immediately after a hemodialysis (P2). The model has
+    no dialysis: P1 is simulated like P2 (the dialysis removed 6.7 % of the
+    dose). The renal function of the ESRD patients is the class of end stage
+    renal disease of the renal map, but the measured renal clearance of
+    apixaban is 0.02 against 11.3 ml/min in the healthy subjects (3 of 8
+    patients anuric): the model overestimates the urinary excretion of the
+    patients. The urinary amounts are derived (CLR x AUCinf of Table 2).
+    """
+
+    colors: ClassVar[dict[str, str]] = {
         "healthy": "black",
-        "esrd_P1": "#006d5e",
+        "esrd_P1": "#41ab5d",
         "esrd_P2": "#006d5e",
     }
-    markers = {
-        "healthy": "s",
-        "esrd_P1": "*",
-        "esrd_P2": "^",
+    markers: ClassVar[dict[str, str]] = {
+        "healthy": "D",
+        "esrd_P1": "^",
+        "esrd_P2": "o",
     }
-    bodyweights = {  # [kg]
+    legends: ClassVar[dict[str, str]] = {
+        "healthy": "5mg PO",
+        "esrd_P1": "ESRD on HD: 5mg PO",
+        "esrd_P2": "ESRD off HD: 5mg PO",
+    }
+    bodyweights: ClassVar[dict[str, float]] = {  # [kg]
         "healthy": 87.4,
-        "esrd_P1": 92.5,  # post-apixaban hemodialysis
-        "esrd_P2": 92.5,  # pre-apixaban hemodialysis
+        "esrd_P1": 92.5,  # the dose before the hemodialysis
+        "esrd_P2": 90.7,  # dry weight, the dose after the hemodialysis
     }
-    bodyheights = {
+    bodyheights: ClassVar[dict[str, float]] = {  # [m]
         "healthy": math.sqrt(87.4 / 29.7),
-        "esrd_P1": math.sqrt(92.5 / 29.7),  # post-apixaban hemodialysis
-        "esrd_P2": math.sqrt(92.5 / 29.7),  # pre-apixaban hemodialysis
+        "esrd_P1": math.sqrt(92.5 / 29.7),
+        "esrd_P2": math.sqrt(92.5 / 29.7),
     }
 
-    inrs = {
+    inrs: ClassVar[dict[str, float]] = {
         "healthy": 0.97,
         "esrd_P1": 1.07,  # post-apixaban hemodialysis
         "esrd_P2": 1.09,  # pre-apixaban hemodialysis
     }
-    pts = {
+    pts: ClassVar[dict[str, float]] = {  # [s]
         "healthy": 11.42,
         "esrd_P1": 12.79,  # post-apixaban hemodialysis
         "esrd_P2": 12.99,  # pre-apixaban hemodialysis
     }
-    aptts = {
+    aptts: ClassVar[dict[str, float]] = {  # [s]
         "healthy": 34.33,
         "esrd_P1": 36.28,  # post-apixaban hemodialysis
         "esrd_P2": 31.56,  # pre-apixaban hemodialysis
     }
 
-    renal_functions = {
-        "healthy": 1.0,
-        "esrd_P1": 10.5 / 101.0,  # "End stage renal disease": 10.5 / 101.0,  # 0.1
-        "esrd_P2": 10.5 / 101.0,
+    #: the renal function relative to a GFR of 101 ml/min: the measured
+    #: creatinine clearance of the healthy subjects (125 ml/min), the class of
+    #: end stage renal disease of the renal map for the patients
+    renal_functions: ClassVar[dict[str, float]] = {
+        "healthy": 125.0 / 101.0,
+        "esrd_P1": ApixabanSimulationExperiment.renal_map["End stage renal disease"],
+        "esrd_P2": ApixabanSimulationExperiment.renal_map["End stage renal disease"],
     }
-    groups = [
+    groups: ClassVar[list[str]] = [
         "healthy",
-        # "esrd_P1",
-        "esrd_P2"
+        "esrd_P1",
+        "esrd_P2",
     ]
-    infos_pk = {
+    #: the groups with urinary data
+    groups_urine: ClassVar[list[str]] = ["healthy", "esrd_P2"]
+    infos_pk: ClassVar[dict[str, str]] = {
         "[Cve_api]": "apixaban",
+        "Aurine_api": "cumulative amount",
     }
-    infos_pd = {
+    infos_pd: ClassVar[dict[str, str]] = {
         "INR": "inr",
         "PT": "pt",
         "aPTT": "aptt",
         "antiXa_activity": "xa",
-
     }
-    # info_figpd_scatter = {
-    #     "antiXa_vs_apixaban": "antiXa_activity",
-    # }
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id, group_id in zip(["Fig1", "Fig2", "Fig3"],
-                                    ["label", "label", "x_label"]):
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+        for fig_id, group_id in zip(
+            ["Fig1", "Fig2", "Fig3", "Tab2"],
+            ["label", "label", "x_label", "label"],
+            strict=True,
+        ):
+            df = self.load_dataframe(fig_id)
             for label, df_label in df.groupby(group_id):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("apixaban_"):
                     if fig_id == "Fig3":
                         dset.unit_conversion("x", 1 / self.Mr.api)
                     else:
                         dset.unit_conversion("mean", 1 / self.Mr.api)
-                dsets[label] = dset
+                if fig_id == "Tab2":
+                    if "cumulative" in label:
+                        dset.unit_conversion("mean", 1 / self.Mr.api)
+                        dsets[self.to_sid(label)] = dset
+                else:
+                    dsets[self.to_sid(label)] = dset
 
-        # console.print("datasets:", list(dsets.keys()))
         return dsets
 
-
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims: Dict[str, TimecourseSim] = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        tcsims: dict[str, Simulation] = {}
         for group in self.groups:
-            tcsims[group] = TimecourseSim([
-                Timecourse(
-                    start=0,
-                    end=74 * 60,  # [min]
-                    steps=500,
-                    changes={
-                        **self.default_changes(),
-                        "PODOSE_api": Q_(5, "mg"),
-                        "BW": Q_(self.bodyweights[group], "kg"),
-                        "KI__f_renal_function": Q_(self.renal_functions[group], "dimensionless"),
-                        "INR_ref": Q_(self.inrs[group], "dimensionless"),
-                        "aPTT_ref": Q_(self.aptts[group], "second"),
-                        "PT_ref": Q_(self.pts[group], "second"),
-                        "HEIGHT": Q_(self.bodyheights[group], "m"),
-                    },
-                )
-            ])
+            tcsims[self.to_sid(group)] = Simulation(
+                time_unit="hr",
+                end=74,
+                preinit_changes={
+                    **self.default_changes(),
+                    "PODOSE_api": Q(5, "mg"),
+                    "BW": Q(self.bodyweights[group], "kg"),
+                    "KI__f_renal_function": Q(
+                        self.renal_functions[group], "dimensionless"
+                    ),
+                    "INR_ref": Q(self.inrs[group], "dimensionless"),
+                    "aPTT_ref": Q(self.aptts[group], "second"),
+                    "PT_ref": Q(self.pts[group], "second"),
+                    "HEIGHT": Q(self.bodyheights[group], "m"),
+                },
+            )
         return tcsims
 
-    # Fit Mappings
-    def fit_mappings(self) -> Dict[str, FitMapping]:
-        mappings: Dict[str, FitMapping] = {}
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
+        mappings: dict[str, FitMapping] = {}
         infos = {
             **self.infos_pk,
             **self.infos_pd,
         }
         for group in self.groups:
             for sid, name in infos.items():
-                mappings[f"fm_{name}_{group}"] = FitMapping(
+                if sid == "Aurine_api" and group not in self.groups_urine:
+                    continue
+                mappings[self.to_sid(f"fm_{name}_{group}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
-                        dataset=f"{name}_{group}",
+                        dataset=self.to_sid(
+                            f"{name}_{group}"
+                            if "cumulative" not in name
+                            else f"{group}_cumulative amount"
+                        ),
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
@@ -146,37 +182,42 @@ class Wang2016(ApixabanSimulationExperiment):
                     ),
                     observable=FitData(
                         self,
-                        task=f"task_{group}",
+                        task=self.to_sid(f"task_{group}"),
                         xid="time",
                         yid=sid,
                     ),
-                    metadata=ApixabanMappingMetaData(
-                        tissue=Tissue.PLASMA,
+                    metadata=PKPDMappingMetaData(
+                        tissue=Tissue.URINE if "cumulative" in name else Tissue.PLASMA,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
                         dosing=Dosing.SINGLE,
-                        health=Health.HEALTHY if group == "healthy" else Health.RENAL_IMPAIRMENT,
+                        health=Health.HEALTHY
+                        if group == "healthy"
+                        else Health.RENAL_IMPAIRMENT,
                         fasting=Fasting.NR,
                     ),
                 )
 
         return mappings
 
-
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
             **self.figure_pk(),
             **self.figure_pd(),
             **self.figure_scatter(),
         }
 
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure_pk(self) -> dict[str, Figure]:
+        """Apixaban in plasma and urine of the healthy subjects and the ESRD patients."""
         fig = Figure(
             experiment=self,
             sid="PK",
             name=f"{self.__class__.__name__}",
             height=self.panel_height,
-            width=self.panel_width * 0.87,
+            width=self.panel_width * 2,
+            num_cols=2,
+            num_rows=1,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -186,31 +227,37 @@ class Wang2016(ApixabanSimulationExperiment):
             plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid])
 
         for group in self.groups:
-            for kp, sid in enumerate(self.infos_pk):
-                name = self.infos_pk[sid]
-
-                # Simulation
+            for kp, (sid, name) in enumerate(self.infos_pk.items()):
+                if sid == "Aurine_api" and group not in self.groups_urine:
+                    continue
+                # simulation
                 plots[kp].add_data(
-                    task=f"task_{group}",
+                    task=self.to_sid(f"task_{group}"),
                     xid="time",
                     yid=sid,
-                    label="sim: 5mg PO" if group == "healthy" else "sim EsRI: 5mg PO",
-                    color=self.colors[group]
+                    label=f"sim: {self.legends[group]}",
+                    color=self.colors[group],
                 )
-                # Data
+                # data
                 plots[kp].add_data(
-                    dataset=f"{name}_{group}",
+                    dataset=self.to_sid(
+                        f"{group}_cumulative amount"
+                        if "cumulative" in name
+                        else f"{name}_{group}"
+                    ),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label="exp: 5mg PO" if group == "healthy" else "exp EsRI: 5mg PO",
-                    color=self.colors[group]
+                    label=f"exp: {self.legends[group]}",
+                    color=self.colors[group],
+                    linestyle="" if "cumulative" in name else "-",
                 )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
-    def figure_pd(self) -> Dict[str, Figure]:
+    def figure_pd(self) -> dict[str, Figure]:
+        """INR, PT, aPTT and anti-factor Xa activity."""
         fig = Figure(
             experiment=self,
             sid="PD",
@@ -227,32 +274,31 @@ class Wang2016(ApixabanSimulationExperiment):
         for kp, sid in enumerate(self.infos_pd):
             plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid])
 
-        for kp, sid in enumerate(self.infos_pd):
-            name = self.infos_pd[sid]
-
+        for kp, (sid, name) in enumerate(self.infos_pd.items()):
             for group in self.groups:
                 # simulation
                 plots[kp].add_data(
-                    task=f"task_{group}",
+                    task=self.to_sid(f"task_{group}"),
                     xid="time",
                     yid=sid,
-                    label="sim: 5mg PO" if group == "healthy" else "sim EsRI: 5mg PO",
+                    label=f"sim: {self.legends[group]}",
                     color=self.colors[group],
                 )
                 # data
                 plots[kp].add_data(
-                    dataset=f"{name}_{group}",
+                    dataset=self.to_sid(f"{name}_{group}"),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label="exp: 5mg PO" if group == "healthy" else "exp EsRI: 5mg PO",
+                    label=f"exp: {self.legends[group]}",
                     color=self.colors[group],
                 )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
-    def figure_scatter(self) -> Dict[str, Figure]:
+    def figure_scatter(self) -> dict[str, Figure]:
+        """Anti-factor Xa activity against the apixaban concentration in plasma."""
         fig = Figure(
             experiment=self,
             sid="PD_scatter",
@@ -264,33 +310,32 @@ class Wang2016(ApixabanSimulationExperiment):
             xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
             legend=True,
         )
-        plots[0].set_yaxis(self.labels["antiXa_activity"], unit=self.units["antiXa_activity"], scale="linear")
-        is_legend = True
+        plots[0].set_yaxis(
+            self.labels["antiXa_activity"],
+            unit=self.units["antiXa_activity"],
+            scale="linear",
+        )
         for group in self.groups:
             plots[0].add_data(
-                task=f"task_{group}",
+                task=self.to_sid(f"task_{group}"),
                 xid="[Cve_api]",
                 yid="antiXa_activity",
-                label="sim: 5mg PO" if is_legend else "",
-                color="black"
+                label=f"sim: {self.legends[group]}",
+                color=self.colors[group],
             )
-            is_legend = False
             plots[0].add_data(
-                dataset=f"apixaban_vs_xa_{group}",
+                dataset=self.to_sid(f"apixaban_vs_xa_{group}"),
                 xid="x",
                 yid="y",
-                label="exp individ EsRI: 5mg PO" if group == "esrd_P2" else "exp individ: 5mg PO",
+                label=f"exp individ: {self.legends[group]}",
                 linestyle="",
                 color="white",
                 markeredgecolor=self.colors[group],
                 marker=self.markers[group],
             )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Wang2016.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Wang2016, output_dir=Wang2016.__name__)
-
+    MODEL.run_experiments(Wang2016, output_dir=Wang2016.__name__)

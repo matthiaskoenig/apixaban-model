@@ -1,50 +1,78 @@
-from typing import Dict
+"""Simulation experiment of the study Frost2013."""
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from typing import ClassVar, override
 
-from pkdb_models.models import apixaban
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
+
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import Tissue, Route, Dosing, ApplicationForm, Health, \
-    Fasting, ApixabanMappingMetaData
-
-from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Frost2013(ApixabanSimulationExperiment):
-    """Simulation experiment of Frost2013."""
+    """Simulation experiment of Frost2013.
+
+    A single ascending dose study (0.5 to 2.5 mg as oral solution, 5 to 50 mg
+    as tablets, fasted) and a food study (10 mg fasted or after a high-fat
+    breakfast) in healthy men. The model has no effect of food, the fed arm is
+    simulated as the fasted one.
+    """
 
     # food study group
-    food_study = ["fed", "fasted"]
+    food_study: ClassVar[list[str]] = ["fed", "fasted"]
     # single dose group
-    single_dose_study = ["D0_5", "D1", "D2_5", "D5", "D10", "D25", "D50"]
+    single_dose_study: ClassVar[list[str]] = [
+        "D0_5",
+        "D1",
+        "D2_5",
+        "D5",
+        "D10",
+        "D25",
+        "D50",
+    ]
     # single dose study divides into solution and tablet
-    solution_doses = ["D0_5", "D1", "D2_5"]  # mg 0.5–2.5 → Solution
-    tablet_doses = ["D5", "D10", "D25", "D50"]  # mg 5–50 → Tablet
-    # scatter plot group - dose amount unknown
-    scatter_dose = ["single dose"]
+    solution_doses: ClassVar[list[str]] = [
+        "D0_5",
+        "D1",
+        "D2_5",
+    ]  # mg 0.5–2.5 → Solution
+    tablet_doses: ClassVar[list[str]] = [
+        "D5",
+        "D10",
+        "D25",
+        "D50",
+    ]  # mg 5–50 → Tablet
 
-    bodyweights = { # [kg]
-        "fasted": 77,
-        "fed": 77,
-        "D0_5": 87,
-        "D1": 82,
-        "D2_5": 87,
-        "D5": 82,
-        "D10": 73,
-        "D25": 73,
-        "D50": 77,
+    #: the mean body weights of the panels (Tab1) and of the food study
+    bodyweights: ClassVar[dict[str, float]] = {  # [kg]
+        "fasted": 76.6,
+        "fed": 76.6,
+        "D0_5": 87.2,
+        "D1": 82.2,
+        "D2_5": 87.3,
+        "D5": 82.4,
+        "D10": 73.8,
+        "D25": 73.3,
+        "D50": 77.0,
     }
 
-    inr = { # [-]
-        "fasted": 1.33-0.23,
-        "fed": 1.28-0.20,
+    inr: ClassVar[dict[str, float]] = {  # [-]
+        "fasted": 1.33 - 0.23,
+        "fed": 1.28 - 0.20,
         "D0_5": 1.08,
         "D1": 1.10,
         "D2_5": 1.10,
@@ -54,12 +82,12 @@ class Frost2013(ApixabanSimulationExperiment):
         "D50": 1.14,
     }
 
-    PT = {
-        "fasted": 14.99-1.39,
-        "fed": 14.66-1.30,
+    PT: ClassVar[dict[str, float]] = {
+        "fasted": 14.99 - 1.39,
+        "fed": 14.66 - 1.30,
     }
 
-    mPT = { # [s]
+    mPT: ClassVar[dict[str, float]] = {  # [s]
         "D0_5": 39.39,
         "D1": 44.85,
         "D2_5": 45.45,
@@ -69,9 +97,9 @@ class Frost2013(ApixabanSimulationExperiment):
         "D50": 49.09,
     }
 
-    aPTT = { # [s]
-        "fasted": 32.96-3.05,
-        "fed": 31.55-2.90,
+    aPTT: ClassVar[dict[str, float]] = {  # [s]
+        "fasted": 32.96 - 3.05,
+        "fed": 31.55 - 2.90,
         "D0_5": 30.4,
         "D1": 32.29,
         "D2_5": 30.55,
@@ -81,7 +109,7 @@ class Frost2013(ApixabanSimulationExperiment):
         "D50": 32.70,
     }
 
-    doses = {  # [mg]
+    doses: ClassVar[dict[str, float]] = {  # [mg]
         "D0_5": 0.5,
         "D1": 1,
         "D2_5": 2.5,
@@ -91,42 +119,48 @@ class Frost2013(ApixabanSimulationExperiment):
         "D50": 50,
     }
 
-    colors = {
-        "D0_5": "#fff5eb",
-        "D1": "#fee6ce",
-        "D2_5": "#fdd0a2",
-        "D5": "#fdae6b",
-        "D10": "#fd8d3c",
-        "D25": "#e6550d",
-        "D50": "#a63603",
+    colors: ClassVar[dict[str, str]] = {
+        "D0_5": "#fdd0a2",
+        "D1": "#fdae6b",
+        "D2_5": "#fd8d3c",
+        "D5": "#f16913",
+        "D10": "#d94801",
+        "D25": "#a63603",
+        "D50": "#7f2704",
         "fasted": "black",
         "fed": "tab:purple",
     }
 
-    groups = list(bodyweights.keys())
+    groups: ClassVar[list[str]] = list(bodyweights.keys())
 
-    info_fig1 = {
+    info_fig1: ClassVar[dict[str, str]] = {
         "[Cve_api]": "apixaban",
     }
 
-    info_fig3 = {
+    info_fig3: ClassVar[dict[str, str]] = {
         "INR": "inr",
         "aPTT": "aPTT",
         "mPT": "mPT",
     }
 
-    info_fig4 = {
-        "mPT_change": "mPT",
-        "INR_change": "inr",
-        "aPTT_change": "aPTT",
+    #: the relative changes (%) against the concentration (Fig4)
+    info_fig4: ClassVar[dict[str, str]] = {
+        "mPT_relchange": "mPT",
+        "INR_relchange": "inr",
+        "aPTT_relchange": "aPTT",
     }
 
-
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id, group_id in zip(["Fig1A", "Fig1B", "Fig3", "Fig4"],["label", "label", "label", "x_label"]):
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+        for fig_id, group_id in zip(
+            ["Fig1A", "Fig1B", "Fig3", "Fig4"],
+            ["label", "label", "label", "x_label"],
+            strict=True,
+        ):
+            df = self.load_dataframe(fig_id)
             for label, df_label in df.groupby(group_id):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if "apixaban" in label:
                     if fig_id in ["Fig4"]:
@@ -135,84 +169,74 @@ class Frost2013(ApixabanSimulationExperiment):
                         dset.unit_conversion("mean", 1 / self.Mr.api)
                 dsets[label] = dset
 
-
-        # console.print(dsets)
-
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
+    @override
+    def simulations(self) -> dict[str, Simulation]:
         tcsims = {}
         # pharmacokinetics food study
         for group in self.food_study:
-            tcsims[group] = TimecourseSim(
-                [Timecourse(
-                    start=0,
-                    end=60 * 60,  # [min]
-                    steps=1000,
-                    changes={
-                        **self.default_changes(),
-                        "BW": Q_(self.bodyweights[group], "kg"),
-                        "PODOSE_api": Q_(10, "mg"),
-                        "GU__f_absorption": Q_(self.fasting_map[group], "dimensionless"),
-                        "INR_ref": Q_(self.inr[group], self.units["INR"]),
-                        "aPTT_ref": Q_(self.aPTT[group], self.units["aPTT"]),
-                        "PT_ref": Q_(self.PT[group], self.units["mPT"]),
-                    },
-                )]
+            tcsims[group] = Simulation(
+                time_unit="hr",
+                end=60,
+                preinit_changes={
+                    **self.default_changes(),
+                    "BW": Q(self.bodyweights[group], "kg"),
+                    "PODOSE_api": Q(10, "mg"),
+                    "INR_ref": Q(self.inr[group], self.units["INR"]),
+                    "aPTT_ref": Q(self.aPTT[group], self.units["aPTT"]),
+                    "PT_ref": Q(self.PT[group], self.units["PT"]),
+                },
             )
         # pharmacokinetics/pharmacodynamics single dose study
         for group in self.single_dose_study:
             if group in self.solution_doses:
-                tcsims[group] = TimecourseSim(
-                    [Timecourse(
-                        start=0,
-                        end=100 * 60,  # [min]
-                        steps=1000,
-                        changes={
-                            **self.default_changes(),
-                            "BW": Q_(self.bodyweights[group], "kg"),
-                            "SOLDOSE_api": Q_(self.doses[group], "mg"),
-                            # set pharmacodynamic baseline reference parameters (assignment rules use these)
-                            "INR_ref": Q_(self.inr[group], self.units["INR"]),
-                            "aPTT_ref": Q_(self.aPTT[group], self.units["aPTT"]),
-                            "mPT_ref": Q_(self.mPT[group], self.units["mPT"]),
-                        },
-                    )]
+                tcsims[group] = Simulation(
+                    time_unit="hr",
+                    end=100,
+                    preinit_changes={
+                        **self.default_changes(),
+                        "BW": Q(self.bodyweights[group], "kg"),
+                        "SOLDOSE_api": Q(self.doses[group], "mg"),
+                        # set pharmacodynamic baseline reference parameters (assignment rules use these)
+                        "INR_ref": Q(self.inr[group], self.units["INR"]),
+                        "aPTT_ref": Q(self.aPTT[group], self.units["aPTT"]),
+                        "mPT_ref": Q(self.mPT[group], self.units["mPT"]),
+                    },
                 )
             else:
-                tcsims[group] = TimecourseSim(
-                    [Timecourse(
-                        start=0,
-                        end=100 * 60,  # [min]
-                        steps=1000,
-                        changes={
-                            **self.default_changes(),
-                            "BW": Q_(self.bodyweights[group], "kg"),
-                            "PODOSE_api": Q_(self.doses[group], "mg"),
-                            # set pharmacodynamic baseline reference parameters (assignment rules use these)
-                            "INR_ref": Q_(self.inr[group], self.units["INR"]),
-                            "aPTT_ref": Q_(self.aPTT[group], self.units["aPTT"]),
-                            "mPT_ref": Q_(self.mPT[group], self.units["mPT"]),
-                        },
-                    )]
+                tcsims[group] = Simulation(
+                    time_unit="hr",
+                    end=100,
+                    preinit_changes={
+                        **self.default_changes(),
+                        "BW": Q(self.bodyweights[group], "kg"),
+                        "PODOSE_api": Q(self.doses[group], "mg"),
+                        # set pharmacodynamic baseline reference parameters (assignment rules use these)
+                        "INR_ref": Q(self.inr[group], self.units["INR"]),
+                        "aPTT_ref": Q(self.aPTT[group], self.units["aPTT"]),
+                        "mPT_ref": Q(self.mPT[group], self.units["mPT"]),
+                    },
                 )
 
         return tcsims
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
 
         specs = [
             # Fig1A
             (
                 self.info_fig1,
-                lambda group: ApixabanMappingMetaData(
+                lambda group: PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
                     route=Route.PO,
                     application_form=(
-                            ApplicationForm.SOLUTION if group in self.solution_doses else ApplicationForm.TABLET
-                        ),
+                        ApplicationForm.SOLUTION
+                        if group in self.solution_doses
+                        else ApplicationForm.TABLET
+                    ),
                     dosing=Dosing.SINGLE,
                     health=Health.HEALTHY,
                     fasting=Fasting.FASTED,
@@ -222,7 +246,7 @@ class Frost2013(ApixabanSimulationExperiment):
             # Fig1B
             (
                 self.info_fig1,
-                lambda group: ApixabanMappingMetaData(
+                lambda group: PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
                     route=Route.PO,
                     application_form=ApplicationForm.TABLET,
@@ -235,12 +259,14 @@ class Frost2013(ApixabanSimulationExperiment):
             # Fig3
             (
                 self.info_fig3,
-                lambda group: ApixabanMappingMetaData(
+                lambda group: PKPDMappingMetaData(
                     tissue=Tissue.PLASMA,
                     route=Route.PO,
                     application_form=(
-                            ApplicationForm.SOLUTION if group in self.solution_doses else ApplicationForm.TABLET
-                        ),
+                        ApplicationForm.SOLUTION
+                        if group in self.solution_doses
+                        else ApplicationForm.TABLET
+                    ),
                     dosing=Dosing.SINGLE,
                     health=Health.HEALTHY,
                     fasting=Fasting.FASTED,
@@ -252,6 +278,7 @@ class Frost2013(ApixabanSimulationExperiment):
         for info_dict, meta_factory, groups_for_spec in specs:
             for group in groups_for_spec:
                 for sid, name in info_dict.items():
+                    # only the food study (Fig1B) reports SDs
                     mappings[f"fm_{name}_{group}"] = FitMapping(
                         self,
                         reference=FitData(
@@ -259,6 +286,7 @@ class Frost2013(ApixabanSimulationExperiment):
                             dataset=f"{name}_{group}",
                             xid="time",
                             yid="mean",
+                            yid_sd="mean_sd" if group in self.food_study else None,
                             count="count",
                         ),
                         observable=FitData(
@@ -272,8 +300,8 @@ class Frost2013(ApixabanSimulationExperiment):
 
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
-
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
             **self.figure_pk(),
             **self.figure_pk2(),
@@ -281,12 +309,11 @@ class Frost2013(ApixabanSimulationExperiment):
             **self.figure_scatter(),
         }
 
-    # single dose pharmacokinetics plot
-    def figure_pk(self) -> Dict[str, Figure]:
-
+    def figure_pk(self) -> dict[str, Figure]:
+        """Figure of the pharmacokinetics of the food study (fasted and fed)."""
         fig = Figure(
             experiment=self,
-            sid="Fig1A",
+            sid="Fig1B",
             name=self.__class__.__name__,
             height=self.panel_height,
             width=self.panel_width * 0.87,
@@ -298,7 +325,6 @@ class Frost2013(ApixabanSimulationExperiment):
         plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
 
         for group in self.food_study:
-
             for k, sid in enumerate(self.info_fig1.keys()):
                 name = self.info_fig1[sid]
 
@@ -321,14 +347,13 @@ class Frost2013(ApixabanSimulationExperiment):
                     color=self.colors[group],
                 )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
-    # food study pharmacokinetics plot
-    def figure_pk2(self) -> Dict[str, Figure]:
-
+    def figure_pk2(self) -> dict[str, Figure]:
+        """Figure of the pharmacokinetics of the single dose study."""
         fig = Figure(
             experiment=self,
-            sid="Fig1B",
+            sid="Fig1A",
             name=self.__class__.__name__,
             height=self.panel_height,
             width=self.panel_width * 0.87,
@@ -337,10 +362,14 @@ class Frost2013(ApixabanSimulationExperiment):
             xaxis=Axis(self.label_time, unit=self.unit_time),
             legend=True,
         )
-        plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
+        # the legend would hide the terminal phase
+        fig.settings = {**fig.settings, "legend_position": "outside"}
+        # the doses span two orders of magnitude (log scale as in the paper)
+        plots[0].set_yaxis(
+            self.label_api_plasma, unit=self.unit_api, scale="log", min=1e-3
+        )
 
         for group in self.single_dose_study:
-
             for k, sid in enumerate(self.info_fig1.keys()):
                 name = self.info_fig1[sid]
 
@@ -349,7 +378,9 @@ class Frost2013(ApixabanSimulationExperiment):
                     task=f"task_{group}",
                     xid="time",
                     yid=sid,
-                    label=f"sim: {self.doses[group]}mg SOL" if group in self.solution_doses else f"sim: {self.doses[group]}mg PO",
+                    label=f"sim: {self.doses[group]}mg SOL"
+                    if group in self.solution_doses
+                    else f"sim: {self.doses[group]}mg PO",
                     color=self.colors[group],
                 )
                 # data
@@ -358,15 +389,16 @@ class Frost2013(ApixabanSimulationExperiment):
                     xid="time",
                     yid="mean",
                     count="count",
-                    label=f"exp: {self.doses[group]}mg SOL" if group in self.solution_doses else f"exp: {self.doses[group]}mg PO",
+                    label=f"exp: {self.doses[group]}mg SOL"
+                    if group in self.solution_doses
+                    else f"exp: {self.doses[group]}mg PO",
                     color=self.colors[group],
                 )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
-    # single dose pharmacodynamics plots
-    def figure_pd(self) -> Dict[str, Figure]:
-
+    def figure_pd(self) -> dict[str, Figure]:
+        """Figure of the pharmacodynamics of the single dose study."""
         fig = Figure(
             experiment=self,
             sid="Fig3",
@@ -377,15 +409,18 @@ class Frost2013(ApixabanSimulationExperiment):
             width=self.panel_width * 1.15 * 3 * 1.05,
         )
         plots = fig.create_plots(
-            xaxis=Axis(self.label_time, unit=self.unit_time, max=70,),
-            legend=True
+            xaxis=Axis(
+                self.label_time,
+                unit=self.unit_time,
+                max=70,
+            ),
+            legend=True,
         )
         plots[0].set_yaxis(self.labels["INR"], unit=self.units["INR"])
         plots[1].set_yaxis(self.labels["aPTT"], unit=self.units["aPTT"])
         plots[2].set_yaxis(self.labels["mPT"], unit=self.units["mPT"])
 
         for group in self.single_dose_study:
-
             for k, sid in enumerate(self.info_fig3.keys()):
                 name = self.info_fig3[sid]
 
@@ -394,7 +429,9 @@ class Frost2013(ApixabanSimulationExperiment):
                     task=f"task_{group}",
                     xid="time",
                     yid=sid,
-                    label=f"sim: {self.doses[group]}mg SOL" if group in self.solution_doses else f"sim: {self.doses[group]}mg PO",
+                    label=f"sim: {self.doses[group]}mg SOL"
+                    if group in self.solution_doses
+                    else f"sim: {self.doses[group]}mg PO",
                     color=self.colors[group],
                 )
                 # data
@@ -403,83 +440,52 @@ class Frost2013(ApixabanSimulationExperiment):
                     xid="time",
                     yid="mean",
                     count="count",
-                    label=f"exp: {self.doses[group]}mg SOL" if group in self.solution_doses else f"exp: {self.doses[group]}mg PO",
+                    label=f"exp: {self.doses[group]}mg SOL"
+                    if group in self.solution_doses
+                    else f"exp: {self.doses[group]}mg PO",
                     color=self.colors[group],
                 )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
 
-    # pharmacodynamics scatter plots relative change
-    def figure_scatter(self) -> Dict[str, Figure]:
-
-            fig = Figure(
-                experiment=self,
-                sid="Fig4",
-                name=self.__class__.__name__,
-                num_cols=3,
-                height=self.panel_height,
-                width=self.panel_width * 1.05 * 3,
+    def figure_scatter(self) -> dict[str, Figure]:
+        """Figure of the relative changes of the pharmacodynamics against apixaban."""
+        fig = Figure(
+            experiment=self,
+            sid="Fig4",
+            name=self.__class__.__name__,
+            num_cols=3,
+            height=self.panel_height,
+            width=self.panel_width * 1.05 * 3,
+        )
+        plots = fig.create_plots(
+            xaxis=Axis(self.label_api_plasma, unit=self.unit_api),
+            legend=True,
+        )
+        for k, (sid, name) in enumerate(self.info_fig4.items()):
+            plots[k].set_yaxis(self.labels[sid], unit=self.units[sid], scale="linear")
+            for group in self.single_dose_study:
+                form = "SOL" if group in self.solution_doses else "PO"
+                plots[k].add_data(
+                    task=f"task_{group}",
+                    xid="[Cve_api]",
+                    yid=sid,
+                    label=f"sim: {self.doses[group]}mg {form}",
+                    color=self.colors[group],
+                )
+            plots[k].add_data(
+                dataset=f"apixaban_vs_{name}",
+                xid="x",
+                yid="y",
+                label="exp individ",
+                color="white",
+                markeredgecolor="black",
+                marker="o",
+                linestyle="",
             )
-            plots = fig.create_plots(
-                xaxis=Axis(self.label_api_plasma, unit=self.unit_api),
-                legend=True,
-            )
-            plot_configs = [
-                (0, "mPT_relchange", self.labels["mPT_relchange"], "%", "_mPT", False),  # mPT plot
-                (1, "INR_relchange", self.labels["INR_relchange"], "%", "_inr", True),  # inr plot
-                (2, "aPTT_relchange", self.labels["aPTT_relchange"], "%", "_aPTT", False),  # aPTT plot
-            ]
 
-            for k, (sid, name) in enumerate(self.info_fig4.items()):
-                plots[k].set_yaxis(self.labels[sid], unit="%", scale="linear")
-                is_legend = True
-                for group in self.single_dose_study:
-                    # simulation
-                    plots[k].add_data(
-                        task=f"task_{group}",
-                        xid="[Cve_api]",
-                        yid=plot_configs[k][1],
-                        label="sim" if is_legend else "",
-                        color="black",
-                        linestyle="solid",
-                    )
-                    is_legend = False
-                for group in self.scatter_dose:
-                    if group not in self.doses:
-                        continue
-                    plots[k].add_data(
-                        task=f"task_{group}",
-                        xid="[Cve_api]",
-                        yid=sid,
-                        label="sim",
-                        color=self.colors.get(group, "white"),
-                        marker="x",
-                        linestyle="solid",
-                    )
+        return self.figures_by_sid(fig)
 
-                dset_candidates = [
-                    f"apixaban_vs_{name}",
-                    f"{name}",
-                    f"{self.sid}_Fig4_{name}",
-                ]
-
-                for dkey in dset_candidates:
-                    plots[k].add_data(
-                        dataset=dkey,
-                        xid="x",
-                        yid="y",
-                        label="exp individ",
-                        color="white",
-                        markeredgecolor="black",
-                        marker="o",
-                        linestyle="",
-                        # markersize=5.2,
-                    )
-                    break
-
-            return {fig.sid: fig}
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Frost2013.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Frost2013, output_dir=Frost2013.__name__)
+    MODEL.run_experiments(Frost2013, output_dir=Frost2013.__name__)

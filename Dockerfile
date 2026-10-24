@@ -1,14 +1,9 @@
-# Dockerfile for apixaban
-# -----------------------
-# Build and push image
-#   docker build -f Dockerfile -t matthiaskoenig/apixaban:0.6.0 -t matthiaskoenig/apixaban:latest .
-#   docker login
-#   docker push --all-tags matthiaskoenig/apixaban
+# The image is built and pushed by pkpd_release.
+
 FROM python:3.14-slim
 
 # install uv
-COPY --from=ghcr.io/astral-sh/uv:0.11.16 /uv /bin/uv
-ENV UV_SYSTEM_PYTHON=1
+COPY --from=ghcr.io/astral-sh/uv:0.13.4 /uv /bin/uv
 
 # install git
 RUN apt-get update && \
@@ -17,11 +12,12 @@ RUN apt-get update && \
 
 # copy code
 WORKDIR /code
-COPY .python-version /code/python-version.py
+COPY .python-version /code/.python-version
 COPY pyproject.toml /code/pyproject.toml
+COPY uv.lock /code/uv.lock
 COPY README.md /code/README.md
 COPY src /code/src
-COPY uv.lock /code/uv.lock
 
 # install package
-RUN uv pip install -e .
+RUN uv sync --locked --no-dev
+ENV PATH="/code/.venv/bin:$PATH"

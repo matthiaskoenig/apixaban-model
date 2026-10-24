@@ -1,47 +1,75 @@
 """Apixaban model factory."""
+
+import copy
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any
 
-from sbmlutils.converters import odefac
+from pkpdsim.licenses import License, write_license
+from pymetadata.omex import EntryFormat, ManifestEntry, Omex
+from sbmlode import OdeSystem
+from sbmlutils.comp import flatten_sbml
+from sbmlutils.factory import Model, create_model
 
-from pkdb_models.models.apixaban.models.model_kidney import model_kidney
-from pkdb_models.models.apixaban.models.model_liver import model_liver
-from pkdb_models.models.apixaban.models.model_intestine import model_intestine
+from pkdb_models.models.apixaban import MODEL_BASE_PATH
 from pkdb_models.models.apixaban.models.model_body import model_body
 from pkdb_models.models.apixaban.models.model_coagulation import model_coagulation
-
-from sbmlutils.comp import flatten_sbml
-from sbmlutils.console import console
-from sbmlutils.cytoscape import visualize_sbml
-from sbmlutils.factory import create_model
-from pymetadata.omex import *
+from pkdb_models.models.apixaban.models.model_intestine import model_intestine
+from pkdb_models.models.apixaban.models.model_kidney import model_kidney
+from pkdb_models.models.apixaban.models.model_liver import model_liver
 
 
-def create_models(
-    model_output_dir: Path, create_tissues: bool = True
-) -> Dict[str, Path]:
-    """Creates tissue and whole-body model."""
-    results: Dict[str, Dict[str, Any]] = {
+def coagulation_of_body() -> Model:
+    """Get the coagulation model which is merged into the whole-body model.
+
+    The coagulation model on its own has the apixaban concentration in plasma
+    `Cve_api` in its plasma compartment `Vplasma`; the merged model takes the
+    concentration from the whole-body model, the compartment is not used. The
+    model is a copy, `model_coagulation` keeps them.
+    """
+    coagulation = copy.copy(model_coagulation)
+    coagulation.species = [s for s in model_coagulation.species if s.sid != "Cve_api"]
+    coagulation.compartments = [
+        c for c in model_coagulation.compartments if c.sid != "Vplasma"
+    ]
+    return coagulation
+
+
+def create_apixaban_models(model_output_dir: Path) -> dict[str, dict[str, Any]]:
+    """Create the tissue models and the whole-body model.
+
+    Args:
+        model_output_dir: directory of the models, the COMBINE archive and the
+            license texts are written into its parent.
+
+    Returns:
+        The files of the model with their entries in the COMBINE archive.
+    """
+    model_output_dir.mkdir(parents=True, exist_ok=True)
+    results: dict[str, dict[str, Any]] = {
         "README": {
             "path": MODEL_BASE_PATH.parent / "README.md",
             "entry": ManifestEntry(
-                location=f"./README.md",
+                location="./README.md",
                 format=EntryFormat.MARKDOWN,
                 master=False,
             ),
         },
         "cc-by": {
-            "path": MODEL_BASE_PATH.parent / "cc-by-sa-4.0.txt",
+            "path": write_license(model_output_dir.parent, License.CC_BY_SA_4_0),
             "entry": ManifestEntry(
-                location=f"./cc-by-sa-4.0.txt",
+                location="./cc-by-sa-4.0.txt",
                 format=EntryFormat.TXT,
                 master=False,
             ),
         },
         "mit": {
-            "path": MODEL_BASE_PATH.parent / "mit.txt",
+            "path": write_license(
+                model_output_dir.parent,
+                License.MIT,
+                copyright="2025-2026 Matthias König",
+            ),
             "entry": ManifestEntry(
-                location=f"./mit.txt",
+                location="./mit.txt",
                 format=EntryFormat.TXT,
                 master=False,
             ),
@@ -49,53 +77,49 @@ def create_models(
         "model_figure": {
             "path": MODEL_BASE_PATH.parent / "figures" / "apixaban_model.png",
             "entry": ManifestEntry(
-                location=f"./figures/apixaban_model.png",
+                location="./figures/apixaban_model.png",
                 format=EntryFormat.PNG,
                 master=False,
             ),
         },
     }
-    if create_tissues:
-        for model in [
-            model_kidney,
-            model_liver,
-            model_intestine,
-            model_coagulation,
-            [model_coagulation, model_body],
-        ]:
-            if not isinstance(model, list):
-                model = [model]
-            else:
-                # replace in the combined model
-                model_coagulation.species = [s for s in model_coagulation.species if s.sid != "Cve_api"]
-                model_coagulation.parameters = [p for p in model_coagulation.parameters if p.sid != "fu_api"]
+    for models in [
+        [model_kidney],
+        [model_liver],
+        [model_intestine],
+        [model_coagulation],
+        # the whole-body model with the coagulation model merged into it
+        [coagulation_of_body(), model_body],
+    ]:
+        sid = models[-1].sid
+        factory_results = create_model(
+            model=models,
+            filepath=model_output_dir / f"{sid}.xml",
+            sbml_level=3,
+            sbml_version=2,
+        )
+        sbml_path = factory_results.sbml_path
+        results[sid] = {
+            "path": sbml_path,
+            "entry": ManifestEntry(
+                location=f"./models/{sbml_path.name}",
+                format=EntryFormat.SBML_L3V2,
+                master=False,
+            ),
+        }
 
-            factory_results = create_model(
-                model=model,
-                filepath=model_output_dir / f"{model[-1].sid}.xml", sbml_level=3, sbml_version=2
-            )
-            sbml_path = factory_results.sbml_path
-            results[model[-1].sid] = {
-                "path": sbml_path,
-                "entry": ManifestEntry(
-                    location=f"./models/{sbml_path.name}",
-                    format=EntryFormat.SBML_L3V2,
-                    master=False,
-                ),
-            }
-
-            # create differential equations
-            md_path = model_output_dir / f"{model[-1].sid}.md"
-            ode_factory = odefac.SBML2ODE.from_file(sbml_file=sbml_path)
-            ode_factory.to_markdown(md_file=md_path)
-            results[f"{model[-1].sid}_md"] = {
-                "path": md_path,
-                "entry": ManifestEntry(
-                    location=f"./models/{md_path.name}",
-                    format=EntryFormat.MARKDOWN,
-                    master=False,
-                ),
-            }
+        # create differential equations
+        md_path = model_output_dir / f"{sid}.md"
+        ode_system = OdeSystem.from_sbml(sbml_path)
+        ode_system.write(md_path)
+        results[f"{sid}_md"] = {
+            "path": md_path,
+            "entry": ManifestEntry(
+                location=f"./models/{md_path.name}",
+                format=EntryFormat.MARKDOWN,
+                master=False,
+            ),
+        }
 
     # create whole-body model
     sbml_path = results["apixaban_body"]["path"]
@@ -113,9 +137,9 @@ def create_models(
 
     # create differential equations
     md_path = model_output_dir / f"{model_body.sid}_flat.md"
-    ode_factory = odefac.SBML2ODE.from_file(sbml_file=sbml_path_flat)
-    ode_factory.to_markdown(md_file=md_path)
-    results[f"{model[-1].sid}_flat_md"] = {
+    ode_system = OdeSystem.from_sbml(sbml_path_flat)
+    ode_system.write(md_path)
+    results[f"{model_body.sid}_flat_md"] = {
         "path": md_path,
         "entry": ManifestEntry(
             location=f"./models/{md_path.name}",
@@ -130,21 +154,9 @@ def create_models(
         omex.add_entry(entry_path=info["path"], entry=info["entry"])
     omex.to_omex(omex_path=model_output_dir.parent / "apixaban_model.omex")
 
-    console.print(omex.manifest.model_dump())
-
     return results
 
 
 if __name__ == "__main__":
-    from pkdb_models.models.apixaban import MODEL_BASE_PATH
-    results = create_models(model_output_dir=MODEL_BASE_PATH, create_tissues=True)
-
-    # visualize_sbml(sbml_path=fac_result.sbml_path)
-    for k, key in enumerate(results):
-        info = results[key]
-        path: Path = info["path"]
-        if path.suffix != ".xml":
-            continue
-
-        console.print(path)
-        visualize_sbml(sbml_path=path, delete_session=(k == 0))
+    # create the models
+    create_apixaban_models(MODEL_BASE_PATH)

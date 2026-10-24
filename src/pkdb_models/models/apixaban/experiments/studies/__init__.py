@@ -1,3 +1,5 @@
+"""Simulation experiments of the clinical studies, one module per publication."""
+
 from .abdollahizad2025 import Abdollahizad2025
 from .bashir2018 import Bashir2018
 from .chang2016 import Chang2016
@@ -33,3 +35,41 @@ from .vakkalagadda2016 import Vakkalagadda2016
 from .vandenbosch2021 import VandenBosch2021
 from .wang2014 import Wang2014
 from .wang2016 import Wang2016
+
+__all__ = [
+    "Abdollahizad2025",
+    "Bashir2018",
+    "Chang2016",
+    "Cui2013",
+    "Frost2013",
+    "Frost2013a",
+    "Frost2014",
+    "Frost2014a",
+    "Frost2015",
+    "Frost2015a",
+    "Frost2015b",
+    "Frost2017",
+    "Frost2018",
+    "Frost2021",
+    "Frost2021a",
+    "Garonzik2019",
+    "Jeong2019",
+    "Kreutz2017",
+    "Lenard2024",
+    "Lenard2025",
+    "Leong2024",
+    "Metze2021",
+    "Mikus2019",
+    "Raghavan2009",
+    "Rohr2024",
+    "Shaikh2021",
+    "Song2015",
+    "Song2016",
+    "Tirona2018",
+    "Upreti2013",
+    "Upreti2013a",
+    "Vakkalagadda2016",
+    "VandenBosch2021",
+    "Wang2014",
+    "Wang2016",
+]

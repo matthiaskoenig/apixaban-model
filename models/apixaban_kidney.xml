@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" level="3" version="2" comp:required="true">
+<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" xmlns:distrib="http://www.sbml.org/sbml/level3/version1/distrib/version1" level="3" version="2" comp:required="true" distrib:required="true">
   <notes>
     <body xmlns="http://www.w3.org/1999/xhtml">
       <p>Created with <a href="https://github.com/matthiaskoenig/sbmlutils">https://github.com/matthiaskoenig/sbmlutils</a>.
@@ -10,14 +10,18 @@
   <model metaid="meta_apixaban_kidney" id="apixaban_kidney" name="Model for renal apixaban excretion." substanceUnits="mmole" timeUnits="min" volumeUnits="litre" areaUnits="m2" lengthUnits="metre" extentUnits="mmole">
     <notes>
       <body xmlns="http://www.w3.org/1999/xhtml">
-        <p>Model for renal excretion of apixaban:</p>
+        <p>Model for the renal excretion of apixaban and its metabolites M1 and M7.</p>
+        <p>The renal clearances are given relative to the glomerular filtration rate
+(GFR), which scales with the renal function; the GFR does not depend on the
+body weight (Upreti2013: the renal clearance was similar across the groups
+of body weight).</p>
         <p>The content of this model has been carefully created in a manual research effort.</p>
         <h2>Terms of use</h2>
-        <p>Copyright © 2026 <a href="None" title="Mariia Myshkina" target="_blank">Mariia Myshkina</a>.</p>
-        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-          <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+        <p>Copyright © 2026 <a href="https://livermetabolism.com" title="Matthias König" target="_blank">Matthias König</a>.</p>
+        <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+          <img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png"/>
         </a>
-        <br/>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+        <br/>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 <p>Redistribution and use of any part of this model, with or without modification, are permitted provided
 that the following conditions are met:</p>
         <ul>
@@ -52,8 +56,8 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
               </rdf:li>
               <rdf:li rdf:parseType="Resource">
                 <vCard4:hasName rdf:parseType="Resource">
-                  <vCard4:family-name>Linh</vCard4:family-name>
-                  <vCard4:given-name>Chang</vCard4:given-name>
+                  <vCard4:family-name>Chang</vCard4:family-name>
+                  <vCard4:given-name>Linh</vCard4:given-name>
                 </vCard4:hasName>
                 <vCard4:hasEmail>changlin@student.hu-berlin.de</vCard4:hasEmail>
                 <vCard4:organization-name>Humboldt-Universität zu Berlin</vCard4:organization-name>
@@ -68,7 +72,7 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
               </rdf:li>
               <rdf:li rdf:parseType="Resource">
                 <vCard4:hasName rdf:parseType="Resource">
-                  <vCard4:family-name>Baton</vCard4:family-name>
+                  <vCard4:family-name>Badon</vCard4:family-name>
                   <vCard4:given-name>Shelee</vCard4:given-name>
                 </vCard4:hasName>
                 <vCard4:hasEmail>sheleepab97@zedat.fu-berlin.de</vCard4:hasEmail>
@@ -88,43 +92,43 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
                   <vCard4:given-name>Matthias</vCard4:given-name>
                 </vCard4:hasName>
                 <vCard4:hasEmail>koenigmx@hu-berlin.de</vCard4:hasEmail>
-                <vCard4:organization-name>Humboldt-Universität zu Berlin, Faculty of Life Sciences, Department of Biology, Institute of Theoretical Biology, Systems Medicine of the Liver; University of Stuttgart, Institute of Structural Mechanics and Dynamics in Aerospace Engineering</vCard4:organization-name>
+                <vCard4:organization-name>Humboldt-University Berlin, Faculty of Life Science, Institute for Biology, Biology, Berlin; University Lübeck; University Hospital Schleswig-Holstein, Campus Lübeck, First Department of Medicine, Germany</vCard4:organization-name>
               </rdf:li>
             </rdf:Bag>
           </dcterms:creator>
           <dcterms:created rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-04-30T16:32:35Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-10-24T14:26:00Z</dcterms:W3CDTF>
           </dcterms:created>
           <dcterms:modified rdf:parseType="Resource">
-            <dcterms:W3CDTF>2026-04-30T16:32:35Z</dcterms:W3CDTF>
+            <dcterms:W3CDTF>2026-10-24T14:26:00Z</dcterms:W3CDTF>
           </dcterms:modified>
           <bqbiol:hasTaxon>
             <rdf:Bag>
-              <rdf:li rdf:resource="https://identifiers.org/taxonomy/9606"/>
-              <rdf:li rdf:resource="https://identifiers.org/snomedct/337915000"/>
+              <rdf:li rdf:resource="https://identifiers.org/taxonomy:9606"/>
+              <rdf:li rdf:resource="https://identifiers.org/snomedct:337915000"/>
             </rdf:Bag>
           </bqbiol:hasTaxon>
           <bqbiol:hasProperty>
             <rdf:Bag>
-              <rdf:li rdf:resource="https://identifiers.org/mamo/MAMO_0000046"/>
-              <rdf:li rdf:resource="https://identifiers.org/ncit/C61308"/>
-              <rdf:li rdf:resource="https://identifiers.org/ncit/C180619"/>
-              <rdf:li rdf:resource="https://identifiers.org/ncit/C15299"/>
-              <rdf:li rdf:resource="https://identifiers.org/ncit/C15720"/>
+              <rdf:li rdf:resource="https://identifiers.org/mamo:MAMO_0000046"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C61308"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C180619"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C15299"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C15720"/>
               <rdf:li rdf:resource="https://identifiers.org/GO:0007596"/>
-              <rdf:li rdf:resource="https://identifiers.org/ncit/C79372"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C79372"/>
             </rdf:Bag>
           </bqbiol:hasProperty>
           <bqbiol:isDescribedBy>
             <rdf:Bag>
-              <rdf:li rdf:resource="https://identifiers.org/doi/10.5281/zenodo.13987865"/>
+              <rdf:li rdf:resource="https://identifiers.org/doi:10.5281/zenodo.18877904"/>
             </rdf:Bag>
           </bqbiol:isDescribedBy>
           <bqbiol:occursIn>
             <rdf:Bag>
               <rdf:li rdf:resource="https://identifiers.org/FMA:7203"/>
               <rdf:li rdf:resource="https://identifiers.org/BTO:0000671"/>
-              <rdf:li rdf:resource="https://identifiers.org/ncit/C12415"/>
+              <rdf:li rdf:resource="https://identifiers.org/ncit:C12415"/>
             </rdf:Bag>
           </bqbiol:occursIn>
         </rdf:Description>
@@ -143,6 +147,12 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
         </listOfUnits>
       </unitDefinition>
+      <unitDefinition id="l_per_ml" name="l/ml">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
       <unitDefinition id="m2" name="meter^2">
         <listOfUnits>
           <unit kind="metre" exponent="2" scale="0" multiplier="1"/>
@@ -157,12 +167,6 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
       <unitDefinition id="mg" name="mg">
         <listOfUnits>
           <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
-        </listOfUnits>
-      </unitDefinition>
-      <unitDefinition id="mg_per_g" name="mg/g">
-        <listOfUnits>
-          <unit kind="gram" exponent="1" scale="0" multiplier="0.001"/>
-          <unit kind="gram" exponent="-1" scale="0" multiplier="1"/>
         </listOfUnits>
       </unitDefinition>
       <unitDefinition id="mg_per_s_l" name="mg/s/l">
@@ -183,23 +187,10 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
         </listOfUnits>
       </unitDefinition>
-      <unitDefinition id="ml_per_l" name="ml/l">
-        <listOfUnits>
-          <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
-          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
-        </listOfUnits>
-      </unitDefinition>
       <unitDefinition id="ml_per_min" name="ml/min">
         <listOfUnits>
           <unit kind="litre" exponent="1" scale="0" multiplier="0.001"/>
           <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
-        </listOfUnits>
-      </unitDefinition>
-      <unitDefinition id="ml_per_min_bsa" name="ml/min/(1.73 * m^2)">
-        <listOfUnits>
-          <unit kind="litre" exponent="1" scale="0" multiplier="0.000578034682080925"/>
-          <unit kind="second" exponent="-1" scale="0" multiplier="60"/>
-          <unit kind="metre" exponent="-2" scale="0" multiplier="1"/>
         </listOfUnits>
       </unitDefinition>
       <unitDefinition id="mmole" name="mmole">
@@ -232,14 +223,13 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
       </unitDefinition>
     </listOfUnitDefinitions>
     <listOfCompartments>
-      <compartment metaid="meta_Vext" sboTerm="SBO:0000290" id="Vext" name="plasma" spatialDimensions="3" size="1.5" units="litre" constant="true">
+      <compartment metaid="meta_Vext" sboTerm="SBO:0000290" id="Vext" name="plasma" size="1.5" units="litre" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Vext">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13356"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13356"/>
                   <rdf:li rdf:resource="https://identifiers.org/BTO:0000131"/>
                 </rdf:Bag>
               </bqbiol:is>
@@ -247,31 +237,14 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
           </rdf:RDF>
         </annotation>
       </compartment>
-      <compartment metaid="meta_Vki" sboTerm="SBO:0000290" id="Vki" name="kidney" spatialDimensions="3" size="0.3" units="litre" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_Vki">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
-                  <rdf:li rdf:resource="https://identifiers.org/FMA:7203"/>
-                  <rdf:li rdf:resource="https://identifiers.org/BTO:0000671"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C12415"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </compartment>
-      <compartment metaid="meta_Vurine" sboTerm="SBO:0000290" id="Vurine" name="urine" spatialDimensions="3" size="1" units="litre" constant="true">
+      <compartment metaid="meta_Vurine" sboTerm="SBO:0000290" id="Vurine" name="urine" size="1" units="litre" constant="true">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_Vurine">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000290"/>
                   <rdf:li rdf:resource="https://identifiers.org/FMA:12274"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C13283"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C13283"/>
                   <rdf:li rdf:resource="https://identifiers.org/BTO:0001419"/>
                 </rdf:Bag>
               </bqbiol:is>
@@ -281,301 +254,276 @@ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p></bo
       </compartment>
     </listOfCompartments>
     <listOfSpecies>
-      <species metaid="meta_api_ext" sboTerm="SBO:0000247" id="api_ext" name="apixaban (plasma)" compartment="Vext" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+      <species metaid="meta_api_ext" sboTerm="SBO:0000247" id="api_ext" name="apixaban (api_ext)" compartment="Vext" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_api_ext">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:QNZCBYKSOIHPEH-UHFFFAOYSA-N"/>
                   <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
-                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/10182969"/>
-                  <rdf:li rdf:resource="https://identifiers.org/inchikey/QNZCBYKSOIHPEH-UHFFFAOYSA-N"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C61308"/>
-                  <rdf:li rdf:resource="https://identifiers.org/snomedct/698090000"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C61308"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:698090000"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </species>
-      <species metaid="meta_api_urine" sboTerm="SBO:0000247" id="api_urine" name="apixaban (urine)" compartment="Vurine" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+      <species metaid="meta_api_urine" sboTerm="SBO:0000247" id="api_urine" name="apixaban (api_urine)" compartment="Vurine" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_api_urine">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:QNZCBYKSOIHPEH-UHFFFAOYSA-N"/>
                   <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
-                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/10182969"/>
-                  <rdf:li rdf:resource="https://identifiers.org/inchikey/QNZCBYKSOIHPEH-UHFFFAOYSA-N"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C61308"/>
-                  <rdf:li rdf:resource="https://identifiers.org/snomedct/698090000"/>
+                  <rdf:li rdf:resource="https://identifiers.org/ncit:C61308"/>
+                  <rdf:li rdf:resource="https://identifiers.org/snomedct:698090000"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </species>
-      <species metaid="meta_m1_ext" sboTerm="SBO:0000247" id="m1_ext" name="M1 (plasma)" compartment="Vext" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+      <species metaid="meta_m1_ext" sboTerm="SBO:0000247" id="m1_ext" name="M1 (m1_ext)" compartment="Vext" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_m1_ext">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
-                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/91667715"/>
-                  <rdf:li rdf:resource="https://identifiers.org/inchikey/HRIFVOGTDGFZKP-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:91667715"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:HRIFVOGTDGFZKP-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:760768"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </species>
-      <species metaid="meta_m1_urine" sboTerm="SBO:0000247" id="m1_urine" name="M1 (urine)" compartment="Vurine" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+      <species metaid="meta_m1_urine" sboTerm="SBO:0000247" id="m1_urine" name="M1 (m1_urine)" compartment="Vurine" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_m1_urine">
               <bqbiol:is>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
-                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound/91667715"/>
-                  <rdf:li rdf:resource="https://identifiers.org/inchikey/HRIFVOGTDGFZKP-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:91667715"/>
+                  <rdf:li rdf:resource="https://identifiers.org/inchikey:HRIFVOGTDGFZKP-UHFFFAOYSA-N"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:760768"/>
                 </rdf:Bag>
               </bqbiol:is>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </species>
-      <species metaid="meta_m7_ext" sboTerm="SBO:0000247" id="m7_ext" name="M7 (plasma)" compartment="Vext" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+      <species metaid="meta_m7_ext" sboTerm="SBO:0000247" id="m7_ext" name="M7 (m7_ext)" compartment="Vext" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_m7_ext">
-              <bqbiol:is>
+              <bqbiol:isVersionOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
                 </rdf:Bag>
-              </bqbiol:is>
+              </bqbiol:isVersionOf>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </species>
-      <species metaid="meta_m7_urine" sboTerm="SBO:0000247" id="m7_urine" name="M7 (urine)" compartment="Vurine" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+      <species metaid="meta_m7_urine" sboTerm="SBO:0000247" id="m7_urine" name="M7 (m7_urine)" compartment="Vurine" initialConcentration="0" substanceUnits="mmole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#meta_m7_urine">
-              <bqbiol:is>
+              <bqbiol:isVersionOf>
                 <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000247"/>
+                  <rdf:li rdf:resource="https://identifiers.org/pubchem.compound:10182969"/>
+                  <rdf:li rdf:resource="https://identifiers.org/CHEBI:72296"/>
                 </rdf:Bag>
-              </bqbiol:is>
+              </bqbiol:isVersionOf>
             </rdf:Description>
           </rdf:RDF>
         </annotation>
       </species>
     </listOfSpecies>
     <listOfParameters>
-      <parameter metaid="meta_BSA" sboTerm="SBO:0000002" id="BSA" name="body surface area [m^2]" value="1.73" units="m2" constant="false">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_BSA">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_f_renal_function" sboTerm="SBO:0000009" id="f_renal_function" name="parameter for renal function" value="1" units="dimensionless" constant="true">
+      <parameter sboTerm="SBO:0000002" id="f_renal_function" name="renal function" value="1" units="dimensionless" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>scaling factor for renal function. 1.0: normal renal function;
-&lt;1.0: reduced renal function</p>
+            <blockquote>
+              <p>1.0: increased kidney function
+1.0: normal kidney function (healthy control)
+&lt;1.0: decreased kidney function</p>
+            </blockquote>
+            <p>Renal function relative to the healthy glomerular filtration rate
+GFR_base of 101 ml/min; a measured creatinine clearance of X ml/min
+is the renal function X/101 (<code>pkpdsim.impairment.RENAL_FUNCTION_GFR</code>).</p>
           </body>
         </notes>
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_f_renal_function">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
       </parameter>
-      <parameter metaid="meta_egfr" sboTerm="SBO:0000002" id="egfr" name="estimated GFR [ml/min/(1.73 m^2)]" value="NaN" units="ml_per_min_bsa" constant="false">
+      <parameter sboTerm="SBO:0000002" id="GFR_base" name="glomerular filtration rate (healthy)" value="101" units="ml_per_min" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>A laboratory test that estimates kidney function. It is calculated using an individual&apos;s
-serum creatinine measurement, age, gender, and race.</p>
+            <p>The GFR of healthy kidneys, independent of the body weight; the GFR
+is <code>f_renal_function</code> times this rate.</p>
           </body>
         </notes>
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_egfr">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
-                  <rdf:li rdf:resource="https://identifiers.org/ncit/C110935"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
       </parameter>
-      <parameter metaid="meta_crcl" sboTerm="SBO:0000002" id="crcl" name="creatinine clearance [ml/min]" value="NaN" units="ml_per_min" constant="false">
+      <parameter sboTerm="SBO:0000002" id="fu_api" name="fraction unbound in plasma apixaban" value="0.131" units="dimensionless" constant="true"/>
+      <parameter sboTerm="SBO:0000009" id="APIEX_f" name="renal clearance of unbound apixaban relative to the GFR" value="1.01497104264872" units="dimensionless" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>The clearance rate of creatinine, that is, the volume of plasma that is cleared of creatinine
-by the kidneys per unit time. Creatinine clearance is calculated using the level of creatinine in a
-sample of urine, usually one collected over a period of 24 hours, the corresponding plasma creatinine
-level, and the volume of urine excreted. It is used as an approximation of the glomerular
-filtration rate (GFR).</p>
+            <p>The renal clearance of apixaban is APIEX_f times the filtration of
+its unbound fraction, fu_api * GFR: 1 is filtration alone, above 1 a
+net secretion, below 1 a net reabsorption. Renal clearance 0.93 l/h
+(Frost2021): 0.93 l/h / (0.131 * 6.06 l/h) = 1.17.</p>
           </body>
         </notes>
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_crcl">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
-                  <rdf:li rdf:resource="CMO:0000765"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PK_20261017_103232__85dfa">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>KI__APIEX_f</code> is the result of the fit <code>PK_20261017_103232__85dfa</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PK_20261017_103232__85dfa</code> |
+| record | <code>PK_20261017_103232__85dfa/</code> |
+| cost | 137.924 |
+| data points | 930 |
+| value | 1.01497 dimensionless |
+| bounds | [0.3, 3] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [0.907591, 1.13011] |
+| Fisher confidence interval | [0.957175, 1.07626] |
+| distribution of the draws | <code>lognormal(0.014860082676650297, 0.05593920863470407, 0.3, 3.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="dimensionless" distrib:type="confidenceInterval" distrib:valueLower="0.907591083173301" distrib:valueUpper="1.13011151958045"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.0303211313455614" distrib:units="dimensionless" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <cn> 0.0148600826766503 </cn>
+                  <cn> 0.0559392086347041 </cn>
+                  <cn> 0.3 </cn>
+                  <cn> 3 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
       </parameter>
-      <parameter metaid="meta_egfr_healthy" sboTerm="SBO:0000002" id="egfr_healthy" name="estimated glomerular filtration (eGFR) rate healthy" value="100" units="ml_per_min_bsa" constant="true">
+      <parameter sboTerm="SBO:0000009" id="M1EX_f" name="renal clearance of M1 relative to the GFR" value="0.0459801360234629" units="dimensionless" constant="true">
         <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>eGFR is often estimated via creatinine clearance, creatinine urinary amount,
-or creatinine plasma amounts.</p>
-            <pre>
-              <code>    CKD-EPI Creatinine Equation (2021): This is the most recent and recommended equation for
-    estimating GFR35. It is more accurate than previous formulas and does not include
-    race as a variable.
-
-    MDRD (Modification of Diet in Renal Disease) Study Equation
-</code>
-            </pre>
+            <p>The fraction unbound of M1 is not known, it is part of the factor.</p>
           </body>
         </notes>
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_egfr_healthy">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PK_20261017_103232__85dfa">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>KI__M1EX_f</code> is the result of the fit <code>PK_20261017_103232__85dfa</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PK_20261017_103232__85dfa</code> |
+| record | <code>PK_20261017_103232__85dfa/</code> |
+| cost | 137.924 |
+| data points | 930 |
+| value | 0.0459801 dimensionless |
+| bounds | [0.01, 10] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | identifiable |
+| 95 % confidence interval | [0.0323971, 0.0609506] |
+| Fisher confidence interval | [0.0388302, 0.0544466] |
+| distribution of the draws | <code>lognormal(-3.079545801333451, 0.16122596409709297, 0.01, 10.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="dimensionless" distrib:type="confidenceInterval" distrib:valueLower="0.0323971223003015" distrib:valueUpper="0.0609506040809201"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.00395971280362579" distrib:units="dimensionless" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 3.07954580133345 </cn>
+                  </apply>
+                  <cn> 0.161225964097093 </cn>
+                  <cn> 0.01 </cn>
+                  <cn> 10 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
       </parameter>
-      <parameter metaid="meta_fu_api" sboTerm="SBO:0000002" id="fu_api" name="fraction unbound in plasma api" value="0.131" units="dimensionless" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_fu_api">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000002"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
+      <parameter sboTerm="SBO:0000009" id="M7EX_f" name="renal clearance of M7 relative to the GFR" value="0.0141866056661887" units="dimensionless" constant="true">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+            <p>The fraction unbound of M7 is not known, it is part of the factor.</p>
+          </body>
+        </notes>
+        <distrib:listOfUncertainties>
+          <distrib:uncertainty distrib:name="fit PK_20261017_103232__85dfa">
+            <notes>
+              <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>The value of <code>KI__M7EX_f</code> is the result of the fit <code>PK_20261017_103232__85dfa</code>, its uncertainty is the profile likelihood of the fit.</p>
+                <p>| | |
+|---|---|
+| fit | <code>PK_20261017_103232__85dfa</code> |
+| record | <code>PK_20261017_103232__85dfa/</code> |
+| cost | 137.924 |
+| data points | 930 |
+| value | 0.0141866 dimensionless |
+| bounds | [0.01, 10] |
+| scale | LOG10 |
+| method | profile likelihood |
+| identifiability | non_identifiable_lower |
+| 95 % confidence interval | [0.01, 0.0244826] (open sides at the bounds) |
+| Fisher confidence interval | [0.0107446, 0.0187312] |
+| distribution of the draws | <code>lognormal(-4.255457022471821, 0.2784062037329892, 0.01, 10.0)</code> |</p>
+              </body>
+            </notes>
+            <distrib:uncertSpan distrib:name="95 % confidence interval (profile likelihood)" distrib:units="dimensionless" distrib:type="confidenceInterval" distrib:valueLower="0.01" distrib:valueUpper="0.0244826422997223"/>
+            <distrib:uncertParameter distrib:name="standard error (Fisher information)" distrib:value="0.00200876824071567" distrib:units="dimensionless" distrib:type="standardError"/>
+            <distrib:uncertParameter distrib:name="distribution of the draws" distrib:type="distribution">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/distrib/lognormal"> lognormal </csymbol>
+                  <apply>
+                    <minus/>
+                    <cn> 4.25545702247182 </cn>
+                  </apply>
+                  <cn> 0.278406203732989 </cn>
+                  <cn> 0.01 </cn>
+                  <cn> 10 </cn>
+                </apply>
+              </math>
+            </distrib:uncertParameter>
+          </distrib:uncertainty>
+        </distrib:listOfUncertainties>
       </parameter>
-      <parameter metaid="meta_APIEX_k" sboTerm="SBO:0000009" id="APIEX_k" name="rate of apixaban urinary excretion" value="0.251372984911962" units="per_min" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_APIEX_k">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_M1EX_k" sboTerm="SBO:0000009" id="M1EX_k" name="rate of M1 urinary excretion" value="0.0222855668822286" units="per_min" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_M1EX_k">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
-      <parameter metaid="meta_M7EX_k" sboTerm="SBO:0000009" id="M7EX_k" name="rate of M7 urinary excretion" value="0.00855041972822605" units="per_min" constant="true">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_M7EX_k">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000009"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </parameter>
+      <parameter id="GFR" name="glomerular filtration rate" units="ml_per_min" constant="false"/>
     </listOfParameters>
     <listOfRules>
-      <assignmentRule name="estimated eGFR" variable="egfr">
+      <assignmentRule name="glomerular filtration rate" variable="GFR">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
             <ci> f_renal_function </ci>
-            <ci> egfr_healthy </ci>
-          </apply>
-        </math>
-      </assignmentRule>
-      <assignmentRule name="creatinine clearance" variable="crcl">
-        <notes>
-          <body xmlns="http://www.w3.org/1999/xhtml">
-            <p>CrCl typically overestimates GFR by 10-20% due to the active secretionof creatinine in the proximal tubules.Using a 10 % overestimation in the model.</p>
-          </body>
-        </notes>
-        <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
-          <apply>
-            <times/>
-            <apply>
-              <divide/>
-              <apply>
-                <times/>
-                <ci> egfr </ci>
-                <ci> BSA </ci>
-              </apply>
-              <cn sbml:units="dimensionless"> 1.73 </cn>
-            </apply>
-            <cn sbml:units="dimensionless"> 1.1 </cn>
+            <ci> GFR_base </ci>
           </apply>
         </math>
       </assignmentRule>
     </listOfRules>
     <listOfReactions>
-      <reaction metaid="meta_APIEX" sboTerm="SBO:0000655" id="APIEX" name="apixaban excretion (APIEX)" reversible="false" compartment="Vki">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_APIEX">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
+      <reaction sboTerm="SBO:0000655" id="APIEX" name="excretion apixaban (APIEX)" reversible="false">
         <listOfReactants>
           <speciesReference species="api_ext" stoichiometry="1" constant="true"/>
         </listOfReactants>
@@ -583,30 +531,19 @@ or creatinine plasma amounts.</p>
           <speciesReference species="api_urine" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
             <apply>
               <times/>
-              <ci> f_renal_function </ci>
-              <ci> Vki </ci>
-              <ci> APIEX_k </ci>
-              <ci> api_ext </ci>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
               <ci> fu_api </ci>
+              <ci> APIEX_f </ci>
+              <ci> api_ext </ci>
             </apply>
           </math>
         </kineticLaw>
       </reaction>
-      <reaction metaid="meta_M1EX" sboTerm="SBO:0000655" id="M1EX" name="M1 excretion (M1EX)" reversible="false" compartment="Vki">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_M1EX">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
+      <reaction sboTerm="SBO:0000655" id="M1EX" name="excretion M1 (M1EX)" reversible="false">
         <listOfReactants>
           <speciesReference species="m1_ext" stoichiometry="1" constant="true"/>
         </listOfReactants>
@@ -614,29 +551,18 @@ or creatinine plasma amounts.</p>
           <speciesReference species="m1_urine" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
             <apply>
               <times/>
-              <ci> f_renal_function </ci>
-              <ci> Vki </ci>
-              <ci> M1EX_k </ci>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+              <ci> M1EX_f </ci>
               <ci> m1_ext </ci>
             </apply>
           </math>
         </kineticLaw>
       </reaction>
-      <reaction metaid="meta_M7EX" sboTerm="SBO:0000655" id="M7EX" name="M7 excretion (M7EX)" reversible="false" compartment="Vki">
-        <annotation>
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:vCard4="http://www.w3.org/2006/vcard/ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-            <rdf:Description rdf:about="#meta_M7EX">
-              <bqbiol:is>
-                <rdf:Bag>
-                  <rdf:li rdf:resource="https://identifiers.org/SBO:0000655"/>
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
+      <reaction sboTerm="SBO:0000655" id="M7EX" name="excretion M7 (M7EX)" reversible="false">
         <listOfReactants>
           <speciesReference species="m7_ext" stoichiometry="1" constant="true"/>
         </listOfReactants>
@@ -644,12 +570,12 @@ or creatinine plasma amounts.</p>
           <speciesReference species="m7_urine" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:sbml="http://www.sbml.org/sbml/level3/version2/core">
             <apply>
               <times/>
-              <ci> f_renal_function </ci>
-              <ci> Vki </ci>
-              <ci> M7EX_k </ci>
+              <ci> GFR </ci>
+              <cn sbml:units="l_per_ml"> 0.001 </cn>
+              <ci> M7EX_f </ci>
               <ci> m7_ext </ci>
             </apply>
           </math>
@@ -657,12 +583,8 @@ or creatinine plasma amounts.</p>
       </reaction>
     </listOfReactions>
     <comp:listOfPorts>
-      <comp:port metaid="BSA_port" sboTerm="SBO:0000599" comp:idRef="BSA" comp:id="BSA_port" comp:name="Port of BSA"/>
-      <comp:port metaid="egfr_port" sboTerm="SBO:0000599" comp:idRef="egfr" comp:id="egfr_port" comp:name="Port of egfr"/>
-      <comp:port metaid="crcl_port" sboTerm="SBO:0000599" comp:idRef="crcl" comp:id="crcl_port" comp:name="Port of crcl"/>
       <comp:port metaid="fu_api_port" sboTerm="SBO:0000599" comp:idRef="fu_api" comp:id="fu_api_port" comp:name="Port of fu_api"/>
       <comp:port metaid="Vext_port" sboTerm="SBO:0000599" comp:idRef="Vext" comp:id="Vext_port" comp:name="Port of Vext"/>
-      <comp:port metaid="Vki_port" sboTerm="SBO:0000599" comp:idRef="Vki" comp:id="Vki_port" comp:name="Port of Vki"/>
       <comp:port metaid="Vurine_port" sboTerm="SBO:0000599" comp:idRef="Vurine" comp:id="Vurine_port" comp:name="Port of Vurine"/>
       <comp:port metaid="api_ext_port" sboTerm="SBO:0000599" comp:idRef="api_ext" comp:id="api_ext_port" comp:name="Port of api_ext"/>
       <comp:port metaid="api_urine_port" sboTerm="SBO:0000599" comp:idRef="api_urine" comp:id="api_urine_port" comp:name="Port of api_urine"/>

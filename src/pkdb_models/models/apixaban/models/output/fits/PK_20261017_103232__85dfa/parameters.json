@@ -1,0 +1,41 @@
+{
+  "sets": [
+    {
+      "sid": "PK_20261017_103232__85dfa_0",
+      "values": {
+        "ftissue_api": 4.895315759055839,
+        "Kp_api": 1.3993873891556892,
+        "LI__API2M_k": 0.08758910810522018,
+        "KI__APIEX_f": 1.014971042648719,
+        "GU__APISEC_k": 0.4269313170336685,
+        "GU__APIABS_k": 0.01851643153310112,
+        "GU__SITRANS_k": 0.007351010341451766,
+        "GU__Ka_dis_api": 1.6298976674156418,
+        "GU__Ka_sol_api": 6.405812235190765,
+        "GU__PODOSE_50": 5.740959364533365,
+        "KI__M1EX_f": 0.045980136023462854,
+        "KI__M7EX_f": 0.014186605666188744,
+        "LI__MXEXBI_k": 0.0024510033010617873,
+        "LI__M22M1_k": 0.0004931944695645101
+      },
+      "units": {
+        "ftissue_api": "l/(min)",
+        "Kp_api": "dimensionless",
+        "LI__API2M_k": "1/(min)",
+        "KI__APIEX_f": "dimensionless",
+        "GU__APISEC_k": "l/(min)",
+        "GU__APIABS_k": "1/(min)",
+        "GU__SITRANS_k": "1/(min)",
+        "GU__Ka_dis_api": "1/(hr)",
+        "GU__Ka_sol_api": "1/(hr)",
+        "GU__PODOSE_50": "mg",
+        "KI__M1EX_f": "dimensionless",
+        "KI__M7EX_f": "dimensionless",
+        "LI__MXEXBI_k": "1/(min)",
+        "LI__M22M1_k": "1/(min)"
+      },
+      "cost": 137.92398616375942,
+      "provenance": "optimization 'PK_20261017_103232__85dfa', run '1'"
+    }
+  ]
+}

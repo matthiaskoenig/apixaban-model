@@ -1,177 +1,221 @@
-from typing import Dict
+"""Simulation experiment of the study Lenard2025."""
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from typing import ClassVar, override
 
-from pkdb_models.models import apixaban
-from pkdb_models.models.apixaban.experiments.base_experiment import (
-    ApixabanSimulationExperiment
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    DataType,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDData,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
 )
-from pkdb_models.models.apixaban.experiments.metadata import Tissue, Route, Dosing, ApplicationForm, Health, Health, \
-    Fasting, ApixabanMappingMetaData, Coadministration
-
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
 from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
+from sbmlsim.simulation import Simulation
 
-from pkdb_models.models.apixaban.helpers import run_experiments
+from pkdb_models.models.apixaban import MODEL
+from pkdb_models.models.apixaban.experiments.base_experiment import (
+    ApixabanSimulationExperiment,
+)
 
 
 class Lenard2025(ApixabanSimulationExperiment):
-    """Simulation experiment of Lenard2025."""
+    """Simulation experiment of Lenard2025.
 
-    markers ={
-        "API25, RIV25, EDO50_1": "s",
-        "API25, RIV25, EDO50, CAR": "s",
-        "API25, RIV25, EDO50_2": "^",
-        "API25, RIV25, EDO50, GAB": "s",
-        "API25, RIV25, EDO50_3": "*",
-        "API25, RIV25, EDO50, PRE": "s"
+    Interactions of carbamazepine, gabapentin and pregabalin with the factor Xa
+    inhibitors in three cohorts of healthy volunteers (12, 11 and 12 evaluated):
+    a microdosed cocktail of apixaban 25 µg, edoxaban 50 µg and rivaroxaban
+    25 µg as an oral solution (with midazolam 30 µg) at baseline and at the
+    steady state of the perpetrator. Fasting is not reported.
+    """
+
+    #: the cohorts: the figure of the data and the baseline and perpetrator arm
+    cohorts: ClassVar[dict[str, list[str]]] = {
+        "Fig2": ["API25, RIV25, EDO50_1", "API25, RIV25, EDO50, CAR"],
+        "Fig3": ["API25, RIV25, EDO50_2", "API25, RIV25, EDO50, GAB"],
+        "Fig4": ["API25, RIV25, EDO50_3", "API25, RIV25, EDO50, PRE"],
     }
-
-    colors = {
+    interventions: ClassVar[list[str]] = [
+        intervention for arms in cohorts.values() for intervention in arms
+    ]
+    markers: ClassVar[dict[str, str]] = {
+        "API25, RIV25, EDO50_1": "s",
+        "API25, RIV25, EDO50, CAR": "o",
+        "API25, RIV25, EDO50_2": "s",
+        "API25, RIV25, EDO50, GAB": "o",
+        "API25, RIV25, EDO50_3": "s",
+        "API25, RIV25, EDO50, PRE": "o",
+    }
+    colors: ClassVar[dict[str, str]] = {
         "API25, RIV25, EDO50_1": "black",
         "API25, RIV25, EDO50, CAR": "tab:pink",
         "API25, RIV25, EDO50_2": "black",
         "API25, RIV25, EDO50, GAB": "tab:orange",
         "API25, RIV25, EDO50_3": "black",
-        "API25, RIV25, EDO50, PRE": "tab:red"
+        "API25, RIV25, EDO50, PRE": "tab:red",
     }
-    labels = {
-        "API25, RIV25, EDO50_1": "DOACs",
-        "API25, RIV25, EDO50, CAR": "DOACs, car 300mg PO",
-        "API25, RIV25, EDO50_2": "DOACs",
-        "API25, RIV25, EDO50, GAB": "DOACs, gab 300mg PO",
-        "API25, RIV25, EDO50_3": "DOACs",
-        "API25, RIV25, EDO50, PRE": "DOACs, pre 300mg PO",
+    legend_labels: ClassVar[dict[str, str]] = {
+        "API25, RIV25, EDO50_1": "25µg SOL",
+        "API25, RIV25, EDO50, CAR": "25µg SOL + carbamazepine max 200mg BID",
+        "API25, RIV25, EDO50_2": "25µg SOL",
+        "API25, RIV25, EDO50, GAB": "25µg SOL + gabapentin 400mg TID",
+        "API25, RIV25, EDO50_3": "25µg SOL",
+        "API25, RIV25, EDO50, PRE": "25µg SOL + pregabalin 300mg BID",
+    }
+    coadministrations: ClassVar[dict[str, Coadministration]] = {
+        "API25, RIV25, EDO50_1": Coadministration.COCKTAIL,
+        "API25, RIV25, EDO50, CAR": Coadministration.CARBAMAZEPINE,
+        "API25, RIV25, EDO50_2": Coadministration.COCKTAIL,
+        "API25, RIV25, EDO50, GAB": Coadministration.GABAPENTIN,
+        "API25, RIV25, EDO50_3": Coadministration.COCKTAIL,
+        "API25, RIV25, EDO50, PRE": Coadministration.PREGABALIN,
+    }
+    #: The factors of the interactions are not fitted but set from the
+    #: literature; the arms are validation data.
+    #: Carbamazepine (titrated to max 200 mg b.i.d., 21 d) induces CYP3A4 and
+    #: P-gp; observed AUCinf x0.66 and Cmax x0.88 (geometric mean ratios,
+    #: Table 1). The factors give AUC x0.68 and Cmax x0.85 for the microdose
+    #: with the unfitted model.
+    #: Gabapentin (400 mg t.i.d., 13 d) and pregabalin (300 mg b.i.d., 21 d) are
+    #: neither metabolized by nor inhibit or induce CYP3A4 and P-gp; observed
+    #: AUCinf x0.93 and x0.98 (Tables 2 and 3), no factors.
+    interactions: ClassVar[dict[str, dict[str, float]]] = {
+        "API25, RIV25, EDO50_1": {},
+        "API25, RIV25, EDO50, CAR": {"LI__f_cyp3a4": 1.5, "GU__f_pgp": 1.8},
+        "API25, RIV25, EDO50_2": {},
+        "API25, RIV25, EDO50, GAB": {},
+        "API25, RIV25, EDO50_3": {},
+        "API25, RIV25, EDO50, PRE": {},
     }
 
-    interventions =  list(colors.keys())
-
+    #: apixaban microdose [mg]
     dose = 0.025
 
-    infos_pk = {
-        "[Cve_api]": "apixaban"
-    }
+    infos_pk: ClassVar[dict[str, str]] = {"[Cve_api]": "apixaban"}
 
-
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Fig2", "Fig3", "Fig4"]:
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
+        for fig_id in self.cohorts:
+            df = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
+                label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("apixaban"):
-                        dset.unit_conversion("mean", 1 / self.Mr.api)
-                dsets[label] = dset
+                    dset.unit_conversion("mean", 1 / self.Mr.api)
+                dsets[self.to_sid(label)] = dset
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
+    @override
+    def simulations(self) -> dict[str, Simulation]:
         tcsims = {}
         for intervention in self.interventions:
-            tcsims[f"{intervention}"] = TimecourseSim(
-                [Timecourse(
-                    start=0,
-                    end=50 * 60,  # [min]
-                    steps=500,
-                    changes={
-                        **self.default_changes(),
-                        "PODOSE_api": Q_(self.dose, "mg")
+            tcsims[self.to_sid(intervention)] = Simulation(
+                time_unit="hr",
+                end=50,
+                preinit_changes={
+                    **self.default_changes(),
+                    "SOLDOSE_api": Q(self.dose, "mg"),
+                    **{
+                        pid: Q(value, "dimensionless")
+                        for pid, value in self.interactions[intervention].items()
                     },
-                )])
+                },
+            )
         return tcsims
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
         for intervention in self.interventions:
-            # PK
-            for ks, sid in enumerate(self.infos_pk):
-                name = self.infos_pk[sid]
-                coadministration = Coadministration.RIVAROXABAN.EDOXABAN
-                if "CAR" in intervention:
-                    coadministration = Coadministration.CARBAMAZEPINE
-                elif "GAB" in intervention:
-                    coadministration = Coadministration.GABAPENTIN
-                elif "PRE" in intervention:
-                    coadministration = Coadministration.PREGABALIN
-                mappings[f"fm_{name}_{intervention}"] = FitMapping(
+            for sid, name in self.infos_pk.items():
+                mappings[self.to_sid(f"fm_{name}_{intervention}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
-                        dataset=f"{name}_{intervention}",
+                        dataset=self.to_sid(f"{name}_{intervention}"),
                         xid="time",
                         yid="mean",
                         yid_sd="mean_sd",
                         count="count",
                     ),
                     observable=FitData(
-                        self, task=f"task_{intervention}", xid="time", yid=sid,
+                        self,
+                        task=self.to_sid(f"task_{intervention}"),
+                        xid="time",
+                        yid=sid,
                     ),
-                    metadata= ApixabanMappingMetaData(
+                    metadata=PKPDMappingMetaData(
                         tissue=Tissue.PLASMA,
                         route=Route.PO,
-                        application_form=ApplicationForm.TABLET,
+                        application_form=ApplicationForm.SOLUTION,
                         dosing=Dosing.SINGLE,
                         health=Health.HEALTHY,
                         fasting=Fasting.NR,
-                        coadministration=coadministration,
-
+                        coadministration=self.coadministrations[intervention],
+                        data=PKPDData.PK,
+                        data_type=DataType.MEAN,
                     ),
                 )
 
         return mappings
 
+    @override
+    def figures(self) -> dict[str, Figure]:
+        figures: dict[str, Figure] = {}
+        for fig_id in self.cohorts:
+            figures.update(self.figure_pk(fig_id))
+        return figures
 
-    def figures(self) -> Dict[str, Figure]:
-        return {
-            **self.figure_pk(),
-        }
+    def figure_pk(self, fig_id: str) -> dict[str, Figure]:
+        """Figure of the pharmacokinetics of a cohort.
 
-    def figure_pk(self) -> Dict[str, Figure]:
+        Args:
+            fig_id: figure of the cohort in the publication.
+
+        Returns:
+            The figure by its sid.
+        """
         fig = Figure(
             experiment=self,
-            sid="Fig1",
-            name=f"{self.__class__.__name__}",
+            sid=fig_id,
+            name=f"{self.__class__.__name__} ({fig_id})",
             height=self.panel_height,
-            width=self.panel_width * 0.87,
+            width=self.panel_width * 1.1,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time), legend=True
         )
         plots[0].set_yaxis(self.label_api_plasma, unit="nM")
-        is_sim = True
-        for intervention in self.interventions:
-            for ks, sid in enumerate(self.infos_pk):
-                    name = self.infos_pk[sid]
-                    if is_sim:
-                        # simulation
-                        plots[ks].add_data(
-                            task=f"task_{intervention}",
-                            xid="time",
-                            yid=sid,
-                            label="sim: api 25ug PO",
-                            color=self.colors[f"{intervention}"],
-                        )
-                        is_sim = False
-                    # data
-                    plots[ks].add_data(
-                        dataset=f"{name}_{intervention}",
-                        xid="time",
-                        yid="mean",
-                        yid_sd="mean_sd",
-                        count="count",
-                        label=f"exp: {self.labels[intervention]}",
-                        color=self.colors[intervention],
-                        marker=self.markers[intervention],
-                    )
+        for intervention in self.cohorts[fig_id]:
+            for ks, (sid, name) in enumerate(self.infos_pk.items()):
+                plots[ks].add_data(
+                    task=self.to_sid(f"task_{intervention}"),
+                    xid="time",
+                    yid=sid,
+                    label=f"sim {self.legend_labels[intervention]}",
+                    color=self.colors[intervention],
+                )
+                plots[ks].add_data(
+                    dataset=self.to_sid(f"{name}_{intervention}"),
+                    xid="time",
+                    yid="mean",
+                    yid_sd="mean_sd",
+                    count="count",
+                    label=self.legend_labels[intervention],
+                    color=self.colors[intervention],
+                    marker=self.markers[intervention],
+                )
 
-        return {
-            fig.sid: fig
-        }
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Lenard2025.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Lenard2025, output_dir=Lenard2025.__name__)
+    MODEL.run_experiments(Lenard2025, output_dir=Lenard2025.__name__)

@@ -1,0 +1,33 @@
+{
+  "sets": [
+    {
+      "sid": "PD_20261017_121913__2536d_0",
+      "values": {
+        "Emax_INR": 1.2070173908219977,
+        "Emax_PT": 0.2993623174197201,
+        "Emax_mPT": 5.3023334351234634,
+        "Emax_aPTT": 0.3081735079842224,
+        "EC50_api_INR": 0.001986452676207823,
+        "EC50_api_PT": 0.00017228763774975554,
+        "EC50_api_mPT": 0.0016946680887276642,
+        "EC50_api_aPTT": 0.0005767899473549685,
+        "antiXa_slope": 5728.15077902583,
+        "antiXa_gram_slope": 420605.75939786324
+      },
+      "units": {
+        "Emax_INR": "dimensionless",
+        "Emax_PT": "dimensionless",
+        "Emax_mPT": "dimensionless",
+        "Emax_aPTT": "dimensionless",
+        "EC50_api_INR": "mmol/l",
+        "EC50_api_PT": "mmol/l",
+        "EC50_api_mPT": "mmol/l",
+        "EC50_api_aPTT": "mmol/l",
+        "antiXa_slope": "1/(ml)/(mmol/l)",
+        "antiXa_gram_slope": "ng/(ml)/(mmol/l)"
+      },
+      "cost": 81.57704550318896,
+      "provenance": "optimization 'PD_20261017_121913__2536d', run '1'"
+    }
+  ]
+}

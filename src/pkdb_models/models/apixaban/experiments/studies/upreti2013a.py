@@ -1,93 +1,101 @@
-from typing import Dict
+"""Simulation experiment of the study Upreti2013a."""
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from typing import ClassVar, override
 
-from pkdb_models.models import apixaban
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
+
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import (
-    Tissue,
-    Route,
-    Dosing,
-    ApplicationForm,
-    Health,
-    Fasting,
-    ApixabanMappingMetaData,
-    Coadministration,
-)
-from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
-
 
 
 class Upreti2013a(ApixabanSimulationExperiment):
-    """Simulation experiment of Upreti2013a"""
+    """Simulation experiment of Upreti2013a.
 
-    dose = 10.0
-    bodyweight = 73.7
+    A single oral dose of 10 mg apixaban (two 5 mg tablets) after an 8 hour fast
+    in 18 healthy subjects (73.7 kg, 172.7 cm), alone or 3 h after 40 mg
+    famotidine. Famotidine does not interact with apixaban (AUCinf ratio 1.007,
+    no effect on CYP3A4 or P-gp, the solubility of apixaban does not depend on
+    the gastric pH): both arms are the same simulation, the famotidine arm is
+    tagged by its coadministration.
+    """
 
-    colors = {
+    dose = 10.0  # [mg]
+    bodyweight = 73.7  # [kg]
+    bodyheight = 172.7  # [cm]
+
+    colors: ClassVar[dict[str, str]] = {
         "apixaban_API10": "black",  # 10mg apixaban
         "apixaban_API10, FAMO40": "tab:red",  # 10mg apixaban after 40mg famotidine
     }
-    interventions = list(colors.keys())
+    interventions: ClassVar[list[str]] = list(colors.keys())
 
-    infos_pk = {
+    infos_pk: ClassVar[dict[str, str]] = {
         "[Cve_api]": "apixaban",
     }
 
-    labels = {
+    legend_labels: ClassVar[dict[str, str]] = {
         "apixaban_API10": "exp: api 10mg PO",
         "apixaban_API10, FAMO40": "exp: api 10mg, 40mg famo PO",
     }
-    dataset_labels = list(colors.keys())
+    dataset_labels: ClassVar[list[str]] = list(colors.keys())
 
-
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        df = load_pkdb_dataframe(f"{self.sid}_Fig1", data_path=self.data_path)
+        df = self.load_dataframe("Fig1")
         for label, df_label in df.groupby("label"):
+            label = str(label)
             dset = DataSet.from_df(df_label, self.ureg)
             if label.startswith("apixaban"):
                 dset.unit_conversion("mean", 1 / self.Mr.api)
-            dsets[label] = dset
+            dsets[self.to_sid(label)] = dset
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
+    @override
+    def simulations(self) -> dict[str, Simulation]:
         return {
-            "API10": TimecourseSim(
-                [
-                    Timecourse(
-                        start=0,
-                        end=72 * 60,  # 72 h in [min]
-                        steps=1000,
-                        changes={
-                            **self.default_changes(),
-                            "PODOSE_api": Q_(10, "mg"),
-                        },
-                    )
-                ]
+            "API10": Simulation(
+                time_unit="hr",
+                end=72,
+                preinit_changes={
+                    **self.default_changes(),
+                    "PODOSE_api": Q(self.dose, "mg"),
+                    "BW": Q(self.bodyweight, "kg"),
+                    "HEIGHT": Q(self.bodyheight, "cm"),
+                },
             )
         }
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
 
         for label in self.dataset_labels:
             for sid, name in self.infos_pk.items():
-                mappings[f"fm_{name}_{label}"] = FitMapping(
+                mappings[self.to_sid(f"fm_{name}_{label}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
-                        dataset=label,
+                        dataset=self.to_sid(label),
                         xid="time",
                         yid="mean",
+                        yid_sd="mean_sd",
                         count="count",
                     ),
                     observable=FitData(
@@ -96,22 +104,26 @@ class Upreti2013a(ApixabanSimulationExperiment):
                         xid="time",
                         yid=sid,
                     ),
-                    metadata=ApixabanMappingMetaData(
+                    metadata=PKPDMappingMetaData(
                         tissue=Tissue.PLASMA,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
                         dosing=Dosing.SINGLE,
                         health=Health.HEALTHY,
                         fasting=Fasting.FASTED,
-                        coadministration=Coadministration.FAMOTIDINE if "FAM" in label else Coadministration.NONE,
+                        coadministration=Coadministration.FAMOTIDINE
+                        if "FAM" in label
+                        else Coadministration.NONE,
                     ),
                 )
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {**self.figure_pk()}
 
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure_pk(self) -> dict[str, Figure]:
+        """Apixaban in plasma without and with famotidine."""
         fig = Figure(
             experiment=self,
             sid="Fig2",
@@ -137,18 +149,17 @@ class Upreti2013a(ApixabanSimulationExperiment):
             # data points
             for label in self.dataset_labels:
                 plots[ks].add_data(
-                    dataset=label,
+                    dataset=self.to_sid(label),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=self.labels[label],
+                    label=self.legend_labels[label],
                     color=self.colors[label],
                 )
 
-        return {fig.sid: fig}
+        return self.figures_by_sid(fig)
+
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Upreti2013a.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Upreti2013a, output_dir=Upreti2013a.__name__)
+    MODEL.run_experiments(Upreti2013a, output_dir=Upreti2013a.__name__)

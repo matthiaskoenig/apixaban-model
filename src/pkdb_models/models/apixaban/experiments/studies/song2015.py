@@ -1,159 +1,172 @@
+"""Simulation experiment of the study Song2015."""
+
 import math
-from typing import Dict
+from typing import ClassVar, override
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    DataType,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDData,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
 
-from pkdb_models.models import apixaban
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import (
-    Tissue, Route, Dosing, ApplicationForm, Health, Fasting, ApixabanMappingMetaData
-)
-
-from sbmlsim.plot import Axis, Figure
-    # noqa: E402
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Song2015(ApixabanSimulationExperiment):
-    """Simulation experiment of Song2015."""
+    """Simulation experiment of Song2015.
 
-    colors_study_1 = {
-        "API10_PO_OS": "tab:grey",
+    Three crossover studies in healthy subjects with single doses immediately
+    after a 10 h overnight fast. Study 1: 10 mg as 2 x 5 mg tablets or as an
+    oral solution. Study 2: 5 mg oral solution by mouth or via a nasogastric
+    tube (NGT) flushed with 5 % dextrose (D5W) or infant formula. Study 3: 5 mg
+    oral solution by mouth, via NGT followed by a nutritional supplement (Boost
+    Plus) or a crushed 5 mg tablet suspended in D5W via NGT. The food has no
+    effect in the model; the arms are simulated like the fasted ones.
+
+    The data are re-digitized from the vector graphic of the figure (log axis);
+    the +1 SD bars of overlapping series end at the same height and cannot be
+    assigned to a series, so the SDs are not used.
+    """
+
+    #: the studies (panels of the figure) and their arms
+    studies: ClassVar[dict[str, list[str]]] = {
+        "study 1": ["API10_PO_TAB", "API10_PO_OS"],
+        "study 2": ["API5_PO_OS", "API5_NGT_D5W", "API5_NGT_IF"],
+        "study 3": ["API5_PO_OS_3", "API5_NGT_NS", "API5_NGT_D5W_crushed"],
+    }
+    groups: ClassVar[list[str]] = [
+        group for groups in studies.values() for group in groups
+    ]
+    colors: ClassVar[dict[str, str]] = {
         "API10_PO_TAB": "black",
+        "API10_PO_OS": "tab:blue",
+        "API5_PO_OS": "black",
+        "API5_NGT_D5W": "tab:blue",
+        "API5_NGT_IF": "tab:purple",
+        "API5_PO_OS_3": "black",
+        "API5_NGT_NS": "tab:blue",
+        "API5_NGT_D5W_crushed": "tab:purple",
     }
-    colors_study_2 = {
-        "API5_NGT_D5W": "black",
-        "API5_NGT_IF": "purple",
-        "API5_PO_OS": "blue",
+    #: body weight [kg] and BMI [kg/m^2] of the studies (Table I)
+    bodyweight: ClassVar[dict[str, float]] = {
+        "study 1": 78.0,
+        "study 2": 75.6,
+        "study 3": 75.2,
     }
-    colors_study_3 = {
-        "API5_NGT_NS": "black",
-        "API5_NGT_D5W_crushed": "red",
-        "API5_PO_OS_3": "orange",
+    bmi: ClassVar[dict[str, float]] = {
+        "study 1": 25.5,
+        "study 2": 25.4,
+        "study 3": 26.1,
     }
-    bodyweight = { # [kg]
-        # study_1
-        "API10_PO_OS": 78,
-        "API10_PO_TAB": 78,
-        # study_2
-        "API5_NGT_D5W": 75.6,
-        "API5_NGT_IF": 75.6,
-        "API5_PO_OS": 75.6,
-        # study_3
-        "API5_NGT_NS": 75.2,
-        "API5_NGT_D5W_crushed": 75.2,
-        "API5_PO_OS_3": 75.2,
-    }
-    groups = list(bodyweight.keys())
-    bodyheight = { # [m]
-        # study_1
-        "API10_PO_OS": math.sqrt(78/25.5),
-        "API10_PO_TAB": math.sqrt(78/25.5),
-        # study_2
-        "API5_NGT_D5W": math.sqrt(75.6/25.4),
-        "API5_NGT_IF": math.sqrt(75.6/25.4),
-        "API5_PO_OS": math.sqrt(75.6/25.4),
-        # study_3
-        "API5_NGT_NS": math.sqrt(75.2/26.1),
-        "API5_NGT_D5W_crushed": math.sqrt(75.2/26.1),
-        "API5_PO_OS_3": math.sqrt(75.2/26.1),
-    }
-    dose = {
-        # study_1
-        "API10_PO_OS": 10,
+    dose: ClassVar[dict[str, float]] = {  # [mg]
         "API10_PO_TAB": 10,
-        # study_2
+        "API10_PO_OS": 10,
+        "API5_PO_OS": 5,
         "API5_NGT_D5W": 5,
         "API5_NGT_IF": 5,
-        "API5_PO_OS": 5,
-        # study_3
+        "API5_PO_OS_3": 5,
         "API5_NGT_NS": 5,
         "API5_NGT_D5W_crushed": 5,
-        "API5_PO_OS_3": 5,
     }
-    legends = {
-        # study_1
+    #: the tablet dissolves, the solutions and the suspension of the crushed
+    #: tablet are given as a solution
+    dosing_parameter: ClassVar[dict[str, str]] = {
+        "API10_PO_TAB": "PODOSE_api",
+        "API10_PO_OS": "SOLDOSE_api",
+        "API5_PO_OS": "SOLDOSE_api",
+        "API5_NGT_D5W": "SOLDOSE_api",
+        "API5_NGT_IF": "SOLDOSE_api",
+        "API5_PO_OS_3": "SOLDOSE_api",
+        "API5_NGT_NS": "SOLDOSE_api",
+        "API5_NGT_D5W_crushed": "SOLDOSE_api",
+    }
+    application_forms: ClassVar[dict[str, ApplicationForm]] = {
+        "API10_PO_TAB": ApplicationForm.TABLET,
+        "API10_PO_OS": ApplicationForm.SOLUTION,
+        "API5_PO_OS": ApplicationForm.SOLUTION,
+        "API5_NGT_D5W": ApplicationForm.SOLUTION,
+        "API5_NGT_IF": ApplicationForm.SOLUTION,
+        "API5_PO_OS_3": ApplicationForm.SOLUTION,
+        "API5_NGT_NS": ApplicationForm.SOLUTION,
+        "API5_NGT_D5W_crushed": ApplicationForm.SUSPENSION,
+    }
+    legends: ClassVar[dict[str, str]] = {
+        "API10_PO_TAB": "10mg TAB",
         "API10_PO_OS": "10mg SOL",
-        "API10_PO_TAB": "10mg PO",
-        # study_2
-        "API5_NGT_D5W": "5mg, dext NGT",
-        "API5_NGT_IF": "5mg, if NGT",
         "API5_PO_OS": "5mg SOL",
-        # study_3
-        "API5_NGT_NS": "5mg, ns NGT",
-        "API5_NGT_D5W_crushed": "5mg, dext NGT crushed",
-        "API5_PO_OS_3": "5mg SOL crushed",
+        "API5_NGT_D5W": "5mg SOL NGT + D5W",
+        "API5_NGT_IF": "5mg SOL NGT + infant formula",
+        "API5_PO_OS_3": "5mg SOL",
+        "API5_NGT_NS": "5mg SOL NGT + Boost Plus",
+        "API5_NGT_D5W_crushed": "5mg crushed TAB in D5W NGT",
     }
 
-    infos_pk = {
+    infos_pk: ClassVar[dict[str, str]] = {
         "[Cve_api]": "apixaban",
     }
 
+    def study(self, group: str) -> str:
+        """Get the study of a group.
 
-    def datasets(self) -> Dict[str, DataSet]:
+        Args:
+            group: the arm of a study.
+
+        Returns:
+            The study of the arm.
+        """
+        return next(key for key, groups in self.studies.items() if group in groups)
+
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id, group_id in zip(["Fig1"],
-                                    ["label"]):
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
-            for label, df_label in df.groupby(group_id):
-                dset = DataSet.from_df(df_label, self.ureg)
-                if label.startswith("apixaban_"):
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
-                dsets[label] = dset
+        df = self.load_dataframe("Fig1")
+        for label, df_label in df.groupby("label"):
+            label = str(label)
+            dset = DataSet.from_df(df_label, self.ureg)
+            if label.startswith("apixaban_"):
+                dset.unit_conversion("mean", 1 / self.Mr.api)
+            dsets[label] = dset
 
-        # console.print("datasets:", list(dsets.keys()))
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
-        tcsims: Dict[str, TimecourseSim] = {}
+    @override
+    def simulations(self) -> dict[str, Simulation]:
+        tcsims: dict[str, Simulation] = {}
         for group in self.groups:
-            if group == "API10_PO_OS":
-                tcsims[group] = TimecourseSim([
-                    Timecourse(
-                        start=0,
-                        end=75 * 60,  # [min]
-                        steps=500,
-                        changes={
-                            **self.default_changes(),
-                            "SOLDOSE_api": Q_(self.dose[group], "mg"),
-                            "BW": Q_(self.bodyweight[group], "kg"),
-                            "HEIGHT": Q_(self.bodyheight[group], "m"),
-                        },
-                    )
-                ])
-            else:
-                tcsims[group] = TimecourseSim([
-                    Timecourse(
-                        start=0,
-                        end=75 * 60,  # [min]
-                        steps=500,
-                        changes={
-                            **self.default_changes(),
-                            "PODOSE_api": Q_(self.dose[group], "mg"),
-                            "BW": Q_(self.bodyweight[group], "kg"),
-                            "HEIGHT": Q_(self.bodyheight[group], "m"),
-                        },
-                    )
-                ])
+            study = self.study(group)
+            height = 100 * math.sqrt(self.bodyweight[study] / self.bmi[study])
+            tcsims[group] = Simulation(
+                time_unit="hr",
+                end=75,
+                preinit_changes={
+                    **self.default_changes(),
+                    self.dosing_parameter[group]: Q(self.dose[group], "mg"),
+                    "BW": Q(self.bodyweight[study], "kg"),
+                    "HEIGHT": Q(height, "cm"),
+                },
+            )
         return tcsims
 
-    # Fit Mappings
-    def fit_mappings(self) -> Dict[str, FitMapping]:
-        mappings: Dict[str, FitMapping] = {}
-        infos = {
-            **self.infos_pk,
-        }
-        for sid, name in infos.items():
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
+        mappings: dict[str, FitMapping] = {}
+        for sid, name in self.infos_pk.items():
             for group in self.groups:
-                if group not in ["API10_PO_TAB", "API10_PO_OS"]:
-                    continue
                 mappings[f"fm_{name}_{group}"] = FitMapping(
                     self,
                     reference=FitData(
@@ -161,7 +174,6 @@ class Song2015(ApixabanSimulationExperiment):
                         dataset=f"{name}_{group}",
                         xid="time",
                         yid="mean",
-                        yid_sd="mean_sd",
                         count="count",
                     ),
                     observable=FitData(
@@ -170,77 +182,70 @@ class Song2015(ApixabanSimulationExperiment):
                         xid="time",
                         yid=sid,
                     ),
-                    metadata=ApixabanMappingMetaData(
+                    metadata=PKPDMappingMetaData(
                         tissue=Tissue.PLASMA,
+                        # the vocabulary has no nasogastric tube
                         route=Route.PO,
-                        application_form=ApplicationForm.TABLET if group == "API10_PO_TAB" else ApplicationForm.SOLUTION,
+                        application_form=self.application_forms[group],
                         dosing=Dosing.SINGLE,
                         health=Health.HEALTHY,
-                        fasting=Fasting.NR,
+                        # Boost Plus (240 ml) with the dose
+                        fasting=Fasting.FED
+                        if group == "API5_NGT_NS"
+                        else Fasting.FASTED,
+                        coadministration=Coadministration.NONE,
+                        data=PKPDData.PK,
+                        data_type=DataType.MEAN,
                     ),
                 )
 
         return mappings
 
-
-    def figures(self) -> Dict[str, Figure]:
+    @override
+    def figures(self) -> dict[str, Figure]:
         return {
             **self.figure_pk(),
         }
 
-    def figure_pk(self) -> Dict[str, Figure]:
-
-        plot_info = {
-            0: ("[Cve_api]", ["API10_PO_OS", "API10_PO_TAB"], self.colors_study_1),
-            #1: ("[Cve_api]", ["API5_NGT_D5W", "API5_NGT_IF", "API5_PO_OS"], self.colors_study_2),
-            #2: ("[Cve_api]", ["API5_NGT_NS", "API5_NGT_D5W_crushed", "API5_PO_OS_3"], self.colors_study_3)
-        }
-
+    def figure_pk(self) -> dict[str, Figure]:
+        """Apixaban in plasma in the three studies."""
         fig = Figure(
             experiment=self,
-            sid="PK",
+            sid="Fig1",
             name=f"{self.__class__.__name__}",
-            num_cols=1,
+            num_cols=3,
             num_rows=1,
             height=self.panel_height,
-            width=self.panel_width * 0.87,
+            width=self.panel_width * 3,
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
             legend=True,
         )
-        for kp, (sid, groups, colors) in plot_info.items():
-            plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid])
-            for group in groups:
-                name = self.infos_pk[sid]
-                dose = self.dose[group]
-                # Simulation
-                if kp == 0 and group in ["API10_PO_TAB", "API10_PO_OS"]:
+        for kp, (study, groups) in enumerate(self.studies.items()):
+            for sid, name in self.infos_pk.items():
+                plots[kp].set_title(study)
+                plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid])
+                for group in groups:
                     plots[kp].add_data(
                         task=f"task_{group}",
                         xid="time",
                         yid=sid,
-                        label=f"sim: {self.legends[group]}",
-                        color=colors[group]
+                        label=f"sim {self.legends[group]}",
+                        color=self.colors[group],
                     )
-                # Data
-                plots[kp].add_data(
-                    dataset=f"{name}_{group}",
-                    xid="time",
-                    yid="mean",
-                    yid_sd="mean_sd",
-                    count="count",
-                    label= f"exp: {self.legends[group]}",
-                    color= colors[group],
-                    linestyle="solid",
-                )
+                    plots[kp].add_data(
+                        dataset=f"{name}_{group}",
+                        xid="time",
+                        yid="mean",
+                        count="count",
+                        label=self.legends[group],
+                        color=self.colors[group],
+                        marker="o",
+                    )
 
-        return {fig.sid: fig}
-
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Song2015.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Song2015, output_dir=Song2015.__name__)
-
+    MODEL.run_experiments(Song2015, output_dir=Song2015.__name__)

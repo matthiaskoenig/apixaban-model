@@ -1,112 +1,148 @@
-from typing import Dict
+"""Simulation experiment of the study Lenard2024."""
 
-from sbmlsim.data import DataSet, load_pkdb_dataframe
-from sbmlsim.fit import FitMapping, FitData
-from sbmlutils.console import console
+from typing import ClassVar, override
 
-from pkdb_models.models import apixaban
+from pkpdsim.metadata import (
+    ApplicationForm,
+    Coadministration,
+    DataType,
+    Dosing,
+    Fasting,
+    Health,
+    PKPDData,
+    PKPDMappingMetaData,
+    Route,
+    Tissue,
+)
+from sbmlsim import Q
+from sbmlsim.data import DataSet
+from sbmlsim.fit import FitData, FitMapping
+from sbmlsim.plot import Axis, Figure
+from sbmlsim.simulation import Simulation
+
+from pkdb_models.models.apixaban import MODEL
 from pkdb_models.models.apixaban.experiments.base_experiment import (
     ApixabanSimulationExperiment,
 )
-from pkdb_models.models.apixaban.experiments.metadata import Tissue, Route, Dosing, ApplicationForm, Health, \
-    Fasting, ApixabanMappingMetaData, Coadministration
-
-from sbmlsim.plot import Axis, Figure
-from sbmlsim.simulation import Timecourse, TimecourseSim
-
-from pkdb_models.models.apixaban.helpers import run_experiments
 
 
 class Lenard2024(ApixabanSimulationExperiment):
-    """Simulation experiment of Lenard2024."""
+    """Simulation experiment of Lenard2024.
 
-    colors = {
-        "API25, RIV25, EDO50": "tab:red",
+    Interaction of clarithromycin with the factor Xa inhibitors in 12 healthy
+    volunteers: a microdosed cocktail of apixaban 25 µg, edoxaban 50 µg and
+    rivaroxaban 25 µg as an oral solution (with midazolam 30 µg) at baseline
+    and on day 8 of clarithromycin 500 mg b.i.d. Fasting is not reported.
+    """
+
+    interventions: ClassVar[list[str]] = [
+        "API25, RIV25, EDO50",
+        "API25, RIV25, EDO50, CLAR",
+    ]
+    colors: ClassVar[dict[str, str]] = {
+        "API25, RIV25, EDO50": "black",
         "API25, RIV25, EDO50, CLAR": "tab:pink",
     }
-
-    interventions = list(colors.keys())
-
-    doses =  {
-        "API25, RIV25, EDO50": 0.025,  # [μg] (2 times dosing, first on day1, second on day 5)
-        "API25, RIV25, EDO50, CLAR": 0.025,  # 50 µg
+    markers: ClassVar[dict[str, str]] = {
+        "API25, RIV25, EDO50": "s",
+        "API25, RIV25, EDO50, CLAR": "o",
+    }
+    legend_labels: ClassVar[dict[str, str]] = {
+        "API25, RIV25, EDO50": "25µg SOL",
+        "API25, RIV25, EDO50, CLAR": "25µg SOL + clarithromycin 500mg BID",
+    }
+    coadministrations: ClassVar[dict[str, Coadministration]] = {
+        "API25, RIV25, EDO50": Coadministration.COCKTAIL,
+        "API25, RIV25, EDO50, CLAR": Coadministration.CLARITHROMYCIN,
+    }
+    #: The factors of the interaction are not fitted but set from the
+    #: literature; the arm is validation data. Clarithromycin 500 mg b.i.d. is a
+    #: strong CYP3A4 and a P-gp inhibitor; observed here AUCinf x1.38 and Cmax
+    #: x1.17 (geometric mean ratios, Table 1), x1.60 and x1.30 with therapeutic
+    #: doses of apixaban (Garonzik2019). The factors give AUC x1.41 and Cmax
+    #: x1.11 for the microdose with the unfitted model.
+    interactions: ClassVar[dict[str, dict[str, float]]] = {
+        "API25, RIV25, EDO50": {},
+        "API25, RIV25, EDO50, CLAR": {"LI__f_cyp3a4": 0.6, "GU__f_pgp": 0.6},
     }
 
-    labels = {
-        "API25, RIV25, EDO50": ": DOACs PO",
-        "API25, RIV25, EDO50, CLAR": ": DOACs, clar 500mg PO",
-    }
+    #: apixaban microdose [mg]
+    dose = 0.025
 
-    infos_pk = {
-        "[Cve_api]": "apixaban"
-    }
+    infos_pk: ClassVar[dict[str, str]] = {"[Cve_api]": "apixaban"}
 
-    def datasets(self) -> Dict[str, DataSet]:
+    @override
+    def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Fig2"]:
-            df = load_pkdb_dataframe(f"{self.sid}_{fig_id}", data_path=self.data_path)
-            for label, df_label in df.groupby("label"):
-                dset = DataSet.from_df(df_label, self.ureg)
-                if label.startswith("apixaban"):
-                        dset.unit_conversion("mean", 1 / self.Mr.api)
-                dsets[label] = dset
+        df = self.load_dataframe("Fig2")
+        for label, df_label in df.groupby("label"):
+            label = str(label)
+            dset = DataSet.from_df(df_label, self.ureg)
+            if label.startswith("apixaban"):
+                dset.unit_conversion("mean", 1 / self.Mr.api)
+            dsets[self.to_sid(label)] = dset
         return dsets
 
-    def simulations(self) -> Dict[str, TimecourseSim]:
-        Q_ = self.Q_
+    @override
+    def simulations(self) -> dict[str, Simulation]:
         tcsims = {}
         for intervention in self.interventions:
-                dose = self.doses[intervention]
-                tcsims[f"{intervention}"] = TimecourseSim(
-                        [Timecourse(
-                            start=0,
-                            end=50 * 60,  # [min]
-                            steps=500,
-                            changes={
-                                **self.default_changes(),
-                                "PODOSE_api": Q_(dose, "mg")
-                            },
-                        )])
+            tcsims[self.to_sid(intervention)] = Simulation(
+                time_unit="hr",
+                end=50,
+                preinit_changes={
+                    **self.default_changes(),
+                    "SOLDOSE_api": Q(self.dose, "mg"),
+                    **{
+                        pid: Q(value, "dimensionless")
+                        for pid, value in self.interactions[intervention].items()
+                    },
+                },
+            )
         return tcsims
 
-    def fit_mappings(self) -> Dict[str, FitMapping]:
+    @override
+    def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
         for intervention in self.interventions:
-                # PK
-                for ks, sid in enumerate(self.infos_pk):
-                    name = self.infos_pk[sid]
-                    mappings[f"fm_{name}_{intervention}"] = FitMapping(
+            for sid, name in self.infos_pk.items():
+                mappings[self.to_sid(f"fm_{name}_{intervention}")] = FitMapping(
+                    self,
+                    reference=FitData(
                         self,
-                        reference=FitData(
-                            self,
-                            dataset=f"{name}_{intervention}",
-                            xid="time",
-                            yid="mean",
-                            yid_sd="mean_sd",
-                            count="count",
-                        ),
-                        observable=FitData(
-                            self, task=f"task_{intervention}", xid="time", yid=sid,
-                        ),
-                        metadata=ApixabanMappingMetaData(
-                            tissue=Tissue.PLASMA,
-                            route=Route.PO,
-                            application_form=ApplicationForm.TABLET,
-                            dosing=Dosing.SINGLE,
-                            health=Health.HEALTHY,
-                            fasting=Fasting.NR,
-                            coadministration=Coadministration.CLARITHROMYCIN if "CLAR" in intervention else Coadministration.EDOXABAN,
-                        ),
-                    )
+                        dataset=self.to_sid(f"{name}_{intervention}"),
+                        xid="time",
+                        yid="mean",
+                        yid_sd="mean_sd",
+                        count="count",
+                    ),
+                    observable=FitData(
+                        self,
+                        task=self.to_sid(f"task_{intervention}"),
+                        xid="time",
+                        yid=sid,
+                    ),
+                    metadata=PKPDMappingMetaData(
+                        tissue=Tissue.PLASMA,
+                        route=Route.PO,
+                        application_form=ApplicationForm.SOLUTION,
+                        dosing=Dosing.SINGLE,
+                        health=Health.HEALTHY,
+                        fasting=Fasting.NR,
+                        coadministration=self.coadministrations[intervention],
+                        data=PKPDData.PK,
+                        data_type=DataType.MEAN,
+                    ),
+                )
 
         return mappings
 
-    def figures(self) -> Dict[str, Figure]:
-        return {
-            **self.figure_pk(),
-        }
+    @override
+    def figures(self) -> dict[str, Figure]:
+        return {**self.figure_pk()}
 
-    def figure_pk(self) -> Dict[str, Figure]:
+    def figure_pk(self) -> dict[str, Figure]:
+        """Figure of the pharmacokinetics."""
         fig = Figure(
             experiment=self,
             sid="Fig2",
@@ -120,37 +156,28 @@ class Lenard2024(ApixabanSimulationExperiment):
         )
         plots[0].set_yaxis(self.label_api_plasma, unit="nM")
 
-        is_sim = True
         for intervention in self.interventions:
-            for ks, sid in enumerate(self.infos_pk):
-                name = self.infos_pk[sid]
-                if is_sim:
-                    # simulation
-                    plots[ks].add_data(
-                        task=f"task_{intervention}",
-                        xid="time",
-                        yid=sid,
-                        label="sim: api 25ug PO",
-                        color="black",
-                    )
-                    is_sim = False
-                # data
+            for ks, (sid, name) in enumerate(self.infos_pk.items()):
                 plots[ks].add_data(
-                    dataset=f"{name}_{intervention}",
+                    task=self.to_sid(f"task_{intervention}"),
+                    xid="time",
+                    yid=sid,
+                    label=f"sim {self.legend_labels[intervention]}",
+                    color=self.colors[intervention],
+                )
+                plots[ks].add_data(
+                    dataset=self.to_sid(f"{name}_{intervention}"),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
                     count="count",
-                    label=f"exp {self.labels[intervention]}",
-                    color=self.colors[f"{intervention}"],
+                    label=self.legend_labels[intervention],
+                    color=self.colors[intervention],
+                    marker=self.markers[intervention],
                 )
 
-        return {
-            fig.sid: fig
-        }
+        return self.figures_by_sid(fig)
 
 
 if __name__ == "__main__":
-    out = apixaban.RESULTS_PATH_SIMULATION / Lenard2024.__name__
-    out.mkdir(parents=True, exist_ok=True)
-    run_experiments(Lenard2024, output_dir=Lenard2024.__name__)
+    MODEL.run_experiments(Lenard2024, output_dir=Lenard2024.__name__)
