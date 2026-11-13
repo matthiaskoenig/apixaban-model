@@ -1,3 +1,2 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	mean	median	min	max	mean_sd	mean_se	cv	comments	mean_unit	median_unit	count_unit
-Upreti2013	low	18.0	API10	cumulative amount	apixaban	urine	calculated	cumulative amount_low	0.0	hr	0.0							added: no urine before the dose	mole	mg	dimensionless
-Upreti2013	low	18.0	API10	cumulative amount	apixaban	urine	calculated	cumulative amount_low	72.0	hr	4.462903155603917e-06							derived: Ae0-72 = CLR x AUCinf of the geometric means of Table 2	mole	mg	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Upreti2013	low		18	dimensionless	API10	cumulative amount	geometric mean		apixaban	urine	calculated	cumulative_amount_apixaban_urine_API10_low	72.0	hr		mg				mg		mg				4.462903155603917e-06	mole		dimensionless		derived, not printed: renal clearance times AUCinf (geometric means of Table 2); 72 h is the end of the urine collection

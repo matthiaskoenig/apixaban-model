@@ -30,6 +30,8 @@ class Frost2014a(ApixabanSimulationExperiment):
     A single dose of 10 mg apixaban alone and with naproxen 500 mg in 21
     healthy men. The arm with naproxen is simulated and plotted, but not
     mapped: `pkpdsim.metadata.Coadministration` has no member for naproxen.
+
+    The subjects are men (21) and run on the male build.
     """
 
     bodyweight = 83.3  # [kg]
@@ -40,11 +42,8 @@ class Frost2014a(ApixabanSimulationExperiment):
         "API10": 0.94,
         "API10_NAPR500": 0.92,
     }
-    #: the datasets of the arms (the labels of the curation)
-    arms: ClassVar[dict[str, str]] = {
-        "API10": "API10",
-        "API10_NAPR500": "API10, NAPR500",
-    }
+    #: the arms, the labels of the curation are of the interventions
+    arms: ClassVar[list[str]] = ["API10", "API10_NAPR500"]
     colors: ClassVar[dict[str, str]] = {
         "API10": "black",
         "API10_NAPR500": "tab:red",
@@ -56,29 +55,41 @@ class Frost2014a(ApixabanSimulationExperiment):
     #: the interaction factors of the perpetrators, not fitted (validation):
     #: naproxen inhibits the intestinal efflux of apixaban by P-gp (no
     #: inhibition of CYP3A4); the study observed AUCinf x1.54 and Cmax x1.61,
-    #: the factor gives AUC x1.5 and Cmax x1.2 with the unfitted model (the
+    #: the factor gives AUC x1.42 and Cmax x1.16 with the adopted fits (the
     #: increase of the Cmax is not reproduced)
     interactions: ClassVar[dict[str, dict[str, float]]] = {
         "API10": {},
-        "API10_NAPR500": {"GU__f_pgp": 0.1},
+        "API10_NAPR500": {"GU__f_abcb1": 0.1},
     }
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
+    #: the INR before and 3 hr after the dose, the anti-Xa activity 3 hr after
+    #: the dose (Tab3; the values below the limit of quantification before the
+    #: dose are not curated)
     infos_pd: ClassVar[dict[str, str]] = {
-        "INR": "inr",
-        "antiXa_activity": "Anti-factor Xa activity",
+        "COAG__INR": "inr",
+        "COAG__antiXa_activity": "Anti-factor Xa activity",
     }
+
+    @staticmethod
+    def label(arm: str, name: str) -> str:
+        """Get the label of the curation of an arm and a measurement."""
+        if name == "apixaban":
+            return f"{arm}_all_apixaban"
+        if name == "inr":
+            return f"{arm}_inr_all"
+        return f"Anti_factor_Xa_activity_plasma_{arm}_all"
 
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        labels = set()
-        for arm in self.arms.values():
-            labels.add(f"{arm}_all_apixaban")
-            for name in self.infos_pd.values():
-                labels.add(f"{arm}_{name}_all")
+        labels = {
+            self.label(arm, name)
+            for arm in self.arms
+            for name in [*self.infos_pk.values(), *self.infos_pd.values()]
+        }
         for fig_id in ["Fig2", "Tab3"]:
             df = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
@@ -87,15 +98,14 @@ class Frost2014a(ApixabanSimulationExperiment):
                     continue
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.endswith("_all_apixaban"):
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
+                    dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[self.to_sid(label)] = dset
 
         # individual anti-Xa activity against the concentration (Fig3)
         df = self.load_dataframe("Fig3")
-        for label, df_label in df.groupby("x_label"):
-            dset = DataSet.from_df(df_label, self.ureg)
-            dset.unit_conversion("x", 1 / self.Mr.api)
-            dsets[self.to_sid(str(label))] = dset
+        dset = DataSet.from_df(df, self.ureg)
+        dset.unit_conversion("x", 1 / self.Mr["api"])
+        dsets["apixaban_vs_antixa_API10"] = dset
 
         return dsets
 
@@ -110,7 +120,7 @@ class Frost2014a(ApixabanSimulationExperiment):
                     "PODOSE_api": Q(10, "mg"),
                     "BW": Q(self.bodyweight, "kg"),
                     "HEIGHT": Q(self.height, "cm"),
-                    "INR_ref": Q(self.inr[key], "dimensionless"),
+                    "COAG__INR_ref": Q(self.inr[key], "dimensionless"),
                     **{
                         pid: Q(value, "dimensionless")
                         for pid, value in self.interactions[key].items()
@@ -132,14 +142,10 @@ class Frost2014a(ApixabanSimulationExperiment):
                 self,
                 reference=FitData(
                     self,
-                    dataset=self.to_sid(
-                        f"API10_all_{name}"
-                        if sid == "[Cve_api]"
-                        else f"API10_{name}_all"
-                    ),
+                    dataset=self.to_sid(self.label("API10", name)),
                     xid="time",
                     yid="mean",
-                    yid_sd="" if sid == "[Cve_api]" else "mean_sd",
+                    yid_sd="" if sid == "Carm_api" else "mean_sd",
                     count="count",
                 ),
                 observable=FitData(
@@ -187,7 +193,7 @@ class Frost2014a(ApixabanSimulationExperiment):
         for kp, sid in enumerate(self.infos_pd):
             plots[kp + 1].set_yaxis(self.labels[sid], unit=self.units[sid])
 
-        for key, arm in self.arms.items():
+        for key in self.arms:
             for sid, name in self.infos_pk.items():
                 plots[0].add_data(
                     task=f"task_{key}",
@@ -197,7 +203,7 @@ class Frost2014a(ApixabanSimulationExperiment):
                     color=self.colors[key],
                 )
                 plots[0].add_data(
-                    dataset=self.to_sid(f"{arm}_all_{name}"),
+                    dataset=self.to_sid(self.label(key, name)),
                     xid="time",
                     yid="mean",
                     count="count",
@@ -213,7 +219,7 @@ class Frost2014a(ApixabanSimulationExperiment):
                     color=self.colors[key],
                 )
                 plots[kp + 1].add_data(
-                    dataset=self.to_sid(f"{arm}_{name}_all"),
+                    dataset=self.to_sid(self.label(key, name)),
                     xid="time",
                     yid="mean",
                     yid_sd="mean_sd",
@@ -222,38 +228,33 @@ class Frost2014a(ApixabanSimulationExperiment):
                     color=self.colors[key],
                 )
 
-        plots[3].set_xaxis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"])
+        plots[3].set_xaxis(self.labels["Carm_api"], unit=self.units["Carm_api"])
         plots[3].set_yaxis(
-            self.labels["antiXa_activity"],
-            unit=self.units["antiXa_activity"],
+            self.labels["COAG__antiXa_activity"],
+            unit=self.units["COAG__antiXa_activity"],
             scale="linear",
         )
 
         # simulation
         plots[3].add_data(
             task="task_API10",
-            xid="[Cve_api]",
-            yid="antiXa_activity",
+            xid="Carm_api",
+            yid="COAG__antiXa_activity",
             label="sim: 10mg PO",
             color="black",
             linestyle="solid",
         )
 
-        for indiv_id in range(21):
-            label = "exp indiv: 10mg PO" if indiv_id == 0 else ""
-            dset_id = (
-                f"API10_concentration_vs_Anti-factor Xa activity_all_I{indiv_id + 1}"
-            )
-            plots[3].add_data(
-                xid="x",
-                yid="y",
-                dataset=self.to_sid(dset_id),
-                label=label,
-                color="white",
-                markeredgecolor="black",
-                marker="o",
-                linestyle="",
-            )
+        plots[3].add_data(
+            xid="x",
+            yid="y",
+            dataset="apixaban_vs_antixa_API10",
+            label="exp indiv: 10mg PO",
+            color="white",
+            markeredgecolor="black",
+            marker="o",
+            linestyle="",
+        )
 
         return self.figures_by_sid(fig)
 

@@ -33,6 +33,8 @@ class Shaikh2021(ApixabanSimulationExperiment):
     (reference) in 23 healthy Indian males after an overnight fast of at least
     10 h; plasma by LC-MS/MS (LLOQ 1.01 ng/ml). The error bars of Fig 5 have a
     constant length at every time point, they are no SDs and are not used.
+
+    The subjects are men (23) and run on the male build.
     """
 
     colors: ClassVar[dict[str, str]] = {
@@ -53,7 +55,7 @@ class Shaikh2021(ApixabanSimulationExperiment):
     lloq = 1.01
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
 
     @override
@@ -66,7 +68,7 @@ class Shaikh2021(ApixabanSimulationExperiment):
             label = str(label)
             dset = DataSet.from_df(df_label, self.ureg)
             if label.startswith("apixaban"):
-                dset.unit_conversion("mean", 1 / self.Mr.api)
+                dset.unit_conversion("mean", 1 / self.Mr["api"])
             dsets[label] = dset
         return dsets
 

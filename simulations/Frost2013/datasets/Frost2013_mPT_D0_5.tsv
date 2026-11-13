@@ -1,9 +1,9 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2013		D0_5	6.0	API_0_5	mPT		blood	coagulation assay	mPT_D0_5	0.0	hr		39.3939393939394				oral solution	s	s	dimensionless
-Frost2013		D0_5	6.0	API_0_5	mPT		blood	coagulation assay	mPT_D0_5	0.5	hr		36.9696969696969				oral solution	s	s	dimensionless
-Frost2013		D0_5	6.0	API_0_5	mPT		blood	coagulation assay	mPT_D0_5	1.5	hr		40.0				oral solution	s	s	dimensionless
-Frost2013		D0_5	6.0	API_0_5	mPT		blood	coagulation assay	mPT_D0_5	3.0	hr		40.3030303030303				oral solution	s	s	dimensionless
-Frost2013		D0_5	6.0	API_0_5	mPT		blood	coagulation assay	mPT_D0_5	6.0	hr		53.3333333333333				oral solution	s	s	dimensionless
-Frost2013		D0_5	6.0	API_0_5	mPT		blood	coagulation assay	mPT_D0_5	12.0	hr		46.060606060606				oral solution	s	s	dimensionless
-Frost2013		D0_5	6.0	API_0_5	mPT		blood	coagulation assay	mPT_D0_5	24.0	hr		36.3636363636363				oral solution	s	s	dimensionless
-Frost2013		D0_5	6.0	API_0_5	mPT		blood	coagulation assay	mPT_D0_5	48.0	hr		53.6363636363636				oral solution	s	s	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2013	D0_5		6	dimensionless	API_0_5	mPT	sample mean			plasma	coagulation assay	mPT_D0_5	0.0	hr		sec	39.39			sec		sec					sec		dimensionless		
+Frost2013	D0_5		6	dimensionless	API_0_5	mPT	sample mean			plasma	coagulation assay	mPT_D0_5	0.5	hr		sec	36.97			sec		sec					sec		dimensionless		
+Frost2013	D0_5		6	dimensionless	API_0_5	mPT	sample mean			plasma	coagulation assay	mPT_D0_5	1.5	hr		sec	40.0			sec		sec					sec		dimensionless		
+Frost2013	D0_5		6	dimensionless	API_0_5	mPT	sample mean			plasma	coagulation assay	mPT_D0_5	3.0	hr		sec	40.3			sec		sec					sec		dimensionless		
+Frost2013	D0_5		6	dimensionless	API_0_5	mPT	sample mean			plasma	coagulation assay	mPT_D0_5	6.0	hr		sec	53.33			sec		sec					sec		dimensionless		
+Frost2013	D0_5		6	dimensionless	API_0_5	mPT	sample mean			plasma	coagulation assay	mPT_D0_5	12.0	hr		sec	46.06			sec		sec					sec		dimensionless		
+Frost2013	D0_5		6	dimensionless	API_0_5	mPT	sample mean			plasma	coagulation assay	mPT_D0_5	24.0	hr		sec	36.36			sec		sec					sec		dimensionless		
+Frost2013	D0_5		6	dimensionless	API_0_5	mPT	sample mean			plasma	coagulation assay	mPT_D0_5	48.0	hr		sec	53.64			sec		sec					sec		dimensionless		

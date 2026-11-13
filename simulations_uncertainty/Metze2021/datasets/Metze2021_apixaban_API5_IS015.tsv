@@ -1,5 +1,5 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Metze2021	IS015	api	1.0	API5	concentration	apixaban	plasma	anti-Xa (STA-Liquid Anti-Xa, apixaban calibrators)	apixaban_API5_IS015	0.0	hr	0.0						ng/ml	mole/meter^3	dimensionless
-Metze2021	IS015	api	1.0	API5	concentration	apixaban	plasma	anti-Xa (STA-Liquid Anti-Xa, apixaban calibrators)	apixaban_API5_IS015	3.0	hr	0.0005391294885745376						ng/ml	mole/meter^3	dimensionless
-Metze2021	IS015	api	1.0	API5	concentration	apixaban	plasma	anti-Xa (STA-Liquid Anti-Xa, apixaban calibrators)	apixaban_API5_IS015	6.0	hr	0.0003115995647442873						ng/ml	mole/meter^3	dimensionless
-Metze2021	IS015	api	1.0	API5	concentration	apixaban	plasma	anti-Xa (STA-Liquid Anti-Xa, apixaban calibrators)	apixaban_API5_IS015	12.0	hr	0.00011375408052230686						ng/ml	mole/meter^3	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Metze2021	all	IS015	1	dimensionless	API5	concentration			apixaban	plasma	coagulation assay	apixaban_API5_IS015	0.0	hr	1.7410228509249185e-06	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Metze2021	all	IS015	1	dimensionless	API5	concentration			apixaban	plasma	coagulation assay	apixaban_API5_IS015	3.0	hr	0.0002822633297062024	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Metze2021	all	IS015	1	dimensionless	API5	concentration			apixaban	plasma	coagulation assay	apixaban_API5_IS015	6.0	hr	0.00019325353645266593	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		
+Metze2021	all	IS015	1	dimensionless	API5	concentration			apixaban	plasma	coagulation assay	apixaban_API5_IS015	12.0	hr	9.096844396082699e-05	mole/meter^3				ng/ml		ng/ml					ng/ml		dimensionless		

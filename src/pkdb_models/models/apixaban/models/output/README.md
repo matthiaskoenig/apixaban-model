@@ -5,19 +5,22 @@
 # apixaban model
 This repository provides the apixaban physiologically based pharmacokinetics/ pharmacodynamics (PBPK/PD) model.
 
-The model is distributed as [SBML](http://sbml.org) format available from [`apixaban_body_flat.xml`](./models/apixaban_body_flat.xml) with
-corresponding [model equations](./models/apixaban_body_flat.md).
+The model is built with the PBPK library `pkpdsim.pbpk` of
+[pkpdsim](https://matthiaskoenig.github.io/pkpdsim/) from the definition
+`models/definition.py` of the model folder, with the coagulation model as a
+pharmacodynamic component. It is distributed in
+[SBML](http://sbml.org) format available from [`apixaban_body_flat.xml`](./models/apixaban_body_flat.xml) with
+corresponding [model equations](./models/apixaban_body_flat.md) and [antimony](./models/apixaban_body_flat.ant).
 
 The COMBINE archive is available from [`apixaban_model.omex`](./apixaban_model.omex).
 
-![model overview](./figures/apixaban_model.png)
+### Models
+* **whole-body** comp model [`apixaban_body.xml`](./models/apixaban_body.xml): one submodel per organ and the coagulation submodel; the flattened model [`apixaban_body_flat.xml`](./models/apixaban_body_flat.xml) is the one which is simulated.
+* **female build** [`apixaban_body_female.xml`](./models/apixaban_body_female.xml) and [`apixaban_body_female_flat.xml`](./models/apixaban_body_female_flat.xml) (with its [model equations](./models/apixaban_body_female_flat.md) and [antimony](./models/apixaban_body_female_flat.ant)): the same model with the female reference individual of the library, on which the studies and groups of mostly women are simulated.
 
-### Comp submodels
-* **coagulation** submodel [`apixaban_coagulation.xml`](./models/apixaban_coagulation.xml) with [equations](./models/apixaban_coagulation.md).
-* **liver** submodel [`apixaban_liver.xml`](./models/apixaban_liver.xml) with [equations](./models/apixaban_liver.md).
-* **kidney** submodel [`apixaban_kidney.xml`](./models/apixaban_kidney.xml) with [equations](./models/apixaban_kidney.md).
-* **intestine** submodel [`apixaban_intestine.xml`](./models/apixaban_intestine.xml) with [equations](./models/apixaban_intestine.md).
-* **whole-body** submodel [`apixaban_body.xml`](./models/apixaban_body.xml) with [equations](./models/apixaban_body.md).
+The figure of the model [`apixaban_body.svg`](./models/apixaban_body.svg) shows its organs, the routes, the substances and their processes (the same for both builds).
+
+![apixaban model](./models/apixaban_body.svg)
 
 ## How to cite
 To cite the model repository

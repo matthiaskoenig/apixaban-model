@@ -30,6 +30,8 @@ class Frost2018(ApixabanSimulationExperiment):
     Sequential ascending single oral doses of 2.5, 10, 25 and 50 mg apixaban
     (form not reported) or placebo in healthy Japanese and Caucasian men,
     fasted; pharmacokinetics and the change of mPT, aPTT and INR.
+
+    The subjects are men (32) and run on the male build.
     """
 
     doses: ClassVar[dict[str, float]] = {
@@ -63,7 +65,7 @@ class Frost2018(ApixabanSimulationExperiment):
         "caucasian": 100 * math.sqrt(70.1 / 21.9),
     }
     info_fig1: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
         "Aurine_api": "cumulative amount",
     }
 
@@ -74,7 +76,7 @@ class Frost2018(ApixabanSimulationExperiment):
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Fig1", "Fig3", "Tab2"]:
+        for fig_id in ["Fig1", "Fig3"]:
             df = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
                 label = str(label)
@@ -84,12 +86,24 @@ class Frost2018(ApixabanSimulationExperiment):
                     and "mPT" not in label
                     and "aPTT" not in label
                     and "inr" not in label
-                    and fig_id != "Tab2"
-                ) or "cumulative amount" in label:
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
-                elif fig_id == "Tab2":
-                    continue
+                ):
+                    dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[self.to_sid(label)] = dset
+
+        # the urinary amounts at 72 hr (Tab2), without a spread
+        df = self.load_dataframe("Tab2")
+        for key in self.dose_keys:
+            if key == "placebo":
+                continue
+            for ethnicity in self.ethnicities:
+                df_label = df[
+                    df["label"]
+                    == f"cumulative_amount_apixaban_urine_{key.replace('.', '_')}"
+                    f"_{ethnicity}"
+                ]
+                dset = DataSet.from_df(df_label, self.ureg)
+                dset.unit_conversion("mean", 1 / self.Mr["api"])
+                dsets[self.to_sid(f"cumulative amount_{ethnicity}_{key}")] = dset
 
         return dsets
 
@@ -115,23 +129,12 @@ class Frost2018(ApixabanSimulationExperiment):
         mappings = {}
 
         mapping_configs = [
-            ("api", "", "[Cve_api]"),  # Cve_api: prefix, dataset_suffix, observable
-            (
-                "cumulative amount",
-                "",
-                "Aurine_api",
-            ),  # Cve_api: prefix, dataset_suffix, observable
-            (
-                "mPT",
-                "_mPT",
-                "mPT_relchange",
-            ),  # mPT_relchange: prefix, dataset_suffix, observable
-            (
-                "aPTT",
-                "_aPTT",
-                "aPTT_relchange",
-            ),  # aPTT_relchange: prefix, dataset_suffix, observable
-            ("INR", "_inr", "INR_relchange"),
+            # prefix of the key, suffix of the dataset, observable
+            ("api", "", "Carm_api"),
+            ("cumulative amount", "", "Aurine_api"),
+            ("mPT", "_mPT", "COAG__mPT_relchange"),
+            ("aPTT", "_aPTT", "COAG__aPTT_relchange"),
+            ("INR", "_inr", "COAG__INR_relchange"),
         ]
 
         for prefix, dataset_suffix, observable in mapping_configs:
@@ -146,6 +149,9 @@ class Frost2018(ApixabanSimulationExperiment):
                         else f"{ethnicity}{dataset_suffix}_{key}"
                     )
                     mapping_id = f"fm_{prefix}_{key}_{ethnicity}"
+                    tissue = (
+                        Tissue.URINE if prefix == "cumulative amount" else Tissue.PLASMA
+                    )
 
                     mappings[self.to_sid(mapping_id)] = FitMapping(
                         self,
@@ -163,9 +169,7 @@ class Frost2018(ApixabanSimulationExperiment):
                             yid=observable,
                         ),
                         metadata=PKPDMappingMetaData(
-                            tissue=Tissue.URINE
-                            if prefix == "cumulative amount"
-                            else Tissue.PLASMA,
+                            tissue=tissue,
                             route=Route.PO,
                             # the form of the doses is not reported
                             application_form=ApplicationForm.NR,
@@ -194,6 +198,8 @@ class Frost2018(ApixabanSimulationExperiment):
             name=f"{self.__class__.__name__}",
             height=self.panel_height * 2,
             width=self.panel_width * 2,
+            # one legend per row, right of the panels, which share their curves
+            settings={"legend_scope": "row", "legend_fontsize": 13},
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time), legend=True
@@ -201,13 +207,7 @@ class Frost2018(ApixabanSimulationExperiment):
 
         # Configuration for each plot
         plot_configs = [
-            (
-                0,
-                "[Cve_api]",
-                self.label_api_plasma,
-                self.unit_api,
-                True,
-            ),  # Cve_api plot
+            (0, "Carm_api", self.label_api_plasma, self.unit_api, True),
             (1, "Aurine_api", self.label_api_urine, self.unit_api_urine, True),
         ]
 
@@ -231,7 +231,7 @@ class Frost2018(ApixabanSimulationExperiment):
                     )
                     label = (
                         f"{ethnicity}_{key}"
-                        if yid == "[Cve_api]"
+                        if yid == "Carm_api"
                         else f"cumulative amount_{ethnicity}_{key}"
                     )
                     plots[idx].add_data(
@@ -256,6 +256,8 @@ class Frost2018(ApixabanSimulationExperiment):
             name=f"{self.__class__.__name__}",
             height=self.panel_height * 2 * 1.05,
             width=self.panel_width * 3 * 1.05,
+            # one legend per row, right of the panels, which share their curves
+            settings={"legend_scope": "row", "legend_fontsize": 13},
         )
         plots = fig.create_plots(
             # the data cover 24 h
@@ -267,21 +269,28 @@ class Frost2018(ApixabanSimulationExperiment):
         plot_configs = [
             (
                 0,
-                "mPT_relchange",
-                self.labels["mPT_relchange"],
+                "COAG__mPT_relchange",
+                self.labels["COAG__mPT_relchange"],
                 "%",
                 "_mPT",
                 False,
             ),  # mPT plot
             (
                 1,
-                "aPTT_relchange",
-                self.labels["aPTT_relchange"],
+                "COAG__aPTT_relchange",
+                self.labels["COAG__aPTT_relchange"],
                 "%",
                 "_aPTT",
                 False,
             ),  # aPTT plot
-            (2, "INR_relchange", self.labels["INR_relchange"], "%", "_inr", False),
+            (
+                2,
+                "COAG__INR_relchange",
+                self.labels["COAG__INR_relchange"],
+                "%",
+                "_inr",
+                False,
+            ),
         ]
 
         for (

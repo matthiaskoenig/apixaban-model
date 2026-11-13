@@ -7,8 +7,9 @@ run by its package `pkdb_models.models.apixaban`.
 
 from pathlib import Path
 
-from pkpdsim.model import FigureSettings, PKPDModel, SimulatorSettings
-from pkpdsim.release.settings import Author, ReleaseSettings
+from pkpdsim.model import FigureSettings, PKPDModel, PKPDReleaseSettings
+from sbmlsim.project import SimulatorSettings
+from sbmlsim.release.settings import Author
 
 from pkdb_models.models.apixaban.tolerances import ABSOLUTE_TOLERANCE
 
@@ -16,6 +17,8 @@ APIXABAN_PATH = Path(__file__).parent
 
 MODEL_BASE_PATH = APIXABAN_PATH / "models" / "output" / "models"
 MODEL_PATH = MODEL_BASE_PATH / "apixaban_body_flat.xml"
+# the female build, on which the studies and groups of mostly women run
+FEMALE_MODEL_PATH = MODEL_BASE_PATH / "apixaban_body_female_flat.xml"
 
 DATA_PATH_BASE = APIXABAN_PATH / "data"
 DATA_PATH_APIXABAN = DATA_PATH_BASE / "apixaban"
@@ -31,19 +34,23 @@ MODEL = PKPDModel(
     title="Apixaban PBPK/PD model",
     path=APIXABAN_PATH,
     model_path=MODEL_PATH,
+    female_model_path=FEMALE_MODEL_PATH,
     data_paths=tuple(DATA_PATHS),
     archive_path=MODEL_BASE_PATH.parent / "apixaban_model.omex",
     factory=".models.factory:create_apixaban_models",
     experiments=".simulations:EXPERIMENTS",
     fit_definitions=".fitting.fitting:FIT_DEFINITIONS",
+    # the contexts of use of the model and their evidence
+    credibility=".credibility:CREDIBILITY",
     simulator=SimulatorSettings(
         absolute_tolerance=ABSOLUTE_TOLERANCE, relative_tolerance=1e-10
     ),
     figures=FigureSettings(formats=("svg",), fig_dpi=300, legend_fontsize=9.5),
     fit_identifiability=True,
-    fits=("PK_20261017_103232__85dfa", "PD_20261017_121913__2536d"),
+    # the adopted fits, whose values the factory takes (`models/fits.py`)
+    fits=("PK_20261031_104725__64222", "PD_20261104_193909__02221"),
     # the release of the model repository
-    release=ReleaseSettings(
+    release=PKPDReleaseSettings(
         title=(
             "Physiologically based pharmacokinetic/pharmacodynamic (PBPK/PD) model"
             " of apixaban"
@@ -77,7 +84,11 @@ MODEL = PKPDModel(
                 "König, Matthias",
                 "0000-0003-1725-179X",
                 (
-                    "Humboldt-Universität zu Berlin, Faculty of Life Sciences, Department of Biology, Institute of Theoretical Biology, Systems Medicine of the Liver; University of Stuttgart, Institute of Structural Mechanics and Dynamics in Aerospace Engineering; University of Southern Denmark, Clinical Pharmacology, Pharmacy and Environmental Medicine, Department of Public Health; University Hospital Schleswig-Holstein, Campus Lübeck, First Department of Medicine, Lübeck, Germany"
+                    "University of Lübeck, Lübeck, Germany; "
+                    "University Hospital Schleswig-Holstein, Campus Lübeck, "
+                    "First Department of Medicine, Lübeck, Germany; "
+                    "Humboldt-Universität zu Berlin, Faculty of Life Sciences, "
+                    "Department of Biology, Institute of Theoretical Biology, Berlin, Germany"
                 ),
             ),
         ),

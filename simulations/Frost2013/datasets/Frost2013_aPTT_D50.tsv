@@ -1,8 +1,8 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2013		D50	7.0	API_50	aPTT		blood	coagulation assay	aPTT_D50	0.0	hr		32.703213610586				oral tablet	s	s	dimensionless
-Frost2013		D50	7.0	API_50	aPTT		blood	coagulation assay	aPTT_D50	1.5	hr		35.992438563327				oral tablet	s	s	dimensionless
-Frost2013		D50	7.0	API_50	aPTT		blood	coagulation assay	aPTT_D50	3.0	hr		38.2230623818525				oral tablet	s	s	dimensionless
-Frost2013		D50	7.0	API_50	aPTT		blood	coagulation assay	aPTT_D50	6.0	hr		36.8241965973535				oral tablet	s	s	dimensionless
-Frost2013		D50	7.0	API_50	aPTT		blood	coagulation assay	aPTT_D50	12.0	hr		34.3289224952741				oral tablet	s	s	dimensionless
-Frost2013		D50	7.0	API_50	aPTT		blood	coagulation assay	aPTT_D50	24.0	hr		33.9130434782608				oral tablet	s	s	dimensionless
-Frost2013		D50	7.0	API_50	aPTT		blood	coagulation assay	aPTT_D50	48.0	hr		32.4007561436672				oral tablet	s	s	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2013	D50		7	dimensionless	API_50	aPTT	sample mean			plasma	coagulation assay	aPTT_D50	0.0	hr		sec	28.9			sec		sec					sec		dimensionless		
+Frost2013	D50		7	dimensionless	API_50	aPTT	sample mean			plasma	coagulation assay	aPTT_D50	1.5	hr		sec	34.25			sec		sec					sec		dimensionless		
+Frost2013	D50		7	dimensionless	API_50	aPTT	sample mean			plasma	coagulation assay	aPTT_D50	3.0	hr		sec	34.71			sec		sec					sec		dimensionless		
+Frost2013	D50		7	dimensionless	API_50	aPTT	sample mean			plasma	coagulation assay	aPTT_D50	6.0	hr		sec	33.57			sec		sec					sec		dimensionless		
+Frost2013	D50		7	dimensionless	API_50	aPTT	sample mean			plasma	coagulation assay	aPTT_D50	12.0	hr		sec	33.01			sec		sec					sec		dimensionless		
+Frost2013	D50		7	dimensionless	API_50	aPTT	sample mean			plasma	coagulation assay	aPTT_D50	24.0	hr		sec	32.85			sec		sec					sec		dimensionless		
+Frost2013	D50		7	dimensionless	API_50	aPTT	sample mean			plasma	coagulation assay	aPTT_D50	48.0	hr		sec	30.32			sec		sec					sec		dimensionless		

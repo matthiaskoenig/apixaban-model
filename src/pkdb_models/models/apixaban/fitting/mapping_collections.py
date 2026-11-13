@@ -12,9 +12,10 @@ The training data are single doses of healthy subjects, fasted or with the
 fasting not reported, without an interacting drug (the microdose cocktails of
 apixaban, rivaroxaban and edoxaban included). The validation data has four
 parts, each a different question: the interactions (`INTERACTION_VALIDATION`,
-the arms with a coadministered drug, simulated with factors of CYP3A4 and P-gp
-which are not fitted), the doses (`DOSE_VALIDATION`, the repeated doses, which
-the single doses of the training predict), the populations
+the arms with a coadministered drug, simulated with factors of CYP3A4 and of
+the intestinal efflux, P-gp and BCRP, which are not fitted), the doses
+(`DOSE_VALIDATION`, the repeated doses, which the single doses of the training
+predict), the populations
 (`POPULATION_VALIDATION`, renal impairment, the elderly and the body weight,
 which the model describes with the renal function and the body size) and the
 limitations (`LIMITATION_VALIDATION`, data of a population, a formulation or a
@@ -23,11 +24,12 @@ one by one and the arms of the same subjects split another way are excluded
 (`AGGREGATE_MAPPINGS`).
 """
 
-from pkpdsim.fit import mapping_metadata, observable_filter, observable_id
+from pkpdsim.fit import mapping_metadata
 from pkpdsim.metadata import Coadministration, Fasting, Health
 from sbmlsim.console import console
 from sbmlsim.experiment import SimulationExperiment
 from sbmlsim.fit import FitMapping, FitMappingCollection, MappingKind
+from sbmlsim.fit.filters import NamedMappings, named, observable_filter, observable_id
 from sbmlsim.fit.helpers import FitMappings, MappingFilter
 
 from pkdb_models.models.apixaban import APIXABAN_PATH, DATA_PATHS
@@ -69,11 +71,6 @@ from pkdb_models.models.apixaban.experiments.studies import (
     Wang2016,
 )
 
-#: the keys of fit mappings by study: the keys of the mappings are SIds of their
-#: experiment, which two studies can share, so a named mapping is named with
-#: its study
-type NamedMappings = dict[str, set[str]]
-
 EXPERIMENT_CLASSES: list[type[SimulationExperiment]] = [
     Abdollahizad2025,
     Bashir2018,
@@ -114,16 +111,16 @@ EXPERIMENT_CLASSES: list[type[SimulationExperiment]] = [
 
 #: observables of the pharmacokinetics
 PK_OBSERVABLES: set[str] = {
-    "Cve_api",
-    "Cve_m1",
-    "Cve_m7",
+    "Carm_api",
+    "Carm_api_m1",
+    "Carm_api_m7",
     "Aurine_api",
-    "Aurine_m1",
-    "Aurine_m7",
+    "Aurine_api_m1",
+    "Aurine_api_m7",
     "Afeces_api",
-    "Afeces_m1",
-    "Afeces_m2",
-    "Afeces_m7",
+    "Afeces_api_m1",
+    "Afeces_api_m2",
+    "Afeces_api_m7",
 }
 
 #: coadministrations of the training data: none, or the microdoses of
@@ -150,42 +147,42 @@ OUTLIER_MAPPINGS: NamedMappings = {
 }
 
 #: the validation of the interactions: the arms with a coadministered drug,
-#: simulated with factors of CYP3A4 and P-gp which are not fitted (or without
-#: a factor for a drug without an interaction). `filter_coadministration`
+#: simulated with factors of CYP3A4 and of the intestinal efflux which are not
+#: fitted (or without a factor for a drug without an interaction). `filter_coadministration`
 #: lets the validation data through for this reason, every other
 #: coadministration stays out of the selection altogether
 INTERACTION_VALIDATION: NamedMappings = {
     "Bashir2018": {
-        "fm_apixaban_apixaban_API10__CYC100",
-        "fm_apixaban_apixaban_API10__TAC5",
+        "fm_apixaban_apixaban_API10_CYC100",
+        "fm_apixaban_apixaban_API10_TAC5",
     },
     "Frost2015a": {
-        "fm_apixaban_apixaban_API10_D7__KET400",
-        "fm_apixaban_apixaban_API10_D11__DIL360",
+        "fm_apixaban_apixaban_API10_D7_KET400",
+        "fm_apixaban_apixaban_API10_D11_DIL360",
     },
-    "Frost2017": {"fm_apixaban_API10__ATEN"},
+    "Frost2017": {"fm_apixaban_API10_ATEN"},
     "Garonzik2019": {"fm_apixaban_API10_CLARI500"},
     "Jeong2019": {
-        "fm_apixaban_apixaban_API10__ROS20",
-        "fm_apixaban_apixaban_API10__LAP250",
+        "fm_apixaban_apixaban_API10_ROS20",
+        "fm_apixaban_apixaban_API10_LAP250",
     },
-    "Lenard2024": {"fm_apixaban_API25__RIV25__EDO50__CLAR"},
+    "Lenard2024": {"fm_apixaban_API25_RIV25_EDO50_CLAR"},
     "Lenard2025": {
-        "fm_apixaban_API25__RIV25__EDO50__CAR",
-        "fm_apixaban_API25__RIV25__EDO50__GAB",
-        "fm_apixaban_API25__RIV25__EDO50__PRE",
+        "fm_apixaban_API25_RIV25_EDO50_CAR",
+        "fm_apixaban_API25_RIV25_EDO50_GAB",
+        "fm_apixaban_API25_RIV25_EDO50_PRE",
     },
     "Mikus2019": {
-        "fm_apixaban_API25__RIV25__EDO50__KET",
-        "fm_apixaban_urine_API25__RIV25__EDO50__KET",
+        "fm_apixaban_API25_RIV25_EDO50_KET",
+        "fm_apixaban_urine_API25_RIV25_EDO50_KET",
     },
     "Rohr2024": {
-        "fm_apixaban_API25__RIV25__EDO50__RITx5",
-        "fm_apixaban_urine_API25__RIV25__EDO50__RITx5",
+        "fm_apixaban_API25_RIV25_EDO50_RITx5",
+        "fm_apixaban_urine_API25_RIV25_EDO50_RITx5",
     },
     # rosuvastatin in every group of the study
     "Tirona2018": {"fm_apixaban_control", "fm_cumulative_amount_control"},
-    "Upreti2013a": {"fm_apixaban_apixaban_API10__FAMO40"},
+    "Upreti2013a": {"fm_apixaban_apixaban_API10_FAMO40"},
     "Vakkalagadda2016": {
         "fm_API5IV_RIF600_apixaban",
         "fm_API5IV_RIF600_cumulative_amount",
@@ -197,7 +194,7 @@ INTERACTION_VALIDATION: NamedMappings = {
 #: the validation of the doses: the repeated doses, which the single doses of
 #: the training predict
 DOSE_VALIDATION: NamedMappings = {
-    "Cui2013": {"fm_apixaban_API10M"},
+    "Cui2013": {"fm_apixaban_API10M", "fm_antiXa_activity_API10M"},
     "Frost2013a": {
         *(
             f"fm_apixaban_{group}"
@@ -208,6 +205,7 @@ DOSE_VALIDATION: NamedMappings = {
             for group in ["API2x2", "API5x2", "API10x2", "API25", "API25x2"]
             for marker in ["INR", "aPTT", "mPT"]
         ),
+        "fm_API10_INR",
         "fm_API10_aPTT",
         "fm_API10_mPT",
     },
@@ -241,7 +239,7 @@ POPULATION_VALIDATION: NamedMappings = {
         "fm_antiXa_activity_gram_elderly1",
     },
     # elderly patients with atrial fibrillation and impaired renal function
-    "Metze2021": {"fm_apixaban_API5"},
+    "Metze2021": {f"fm_apixaban_API5_IS{k:03d}" for k in range(1, 21)},
     # the body weight: 47 kg and 137 kg
     "Upreti2013": {
         f"fm_{sid}_{group}"
@@ -254,8 +252,9 @@ POPULATION_VALIDATION: NamedMappings = {
 #: a formulation or a process the model does not describe, which would distort
 #: the fitted parameters of the processes it does describe
 LIMITATION_VALIDATION: NamedMappings = {
-    # hepatic impairment: the shared cirrhosis model lowers the hepatic
-    # clearance, the AUC of the moderate group is 1.09 times the control
+    # hepatic impairment: the Child-Pugh severity of the library lowers the
+    # hepatic clearance; the AUC of the mild and moderate groups is 1.03 and 1.28
+    # times the control with the adopted fits, 1.03 and 1.09 observed
     "Frost2021a": {
         f"fm_po_{sid}_{group}"
         for sid in ["apixaban", "cumulative_amount", "aPTT", "inr", "xa"]
@@ -277,7 +276,8 @@ LIMITATION_VALIDATION: NamedMappings = {
     "Jeong2019": {"fm_apixaban_apixaban_API10"},
     # obese patients with a fatty liver, with rosuvastatin
     "Tirona2018": {"fm_apixaban_nafld", "fm_cumulative_amount_nafld"},
-    # food, which the model has no effect for (the AUC +4 % and -20 %)
+    # food: the fed state of the model slows the gastric emptying, the
+    # measured AUC changes (+4 % and -20 %) are no process of the model
     "Frost2013": {"fm_apixaban_fed"},
     "Song2016": {
         "fm_apixaban_fed",
@@ -331,18 +331,6 @@ VALIDATION_MAPPINGS: NamedMappings = {
     | POPULATION_VALIDATION
     | LIMITATION_VALIDATION
 }
-
-
-def study(fit_mapping: FitMapping) -> str:
-    """Get the study of a fit mapping, the id of its experiment."""
-    return fit_mapping.reference.experiment.sid
-
-
-def named(
-    mappings: NamedMappings, fit_mapping_key: str, fit_mapping: FitMapping
-) -> bool:
-    """Check whether a fit mapping is one of the named mappings of its study."""
-    return fit_mapping_key in mappings.get(study(fit_mapping), set())
 
 
 def check_named(mappings: NamedMappings, fit_mappings: FitMappings) -> None:

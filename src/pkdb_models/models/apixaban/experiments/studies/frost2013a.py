@@ -1,6 +1,6 @@
 """Simulation experiment of the study Frost2013a."""
 
-from typing import Any, ClassVar, override
+from typing import ClassVar, override
 
 from pkpdsim.metadata import (
     ApplicationForm,
@@ -28,6 +28,8 @@ class Frost2013a(ApixabanSimulationExperiment):
 
     Multiple doses of apixaban (2.5, 5, 10 and 25 mg twice daily, 10 and 25 mg
     once daily) for 7 days in healthy fasted men.
+
+    The subjects are men (48) and run on the male build.
     """
 
     #: the mean body weights of the panels (Tab1)
@@ -94,21 +96,20 @@ class Frost2013a(ApixabanSimulationExperiment):
     }
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
 
-    infos_pd: ClassVar[dict[str, str]] = {"INR": "INR", "aPTT": "aPTT", "mPT": "mPT"}
-    #: the INR of 10 mg once daily (`INR_API10`) is a copy of the INR of 5 mg
-    #: twice daily in the curation, it is neither mapped nor plotted
-    excluded_pd: ClassVar[set[str]] = {"INR_API10"}
+    infos_pd: ClassVar[dict[str, str]] = {
+        "COAG__INR": "INR",
+        "COAG__aPTT": "aPTT",
+        "COAG__mPT": "mPT",
+    }
 
+    #: the individual values against apixaban (Fig4) and their panel
     infos_scatter: ClassVar[dict[str, tuple[str, int]]] = {
-        "apixaban_inr": ("INR", 0),
-        "apixaban_aptt": ("aPTT", 1),
-        "apixaban_mpt": ("mPT", 2),
-        "apixaban_inr_mean": ("INR", 0),
-        "apixaban_aPTT_mean": ("aPTT", 1),
-        "apixaban_mPT_mean": ("mPT", 2),
+        "apixaban_vs_inr": ("COAG__INR", 0),
+        "apixaban_vs_aptt": ("COAG__aPTT", 1),
+        "apixaban_vs_mpt": ("COAG__mPT", 2),
     }
 
     def legend(self, group: str, kind: str) -> str:
@@ -126,17 +127,15 @@ class Frost2013a(ApixabanSimulationExperiment):
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Fig1", "Fig3", "Fig4", "Fig4Mean"]:
+        for fig_id in ["Fig1", "Fig3", "Fig4"]:
             df = self.load_dataframe(fig_id)
-            group_by = "x_label" if fig_id in ["Fig4", "Fig4Mean"] else "label"
-            for label, df_label in df.groupby(group_by):
+            for label, df_label in df.groupby("label"):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                if "apixaban" in label:
-                    if fig_id in ["Fig4", "Fig4Mean"]:
-                        dset.unit_conversion("x", 1 / self.Mr.api)
-                    else:
-                        dset.unit_conversion("mean", 1 / self.Mr.api)
+                if fig_id == "Fig4":
+                    dset.unit_conversion("x", 1 / self.Mr["api"])
+                elif "apixaban" in label:
+                    dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[self.to_sid(label)] = dset
 
         return dsets
@@ -161,9 +160,9 @@ class Frost2013a(ApixabanSimulationExperiment):
                 preinit_changes={
                     **self.default_changes(),
                     "BW": Q(self.bodyweights[group], "kg"),
-                    "INR_ref": Q(self.inr[group], "dimensionless"),
-                    "aPTT_ref": Q(self.aptt[group], "s"),
-                    "mPT_ref": Q(self.mpt[group], "s"),
+                    "COAG__INR_ref": Q(self.inr[group], "dimensionless"),
+                    "COAG__aPTT_ref": Q(self.aptt[group], "s"),
+                    "COAG__mPT_ref": Q(self.mpt[group], "s"),
                     "PODOSE_api": Q(dose, "mg"),
                 },
                 changes=[
@@ -213,8 +212,6 @@ class Frost2013a(ApixabanSimulationExperiment):
             # PD
             for _ks, sid in enumerate(self.infos_pd):
                 name = self.infos_pd[sid]
-                if f"{name}_{group}" in self.excluded_pd:
-                    continue
                 mappings[self.to_sid(f"fm_{group}_{name}")] = FitMapping(
                     self,
                     reference=FitData(
@@ -314,7 +311,7 @@ class Frost2013a(ApixabanSimulationExperiment):
             legend=True,
         )
 
-        for ky, yid in enumerate(["INR", "aPTT", "mPT"]):
+        for ky, yid in enumerate(["COAG__INR", "COAG__aPTT", "COAG__mPT"]):
             plots[ky].set_yaxis(self.labels[yid], unit=self.units[yid])
             plots[ky + 3].set_yaxis(self.labels[yid], unit=self.units[yid])
 
@@ -339,8 +336,6 @@ class Frost2013a(ApixabanSimulationExperiment):
                         color=self.colors[group],
                     )
                     # data
-                    if f"{name}_{group}" in self.excluded_pd:
-                        continue
                     plots[ks].add_data(
                         dataset=self.to_sid(f"{name}_{group}"),
                         xid="time",
@@ -353,36 +348,12 @@ class Frost2013a(ApixabanSimulationExperiment):
         return self.figures_by_sid(fig)
 
     def figure_scatter(self) -> dict[str, Figure]:
-        """Figure of the pharmacodynamics against apixaban in plasma."""
+        """Figure of the pharmacodynamics against apixaban in plasma.
 
-        # keyword arguments of `Plot.add_data`, passed on to matplotlib
-        def style_mean(group: str) -> dict[str, dict[str, Any]]:
-            return {
-                "kwargs_sim": {
-                    "color": self.colors[group],
-                    "linestyle": "solid",
-                },
-                "kwargs_exp": {
-                    "marker": "s",
-                    "linestyle": "",
-                    "color": self.colors[group],
-                    "markeredgecolor": "black",
-                    "yid_sd": "y_sd",
-                    "xid_sd": "x_sd",
-                },
-            }
-
-        style_indiv: dict[str, dict[str, Any]] = {
-            "kwargs_sim": {"color": "black", "linestyle": "", "marker": "o"},
-            "kwargs_exp": {
-                "label": "exp individ",
-                "color": "white",
-                "markeredgecolor": "black",
-                "marker": "o",
-                "linestyle": "",
-            },
-        }
-
+        The individual values of all doses (Fig4) in both rows, the simulations
+        of the once daily doses in the upper and of the twice daily doses in
+        the lower row. The means of the paper's figure are not curated.
+        """
         fig_scatter = Figure(
             experiment=self,
             sid="PD_scatter",
@@ -393,47 +364,36 @@ class Frost2013a(ApixabanSimulationExperiment):
             width=self.panel_width * 3 * 1.3,
         )
         plots_scatter = fig_scatter.create_plots(
-            xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
+            xaxis=Axis(self.labels["Carm_api"], unit=self.units["Carm_api"]),
             legend=True,
         )
 
         for label, (sid, kp) in self.infos_scatter.items():
-            plots_scatter[kp].set_yaxis(
-                self.labels[sid], unit=self.units[sid], scale="linear"
-            )
-            plots_scatter[kp + 3].set_yaxis(
-                self.labels[sid], unit=self.units[sid], scale="linear"
-            )
-
-            if "mean" in label:
-                for group in self.groups:
-                    style = style_mean(group)
-                    if group != "placebo":
-                        k = kp + 3 if "x2" in group else kp
-                        # simulation
-                        plots_scatter[k].add_data(
-                            task=self.to_sid(f"task_{group}"),
-                            xid="[Cve_api]",
-                            yid=sid,
-                            label=self.legend(group, "sim"),
-                            **style["kwargs_sim"],
-                        )
-                        # data
-                        plots_scatter[k].add_data(
-                            dataset=self.to_sid(f"{label}_{group}"),
-                            xid="x",
-                            yid="y",
-                            label=self.legend(group, "exp"),
-                            **style["kwargs_exp"],
-                        )
-            else:
-                style = style_indiv
-                # data
-                plots_scatter[kp].add_data(
-                    dataset=self.to_sid(label), xid="x", yid="y", **style["kwargs_exp"]
+            for k in [kp, kp + 3]:
+                plots_scatter[k].set_yaxis(
+                    self.labels[sid], unit=self.units[sid], scale="linear"
                 )
-                plots_scatter[kp + 3].add_data(
-                    dataset=self.to_sid(label), xid="x", yid="y", **style["kwargs_exp"]
+            for group in self.groups:
+                if group == "placebo":
+                    continue
+                plots_scatter[kp + 3 if "x2" in group else kp].add_data(
+                    task=self.to_sid(f"task_{group}"),
+                    xid="Carm_api",
+                    yid=sid,
+                    label=self.legend(group, "sim"),
+                    color=self.colors[group],
+                    linestyle="solid",
+                )
+            for k in [kp, kp + 3]:
+                plots_scatter[k].add_data(
+                    dataset=self.to_sid(label),
+                    xid="x",
+                    yid="y",
+                    label="exp individ",
+                    color="white",
+                    markeredgecolor="black",
+                    marker="o",
+                    linestyle="",
                 )
 
         return self.figures_by_sid(fig_scatter)

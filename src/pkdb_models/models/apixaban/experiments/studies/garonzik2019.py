@@ -12,6 +12,7 @@ from pkpdsim.metadata import (
     Route,
     Tissue,
 )
+from pkpdsim.pbpk import Sex
 from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
@@ -31,12 +32,16 @@ class Garonzik2019(ApixabanSimulationExperiment):
     apixaban (two 5 mg tablets) on day 1 and on day 8 at the steady state of
     clarithromycin 500 mg BID (days 4 to 10), fasted from 8 h before until
     4 h after the dose.
+
+    The subjects are mostly women (10 of 19) and run on the female build.
     """
+
+    sex: ClassVar[Sex] = Sex.FEMALE
 
     #: the groups of the data (Fig 2), the dataset labels by group
     groups: ClassVar[dict[str, str]] = {
         "API10": "apixaban_TX_API5_1",
-        "API10_CLARI500": "concomitant_TX_CLARI_1, TX_API5_2",
+        "API10_CLARI500": "concomitant_TX_CLARI_1_TX_API5_2",
     }
     colors: ClassVar[dict[str, str]] = {
         "API10": "black",
@@ -51,22 +56,21 @@ class Garonzik2019(ApixabanSimulationExperiment):
         "API10_CLARI500": Coadministration.CLARITHROMYCIN,
     }
     #: The factors of the interaction are not fitted but set from the
-    #: literature; with the unfitted model they reproduce the ratios observed in
-    #: this study roughly, the arm is validation data.
+    #: literature; the arm is validation data.
     #: Clarithromycin 500 mg BID inhibits CYP3A4 and P-gp; observed geometric
     #: mean ratios AUCinf 1.60, Cmax 1.30 with an unchanged half-life (mostly a
     #: higher bioavailability), i.e. a moderate effect on apixaban, smaller
-    #: than the one of ketoconazole. The factors give AUC x1.58, Cmax x1.15 for
-    #: 10 mg.
+    #: than the one of ketoconazole. The factors give AUC x1.57, Cmax x1.17 for
+    #: 10 mg with the adopted fits.
     interactions: ClassVar[dict[str, dict[str, float]]] = {
         "API10": {},
-        "API10_CLARI500": {"LI__f_cyp3a4": 0.5, "GU__f_pgp": 0.5},
+        "API10_CLARI500": {"LI__f_cyp3a4": 0.5, "GU__f_abcb1": 0.5},
     }
     bodyweight = 72.35  # [kg]
     bodyheight = 167.65  # [cm]
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
 
     @override
@@ -77,7 +81,7 @@ class Garonzik2019(ApixabanSimulationExperiment):
             for label, df_label in df.groupby("label"):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                dset.unit_conversion("mean", 1 / self.Mr.api)
+                dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[self.to_sid(label)] = dset
 
         return dsets

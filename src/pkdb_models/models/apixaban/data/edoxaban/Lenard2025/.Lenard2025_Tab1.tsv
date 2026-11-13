@@ -1,21 +1,21 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cv	median	min	max	sd	se	unit	comments
-Lenard2025	all	12.0	EDO60	auc_inf	edoxaban	plasma	HPLC MS/MS	NA	NA	86.6	NA	NA	NA	NA	NA	NA	μg*min/ml	NA
-Lenard2025	all	12.0	EDO60	cmax	edoxaban	plasma	HPLC MS/MS	48.0	hr	267.0	NA	NA	NA	NA	NA	NA	ng/ml	NA
-Lenard2025	all	12.0	EDO60, CAR	auc_inf	edoxaban	plasma	HPLC MS/MS	NA	NA	41.2	NA	NA	NA	NA	NA	NA	μg*min/ml	NA
-Lenard2025	all	12.0	EDO60, CAR	cmax	edoxaban	plasma	HPLC MS/MS	48.0	hr	127.0	NA	NA	NA	NA	NA	NA	ng/ml	NA
-Lenard2025	all	12.0	EDO60	auc_inf	edoxaban-M4	plasma	HPLC MS/MS	NA	NA	9.97	NA	NA	NA	NA	NA	NA	μg*min/ml	NA
-Lenard2025	all	12.0	EDO60	cmax	edoxaban-M4	plasma	HPLC MS/MS	24.0	hr	31.0	NA	NA	NA	NA	NA	NA	ng/ml	NA
-Lenard2025	all	12.0	EDO60, CAR	auc_inf	edoxaban-M4	plasma	HPLC MS/MS	NA	NA	4.78	NA	NA	NA	NA	NA	NA	μg*min/ml	NA
-Lenard2025	all	12.0	EDO60, CAR	cmax	edoxaban-M4	plasma	HPLC MS/MS	24.0	hr	16.0	NA	NA	NA	NA	NA	NA	ng/ml	NA
-Lenard2025	all	12.0	API25, RIV25, EDO50	auc_inf	edoxaban	plasma	HPLC MS/MS	NA	NA	53.0	NA	NA	NA	NA	NA	NA	ng*min/ml	NA
-Lenard2025	all	12.0	API25, RIV25, EDO50	cmax	edoxaban	plasma	HPLC MS/MS	24.0	hr	119.0	NA	NA	NA	NA	NA	NA	pg/ml	NA
-Lenard2025	all	12.0	API25, RIV25, EDO50, CAR	auc_inf	edoxaban	plasma	HPLC MS/MS	NA	NA	31.0	NA	NA	NA	NA	NA	NA	ng*min/ml	NA
-Lenard2025	all	12.0	API25, RIV25, EDO50, CAR	cmax	edoxaban	plasma	HPLC MS/MS	24.0	hr	83.0	NA	NA	NA	NA	NA	NA	pg/ml	NA
-Lenard2025	all	12.0	API25, RIV25, EDO50	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	354.0	NA	NA	NA	NA	NA	NA	ng*min/ml	geometric mean
-Lenard2025	all	12.0	API25, RIV25, EDO50	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	719.0	NA	NA	NA	NA	NA	NA	pg/ml	geometric mean
-Lenard2025	all	12.0	API25, RIV25, EDO50, CAR	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	235.0	NA	NA	NA	NA	NA	NA	ng*min/ml	geometric mean
-Lenard2025	all	12.0	API25, RIV25, EDO50, CAR	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	634.0	NA	NA	NA	NA	NA	NA	pg/ml	geometric mean
-Lenard2025	all	12.0	API25, RIV25, EDO50	auc_inf	rivaroxaban	plasma	HPLC MS/MS	NA	NA	186.0	NA	NA	NA	NA	NA	NA	ng*min/ml	NA
-Lenard2025	all	12.0	API25, RIV25, EDO50	cmax	rivaroxaban	plasma	HPLC MS/MS	24.0	hr	695.0	NA	NA	NA	NA	NA	NA	pg/ml	NA
-Lenard2025	all	12.0	API25, RIV25, EDO50, CAR	auc_inf	rivaroxaban	plasma	HPLC MS/MS	NA	NA	104.0	NA	NA	NA	NA	NA	NA	ng*min/ml	NA
-Lenard2025	all	12.0	API25, RIV25, EDO50, CAR	cmax	rivaroxaban	plasma	HPLC MS/MS	24.0	hr	524.0	NA	NA	NA	NA	NA	NA	pg/ml	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Lenard2025	all	NA	12	API25,CAR,EDO50,RIV25	auc_inf	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_inf_apixaban_plasma_API25_CAR_EDO50_RIV25_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	235.0	NA	NA	ng*min/ml	geometric mean (95% CI 190-290)
+Lenard2025	all	NA	12	API25,CAR,EDO50,RIV25	auc_inf	geometric mean	NA	edoxaban	plasma	HPLC MS/MS	auc_inf_edoxaban_plasma_API25_CAR_EDO50_RIV25_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	31.0	NA	NA	ng*min/ml	geometric mean (95% CI 25-39)
+Lenard2025	all	NA	12	API25,CAR,EDO50,RIV25	auc_inf	geometric mean	NA	rivaroxaban	plasma	HPLC MS/MS	auc_inf_rivaroxaban_plasma_API25_CAR_EDO50_RIV25_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	104.0	NA	NA	ng*min/ml	geometric mean (95% CI 82-131)
+Lenard2025	all	NA	12	API25,CAR,EDO50,RIV25	cmax	geometric mean	NA	apixaban	plasma	HPLC MS/MS	cmax_apixaban_plasma_API25_CAR_EDO50_RIV25_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	634.0	NA	NA	pg/ml	geometric mean (95% CI 472-850)
+Lenard2025	all	NA	12	API25,CAR,EDO50,RIV25	cmax	geometric mean	NA	edoxaban	plasma	HPLC MS/MS	cmax_edoxaban_plasma_API25_CAR_EDO50_RIV25_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	83.0	NA	NA	pg/ml	geometric mean (95% CI 60-115)
+Lenard2025	all	NA	12	API25,CAR,EDO50,RIV25	cmax	geometric mean	NA	rivaroxaban	plasma	HPLC MS/MS	cmax_rivaroxaban_plasma_API25_CAR_EDO50_RIV25_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	524.0	NA	NA	pg/ml	geometric mean (95% CI 401-686)
+Lenard2025	all	NA	12	API25,EDO50,RIV25	auc_inf	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_inf_apixaban_plasma_API25_EDO50_RIV25_all_Tab1	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	354.0	NA	NA	ng*min/ml	geometric mean (95% CI 279-449)
+Lenard2025	all	NA	12	API25,EDO50,RIV25	auc_inf	geometric mean	NA	edoxaban	plasma	HPLC MS/MS	auc_inf_edoxaban_plasma_API25_EDO50_RIV25_all_Tab1	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	53.0	NA	NA	ng*min/ml	geometric mean (95% CI 45-63)
+Lenard2025	all	NA	12	API25,EDO50,RIV25	auc_inf	geometric mean	NA	rivaroxaban	plasma	HPLC MS/MS	auc_inf_rivaroxaban_plasma_API25_EDO50_RIV25_all_Tab1	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	186.0	NA	NA	ng*min/ml	geometric mean (95% CI 143-242)
+Lenard2025	all	NA	12	API25,EDO50,RIV25	cmax	geometric mean	NA	apixaban	plasma	HPLC MS/MS	cmax_apixaban_plasma_API25_EDO50_RIV25_all_Tab1	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	719.0	NA	NA	pg/ml	geometric mean (95% CI 574-901)
+Lenard2025	all	NA	12	API25,EDO50,RIV25	cmax	geometric mean	NA	edoxaban	plasma	HPLC MS/MS	cmax_edoxaban_plasma_API25_EDO50_RIV25_all_Tab1	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	119.0	NA	NA	pg/ml	geometric mean (95% CI 95-150)
+Lenard2025	all	NA	12	API25,EDO50,RIV25	cmax	geometric mean	NA	rivaroxaban	plasma	HPLC MS/MS	cmax_rivaroxaban_plasma_API25_EDO50_RIV25_all_Tab1	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	695.0	NA	NA	pg/ml	geometric mean (95% CI 551-878)
+Lenard2025	all	NA	12	CAR,EDO60	auc_inf	geometric mean	NA	edoxaban	plasma	HPLC MS/MS	auc_inf_edoxaban_plasma_CAR_EDO60_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	41.2	NA	NA	μg*min/ml	geometric mean (95% CI 34.9-48.7)
+Lenard2025	all	NA	12	CAR,EDO60	auc_inf	geometric mean	NA	edoxaban-M4	plasma	HPLC MS/MS	auc_inf_edoxaban_M4_plasma_CAR_EDO60_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	4.78	NA	NA	μg*min/ml	geometric mean (95% CI 3.52-6.48)
+Lenard2025	all	NA	12	CAR,EDO60	cmax	geometric mean	NA	edoxaban	plasma	HPLC MS/MS	cmax_edoxaban_plasma_CAR_EDO60_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	127.0	NA	NA	ng/ml	geometric mean (95% CI 90-179)
+Lenard2025	all	NA	12	CAR,EDO60	cmax	geometric mean	NA	edoxaban-M4	plasma	HPLC MS/MS	cmax_edoxaban_M4_plasma_CAR_EDO60_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	16.0	NA	NA	ng/ml	geometric mean (95% CI 11-23)
+Lenard2025	all	NA	12	EDO60	auc_inf	geometric mean	NA	edoxaban	plasma	HPLC MS/MS	auc_inf_edoxaban_plasma_EDO60_all_Tab1	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	86.6	NA	NA	μg*min/ml	geometric mean (95% CI 70.9-106)
+Lenard2025	all	NA	12	EDO60	auc_inf	geometric mean	NA	edoxaban-M4	plasma	HPLC MS/MS	auc_inf_edoxaban_M4_plasma_EDO60_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	9.97	NA	NA	μg*min/ml	geometric mean (95% CI 6.93-14.3)
+Lenard2025	all	NA	12	EDO60	cmax	geometric mean	NA	edoxaban	plasma	HPLC MS/MS	cmax_edoxaban_plasma_EDO60_all_Tab1	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	267.0	NA	NA	ng/ml	geometric mean (95% CI 220-323)
+Lenard2025	all	NA	12	EDO60	cmax	geometric mean	NA	edoxaban-M4	plasma	HPLC MS/MS	cmax_edoxaban_M4_plasma_EDO60_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	31.0	NA	NA	ng/ml	geometric mean (95% CI 22-44)

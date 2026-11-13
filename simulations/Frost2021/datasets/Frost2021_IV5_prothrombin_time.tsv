@@ -1,14 +1,14 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2021		group5	6.0	IV5	mPT		plasma	coagulation assay	IV5_prothrombin time	0.0	hr		53.9		4.34	1.77179758061317	175.2	sec	sec	dimensionless
-Frost2021		group5	6.0	IV5	mPT		plasma	coagulation assay	IV5_prothrombin time	0.05	hr		175.2		37.2	15.1868364052557		sec	sec	dimensionless
-Frost2021		group5	6.0	IV5	mPT		plasma	coagulation assay	IV5_prothrombin time	0.166666666666667	hr		133.109416445623	156.385278514588	23.275862068965	9.50233089872764		sec	sec	dimensionless
-Frost2021		group5	6.0	IV5	mPT		plasma	coagulation assay	IV5_prothrombin time	0.5	hr		125.35974801061	145.535145888594	20.175397877984	8.23657169311522		sec	sec	dimensionless
-Frost2021		group5	6.0	IV5	mPT		plasma	coagulation assay	IV5_prothrombin time	1.0	hr		116.843169761273	137.015583554376	20.172413793103	8.23535344556395		sec	sec	dimensionless
-Frost2021		group5	6.0	IV5	mPT		plasma	coagulation assay	IV5_prothrombin time	2.0	hr		100.582891246684	109.89323607427	9.31034482758601	3.80093235949106		sec	sec	dimensionless
-Frost2021		group5	6.0	IV5	mPT		plasma	coagulation assay	IV5_prothrombin time	3.0	hr		107.598474801061	123.888594164456	16.290119363395	6.65041338155828		sec	sec	dimensionless
-Frost2021		group5	6.0	IV5	mPT		plasma	coagulation assay	IV5_prothrombin time	4.0	hr		102.194297082228	107.631299734748	5.43700265251999	2.21964703813878		sec	sec	dimensionless
-Frost2021		group5	6.0	IV5	mPT		plasma	coagulation assay	IV5_prothrombin time	6.0	hr		91.4038461538461	106.921087533156	15.5172413793099	6.33488726581838		sec	sec	dimensionless
-Frost2021		group5	6.0	IV5	mPT		plasma	coagulation assay	IV5_prothrombin time	8.0	hr		82.1531830238726	89.1359416445623	6.98275862068969	2.85069926961837		sec	sec	dimensionless
-Frost2021		group5	6.0	IV5	mPT		plasma	coagulation assay	IV5_prothrombin time	12.0	hr		67.5431034482758	77.6293103448275	10.0862068965517	4.11767672278206		sec	sec	dimensionless
-Frost2021		group5	6.0	IV5	mPT		plasma	coagulation assay	IV5_prothrombin time	18.0	hr		63.8517904509283	71.6163793103448	7.7645888594165	3.16988012801154		sec	sec	dimensionless
-Frost2021		group5	6.0	IV5	mPT		plasma	coagulation assay	IV5_prothrombin time	24.0	hr		60.9482758620689	67.1492042440318	6.2009283819629	2.5315184112252		sec	sec	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2021	group5		6	dimensionless	IV5	mPT	sample mean			plasma	coagulation assay	IV5_prothrombin time	0.0	hr		sec	53.9	4.34	1.77179758061317	sec		sec	0.08051948051948052				sec		dimensionless		
+Frost2021	group5		6	dimensionless	IV5	mPT	sample mean			plasma	coagulation assay	IV5_prothrombin time	0.05	hr		sec	175.2	37.2	15.1868364052557	sec		sec	0.21232876712328771				sec		dimensionless		
+Frost2021	group5		6	dimensionless	IV5	mPT	sample mean			plasma	coagulation assay	IV5_prothrombin time	0.166666666666667	hr		sec	133.109416445623	23.27586206896501	9.50233089872764	sec		sec	0.17486262572921366				sec		dimensionless		
+Frost2021	group5		6	dimensionless	IV5	mPT	sample mean			plasma	coagulation assay	IV5_prothrombin time	0.5	hr		sec	125.35974801061	20.175397877983997	8.23657169311522	sec		sec	0.16094000026449018				sec		dimensionless		
+Frost2021	group5		6	dimensionless	IV5	mPT	sample mean			plasma	coagulation assay	IV5_prothrombin time	1.0	hr		sec	116.843169761273	20.172413793103004	8.23535344556395	sec		sec	0.1726452118195533				sec		dimensionless		
+Frost2021	group5		6	dimensionless	IV5	mPT	sample mean			plasma	coagulation assay	IV5_prothrombin time	2.0	hr		sec	100.582891246684	9.310344827586007	3.80093235949106	sec		sec	0.0925639013970276				sec		dimensionless		
+Frost2021	group5		6	dimensionless	IV5	mPT	sample mean			plasma	coagulation assay	IV5_prothrombin time	3.0	hr		sec	107.598474801061	16.290119363394993	6.65041338155828	sec		sec	0.15139730738297008				sec		dimensionless		
+Frost2021	group5		6	dimensionless	IV5	mPT	sample mean			plasma	coagulation assay	IV5_prothrombin time	4.0	hr		sec	102.194297082228	5.437002652519993	2.21964703813878	sec		sec	0.05320260335217385				sec		dimensionless		
+Frost2021	group5		6	dimensionless	IV5	mPT	sample mean			plasma	coagulation assay	IV5_prothrombin time	6.0	hr		sec	91.4038461538461	15.517241379309894	6.33488726581838	sec		sec	0.16976573779173468				sec		dimensionless		
+Frost2021	group5		6	dimensionless	IV5	mPT	sample mean			plasma	coagulation assay	IV5_prothrombin time	8.0	hr		sec	82.1531830238726	6.982758620689694	2.85069926961837	sec		sec	0.08499681161058116				sec		dimensionless		
+Frost2021	group5		6	dimensionless	IV5	mPT	sample mean			plasma	coagulation assay	IV5_prothrombin time	12.0	hr		sec	67.5431034482758	10.086206896551701	4.11767672278206	sec		sec	0.14932992980216955				sec		dimensionless		
+Frost2021	group5		6	dimensionless	IV5	mPT	sample mean			plasma	coagulation assay	IV5_prothrombin time	18.0	hr		sec	63.8517904509283	7.764588859416499	3.16988012801154	sec		sec	0.12160330672925734				sec		dimensionless		
+Frost2021	group5		6	dimensionless	IV5	mPT	sample mean			plasma	coagulation assay	IV5_prothrombin time	24.0	hr		sec	60.9482758620689	6.200928381962896	2.5315184112252	sec		sec	0.10174083342400238				sec		dimensionless		

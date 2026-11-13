@@ -1,13 +1,13 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cv	median	min	max	sd	se	unit	comments
-Cui2013	API10	12.0	API10	cmax	apixaban	plasma	LC MS/MS	NA	hr	233.9	26.0	NA	NA	NA	60.814	NA	ng/ml	geometric mean 
-Cui2013	API10	12.0	API10	tmax	apixaban	plasma	LC MS/MS	NA	hr	NA	NA	3.0	2.0	4.0	NA	NA	hr	NA
-Cui2013	API10	12.0	API10	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	2273.0	27.0	NA	NA	NA	613.71	NA	ng*hr/ml	NA
-Cui2013	API10	12.0	API10	auc_inf	apixaban	plasma	LC MS/MS	NA	hr	2308.0	27.0	NA	NA	NA	623.16	NA	ng*hr/ml	geometric mean 
-Cui2013	API10	12.0	API10	thalf	apixaban	plasma	LC MS/MS	NA	hr	11.4	NA	NA	NA	NA	3.6	NA	hr	NA
-Cui2013	API10	12.0	API10	clearance_renal	apixaban	urine	LC MS/MS	NA	hr	1.17	NA	NA	NA	NA	0.2	NA	l/hr	NA
-Cui2013	API10	12.0	API10M	cmax	apixaban	plasma	LC MS/MS	NA	hr	336.3	24.0	NA	NA	NA	80.712	NA	ng/ml	geometric mean 
-Cui2013	API10	12.0	API10M	tmax	apixaban	plasma	LC MS/MS	NA	hr	NA	NA	3.5	2.0	4.0	NA	NA	hr	NA
-Cui2013	API10	12.0	API10M	cmin	apixaban	plasma	LC MS/MS	NA	hr	116.0	30.0	NA	NA	NA	34.8	NA	ng/ml	geometric mean 
-Cui2013	API10	12.0	API10M	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	2703.0	24.0	NA	NA	NA	648.72	NA	ng*hr/ml	geometric mean, AUC_tau last dose
-Cui2013	API10	12.0	API10M	thalf	apixaban	plasma	LC MS/MS	NA	hr	10.8	4.9	NA	NA	NA	1.8	NA	hr	NA
-Cui2013	API10	12.0	API10M	clearance_renal	apixaban	urine	LC MS/MS	NA	hr	1.2	NA	NA	NA	NA	0.26	NA	l/hr	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Cui2013	API10	NA	12	API10	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_API10_API10	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	2273.0	1.3037757977931919	0.27	ng*hr/ml	NA
+Cui2013	API10	NA	12	API10	auc_inf	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_inf_apixaban_plasma_API10_API10	NA	hr	NA	NA	NA	NA	NA	NA	NA	NA	2308.0	1.3037757977931919	0.27	ng*hr/ml	NA
+Cui2013	API10	NA	12	API10	clearance_renal	sample mean	NA	apixaban	urine	LC MS/MS	clearance_renal_apixaban_urine_API10_API10	NA	hr	NA	1.17	NA	0.2	0.05773502691896258	0.17094017094017097	NA	NA	NA	NA	NA	l/hr	NA
+Cui2013	API10	NA	12	API10	cmax	geometric mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_API10_API10	NA	hr	NA	NA	NA	NA	NA	NA	NA	NA	233.9	1.2914426458898653	0.26	ng/ml	NA
+Cui2013	API10	NA	12	API10	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_API10_API10	NA	hr	NA	11.4	NA	3.6	1.0392304845413265	0.3157894736842105	NA	NA	NA	NA	NA	hr	NA
+Cui2013	API10	NA	12	API10	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_API10_API10	NA	NA	NA	NA	3.0	NA	NA	NA	2.0	4.0	NA	NA	NA	hr	NA
+Cui2013	API10	NA	12	API10M	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_API10M_API10	12.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	2703.0	1.2669948273599922	0.24	ng*hr/ml	NA
+Cui2013	API10	NA	12	API10M	clearance_renal	sample mean	NA	apixaban	urine	LC MS/MS	clearance_renal_apixaban_urine_API10M_API10	NA	hr	NA	1.2	NA	0.26	0.07505553499465135	0.21666666666666667	NA	NA	NA	NA	NA	l/hr	NA
+Cui2013	API10	NA	12	API10M	cmax	geometric mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_API10M_API10	NA	hr	NA	NA	NA	NA	NA	NA	NA	NA	336.3	1.2669948273599922	0.24	ng/ml	NA
+Cui2013	API10	NA	12	API10M	cmin	geometric mean	NA	apixaban	plasma	LC MS/MS	cmin_apixaban_plasma_API10M_API10	NA	hr	NA	NA	NA	NA	NA	NA	NA	NA	116.0	1.3411941572071522	0.3	ng/ml	NA
+Cui2013	API10	NA	12	API10M	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_API10M_API10	NA	hr	NA	10.8	NA	4.9	1.4145081595145834	0.4537037037037037	NA	NA	NA	NA	NA	hr	NA
+Cui2013	API10	NA	12	API10M	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_API10M_API10	NA	NA	NA	NA	3.5	NA	NA	NA	2.0	4.0	NA	NA	NA	hr	NA

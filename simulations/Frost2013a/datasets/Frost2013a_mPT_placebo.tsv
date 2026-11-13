@@ -1,13 +1,13 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2013a		placebo	12.0	placebo	mPT		plasma	coagulation assay	mPT_placebo	0.0	hr		52.86	57.14	4.28			sec	sec	dimensionless
-Frost2013a		placebo	12.0	placebo	mPT		plasma	coagulation assay	mPT_placebo	3.0	hr		55.71	70.0	14.29			sec	sec	dimensionless
-Frost2013a		placebo	12.0	placebo	mPT		plasma	coagulation assay	mPT_placebo	6.0	hr		47.14	54.29	7.15			sec	sec	dimensionless
-Frost2013a		placebo	12.0	placebo	mPT		plasma	coagulation assay	mPT_placebo	12.0	hr		51.43	55.71	4.28			sec	sec	dimensionless
-Frost2013a		placebo	12.0	placebo	mPT		plasma	coagulation assay	mPT_placebo	18.0	hr		48.57	52.86	4.29			sec	sec	dimensionless
-Frost2013a		placebo	12.0	placebo	mPT		plasma	coagulation assay	mPT_placebo	24.0	hr		48.57	55.71	7.14			sec	sec	dimensionless
-Frost2013a		placebo	12.0	placebo	mPT		plasma	coagulation assay	mPT_placebo	144.0	hr		52.86	61.43	8.57			sec	sec	dimensionless
-Frost2013a		placebo	12.0	placebo	mPT		plasma	coagulation assay	mPT_placebo	147.0	hr		48.57	54.29	5.72			sec	sec	dimensionless
-Frost2013a		placebo	12.0	placebo	mPT		plasma	coagulation assay	mPT_placebo	150.0	hr		48.57	55.71	7.14			sec	sec	dimensionless
-Frost2013a		placebo	12.0	placebo	mPT		plasma	coagulation assay	mPT_placebo	156.0	hr		52.86	57.14	4.28			sec	sec	dimensionless
-Frost2013a		placebo	12.0	placebo	mPT		plasma	coagulation assay	mPT_placebo	162.0	hr		51.43	57.14	5.71			sec	sec	dimensionless
-Frost2013a		placebo	12.0	placebo	mPT		plasma	coagulation assay	mPT_placebo	168.0	hr		51.43	60.0	8.57			sec	sec	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2013a	placebo		6	dimensionless	placebo	mPT	sample mean			plasma	coagulation assay	mPT_placebo	0.0	hr		sec	52.86	4.280000000000001	1.7473026831853344	sec		sec	0.08096859629209234				sec		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	mPT	sample mean			plasma	coagulation assay	mPT_placebo	3.0	hr		sec	55.71	14.29	5.833868070728602	sec		sec	0.2565069107880093				sec		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	mPT	sample mean			plasma	coagulation assay	mPT_placebo	6.0	hr		sec	47.14	7.149999999999999	2.9189752768166204	sec		sec	0.15167585914297832				sec		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	mPT	sample mean			plasma	coagulation assay	mPT_placebo	12.0	hr		sec	51.43	4.280000000000001	1.7473026831853344	sec		sec	0.08321991055804008				sec		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	mPT	sample mean			plasma	coagulation assay	mPT_placebo	18.0	hr		sec	48.57	4.289999999999999	1.7513851660899722	sec		sec	0.08832612723903642				sec		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	mPT	sample mean			plasma	coagulation assay	mPT_placebo	24.0	hr		sec	48.57	7.140000000000001	2.9148927939119824	sec		sec	0.14700432365657815				sec		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	mPT	sample mean			plasma	coagulation assay	mPT_placebo	144.0	hr		sec	52.86	8.57	3.4986878492753064	sec		sec	0.16212637154748394				sec		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	mPT	sample mean			plasma	coagulation assay	mPT_placebo	147.0	hr		sec	48.57	5.719999999999999	2.3351802214532964	sec		sec	0.11776816965204856				sec		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	mPT	sample mean			plasma	coagulation assay	mPT_placebo	150.0	hr		sec	48.57	7.140000000000001	2.9148927939119824	sec		sec	0.14700432365657815				sec		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	mPT	sample mean			plasma	coagulation assay	mPT_placebo	156.0	hr		sec	52.86	4.280000000000001	1.7473026831853344	sec		sec	0.08096859629209234				sec		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	mPT	sample mean			plasma	coagulation assay	mPT_placebo	162.0	hr		sec	51.43	5.710000000000001	2.3310977385486584	sec		sec	0.11102469375850672				sec		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	mPT	sample mean			plasma	coagulation assay	mPT_placebo	168.0	hr		sec	51.43	8.57	3.4986878492753064	sec		sec	0.16663426015944002				sec		dimensionless		

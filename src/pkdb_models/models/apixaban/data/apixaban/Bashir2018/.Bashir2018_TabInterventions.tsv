@@ -1,4 +1,4 @@
-study	name	time	time_end	time_unit	route	application	measurement_type	form	substance	value	unit	comments
-Bashir2018	API10	0	NA	hr	oral	single dose	dosing	tablet	apixaban	10	mg	NA
-Bashir2018	CYC100	-48|-24|0	NA	hr	oral	multiple dose	dosing	capsule	cyclosporine	100	mg	NA
-Bashir2018	TAC5	-48|-24|0	NA	hr	oral	multiple dose	dosing	capsule	fujimycin	5	mg	NA
+study	name	time	time_end	time_unit	interval	doses	route	application	measurement_type	form	substance	value	unit	comments
+Bashir2018	API10	0.0	NA	hr	NA	NA	oral	single dose	dosing	tablet	apixaban	10.0	mg	NA
+Bashir2018	CYC100	-48.0	NA	hr	24.0	3.0	oral	multiple dose	dosing	capsule	cyclosporine	100.0	mg	Once daily for 3 days, apixaban with the third dose (Fig1: days 8-10 / 17-19 of sequence A, days 1-3 / 23-25 of sequence B).
+Bashir2018	TAC5	-48.0	NA	hr	24.0	3.0	oral	multiple dose	dosing	capsule	fujimycin	5.0	mg	Once daily for 3 days, apixaban with the third dose (Fig1: days 8-10 / 17-19 of sequence A, days 1-3 / 23-25 of sequence B).

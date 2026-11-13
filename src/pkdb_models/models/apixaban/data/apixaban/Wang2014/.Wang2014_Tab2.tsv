@@ -1,16 +1,16 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	mean	sd	se	geomean	median	min	max	cv	unit	comments
-Wang2014	NA	all	18.0	API20	auc_end	apixaban	plasma	HPLC MS/MS	API20_auc_end_all_apixaban	72.0	hr	NA	NA	NA	4080.0	NA	NA	NA	27.0	ng*hr/ml	NA
-Wang2014	NA	all	18.0	API20	auc_inf	apixaban	plasma	HPLC MS/MS	API20_auc_inf_all_apixaban	NA	NA	NA	NA	NA	4185.0	NA	NA	NA	26.0	ng*hr/ml	NA
-Wang2014	NA	all	18.0	API20	cmax	apixaban	plasma	HPLC MS/MS	API20_cmax_all_apixaban	NA	NA	NA	NA	NA	380.0	NA	NA	NA	30.0	ng/ml	NA
-Wang2014	NA	all	18.0	API20	tmax	apixaban	plasma	HPLC MS/MS	API20_tmax_all_apixaban	NA	NA	NA	NA	NA	NA	2.5	1.0	4.0	NA	hr	NA
-Wang2014	NA	all	18.0	API20	thalf	apixaban	plasma	HPLC MS/MS	API20_thalf_all_apixaban	NA	NA	13.4	5.1	NA	NA	NA	NA	NA	NA	hr	NA
-Wang2014	NA	all	14.0	API20, AC50_2hr	auc_end	apixaban	plasma	HPLC MS/MS	API20, AC50_2hr_auc_end_all_apixaban	48.0	hr	NA	NA	NA	2007.0	NA	NA	NA	30.0	ng*hr/ml	NA
-Wang2014	NA	all	14.0	API20, AC50_2hr	auc_inf	apixaban	plasma	HPLC MS/MS	API20, AC50_2hr_auc_inf_all_apixaban	NA	NA	NA	NA	NA	2034.0	NA	NA	NA	30.0	ng*hr/ml	NA
-Wang2014	NA	all	14.0	API20, AC50_2hr	cmax	apixaban	plasma	HPLC MS/MS	API20, AC50_2hr_cmax_all_apixaban	NA	NA	NA	NA	NA	366.0	NA	NA	NA	34.0	ng/ml	NA
-Wang2014	NA	all	14.0	API20, AC50_2hr	tmax	apixaban	plasma	HPLC MS/MS	API20, AC50_2hr_tmax_all_apixaban	NA	NA	NA	NA	NA	NA	2.5	1.5	2.5	NA	hr	NA
-Wang2014	NA	all	14.0	API20, AC50_2hr	thalf	apixaban	plasma	HPLC MS/MS	API20, AC50_2hr_thalf_all_apixaban	NA	NA	5.3	1.1	NA	NA	NA	NA	NA	NA	hr	NA
-Wang2014	NA	all	17.0	API20, AC50_6hr	auc_end	apixaban	plasma	HPLC MS/MS	API20, AC50_6hr_auc_end_all_apixaban	48.0	hr	NA	NA	NA	2954.0	NA	NA	NA	32.0	ng*hr/ml	NA
-Wang2014	NA	all	17.0	API20, AC50_6hr	auc_inf	apixaban	plasma	HPLC MS/MS	API20, AC50_6hr_auc_inf_all_apixaban	NA	NA	NA	NA	NA	2976.0	NA	NA	NA	32.0	ng*hr/ml	NA
-Wang2014	NA	all	17.0	API20, AC50_6hr	cmax	apixaban	plasma	HPLC MS/MS	API20, AC50_6hr_cmax_all_apixaban	NA	NA	NA	NA	NA	383.0	NA	NA	NA	30.0	ng/ml	NA
-Wang2014	NA	all	17.0	API20, AC50_6hr	tmax	apixaban	plasma	HPLC MS/MS	API20, AC50_6hr_tmax_all_apixaban	NA	NA	NA	NA	NA	NA	2.5	1.5	4.0	NA	hr	NA
-Wang2014	NA	all	17.0	API20, AC50_6hr	thalf	apixaban	plasma	HPLC MS/MS	API20, AC50_6hr_thalf_all_apixaban	NA	NA	4.9	1.2	NA	NA	NA	NA	NA	NA	hr	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Wang2014	all	NA	14	AC50_2hr,API20	auc_end	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_end_apixaban_plasma_AC50_2hr_API20_all	48.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	2007.0	1.3411941572071522	0.3	ng*hr/ml	NA
+Wang2014	all	NA	14	AC50_2hr,API20	auc_inf	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_inf_apixaban_plasma_AC50_2hr_API20_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	2034.0	1.3411941572071522	0.3	ng*hr/ml	NA
+Wang2014	all	NA	14	AC50_2hr,API20	cmax	geometric mean	NA	apixaban	plasma	HPLC MS/MS	cmax_apixaban_plasma_AC50_2hr_API20_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	366.0	1.3920050420226553	0.34	ng/ml	NA
+Wang2014	all	NA	14	AC50_2hr,API20	thalf	sample mean	NA	apixaban	plasma	HPLC MS/MS	thalf_apixaban_plasma_AC50_2hr_API20_all	NA	NA	NA	5.3	NA	1.1	0.2939873661036668	0.2075471698113208	NA	NA	NA	NA	NA	hr	NA
+Wang2014	all	NA	14	AC50_2hr,API20	tmax	sample mean	NA	apixaban	plasma	HPLC MS/MS	tmax_apixaban_plasma_AC50_2hr_API20_all	NA	NA	NA	NA	2.5	NA	NA	NA	1.5	2.5	NA	NA	NA	hr	NA
+Wang2014	all	NA	17	AC50_6hr,API20	auc_end	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_end_apixaban_plasma_AC50_6hr_API20_all	48.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	2954.0	1.3664734270732437	0.32	ng*hr/ml	NA
+Wang2014	all	NA	17	AC50_6hr,API20	auc_inf	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_inf_apixaban_plasma_AC50_6hr_API20_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	2976.0	1.3664734270732437	0.32	ng*hr/ml	NA
+Wang2014	all	NA	17	AC50_6hr,API20	cmax	geometric mean	NA	apixaban	plasma	HPLC MS/MS	cmax_apixaban_plasma_AC50_6hr_API20_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	383.0	1.3411941572071522	0.3	ng/ml	NA
+Wang2014	all	NA	17	AC50_6hr,API20	thalf	sample mean	NA	apixaban	plasma	HPLC MS/MS	thalf_apixaban_plasma_AC50_6hr_API20_all	NA	NA	NA	4.9	NA	1.2	0.29104275004359953	0.24489795918367344	NA	NA	NA	NA	NA	hr	NA
+Wang2014	all	NA	17	AC50_6hr,API20	tmax	sample mean	NA	apixaban	plasma	HPLC MS/MS	tmax_apixaban_plasma_AC50_6hr_API20_all	NA	NA	NA	NA	2.5	NA	NA	NA	1.5	4.0	NA	NA	NA	hr	NA
+Wang2014	all	NA	18	API20	auc_end	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_end_apixaban_plasma_API20_all	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	4080.0	1.3037757977931919	0.27	ng*hr/ml	NA
+Wang2014	all	NA	18	API20	auc_inf	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_inf_apixaban_plasma_API20_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	4185.0	1.2914426458898653	0.26	ng*hr/ml	NA
+Wang2014	all	NA	18	API20	cmax	geometric mean	NA	apixaban	plasma	HPLC MS/MS	cmax_apixaban_plasma_API20_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	380.0	1.3411941572071522	0.3	ng/ml	NA
+Wang2014	all	NA	18	API20	thalf	sample mean	NA	apixaban	plasma	HPLC MS/MS	thalf_apixaban_plasma_API20_all	NA	NA	NA	13.4	NA	5.1	1.2020815280171309	0.3805970149253731	NA	NA	NA	NA	NA	hr	NA
+Wang2014	all	NA	18	API20	tmax	sample mean	NA	apixaban	plasma	HPLC MS/MS	tmax_apixaban_plasma_API20_all	NA	NA	NA	NA	2.5	NA	NA	NA	1.0	4.0	NA	NA	NA	hr	NA

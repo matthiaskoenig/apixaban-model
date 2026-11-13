@@ -32,70 +32,72 @@ class Frost2015a(ApixabanSimulationExperiment):
     in healthy subjects: a single oral dose of 10 mg apixaban (tablet) alone and
     at the steady state of ketoconazole 400 mg QD (study 1) or diltiazem 360 mg
     QD (study 2), fasted from 10 h before until 4 h after the dose.
+
+    The subjects are mostly men (study 1: 20 men; study 2: 13 men of 18) and
+    run on the male build.
     """
 
     #: the groups of the data (Fig 2): the reference and the interaction arms
     groups: ClassVar[list[str]] = [
         "apixaban_API10_D1_A",
-        "apixaban_API10_D7, KET400",
+        "apixaban_API10_D7_KET400",
         "apixaban_API10_D1_B",
-        "apixaban_API10_D11, DIL360",
+        "apixaban_API10_D11_DIL360",
     ]
     colors: ClassVar[dict[str, str]] = {
         "apixaban_API10_D1_A": "black",
-        "apixaban_API10_D7, KET400": "tab:blue",
+        "apixaban_API10_D7_KET400": "tab:blue",
         "apixaban_API10_D1_B": "black",
-        "apixaban_API10_D11, DIL360": "tab:orange",
+        "apixaban_API10_D11_DIL360": "tab:orange",
     }
     markers: ClassVar[dict[str, str]] = {
         "apixaban_API10_D1_A": "s",
-        "apixaban_API10_D7, KET400": "s",
+        "apixaban_API10_D7_KET400": "s",
         "apixaban_API10_D1_B": "D",
-        "apixaban_API10_D11, DIL360": "D",
+        "apixaban_API10_D11_DIL360": "D",
     }
     group_labels: ClassVar[dict[str, str]] = {
         "apixaban_API10_D1_A": "10mg PO",
-        "apixaban_API10_D7, KET400": "10mg PO + ketoconazole",
+        "apixaban_API10_D7_KET400": "10mg PO + ketoconazole",
         "apixaban_API10_D1_B": "10mg PO",
-        "apixaban_API10_D11, DIL360": "10mg PO + diltiazem",
+        "apixaban_API10_D11_DIL360": "10mg PO + diltiazem",
     }
     #: body weight [kg] and BMI [kg/m^2] of the two studies (Table 1)
     bodyweight: ClassVar[dict[str, float]] = {
         "apixaban_API10_D1_A": 79,
-        "apixaban_API10_D7, KET400": 79,
+        "apixaban_API10_D7_KET400": 79,
         "apixaban_API10_D1_B": 78,
-        "apixaban_API10_D11, DIL360": 78,
+        "apixaban_API10_D11_DIL360": 78,
     }
     bmi: ClassVar[dict[str, float]] = {
         "apixaban_API10_D1_A": 25,
-        "apixaban_API10_D7, KET400": 25,
+        "apixaban_API10_D7_KET400": 25,
         "apixaban_API10_D1_B": 26,
-        "apixaban_API10_D11, DIL360": 26,
+        "apixaban_API10_D11_DIL360": 26,
     }
     coadministrations: ClassVar[dict[str, Coadministration]] = {
         "apixaban_API10_D1_A": Coadministration.NONE,
-        "apixaban_API10_D7, KET400": Coadministration.KETOCONAZOLE,
+        "apixaban_API10_D7_KET400": Coadministration.KETOCONAZOLE,
         "apixaban_API10_D1_B": Coadministration.NONE,
-        "apixaban_API10_D11, DIL360": Coadministration.DILTIAZEM,
+        "apixaban_API10_D11_DIL360": Coadministration.DILTIAZEM,
     }
     #: The factors of the interactions are not fitted but set from the
-    #: literature; with the unfitted model they reproduce the ratios observed in
-    #: this study roughly, the arms are validation data.
+    #: literature; the arms are validation data.
     #: Ketoconazole 400 mg QD inhibits CYP3A4 strongly and P-gp; observed
     #: geometric mean ratios AUCinf 1.99, Cmax 1.62 with an unchanged half-life,
     #: i.e. mostly a higher bioavailability. The factors give AUC x2.05, Cmax
-    #: x1.23 for 10 mg.
+    #: x1.25 for 10 mg with the adopted fits.
     #: Diltiazem 360 mg QD inhibits CYP3A4 moderately and P-gp weakly; observed
-    #: AUCinf 1.40, Cmax 1.31. The factors give AUC x1.35, Cmax x1.10.
+    #: AUCinf 1.40, Cmax 1.31. The factors give AUC x1.36, Cmax x1.11.
     interactions: ClassVar[dict[str, dict[str, float]]] = {
         "apixaban_API10_D1_A": {},
-        "apixaban_API10_D7, KET400": {"LI__f_cyp3a4": 0.3, "GU__f_pgp": 0.3},
+        "apixaban_API10_D7_KET400": {"LI__f_cyp3a4": 0.3, "GU__f_abcb1": 0.3},
         "apixaban_API10_D1_B": {},
-        "apixaban_API10_D11, DIL360": {"LI__f_cyp3a4": 0.6, "GU__f_pgp": 0.7},
+        "apixaban_API10_D11_DIL360": {"LI__f_cyp3a4": 0.6, "GU__f_abcb1": 0.7},
     }
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
 
     @override
@@ -106,7 +108,7 @@ class Frost2015a(ApixabanSimulationExperiment):
             label = str(label)
             dset = DataSet.from_df(df_label, self.ureg)
             if label.startswith("apixaban"):
-                dset.unit_conversion("mean", 1 / self.Mr.api)
+                dset.unit_conversion("mean", 1 / self.Mr["api"])
             dsets[self.to_sid(label)] = dset
         return dsets
 

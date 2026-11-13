@@ -1,57 +1,57 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	mean	median	min	max	sd	se	cv	unit	comments
-Frost2018	japanese	12.0	API2.5	cmax	apixaban	plasma	LC MS/MS	cmax_japanese_API2.5	NA	NA	52.5	NA	NA	NA	NA	NA	16.0	ng/ml	geometric mean (CV%)
-Frost2018	japanese	10.0	API2.5	auc_inf	apixaban	plasma	LC MS/MS	auc_inf_japanese_API2.5	NA	NA	465.7	NA	NA	NA	NA	NA	17.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	japanese	12.0	API2.5	auc_end	apixaban	plasma	LC MS/MS	auc_end_japanese_API2.5	36.0	hr	429.8	NA	NA	NA	NA	NA	16.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	japanese	12.0	API2.5	tmax	apixaban	plasma	LC MS/MS	tmax_japanese_API2.5	NA	NA	NA	3.5	1.5	6.0	NA	NA	NA	hr	NA
-Frost2018	japanese	10.0	API2.5	thalf	apixaban	plasma	LC MS/MS	thalf_japanese_API2.5	NA	NA	6.12	NA	NA	NA	1.21	NA	NA	hr	NA
-Frost2018	japanese	12.0	API2.5	clearance_renal	apixaban	urine	LC MS/MS	clearance_renal_japanese_API2.5	NA	NA	1.11	NA	NA	NA	0.31	NA	NA	L/hr	NA
-Frost2018	japanese	12.0	API2.5	cumulative amount	apixaban	urine	calculated	cumulative amount_japanese_API2.5	72.0	hr	0.477078	NA	NA	NA	0.134416450793792	NA	NA	mg	not reported, derived as CLR x AUC0-T; urine collected 0-72 h
-Frost2018	caucasian	12.0	API2.5	cmax	apixaban	plasma	LC MS/MS	cmax_caucasian_API2.5	NA	NA	44.8	NA	NA	NA	NA	NA	20.0	ng/ml	geometric mean (CV%)
-Frost2018	caucasian	12.0	API2.5	auc_inf	apixaban	plasma	LC MS/MS	auc_inf_caucasian_API2.5	NA	NA	446.5	NA	NA	NA	NA	NA	15.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	caucasian	12.0	API2.5	auc_end	apixaban	plasma	LC MS/MS	auc_end_caucasian_API2.5	48.0	hr	421.6	NA	NA	NA	NA	NA	18.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	caucasian	12.0	API2.5	tmax	apixaban	plasma	LC MS/MS	tmax_caucasian_API2.5	NA	NA	NA	3.5	2.5	4.0	NA	NA	NA	hr	NA
-Frost2018	caucasian	12.0	API2.5	thalf	apixaban	plasma	LC MS/MS	thalf_caucasian_API2.5	NA	NA	8.87	NA	NA	NA	2.95	NA	NA	hr	NA
-Frost2018	caucasian	12.0	API2.5	clearance_renal	apixaban	urine	LC MS/MS	clearance_renal_caucasian_API2.5	NA	NA	0.9	NA	NA	NA	0.21	NA	NA	L/hr	NA
-Frost2018	caucasian	12.0	API2.5	cumulative amount	apixaban	urine	calculated	cumulative amount_caucasian_API2.5	72.0	hr	0.379764	NA	NA	NA	0.0900802733930132	NA	NA	mg	not reported, derived as CLR x AUC0-T; urine collected 0-72 h
-Frost2018	japanese	12.0	API10	cmax	apixaban	plasma	LC MS/MS	cmax_japanese_API10	NA	NA	175.7	NA	NA	NA	NA	NA	22.0	ng/ml	geometric mean (CV%)
-Frost2018	japanese	12.0	API10	auc_inf	apixaban	plasma	LC MS/MS	auc_inf_japanese_API10	NA	NA	1628.0	NA	NA	NA	NA	NA	18.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	japanese	12.0	API10	auc_end	apixaban	plasma	LC MS/MS	auc_end_japanese_API10	48.0	hr	1607.0	NA	NA	NA	NA	NA	18.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	japanese	12.0	API10	tmax	apixaban	plasma	LC MS/MS	tmax_japanese_API10	NA	NA	NA	3.0	1.0	6.0	NA	NA	NA	hr	NA
-Frost2018	japanese	12.0	API10	thalf	apixaban	plasma	LC MS/MS	thalf_japanese_API10	NA	NA	8.11	NA	NA	NA	4.18	NA	NA	hr	NA
-Frost2018	japanese	12.0	API10	clearance_renal	apixaban	urine	LC MS/MS	clearance_renal_japanese_API10	NA	NA	1.15	NA	NA	NA	0.33	NA	NA	L/hr	NA
-Frost2018	japanese	12.0	API10	cumulative amount	apixaban	urine	calculated	cumulative amount_japanese_API10	72.0	hr	1.84805	NA	NA	NA	0.530713845777553	NA	NA	mg	not reported, derived as CLR x AUC0-T; urine collected 0-72 h
-Frost2018	caucasian	12.0	API10	cmax	apixaban	plasma	LC MS/MS	cmax_caucasian_API10	NA	NA	207.8	NA	NA	NA	NA	NA	44.0	ng/ml	geometric mean (CV%)
-Frost2018	caucasian	12.0	API10	auc_inf	apixaban	plasma	LC MS/MS	auc_inf_caucasian_API10	NA	NA	1946.0	NA	NA	NA	NA	NA	15.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	caucasian	12.0	API10	auc_end	apixaban	plasma	LC MS/MS	auc_end_caucasian_API10	72.0	hr	1896.0	NA	NA	NA	NA	NA	15.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	caucasian	12.0	API10	tmax	apixaban	plasma	LC MS/MS	tmax_caucasian_API10	NA	NA	NA	3.0	2.5	4.0	NA	NA	NA	hr	NA
-Frost2018	caucasian	12.0	API10	thalf	apixaban	plasma	LC MS/MS	thalf_caucasian_API10	NA	NA	13.39	NA	NA	NA	6.15	NA	NA	hr	NA
-Frost2018	caucasian	12.0	API10	clearance_renal	apixaban	urine	LC MS/MS	clearance_renal_caucasian_API10	NA	NA	0.8	NA	NA	NA	0.26	NA	NA	L/hr	NA
-Frost2018	caucasian	12.0	API10	cumulative amount	apixaban	urine	calculated	cumulative amount_caucasian_API10	72.0	hr	1.5168	NA	NA	NA	0.493106034844434	NA	NA	mg	not reported, derived as CLR x AUC0-T; urine collected 0-72 h
-Frost2018	japanese	12.0	API25	cmax	apixaban	plasma	LC MS/MS	cmax_japanese_API25	NA	NA	368.8	NA	NA	NA	NA	NA	16.0	ng/ml	geometric mean (CV%)
-Frost2018	japanese	12.0	API25	auc_inf	apixaban	plasma	LC MS/MS	auc_inf_japanese_API25	NA	NA	3414.0	NA	NA	NA	NA	NA	15.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	japanese	12.0	API25	auc_end	apixaban	plasma	LC MS/MS	auc_end_japanese_API25	72.0	hr	3374.0	NA	NA	NA	NA	NA	16.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	japanese	12.0	API25	tmax	apixaban	plasma	LC MS/MS	tmax_japanese_API25	NA	NA	NA	3.0	2.0	4.0	NA	NA	NA	hr	NA
-Frost2018	japanese	12.0	API25	thalf	apixaban	plasma	LC MS/MS	thalf_japanese_API25	NA	NA	8.25	NA	NA	NA	2.47	NA	NA	hr	NA
-Frost2018	japanese	12.0	API25	clearance_renal	apixaban	urine	LC MS/MS	clearance_renal_japanese_API25	NA	NA	1.04	NA	NA	NA	0.29	NA	NA	L/hr	NA
-Frost2018	japanese	12.0	API25	cumulative amount	apixaban	urine	calculated	cumulative amount_japanese_API25	72.0	hr	3.50896	NA	NA	NA	0.978601482320561	NA	NA	mg	not reported, derived as CLR x AUC0-T; urine collected 0-72 h
-Frost2018	caucasian	12.0	API25	cmax	apixaban	plasma	LC MS/MS	cmax_caucasian_API25	NA	NA	345.2	NA	NA	NA	NA	NA	18.0	ng/ml	geometric mean (CV%)
-Frost2018	caucasian	12.0	API25	auc_inf	apixaban	plasma	LC MS/MS	auc_inf_caucasian_API25	NA	NA	3819.0	NA	NA	NA	NA	NA	19.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	caucasian	12.0	API25	auc_end	apixaban	plasma	LC MS/MS	auc_end_caucasian_API25	72.0	hr	3747.0	NA	NA	NA	NA	NA	18.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	caucasian	12.0	API25	tmax	apixaban	plasma	LC MS/MS	tmax_caucasian_API25	NA	NA	NA	3.5	2.0	4.0	NA	NA	NA	hr	NA
-Frost2018	caucasian	12.0	API25	thalf	apixaban	plasma	LC MS/MS	thalf_caucasian_API25	NA	NA	12.7	NA	NA	NA	3.9	NA	NA	hr	NA
-Frost2018	caucasian	12.0	API25	clearance_renal	apixaban	urine	LC MS/MS	clearance_renal_caucasian_API25	NA	NA	0.84	NA	NA	NA	0.1	NA	NA	L/hr	NA
-Frost2018	caucasian	12.0	API25	cumulative amount	apixaban	urine	calculated	cumulative amount_caucasian_API25	72.0	hr	3.14748	NA	NA	NA	0.375004939167473	NA	NA	mg	not reported, derived as CLR x AUC0-T; urine collected 0-72 h
-Frost2018	japanese	11.0	API50	cmax	apixaban	plasma	LC MS/MS	cmax_japanese_API50	NA	NA	485.0	NA	NA	NA	NA	NA	28.0	ng/ml	geometric mean (CV%)
-Frost2018	japanese	11.0	API50	auc_inf	apixaban	plasma	LC MS/MS	auc_inf_japanese_API50	NA	NA	4743.0	NA	NA	NA	NA	NA	34.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	japanese	11.0	API50	auc_end	apixaban	plasma	LC MS/MS	auc_end_japanese_API50	72.0	hr	4706.0	NA	NA	NA	NA	NA	34.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	japanese	11.0	API50	tmax	apixaban	plasma	LC MS/MS	tmax_japanese_API50	NA	NA	NA	4.0	1.5	6.0	NA	NA	NA	hr	NA
-Frost2018	japanese	11.0	API50	thalf	apixaban	plasma	LC MS/MS	thalf_japanese_API50	NA	NA	8.47	NA	NA	NA	1.71	NA	NA	hr	NA
-Frost2018	japanese	11.0	API50	clearance_renal	apixaban	urine	LC MS/MS	clearance_renal_japanese_API50	NA	NA	1.05	NA	NA	NA	0.29	NA	NA	L/hr	NA
-Frost2018	japanese	11.0	API50	cumulative amount	apixaban	urine	calculated	cumulative amount_japanese_API50	72.0	hr	4.9413	NA	NA	NA	1.36520685524209	NA	NA	mg	not reported, derived as CLR x AUC0-T; urine collected 0-72 h
-Frost2018	caucasian	12.0	API50	cmax	apixaban	plasma	LC MS/MS	cmax_caucasian_API50	NA	NA	494.3	NA	NA	NA	NA	NA	23.0	ng/ml	geometric mean (CV%)
-Frost2018	caucasian	10.0	API50	auc_inf	apixaban	plasma	LC MS/MS	auc_inf_caucasian_API50	NA	NA	6093.0	NA	NA	NA	NA	NA	24.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	caucasian	12.0	API50	auc_end	apixaban	plasma	LC MS/MS	auc_end_caucasian_API50	72.0	hr	5991.0	NA	NA	NA	NA	NA	22.0	ng/ml*hr	geometric mean (CV%)
-Frost2018	caucasian	12.0	API50	tmax	apixaban	plasma	LC MS/MS	tmax_caucasian_API50	NA	NA	NA	3.5	2.0	4.0	NA	NA	NA	hr	NA
-Frost2018	caucasian	12.0	API50	thalf	apixaban	plasma	LC MS/MS	thalf_caucasian_API50	NA	NA	16.12	NA	NA	NA	7.77	NA	NA	hr	NA
-Frost2018	caucasian	12.0	API50	clearance_renal	apixaban	urine	LC MS/MS	clearance_renal_caucasian_API50	NA	NA	0.73	NA	NA	NA	0.18	NA	NA	L/hr	NA
-Frost2018	caucasian	12.0	API50	cumulative amount	apixaban	urine	calculated	cumulative amount_caucasian_API50	72.0	hr	4.37343	NA	NA	NA	1.07849958182653	NA	NA	mg	not reported, derived as CLR x AUC0-T; urine collected 0-72 h
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Frost2018	caucasian	NA	12	API2.5	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_API2_5_caucasian	48.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	421.6	1.1955030307519012	0.18	ng/ml*hr	NA
+Frost2018	caucasian	NA	12	API2.5	auc_inf	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_inf_apixaban_plasma_API2_5_caucasian	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	446.5	1.160866118095672	0.15	ng/ml*hr	NA
+Frost2018	caucasian	NA	12	API2.5	clearance_renal	sample mean	NA	apixaban	urine	LC MS/MS	clearance_renal_apixaban_urine_API2_5_caucasian	NA	NA	NA	0.9	NA	0.21	0.060621778264910706	0.2333333333333333	NA	NA	NA	NA	NA	L/hr	NA
+Frost2018	caucasian	NA	12	API2.5	cmax	geometric mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_API2_5_caucasian	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	44.8	1.2190138356507818	0.2	ng/ml	NA
+Frost2018	caucasian	NA	12	API2.5	cumulative amount	sample mean	NA	apixaban	urine	calculated	cumulative_amount_apixaban_urine_API2_5_caucasian	72.0	hr	NA	0.379764	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR (mean) x AUC(0-T) (geometric mean) of Table 2; urine pooled 0-72 h
+Frost2018	caucasian	NA	12	API2.5	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_API2_5_caucasian	NA	NA	NA	8.87	NA	2.95	0.8515916470546981	0.3325817361894025	NA	NA	NA	NA	NA	hr	NA
+Frost2018	caucasian	NA	12	API2.5	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_API2_5_caucasian	NA	NA	NA	NA	3.5	NA	NA	NA	2.5	4.0	NA	NA	NA	hr	NA
+Frost2018	caucasian	NA	12	API10	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_API10_caucasian	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	1896.0	1.160866118095672	0.15	ng/ml*hr	NA
+Frost2018	caucasian	NA	12	API10	auc_inf	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_inf_apixaban_plasma_API10_caucasian	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1946.0	1.160866118095672	0.15	ng/ml*hr	NA
+Frost2018	caucasian	NA	12	API10	clearance_renal	sample mean	NA	apixaban	urine	LC MS/MS	clearance_renal_apixaban_urine_API10_caucasian	NA	NA	NA	0.8	NA	0.26	0.07505553499465135	0.325	NA	NA	NA	NA	NA	L/hr	NA
+Frost2018	caucasian	NA	12	API10	cmax	geometric mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_API10_caucasian	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	207.8	1.5230009831956908	0.44	ng/ml	NA
+Frost2018	caucasian	NA	12	API10	cumulative amount	sample mean	NA	apixaban	urine	calculated	cumulative_amount_apixaban_urine_API10_caucasian	72.0	hr	NA	1.5168	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR (mean) x AUC(0-T) (geometric mean) of Table 2; urine pooled 0-72 h
+Frost2018	caucasian	NA	12	API10	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_API10_caucasian	NA	NA	NA	13.39	NA	6.15	1.7753520777580993	0.45929798356982826	NA	NA	NA	NA	NA	hr	NA
+Frost2018	caucasian	NA	12	API10	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_API10_caucasian	NA	NA	NA	NA	3.0	NA	NA	NA	2.5	4.0	NA	NA	NA	hr	NA
+Frost2018	caucasian	NA	12	API25	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_API25_caucasian	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	3747.0	1.1955030307519012	0.18	ng/ml*hr	NA
+Frost2018	caucasian	NA	12	API25	auc_inf	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_inf_apixaban_plasma_API25_caucasian	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	3819.0	1.2072173338933756	0.19	ng/ml*hr	NA
+Frost2018	caucasian	NA	12	API25	clearance_renal	sample mean	NA	apixaban	urine	LC MS/MS	clearance_renal_apixaban_urine_API25_caucasian	NA	NA	NA	0.84	NA	0.1	0.02886751345948129	0.11904761904761905	NA	NA	NA	NA	NA	L/hr	NA
+Frost2018	caucasian	NA	12	API25	cmax	geometric mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_API25_caucasian	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	345.2	1.1955030307519012	0.18	ng/ml	NA
+Frost2018	caucasian	NA	12	API25	cumulative amount	sample mean	NA	apixaban	urine	calculated	cumulative_amount_apixaban_urine_API25_caucasian	72.0	hr	NA	3.14748	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR (mean) x AUC(0-T) (geometric mean) of Table 2; urine pooled 0-72 h
+Frost2018	caucasian	NA	12	API25	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_API25_caucasian	NA	NA	NA	12.7	NA	3.9	1.1258330249197703	0.30708661417322836	NA	NA	NA	NA	NA	hr	NA
+Frost2018	caucasian	NA	12	API25	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_API25_caucasian	NA	NA	NA	NA	3.5	NA	NA	NA	2.0	4.0	NA	NA	NA	hr	NA
+Frost2018	caucasian	NA	12	API50	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_API50_caucasian	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	5991.0	1.2428480921227265	0.22	ng/ml*hr	NA
+Frost2018	caucasian	NA	10	API50	auc_inf	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_inf_apixaban_plasma_API50_caucasian	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	6093.0	1.2669948273599922	0.24	ng/ml*hr	NA
+Frost2018	caucasian	NA	12	API50	clearance_renal	sample mean	NA	apixaban	urine	LC MS/MS	clearance_renal_apixaban_urine_API50_caucasian	NA	NA	NA	0.73	NA	0.18	0.05196152422706632	0.2465753424657534	NA	NA	NA	NA	NA	L/hr	NA
+Frost2018	caucasian	NA	12	API50	cmax	geometric mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_API50_caucasian	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	494.3	1.2548831028243554	0.23	ng/ml	NA
+Frost2018	caucasian	NA	12	API50	cumulative amount	sample mean	NA	apixaban	urine	calculated	cumulative_amount_apixaban_urine_API50_caucasian	72.0	hr	NA	4.37343	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR (mean) x AUC(0-T) (geometric mean) of Table 2; urine pooled 0-72 h
+Frost2018	caucasian	NA	10	API50	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_API50_caucasian	NA	NA	NA	16.12	NA	7.77	2.4570897419508304	0.4820099255583126	NA	NA	NA	NA	NA	hr	NA
+Frost2018	caucasian	NA	12	API50	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_API50_caucasian	NA	NA	NA	NA	3.5	NA	NA	NA	2.0	4.0	NA	NA	NA	hr	NA
+Frost2018	japanese	NA	12	API2.5	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_API2_5_japanese	36.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	429.8	1.172326175742243	0.16	ng/ml*hr	NA
+Frost2018	japanese	NA	10	API2.5	auc_inf	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_inf_apixaban_plasma_API2_5_japanese	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	465.7	1.1838722232813461	0.17	ng/ml*hr	NA
+Frost2018	japanese	NA	12	API2.5	clearance_renal	sample mean	NA	apixaban	urine	LC MS/MS	clearance_renal_apixaban_urine_API2_5_japanese	NA	NA	NA	1.11	NA	0.31	0.089489291724392	0.27927927927927926	NA	NA	NA	NA	NA	L/hr	NA
+Frost2018	japanese	NA	12	API2.5	cmax	geometric mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_API2_5_japanese	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	52.5	1.172326175742243	0.16	ng/ml	NA
+Frost2018	japanese	NA	12	API2.5	cumulative amount	sample mean	NA	apixaban	urine	calculated	cumulative_amount_apixaban_urine_API2_5_japanese	72.0	hr	NA	0.477078	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR (mean) x AUC(0-T) (geometric mean) of Table 2; urine pooled 0-72 h
+Frost2018	japanese	NA	10	API2.5	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_API2_5_japanese	NA	NA	NA	6.12	NA	1.21	0.38263559688037385	0.1977124183006536	NA	NA	NA	NA	NA	hr	NA
+Frost2018	japanese	NA	12	API2.5	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_API2_5_japanese	NA	NA	NA	NA	3.5	NA	NA	NA	1.5	6.0	NA	NA	NA	hr	NA
+Frost2018	japanese	NA	12	API10	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_API10_japanese	48.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	1607.0	1.1955030307519012	0.18	ng/ml*hr	NA
+Frost2018	japanese	NA	12	API10	auc_inf	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_inf_apixaban_plasma_API10_japanese	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1628.0	1.1955030307519012	0.18	ng/ml*hr	NA
+Frost2018	japanese	NA	12	API10	clearance_renal	sample mean	NA	apixaban	urine	LC MS/MS	clearance_renal_apixaban_urine_API10_japanese	NA	NA	NA	1.15	NA	0.33	0.09526279441628827	0.28695652173913044	NA	NA	NA	NA	NA	L/hr	NA
+Frost2018	japanese	NA	12	API10	cmax	geometric mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_API10_japanese	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	175.7	1.2428480921227265	0.22	ng/ml	NA
+Frost2018	japanese	NA	12	API10	cumulative amount	sample mean	NA	apixaban	urine	calculated	cumulative_amount_apixaban_urine_API10_japanese	72.0	hr	NA	1.84805	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR (mean) x AUC(0-T) (geometric mean) of Table 2; urine pooled 0-72 h
+Frost2018	japanese	NA	12	API10	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_API10_japanese	NA	NA	NA	8.11	NA	4.18	1.2066620626063178	0.5154130702836005	NA	NA	NA	NA	NA	hr	NA
+Frost2018	japanese	NA	12	API10	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_API10_japanese	NA	NA	NA	NA	3.0	NA	NA	NA	1.0	6.0	NA	NA	NA	hr	NA
+Frost2018	japanese	NA	12	API25	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_API25_japanese	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	3374.0	1.172326175742243	0.16	ng/ml*hr	NA
+Frost2018	japanese	NA	12	API25	auc_inf	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_inf_apixaban_plasma_API25_japanese	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	3414.0	1.160866118095672	0.15	ng/ml*hr	NA
+Frost2018	japanese	NA	12	API25	clearance_renal	sample mean	NA	apixaban	urine	LC MS/MS	clearance_renal_apixaban_urine_API25_japanese	NA	NA	NA	1.04	NA	0.29	0.08371578903249574	0.2788461538461538	NA	NA	NA	NA	NA	L/hr	NA
+Frost2018	japanese	NA	12	API25	cmax	geometric mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_API25_japanese	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	368.8	1.172326175742243	0.16	ng/ml	NA
+Frost2018	japanese	NA	12	API25	cumulative amount	sample mean	NA	apixaban	urine	calculated	cumulative_amount_apixaban_urine_API25_japanese	72.0	hr	NA	3.50896	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR (mean) x AUC(0-T) (geometric mean) of Table 2; urine pooled 0-72 h
+Frost2018	japanese	NA	12	API25	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_API25_japanese	NA	NA	NA	8.25	NA	2.47	0.713027582449188	0.29939393939393943	NA	NA	NA	NA	NA	hr	NA
+Frost2018	japanese	NA	12	API25	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_API25_japanese	NA	NA	NA	NA	3.0	NA	NA	NA	2.0	4.0	NA	NA	NA	hr	NA
+Frost2018	japanese	NA	11	API50	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_API50_japanese	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	4706.0	1.3920050420226553	0.34	ng/ml*hr	NA
+Frost2018	japanese	NA	11	API50	auc_inf	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_inf_apixaban_plasma_API50_japanese	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	4743.0	1.3920050420226553	0.34	ng/ml*hr	NA
+Frost2018	japanese	NA	11	API50	clearance_renal	sample mean	NA	apixaban	urine	LC MS/MS	clearance_renal_apixaban_urine_API50_japanese	NA	NA	NA	1.05	NA	0.29	0.08743828992755144	0.27619047619047615	NA	NA	NA	NA	NA	L/hr	NA
+Frost2018	japanese	NA	11	API50	cmax	geometric mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_API50_japanese	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	485.0	1.3161797827200103	0.28	ng/ml	NA
+Frost2018	japanese	NA	11	API50	cumulative amount	sample mean	NA	apixaban	urine	calculated	cumulative_amount_apixaban_urine_API50_japanese	72.0	hr	NA	4.9413	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR (mean) x AUC(0-T) (geometric mean) of Table 2; urine pooled 0-72 h
+Frost2018	japanese	NA	11	API50	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_API50_japanese	NA	NA	NA	8.47	NA	1.71	0.5155843992279758	0.20188902007083823	NA	NA	NA	NA	NA	hr	NA
+Frost2018	japanese	NA	11	API50	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_API50_japanese	NA	NA	NA	NA	4.0	NA	NA	NA	1.5	6.0	NA	NA	NA	hr	NA

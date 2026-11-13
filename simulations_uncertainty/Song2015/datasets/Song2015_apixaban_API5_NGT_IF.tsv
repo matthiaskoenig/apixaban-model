@@ -1,17 +1,17 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	0.0	hr		0.0					mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	0.25	hr		5.7997823721436344e-05			8.939349020740849e-07		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	0.5	hr		0.00015164309031556042			1.0820572786181632e-05		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	1.0	hr		0.0003268335146898803			9.017143988484288e-07		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	2.0	hr		0.0002827203482045702			4.508571994242373e-06		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	3.0	hr		0.00023109902067464637			5.41028639309075e-06		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	4.0	hr		0.00021784548422198042			3.6068575953936236e-06		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	5.0	hr		0.00017699673558215452			4.057714794818128e-06		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	6.0	hr		0.0001454189336235038			4.057714794818085e-06		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	9.0	hr		8.922742110990208e-05			5.410286393090794e-06		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	12.0	hr		5.549510337323178e-05			5.861143592515038e-06		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	24.0	hr		2.119695321001088e-05			6.145802451759217e-07		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	36.0	hr		7.92165397170838e-06			7.82094501516975e-07		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	48.0	hr		5.810663764961915e-06			7.81995963719136e-07		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	60.0	hr		4.11316648531012e-06			6.705497143534102e-07		mole/meter^3	ng/ml	dimensionless
-Song2015		study_2	21.0	API5_NGT_IF	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	72.0	hr		3.7867247007616973e-06			6.145802451759391e-07		mole/meter^3	ng/ml	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	0.0	hr		ng/ml	2.50272034820457e-06			mole/meter^3		ng/ml					ng/ml		dimensionless		Pre-dose mean as drawn on the log axis (vector graphic); the 4-day washout of the crossover may leave a carry-over above the LLOQ of 1 ng/ml.
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	0.25	hr		ng/ml	5.806311207834603e-05			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	0.5	hr		ng/ml	0.00015183895538628945			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	1.0	hr		ng/ml	0.0003273122959738847			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	2.0	hr		ng/ml	0.00028313384113166484			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	3.0	hr		ng/ml	0.00023133841131664853			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	4.0	hr		ng/ml	0.00021806311207834604			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	5.0	hr		ng/ml	0.0001772361262241567			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	6.0	hr		ng/ml	0.00014559303590859631			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	9.0	hr		ng/ml	8.933623503808487e-05			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	12.0	hr		ng/ml	5.55386289445049e-05			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	24.0	hr		ng/ml	2.120783460282916e-05			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	36.0	hr		ng/ml	7.919477693144721e-06			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	48.0	hr		ng/ml	5.8215451577801964e-06			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	60.0	hr		ng/ml	4.106637649619152e-06			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_2		21	dimensionless	API5_NGT_IF	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_NGT_IF	72.0	hr		ng/ml	3.79107725788901e-06			mole/meter^3		ng/ml					ng/ml		dimensionless		

@@ -29,6 +29,8 @@ class Frost2014(ApixabanSimulationExperiment):
     Apixaban 2.5 mg twice daily for 4 days in 14 healthy subjects (the
     rivaroxaban period of the crossover is not simulated); the profiles of
     day 4 after the morning (0 hr) and the evening dose (12 hr).
+
+    The subjects are mostly men (3 women of 14) and run on the male build.
     """
 
     bodyweight = 75.9  # [kg]
@@ -45,31 +47,34 @@ class Frost2014(ApixabanSimulationExperiment):
     }
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
 
-    infos_pd: ClassVar[dict[str, str]] = {"Anti-factor Xa activity": "antiXa_activity"}
+    #: the observable of the anti-Xa activity and its name in the keys of the
+    #: mappings
+    infos_pd: ClassVar[dict[str, str]] = {"COAG__antiXa_activity": "antiXa_activity"}
 
+    #: the anti-Xa activity against apixaban (Fig4): the individual values and
+    #: the means at the times of the profile
     info_figpd_scatter: ClassVar[dict[str, str]] = {
-        "apixaban": "antiXa_activity",
-        "apixaban_mean": "antiXa_activity",
+        "apixaban_vs_antixa": "COAG__antiXa_activity",
+        "apixaban_mean_vs_antixa_mean": "COAG__antiXa_activity",
     }
 
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Fig2", "Fig3", "Fig4", "Fig4Mean"]:
+        for fig_id in ["Fig2", "Fig3", "Fig4"]:
             df = self.load_dataframe(fig_id)
-            group_by = "x_label" if fig_id in ["Fig4", "Fig4Mean"] else "label"
-            for label, df_label in df.groupby(group_by):
+            for label, df_label in df.groupby("label"):
                 label = str(label)
-                dset = DataSet.from_df(df_label, self.ureg)
-                if label in ["apixaban", "apixaban_mean"]:
-                    dset.unit_conversion("x", 1 / self.Mr.api)
-                elif "apixaban" in label:
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
                 if "rivaroxaban" in label or "RIV" in label:
                     continue
+                dset = DataSet.from_df(df_label, self.ureg)
+                if label in self.info_figpd_scatter:
+                    dset.unit_conversion("x", 1 / self.Mr["api"])
+                elif "apixaban" in label:
+                    dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[label] = dset
 
         return dsets
@@ -150,7 +155,7 @@ class Frost2014(ApixabanSimulationExperiment):
                         self,
                         task=f"task_{intervention}",
                         xid="time",
-                        yid=name,
+                        yid=sid,
                     ),
                     metadata=PKPDMappingMetaData(
                         tissue=Tissue.PLASMA,
@@ -210,18 +215,18 @@ class Frost2014(ApixabanSimulationExperiment):
                         color="black",
                     )
         plots[1].set_yaxis(
-            self.labels["antiXa_activity"], unit=self.units["antiXa_activity"]
+            self.labels["COAG__antiXa_activity"],
+            unit=self.units["COAG__antiXa_activity"],
         )
 
         for intervention in self.interventions:
             for _k, sid in enumerate(self.infos_pd):
                 if "API" in intervention:
-                    name = self.infos_pd[sid]
                     # simulation
                     plots[1].add_data(
                         task=f"task_{intervention}",
                         xid="time",
-                        yid=name,
+                        yid=sid,
                         label="sim: 2.5mg PO BID",
                         color="black",
                     )
@@ -261,10 +266,10 @@ class Frost2014(ApixabanSimulationExperiment):
             },
         }
 
-        plots[2].set_xaxis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"])
+        plots[2].set_xaxis(self.labels["Carm_api"], unit=self.units["Carm_api"])
         plots[2].set_yaxis(
-            self.labels["antiXa_activity"],
-            unit=self.units["antiXa_activity"],
+            self.labels["COAG__antiXa_activity"],
+            unit=self.units["COAG__antiXa_activity"],
             scale="linear",
         )
 
@@ -276,7 +281,7 @@ class Frost2014(ApixabanSimulationExperiment):
                 # simulation
                 plots[2].add_data(
                     task="task_mAPI",
-                    xid="[Cve_api]",
+                    xid="Carm_api",
                     yid=sid,
                     label="sim: 2.5mg PO BID",
                     **style["kwargs_sim"],

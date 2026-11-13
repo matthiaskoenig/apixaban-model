@@ -1,133 +1,133 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	se	sd	unit	comments
-Wang2016	NA	healthy	8.0	API5	inr	NA	plasma	coagulation assay	inr_healthy	0.0	hr	NA	0.969487791444832	0.933898082824097	0.0355897086207348	0.1006628972247	dimensionless	NA
-Wang2016	NA	healthy	8.0	API5	inr	NA	plasma	coagulation assay	inr_healthy	0.5	hr	NA	1.01864001153977	0.952525636654515	0.066114374885258	0.186999691261102	dimensionless	NA
-Wang2016	NA	healthy	8.0	API5	inr	NA	plasma	coagulation assay	inr_healthy	1.5	hr	NA	1.11183023420494	1.06267145742086	0.0491587767840751	0.139042017675421	dimensionless	NA
-Wang2016	NA	healthy	8.0	API5	inr	NA	plasma	coagulation assay	inr_healthy	3.0	hr	NA	1.23890214797136	1.20840043011881	0.0305017178525533	0.0862718861255168	dimensionless	NA
-Wang2016	NA	healthy	8.0	API5	inr	NA	plasma	coagulation assay	inr_healthy	6.0	hr	NA	1.03036337171182	1.01171286946943	0.0186505022423877	0.0527515864325091	dimensionless	NA
-Wang2016	NA	healthy	8.0	API5	inr	NA	plasma	coagulation assay	inr_healthy	12.0	hr	NA	1.10818471504629	1.07937790133494	0.0288068137113484	0.0814779732786883	dimensionless	NA
-Wang2016	NA	healthy	8.0	API5	inr	NA	plasma	coagulation assay	inr_healthy	24.0	hr	NA	0.972313724461696	0.933327650869417	0.0389860735922789	0.110269268035753	dimensionless	NA
-Wang2016	NA	healthy	8.0	API5	inr	NA	plasma	coagulation assay	inr_healthy	48.0	hr	NA	0.99039707309397	1.01750898266411	0.0271119095701435	0.0766840604318598	dimensionless	NA
-Wang2016	NA	healthy	8.0	API5	inr	NA	plasma	coagulation assay	inr_healthy	72.0	hr	NA	0.991511710246794	1.0152469249128	0.0237352146660023	0.0671333249729944	dimensionless	NA
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	inr	NA	plasma	coagulation assay	inr_esrd_P1	0.0	hr	NA	1.07287694405833	1.02202981982218	0.0508471242361459	0.143817385404854	dimensionless	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	inr	NA	plasma	coagulation assay	inr_esrd_P1	0.5	hr	NA	1.12541569409111	1.1898220514569	0.0644063573657845	0.182168688179481	dimensionless	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	inr	NA	plasma	coagulation assay	inr_esrd_P1	1.5	hr	NA	1.18301620813554	1.27962902252878	0.0966128143932439	0.27326230482792	dimensionless	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	inr	NA	plasma	coagulation assay	inr_esrd_P1	2.0	hr	NA	1.21010844763828	1.14569881192793	0.0644096357103519	0.18217796073818	dimensionless	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	inr	NA	plasma	coagulation assay	inr_esrd_P1	2.5	hr	NA	1.24740617377849	1.32198523433607	0.0745790605575809	0.210941437819151	dimensionless	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	inr	NA	plasma	coagulation assay	inr_esrd_P1	3.0	hr	NA	1.16263801830628	1.09145860106481	0.0711794172414699	0.2013257944494	dimensionless	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	inr	NA	plasma	coagulation assay	inr_esrd_P1	4.0	hr	NA	1.15244236670251	1.0914290959637	0.0610132707388078	0.172571589927127	dimensionless	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	inr	NA	plasma	coagulation assay	inr_esrd_P1	6.0	hr	NA	1.15747790395762	1.07273597524194	0.0847419287156757	0.239686369782725	dimensionless	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	inr	NA	plasma	coagulation assay	inr_esrd_P1	12.0	hr	NA	1.15733365679666	1.19462810459231	0.0372944477956412	0.105484627747622	dimensionless	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	inr	NA	plasma	coagulation assay	inr_esrd_P1	24.0	hr	NA	1.15197684177398	1.22993915392483	0.0779623121508564	0.220510718395412	dimensionless	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	inr	NA	plasma	coagulation assay	inr_esrd_P1	48.0	hr	NA	1.13784062000052	1.23615489522411	0.0983142752235833	0.278074762792145	dimensionless	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	inr	NA	plasma	coagulation assay	inr_esrd_P1	72.0	hr	NA	1.13558839728291	1.19999475464869	0.0644063573657845	0.182168688179481	dimensionless	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	inr	NA	plasma	coagulation assay	inr_esrd_P2	0.0	hr	NA	1.09490741954942	1.15085892627659	0.0559515067271632	0.158254759297527	dimensionless	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	inr	NA	plasma	coagulation assay	inr_esrd_P2	0.5	hr	NA	1.15252760366126	1.22202523013979	0.0694976264785332	0.196568971837362	dimensionless	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	inr	NA	plasma	coagulation assay	inr_esrd_P2	1.5	hr	NA	1.25420873875528	1.3304695900758	0.0762608513205172	0.215698260431187	dimensionless	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	inr	NA	plasma	coagulation assay	inr_esrd_P2	2.0	hr	NA	1.22198589000498	1.27283301424113	0.0508471242361457	0.143817385404854	dimensionless	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	inr	NA	plasma	coagulation assay	inr_esrd_P2	2.5	hr	NA	1.25417267696504	1.30841616617273	0.0542434892076897	0.153423756215907	dimensionless	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	inr	NA	plasma	coagulation assay	inr_esrd_P2	3.0	hr	NA	1.27958968239398	1.38975845157229	0.110168769178316	0.31160433504385	dimensionless	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	inr	NA	plasma	coagulation assay	inr_esrd_P2	4.0	hr	NA	1.27786855149624	1.32532914579454	0.0474605942983031	0.134238832269895	dimensionless	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	inr	NA	plasma	coagulation assay	inr_esrd_P2	6.0	hr	NA	1.27443284638989	1.32019525820242	0.0457624118125313	0.129435646864369	dimensionless	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	inr	NA	plasma	coagulation assay	inr_esrd_P2	12.0	hr	NA	1.15226205775132	1.18955322720239	0.037291169451074	0.105475355188924	dimensionless	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	inr	NA	plasma	coagulation assay	inr_esrd_P2	24.0	hr	NA	1.14350232106795	1.19942760103858	0.055925279970626	0.158180578827943	dimensionless	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	inr	NA	plasma	coagulation assay	inr_esrd_P2	48.0	hr	NA	1.0717426368381	1.127681030187	0.0559383933488946	0.158217669062735	dimensionless	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	inr	NA	plasma	coagulation assay	inr_esrd_P2	72.0	hr	NA	1.09320595871909	1.157618872774	0.0644129140549188	0.182187233296877	dimensionless	period 2
-Wang2016	NA	healthy	8.0	API5	prothrombin time	NA	plasma	coagulation assay	pt_healthy	0.0	hr	NA	11.4245014245014	10.997150997151	0.427350427350429	1.20872954048983	seconds	NA
-Wang2016	NA	healthy	8.0	API5	prothrombin time	NA	plasma	coagulation assay	pt_healthy	0.5	hr	NA	12.051282051282	11.2820512820513	0.76923076923077	2.17571317288169	seconds	NA
-Wang2016	NA	healthy	8.0	API5	prothrombin time	NA	plasma	coagulation assay	pt_healthy	1.5	hr	NA	13.2193732193732	12.6495726495727	0.569800569800568	1.61163938731976	seconds	NA
-Wang2016	NA	healthy	8.0	API5	prothrombin time	NA	plasma	coagulation assay	pt_healthy	3.0	hr	NA	14.8148148148148	16.2393162393162	1.42450142450143	4.02909846829942	seconds	NA
-Wang2016	NA	healthy	8.0	API5	prothrombin time	NA	plasma	coagulation assay	pt_healthy	6.0	hr	NA	12.1652421652422	11.9373219373219	0.227920227920226	0.644655754927901	seconds	NA
-Wang2016	NA	healthy	8.0	API5	prothrombin time	NA	plasma	coagulation assay	pt_healthy	12.0	hr	NA	13.1339031339031	12.7350427350427	0.398860398860398	1.12814757112383	seconds	NA
-Wang2016	NA	healthy	8.0	API5	prothrombin time	NA	plasma	coagulation assay	pt_healthy	24.0	hr	NA	11.4814814814815	11.9088319088319	0.427350427350428	1.20872954048983	seconds	NA
-Wang2016	NA	healthy	8.0	API5	prothrombin time	NA	plasma	coagulation assay	pt_healthy	48.0	hr	NA	11.7378917378917	12.4501424501425	0.712250712250713	2.01454923414971	seconds	NA
-Wang2016	NA	healthy	8.0	API5	prothrombin time	NA	plasma	coagulation assay	pt_healthy	72.0	hr	NA	11.7663817663818	12.0797720797721	0.313390313390313	0.88640166302587	seconds	NA
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P1	0.0	hr	NA	12.7920227920228	12.0797720797721	0.712250712250713	2.01454923414971	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P1	0.5	hr	NA	13.3903133903134	12.8205128205128	0.569800569800568	1.61163938731976	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P1	1.5	hr	NA	14.045584045584	15.3561253561254	1.31054131054131	3.70677059083546	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P1	2.0	hr	NA	14.9002849002849	15.2136752136752	0.313390313390315	0.886401663025875	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P1	2.5	hr	NA	14.3589743589744	13.6182336182336	0.740740740740741	2.0951312035157	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P1	3.0	hr	NA	13.8176638176638	12.991452991453	0.826210826210827	2.33687711161366	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P1	4.0	hr	NA	13.6752136752137	12.9344729344729	0.740740740740741	2.0951312035157	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P1	6.0	hr	NA	13.7891737891738	12.7635327635328	1.02564102564103	2.90095089717558	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P1	12.0	hr	NA	13.8176638176638	14.8433048433048	1.02564102564103	2.90095089717558	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P1	24.0	hr	NA	13.7891737891738	14.7008547008547	0.911680911680911	2.57862301971162	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P1	48.0	hr	NA	13.5897435897436	14.7578347578348	1.16809116809117	3.30386074400553	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P1	72.0	hr	NA	13.5327635327635	14.3304843304843	0.797720797720798	2.25629514224767	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P2	0.0	hr	NA	12.991452991453	12.1652421652422	0.826210826210827	2.33687711161366	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P2	0.5	hr	NA	13.7321937321937	14.5584045584046	0.826210826210827	2.33687711161366	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P2	1.5	hr	NA	14.9002849002849	15.8689458689459	0.96866096866097	2.73978695844361	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P2	2.0	hr	NA	14.5868945868946	15.2991452991453	0.712250712250713	2.01454923414971	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P2	2.5	hr	NA	15.014245014245	15.6695156695157	0.655270655270655	1.85338529541773	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P2	3.0	hr	NA	15.3276353276353	16.6096866096866	1.28205128205128	3.62618862146947	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P2	4.0	hr	NA	15.2421652421652	15.8974358974359	0.655270655270655	1.85338529541773	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P2	6.0	hr	NA	15.1851851851852	15.8404558404558	0.655270655270655	1.85338529541773	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P2	12.0	hr	NA	13.7037037037037	14.2165242165242	0.512820512820513	1.45047544858779	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P2	24.0	hr	NA	13.6467236467236	14.2735042735043	0.626780626780628	1.77280332605175	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P2	48.0	hr	NA	12.7635327635328	13.5042735042735	0.740740740740741	2.0951312035157	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	prothrombin time	NA	plasma	coagulation assay	pt_esrd_P2	72.0	hr	NA	13.048433048433	13.8176638176638	0.76923076923077	2.17571317288169	seconds	period 2
-Wang2016	NA	healthy	8.0	API5	aPTT	NA	plasma	coagulation assay	aptt_healthy	0.0	hr	NA	34.3333333333333	35.0	0.666666666666664	1.88561808316412	seconds	NA
-Wang2016	NA	healthy	8.0	API5	aPTT	NA	plasma	coagulation assay	aptt_healthy	0.5	hr	NA	34.7222222222222	35.1666666666667	0.444444444444443	1.25707872210941	seconds	NA
-Wang2016	NA	healthy	8.0	API5	aPTT	NA	plasma	coagulation assay	aptt_healthy	1.5	hr	NA	36.1666666666667	37.6666666666667	1.49999999999999	4.24264068711927	seconds	NA
-Wang2016	NA	healthy	8.0	API5	aPTT	NA	plasma	coagulation assay	aptt_healthy	3.0	hr	NA	40.5	42.2777777777778	1.77777777777777	5.02831488843765	seconds	NA
-Wang2016	NA	healthy	8.0	API5	aPTT	NA	plasma	coagulation assay	aptt_healthy	6.0	hr	NA	38.3333333333333	35.7222222222222	2.61111111111111	7.38533749239282	seconds	NA
-Wang2016	NA	healthy	8.0	API5	aPTT	NA	plasma	coagulation assay	aptt_healthy	12.0	hr	NA	36.1666666666667	34.1666666666667	2.0	5.65685424949238	seconds	NA
-Wang2016	NA	healthy	8.0	API5	aPTT	NA	plasma	coagulation assay	aptt_healthy	24.0	hr	NA	36.1666666666667	37.6666666666667	1.49999999999999	4.24264068711927	seconds	NA
-Wang2016	NA	healthy	8.0	API5	aPTT	NA	plasma	coagulation assay	aptt_healthy	48.0	hr	NA	34.4444444444444	32.5	1.94444444444444	5.4997194092287	seconds	NA
-Wang2016	NA	healthy	8.0	API5	aPTT	NA	plasma	coagulation assay	aptt_healthy	72.0	hr	NA	39.2777777777778	36.0555555555556	3.22222222222222	9.11382073529328	seconds	NA
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	aPTT	NA	plasma	coagulation assay	aptt_esrd_P1	0.0	hr	NA	36.2777777777778	38.8888888888889	2.61111111111111	7.38533749239284	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	aPTT	NA	plasma	coagulation assay	aptt_esrd_P1	0.5	hr	NA	35.7777777777778	33.3888888888889	2.38888888888889	6.75679813133811	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	aPTT	NA	plasma	coagulation assay	aptt_esrd_P1	1.5	hr	NA	38.6666666666667	39.8333333333333	1.16666666666666	3.29983164553722	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	aPTT	NA	plasma	coagulation assay	aptt_esrd_P1	2.0	hr	NA	38.6111111111111	40.3333333333333	1.72222222222223	4.87118004817401	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	aPTT	NA	plasma	coagulation assay	aptt_esrd_P1	2.5	hr	NA	35.8888888888889	33.4444444444444	2.44444444444445	6.91393297160181	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	aPTT	NA	plasma	coagulation assay	aptt_esrd_P1	3.0	hr	NA	36.3333333333333	38.9444444444444	2.61111111111111	7.38533749239284	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	aPTT	NA	plasma	coagulation assay	aptt_esrd_P1	4.0	hr	NA	36.3333333333333	34.0555555555555	2.27777777777778	6.44252845081077	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	aPTT	NA	plasma	coagulation assay	aptt_esrd_P1	6.0	hr	NA	36.9444444444444	39.5	2.55555555555556	7.22820265212916	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	aPTT	NA	plasma	coagulation assay	aptt_esrd_P1	12.0	hr	NA	35.2777777777778	33.8888888888889	1.38888888888889	3.92837100659192	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	aPTT	NA	plasma	coagulation assay	aptt_esrd_P1	24.0	hr	NA	35.9444444444444	37.5555555555556	1.61111111111112	4.55691036764667	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	aPTT	NA	plasma	coagulation assay	aptt_esrd_P1	48.0	hr	NA	35.3333333333333	38.3888888888889	3.05555555555556	8.64241621450225	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	aPTT	NA	plasma	coagulation assay	aptt_esrd_P1	72.0	hr	NA	37.3333333333333	39.6111111111111	2.27777777777778	6.44252845081077	seconds	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	aPTT	NA	plasma	coagulation assay	aptt_esrd_P2	0.0	hr	NA	31.5555555555555	30.5555555555555	1.0	2.82842712474619	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	aPTT	NA	plasma	coagulation assay	aptt_esrd_P2	0.5	hr	NA	36.0555555555556	38.3888888888889	2.33333333333334	6.59966329107445	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	aPTT	NA	plasma	coagulation assay	aptt_esrd_P2	1.5	hr	NA	36.8888888888889	39.7777777777778	2.88888888888889	8.17101169371121	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	aPTT	NA	plasma	coagulation assay	aptt_esrd_P2	2.0	hr	NA	35.3888888888889	34.2222222222222	1.16666666666667	3.29983164553724	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	aPTT	NA	plasma	coagulation assay	aptt_esrd_P2	2.5	hr	NA	37.7777777777778	40.1666666666667	2.38888888888889	6.75679813133811	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	aPTT	NA	plasma	coagulation assay	aptt_esrd_P2	3.0	hr	NA	38.1111111111111	39.5	1.38888888888889	3.92837100659194	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	aPTT	NA	plasma	coagulation assay	aptt_esrd_P2	4.0	hr	NA	36.7222222222222	39.0	2.27777777777779	6.44252845081079	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	aPTT	NA	plasma	coagulation assay	aptt_esrd_P2	6.0	hr	NA	36.6111111111111	34.2777777777778	2.33333333333333	6.59966329107443	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	aPTT	NA	plasma	coagulation assay	aptt_esrd_P2	12.0	hr	NA	32.0	31.1111111111111	0.888888888888886	2.51415744421883	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	aPTT	NA	plasma	coagulation assay	aptt_esrd_P2	24.0	hr	NA	34.4444444444444	33.3333333333333	1.11111111111111	3.14269680527353	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	aPTT	NA	plasma	coagulation assay	aptt_esrd_P2	48.0	hr	NA	33.3333333333333	31.8888888888889	1.44444444444444	4.0855058468556	seconds	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	aPTT	NA	plasma	coagulation assay	aptt_esrd_P2	72.0	hr	NA	34.2777777777778	33.3333333333333	0.944444444444443	2.67129228448251	seconds	period 2
-Wang2016	NA	healthy	8.0	API5	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_healthy	0.0	hr	NA	0.0	NA	NA	NA	IU/ml	NA
-Wang2016	NA	healthy	8.0	API5	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_healthy	0.5	hr	NA	0.216371130068053	0.344859813084112	0.128488683016059	0.363420876265536	IU/ml	NA
-Wang2016	NA	healthy	8.0	API5	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_healthy	1.5	hr	NA	1.46714591520495	1.69906542056074	0.23191950535579	0.655967419706036	IU/ml	NA
-Wang2016	NA	healthy	8.0	API5	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_healthy	3.0	hr	NA	1.3573979999361	1.4929906542056	0.1355926542695	0.383513941252186	IU/ml	NA
-Wang2016	NA	healthy	8.0	API5	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_healthy	6.0	hr	NA	1.07028020064538	1.18598130841121	0.11570110776583	0.327252151568056	IU/ml	NA
-Wang2016	NA	healthy	8.0	API5	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_healthy	12.0	hr	NA	0.441122719575705	0.475233644859812	0.034110925284107	0.096480266323759	IU/ml	NA
-Wang2016	NA	healthy	8.0	API5	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_healthy	24.0	hr	NA	0.243384772676443	0.315420560747663	0.07203578807122	0.203747976933107	IU/ml	NA
-Wang2016	NA	healthy	8.0	API5	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_healthy	48.0	hr	NA	0.0591536470813762	0.130373831775701	0.0712201846943248	0.201441102218862	IU/ml	NA
-Wang2016	NA	healthy	8.0	API5	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_healthy	72.0	hr	NA	0.0481708680788521	0.0799065420560749	0.0317356739772228	0.0897620410992788	IU/ml	NA
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P1	0.0	hr	NA	0.0	NA	NA	NA	IU/ml	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P1	0.5	hr	NA	0.25439950158152	0.340654205607477	0.086254704025957	0.243965144503971	IU/ml	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P1	1.5	hr	NA	0.824888974088629	1.05981308411214	0.234924110023511	0.664465725047357	IU/ml	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P1	2.0	hr	NA	1.02774689287197	1.1733644859813	0.14561759310933	0.411868750190683	IU/ml	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P1	2.5	hr	NA	1.01088533179973	1.15654205607476	0.14565672427503	0.411979429841172	IU/ml	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P1	3.0	hr	NA	0.955987411738394	1.1018691588785	0.145881747140106	0.412615890616441	IU/ml	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P1	4.0	hr	NA	0.880002555992204	0.996728971962617	0.116726415970413	0.330152161105123	IU/ml	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P1	6.0	hr	NA	0.842117959040225	0.937850467289719	0.095732508249494	0.270772423052857	IU/ml	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P1	12.0	hr	NA	0.428446595737883	0.471028037383177	0.042581441645294	0.120438504560347	IU/ml	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P1	24.0	hr	NA	0.230700661362983	0.264953271028037	0.034252609665054	0.0968810102699823	IU/ml	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P1	48.0	hr	NA	0.0887312693696289	0.130373831775701	0.0416425624060721	0.11778295305327	IU/ml	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_POST	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P1	72.0	hr	NA	0.0566216173040672	0.075700934579439	0.0190793172753718	0.0539644585033002	IU/ml	period 1
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P2	0.0	hr	NA	0.0	NA	NA	NA	IU/ml	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P2	0.5	hr	NA	0.370093457943925	0.479439252336448	0.109345794392523	0.309276610836732	IU/ml	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P2	1.5	hr	NA	1.07242990654205	1.2322429906542	0.15981308411215	0.45201966199215	IU/ml	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P2	2.0	hr	NA	1.28271028037383	1.48878504672897	0.20607476635514	0.582867458884612	IU/ml	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P2	2.5	hr	NA	1.18177570093457	1.34579439252336	0.16401869158879	0.463914916255114	IU/ml	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P2	3.0	hr	NA	1.13130841121495	1.2911214953271	0.15981308411215	0.452019661992149	IU/ml	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P2	4.0	hr	NA	1.11869158878504	1.21962616822429	0.10093457943925	0.285486102310824	IU/ml	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P2	6.0	hr	NA	1.02616822429906	1.1018691588785	0.0757009345794399	0.214114576733125	IU/ml	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P2	12.0	hr	NA	0.508878504672897	0.550934579439252	0.042056074766355	0.118952542629512	IU/ml	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P2	24.0	hr	NA	0.281775700934579	0.315420560747663	0.033644859813084	0.0951620341036099	IU/ml	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P2	48.0	hr	NA	0.0588785046728972	0.075700934579439	0.0168224299065418	0.0475810170518043	IU/ml	period 2
-Wang2016	NA	esrd	8.0	DIALYSIS_PRE	Anti-factor Xa activity	NA	plasma	coagulation assay	xa_esrd_P2	72.0	hr	NA	0.0504672897196263	0.075700934579439	0.0252336448598127	0.0713715255777065	IU/ml	period 2
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P1	0.0	hr	NA	36.2777777777778	NA	7.38533749239284	2.6111111111111	0.2035774500200169	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P1	0.5	hr	NA	35.7777777777778	NA	6.75679813133811	2.3888888888889	0.18885460615541289	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P1	1.5	hr	NA	38.6666666666667	NA	3.29983164553722	1.1666666666666003	0.08534047359147975	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P1	2.0	hr	NA	38.6111111111111	NA	4.87118004817401	1.7222222222222001	0.1261600588016291	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P1	2.5	hr	NA	35.8888888888889	NA	6.91393297160181	2.4444444444444997	0.1926482871344157	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P1	3.0	hr	NA	36.3333333333333	NA	7.38533749239284	2.6111111111111	0.20326616951539944	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P1	4.0	hr	NA	36.3333333333333	NA	6.44252845081077	2.2777777777778	0.17731729681130576	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P1	6.0	hr	NA	36.9444444444444	NA	7.22820265212916	2.5555555555555998	0.1956505981027444	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P1	12.0	hr	NA	35.2777777777778	NA	3.92837100659192	1.3888888888889	0.11135539861205436	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P1	24.0	hr	NA	35.9444444444444	NA	4.55691036764667	1.6111111111111995	0.12677648627146856	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P1	48.0	hr	NA	35.3333333333333	NA	8.64241621450225	3.0555555555555998	0.24459668531610163	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P1	72.0	hr	NA	37.3333333333333	NA	6.44252845081077	2.2777777777778	0.17256772636100293	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P2	0.0	hr	NA	31.5555555555555	NA	2.82842712474619	1.0	0.08963325395322448	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P2	0.5	hr	NA	36.0555555555556	NA	6.59966329107445	2.3333333333333	0.18304150884335896	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P2	1.5	hr	NA	36.8888888888889	NA	8.17101169371121	2.8888888888889	0.22150332904638814	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P2	2.0	hr	NA	35.3888888888889	NA	3.29983164553724	1.1666666666666998	0.0932448502663584	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P2	2.5	hr	NA	37.7777777777778	NA	6.75679813133811	2.3888888888889	0.17885642112365574	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P2	3.0	hr	NA	38.1111111111111	NA	3.92837100659194	1.3888888888889	0.10307679026042994	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P2	4.0	hr	NA	36.7222222222222	NA	6.44252845081079	2.2777777777778	0.1754395039555133	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P2	6.0	hr	NA	36.6111111111111	NA	6.59966329107443	2.3333333333333	0.18026394421751105	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P2	12.0	hr	NA	32.0	NA	2.51415744421883	0.8888888888888999	0.07856742013183844	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P2	24.0	hr	NA	34.4444444444444	NA	3.14269680527353	1.1111111111111	0.09123958466923163	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P2	48.0	hr	NA	33.3333333333333	NA	4.0855058468556	1.4444444444444002	0.12256517540566814	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_esrd_P2	72.0	hr	NA	34.2777777777778	NA	2.67129228448251	0.9444444444444997	0.0779307311518398	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_healthy	0.0	hr	NA	34.3333333333333	NA	1.88561808316412	0.6666666666666998	0.0549209150436152	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_healthy	0.5	hr	NA	34.7222222222222	NA	1.25707872210941	0.4444444444444997	0.03620386719675103	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_healthy	1.5	hr	NA	36.1666666666667	NA	4.24264068711927	1.5	0.1173080374318691	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_healthy	3.0	hr	NA	40.5	NA	5.02831488843765	1.7777777777777999	0.12415592317129999	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_healthy	6.0	hr	NA	38.3333333333333	NA	7.38533749239282	2.6111111111111	0.19266097806242155	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_healthy	12.0	hr	NA	36.1666666666667	NA	5.65685424949238	2.0	0.15641071657582603	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_healthy	24.0	hr	NA	36.1666666666667	NA	4.24264068711927	1.5	0.1173080374318691	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_healthy	48.0	hr	NA	34.4444444444444	NA	5.4997194092287	1.9444444444444002	0.159669273171156	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	aPTT	sample mean	NA	NA	plasma	coagulation assay	aptt_healthy	72.0	hr	NA	39.2777777777778	NA	9.11382073529328	3.2222222222222	0.23203503993674532	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P1	0.0	hr	NA	1.07287694405833	NA	0.143817385404854	0.0508471242361499	0.13404835121243408	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P1	0.5	hr	NA	1.12541569409111	NA	0.182168688179481	0.06440635736579003	0.16186791168449197	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P1	1.5	hr	NA	1.18301620813554	NA	0.27326230482792	0.0966128143932401	0.2309877945447489	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P1	2.0	hr	NA	1.21010844763828	NA	0.18217796073818	0.06440963571034986	0.15054680520058297	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P1	2.5	hr	NA	1.24740617377849	NA	0.210941437819151	0.07457906055758001	0.16910405147362148	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P1	3.0	hr	NA	1.16263801830628	NA	0.2013257944494	0.07117941724147014	0.1731629202549986	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P1	4.0	hr	NA	1.15244236670251	NA	0.172571589927127	0.06101327073881002	0.14974422575326443	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P1	6.0	hr	NA	1.15747790395762	NA	0.239686369782725	0.08474192871567987	0.20707641067116295	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P1	12.0	hr	NA	1.15733365679666	NA	0.105484627747622	0.037294447795650054	0.09114452615124745	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P1	24.0	hr	NA	1.15197684177398	NA	0.220510718395412	0.07796231215085014	0.19141940219547973	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P1	48.0	hr	NA	1.13784062000052	NA	0.278074762792145	0.09831427522358993	0.24438814883583423	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P1	72.0	hr	NA	1.13558839728291	NA	0.182168688179481	0.06440635736578004	0.16041788434555235	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P2	0.0	hr	NA	1.09490741954942	NA	0.158254759297527	0.055951506727170086	0.14453711471117123	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P2	0.5	hr	NA	1.15252760366126	NA	0.196568971837362	0.06949762647853008	0.17055467583849357	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P2	1.5	hr	NA	1.25420873875528	NA	0.215698260431187	0.07626085132051985	0.171979554731259	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P2	2.0	hr	NA	1.22198589000498	NA	0.143817385404854	0.0508471242361499	0.11769152703086276	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P2	2.5	hr	NA	1.25417267696504	NA	0.153423756215907	0.054243489207689954	0.12233064795126587	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P2	3.0	hr	NA	1.27958968239398	NA	0.31160433504385	0.11016876917830998	0.2435189493407531	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P2	4.0	hr	NA	1.27786855149624	NA	0.134238832269895	0.04746059429829996	0.10504901471494581	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P2	6.0	hr	NA	1.27443284638989	NA	0.129435646864369	0.045762411812529935	0.10156333245099874	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P2	12.0	hr	NA	1.15226205775132	NA	0.105475355188924	0.03729116945107003	0.09153764499957837	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P2	24.0	hr	NA	1.14350232106795	NA	0.158180578827943	0.055925279970630015	0.13832991495829547	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P2	48.0	hr	NA	1.0717426368381	NA	0.158217669062735	0.05593839334889994	0.14762655102489472	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	inr	sample mean	NA	NA	plasma	coagulation assay	inr_esrd_P2	72.0	hr	NA	1.09320595871909	NA	0.182187233296877	0.0644129140549099	0.1666540799963676	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	healthy	NA	8	API5	inr	sample mean	NA	NA	plasma	coagulation assay	inr_healthy	0.0	hr	NA	0.969487791444832	NA	0.1006628972247	0.03558970862073496	0.10383101067696957	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	healthy	NA	8	API5	inr	sample mean	NA	NA	plasma	coagulation assay	inr_healthy	0.5	hr	NA	1.01864001153977	NA	0.186999691261102	0.06611437488525507	0.18357779896985826	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	healthy	NA	8	API5	inr	sample mean	NA	NA	plasma	coagulation assay	inr_healthy	1.5	hr	NA	1.11183023420494	NA	0.139042017675421	0.04915877678407998	0.12505687774793128	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	healthy	NA	8	API5	inr	sample mean	NA	NA	plasma	coagulation assay	inr_healthy	3.0	hr	NA	1.23890214797136	NA	0.0862718861255168	0.03050171785254996	0.06963575474203727	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	healthy	NA	8	API5	inr	sample mean	NA	NA	plasma	coagulation assay	inr_healthy	6.0	hr	NA	1.03036337171182	NA	0.0527515864325091	0.018650502242389955	0.051197070742983554	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	healthy	NA	8	API5	inr	sample mean	NA	NA	plasma	coagulation assay	inr_healthy	12.0	hr	NA	1.10818471504629	NA	0.0814779732786883	0.028806813711349966	0.07352381978602267	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	healthy	NA	8	API5	inr	sample mean	NA	NA	plasma	coagulation assay	inr_healthy	24.0	hr	NA	0.972313724461696	NA	0.110269268035753	0.0389860735922789	0.11340914486916412	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	healthy	NA	8	API5	inr	sample mean	NA	NA	plasma	coagulation assay	inr_healthy	48.0	hr	NA	0.99039707309397	NA	0.0766840604318598	0.02711190957013998	0.07742759193774791	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	healthy	NA	8	API5	inr	sample mean	NA	NA	plasma	coagulation assay	inr_healthy	72.0	hr	NA	0.991511710246794	NA	0.0671333249729944	0.023735214666006033	0.06770805052447082	NA	NA	NA	NA	NA	dimensionless	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P1	0.0	hr	NA	12.7920227920228	NA	2.01454923414971	0.7122507122507002	0.15748480650034472	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P1	0.5	hr	NA	13.3903133903134	NA	1.61163938731976	0.5698005698006003	0.1203586010530288	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P1	1.5	hr	NA	14.045584045584	NA	3.70677059083546	1.3105413105413994	0.2639100359803754	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P1	2.0	hr	NA	14.9002849002849	NA	0.886401663025875	0.31339031339030043	0.059488907021430615	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P1	2.5	hr	NA	14.3589743589744	NA	2.0951312035157	0.7407407407408009	0.14591092310198583	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P1	3.0	hr	NA	13.8176638176638	NA	2.33687711161366	0.826210826210799	0.1691224466343084	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P1	4.0	hr	NA	13.6752136752137	NA	2.0951312035157	0.7407407407407991	0.1532064692570853	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P1	6.0	hr	NA	13.7891737891738	NA	2.90095089717558	1.0256410256410007	0.21037887704723715	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P1	12.0	hr	NA	13.8176638176638	NA	2.90095089717558	1.0256410256410007	0.20994510616672782	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P1	24.0	hr	NA	13.7891737891738	NA	2.57862301971162	0.9116809116809002	0.18700344626421028	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P1	48.0	hr	NA	13.5897435897436	NA	3.30386074400553	1.1680911680912	0.2431142811626709	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P1	72.0	hr	NA	13.5327635327635	NA	2.25629514224767	0.7977207977207996	0.16672833577451243	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P2	0.0	hr	NA	12.991452991453	NA	2.33687711161366	0.8262108262108008	0.1798780408281566	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P2	0.5	hr	NA	13.7321937321937	NA	2.33687711161366	0.8262108262109003	0.17017507597020676	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P2	1.5	hr	NA	14.9002849002849	NA	2.73978695844361	0.9686609686610002	0.18387480352078528	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P2	2.0	hr	NA	14.5868945868946	NA	2.01454923414971	0.7122507122507002	0.13810679320049757	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P2	2.5	hr	NA	15.014245014245	NA	1.85338529541773	0.6552706552706997	0.12344179102307852	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P2	3.0	hr	NA	15.3276353276353	NA	3.62618862146947	1.2820512820513024	0.23657847697691195	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P2	4.0	hr	NA	15.2421652421652	NA	1.85338529541773	0.6552706552706997	0.1215959324657243	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P2	6.0	hr	NA	15.1851851851852	NA	1.85338529541773	0.6552706552706002	0.12205220238116747	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P2	12.0	hr	NA	13.7037037037037	NA	1.45047544858779	0.5128205128204986	0.10584550570775766	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P2	24.0	hr	NA	13.6467236467236	NA	1.77280332605175	0.6267806267806986	0.1299068825561934	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P2	48.0	hr	NA	12.7635327635328	NA	2.0951312035157	0.7407407407407014	0.16414978848973408	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_esrd_P2	72.0	hr	NA	13.048433048433	NA	2.17571317288169	0.7692307692308002	0.16674133704835722	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_healthy	0.0	hr	NA	11.4245014245014	NA	1.20872954048983	0.42735042735040096	0.10580151339449656	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_healthy	0.5	hr	NA	12.051282051282	NA	2.17571317288169	0.769230769230699	0.18053790157954525	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_healthy	1.5	hr	NA	13.2193732193732	NA	1.61163938731976	0.5698005698004991	0.12191496227354238	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_healthy	3.0	hr	NA	14.8148148148148	NA	4.02909846829942	1.4245014245013987	0.2719641466102111	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_healthy	6.0	hr	NA	12.1652421652422	NA	0.644655754927901	0.22792022792029876	0.05299160889454159	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_healthy	12.0	hr	NA	13.1339031339031	NA	1.12814757112383	0.3988603988603998	0.08589583459099032	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_healthy	24.0	hr	NA	11.4814814814815	NA	1.20872954048983	0.4273504273503992	0.10527644384911404	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_healthy	48.0	hr	NA	11.7378917378917	NA	2.01454923414971	0.7122507122508015	0.17162785951129866	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	healthy	NA	8	API5	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	pt_healthy	72.0	hr	NA	11.7663817663818	NA	0.88640166302587	0.31339031339030043	0.07533341010219842	NA	NA	NA	NA	NA	seconds	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P1	0.0	hr	NA	0.0	NA	NA	NA	NA	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P1	0.5	hr	NA	0.25439950158152	NA	0.243965144503971	0.08625470402595697	0.9589843650923764	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P1	1.5	hr	NA	0.824888974088629	NA	0.664465725047357	0.234924110023511	0.8055214046005231	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P1	2.0	hr	NA	1.02774689287197	NA	0.411868750190683	0.14561759310932998	0.40074920493288313	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P1	2.5	hr	NA	1.01088533179973	NA	0.411979429841172	0.14565672427502996	0.4075431870276565	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P1	3.0	hr	NA	0.955987411738394	NA	0.412615890616441	0.14588174714010593	0.4316122634566169	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P1	4.0	hr	NA	0.880002555992204	NA	0.330152161105123	0.116726415970413	0.37517182064644805	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P1	6.0	hr	NA	0.842117959040225	NA	0.270772423052857	0.09573250824949397	0.3215374047615141	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P1	12.0	hr	NA	0.428446595737883	NA	0.120438504560347	0.04258144164529398	0.28110505663587865	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P1	24.0	hr	NA	0.230700661362983	NA	0.0968810102699823	0.034252609665054	0.4199424904012317	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P1	48.0	hr	NA	0.0887312693696289	NA	0.11778295305327	0.0416425624060721	1.3274120148402269	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_POST	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P1	72.0	hr	NA	0.0566216173040672	NA	0.0539644585033002	0.019079317275371793	0.9530716548328595	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P2	0.0	hr	NA	0.0	NA	NA	NA	NA	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P2	0.5	hr	NA	0.370093457943925	NA	0.309276610836732	0.10934579439252301	0.8356716504931906	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P2	1.5	hr	NA	1.07242990654205	NA	0.45201966199215	0.15981308411215012	0.42149110094257364	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P2	2.0	hr	NA	1.28271028037383	NA	0.582867458884612	0.2060747663551401	0.4544030462707	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P2	2.5	hr	NA	1.18177570093457	NA	0.463914916255114	0.16401869158879	0.3925575012993088	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P2	3.0	hr	NA	1.13130841121495	NA	0.452019661992149	0.1598130841121499	0.39955476111656407	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P2	4.0	hr	NA	1.11869158878504	NA	0.285486102310824	0.10093457943925	0.25519643230792277	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P2	6.0	hr	NA	1.02616822429906	NA	0.214114576733125	0.07570093457943994	0.20865446002226318	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P2	12.0	hr	NA	0.508878504672897	NA	0.118952542629512	0.04205607476635498	0.23375430783026244	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P2	24.0	hr	NA	0.281775700934579	NA	0.0951620341036099	0.033644859813084016	0.33772264176073885	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P2	48.0	hr	NA	0.0588785046728972	NA	0.0475810170518043	0.016822429906541793	0.8081220356417556	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	esrd	NA	8	API5,DIALYSIS_PRE	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_esrd_P2	72.0	hr	NA	0.0504672897196263	NA	0.0713715255777065	0.025233644859812693	1.4142135623730694	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	healthy	NA	8	API5	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_healthy	0.0	hr	NA	0.0	NA	NA	NA	NA	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	healthy	NA	8	API5	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_healthy	0.5	hr	NA	0.216371130068053	NA	0.363420876265536	0.128488683016059	1.6796181456889971	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	healthy	NA	8	API5	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_healthy	1.5	hr	NA	1.46714591520495	NA	0.655967419706036	0.2319195053557901	0.44710441743240104	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	healthy	NA	8	API5	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_healthy	3.0	hr	NA	1.3573979999361	NA	0.383513941252186	0.13559265426949985	0.28253610309595273	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	healthy	NA	8	API5	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_healthy	6.0	hr	NA	1.07028020064538	NA	0.327252151568056	0.11570110776583009	0.3057630622062546	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	healthy	NA	8	API5	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_healthy	12.0	hr	NA	0.441122719575705	NA	0.096480266323759	0.03411092528410703	0.218715250977231	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	healthy	NA	8	API5	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_healthy	24.0	hr	NA	0.243384772676443	NA	0.203747976933107	0.07203578807121999	0.8371434855703591	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	healthy	NA	8	API5	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_healthy	48.0	hr	NA	0.0591536470813762	NA	0.201441102218862	0.0712201846943248	3.4053877006390576	NA	NA	NA	NA	NA	IU/ml	NA
+Wang2016	healthy	NA	8	API5	Anti-factor Xa activity	sample mean	NA	NA	plasma	coagulation assay	xa_healthy	72.0	hr	NA	0.0481708680788521	NA	0.0897620410992788	0.03173567397722281	1.8634092487672231	NA	NA	NA	NA	NA	IU/ml	NA

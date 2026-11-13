@@ -1,66 +1,53 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	mean	sd	geommean	median	se	min	max	cv	unit	comments
-Frost2021	NA	group1	6.0	IV0_5	cmax	apixaban	plasma	calculated	cmax_group1_IV0_5	NA	NA	NA	14.204	53.0	NA	5.79875871774871	NA	NA	26.8	ng/ml	wrong units in table, geometric mean
-Frost2021	NA	group1	6.0	IV0_5	cmax	apixaban	plasma	calculated	cmax_group1_IV0_5	NA	NA	55.4	14.8	NA	NA	6.04207469886517	NA	NA	NA	ng/ml	wrong units in table
-Frost2021	NA	group1	6.0	IV0_5	auc_inf	apixaban	plasma	calculated	auc_inf_group1_IV0_5	NA	NA	NA	21.855	145.7	NA	8.92226638808773	NA	NA	15.0	ng*hr/ml	geometric mean
-Frost2021	NA	group1	6.0	IV0_5	auc_inf	apixaban	plasma	calculated	auc_inf_group1_IV0_5	NA	NA	147.1	21.7	NA	NA	8.85898790306583	NA	NA	NA	ng*hr/ml	NA
-Frost2021	NA	group1	6.0	IV0_5	tmax	apixaban	plasma	calculated	tmax_group1_IV0_5	NA	NA	NA	NA	NA	0.07	NA	0.05	0.17	NA	hr	median
-Frost2021	NA	group1	6.0	IV0_5	thalf	apixaban	plasma	calculated	thalf_group1_IV0_5	NA	NA	3.71	0.88	NA	NA	0.359258495608199	NA	NA	NA	hr	NA
-Frost2021	NA	group1	6.0	IV0_5	vd_ss	apixaban	plasma	calculated	vd_ss_group1_IV0_5	NA	NA	17.09	3.5	NA	NA	1.42886901662352	NA	NA	NA	l	NA
-Frost2021	NA	group1	6.0	IV0_5	clearance	apixaban	plasma	calculated	clearance_group1_IV0_5	NA	NA	3.47	0.54	NA	NA	0.220454076850486	NA	NA	NA	l/hr	NA
-Frost2021	NA	group1	6.0	IV0_5	clearance_renal	apixaban	kidney	calculated	clearance_renal_group1_IV0_5	NA	NA	1.1	0.32	NA	NA	0.130639452948436	NA	NA	NA	l/hr	NA
-Frost2021	NA	group1	6.0	IV0_5	cumulative amount	apixaban	kidney	calculated	cumulative amount_group1_IV0_5	48.0	hr	0.15850144092219	NA	NA	NA	NA	NA	NA	NA	mg	not reported, derived from CLR; total urinary recovery is the amount excreted over 48 h
-Frost2021	NA	group2	6.0	IV1_25	cmax	apixaban	plasma	calculated	cmax_group2_IV1_25	NA	NA	NA	30.0756	105.9	NA	12.278312284675	NA	NA	28.4	ng/ml	wrong units in table, geometric mean
-Frost2021	NA	group2	6.0	IV1_25	cmax	apixaban	plasma	calculated	cmax_group2_IV1_25	NA	NA	109.0	31.0	NA	NA	12.6556970043798	NA	NA	NA	ng/ml	wrong units in table
-Frost2021	NA	group2	6.0	IV1_25	auc_inf	apixaban	plasma	calculated	auc_inf_group2_IV1_25	NA	NA	NA	84.042	365.4	NA	34.310002827164	NA	NA	23.0	ng*hr/ml	geometric mean
-Frost2021	NA	group2	6.0	IV1_25	auc_inf	apixaban	plasma	calculated	auc_inf_group2_IV1_25	NA	NA	373.1	87.4	NA	NA	35.6809005865416	NA	NA	NA	ng*hr/ml	NA
-Frost2021	NA	group2	6.0	IV1_25	tmax	apixaban	plasma	calculated	tmax_group2_IV1_25	NA	NA	NA	NA	NA	0.05	NA	0.03	0.07	NA	hr	median
-Frost2021	NA	group2	6.0	IV1_25	thalf	apixaban	plasma	calculated	thalf_group2_IV1_25	NA	NA	4.44	0.4	NA	NA	0.163299316185545	NA	NA	NA	hr	NA
-Frost2021	NA	group2	6.0	IV1_25	vd_ss	apixaban	plasma	calculated	vd_ss_group2_IV1_25	NA	NA	19.36	2.33	NA	NA	0.951218516780801	NA	NA	NA	l	NA
-Frost2021	NA	group2	6.0	IV1_25	clearance	apixaban	plasma	calculated	clearance_group2_IV1_25	NA	NA	3.49	0.71	NA	NA	0.289856286229343	NA	NA	NA	l/hr	NA
-Frost2021	NA	group2	6.0	IV1_25	clearance_renal	apixaban	kidney	calculated	clearance_renal_group2_IV1_25	NA	NA	1.08	0.31	NA	NA	0.126556970043798	NA	NA	NA	l/hr	NA
-Frost2021	NA	group2	6.0	IV1_25	cumulative amount	apixaban	kidney	calculated	cumulative amount_group2_IV1_25	48.0	hr	0.386819484240688	NA	NA	NA	NA	NA	NA	NA	mg	not reported, derived from CLR; total urinary recovery is the amount excreted over 48 h
-Frost2021	NA	group3	6.0	IV2_5	cmax	apixaban	plasma	calculated	cmax_group3_IV2_5	NA	NA	NA	80.607	277.0	NA	32.9076699494206	NA	NA	29.1	ng/ml	wrong units in table, geometric mean
-Frost2021	NA	group3	6.0	IV2_5	cmax	apixaban	plasma	calculated	cmax_group3_IV2_5	NA	NA	285.2	83.0	NA	NA	33.8846081085006	NA	NA	NA	ng/ml	wrong units in table
-Frost2021	NA	group3	6.0	IV2_5	auc_inf	apixaban	plasma	calculated	auc_inf_group3_IV2_5	NA	NA	NA	152.082	724.2	NA	62.0872165103252	NA	NA	21.0	ng*hr/ml	geometric mean
-Frost2021	NA	group3	6.0	IV2_5	auc_inf	apixaban	plasma	calculated	auc_inf_group3_IV2_5	NA	NA	736.7	152.8	NA	NA	62.3803387828783	NA	NA	NA	ng*hr/ml	NA
-Frost2021	NA	group3	6.0	IV2_5	tmax	apixaban	plasma	calculated	tmax_group3_IV2_5	NA	NA	NA	NA	NA	0.05	NA	0.03	0.07	NA	hr	median
-Frost2021	NA	group3	6.0	IV2_5	thalf	apixaban	plasma	calculated	thalf_group3_IV2_5	NA	NA	5.61	2.03	NA	NA	0.828744029641642	NA	NA	NA	hr	NA
-Frost2021	NA	group3	6.0	IV2_5	vd_ss	apixaban	plasma	calculated	vd_ss_group3_IV2_5	NA	NA	21.99	3.41	NA	NA	1.39212667048177	NA	NA	NA	l	NA
-Frost2021	NA	group3	6.0	IV2_5	clearance	apixaban	plasma	calculated	clearance_group3_IV2_5	NA	NA	3.51	0.67	NA	NA	0.273526354610788	NA	NA	NA	l/hr	NA
-Frost2021	NA	group3	6.0	IV2_5	clearance_renal	apixaban	kidney	calculated	clearance_renal_group3_IV2_5	NA	NA	0.61	0.32	NA	NA	0.130639452948436	NA	NA	NA	l/hr	NA
-Frost2021	NA	group3	6.0	IV2_5	cumulative amount	apixaban	kidney	calculated	cumulative amount_group3_IV2_5	48.0	hr	0.434472934472935	NA	NA	NA	NA	NA	NA	NA	mg	not reported, derived from CLR; total urinary recovery is the amount excreted over 48 h
-Frost2021	NA	group4	6.0	IV3_75	cmax	apixaban	plasma	calculated	cmax_group4_IV3_75	NA	NA	NA	159.4734	396.7	NA	65.1047429244598	NA	NA	40.2	ng/ml	wrong units in table, geometric mean
-Frost2021	NA	group4	6.0	IV3_75	cmax	apixaban	plasma	calculated	cmax_group4_IV3_75	NA	NA	423.2	170.3	NA	NA	69.5246838659959	NA	NA	NA	ng/ml	wrong units in table
-Frost2021	NA	group4	6.0	IV3_75	auc_inf	apixaban	plasma	calculated	auc_inf_group4_IV3_75	NA	NA	NA	128.81	1171.0	NA	52.5864622946502	NA	NA	11.0	ng*hr/ml	geometric mean
-Frost2021	NA	group4	6.0	IV3_75	auc_inf	apixaban	plasma	calculated	auc_inf_group4_IV3_75	NA	NA	1176.2	124.9	NA	NA	50.9902114789365	NA	NA	NA	ng*hr/ml	NA
-Frost2021	NA	group4	6.0	IV3_75	tmax	apixaban	plasma	calculated	tmax_group4_IV3_75	NA	NA	NA	NA	NA	0.05	NA	0.05	0.07	NA	hr	median
-Frost2021	NA	group4	6.0	IV3_75	thalf	apixaban	plasma	calculated	thalf_group4_IV3_75	NA	NA	8.41	2.26	NA	NA	0.92264113644833	NA	NA	NA	hr	NA
-Frost2021	NA	group4	6.0	IV3_75	vd_ss	apixaban	plasma	calculated	vd_ss_group4_IV3_75	NA	NA	23.71	4.27	NA	NA	1.7432202002807	NA	NA	NA	l	NA
-Frost2021	NA	group4	6.0	IV3_75	clearance	apixaban	plasma	calculated	clearance_group4_IV3_75	NA	NA	3.22	0.31	NA	NA	0.126556970043798	NA	NA	NA	l/hr	NA
-Frost2021	NA	group4	6.0	IV3_75	clearance_renal	apixaban	kidney	calculated	clearance_renal_group4_IV3_75	NA	NA	0.89	0.25	NA	NA	0.102062072615966	NA	NA	NA	l/hr	NA
-Frost2021	NA	group4	6.0	IV3_75	cumulative amount	apixaban	kidney	calculated	cumulative amount_group4_IV3_75	48.0	hr	1.03649068322981	NA	NA	NA	NA	NA	NA	NA	mg	not reported, derived from CLR; total urinary recovery is the amount excreted over 48 h
-Frost2021	NA	group5	6.0	IV5	cmax	apixaban	plasma	calculated	cmax_group5_IV5	NA	NA	NA	105.1483	436.3	NA	42.9266137201814	NA	NA	24.1	ng/ml	wrong units in table, geometric mean
-Frost2021	NA	group5	6.0	IV5	cmax	apixaban	plasma	calculated	cmax_group5_IV5	NA	NA	447.8	107.9	NA	NA	44.0499905410508	NA	NA	NA	ng/ml	wrong units in table
-Frost2021	NA	group5	6.0	IV5	auc_inf	apixaban	plasma	calculated	auc_inf_group5_IV5	NA	NA	NA	186.797	1436.9	NA	76.2595559137782	NA	NA	13.0	ng*hr/ml	geometric mean
-Frost2021	NA	group5	6.0	IV5	auc_inf	apixaban	plasma	calculated	auc_inf_group5_IV5	NA	NA	1446.0	185.0	NA	NA	75.5259337358147	NA	NA	NA	ng*hr/ml	NA
-Frost2021	NA	group5	6.0	IV5	tmax	apixaban	plasma	calculated	tmax_group5_IV5	NA	NA	NA	NA	NA	0.05	NA	0.05	0.05	NA	hr	median
-Frost2021	NA	group5	6.0	IV5	thalf	apixaban	plasma	calculated	thalf_group5_IV5	NA	NA	8.03	2.14	NA	NA	0.873651341592667	NA	NA	NA	hr	NA
-Frost2021	NA	group5	6.0	IV5	vd_ss	apixaban	plasma	calculated	vd_ss_group5_IV5	NA	NA	25.93	4.26	NA	NA	1.73913771737606	NA	NA	NA	l	NA
-Frost2021	NA	group5	6.0	IV5	clearance	apixaban	plasma	calculated	clearance_group5_IV5	NA	NA	3.5	0.41	NA	NA	0.167381799090184	NA	NA	NA	l/hr	NA
-Frost2021	NA	group5	6.0	IV5	clearance_renal	apixaban	kidney	calculated	clearance_renal_group5_IV5	NA	NA	0.97	0.21	NA	NA	0.0857321409974112	NA	NA	NA	l/hr	NA
-Frost2021	NA	group5	6.0	IV5	cumulative amount	apixaban	kidney	calculated	cumulative amount_group5_IV5	48.0	hr	1.38571428571429	NA	NA	NA	NA	NA	NA	NA	mg	not reported, derived from CLR; total urinary recovery is the amount excreted over 48 h
-Frost2021	NA	apix	30.0	IVaverage	thalf	apixaban	plasma	calculated	thalf_apix_IVaverage	NA	NA	6.04	2.5	NA	NA	NA	NA	NA	NA	hr	NA
-Frost2021	NA	apix	30.0	IVaverage	vd_ss	apixaban	plasma	calculated	vd_ss_apix_IVaverage	NA	NA	21.6	4.63	NA	NA	NA	NA	NA	NA	l	NA
-Frost2021	NA	apix	30.0	IVaverage	clearance	apixaban	plasma	calculated	clearance_apix_IVaverage	NA	NA	3.44	0.52	NA	NA	NA	NA	NA	NA	l/hr	NA
-Frost2021	NA	apix	30.0	IVaverage	clearance_renal	apixaban	kidney	calculated	clearance_renal_apix_IVaverage	NA	NA	0.93	0.32	NA	NA	NA	NA	NA	NA	l/hr	NA
-Frost2021	NA	apix	30.0	IVaverage	cumulative amount	apixaban	kidney	calculated	cumulative amount_apix_IVaverage	48.0	hr	0.711176470588235	NA	NA	NA	NA	NA	NA	NA	mg	not reported, derived from CLR; total urinary recovery is the amount excreted over 48 h
-Frost2021	NA	group_po	5.0	PO5	cmax	apixaban	plasma	calculated	cmax_group_po_PO5	NA	NA	NA	42.159	89.7	NA	18.854077972682724	NA	NA	47.0	ng/ml	wrong units in table, geometric mean
-Frost2021	NA	group_po	5.0	PO5	cmax	apixaban	plasma	calculated	cmax_group_po_PO5	NA	NA	97.9	46.0	NA	NA	20.571825392998065	NA	NA	NA	ng/ml	wrong units in table
-Frost2021	NA	group_po	5.0	PO5	auc_inf	apixaban	plasma	calculated	auc_inf_group_po_PO5	NA	NA	NA	416.756	969.2	NA	186.37894920618044	NA	NA	43.0	ng*hr/ml	geometric mean
-Frost2021	NA	group_po	5.0	PO5	auc_inf	apixaban	plasma	calculated	auc_inf_group_po_PO5	NA	NA	1041.1	447.3	NA	NA	200.03864126713117	NA	NA	NA	ng*hr/ml	NA
-Frost2021	NA	group_po	5.0	PO5	tmax	apixaban	plasma	calculated	tmax_group_po_PO5	NA	NA	NA	NA	NA	3.98	NA	2.0	4.0	NA	hr	median
-Frost2021	NA	group_po	5.0	PO5	thalf	apixaban	plasma	calculated	thalf_group_po_PO5	NA	NA	10.78	2.13	NA	NA	0.9525649584149103	NA	NA	NA	hr	NA
-Frost2021	NA	group_po	5.0	PO5	clearance_renal	apixaban	kidney	calculated	clearance_renal_group_po_PO5	NA	NA	0.6	0.25	NA	NA	0.11180339887498948	NA	NA	NA	l/hr	NA
-Frost2021	NA	group_po	5.0	PO5	fraction_absorbed	apixaban	intestine	calculated	fraction_absorbed_group_po_PO5	NA	NA	NA	14.564	66.2	NA	6.5132188048613875	NA	NA	22.0	percent	 geometric mean
-Frost2021	NA	group_po	5.0	PO5	fraction_absorbed	apixaban	intestine	calculated	fraction_absorbed_group_po_PO5	NA	NA	67.5	14.9	NA	NA	6.663482572949373	50.9	85.7	NA	percent	NA
-Frost2021	NA	group_po	5.0	PO5	cumulative amount	apixaban	kidney	calculated	cumulative amount_group_po_PO5	48.0	hr	0.62466	NA	NA	NA	NA	NA	NA	NA	mg	not reported, derived from CLR; total urinary recovery is the amount excreted over 48 h
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Frost2021	apix	NA	30	IVaverage	clearance	sample mean	NA	apixaban	plasma	calculated	clearance_apixaban_plasma_IVaverage_apix	NA	NA	NA	3.44	NA	0.52	0.09493857663422879	0.15116279069767444	NA	NA	NA	NA	NA	l/hr	NA
+Frost2021	apix	NA	30	IVaverage	clearance_renal	sample mean	NA	apixaban	kidney	calculated	clearance_renal_apixaban_kidney_IVaverage_apix	NA	NA	NA	0.93	NA	0.32	0.05842373946721772	0.3440860215053763	NA	NA	NA	NA	NA	l/hr	NA
+Frost2021	apix	NA	30	IVaverage	cumulative amount	sample mean	NA	apixaban	kidney	calculated	cumulative_amount_apixaban_kidney_IVaverage_apix	48.0	hr	NA	0.7029069767441861	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR x AUC of Table 2 (CLR = total urinary recovery/AUC0-T, total urinary recovery = amount excreted over 48 h)
+Frost2021	apix	NA	30	IVaverage	thalf	sample mean	NA	apixaban	plasma	calculated	thalf_apixaban_plasma_IVaverage_apix	NA	NA	NA	6.04	NA	2.5	0.45643546458763845	0.4139072847682119	NA	NA	NA	NA	NA	hr	NA
+Frost2021	apix	NA	30	IVaverage	vd_ss	sample mean	NA	apixaban	plasma	calculated	vd_ss_apixaban_plasma_IVaverage_apix	NA	NA	NA	21.6	NA	4.63	0.8453184804163063	0.21435185185185182	NA	NA	NA	NA	NA	l	NA
+Frost2021	group1	NA	6	IV0_5	auc_inf	sample mean	NA	apixaban	plasma	calculated	auc_inf_apixaban_plasma_IV0_5_group1	NA	NA	NA	147.1	NA	21.7	8.85898790306583	0.14751869476546567	NA	NA	145.7	1.160866118095672	0.15	ng*hr/ml	NA
+Frost2021	group1	NA	6	IV0_5	clearance	sample mean	NA	apixaban	plasma	calculated	clearance_apixaban_plasma_IV0_5_group1	NA	NA	NA	3.47	NA	0.54	0.220454076850486	0.15561959654178675	NA	NA	NA	NA	NA	l/hr	NA
+Frost2021	group1	NA	6	IV0_5	clearance_renal	sample mean	NA	apixaban	kidney	calculated	clearance_renal_apixaban_kidney_IV0_5_group1	NA	NA	NA	1.1	NA	0.32	0.130639452948436	0.2909090909090909	NA	NA	NA	NA	NA	l/hr	NA
+Frost2021	group1	NA	6	IV0_5	cmax	sample mean	NA	apixaban	plasma	calculated	cmax_apixaban_plasma_IV0_5_group1	NA	NA	NA	55.4	NA	14.8	6.04207469886517	0.26714801444043323	NA	NA	53.0	1.301303452452699	0.268	ng/ml	NA
+Frost2021	group1	NA	6	IV0_5	cumulative amount	sample mean	NA	apixaban	kidney	calculated	cumulative_amount_apixaban_kidney_IV0_5_group1	48.0	hr	NA	0.15850144092219	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR x AUC of Table 2 (CLR = total urinary recovery/AUC0-T, total urinary recovery = amount excreted over 48 h)
+Frost2021	group1	NA	6	IV0_5	thalf	sample mean	NA	apixaban	plasma	calculated	thalf_apixaban_plasma_IV0_5_group1	NA	NA	NA	3.71	NA	0.88	0.359258495608199	0.2371967654986523	NA	NA	NA	NA	NA	hr	NA
+Frost2021	group1	NA	6	IV0_5	tmax	sample mean	NA	apixaban	plasma	calculated	tmax_apixaban_plasma_IV0_5_group1	NA	NA	NA	NA	0.07	NA	NA	NA	0.05	0.17	NA	NA	NA	hr	NA
+Frost2021	group1	NA	6	IV0_5	vd_ss	sample mean	NA	apixaban	plasma	calculated	vd_ss_apixaban_plasma_IV0_5_group1	NA	NA	NA	17.09	NA	3.5	1.42886901662352	0.2047981275599766	NA	NA	NA	NA	NA	l	NA
+Frost2021	group2	NA	6	IV1_25	auc_inf	sample mean	NA	apixaban	plasma	calculated	auc_inf_apixaban_plasma_IV1_25_group2	NA	NA	NA	373.1	NA	87.4	35.6809005865416	0.23425355132672207	NA	NA	365.4	1.2548831028243554	0.23	ng*hr/ml	NA
+Frost2021	group2	NA	6	IV1_25	clearance	sample mean	NA	apixaban	plasma	calculated	clearance_apixaban_plasma_IV1_25_group2	NA	NA	NA	3.49	NA	0.71	0.289856286229343	0.20343839541547276	NA	NA	NA	NA	NA	l/hr	NA
+Frost2021	group2	NA	6	IV1_25	clearance_renal	sample mean	NA	apixaban	kidney	calculated	clearance_renal_apixaban_kidney_IV1_25_group2	NA	NA	NA	1.08	NA	0.31	0.126556970043798	0.28703703703703703	NA	NA	NA	NA	NA	l/hr	NA
+Frost2021	group2	NA	6	IV1_25	cmax	sample mean	NA	apixaban	plasma	calculated	cmax_apixaban_plasma_IV1_25_group2	NA	NA	NA	109.0	NA	31.0	12.6556970043798	0.28440366972477066	NA	NA	105.9	1.321160870131848	0.284	ng/ml	NA
+Frost2021	group2	NA	6	IV1_25	cumulative amount	sample mean	NA	apixaban	kidney	calculated	cumulative_amount_apixaban_kidney_IV1_25_group2	48.0	hr	NA	0.386819484240688	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR x AUC of Table 2 (CLR = total urinary recovery/AUC0-T, total urinary recovery = amount excreted over 48 h)
+Frost2021	group2	NA	6	IV1_25	thalf	sample mean	NA	apixaban	plasma	calculated	thalf_apixaban_plasma_IV1_25_group2	NA	NA	NA	4.44	NA	0.4	0.163299316185545	0.09009009009009009	NA	NA	NA	NA	NA	hr	NA
+Frost2021	group2	NA	6	IV1_25	tmax	sample mean	NA	apixaban	plasma	calculated	tmax_apixaban_plasma_IV1_25_group2	NA	NA	NA	NA	0.05	NA	NA	NA	0.03	0.07	NA	NA	NA	hr	NA
+Frost2021	group2	NA	6	IV1_25	vd_ss	sample mean	NA	apixaban	plasma	calculated	vd_ss_apixaban_plasma_IV1_25_group2	NA	NA	NA	19.36	NA	2.33	0.951218516780801	0.12035123966942149	NA	NA	NA	NA	NA	l	NA
+Frost2021	group3	NA	6	IV2_5	auc_inf	sample mean	NA	apixaban	plasma	calculated	auc_inf_apixaban_plasma_IV2_5_group3	NA	NA	NA	736.7	NA	152.8	62.3803387828783	0.20741142934708837	NA	NA	724.2	1.2308912077191412	0.21	ng*hr/ml	NA
+Frost2021	group3	NA	6	IV2_5	clearance	sample mean	NA	apixaban	plasma	calculated	clearance_apixaban_plasma_IV2_5_group3	NA	NA	NA	3.51	NA	0.67	0.273526354610788	0.19088319088319092	NA	NA	NA	NA	NA	l/hr	NA
+Frost2021	group3	NA	6	IV2_5	clearance_renal	sample mean	NA	apixaban	kidney	calculated	clearance_renal_apixaban_kidney_IV2_5_group3	NA	NA	NA	0.61	NA	0.32	0.130639452948436	0.5245901639344263	NA	NA	NA	NA	NA	l/hr	NA
+Frost2021	group3	NA	6	IV2_5	cmax	sample mean	NA	apixaban	plasma	calculated	cmax_apixaban_plasma_IV2_5_group3	NA	NA	NA	285.2	NA	83.0	33.8846081085006	0.2910238429172511	NA	NA	277.0	1.3299041642352825	0.29100000000000004	ng/ml	NA
+Frost2021	group3	NA	6	IV2_5	cumulative amount	sample mean	NA	apixaban	kidney	calculated	cumulative_amount_apixaban_kidney_IV2_5_group3	48.0	hr	NA	0.434472934472935	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR x AUC of Table 2 (CLR = total urinary recovery/AUC0-T, total urinary recovery = amount excreted over 48 h)
+Frost2021	group3	NA	6	IV2_5	thalf	sample mean	NA	apixaban	plasma	calculated	thalf_apixaban_plasma_IV2_5_group3	NA	NA	NA	5.61	NA	2.03	0.828744029641642	0.3618538324420677	NA	NA	NA	NA	NA	hr	NA
+Frost2021	group3	NA	6	IV2_5	tmax	sample mean	NA	apixaban	plasma	calculated	tmax_apixaban_plasma_IV2_5_group3	NA	NA	NA	NA	0.05	NA	NA	NA	0.03	0.07	NA	NA	NA	hr	NA
+Frost2021	group3	NA	6	IV2_5	vd_ss	sample mean	NA	apixaban	plasma	calculated	vd_ss_apixaban_plasma_IV2_5_group3	NA	NA	NA	21.99	NA	3.41	1.39212667048177	0.1550704865848113	NA	NA	NA	NA	NA	l	NA
+Frost2021	group_po	NA	5	PO5	auc_inf	sample mean	NA	apixaban	plasma	calculated	auc_inf_apixaban_plasma_PO5_group_po	NA	NA	NA	1041.1	NA	447.3	200.03864126713117	0.4296417250984536	NA	NA	969.2	1.5096775463737508	0.43	ng*hr/ml	NA
+Frost2021	group_po	NA	5	PO5	clearance_renal	sample mean	NA	apixaban	kidney	calculated	clearance_renal_apixaban_kidney_PO5_group_po	NA	NA	NA	0.6	NA	0.25	0.11180339887498948	0.4166666666666667	NA	NA	NA	NA	NA	l/hr	NA
+Frost2021	group_po	NA	5	PO5	cmax	sample mean	NA	apixaban	plasma	calculated	cmax_apixaban_plasma_PO5_group_po	NA	NA	NA	97.9	NA	46.0	20.571825392998065	0.4698672114402451	NA	NA	89.7	1.5632282194220686	0.47	ng/ml	NA
+Frost2021	group_po	NA	5	PO5	cumulative amount	sample mean	NA	apixaban	kidney	calculated	cumulative_amount_apixaban_kidney_PO5_group_po	48.0	hr	NA	0.62466	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR x AUC of Table 2 (CLR = total urinary recovery/AUC0-T, total urinary recovery = amount excreted over 48 h)
+Frost2021	group_po	NA	5	PO5	fraction_absorbed	sample mean	NA	apixaban	intestine	calculated	fraction_absorbed_apixaban_intestine_PO5_group_po	NA	NA	NA	67.5	NA	14.9	6.663482572949373	0.22074074074074074	50.9	85.7	66.2	1.2428480921227265	0.22	percent	NA
+Frost2021	group_po	NA	5	PO5	thalf	sample mean	NA	apixaban	plasma	calculated	thalf_apixaban_plasma_PO5_group_po	NA	NA	NA	10.78	NA	2.13	0.9525649584149103	0.19758812615955473	NA	NA	NA	NA	NA	hr	NA
+Frost2021	group_po	NA	5	PO5	tmax	sample mean	NA	apixaban	plasma	calculated	tmax_apixaban_plasma_PO5_group_po	NA	NA	NA	NA	3.98	NA	NA	NA	2.0	4.0	NA	NA	NA	hr	NA
+Frost2021	group4	NA	6	IV3_75	auc_inf	sample mean	NA	apixaban	plasma	calculated	auc_inf_apixaban_plasma_IV3_75_group4	NA	NA	NA	1176.2	NA	124.9	50.9902114789365	0.1061894235674205	NA	NA	1171.0	1.1159091047618985	0.11	ng*hr/ml	NA
+Frost2021	group4	NA	6	IV3_75	clearance	sample mean	NA	apixaban	plasma	calculated	clearance_apixaban_plasma_IV3_75_group4	NA	NA	NA	3.22	NA	0.31	0.126556970043798	0.09627329192546583	NA	NA	NA	NA	NA	l/hr	NA
+Frost2021	group4	NA	6	IV3_75	clearance_renal	sample mean	NA	apixaban	kidney	calculated	clearance_renal_apixaban_kidney_IV3_75_group4	NA	NA	NA	0.89	NA	0.25	0.102062072615966	0.2808988764044944	NA	NA	NA	NA	NA	l/hr	NA
+Frost2021	group4	NA	6	IV3_75	cmax	sample mean	NA	apixaban	plasma	calculated	cmax_apixaban_plasma_IV3_75_group4	NA	NA	NA	423.2	NA	170.3	69.5246838659959	0.40241020793950855	NA	NA	396.7	1.4726189084668069	0.402	ng/ml	NA
+Frost2021	group4	NA	6	IV3_75	cumulative amount	sample mean	NA	apixaban	kidney	calculated	cumulative_amount_apixaban_kidney_IV3_75_group4	48.0	hr	NA	1.03649068322981	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR x AUC of Table 2 (CLR = total urinary recovery/AUC0-T, total urinary recovery = amount excreted over 48 h)
+Frost2021	group4	NA	6	IV3_75	thalf	sample mean	NA	apixaban	plasma	calculated	thalf_apixaban_plasma_IV3_75_group4	NA	NA	NA	8.41	NA	2.26	0.92264113644833	0.26872770511296074	NA	NA	NA	NA	NA	hr	NA
+Frost2021	group4	NA	6	IV3_75	tmax	sample mean	NA	apixaban	plasma	calculated	tmax_apixaban_plasma_IV3_75_group4	NA	NA	NA	NA	0.05	NA	NA	NA	0.05	0.07	NA	NA	NA	hr	NA
+Frost2021	group4	NA	6	IV3_75	vd_ss	sample mean	NA	apixaban	plasma	calculated	vd_ss_apixaban_plasma_IV3_75_group4	NA	NA	NA	23.71	NA	4.27	1.7432202002807	0.18009278785322647	NA	NA	NA	NA	NA	l	NA
+Frost2021	group5	NA	6	IV5	auc_inf	sample mean	NA	apixaban	plasma	calculated	auc_inf_apixaban_plasma_IV5_group5	NA	NA	NA	1446.0	NA	185.0	75.5259337358147	0.12793914246196403	NA	NA	1436.9	1.1382087121104076	0.13	ng*hr/ml	NA
+Frost2021	group5	NA	6	IV5	clearance	sample mean	NA	apixaban	plasma	calculated	clearance_apixaban_plasma_IV5_group5	NA	NA	NA	3.5	NA	0.41	0.167381799090184	0.11714285714285713	NA	NA	NA	NA	NA	l/hr	NA
+Frost2021	group5	NA	6	IV5	clearance_renal	sample mean	NA	apixaban	kidney	calculated	clearance_renal_apixaban_kidney_IV5_group5	NA	NA	NA	0.97	NA	0.21	0.0857321409974112	0.21649484536082475	NA	NA	NA	NA	NA	l/hr	NA
+Frost2021	group5	NA	6	IV5	cmax	sample mean	NA	apixaban	plasma	calculated	cmax_apixaban_plasma_IV5_group5	NA	NA	NA	447.8	NA	107.9	44.0499905410508	0.2409557838320679	NA	NA	436.3	1.2682101639464838	0.24100000000000002	ng/ml	NA
+Frost2021	group5	NA	6	IV5	cumulative amount	sample mean	NA	apixaban	kidney	calculated	cumulative_amount_apixaban_kidney_IV5_group5	48.0	hr	NA	1.38571428571429	NA	NA	NA	NA	NA	NA	NA	NA	NA	mg	not reported; computed as CLR x AUC of Table 2 (CLR = total urinary recovery/AUC0-T, total urinary recovery = amount excreted over 48 h)
+Frost2021	group5	NA	6	IV5	thalf	sample mean	NA	apixaban	plasma	calculated	thalf_apixaban_plasma_IV5_group5	NA	NA	NA	8.03	NA	2.14	0.873651341592667	0.26650062266500624	NA	NA	NA	NA	NA	hr	NA
+Frost2021	group5	NA	6	IV5	tmax	sample mean	NA	apixaban	plasma	calculated	tmax_apixaban_plasma_IV5_group5	NA	NA	NA	NA	0.05	NA	NA	NA	0.05	0.05	NA	NA	NA	hr	NA
+Frost2021	group5	NA	6	IV5	vd_ss	sample mean	NA	apixaban	plasma	calculated	vd_ss_apixaban_plasma_IV5_group5	NA	NA	NA	25.93	NA	4.26	1.73913771737606	0.1642884689548785	NA	NA	NA	NA	NA	l	NA

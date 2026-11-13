@@ -30,6 +30,8 @@ class Frost2015b(ApixabanSimulationExperiment):
     Thorough QT study in healthy subjects: apixaban 10 mg and 50 mg QD for 3
     days (form and fasting not reported), the pharmacokinetics of apixaban and
     M1 on day 3.
+
+    The subjects are mostly men (32 of 40) and run on the male build.
     """
 
     bodyweight = 76.6  # kg
@@ -46,8 +48,8 @@ class Frost2015b(ApixabanSimulationExperiment):
     }
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
-        "[Cve_m1]": "apixaban-M1",
+        "Carm_api": "apixaban",
+        "Carm_api_m1": "apixaban-M1",
     }
 
     @override
@@ -59,9 +61,9 @@ class Frost2015b(ApixabanSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if "apixaban-M1" in label:
-                    dset.unit_conversion("mean", 1 / self.Mr.m1)
+                    dset.unit_conversion("mean", 1 / self.Mr["api_m1"])
                 else:
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
+                    dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[self.to_sid(label)] = dset
 
         return dsets

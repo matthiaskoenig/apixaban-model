@@ -1,0 +1,67 @@
+context	check	factor	n	max_difference	at	acceptance_changed	passed	problems
+describe	tolerances	discretization_error	1427	9.350170847722753e-06	Frost2013.fm_apixaban_D25 at 5760	False	True	
+describe	integrator	numerical_solver_error	1427	2.3194975673775084e-05	Frost2013.fm_apixaban_D25 at 5760	False	True	
+describe	setup	use_error	1427				True	
+describe	dose_states	use_error	2				True	
+describe	mass_balance	numerical_code_verification	10	6.376843497690743e-15	male Ri_api		True	
+describe	non_negativity	numerical_code_verification	340	6.508043397713572e-31	female PODOSE_api small at 0 and 720 min: GU__Asolid_jej2_api		True	
+describe	zero_dose	numerical_code_verification	340	0.0			True	
+describe	steady_state	numerical_code_verification	332	0.0			True	
+describe	superposition	numerical_code_verification	8	0.0010959648895738944	female PODOSE_api twice the dose: GU__Asolid_sig_api		True	
+describe	plausibility	use_error	1509				True	
+describe	rebuild	software_quality_assurance	10				True	
+dose	tolerances	discretization_error	217	4.761060192154298e-06	Kreutz2017.fm_PO_api_apixaban at 3600	False	True	
+dose	integrator	numerical_solver_error	217	6.444537214601146e-06	Kreutz2017.fm_PO_api_apixaban at 3600	False	True	
+dose	setup	use_error	217				True	
+dose	dose_states	use_error	2				True	
+dose	mass_balance	numerical_code_verification	10	6.376843497690743e-15	male Ri_api		True	
+dose	non_negativity	numerical_code_verification	340	6.508043397713572e-31	female PODOSE_api small at 0 and 720 min: GU__Asolid_jej2_api		True	
+dose	zero_dose	numerical_code_verification	340	0.0			True	
+dose	steady_state	numerical_code_verification	332	0.0			True	
+dose	superposition	numerical_code_verification	8	0.0010959648895738944	female PODOSE_api twice the dose: GU__Asolid_sig_api		True	
+dose	plausibility	use_error	1509				True	
+dose	rebuild	software_quality_assurance	10				True	
+renal	tolerances	discretization_error	219	5.318811260823637e-06	Chang2016.fm_apixaban_moderate at 5760	False	True	
+renal	integrator	numerical_solver_error	219	1.6462284274585692e-05	Frost2015.fm_apixaban_elderly_male at 5760	False	True	
+renal	setup	use_error	219				True	
+renal	dose_states	use_error	2				True	
+renal	mass_balance	numerical_code_verification	10	6.376843497690743e-15	male Ri_api		True	
+renal	non_negativity	numerical_code_verification	340	6.508043397713572e-31	female PODOSE_api small at 0 and 720 min: GU__Asolid_jej2_api		True	
+renal	zero_dose	numerical_code_verification	340	0.0			True	
+renal	steady_state	numerical_code_verification	332	0.0			True	
+renal	superposition	numerical_code_verification	8	0.0010959648895738944	female PODOSE_api twice the dose: GU__Asolid_sig_api		True	
+renal	plausibility	use_error	1509				True	
+renal	rebuild	software_quality_assurance	10				True	
+interaction	tolerances	discretization_error	223	2.2451766951970214e-05	Lenard2025.fm_apixaban_API25_RIV25_EDO50_CAR at 1440	False	True	
+interaction	integrator	numerical_solver_error	223	2.861992789225707e-05	Lenard2025.fm_apixaban_API25_RIV25_EDO50_CAR at 1440	False	True	
+interaction	setup	use_error	223				True	
+interaction	dose_states	use_error	2				True	
+interaction	mass_balance	numerical_code_verification	10	6.376843497690743e-15	male Ri_api		True	
+interaction	non_negativity	numerical_code_verification	340	6.508043397713572e-31	female PODOSE_api small at 0 and 720 min: GU__Asolid_jej2_api		True	
+interaction	zero_dose	numerical_code_verification	340	0.0			True	
+interaction	steady_state	numerical_code_verification	332	0.0			True	
+interaction	superposition	numerical_code_verification	8	0.0010959648895738944	female PODOSE_api twice the dose: GU__Asolid_sig_api		True	
+interaction	plausibility	use_error	1509				True	
+interaction	rebuild	software_quality_assurance	10				True	
+coagulation	tolerances	discretization_error	352	1.7286773686007295e-07	Frost2015.fm_mPT_elderly at 1440	False	True	
+coagulation	integrator	numerical_solver_error	352	3.046530960018181e-07	Frost2015.fm_mPT_elderly at 1440	False	True	
+coagulation	setup	use_error	352				True	
+coagulation	dose_states	use_error	2				True	
+coagulation	mass_balance	numerical_code_verification	10	6.376843497690743e-15	male Ri_api		True	
+coagulation	non_negativity	numerical_code_verification	340	6.508043397713572e-31	female PODOSE_api small at 0 and 720 min: GU__Asolid_jej2_api		True	
+coagulation	zero_dose	numerical_code_verification	340	0.0			True	
+coagulation	steady_state	numerical_code_verification	332	0.0			True	
+coagulation	superposition	numerical_code_verification	8	0.0010959648895738944	female PODOSE_api twice the dose: GU__Asolid_sig_api		True	
+coagulation	plausibility	use_error	1509				True	
+coagulation	rebuild	software_quality_assurance	10				True	
+antixa	tolerances	discretization_error	65	4.687786689287711e-06	Frost2014.fm_mAPI_antiXa_activity at 2880	False	True	
+antixa	integrator	numerical_solver_error	65	1.6786533535858426e-05	Frost2015.fm_antiXa_activity_gram_elderly1 at 5760	False	True	
+antixa	setup	use_error	65				True	
+antixa	dose_states	use_error	2				True	
+antixa	mass_balance	numerical_code_verification	10	6.376843497690743e-15	male Ri_api		True	
+antixa	non_negativity	numerical_code_verification	340	6.508043397713572e-31	female PODOSE_api small at 0 and 720 min: GU__Asolid_jej2_api		True	
+antixa	zero_dose	numerical_code_verification	340	0.0			True	
+antixa	steady_state	numerical_code_verification	332	0.0			True	
+antixa	superposition	numerical_code_verification	8	0.0010959648895738944	female PODOSE_api twice the dose: GU__Asolid_sig_api		True	
+antixa	plausibility	use_error	1509				True	
+antixa	rebuild	software_quality_assurance	10				True	

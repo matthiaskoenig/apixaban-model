@@ -35,12 +35,16 @@ class Song2015(ApixabanSimulationExperiment):
     oral solution. Study 2: 5 mg oral solution by mouth or via a nasogastric
     tube (NGT) flushed with 5 % dextrose (D5W) or infant formula. Study 3: 5 mg
     oral solution by mouth, via NGT followed by a nutritional supplement (Boost
-    Plus) or a crushed 5 mg tablet suspended in D5W via NGT. The food has no
-    effect in the model; the arms are simulated like the fasted ones.
+    Plus) or a crushed 5 mg tablet suspended in D5W via NGT. The arm with the
+    nutritional supplement is fed (`FED`, the slower gastric emptying of the
+    fed state), the other arms are fasted.
 
     The data are re-digitized from the vector graphic of the figure (log axis);
     the +1 SD bars of overlapping series end at the same height and cannot be
     assigned to a series, so the SDs are not used.
+
+    The subjects are mostly men (18 women of 56; 2 of 14, 8 of 21 and 8 of 21
+    in the three studies) and run on the male build.
     """
 
     #: the studies (panels of the figure) and their arms
@@ -117,7 +121,7 @@ class Song2015(ApixabanSimulationExperiment):
     }
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
 
     def study(self, group: str) -> str:
@@ -139,7 +143,7 @@ class Song2015(ApixabanSimulationExperiment):
             label = str(label)
             dset = DataSet.from_df(df_label, self.ureg)
             if label.startswith("apixaban_"):
-                dset.unit_conversion("mean", 1 / self.Mr.api)
+                dset.unit_conversion("mean", 1 / self.Mr["api"])
             dsets[label] = dset
 
         return dsets
@@ -158,6 +162,8 @@ class Song2015(ApixabanSimulationExperiment):
                     self.dosing_parameter[group]: Q(self.dose[group], "mg"),
                     "BW": Q(self.bodyweight[study], "kg"),
                     "HEIGHT": Q(height, "cm"),
+                    # Boost Plus (240 ml) with the dose through the tube
+                    "FED": Q(int(group == "API5_NGT_NS"), "dimensionless"),
                 },
             )
         return tcsims

@@ -34,40 +34,28 @@ class Metze2021(ApixabanSimulationExperiment):
     and 12 h, measured with a chromogenic anti-Xa assay calibrated for apixaban
     (ng/ml). Creatinine clearance 66 +- 18 ml/min (Table 1). Body weight and
     fasting are not reported.
+
+    The subjects are mostly men (37 women of 80) and run on the male build.
     """
 
-    # 1-15
-    individuals: ClassVar[list[str]] = [f"IS{k:03d}" for k in range(1, 16)]
+    #: the 20 profiles of the apixaban group (Fig1)
+    individuals: ClassVar[list[str]] = [f"IS{k:03d}" for k in range(1, 21)]
     intervention = "API5"
     dose = 5
     #: creatinine clearance of the apixaban group [ml/min] (Table 1)
     crcl = 66
 
-    markers: ClassVar[dict[str, str]] = {"mean": "s", "IS": "o"}
-
-    marker_size: ClassVar[dict[str, float]] = {
-        "mean": 7.5,
-        "IS": 5.2,
-    }
-
-    linewidths: ClassVar[dict[str, float]] = {
-        "mean": 1.5,
-    }
-
-    infos_pk: ClassVar[dict[str, str]] = {"[Cve_api]": "apixaban"}
+    infos_pk: ClassVar[dict[str, str]] = {"Carm_api": "apixaban"}
 
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Fig1", "Fig1A"]:
-            df = self.load_dataframe(fig_id)
-            for label, df_label in df.groupby("label"):
-                label = str(label)
-                dset = DataSet.from_df(df_label, self.ureg)
-                if fig_id == "Fig1" and label.startswith("apixaban"):
-                    dset.unit_conversion("value", 1 / self.Mr.api)
-                elif fig_id == "Fig1A" and label.startswith("apixaban"):
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
+        df = self.load_dataframe("Fig1")
+        for name in self.infos_pk.values():
+            for individual in self.individuals:
+                label = f"{name}_{self.intervention}_{individual}"
+                dset = DataSet.from_df(df[df["label"] == label], self.ureg)
+                dset.unit_conversion("value", 1 / self.Mr["api"])
                 dsets[label] = dset
 
         return dsets
@@ -82,8 +70,8 @@ class Metze2021(ApixabanSimulationExperiment):
             preinit_changes={
                 **self.default_changes(),
                 "PODOSE_api": Q(self.dose, "mg"),
-                # renal function relative to a GFR of 101 ml/min
-                "KI__f_renal_function": Q(self.crcl / 101, "dimensionless"),
+                # the creatinine clearance is the GFR of the simulation
+                "f_renal_function": self.renal_function(self.crcl),
             },
         )
         return tcsims
@@ -91,37 +79,37 @@ class Metze2021(ApixabanSimulationExperiment):
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
         mappings = {}
-        # The mean is mapped, the individuals of the same subjects are only
-        # plotted (15 of the 20 profiles are digitized).
+        # the profiles of the individuals, the paper reports no mean
         for sid, name in self.infos_pk.items():
-            mappings[f"fm_{name}_{self.intervention}"] = FitMapping(
-                self,
-                reference=FitData(
+            for individual in self.individuals:
+                label = f"{name}_{self.intervention}_{individual}"
+                mappings[f"fm_{label}"] = FitMapping(
                     self,
-                    dataset=f"{name}_{self.intervention}",
-                    xid="time",
-                    yid="mean",
-                    yid_sd="mean_sd",
-                    count="count",
-                ),
-                observable=FitData(
-                    self,
-                    task=f"task_{self.intervention}",
-                    xid="time",
-                    yid=sid,
-                ),
-                metadata=PKPDMappingMetaData(
-                    tissue=Tissue.PLASMA,
-                    route=Route.PO,
-                    application_form=ApplicationForm.TABLET,
-                    dosing=Dosing.SINGLE,
-                    health=Health.RENAL_IMPAIRMENT,
-                    fasting=Fasting.NR,
-                    coadministration=Coadministration.NONE,
-                    data=PKPDData.PK,
-                    data_type=DataType.MEAN,
-                ),
-            )
+                    reference=FitData(
+                        self,
+                        dataset=label,
+                        xid="time",
+                        yid="value",
+                        count="count",
+                    ),
+                    observable=FitData(
+                        self,
+                        task=f"task_{self.intervention}",
+                        xid="time",
+                        yid=sid,
+                    ),
+                    metadata=PKPDMappingMetaData(
+                        tissue=Tissue.PLASMA,
+                        route=Route.PO,
+                        application_form=ApplicationForm.TABLET,
+                        dosing=Dosing.SINGLE,
+                        health=Health.RENAL_IMPAIRMENT,
+                        fasting=Fasting.NR,
+                        coadministration=Coadministration.NONE,
+                        data=PKPDData.PK,
+                        data_type=DataType.INDIVIDUAL,
+                    ),
+                )
 
         return mappings
 
@@ -158,27 +146,12 @@ class Metze2021(ApixabanSimulationExperiment):
                     dataset=f"{name}_{self.intervention}_{individual}",
                     xid="time",
                     yid="value",
-                    yid_sd=None,
                     label="5mg PO (individuals)" if ki == 0 else None,
                     color="white",
                     markeredgecolor=self.renal_colors["Mild renal impairment"],
                     linestyle="",
-                    marker=self.markers["IS"],
-                    markersize=self.marker_size["IS"],
+                    marker="o",
                 )
-            # mean data
-            plots[ks].add_data(
-                dataset=f"{name}_{self.intervention}",
-                xid="time",
-                yid="mean",
-                yid_sd="mean_sd",
-                count="count",
-                label="5mg PO",
-                color=self.renal_colors["Mild renal impairment"],
-                linewidth=self.linewidths["mean"],
-                marker=self.markers["mean"],
-                markersize=self.marker_size["mean"],
-            )
 
         return self.figures_by_sid(fig)
 

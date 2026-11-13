@@ -1,0 +1,33 @@
+context	quantity	description	ratio	coverage	n_points
+describe	Carm_api	the plasma concentration of apixaban	False	covered	514
+describe	Aurine_api	the cumulative amount of apixaban in urine	False	covered	12
+describe	Carm_api_m1	the plasma concentration of M1	False	covered	10
+describe	Aurine_api_m1	the cumulative amount of M1 in urine	False	covered	2
+describe	Aurine_api_m7	the cumulative amount of M7 in urine	False	covered	2
+describe	Afeces_api	the cumulative amount of apixaban in feces	False	covered	1
+describe	Afeces_api_m1	the cumulative amount of M1 in feces	False	covered	1
+describe	Afeces_api_m2	the cumulative amount of M2, M10 and M13 in feces	False	covered	1
+describe	Afeces_api_m7	the cumulative amount of M7 in feces	False	covered	1
+describe	COAG__INR	the international normalized ratio (INR)	False	covered	56
+describe	COAG__PT	the prothrombin time (PT)	False	uncovered	0
+describe	COAG__mPT	the modified prothrombin time (mPT)	False	covered	133
+describe	COAG__aPTT	the activated partial thromboplastin time (aPTT)	False	covered	49
+describe	COAG__INR_relchange	the change of the INR relative to its baseline	False	covered	6
+describe	COAG__mPT_relchange	the change of the mPT relative to its baseline	False	uncovered	0
+describe	COAG__aPTT_relchange	the change of the aPTT relative to its baseline	False	covered	5
+describe	COAG__antiXa_activity	the anti-factor Xa activity in IU/ml	False	covered	33
+describe	COAG__antiXa_activity_gram	the anti-factor Xa activity calibrated with apixaban, in ng/ml	False	covered	20
+dose	Carm_api	the plasma concentration of apixaban	False	covered	165
+renal	Carm_api	the plasma concentration of apixaban	False	covered	186
+renal	Aurine_api	the cumulative amount of apixaban in urine	False	covered	7
+renal	api_auc_ratio	the AUC of apixaban in the population over the AUC of a healthy adult of normal renal function and body weight	True		0
+interaction	Carm_api	the plasma concentration of apixaban	False	covered	203
+interaction	Aurine_api	the cumulative amount of apixaban in urine	False	covered	5
+interaction	api_auc_ratio	the AUC of apixaban with the coadministered drug over the AUC without it	True		0
+coagulation	COAG__INR	the international normalized ratio (INR)	False	covered	124
+coagulation	COAG__mPT	the modified prothrombin time (mPT)	False	covered	84
+coagulation	COAG__aPTT	the activated partial thromboplastin time (aPTT)	False	covered	108
+coagulation	COAG__PT_ratio	the PT over its baseline	False	uncovered	0
+coagulation	COAG__aPTT_ratio	the aPTT over its baseline	False	uncovered	0
+antixa	COAG__antiXa_activity	the anti-factor Xa activity in IU/ml	False	covered	25
+antixa	COAG__antiXa_activity_gram	the anti-factor Xa activity calibrated with apixaban, in ng/ml	False	covered	15

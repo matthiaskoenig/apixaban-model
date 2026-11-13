@@ -11,7 +11,8 @@ that the noise of the integrator is not the terminal phase. In addition:
 
 - `aucend_<hr>`: the AUC until 12, 24, 48, 72 and 96 hr (trapezoidal rule),
 - the amounts excreted in the urine and feces until the end of the simulation
-  (`Aurine_<id>`, `Afeces_<id>`) and the renal clearance `cl_renal` (the amount
+  (`Aurine_<id>`, `Afeces_<id>`, the ids of the model) and the renal clearance
+  `cl_renal` (the amount
   in the urine over `auc_last`). The amount in the feces is no clearance: after
   an oral dose it is mostly the apixaban which is not absorbed.
 
@@ -32,10 +33,10 @@ from typing import TYPE_CHECKING
 import numpy as np
 import pandas as pd
 from pkpdsim.pk import nca_frame, scan_nca
-from pkpdsim.scan import end_values, scan_dimensions, start_values
 from pkpdutils import Route
 from sbmlsim import Q
 from sbmlsim.result import ScanResult
+from sbmlsim.result.scan import end_values, scan_dimensions, start_values
 from sbmlsim.units import Quantity
 
 if TYPE_CHECKING:
@@ -45,27 +46,31 @@ if TYPE_CHECKING:
 
 #: oral dose of the scans
 DOSE = "PODOSE_api"
-#: the substances by id of the concentration in plasma (`[Cve_<id>]`)
-SUBSTANCES: dict[str, str] = {
-    "api": "apixaban",
-    "m1": "M1",
-    "m7": "M7",
+#: the substances by their short name (the column `substance`): the id of
+#: the substance in the model (the concentration in the plasma of the arm vein
+#: `Carm_<id>`, the amounts excreted `Aurine_<id>` and `Afeces_<id>`) and its
+#: name
+SUBSTANCES: dict[str, tuple[str, str]] = {
+    "api": ("api", "apixaban"),
+    "m1": ("api_m1", "M1"),
+    "m7": ("api_m7", "M7"),
 }
 #: end times of the partial AUCs [hr]
 AUC_END_TIMES: list[int] = [12, 24, 48, 72, 96]
 #: the limit of quantification relative to the maximal concentration
 LLOQ_FRACTION = 1e-6
-#: the pharmacodynamic outputs of `calculate_apixaban_pd`
+#: the pharmacodynamic outputs of `calculate_apixaban_pd`, the outputs of the
+#: coagulation model
 PD_OUTPUTS: list[str] = [
-    "INR",
-    "mPT",
-    "PT",
-    "aPTT",
-    "antiXa_activity",
-    "INR_ratio",
-    "mPT_ratio",
-    "PT_ratio",
-    "aPTT_ratio",
+    "COAG__INR",
+    "COAG__mPT",
+    "COAG__PT",
+    "COAG__aPTT",
+    "COAG__antiXa_activity",
+    "COAG__INR_ratio",
+    "COAG__mPT_ratio",
+    "COAG__PT_ratio",
+    "COAG__aPTT_ratio",
 ]
 
 
@@ -126,12 +131,12 @@ def calculate_apixaban_pk(
     positions = list(names.values())
     time_unit = str(units["time"])
     dfs = []
-    for sid, substance in SUBSTANCES.items():
-        concentration = f"[Cve_{sid}]"
+    for sid, (model_id, substance) in SUBSTANCES.items():
+        concentration = f"Carm_{model_id}"
         if sid == "api":
             # the dose of apixaban in the substance unit of the concentration,
             # which `cl_f` and `vz_f` require
-            dose = Q(start_values(res, DOSE).values, units[DOSE]) / experiment.Mr.api
+            dose = Q(start_values(res, DOSE).values, units[DOSE]) / experiment.Mr["api"]
             result = scan_nca(
                 res,
                 concentration,
@@ -162,10 +167,10 @@ def calculate_apixaban_pk(
                 auc[position], f"{units[concentration]}*{time_unit}"
             )
         # the amounts excreted and the renal clearance
-        for key in [f"Aurine_{sid}", f"Afeces_{sid}"]:
+        for key in [f"Aurine_{model_id}", f"Afeces_{model_id}"]:
             pk[key] = Q(end_values(res, key).values[position], units[key])
         auc_last = Q(df["auc_last"].to_numpy(), df["auc_last_unit"].iloc[0])
-        pk["cl_renal"] = (pk[f"Aurine_{sid}"] / auc_last).to("ml/min")
+        pk["cl_renal"] = (pk[f"Aurine_{model_id}"] / auc_last).to("ml/min")
         for key, value in pk.items():
             df[key] = value.magnitude
             df[f"{key}_unit"] = str(value.units)

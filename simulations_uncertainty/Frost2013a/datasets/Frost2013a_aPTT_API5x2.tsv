@@ -1,19 +1,19 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	0.0	hr		31.39	31.91	0.52			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	3.0	hr		32.7	33.22	0.519999999999996			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	6.0	hr		32.96	33.48	0.519999999999996			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	9.0	hr		31.39	31.91	0.52			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	12.0	hr		31.65	32.43	0.780000000000001			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	15.0	hr		32.17	33.22	1.05			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	18.0	hr		31.91	32.43	0.52			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	21.0	hr		30.61	31.13	0.52			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	24.0	hr		30.61	33.74	3.13			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	144.0	hr		32.7	33.22	0.519999999999996			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	147.0	hr		34.0	36.35	2.35			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	150.0	hr		32.96	33.48	0.519999999999996			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	153.0	hr		31.13	31.65	0.52			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	156.0	hr		31.91	32.17	0.260000000000002			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	159.0	hr		32.96	34.78	1.82			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	162.0	hr		32.17	35.3	3.13			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	165.0	hr		31.13	31.91	0.780000000000001			sec	sec	dimensionless
-Frost2013a		API5x2	6.0	API5x2	aPTT		plasma	coagulation assay	aPTT_API5x2	168.0	hr		30.61	32.43	1.82			sec	sec	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	0.0	hr		sec	31.39	0.5199999999999996	0.21228911104120862	sec		sec	0.016565785281936907				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	3.0	hr		sec	32.7	0.519999999999996	0.21228911104120715	sec		sec	0.015902140672782752				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	6.0	hr		sec	32.96	0.519999999999996	0.21228911104120715	sec		sec	0.015776699029126092				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	9.0	hr		sec	31.39	0.5199999999999996	0.21228911104120862	sec		sec	0.016565785281936907				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	12.0	hr		sec	31.65	0.7800000000000011	0.31843366656181366	sec		sec	0.02464454976303321				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	15.0	hr		sec	32.17	1.0499999999999972	0.42866070498705505	sec		sec	0.03263910475598374				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	18.0	hr		sec	31.91	0.5199999999999996	0.21228911104120862	sec		sec	0.016295832027577548				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	21.0	hr		sec	30.61	0.5199999999999996	0.21228911104120862	sec		sec	0.01698791244691276				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	24.0	hr		sec	30.61	3.1300000000000026	1.2778171491518924	sec		sec	0.10225416530545582				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	144.0	hr		sec	32.7	0.519999999999996	0.21228911104120715	sec		sec	0.015902140672782752				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	147.0	hr		sec	34.0	2.3500000000000014	0.9593834825900788	sec		sec	0.06911764705882358				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	150.0	hr		sec	32.96	0.519999999999996	0.21228911104120715	sec		sec	0.015776699029126092				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	153.0	hr		sec	31.13	0.5199999999999996	0.21228911104120862	sec		sec	0.016704143912624463				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	156.0	hr		sec	31.91			sec		sec					sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	159.0	hr		sec	32.96	1.8200000000000003	0.7430118886442308	sec		sec	0.05521844660194176				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	162.0	hr		sec	32.17	3.1299999999999955	1.2778171491518895	sec		sec	0.09729561703450405				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	165.0	hr		sec	31.13	0.7800000000000011	0.31843366656181366	sec		sec	0.025056215868936756				sec		dimensionless		
+Frost2013a	API5x2		6	dimensionless	API5x2	aPTT	sample mean			plasma	coagulation assay	aPTT_API5x2	168.0	hr		sec	30.61	1.8200000000000003	0.7430118886442308	sec		sec	0.05945769356419472				sec		dimensionless		

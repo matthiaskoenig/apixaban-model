@@ -24,7 +24,10 @@ from pkdb_models.models.apixaban.experiments.base_experiment import (
 
 
 class Abdollahizad2025(ApixabanSimulationExperiment):
-    """Simulation experiment of Abdollahizad2025."""
+    """Simulation experiment of Abdollahizad2025.
+
+    The subjects are mostly men (10 women of 24) and run on the male build.
+    """
 
     colors: ClassVar[dict[str, str]] = {
         "TEST5": "black",
@@ -45,7 +48,7 @@ class Abdollahizad2025(ApixabanSimulationExperiment):
     }
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
     infos_pd: ClassVar[dict[str, str]] = {}
 
@@ -60,7 +63,7 @@ class Abdollahizad2025(ApixabanSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("apixaban_"):
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
+                    dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[label] = dset
 
         return dsets

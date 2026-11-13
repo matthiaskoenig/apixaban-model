@@ -1,0 +1,29 @@
+{
+  "sets": [
+    {
+      "sid": "PD_20261104_193909__02221_0",
+      "values": {
+        "COAG__slope_api_INR": 485.385979198431,
+        "COAG__slope_api_PT": 974.8315128122445,
+        "COAG__Emax_mPT": 6.053687185201115,
+        "COAG__EC50_api_mPT": 0.0019121954717388758,
+        "COAG__Emax_aPTT": 0.3596591874762167,
+        "COAG__EC50_api_aPTT": 0.0007206499549153126,
+        "COAG__antiXa_slope": 5429.387162089676,
+        "COAG__antiXa_gram_slope": 430016.92959953507
+      },
+      "units": {
+        "COAG__slope_api_INR": "1/(mmol/l)",
+        "COAG__slope_api_PT": "1/(mmol/l)",
+        "COAG__Emax_mPT": "dimensionless",
+        "COAG__EC50_api_mPT": "mmol/l",
+        "COAG__Emax_aPTT": "dimensionless",
+        "COAG__EC50_api_aPTT": "mmol/l",
+        "COAG__antiXa_slope": "1/ml/(mmol/l)",
+        "COAG__antiXa_gram_slope": "ng/ml/(mmol/l)"
+      },
+      "cost": 62.74985175959027,
+      "provenance": "optimization 'PD_20261104_193909__02221', run '0'"
+    }
+  ]
+}

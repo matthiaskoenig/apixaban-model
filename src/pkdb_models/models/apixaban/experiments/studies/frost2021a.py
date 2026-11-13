@@ -4,6 +4,7 @@ import math
 from collections.abc import Sequence
 from typing import ClassVar, override
 
+import pandas as pd
 from pkpdsim.metadata import (
     ApplicationForm,
     Dosing,
@@ -30,10 +31,16 @@ class Frost2021a(ApixabanSimulationExperiment):
 
     A single oral dose of 5 mg apixaban in healthy subjects and subjects with
     mild (Child-Pugh A) or moderate (Child-Pugh B) hepatic impairment, fasted.
+    The Child-Pugh classes are the severities `CP_severity` 1 and 2
+    (`cirrhosis_map`).
+
+    No group has a majority of women (healthy 7 women of 16, mild hepatic
+    impairment 4 of 8, moderate 3 of 8); all run on the male build.
     """
 
     groups: ClassVar[list[str]] = ["healthy", "mild", "moderate"]
     groups_short: ClassVar[dict[str, str]] = {
+        "healthy": "healthy",
         "mild": "MiHI",
         "moderate": "MoHI",
     }
@@ -58,12 +65,12 @@ class Frost2021a(ApixabanSimulationExperiment):
         "mild": ApixabanSimulationExperiment.cirrhosis_map["Mild cirrhosis"],
         "moderate": ApixabanSimulationExperiment.cirrhosis_map["Moderate cirrhosis"],
     }
-    #: the renal function relative to the GFR of 101 ml/min of the model, from
-    #: the 24-h creatinine clearance of the groups [ml/min] (Table 1)
-    renal_function: ClassVar[dict[str, float]] = {
-        "healthy": 114.61 / 101,
-        "mild": 122.00 / 101,
-        "moderate": 111.68 / 101,
+    #: the 24-h creatinine clearance of the groups (Table 1) [ml/min], the GFR
+    #: of the simulation (`renal_function`)
+    crcl: ClassVar[dict[str, float]] = {
+        "healthy": 114.61,
+        "mild": 122.00,
+        "moderate": 111.68,
     }
     #: baseline INR and aPTT [s] of the groups (Results)
     inr_ref: ClassVar[dict[str, float]] = {
@@ -82,34 +89,54 @@ class Frost2021a(ApixabanSimulationExperiment):
         "moderate": "^",
     }
 
+    #: the sources of the data and the prefix of their datasets by the
+    #: prefix of the labels of the curation
+    sources: ClassVar[dict[str, tuple[str, str]]] = {
+        "Fig1": ("apixaban_", "apixaban_"),
+        "Fig2A": ("apixaban_vs_antiXa_", "apixaban_vs_xa_"),
+        "Fig2B": ("antiXa_", "xa_"),
+        "Fig3A": ("inr_change_", "inr_"),
+        "Fig3B": ("aPTT_change_", "aPTT_"),
+    }
+
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id, group_id in zip(
-            ["Fig1", "Fig3", "Fig2a", "Fig2b", "Tab2"],
-            ["label", "label", "x_label", "label", "label"],
-            strict=True,
-        ):
+        for fig_id, (prefix, sid_prefix) in self.sources.items():
             df = self.load_dataframe(fig_id)
-            if fig_id == "Fig2b":
-                # the anti-factor Xa activity at 0 h and from 48 h on is the floor
-                # of the assay (0.10 to 0.11 IU/ml, values below the limit of
-                # quantification), not mapped
-                df = df[(df.time > 0) & (df.time < 48)]
-            for label, df_label in df.groupby(group_id):
+            for label, df_label in df.groupby("label"):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                if label.startswith("apixaban_"):
-                    if fig_id == "Fig2a":
-                        dset.unit_conversion("x", 1 / self.Mr.api)
-                    else:
-                        dset.unit_conversion("mean", 1 / self.Mr.api)
-                if fig_id != "Tab2":
-                    dsets[self.to_sid(label)] = dset
-                if label.startswith("cumulative amount"):
-                    dset["mean"] = dset["geomean"]
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
-                    dsets[self.to_sid(label)] = dset
+                if fig_id == "Fig2A":
+                    dset.unit_conversion("x", 1 / self.Mr["api"])
+                elif fig_id == "Fig1":
+                    dset.unit_conversion("mean", 1 / self.Mr["api"])
+                dsets[self.to_sid(sid_prefix + label.removeprefix(prefix))] = dset
+
+        # the urinary amounts over 72 hr are not reported (nor curated): the
+        # renal clearance of the study is the amount in urine over the AUC(0-72),
+        # so the amount is the renal clearance times the AUC(0-72) (geometric
+        # means of Tab2)
+        df = self.load_dataframe("Tab2")
+        for group in self.groups:
+            clr = df[df["label"] == f"clearance_renal_apixaban_plasma_API5_{group}"]
+            auc = df[df["label"] == f"auc_end_apixaban_plasma_API5_{group}"]
+            amount = (
+                Q(clr["gmean"].iloc[0], clr["unit"].iloc[0])
+                * Q(auc["gmean"].iloc[0], auc["unit"].iloc[0])
+            ).to("mg")
+            df_amount = pd.DataFrame(
+                {
+                    "time": auc["time"].to_numpy(),
+                    "time_unit": auc["time_unit"].to_numpy(),
+                    "count": auc["count"].to_numpy(),
+                    "gmean": [amount.magnitude],
+                    "gmean_unit": ["mg"],
+                }
+            )
+            dset = DataSet.from_df(df_amount, self.ureg)
+            dset.unit_conversion("gmean", 1 / self.Mr["api"])
+            dsets[f"cumulative_amount_{group}"] = dset
 
         return dsets
 
@@ -124,12 +151,14 @@ class Frost2021a(ApixabanSimulationExperiment):
                     **self.default_changes(),
                     "PODOSE_api": Q(5, "mg"),
                     "BW": Q(self.bodyweights[group], "kg"),
-                    "f_cirrhosis": Q(self.cirrhosis[group], "dimensionless"),
+                    "CP_severity": Q(self.cirrhosis[group], "dimensionless"),
                     "HEIGHT": Q(self.bodyheights[group], "cm"),
-                    "INR_ref": Q(self.inr_ref[group], "dimensionless"),
-                    "aPTT_ref": Q(self.aptt_ref[group], "s"),
-                    "KI__f_renal_function": Q(
-                        self.renal_function[group], "dimensionless"
+                    "COAG__INR_ref": Q(self.inr_ref[group], "dimensionless"),
+                    "COAG__aPTT_ref": Q(self.aptt_ref[group], "s"),
+                    "f_renal_function": self.renal_function(
+                        self.crcl[group],
+                        bw=self.bodyweights[group],
+                        height=self.bodyheights[group],
                     ),
                 },
             )
@@ -164,62 +193,52 @@ class Frost2021a(ApixabanSimulationExperiment):
     @staticmethod
     def _label_to_observable(dset_label: str) -> str:
         if dset_label.startswith("apixaban_"):
-            return "[Cve_api]"
+            return "Carm_api"
         if dset_label.startswith("cumulative_amount"):
             return "Aurine_api"
         if dset_label.startswith("inr_"):
-            return "INR"
+            return "COAG__INR"
         if dset_label.startswith("aPTT_"):
-            return "aPTT"
+            return "COAG__aPTT"
         if dset_label.startswith(("xa_", "apixaban_vs_xa_")):
-            return "antiXa_activity"
+            return "COAG__antiXa_activity"
         raise ValueError(f"No observable for the dataset '{dset_label}'.")
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
         mappings: dict[str, FitMapping] = {}
 
-        all_labels = self._pk_labels() + self._pd_labels() + self._scatter_labels()
-        scatter_set = set(self._scatter_labels())
-
-        for dset_label in all_labels:
+        # the individual values against the concentration are plotted only
+        for dset_label in self._pk_labels() + self._pd_labels():
             observable_id = self._label_to_observable(dset_label)
-            if observable_id == "INR":
-                observable_id = "INR_relchange"
-            elif observable_id == "aPTT":
-                observable_id = "aPTT_relchange"
+            if observable_id == "COAG__INR":
+                observable_id = "COAG__INR_relchange"
+            elif observable_id == "COAG__aPTT":
+                observable_id = "COAG__aPTT_relchange"
 
             group_of_label = self._label_to_group(dset_label, self.groups)
-
-            is_scatter = dset_label in scatter_set
-            if is_scatter:
-                continue
-            ref_xid = "x" if is_scatter else "time"
-            ref_yid = "y" if is_scatter else "mean"
-            ref_yid_sd = "" if is_scatter else "mean_sd"
-            obs_xid = "[Cve_api]" if is_scatter else "time"
-            # # FIXME: set obs_yid correctly for scatter
+            # the urinary amounts are geometric means without a spread
+            is_urine = observable_id == "Aurine_api"
+            tissue = Tissue.URINE if is_urine else Tissue.PLASMA
 
             mappings[self.to_sid(f"fm_po_{dset_label}")] = FitMapping(
                 self,
                 reference=FitData(
                     self,
                     dataset=dset_label,
-                    xid=ref_xid,
-                    yid=ref_yid,
-                    yid_sd=None if observable_id == "Aurine_api" else ref_yid_sd,
+                    xid="time",
+                    yid="gmean" if is_urine else "mean",
+                    yid_sd=None if is_urine else "mean_sd",
                     count="count",
                 ),
                 observable=FitData(
                     self,
                     task=self.to_sid(f"task_{group_of_label}"),
-                    xid=obs_xid,
+                    xid="time",
                     yid=observable_id,
                 ),
                 metadata=PKPDMappingMetaData(
-                    tissue=Tissue.URINE
-                    if observable_id == "Aurine_api"
-                    else Tissue.PLASMA,
+                    tissue=tissue,
                     route=Route.PO,
                     application_form=ApplicationForm.TABLET,
                     dosing=Dosing.SINGLE,
@@ -256,7 +275,7 @@ class Frost2021a(ApixabanSimulationExperiment):
             legend=True,
         )
         plots[0].set_yaxis(
-            self.labels["[Cve_api]"], unit=self.units["[Cve_api]"], scale="linear"
+            self.labels["Carm_api"], unit=self.units["Carm_api"], scale="linear"
         )
         plots[1].set_yaxis(
             self.labels["Aurine_api"], unit=self.units["Aurine_api"], scale="linear"
@@ -268,21 +287,17 @@ class Frost2021a(ApixabanSimulationExperiment):
             plots[kp].add_data(
                 task=self.to_sid(f"task_{group}"),
                 xid="time",
-                yid="[Cve_api]" if kp == 0 else "Aurine_api",
-                label="sim: 5mg PO"
-                if group == "healthy"
-                else f"sim {self.groups_short[group]}: 5mg PO",
+                yid="Carm_api" if kp == 0 else "Aurine_api",
+                label=f"sim {self.groups_short[group]}: 5mg PO",
                 color=self.colors[group],
             )
             plots[kp].add_data(
                 dataset=dset_label,
                 xid="time",
-                yid="mean",
+                yid="gmean" if kp == 1 else "mean",
                 yid_sd=None if kp == 1 else "mean_sd",
                 count="count",
-                label="exp: 5mg PO"
-                if group == "healthy"
-                else f"exp {self.groups_short[group]}: 5mg PO",
+                label=f"exp {self.groups_short[group]}: 5mg PO",
                 color=self.colors[group],
                 linestyle="dashed" if kp == 0 else "",
             )
@@ -297,6 +312,9 @@ class Frost2021a(ApixabanSimulationExperiment):
             num_cols=3,
             height=self.panel_height,
             width=self.panel_width * 3 * 1.05,
+            # one legend right of the panels, which share their curves (inside,
+            # the legend covers the error bars)
+            settings={"legend_scope": "row", "legend_fontsize": 13},
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
@@ -304,9 +322,9 @@ class Frost2021a(ApixabanSimulationExperiment):
         )
 
         cfg = {
-            0: ("INR_relchange", "inr_"),
-            1: ("aPTT_relchange", "aPTT_"),
-            2: ("antiXa_activity", "xa_"),
+            0: ("COAG__INR_relchange", "inr_"),
+            1: ("COAG__aPTT_relchange", "aPTT_"),
+            2: ("COAG__antiXa_activity", "xa_"),
         }
 
         for kp in range(3):
@@ -325,9 +343,7 @@ class Frost2021a(ApixabanSimulationExperiment):
                         task=self.to_sid(f"task_{group}"),
                         xid="time",
                         yid=observable_id,
-                        label="sim: 5mg PO"
-                        if group == "healthy"
-                        else f"sim {self.groups_short[group]}: 5mg PO",
+                        label=f"sim {self.groups_short[group]}: 5mg PO",
                         color=self.colors[group],
                     )
                     plots[kp].add_data(
@@ -336,9 +352,7 @@ class Frost2021a(ApixabanSimulationExperiment):
                         yid="mean",
                         yid_sd="mean_sd",
                         count="count",
-                        label="exp: 5mg PO"
-                        if group == "healthy"
-                        else f"exp {self.groups_short[group]}: 5mg PO",
+                        label=f"exp {self.groups_short[group]}: 5mg PO",
                         color=self.colors[group],
                     )
 
@@ -354,12 +368,12 @@ class Frost2021a(ApixabanSimulationExperiment):
             width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
-            xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
+            xaxis=Axis(self.labels["Carm_api"], unit=self.units["Carm_api"]),
             legend=True,
         )
         plots[0].set_yaxis(
-            self.labels["antiXa_activity"],
-            unit=self.units["antiXa_activity"],
+            self.labels["COAG__antiXa_activity"],
+            unit=self.units["COAG__antiXa_activity"],
             scale="linear",
         )
         is_legend = True
@@ -367,8 +381,8 @@ class Frost2021a(ApixabanSimulationExperiment):
             group = self._label_to_group(dset_label, self.groups)
             plots[0].add_data(
                 task=self.to_sid(f"task_{group}"),
-                xid="[Cve_api]",
-                yid="antiXa_activity",
+                xid="Carm_api",
+                yid="COAG__antiXa_activity",
                 label="sim: 5mg PO" if is_legend else "",
                 color="black",
                 linestyle="solid",
@@ -379,9 +393,7 @@ class Frost2021a(ApixabanSimulationExperiment):
                 xid="x",
                 yid="y",
                 count="count",
-                label="exp individ: 5mg PO"
-                if group == "healthy"
-                else f"exp individ {self.groups_short[group]}: 5mg PO",
+                label=f"exp individ {self.groups_short[group]}: 5mg PO",
                 linestyle="",
                 marker=self.markers[group],
                 color="white",

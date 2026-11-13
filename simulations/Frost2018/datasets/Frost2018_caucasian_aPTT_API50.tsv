@@ -1,6 +1,6 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2018		caucasian	12.0	API50	aPTT (change relative)	thrombin	plasma	coagulation assay	caucasian_aPTT_API50	0.0	hr		0.0					percent	percent	dimensionless
-Frost2018		caucasian	12.0	API50	aPTT (change relative)	thrombin	plasma	coagulation assay	caucasian_aPTT_API50	3.0	hr		22.573					percent	percent	dimensionless
-Frost2018		caucasian	12.0	API50	aPTT (change relative)	thrombin	plasma	coagulation assay	caucasian_aPTT_API50	6.0	hr		17.741					percent	percent	dimensionless
-Frost2018		caucasian	12.0	API50	aPTT (change relative)	thrombin	plasma	coagulation assay	caucasian_aPTT_API50	12.0	hr		2.94					percent	percent	dimensionless
-Frost2018		caucasian	12.0	API50	aPTT (change relative)	thrombin	plasma	coagulation assay	caucasian_aPTT_API50	24.0	hr		2.768					percent	percent	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2018	caucasian		12	dimensionless	API50	aPTT (change relative)	sample mean		thrombin	plasma	coagulation assay	caucasian_aPTT_API50	0.0	hr		percent	0.0			percent		percent					percent		dimensionless		
+Frost2018	caucasian		12	dimensionless	API50	aPTT (change relative)	sample mean		thrombin	plasma	coagulation assay	caucasian_aPTT_API50	3.0	hr		percent	22.573			percent		percent					percent		dimensionless		
+Frost2018	caucasian		12	dimensionless	API50	aPTT (change relative)	sample mean		thrombin	plasma	coagulation assay	caucasian_aPTT_API50	6.0	hr		percent	17.741			percent		percent					percent		dimensionless		
+Frost2018	caucasian		12	dimensionless	API50	aPTT (change relative)	sample mean		thrombin	plasma	coagulation assay	caucasian_aPTT_API50	12.0	hr		percent	2.94			percent		percent					percent		dimensionless		
+Frost2018	caucasian		12	dimensionless	API50	aPTT (change relative)	sample mean		thrombin	plasma	coagulation assay	caucasian_aPTT_API50	24.0	hr		percent	2.768			percent		percent					percent		dimensionless		

@@ -1,0 +1,39 @@
+{
+  "sets": [
+    {
+      "sid": "PK_20261031_104725__64222_0",
+      "values": {
+        "ftissue_api": 12.938897469591602,
+        "Kp_api": 0.22616122380122383,
+        "LI__API2M_k": 0.07877341669164516,
+        "GU__APISEC_k": 0.2694571651898515,
+        "ka_api": 2.775857255243813,
+        "fabs_api": 0.6829710307623836,
+        "Ka_dis_api": 1.082285432372784,
+        "D50_dis_api": 9.095598088009954,
+        "fu_ref_api_m1": 0.041729181798542216,
+        "fu_ref_api_m7": 0.0012849961628710034,
+        "LI__M1EXBI_k": 0.03723522147399551,
+        "LI__M7EXBI_k": 0.13228384246631644,
+        "LI__M22M1_k": 0.005683183449189536
+      },
+      "units": {
+        "ftissue_api": "l/min",
+        "Kp_api": "dimensionless",
+        "LI__API2M_k": "1/min",
+        "GU__APISEC_k": "1/min",
+        "ka_api": "1/hr",
+        "fabs_api": "dimensionless",
+        "Ka_dis_api": "1/hr",
+        "D50_dis_api": "mg",
+        "fu_ref_api_m1": "dimensionless",
+        "fu_ref_api_m7": "dimensionless",
+        "LI__M1EXBI_k": "1/min",
+        "LI__M7EXBI_k": "1/min",
+        "LI__M22M1_k": "1/min"
+      },
+      "cost": 114.38859917222547,
+      "provenance": "optimization 'PK_20261031_104725__64222', run '15'"
+    }
+  ]
+}

@@ -1,3 +1,3 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	cv	comments	mean_unit	value_unit	count_unit
-Kreutz2017		all	24.0	api	Anti-factor Xa activity		plasma	coagulation assay	api_Anti-factor Xa activity_mean_ug	12.0	hr		37.5		6.825	1.3931472912079328	18.2		ug/l	ug/l	dimensionless
-Kreutz2017		all	24.0	api	Anti-factor Xa activity		plasma	coagulation assay	api_Anti-factor Xa activity_mean_ug	24.0	hr		44.9		9.6086	1.96134726187554	21.4		ug/l	ug/l	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Kreutz2017	all		24	dimensionless	api	Anti-factor Xa activity	geometric mean		apixaban	plasma	coagulation assay	api_Anti-factor Xa activity_mean_ug	12.0	hr		ug/l				ug/l		ug/l				37.5	ug/l	1.1978392527697173	dimensionless	0.182	
+Kreutz2017	all		24	dimensionless	api	Anti-factor Xa activity	geometric mean		apixaban	plasma	coagulation assay	api_Anti-factor Xa activity_mean_ug	24.0	hr		ug/l				ug/l		ug/l				44.9	ug/l	1.2356644970073218	dimensionless	0.214	

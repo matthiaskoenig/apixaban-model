@@ -1,17 +1,17 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	0.0	hr		0.0					mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	0.25	hr		0.00011910772578890097			1.373462254941421e-05		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	0.5	hr		0.0003482045701849837			1.913316191671874e-05		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	1.0	hr		0.00037329706202393907			1.423123600171219e-05		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	2.0	hr		0.0003449401523394995			1.0799085253608031e-05		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	3.0	hr		0.0003066811751904244			1.0302471801309923e-05		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	4.0	hr		0.00027355821545157783			7.851508843807117e-06		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	5.0	hr		0.0002133188248095756			7.849502324807683e-06		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	6.0	hr		0.0001770620239390642			8.338089701109012e-06		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	9.0	hr		0.00010317736670293797			1.2385238522463176e-05		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	12.0	hr		6.430903155603918e-05			1.131974441890827e-05		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	24.0	hr		2.441784548422198e-05			1.4096163510394081e-06		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	36.0	hr		7.4646354733405885e-06			4.547832284283047e-07		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	48.0	hr		4.39608269858542e-06			4.0408374863090534e-07		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	60.0	hr		2.8726877040261156e-06			6.061700961742524e-07		mole/meter^3	ng/ml	dimensionless
-Song2015		study_3	20.0	API5_PO_OS_3	concentration	apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	72.0	hr		3.1556039173014146e-06			4.547832284283047e-07		mole/meter^3	ng/ml	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	0.0	hr		ng/ml	0.0			mole/meter^3		ng/ml					ng/ml		dimensionless		Pre-dose: no marker drawn on the log axis (the line starts at the 0.25 hr value), curated as 0.
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	0.25	hr		ng/ml	0.00011923830250272035			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	0.5	hr		ng/ml	0.00034863982589771494			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	1.0	hr		ng/ml	0.00037388465723612625			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	2.0	hr		ng/ml	0.00034537540805223066			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	3.0	hr		ng/ml	0.00030707290533188246			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	4.0	hr		ng/ml	0.00027399347116430906			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	5.0	hr		ng/ml	0.00021360174102285097			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	6.0	hr		ng/ml	0.00017730141458106638			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	9.0	hr		ng/ml	0.00010328618063112079			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	12.0	hr		ng/ml	6.437431991294885e-05			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	24.0	hr		ng/ml	2.441784548422198e-05			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	36.0	hr		ng/ml	7.4646354733405885e-06			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	48.0	hr		ng/ml	4.400435255712731e-06			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	60.0	hr		ng/ml	2.8618063112078343e-06			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Song2015	study_3		21	dimensionless	API5_PO_OS_3	concentration	sample mean		apixaban	plasma	LC MS/MS	apixaban_API5_PO_OS_3	72.0	hr		ng/ml	3.1490750816104462e-06			mole/meter^3		ng/ml					ng/ml		dimensionless		

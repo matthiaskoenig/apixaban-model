@@ -1,10 +1,9 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2021a	healthy	16.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_healthy	0.0	hr		0.0				aPTT	percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_healthy	3.0	hr		9.32268	12.29406	2.97138	0.742845		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_healthy	3.5	hr		7.15101	11.22723	4.07622	1.019055		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_healthy	6.0	hr		3.64531	6.46435	2.81904	0.70476		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_healthy	12.0	hr		-0.85225	1.85247	2.70472	0.67618		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_healthy	24.0	hr		1.61916	5.31439	3.69523	0.9238075		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_healthy	48.0	hr		1.19055	2.82868	1.63813	0.4095325		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_healthy	72.0	hr		-2.32369	-0.07616	2.24753	0.5618825		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_healthy	96.0	hr		-1.53326	0.56193	2.09519	0.5237975		percent	percent	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2021a	healthy		16	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_healthy	3.0	hr		percent	9.326	11.628	2.907	percent		percent	1.2468368003431267				percent		dimensionless		
+Frost2021a	healthy		16	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_healthy	3.5	hr		percent	7.205	16.0	4.0	percent		percent	2.220680083275503				percent		dimensionless		
+Frost2021a	healthy		16	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_healthy	6.0	hr		percent	3.654	11.348	2.837	percent		percent	3.1056376573617954				percent		dimensionless		
+Frost2021a	healthy		16	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_healthy	12.0	hr		percent	-0.861	11.324	2.831	percent		percent	13.152148664343786				percent		dimensionless		error bar centred at -0.929, not at the marker
+Frost2021a	healthy		16	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_healthy	24.0	hr		percent	1.596	15.028	3.757	percent		percent	9.416040100250626				percent		dimensionless		
+Frost2021a	healthy		16	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_healthy	48.0	hr		percent	1.191	6.664	1.666	percent		percent	5.595298068849706				percent		dimensionless		
+Frost2021a	healthy		16	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_healthy	72.0	hr		percent	-2.303	8.916	2.229	percent		percent	3.8714719930525403				percent		dimensionless		
+Frost2021a	healthy		16	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_healthy	96.0	hr		percent	-1.55	8.612	2.153	percent		percent	5.556129032258064				percent		dimensionless		

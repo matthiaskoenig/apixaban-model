@@ -1,12 +1,12 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cv	median	min	max	sd	se	unit	comments
-Frost2014	all	14.0	mRIV10	cmax	rivaroxaban	plasma	LC MS/MS	12.0	hr	171.0	46.0	NA	NA	NA	78.66	NA	ng/ml	NA
-Frost2014	all	14.0	mRIV10	cmin	rivaroxaban	plasma	LC MS/MS	NA	NA	10.1	39.0	NA	NA	NA	3.939	NA	ng/ml	NA
-Frost2014	all	14.0	mRIV10	tmax	rivaroxaban	plasma	LC MS/MS	NA	NA	NA	NA	2.0	1.0	3.0	NA	NA	hr	NA
-Frost2014	all	14.0	mRIV10	auc_end	rivaroxaban	plasma	LC MS/MS	24.0	hr	1094.0	29.0	NA	NA	NA	317.26	NA	ng*hr/ml	NA
-Frost2014	all	14.0	mRIV10	thalf	rivaroxaban	plasma	LC MS/MS	NA	NA	7.89	NA	NA	NA	NA	3.0	NA	hr	NA
-Frost2014	all	14.0	mAPI	cmax	apixaban	plasma	LC MS/MS	12.0	hr	80.5	23.0	NA	NA	NA	18.515	NA	ng/ml	NA
-Frost2014	all	14.0	mAPI	cmin	apixaban	plasma	LC MS/MS	NA	NA	17.1	20.0	NA	NA	NA	3.42	NA	ng/ml	NA
-Frost2014	all	14.0	mAPI	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	2.0	1.0	3.0	NA	NA	hr	NA
-Frost2014	all	14.0	mAPI	auc_end	apixaban	plasma	LC MS/MS	12.0	hr	527.0	22.0	NA	NA	NA	115.94	NA	ng*hr/ml	NA
-Frost2014	all	14.0	mAPI	auc_end	apixaban	plasma	LC MS/MS	24.0	hr	935.0	24.0	NA	NA	NA	224.4	NA	ng*hr/ml	NA
-Frost2014	all	14.0	mAPI	thalf	apixaban	plasma	LC MS/MS	NA	NA	8.65	NA	NA	NA	NA	2.19	NA	hr	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Frost2014	all	NA	14	mAPI	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_mAPI_all	12.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	527.0	1.2428480921227265	0.22	ng*hr/ml	NA
+Frost2014	all	NA	14	mAPI	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_mAPI_all	24.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	935.0	1.2669948273599922	0.24	ng*hr/ml	NA
+Frost2014	all	NA	14	mAPI	cmax	geometric mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_mAPI_all	12.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	80.5	1.2548831028243554	0.23	ng/ml	NA
+Frost2014	all	NA	14	mAPI	cmin	geometric mean	NA	apixaban	plasma	LC MS/MS	cmin_apixaban_plasma_mAPI_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	17.1	1.2190138356507818	0.2	ng/ml	NA
+Frost2014	all	NA	14	mAPI	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_mAPI_all	NA	NA	NA	8.65	NA	2.19	0.5853021197882095	0.25317919075144507	NA	NA	NA	NA	NA	hr	NA
+Frost2014	all	NA	14	mAPI	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_mAPI_all	NA	NA	NA	NA	2.0	NA	NA	NA	1.0	3.0	NA	NA	NA	hr	NA
+Frost2014	all	NA	14	mRIV10	auc_end	geometric mean	NA	rivaroxaban	plasma	LC MS/MS	auc_end_rivaroxaban_plasma_mRIV10_all	24.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	1094.0	1.3286530811483306	0.29	ng*hr/ml	NA
+Frost2014	all	NA	14	mRIV10	cmax	geometric mean	NA	rivaroxaban	plasma	LC MS/MS	cmax_rivaroxaban_plasma_mRIV10_all	12.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	171.0	1.549777899169465	0.46	ng/ml	NA
+Frost2014	all	NA	14	mRIV10	cmin	geometric mean	NA	rivaroxaban	plasma	LC MS/MS	cmin_rivaroxaban_plasma_mRIV10_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	10.1	1.4568544649846984	0.39	ng/ml	NA
+Frost2014	all	NA	14	mRIV10	thalf	sample mean	NA	rivaroxaban	plasma	LC MS/MS	thalf_rivaroxaban_plasma_mRIV10_all	NA	NA	NA	7.89	NA	3.0	0.8017837257372732	0.3802281368821293	NA	NA	NA	NA	NA	hr	NA
+Frost2014	all	NA	14	mRIV10	tmax	sample mean	NA	rivaroxaban	plasma	LC MS/MS	tmax_rivaroxaban_plasma_mRIV10_all	NA	NA	NA	NA	2.0	NA	NA	NA	1.0	3.0	NA	NA	NA	hr	NA

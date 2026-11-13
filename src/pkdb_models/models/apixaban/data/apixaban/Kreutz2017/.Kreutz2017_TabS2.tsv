@@ -1,8 +1,8 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	sd	se	cv	unit	comments
-Kreutz2017	NA	all	24.0	riv	Anti-factor Xa activity	NA	plasma	coagulation assay	riv_Anti-factor Xa activity_mean_ug	156.0	hr	NA	57.2	NA	13.156	2.68545725467129	23.0	ug/l	geometric mean
-Kreutz2017	NA	all	24.0	riv	Anti-factor Xa activity	NA	plasma	coagulation assay	riv_Anti-factor Xa activity_mean_ug	168.0	hr	NA	30.9	NA	3.1827	0.649665917029669	10.3	ug/l	NA
-Kreutz2017	NA	all	24.0	riv	Anti-factor Xa activity	NA	plasma	coagulation assay	riv_Anti-factor Xa activity_mean_ug	180.0	hr	NA	27.5	NA	2.69225	0.549553230000668	9.79	ug/l	NA
-Kreutz2017	NA	all	24.0	riv	Anti-factor Xa activity	NA	plasma	coagulation assay	riv_Anti-factor Xa activity_mean_ug	192.0	hr	NA	26.5	NA	0.104145	0.0212585091051795	0.393	ug/l	NA
-Kreutz2017	NA	all	24.0	api	Anti-factor Xa activity	NA	plasma	coagulation assay	api_Anti-factor Xa activity_mean_ug	156.0	hr	NA	37.5	NA	6.825	1.3931472912079328	18.2	ug/l	NA
-Kreutz2017	NA	all	24.0	api	Anti-factor Xa activity	NA	plasma	coagulation assay	api_Anti-factor Xa activity_mean_ug	168.0	hr	NA	44.9	NA	9.6086	1.96134726187554	21.4	ug/l	NA
-Kreutz2017	NA	all	24.0	api	Anti-factor Xa activity	NA	plasma	coagulation assay	api_Anti-factor Xa activity_mean_ug	180.0	hr	NA	26.8	NA	2.4254	0.495082701845527	9.05	ug/l	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Kreutz2017	all	NA	24	api	Anti-factor Xa activity	geometric mean	NA	apixaban	plasma	coagulation assay	api_Anti-factor Xa activity_mean_ug	156.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	37.5	1.1978392527697173	0.182	ug/l	NA
+Kreutz2017	all	NA	24	api	Anti-factor Xa activity	geometric mean	NA	apixaban	plasma	coagulation assay	api_Anti-factor Xa activity_mean_ug	168.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	44.9	1.2356644970073218	0.214	ug/l	NA
+Kreutz2017	all	NA	24	api	Anti-factor Xa activity	geometric mean	NA	apixaban	plasma	coagulation assay	api_Anti-factor Xa activity_mean_ug	180.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	26.8	1.0945195645707544	0.09050000000000001	ug/l	NA
+Kreutz2017	all	NA	24	riv	Anti-factor Xa activity	geometric mean	NA	rivaroxaban	plasma	coagulation assay	riv_Anti-factor Xa activity_mean_ug	156.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	57.2	1.2548831028243554	0.23	ug/l	NA
+Kreutz2017	all	NA	24	riv	Anti-factor Xa activity	geometric mean	NA	rivaroxaban	plasma	coagulation assay	riv_Anti-factor Xa activity_mean_ug	168.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	30.9	1.1081903581782655	0.10300000000000001	ug/l	NA
+Kreutz2017	all	NA	24	riv	Anti-factor Xa activity	geometric mean	NA	rivaroxaban	plasma	coagulation assay	riv_Anti-factor Xa activity_mean_ug	180.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	27.5	1.1025951534422471	0.09789999999999999	ug/l	NA
+Kreutz2017	all	NA	24	riv	Anti-factor Xa activity	geometric mean	NA	rivaroxaban	plasma	coagulation assay	riv_Anti-factor Xa activity_mean_ug	192.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	26.5	1.0039377173421165	0.00393	ug/l	NA

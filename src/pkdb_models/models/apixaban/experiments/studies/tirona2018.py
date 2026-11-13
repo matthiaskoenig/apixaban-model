@@ -1,6 +1,8 @@
 """Simulation experiment of the study Tirona2018."""
 
 import math
+from collections.abc import Mapping
+from types import MappingProxyType
 from typing import ClassVar, override
 
 from pkpdsim.metadata import (
@@ -13,6 +15,7 @@ from pkpdsim.metadata import (
     Route,
     Tissue,
 )
+from pkpdsim.pbpk import Sex
 from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
@@ -37,7 +40,18 @@ class Tirona2018(ApixabanSimulationExperiment):
     The paper explains the lower exposure of the NAFLD patients by their body
     weight (99.9 against 65.6 kg), pkpdsim has no health status NAFLD: the
     patients are obese (BMI 34.0).
+
+    The controls are mostly women (10 of 12) and run on the female build; the
+    NAFLD patients (11 women of 22, no majority) run on the male build. The
+    curated sex of the whole study (32 women of 34) disagrees with its groups
+    (21 women), see TODO.md.
     """
+
+    simulation_sexes: ClassVar[Mapping[str, Sex]] = MappingProxyType(
+        {
+            "control": Sex.FEMALE,
+        }
+    )
 
     colors: ClassVar[dict[str, str]] = {
         "control": "black",
@@ -62,23 +76,27 @@ class Tirona2018(ApixabanSimulationExperiment):
     }
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
         "Aurine_api": "cumulative amount",
     }
 
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
+        labels = {
+            self.dataset_key(group, sid)
+            for group in self.groups
+            for sid in self.infos_pk
+        }
         for fig_id in ["Tab2", "Fig2"]:
             df = self.load_dataframe(fig_id)
             for label, df_label in df.groupby("label"):
                 label = str(label)
+                if label not in labels:
+                    continue
                 dset = DataSet.from_df(df_label, self.ureg)
-                if label.endswith("apixaban") and (
-                    fig_id == "Fig2" or label.startswith("cumulative")
-                ):
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
-                    dsets[self.to_sid(label)] = dset
+                dset.unit_conversion("mean", 1 / self.Mr["api"])
+                dsets[label] = dset
 
         return dsets
 
@@ -109,16 +127,16 @@ class Tirona2018(ApixabanSimulationExperiment):
         Returns:
             The key of the dataset.
         """
-        name = self.infos_pk[sid]
-        return self.to_sid(
-            f"{group}_{name}" if sid == "[Cve_api]" else f"{name}_{group}_apixaban"
-        )
+        if sid == "Carm_api":
+            return f"{group}_apixaban"
+        return f"cumulative_amount_apixaban_urine_API2_5_ROS5_{group}"
 
     @override
     def fit_mappings(self) -> dict[str, FitMapping]:
         mappings: dict[str, FitMapping] = {}
         for group in self.groups:
             for sid, name in self.infos_pk.items():
+                tissue = Tissue.PLASMA if sid == "Carm_api" else Tissue.URINE
                 mappings[self.to_sid(f"fm_{name}_{group}")] = FitMapping(
                     self,
                     reference=FitData(
@@ -136,7 +154,7 @@ class Tirona2018(ApixabanSimulationExperiment):
                         yid=sid,
                     ),
                     metadata=PKPDMappingMetaData(
-                        tissue=Tissue.PLASMA if sid == "[Cve_api]" else Tissue.URINE,
+                        tissue=tissue,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
                         dosing=Dosing.SINGLE,
@@ -191,7 +209,7 @@ class Tirona2018(ApixabanSimulationExperiment):
                     count="count",
                     label=f"exp: {self.legends[group]}",
                     color=self.colors[group],
-                    linestyle="solid" if sid == "[Cve_api]" else "",
+                    linestyle="solid" if sid == "Carm_api" else "",
                 )
 
         return self.figures_by_sid(fig)

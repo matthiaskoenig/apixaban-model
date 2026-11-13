@@ -1,7 +1,7 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cilow	cihigh	cv	median	min	max	sd	se	unit	comments
-Mikus2019	all	18.0	API25, RIV25, EDO50	inr	NA	plasma	coagulation assay	NA	NA	1021.0	0.952	1016.0	NA	NA	NA	NA	1098.5928429028204	NA	dimensionless	geometric mean
-Mikus2019	all	18.0	API25, RIV25, EDO50	aPTT	NA	plasma	coagulation assay	NA	NA	26.7	25.3	26.5	NA	NA	NA	NA	1.298767557281413	NA	sec	geometric mean
-Mikus2019	all	18.0	API25, RIV25, EDO50, KET	inr	NA	plasma	coagulation assay	NA	NA	1016.0	0.993	1051.0	NA	NA	NA	NA	1136.4291887653212	NA	dimensionless	geometric mean
-Mikus2019	all	18.0	API25, RIV25, EDO50, KET	aPTT	NA	plasma	coagulation assay	NA	NA	26.7	25.9	27.5	NA	NA	NA	NA	1.7316900763752199	NA	sec	geometric mean
-Mikus2019	all	18.0	baseline	inr	NA	plasma	coagulation assay	NA	NA	0.984	0.983	1051.0	NA	NA	NA	NA	1136.4400118282986	NA	dimensionless	geometric mean
-Mikus2019	all	18.0	baseline	aPTT	NA	plasma	coagulation assay	NA	NA	25.9	26.0	27.6	NA	NA	NA	NA	1.7316900763752199	NA	sec	geometric mean
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Mikus2019	all	NA	18	API25,EDO50,KET,MDZ10,RIV25	aPTT	geometric mean	NA	NA	plasma	coagulation assay	aPTT_plasma_API25_EDO50_KET_MDZ10_RIV25_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	26.7	NA	NA	sec	geometric mean (95% CI 26.0-27.6)
+Mikus2019	all	NA	18	API25,EDO50,KET,MDZ10,RIV25	inr	geometric mean	NA	NA	plasma	coagulation assay	inr_plasma_API25_EDO50_KET_MDZ10_RIV25_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1.016	NA	NA	dimensionless	geometric mean (95% CI 0.983-1.051)
+Mikus2019	all	NA	18	API25,EDO50,MDZ10,RIV25	aPTT	geometric mean	NA	NA	plasma	coagulation assay	aPTT_plasma_API25_EDO50_MDZ10_RIV25_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	26.7	NA	NA	sec	geometric mean (95% CI 25.9-27.5)
+Mikus2019	all	NA	18	API25,EDO50,MDZ10,RIV25	inr	geometric mean	NA	NA	plasma	coagulation assay	inr_plasma_API25_EDO50_MDZ10_RIV25_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1.021	NA	NA	dimensionless	geometric mean (95% CI 0.993-1.051)
+Mikus2019	all	NA	18	baseline	aPTT	geometric mean	NA	NA	plasma	coagulation assay	aPTT_plasma_baseline_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	25.9	NA	NA	sec	geometric mean (95% CI 25.3-26.5)
+Mikus2019	all	NA	18	baseline	inr	geometric mean	NA	NA	plasma	coagulation assay	inr_plasma_baseline_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	0.984	NA	NA	dimensionless	geometric mean (95% CI 0.952-1.016)

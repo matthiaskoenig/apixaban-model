@@ -41,6 +41,8 @@ class Raghavan2009(ApixabanSimulationExperiment):
     healthy males after an overnight fast of at least 10 h: group 1 (n=6)
     without, group 2 (n=4) with a collection of the bile at 3-8 h (which
     removes 2.44 % of the dose from the feces). Body weight is not reported.
+
+    The subjects are men (10) and run on the male build.
     """
 
     markers: ClassVar[dict[str, str]] = {
@@ -51,23 +53,23 @@ class Raghavan2009(ApixabanSimulationExperiment):
     dose = 20  # [mg]
 
     infos_pk: ClassVar[dict[str, PkInfo]] = {
-        "[Cve_api]": {
+        "Carm_api": {
             "measurements": ["apixaban", "apixaban2"],
             "kp": 0,
             "color": "black",
         },
-        "[Cve_m1]": {"measurements": ["m1"], "kp": 1, "color": "black"},
+        "Carm_api_m1": {"measurements": ["m1"], "kp": 1, "color": "black"},
         "Aurine_api": {"measurements": ["apixaban_urine"], "kp": 2, "color": "black"},
-        "Aurine_m1": {"measurements": ["m1_urine"], "kp": 3, "color": "black"},
-        "Aurine_m7": {"measurements": ["m7_urine"], "kp": 3, "color": "grey"},
+        "Aurine_api_m1": {"measurements": ["m1_urine"], "kp": 3, "color": "black"},
+        "Aurine_api_m7": {"measurements": ["m7_urine"], "kp": 3, "color": "grey"},
         "Afeces_api": {"measurements": ["apixaban_feces"], "kp": 4, "color": "black"},
-        "Afeces_m1": {"measurements": ["m1_feces"], "kp": 5, "color": "black"},
-        "Afeces_m2": {
+        "Afeces_api_m1": {"measurements": ["m1_feces"], "kp": 5, "color": "black"},
+        "Afeces_api_m2": {
             "measurements": ["m2_m10_m13_feces"],
             "kp": 5,
             "color": "#1f77b4",
         },
-        "Afeces_m7": {"measurements": ["m7_feces"], "kp": 5, "color": "grey"},
+        "Afeces_api_m7": {"measurements": ["m7_feces"], "kp": 5, "color": "grey"},
     }
 
     linestyle: ClassVar[dict[str, str]] = {
@@ -75,6 +77,15 @@ class Raghavan2009(ApixabanSimulationExperiment):
         "apixaban2": "dashed",
         "m1": "dashed",
     }
+
+    @staticmethod
+    def metabolite(sid: str) -> str | None:
+        """Get the metabolite of an observable, `None` for apixaban.
+
+        The metabolites are `M1`, `M2` and `M7`, the suffixes of their ids.
+        """
+        suffix = sid.rsplit("_", 1)[-1]
+        return suffix.upper() if suffix in {"m1", "m2", "m7"} else None
 
     @override
     def datasets(self) -> dict[str, DataSet]:
@@ -86,7 +97,7 @@ class Raghavan2009(ApixabanSimulationExperiment):
             if "total" in label:
                 continue
             dset = DataSet.from_df(df_label, self.ureg)
-            dset.unit_conversion("mean", 1 / self.Mr.api)
+            dset.unit_conversion("mean", 1 / self.Mr["api"])
             dsets[label] = dset
 
         # Tab3: apixaban and M1 [µM] estimated from the radioactivity
@@ -99,7 +110,7 @@ class Raghavan2009(ApixabanSimulationExperiment):
         # converted to an amount with the molecular weight of apixaban.
         df = self.load_dataframe("Tab4")
         df = df[~df["label"].str.contains("total")]
-        recovery_to_amount = Q(self.dose, "mg") / Q(100, "percent") / self.Mr.api
+        recovery_to_amount = Q(self.dose, "mg") / Q(100, "percent") / self.Mr["api"]
         for label, df_label in df.groupby("label"):
             dset = DataSet.from_df(df_label, self.ureg)
             dset.unit_conversion("mean", recovery_to_amount)
@@ -202,19 +213,21 @@ class Raghavan2009(ApixabanSimulationExperiment):
         )
         for sid, info in self.infos_pk.items():
             kp = info["kp"]
-            if "urine" in sid and "m1" in sid:
-                label = "metabolites urine"
-            elif "feces" in sid and "m1" in sid:
-                label = "metabolites feces"
-            elif ("urine" in sid or "feces" in sid) and (
-                "m1" not in sid and "api" not in sid
-            ):
+            metabolite = self.metabolite(sid)
+            excreted = sid.startswith(("Aurine_", "Afeces_"))
+            if excreted and metabolite == "M1":
+                label = (
+                    "metabolites urine"
+                    if sid.startswith("Aurine_")
+                    else "metabolites feces"
+                )
+            elif excreted and metabolite is not None:
                 # the other metabolites share the panel of M1
                 continue
             else:
                 label = self.labels[sid]
             plots[kp].set_yaxis(label, unit=self.units[sid])
-            if sid.startswith("[Cve"):
+            if sid.startswith("Carm_"):
                 xaxis = plots[kp].xaxis
                 if xaxis is not None:  # set by `create_plots`
                     xaxis.min = -1
@@ -224,6 +237,7 @@ class Raghavan2009(ApixabanSimulationExperiment):
             for sid, info in self.infos_pk.items():
                 names = info["measurements"]
                 kp = info["kp"]
+                metabolite = self.metabolite(sid)
                 if group == "group1":
                     # simulation
                     plots[kp].add_data(
@@ -231,25 +245,23 @@ class Raghavan2009(ApixabanSimulationExperiment):
                         xid="time",
                         yid=sid,
                         label=f"sim {self.dose}mg SOL"
-                        if "api" in sid or ("m1" in sid and kp == 1)
-                        else f"{sid.split('_')[1].upper()} sim {self.dose}mg SOL",
+                        if metabolite is None or kp == 1
+                        else f"{metabolite} sim {self.dose}mg SOL",
                         color=info["color"],
                     )
                 for name in names:
-                    if sid.startswith("[Cve"):
+                    if sid.startswith("Carm_"):
                         label = (
                             f"group {group[-1]}: {self.dose}mg SOL (LC-MS/MS)"
                             if name == "apixaban"
                             else f"group {group[-1]}: {self.dose}mg SOL (radioactivity)"
                         )
                     else:
-                        metabolite = sid.split("_")[1].upper()
-                        if metabolite == "M2":
-                            metabolite = "M2+M10+M13"
+                        measured = "M2+M10+M13" if metabolite == "M2" else metabolite
                         label = (
                             f"group {group[-1]}: {self.dose}mg SOL"
-                            if "api" in sid
-                            else f"{metabolite} group {group[-1]}: {self.dose}mg SOL"
+                            if metabolite is None
+                            else f"{measured} group {group[-1]}: {self.dose}mg SOL"
                         )
                     # data
                     plots[kp].add_data(
@@ -259,7 +271,9 @@ class Raghavan2009(ApixabanSimulationExperiment):
                         count="count",
                         label=label,
                         color=info["color"],
-                        linestyle=self.linestyle[name] if "[Cve" in sid else "",
+                        linestyle=self.linestyle[name]
+                        if sid.startswith("Carm_")
+                        else "",
                         marker=self.markers[group],
                         markeredgecolor=info["color"],
                     )

@@ -1,19 +1,19 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	0.0	hr		1.09	1.13	0.0399999999999998			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	3.0	hr		1.11	1.17	0.0599999999999998			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	6.0	hr		1.11	1.18	0.0699999999999998			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	9.0	hr		1.16	1.21	0.05			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	12.0	hr		1.15	1.29	0.14			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	15.0	hr		1.18	1.27	0.0900000000000001			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	18.0	hr		1.16	1.24	0.0800000000000001			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	21.0	hr		1.13	1.18	0.05			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	24.0	hr		1.12	1.16	0.0399999999999998			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	144.0	hr		1.1	1.17	0.0699999999999998			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	147.0	hr		1.11	1.18	0.0699999999999998			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	150.0	hr		1.16	1.22	0.0600000000000001			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	153.0	hr		1.15	1.2	0.05			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	156.0	hr		1.14	1.21	0.0700000000000001			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	159.0	hr		1.15	1.22	0.0700000000000001			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	162.0	hr		1.21	1.28	0.0700000000000001			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	165.0	hr		1.16	1.23	0.0700000000000001			dimensionless	dimensionless	dimensionless
-Frost2013a		placebo	12.0	placebo	inr		plasma	coagulation assay	INR_placebo	168.0	hr		1.14	1.21	0.0700000000000001			dimensionless	dimensionless	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	0.0	hr		dimensionless	1.09	0.039999999999999813	0.016329931618554446	dimensionless		dimensionless	0.03669724770642185				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	3.0	hr		dimensionless	1.11	0.05999999999999983	0.024494897427831713	dimensionless		dimensionless	0.0540540540540539				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	6.0	hr		dimensionless	1.11	0.06999999999999984	0.02857738033247035	dimensionless		dimensionless	0.06306306306306292				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	9.0	hr		dimensionless	1.16	0.050000000000000044	0.02041241452319317	dimensionless		dimensionless	0.043103448275862113				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	12.0	hr		dimensionless	1.15	0.14000000000000012	0.05715476066494088	dimensionless		dimensionless	0.12173913043478272				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	15.0	hr		dimensionless	1.18	0.09000000000000008	0.036742346141747706	dimensionless		dimensionless	0.07627118644067804				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	18.0	hr		dimensionless	1.16	0.08000000000000007	0.03265986323710907	dimensionless		dimensionless	0.06896551724137938				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	21.0	hr		dimensionless	1.13	0.050000000000000044	0.02041241452319317	dimensionless		dimensionless	0.04424778761061951				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	24.0	hr		dimensionless	1.12	0.039999999999999813	0.016329931618554446	dimensionless		dimensionless	0.035714285714285546				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	144.0	hr		dimensionless	1.1	0.06999999999999984	0.02857738033247035	dimensionless		dimensionless	0.06363636363636349				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	147.0	hr		dimensionless	1.11	0.06999999999999984	0.02857738033247035	dimensionless		dimensionless	0.06306306306306292				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	150.0	hr		dimensionless	1.16	0.06000000000000005	0.024494897427831806	dimensionless		dimensionless	0.05172413793103453				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	153.0	hr		dimensionless	1.15	0.050000000000000044	0.02041241452319317	dimensionless		dimensionless	0.04347826086956526				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	156.0	hr		dimensionless	1.14	0.07000000000000006	0.02857738033247044	dimensionless		dimensionless	0.061403508771929884				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	159.0	hr		dimensionless	1.15	0.07000000000000006	0.02857738033247044	dimensionless		dimensionless	0.06086956521739136				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	162.0	hr		dimensionless	1.21	0.07000000000000006	0.02857738033247044	dimensionless		dimensionless	0.05785123966942154				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	165.0	hr		dimensionless	1.16	0.07000000000000006	0.02857738033247044	dimensionless		dimensionless	0.060344827586206955				dimensionless		dimensionless		
+Frost2013a	placebo		6	dimensionless	placebo	inr	sample mean			plasma	coagulation assay	INR_placebo	168.0	hr		dimensionless	1.14	0.07000000000000006	0.02857738033247044	dimensionless		dimensionless	0.061403508771929884				dimensionless		dimensionless		

@@ -1,21 +1,21 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	sd	se	unit	comments
-Raghavan2009	NA	group1	6.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group1	1.0	hr	NA	1.084	NA	NA	NA	µM	NA
-Raghavan2009	NA	group1	6.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group1	6.0	hr	NA	0.791	NA	NA	NA	µM	NA
-Raghavan2009	NA	group1	6.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group1	12.0	hr	NA	0.354	NA	NA	NA	µM	NA
-Raghavan2009	NA	group1	6.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group1	24.0	hr	NA	0.108	NA	NA	NA	µM	NA
-Raghavan2009	NA	group1	6.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group1	48.0	hr	NA	0.029	NA	NA	NA	µM	NA
-Raghavan2009	NA	group2	4.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group2	1.0	hr	NA	1.336	NA	NA	NA	µM	NA
-Raghavan2009	NA	group2	4.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group2	6.0	hr	NA	0.718	NA	NA	NA	µM	NA
-Raghavan2009	NA	group2	4.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group2	12.0	hr	NA	0.308	NA	NA	NA	µM	NA
-Raghavan2009	NA	group2	4.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group2	24.0	hr	NA	0.097	NA	NA	NA	µM	NA
-Raghavan2009	NA	group2	4.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group2	48.0	hr	NA	0.025	NA	NA	NA	µM	NA
-Raghavan2009	NA	group1	6.0	API20	concentration	apixaban-M1	plasma	HPLC MS/MS	m1_group1	1.0	hr	NA	0.018	NA	NA	NA	µM	NA
-Raghavan2009	NA	group1	6.0	API20	concentration	apixaban-M1	plasma	HPLC MS/MS	m1_group1	6.0	hr	NA	0.15	NA	NA	NA	µM	NA
-Raghavan2009	NA	group1	6.0	API20	concentration	apixaban-M1	plasma	HPLC MS/MS	m1_group1	12.0	hr	NA	0.141	NA	NA	NA	µM	NA
-Raghavan2009	NA	group1	6.0	API20	concentration	apixaban-M1	plasma	HPLC MS/MS	m1_group1	24.0	hr	NA	0.061	NA	NA	NA	µM	NA
-Raghavan2009	NA	group1	6.0	API20	concentration	apixaban-M1	plasma	HPLC MS/MS	m1_group1	48.0	hr	NA	0.021	NA	NA	NA	µM	NA
-Raghavan2009	NA	group2	4.0	API20	concentration	apixaban-M1	plasma	HPLC MS/MS	m1_group2	1.0	hr	NA	0.021	NA	NA	NA	µM	NA
-Raghavan2009	NA	group2	4.0	API20	concentration	apixaban-M1	plasma	HPLC MS/MS	m1_group2	6.0	hr	NA	0.128	NA	NA	NA	µM	NA
-Raghavan2009	NA	group2	4.0	API20	concentration	apixaban-M1	plasma	HPLC MS/MS	m1_group2	12.0	hr	NA	0.118	NA	NA	NA	µM	NA
-Raghavan2009	NA	group2	4.0	API20	concentration	apixaban-M1	plasma	HPLC MS/MS	m1_group2	24.0	hr	NA	0.054	NA	NA	NA	µM	NA
-Raghavan2009	NA	group2	4.0	API20	concentration	apixaban-M1	plasma	HPLC MS/MS	m1_group2	48.0	hr	NA	0.022	NA	NA	NA	µM	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Raghavan2009	group1	NA	6	API20	concentration	sample mean	NA	apixaban	plasma	HPLC MS/MS	apixaban2_group1	1.0	hr	NA	1.084	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group1	NA	6	API20	concentration	sample mean	NA	apixaban	plasma	HPLC MS/MS	apixaban2_group1	6.0	hr	NA	0.791	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group1	NA	6	API20	concentration	sample mean	NA	apixaban	plasma	HPLC MS/MS	apixaban2_group1	12.0	hr	NA	0.354	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group1	NA	6	API20	concentration	sample mean	NA	apixaban	plasma	HPLC MS/MS	apixaban2_group1	24.0	hr	NA	0.108	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group1	NA	6	API20	concentration	sample mean	NA	apixaban	plasma	HPLC MS/MS	apixaban2_group1	48.0	hr	NA	0.029	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group2	NA	4	API20	concentration	sample mean	NA	apixaban	plasma	HPLC MS/MS	apixaban2_group2	1.0	hr	NA	1.336	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group2	NA	4	API20	concentration	sample mean	NA	apixaban	plasma	HPLC MS/MS	apixaban2_group2	6.0	hr	NA	0.718	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group2	NA	4	API20	concentration	sample mean	NA	apixaban	plasma	HPLC MS/MS	apixaban2_group2	12.0	hr	NA	0.308	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group2	NA	4	API20	concentration	sample mean	NA	apixaban	plasma	HPLC MS/MS	apixaban2_group2	24.0	hr	NA	0.097	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group2	NA	4	API20	concentration	sample mean	NA	apixaban	plasma	HPLC MS/MS	apixaban2_group2	48.0	hr	NA	0.025	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group1	NA	6	API20	concentration	sample mean	NA	apixaban-M1	plasma	HPLC MS/MS	m1_group1	1.0	hr	NA	0.018	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group1	NA	6	API20	concentration	sample mean	NA	apixaban-M1	plasma	HPLC MS/MS	m1_group1	6.0	hr	NA	0.15	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group1	NA	6	API20	concentration	sample mean	NA	apixaban-M1	plasma	HPLC MS/MS	m1_group1	12.0	hr	NA	0.141	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group1	NA	6	API20	concentration	sample mean	NA	apixaban-M1	plasma	HPLC MS/MS	m1_group1	24.0	hr	NA	0.061	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group1	NA	6	API20	concentration	sample mean	NA	apixaban-M1	plasma	HPLC MS/MS	m1_group1	48.0	hr	NA	0.021	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group2	NA	4	API20	concentration	sample mean	NA	apixaban-M1	plasma	HPLC MS/MS	m1_group2	1.0	hr	NA	0.021	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group2	NA	4	API20	concentration	sample mean	NA	apixaban-M1	plasma	HPLC MS/MS	m1_group2	6.0	hr	NA	0.128	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group2	NA	4	API20	concentration	sample mean	NA	apixaban-M1	plasma	HPLC MS/MS	m1_group2	12.0	hr	NA	0.118	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group2	NA	4	API20	concentration	sample mean	NA	apixaban-M1	plasma	HPLC MS/MS	m1_group2	24.0	hr	NA	0.054	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA
+Raghavan2009	group2	NA	4	API20	concentration	sample mean	NA	apixaban-M1	plasma	HPLC MS/MS	m1_group2	48.0	hr	NA	0.022	NA	NA	NA	NA	NA	NA	NA	NA	NA	µM	NA

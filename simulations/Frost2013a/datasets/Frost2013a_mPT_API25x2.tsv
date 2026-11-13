@@ -1,13 +1,13 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2013a		API25x2	6.0	API25x2	mPT		plasma	coagulation assay	mPT_API25x2	0.0	hr		53.47	53.47	0.0			sec	sec	dimensionless
-Frost2013a		API25x2	6.0	API25x2	mPT		plasma	coagulation assay	mPT_API25x2	3.0	hr		115.79	139.37	23.58			sec	sec	dimensionless
-Frost2013a		API25x2	6.0	API25x2	mPT		plasma	coagulation assay	mPT_API25x2	6.0	hr		102.32	124.21	21.89			sec	sec	dimensionless
-Frost2013a		API25x2	6.0	API25x2	mPT		plasma	coagulation assay	mPT_API25x2	12.0	hr		73.68	83.79	10.11			sec	sec	dimensionless
-Frost2013a		API25x2	6.0	API25x2	mPT		plasma	coagulation assay	mPT_API25x2	18.0	hr		100.63	120.84	20.21			sec	sec	dimensionless
-Frost2013a		API25x2	6.0	API25x2	mPT		plasma	coagulation assay	mPT_API25x2	24.0	hr		85.47	95.58	10.11			sec	sec	dimensionless
-Frost2013a		API25x2	6.0	API25x2	mPT		plasma	coagulation assay	mPT_API25x2	144.0	hr		107.37	117.47	10.1			sec	sec	dimensionless
-Frost2013a		API25x2	6.0	API25x2	mPT		plasma	coagulation assay	mPT_API25x2	147.0	hr		168.0	198.32	30.32			sec	sec	dimensionless
-Frost2013a		API25x2	6.0	API25x2	mPT		plasma	coagulation assay	mPT_API25x2	150.0	hr		136.0	156.21	20.21			sec	sec	dimensionless
-Frost2013a		API25x2	6.0	API25x2	mPT		plasma	coagulation assay	mPT_API25x2	156.0	hr		98.95	117.47	18.52			sec	sec	dimensionless
-Frost2013a		API25x2	6.0	API25x2	mPT		plasma	coagulation assay	mPT_API25x2	162.0	hr		132.63	154.53	21.9			sec	sec	dimensionless
-Frost2013a		API25x2	6.0	API25x2	mPT		plasma	coagulation assay	mPT_API25x2	168.0	hr		100.63	115.79	15.16			sec	sec	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2013a	API25x2		6	dimensionless	API25x2	mPT	sample mean			plasma	coagulation assay	mPT_API25x2	0.0	hr		sec	53.47	0.0	0.0	sec		sec	0.0				sec		dimensionless		
+Frost2013a	API25x2		6	dimensionless	API25x2	mPT	sample mean			plasma	coagulation assay	mPT_API25x2	3.0	hr		sec	115.79	23.58	9.62649468913789	sec		sec	0.20364452888850504				sec		dimensionless		
+Frost2013a	API25x2		6	dimensionless	API25x2	mPT	sample mean			plasma	coagulation assay	mPT_API25x2	6.0	hr		sec	102.32	21.89	8.936555078253962	sec		sec	0.21393666927286945				sec		dimensionless		
+Frost2013a	API25x2		6	dimensionless	API25x2	mPT	sample mean			plasma	coagulation assay	mPT_API25x2	12.0	hr		sec	73.68	10.11	4.127390216589656	sec		sec	0.13721498371335503				sec		dimensionless		
+Frost2013a	API25x2		6	dimensionless	API25x2	mPT	sample mean			plasma	coagulation assay	mPT_API25x2	18.0	hr		sec	100.63	20.210000000000008	8.250697950274676	sec		sec	0.20083474113087557				sec		dimensionless		
+Frost2013a	API25x2		6	dimensionless	API25x2	mPT	sample mean			plasma	coagulation assay	mPT_API25x2	24.0	hr		sec	85.47	10.11	4.127390216589656	sec		sec	0.11828711828711828				sec		dimensionless		
+Frost2013a	API25x2		6	dimensionless	API25x2	mPT	sample mean			plasma	coagulation assay	mPT_API25x2	144.0	hr		sec	107.37	10.099999999999994	4.123307733685015	sec		sec	0.09406724410915521				sec		dimensionless		
+Frost2013a	API25x2		6	dimensionless	API25x2	mPT	sample mean			plasma	coagulation assay	mPT_API25x2	147.0	hr		sec	168.0	30.319999999999993	12.378088166864325	sec		sec	0.18047619047619043				sec		dimensionless		
+Frost2013a	API25x2		6	dimensionless	API25x2	mPT	sample mean			plasma	coagulation assay	mPT_API25x2	150.0	hr		sec	136.0	20.210000000000008	8.250697950274676	sec		sec	0.14860294117647066				sec		dimensionless		
+Frost2013a	API25x2		6	dimensionless	API25x2	mPT	sample mean			plasma	coagulation assay	mPT_API25x2	156.0	hr		sec	98.95	18.519999999999996	7.560758339390742	sec		sec	0.1871652349671551				sec		dimensionless		
+Frost2013a	API25x2		6	dimensionless	API25x2	mPT	sample mean			plasma	coagulation assay	mPT_API25x2	162.0	hr		sec	132.63	21.900000000000006	8.940637561158603	sec		sec	0.16512101334539703				sec		dimensionless		
+Frost2013a	API25x2		6	dimensionless	API25x2	mPT	sample mean			plasma	coagulation assay	mPT_API25x2	168.0	hr		sec	100.63	15.16000000000001	6.189044083432169	sec		sec	0.15065089933419468				sec		dimensionless		

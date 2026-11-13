@@ -30,28 +30,30 @@ class Jeong2019(ApixabanSimulationExperiment):
     Healthy Korean subjects: a single oral dose of 10 mg apixaban (tablet) in
     period 1 (n=23), in period 2 together with a single dose of rosuvastatin
     20 mg (n=16) or lapatinib 250 mg (n=7); fasting is not reported.
+
+    The sex of the 23 subjects is not reported; they run on the male build.
     """
 
     colors: ClassVar[dict[str, str]] = {
         "apixaban_API10": "black",
-        "apixaban_API10, ROS20": "tab:blue",
-        "apixaban_API10, LAP250": "tab:orange",
+        "apixaban_API10_ROS20": "tab:blue",
+        "apixaban_API10_LAP250": "tab:orange",
     }
     group_labels: ClassVar[dict[str, str]] = {
         "apixaban_API10": "10mg PO",
-        "apixaban_API10, ROS20": "10mg PO + rosuvastatin",
-        "apixaban_API10, LAP250": "10mg PO + lapatinib",
+        "apixaban_API10_ROS20": "10mg PO + rosuvastatin",
+        "apixaban_API10_LAP250": "10mg PO + lapatinib",
     }
     #: the simulation of a dataset
     simulation_keys: ClassVar[dict[str, str]] = {
         "apixaban_API10": "API10",
-        "apixaban_API10, ROS20": "API10",
-        "apixaban_API10, LAP250": "API10_LAP250",
+        "apixaban_API10_ROS20": "API10",
+        "apixaban_API10_LAP250": "API10_LAP250",
     }
     coadministrations: ClassVar[dict[str, Coadministration]] = {
         "apixaban_API10": Coadministration.NONE,
-        "apixaban_API10, ROS20": Coadministration.ROSUVASTATIN,
-        "apixaban_API10, LAP250": Coadministration.LAPATINIB,
+        "apixaban_API10_ROS20": Coadministration.ROSUVASTATIN,
+        "apixaban_API10_LAP250": Coadministration.LAPATINIB,
     }
     #: The factors of the interactions are not fitted but set from the
     #: literature; the arms are validation data.
@@ -60,16 +62,16 @@ class Jeong2019(ApixabanSimulationExperiment):
     #: vs 372 ng/ml alone).
     #: Lapatinib inhibits P-gp and BCRP and CYP3A4 weakly; observed Cmax
     #: 529 ng/ml vs 372 ng/ml alone (x1.42, unpaired, n=7, no AUC reported).
-    #: The factors give AUC x1.35, Cmax x1.12 for 10 mg.
+    #: The factors give AUC x1.32, Cmax x1.11 for 10 mg with the adopted fits.
     interactions: ClassVar[dict[str, dict[str, float]]] = {
         "API10": {},
-        "API10_LAP250": {"LI__f_cyp3a4": 0.8, "GU__f_pgp": 0.5},
+        "API10_LAP250": {"LI__f_cyp3a4": 0.8, "GU__f_abcb1": 0.5},
     }
 
     dataset_labels: ClassVar[list[str]] = list(colors.keys())
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
 
     @override
@@ -80,7 +82,7 @@ class Jeong2019(ApixabanSimulationExperiment):
             label = str(label)
             dset = DataSet.from_df(df_label, self.ureg)
             if label.startswith("apixaban"):
-                dset.unit_conversion("mean", 1 / self.Mr.api)
+                dset.unit_conversion("mean", 1 / self.Mr["api"])
             dsets[self.to_sid(label)] = dset
         return dsets
 
@@ -154,7 +156,7 @@ class Jeong2019(ApixabanSimulationExperiment):
         plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
 
         for ks, sid in enumerate(self.infos_pk):
-            for label in ["apixaban_API10", "apixaban_API10, LAP250"]:
+            for label in ["apixaban_API10", "apixaban_API10_LAP250"]:
                 plots[ks].add_data(
                     task=f"task_{self.simulation_keys[label]}",
                     xid="time",

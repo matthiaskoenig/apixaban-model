@@ -1,19 +1,22 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	geomean	median	min	max	sd	geosd	se	cv	unit	comments
-Bashir2018	all	12.0	API10	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	NA	179.0	NA	147.0	219.0	NA	NA	NA	NA	ng/ml	NA
-Bashir2018	all	12.0	API10	auc_end	apixaban	plasma	HPLC MS/MS	72.0	hr	NA	1684.0	NA	1427.0	1987.0	NA	NA	NA	NA	ng*hr/ml	NA
-Bashir2018	all	12.0	API10	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	NA	1875.0	NA	1619.0	2172.0	NA	NA	NA	NA	ng*hr/ml	NA
-Bashir2018	all	12.0	API10	tmax	apixaban	plasma	HPLC MS/MS	NA	NA	NA	NA	2.5	1.0	4.0	NA	NA	NA	NA	hr	NA
-Bashir2018	all	12.0	API10	thalf	apixaban	plasma	HPLC MS/MS	NA	NA	12.1	NA	NA	5.0	23.0	7.0	NA	NA	NA	hr	NA
-Bashir2018	all	12.0	API10	vd	apixaban	plasma	HPLC MS/MS	NA	NA	89.0	NA	NA	45.0	187.0	48.0	NA	NA	NA	l	NA
-Bashir2018	all	12.0	API10, CYC100	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	NA	257.0	NA	211.0	313.0	NA	NA	NA	NA	ng/ml	NA
-Bashir2018	all	12.0	API10, CYC100	auc_end	apixaban	plasma	HPLC MS/MS	72.0	hr	NA	2018.0	NA	1710.0	2381.0	NA	NA	NA	NA	ng*hr/ml	NA
-Bashir2018	all	12.0	API10, CYC100	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	NA	2237.0	NA	1931.0	2591.0	NA	NA	NA	NA	ng*hr/ml	NA
-Bashir2018	all	12.0	API10, CYC100	tmax	apixaban	plasma	HPLC MS/MS	NA	NA	NA	NA	2.5	1.0	4.0	NA	NA	NA	NA	hr	NA
-Bashir2018	all	12.0	API10, CYC100	thalf	apixaban	plasma	HPLC MS/MS	NA	NA	6.8	NA	NA	4.0	17.0	3.5	NA	NA	NA	hr	NA
-Bashir2018	all	12.0	API10, CYC100	vd	apixaban	plasma	HPLC MS/MS	NA	NA	45.0	NA	NA	25.0	144.0	32.0	NA	NA	NA	l	NA
-Bashir2018	all	12.0	API10, TAC5	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	NA	157.0	NA	129.0	191.0	NA	NA	NA	NA	ng/ml	NA
-Bashir2018	all	12.0	API10, TAC5	auc_end	apixaban	plasma	HPLC MS/MS	72.0	hr	NA	1318.0	NA	1117.0	1555.0	NA	NA	NA	NA	ng*hr/ml	NA
-Bashir2018	all	12.0	API10, TAC5	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	NA	1448.0	NA	1251.0	1678.0	NA	NA	NA	NA	ng*hr/ml	NA
-Bashir2018	all	12.0	API10, TAC5	tmax	apixaban	plasma	HPLC MS/MS	NA	NA	NA	NA	2.5	1.0	4.0	NA	NA	NA	NA	hr	NA
-Bashir2018	all	12.0	API10, TAC5	thalf	apixaban	plasma	HPLC MS/MS	NA	NA	7.0	NA	NA	5.0	11.0	1.9	NA	NA	NA	hr	NA
-Bashir2018	all	12.0	API10, TAC5	vd	apixaban	plasma	HPLC MS/MS	NA	NA	72.0	NA	NA	31.0	122.0	27.0	NA	NA	NA	l	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Bashir2018	all	NA	12	API10	auc_end	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_end_apixaban_plasma_API10_all	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	1684.0	NA	NA	ng*hr/ml	geometric least square mean [90% CI 1427, 1987]
+Bashir2018	all	NA	12	API10	auc_inf	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_inf_apixaban_plasma_API10_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1875.0	NA	NA	ng*hr/ml	geometric least square mean [90% CI 1619, 2172]
+Bashir2018	all	NA	12	API10	cmax	geometric mean	NA	apixaban	plasma	HPLC MS/MS	cmax_apixaban_plasma_API10_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	179.0	NA	NA	ng/ml	geometric least square mean [90% CI 147, 219]
+Bashir2018	all	NA	12	API10	oral clearance	sample mean	NA	apixaban	plasma	HPLC MS/MS	oral_clearance_apixaban_plasma_API10_all	NA	NA	NA	5.8	NA	2.7	0.7794228634059949	0.4655172413793104	3.1	11.5	NA	NA	NA	l/hr	NA
+Bashir2018	all	NA	12	API10	thalf	sample mean	NA	apixaban	plasma	HPLC MS/MS	thalf_apixaban_plasma_API10_all	NA	NA	NA	12.1	NA	7.0	2.0207259421636903	0.578512396694215	5.0	23.0	NA	NA	NA	hr	NA
+Bashir2018	all	NA	12	API10	tmax	sample mean	NA	apixaban	plasma	HPLC MS/MS	tmax_apixaban_plasma_API10_all	NA	NA	NA	NA	2.5	NA	NA	NA	1.0	4.0	NA	NA	NA	hr	NA
+Bashir2018	all	NA	12	API10	vd	sample mean	NA	apixaban	plasma	HPLC MS/MS	vd_apixaban_plasma_API10_all	NA	NA	NA	89.0	NA	48.0	13.85640646055102	0.5393258426966292	45.0	187.0	NA	NA	NA	l	NA
+Bashir2018	all	NA	12	API10,CYC100	auc_end	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_end_apixaban_plasma_API10_CYC100_all	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	2018.0	NA	NA	ng*hr/ml	geometric least square mean [90% CI 1710, 2381]
+Bashir2018	all	NA	12	API10,CYC100	auc_inf	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_inf_apixaban_plasma_API10_CYC100_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	2237.0	NA	NA	ng*hr/ml	geometric least square mean [90% CI 1931, 2591]
+Bashir2018	all	NA	12	API10,CYC100	cmax	geometric mean	NA	apixaban	plasma	HPLC MS/MS	cmax_apixaban_plasma_API10_CYC100_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	257.0	NA	NA	ng/ml	geometric least square mean [90% CI 211, 313]
+Bashir2018	all	NA	12	API10,CYC100	oral clearance	sample mean	NA	apixaban	plasma	HPLC MS/MS	oral_clearance_apixaban_plasma_API10_CYC100_all	NA	NA	NA	4.6	NA	0.9	0.2598076211353316	0.1956521739130435	3.1	5.8	NA	NA	NA	l/hr	NA
+Bashir2018	all	NA	12	API10,CYC100	thalf	sample mean	NA	apixaban	plasma	HPLC MS/MS	thalf_apixaban_plasma_API10_CYC100_all	NA	NA	NA	6.8	NA	3.5	1.0103629710818451	0.5147058823529412	4.0	17.0	NA	NA	NA	hr	NA
+Bashir2018	all	NA	12	API10,CYC100	tmax	sample mean	NA	apixaban	plasma	HPLC MS/MS	tmax_apixaban_plasma_API10_CYC100_all	NA	NA	NA	NA	2.5	NA	NA	NA	1.0	4.0	NA	NA	NA	hr	NA
+Bashir2018	all	NA	12	API10,CYC100	vd	sample mean	NA	apixaban	plasma	HPLC MS/MS	vd_apixaban_plasma_API10_CYC100_all	NA	NA	NA	45.0	NA	32.0	9.237604307034013	0.7111111111111111	25.0	144.0	NA	NA	NA	l	NA
+Bashir2018	all	NA	12	API10,TAC5	auc_end	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_end_apixaban_plasma_API10_TAC5_all	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	1318.0	NA	NA	ng*hr/ml	geometric least square mean [90% CI 1117, 1555]
+Bashir2018	all	NA	12	API10,TAC5	auc_inf	geometric mean	NA	apixaban	plasma	HPLC MS/MS	auc_inf_apixaban_plasma_API10_TAC5_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1448.0	NA	NA	ng*hr/ml	geometric least square mean [90% CI 1251, 1678]
+Bashir2018	all	NA	12	API10,TAC5	cmax	geometric mean	NA	apixaban	plasma	HPLC MS/MS	cmax_apixaban_plasma_API10_TAC5_all	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	157.0	NA	NA	ng/ml	geometric least square mean [90% CI 129, 191]
+Bashir2018	all	NA	12	API10,TAC5	oral clearance	sample mean	NA	apixaban	plasma	HPLC MS/MS	oral_clearance_apixaban_plasma_API10_TAC5_all	NA	NA	NA	7.3	NA	2.4	0.6928203230275509	0.3287671232876712	4.3	12.2	NA	NA	NA	l/hr	NA
+Bashir2018	all	NA	12	API10,TAC5	thalf	sample mean	NA	apixaban	plasma	HPLC MS/MS	thalf_apixaban_plasma_API10_TAC5_all	NA	NA	NA	7.0	NA	1.9	0.5484827557301445	0.2714285714285714	5.0	11.0	NA	NA	NA	hr	NA
+Bashir2018	all	NA	12	API10,TAC5	tmax	sample mean	NA	apixaban	plasma	HPLC MS/MS	tmax_apixaban_plasma_API10_TAC5_all	NA	NA	NA	NA	2.5	NA	NA	NA	1.0	4.0	NA	NA	NA	hr	NA
+Bashir2018	all	NA	12	API10,TAC5	vd	sample mean	NA	apixaban	plasma	HPLC MS/MS	vd_apixaban_plasma_API10_TAC5_all	NA	NA	NA	72.0	NA	27.0	7.794228634059948	0.375	31.0	122.0	NA	NA	NA	l	NA

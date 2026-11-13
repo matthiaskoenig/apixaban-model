@@ -33,6 +33,8 @@ class Upreti2013a(ApixabanSimulationExperiment):
     no effect on CYP3A4 or P-gp, the solubility of apixaban does not depend on
     the gastric pH): both arms are the same simulation, the famotidine arm is
     tagged by its coadministration.
+
+    The subjects are mostly men (4 women of 18) and run on the male build.
     """
 
     dose = 10.0  # [mg]
@@ -41,17 +43,17 @@ class Upreti2013a(ApixabanSimulationExperiment):
 
     colors: ClassVar[dict[str, str]] = {
         "apixaban_API10": "black",  # 10mg apixaban
-        "apixaban_API10, FAMO40": "tab:red",  # 10mg apixaban after 40mg famotidine
+        "apixaban_API10_FAMO40": "tab:red",  # 10mg apixaban after 40mg famotidine
     }
     interventions: ClassVar[list[str]] = list(colors.keys())
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
 
     legend_labels: ClassVar[dict[str, str]] = {
         "apixaban_API10": "exp: api 10mg PO",
-        "apixaban_API10, FAMO40": "exp: api 10mg, 40mg famo PO",
+        "apixaban_API10_FAMO40": "exp: api 10mg, 40mg famo PO",
     }
     dataset_labels: ClassVar[list[str]] = list(colors.keys())
 
@@ -63,7 +65,7 @@ class Upreti2013a(ApixabanSimulationExperiment):
             label = str(label)
             dset = DataSet.from_df(df_label, self.ureg)
             if label.startswith("apixaban"):
-                dset.unit_conversion("mean", 1 / self.Mr.api)
+                dset.unit_conversion("mean", 1 / self.Mr["api"])
             dsets[self.to_sid(label)] = dset
         return dsets
 

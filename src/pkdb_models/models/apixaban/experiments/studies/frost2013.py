@@ -28,8 +28,10 @@ class Frost2013(ApixabanSimulationExperiment):
 
     A single ascending dose study (0.5 to 2.5 mg as oral solution, 5 to 50 mg
     as tablets, fasted) and a food study (10 mg fasted or after a high-fat
-    breakfast) in healthy men. The model has no effect of food, the fed arm is
-    simulated as the fasted one.
+    breakfast) in healthy men. The fed arm has the slower gastric emptying of
+    the fed state of the model (`FED`).
+
+    The subjects are men (81) and run on the male build.
     """
 
     # food study group
@@ -134,39 +136,34 @@ class Frost2013(ApixabanSimulationExperiment):
     groups: ClassVar[list[str]] = list(bodyweights.keys())
 
     info_fig1: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
 
     info_fig3: ClassVar[dict[str, str]] = {
-        "INR": "inr",
-        "aPTT": "aPTT",
-        "mPT": "mPT",
+        "COAG__INR": "inr",
+        "COAG__aPTT": "aPTT",
+        "COAG__mPT": "mPT",
     }
 
-    #: the relative changes (%) against the concentration (Fig4)
+    #: the relative changes (%) against the concentration (Fig4, the simulations
+    #: only: the individual values are not curated in pkdb_data)
     info_fig4: ClassVar[dict[str, str]] = {
-        "mPT_relchange": "mPT",
-        "INR_relchange": "inr",
-        "aPTT_relchange": "aPTT",
+        "COAG__mPT_relchange": "mPT",
+        "COAG__INR_relchange": "inr",
+        "COAG__aPTT_relchange": "aPTT",
     }
 
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id, group_id in zip(
-            ["Fig1A", "Fig1B", "Fig3", "Fig4"],
-            ["label", "label", "label", "x_label"],
-            strict=True,
-        ):
+        # Fig1: the single ascending doses (panel A) and the food study (B)
+        for fig_id in ["Fig1", "Fig3"]:
             df = self.load_dataframe(fig_id)
-            for label, df_label in df.groupby(group_id):
+            for label, df_label in df.groupby("label"):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if "apixaban" in label:
-                    if fig_id in ["Fig4"]:
-                        dset.unit_conversion("x", 1 / self.Mr.api)
-                    else:
-                        dset.unit_conversion("mean", 1 / self.Mr.api)
+                    dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[label] = dset
 
         return dsets
@@ -183,9 +180,10 @@ class Frost2013(ApixabanSimulationExperiment):
                     **self.default_changes(),
                     "BW": Q(self.bodyweights[group], "kg"),
                     "PODOSE_api": Q(10, "mg"),
-                    "INR_ref": Q(self.inr[group], self.units["INR"]),
-                    "aPTT_ref": Q(self.aPTT[group], self.units["aPTT"]),
-                    "PT_ref": Q(self.PT[group], self.units["PT"]),
+                    "FED": Q(int(group == "fed"), "dimensionless"),
+                    "COAG__INR_ref": Q(self.inr[group], self.units["COAG__INR"]),
+                    "COAG__aPTT_ref": Q(self.aPTT[group], self.units["COAG__aPTT"]),
+                    "COAG__PT_ref": Q(self.PT[group], self.units["COAG__PT"]),
                 },
             )
         # pharmacokinetics/pharmacodynamics single dose study
@@ -199,9 +197,9 @@ class Frost2013(ApixabanSimulationExperiment):
                         "BW": Q(self.bodyweights[group], "kg"),
                         "SOLDOSE_api": Q(self.doses[group], "mg"),
                         # set pharmacodynamic baseline reference parameters (assignment rules use these)
-                        "INR_ref": Q(self.inr[group], self.units["INR"]),
-                        "aPTT_ref": Q(self.aPTT[group], self.units["aPTT"]),
-                        "mPT_ref": Q(self.mPT[group], self.units["mPT"]),
+                        "COAG__INR_ref": Q(self.inr[group], self.units["COAG__INR"]),
+                        "COAG__aPTT_ref": Q(self.aPTT[group], self.units["COAG__aPTT"]),
+                        "COAG__mPT_ref": Q(self.mPT[group], self.units["COAG__mPT"]),
                     },
                 )
             else:
@@ -213,9 +211,9 @@ class Frost2013(ApixabanSimulationExperiment):
                         "BW": Q(self.bodyweights[group], "kg"),
                         "PODOSE_api": Q(self.doses[group], "mg"),
                         # set pharmacodynamic baseline reference parameters (assignment rules use these)
-                        "INR_ref": Q(self.inr[group], self.units["INR"]),
-                        "aPTT_ref": Q(self.aPTT[group], self.units["aPTT"]),
-                        "mPT_ref": Q(self.mPT[group], self.units["mPT"]),
+                        "COAG__INR_ref": Q(self.inr[group], self.units["COAG__INR"]),
+                        "COAG__aPTT_ref": Q(self.aPTT[group], self.units["COAG__aPTT"]),
+                        "COAG__mPT_ref": Q(self.mPT[group], self.units["COAG__mPT"]),
                     },
                 )
 
@@ -407,6 +405,8 @@ class Frost2013(ApixabanSimulationExperiment):
             num_cols=3,
             height=self.panel_height * 1.15,
             width=self.panel_width * 1.15 * 3 * 1.05,
+            # one legend per row, right of the panels, which share their curves
+            settings={"legend_scope": "row", "legend_fontsize": 13},
         )
         plots = fig.create_plots(
             xaxis=Axis(
@@ -416,9 +416,9 @@ class Frost2013(ApixabanSimulationExperiment):
             ),
             legend=True,
         )
-        plots[0].set_yaxis(self.labels["INR"], unit=self.units["INR"])
-        plots[1].set_yaxis(self.labels["aPTT"], unit=self.units["aPTT"])
-        plots[2].set_yaxis(self.labels["mPT"], unit=self.units["mPT"])
+        plots[0].set_yaxis(self.labels["COAG__INR"], unit=self.units["COAG__INR"])
+        plots[1].set_yaxis(self.labels["COAG__aPTT"], unit=self.units["COAG__aPTT"])
+        plots[2].set_yaxis(self.labels["COAG__mPT"], unit=self.units["COAG__mPT"])
 
         for group in self.single_dose_study:
             for k, sid in enumerate(self.info_fig3.keys()):
@@ -457,31 +457,25 @@ class Frost2013(ApixabanSimulationExperiment):
             num_cols=3,
             height=self.panel_height,
             width=self.panel_width * 1.05 * 3,
+            # one legend per row, right of the panels, which share their curves
+            settings={"legend_scope": "row", "legend_fontsize": 13},
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_api_plasma, unit=self.unit_api),
             legend=True,
         )
-        for k, (sid, name) in enumerate(self.info_fig4.items()):
+        # the relative changes against apixaban are one relation for every dose
+        # (Emax models relative to the baselines of the groups): one curve, the
+        # dose with the widest range of concentrations
+        group = max(self.single_dose_study, key=lambda g: self.doses[g])
+        for k, sid in enumerate(self.info_fig4):
             plots[k].set_yaxis(self.labels[sid], unit=self.units[sid], scale="linear")
-            for group in self.single_dose_study:
-                form = "SOL" if group in self.solution_doses else "PO"
-                plots[k].add_data(
-                    task=f"task_{group}",
-                    xid="[Cve_api]",
-                    yid=sid,
-                    label=f"sim: {self.doses[group]}mg {form}",
-                    color=self.colors[group],
-                )
             plots[k].add_data(
-                dataset=f"apixaban_vs_{name}",
-                xid="x",
-                yid="y",
-                label="exp individ",
-                color="white",
-                markeredgecolor="black",
-                marker="o",
-                linestyle="",
+                task=f"task_{group}",
+                xid="Carm_api",
+                yid=sid,
+                label="sim: all doses",
+                color=self.colors[group],
             )
 
         return self.figures_by_sid(fig)

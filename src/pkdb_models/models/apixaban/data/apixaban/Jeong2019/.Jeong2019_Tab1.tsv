@@ -1,7 +1,7 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	mean	geomean	median	min	max	sd	se	cv	unit	comments
-Jeong2019	all	23.0	API10	cmax	apixaban	plasma	HPLC MS	NA	NA	NA	371.57	NA	NA	NA	NA	95.23	NA	NA	ng/ml	NA
-Jeong2019	all	23.0	API10	tmax	apixaban	plasma	HPLC MS	NA	NA	NA	NA	NA	4.0	1.0	4.0	NA	NA	NA	hr	NA
-Jeong2019	all	16.0	API10, ROS20	cmax	apixaban	plasma	HPLC MS	NA	NA	NA	347.65	NA	NA	NA	NA	73.63	NA	NA	ng/ml	NA
-Jeong2019	all	16.0	API10, ROS20	tmax	apixaban	plasma	HPLC MS	NA	NA	NA	NA	NA	3.0	2.0	4.0	NA	NA	NA	hr	NA
-Jeong2019	all	7.0	API10, LAP250	cmax	apixaban	plasma	HPLC MS	NA	NA	NA	529.01	NA	NA	NA	NA	162.83	NA	NA	ng/ml	NA
-Jeong2019	all	7.0	API10, LAP250	tmax	apixaban	plasma	HPLC MS	NA	NA	NA	NA	NA	3.0	1.0	6.0	NA	NA	NA	hr	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Jeong2019	all	NA	23	API10	cmax	sample mean	NA	apixaban	plasma	HPLC MS	cmax_apixaban_plasma_API10_all	NA	NA	NA	371.57	NA	95.23	19.856827650655234	0.2562908738595689	NA	NA	NA	NA	NA	ng/ml	NA
+Jeong2019	all	NA	23	API10	tmax	sample mean	NA	apixaban	plasma	HPLC MS	tmax_apixaban_plasma_API10_all	NA	NA	NA	NA	4.0	NA	NA	NA	1.0	4.0	NA	NA	NA	hr	NA
+Jeong2019	all	NA	7	API10,LAP250	cmax	sample mean	NA	apixaban	plasma	HPLC MS	cmax_apixaban_plasma_API10_LAP250_all	NA	NA	NA	529.01	NA	162.83	61.54395514009247	0.3078013648135196	NA	NA	NA	NA	NA	ng/ml	NA
+Jeong2019	all	NA	7	API10,LAP250	tmax	sample mean	NA	apixaban	plasma	HPLC MS	tmax_apixaban_plasma_API10_LAP250_all	NA	NA	NA	NA	3.0	NA	NA	NA	1.0	6.0	NA	NA	NA	hr	NA
+Jeong2019	all	NA	16	API10,ROS20	cmax	sample mean	NA	apixaban	plasma	HPLC MS	cmax_apixaban_plasma_API10_ROS20_all	NA	NA	NA	347.65	NA	73.63	18.4075	0.2117934704444125	NA	NA	NA	NA	NA	ng/ml	NA
+Jeong2019	all	NA	16	API10,ROS20	tmax	sample mean	NA	apixaban	plasma	HPLC MS	tmax_apixaban_plasma_API10_ROS20_all	NA	NA	NA	NA	3.0	NA	NA	NA	2.0	4.0	NA	NA	NA	hr	NA

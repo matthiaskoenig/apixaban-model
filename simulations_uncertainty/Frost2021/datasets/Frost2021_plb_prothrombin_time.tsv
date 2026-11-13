@@ -1,12 +1,13 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2021		placebo	12.0	plb	mPT		plasma	coagulation assay	plb_prothrombin time	0.0	hr		53.35		8.96	0.0	assume pulled two placebo groups	sec	sec	dimensionless
-Frost2021		placebo	12.0	plb	mPT		plasma	coagulation assay	plb_prothrombin time	0.05	hr		55.5172413793103	57.0689655172413	1.551724137931	0.447944174371253	70.45	sec	sec	dimensionless
-Frost2021		placebo	12.0	plb	mPT		plasma	coagulation assay	plb_prothrombin time	0.5	hr		53.9834217506631	56.3110079575596				sec	sec	dimensionless
-Frost2021		placebo	12.0	plb	mPT		plasma	coagulation assay	plb_prothrombin time	1.0	hr		53.9983421750663	55.5470822281167				sec	sec	dimensionless
-Frost2021		placebo	12.0	plb	mPT		plasma	coagulation assay	plb_prothrombin time	2.0	hr		54.8070291777188	57.1346153846153				sec	sec	dimensionless
-Frost2021		placebo	12.0	plb	mPT		plasma	coagulation assay	plb_prothrombin time	3.0	hr		58.7191644562334	61.8226127320954				sec	sec	dimensionless
-Frost2021		placebo	12.0	plb	mPT		plasma	coagulation assay	plb_prothrombin time	4.0	hr		57.1972811671087	60.3037135278514				sec	sec	dimensionless
-Frost2021		placebo	12.0	plb	mPT		plasma	coagulation assay	plb_prothrombin time	8.0	hr		55.7768567639257	58.098474801061				sec	sec	dimensionless
-Frost2021		placebo	12.0	plb	mPT		plasma	coagulation assay	plb_prothrombin time	12.0	hr		56.6810344827586	59.78149867374				sec	sec	dimensionless
-Frost2021		placebo	12.0	plb	mPT		plasma	coagulation assay	plb_prothrombin time	18.0	hr		58.426724137931	60.7513262599469				sec	sec	dimensionless
-Frost2021		placebo	12.0	plb	mPT		plasma	coagulation assay	plb_prothrombin time	24.0	hr		55.5172413793103	57.0689655172413				sec	sec	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2021	placebo		12	dimensionless	plb	mPT	sample mean			plasma	coagulation assay	plb_prothrombin time	0.0	hr		sec	53.35	8.96	2.5865292059695237	sec		sec	0.16794751640112465				sec		dimensionless		
+Frost2021	placebo		12	dimensionless	plb	mPT	sample mean			plasma	coagulation assay	plb_prothrombin time	0.05	hr		sec	55.5172413793103			sec		sec					sec		dimensionless		
+Frost2021	placebo		12	dimensionless	plb	mPT	sample mean			plasma	coagulation assay	plb_prothrombin time	0.5	hr		sec	53.9834217506631			sec		sec					sec		dimensionless		
+Frost2021	placebo		12	dimensionless	plb	mPT	sample mean			plasma	coagulation assay	plb_prothrombin time	1.0	hr		sec	53.9983421750663			sec		sec					sec		dimensionless		
+Frost2021	placebo		12	dimensionless	plb	mPT	sample mean			plasma	coagulation assay	plb_prothrombin time	2.0	hr		sec	54.8070291777188			sec		sec					sec		dimensionless		
+Frost2021	placebo		12	dimensionless	plb	mPT	sample mean			plasma	coagulation assay	plb_prothrombin time	3.0	hr		sec	58.7191644562334			sec		sec					sec		dimensionless		
+Frost2021	placebo		12	dimensionless	plb	mPT	sample mean			plasma	coagulation assay	plb_prothrombin time	4.0	hr		sec	57.1972811671087			sec		sec					sec		dimensionless		
+Frost2021	placebo		12	dimensionless	plb	mPT	sample mean			plasma	coagulation assay	plb_prothrombin time	6.0	hr		sec	60.6			sec		sec					sec		dimensionless		digitized marker (centre at pixel row 621.5 of Frost2021_Fig2.png)
+Frost2021	placebo		12	dimensionless	plb	mPT	sample mean			plasma	coagulation assay	plb_prothrombin time	8.0	hr		sec	55.7768567639257			sec		sec					sec		dimensionless		
+Frost2021	placebo		12	dimensionless	plb	mPT	sample mean			plasma	coagulation assay	plb_prothrombin time	12.0	hr		sec	56.6810344827586			sec		sec					sec		dimensionless		
+Frost2021	placebo		12	dimensionless	plb	mPT	sample mean			plasma	coagulation assay	plb_prothrombin time	18.0	hr		sec	58.426724137931			sec		sec					sec		dimensionless		
+Frost2021	placebo		12	dimensionless	plb	mPT	sample mean			plasma	coagulation assay	plb_prothrombin time	24.0	hr		sec	55.5172413793103			sec		sec					sec		dimensionless		

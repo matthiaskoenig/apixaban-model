@@ -1,0 +1,1125 @@
+--------------------------------------------------------------------------------
+OptimizationProblem: PD
+--------------------------------------------------------------------------------
+Experiments
+	*** FitMappingCollection ***
+experiment: Abdollahizad2025
+mappings: ['fm_apixaban_TEST5', 'fm_apixaban_REF5']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Bashir2018
+mappings: ['fm_apixaban_apixaban_API10_A', 'fm_apixaban_apixaban_API10_CYC100', 'fm_apixaban_apixaban_API10_TAC5']
+weights: [None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Chang2016
+mappings: ['fm_apixaban_normal', 'fm_cumulative_amount_normal', 'fm_apixaban_mild', 'fm_cumulative_amount_mild', 'fm_apixaban_moderate', 'fm_cumulative_amount_moderate', 'fm_apixaban_severe', 'fm_cumulative_amount_severe']
+weights: [None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Cui2013
+mappings: ['fm_antiXa_activity_API10']
+weights: [12.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Cui2013
+mappings: ['fm_antiXa_activity_API10M']
+weights: [12.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Cui2013
+mappings: ['fm_apixaban_API10', 'fm_apixaban_API10M']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2013
+mappings: ['fm_inr_D0_5', 'fm_aPTT_D0_5', 'fm_mPT_D0_5', 'fm_inr_D1', 'fm_aPTT_D1', 'fm_mPT_D1', 'fm_inr_D2_5', 'fm_aPTT_D2_5', 'fm_mPT_D2_5', 'fm_inr_D5', 'fm_aPTT_D5', 'fm_mPT_D5', 'fm_inr_D10', 'fm_aPTT_D10', 'fm_mPT_D10', 'fm_inr_D25', 'fm_aPTT_D25', 'fm_mPT_D25', 'fm_inr_D50', 'fm_aPTT_D50', 'fm_mPT_D50']
+weights: [6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 7.0, 7.0, 7.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2013
+mappings: ['fm_apixaban_D0_5', 'fm_apixaban_D1', 'fm_apixaban_D2_5', 'fm_apixaban_D5', 'fm_apixaban_D10', 'fm_apixaban_D25', 'fm_apixaban_D50', 'fm_apixaban_fed', 'fm_apixaban_fasted']
+weights: [None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2013a
+mappings: ['fm_API2x2_INR', 'fm_API2x2_aPTT', 'fm_API2x2_mPT', 'fm_API5x2_INR', 'fm_API5x2_aPTT', 'fm_API5x2_mPT', 'fm_API10_INR', 'fm_API10_aPTT', 'fm_API10_mPT', 'fm_API10x2_INR', 'fm_API10x2_aPTT', 'fm_API10x2_mPT', 'fm_API25_INR', 'fm_API25_aPTT', 'fm_API25_mPT', 'fm_API25x2_INR', 'fm_API25x2_aPTT', 'fm_API25x2_mPT']
+weights: [6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2013a
+mappings: ['fm_placebo_INR', 'fm_placebo_aPTT', 'fm_placebo_mPT']
+weights: [6.0, 6.0, 6.0]
+use_mapping_weights: True
+kind: outlier
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2013a
+mappings: ['fm_apixaban_API2x2', 'fm_apixaban_API5x2', 'fm_apixaban_API10', 'fm_apixaban_API10x2', 'fm_apixaban_API25', 'fm_apixaban_API25x2']
+weights: [None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2014
+mappings: ['fm_mAPI_antiXa_activity']
+weights: [14.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2014
+mappings: ['fm_apixaban_mAPI']
+weights: [None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2014a
+mappings: ['fm_inr_healthy', 'fm_Anti_factor_Xa_activity_healthy']
+weights: [21.0, 21.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2014a
+mappings: ['fm_apixaban_healthy']
+weights: [None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2015
+mappings: ['fm_INR_young', 'fm_mPT_young', 'fm_antiXa_activity_young', 'fm_antiXa_activity_gram_young1']
+weights: [40.0, 40.0, 40.0, 40.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2015
+mappings: ['fm_INR_elderly', 'fm_mPT_elderly', 'fm_antiXa_activity_elderly', 'fm_antiXa_activity_gram_elderly1']
+weights: [39.0, 39.0, 39.0, 39.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2015
+mappings: ['fm_apixaban_young_male', 'fm_apixaban_young_female', 'fm_apixaban_elderly_male', 'fm_apixaban_elderly_female', 'fm_cumulative_amount_young', 'fm_cumulative_amount_elderly', 'fm_cumulative_amount_female', 'fm_cumulative_amount_male', 'fm_INR_female', 'fm_INR_male', 'fm_mPT_female', 'fm_mPT_male', 'fm_antiXa_activity_female', 'fm_antiXa_activity_male', 'fm_antiXa_activity_gram_female1', 'fm_antiXa_activity_gram_male1']
+weights: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2015a
+mappings: ['fm_apixaban_apixaban_API10_D1_A', 'fm_apixaban_apixaban_API10_D7_KET400', 'fm_apixaban_apixaban_API10_D1_B', 'fm_apixaban_apixaban_API10_D11_DIL360']
+weights: [None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2015b
+mappings: ['fm_api_apixaban_PO10', 'fm_api_apixaban_M1_PO10', 'fm_api_apixaban_PO50', 'fm_api_apixaban_M1_PO50']
+weights: [None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2017
+mappings: ['fm_apixaban_API10', 'fm_apixaban_API10_ATEN']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2018
+mappings: ['fm_mPT_API10_japanese', 'fm_mPT_API10_caucasian', 'fm_mPT_API25_japanese', 'fm_mPT_API25_caucasian', 'fm_mPT_API50_japanese', 'fm_mPT_API50_caucasian', 'fm_aPTT_API10_japanese', 'fm_aPTT_API10_caucasian', 'fm_aPTT_API25_japanese', 'fm_aPTT_API25_caucasian', 'fm_aPTT_API50_japanese', 'fm_aPTT_API50_caucasian', 'fm_INR_API10_japanese', 'fm_INR_API10_caucasian', 'fm_INR_API25_japanese', 'fm_INR_API25_caucasian', 'fm_INR_API50_japanese', 'fm_INR_API50_caucasian']
+weights: [12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2018
+mappings: ['fm_mPT_placebo_japanese', 'fm_mPT_placebo_caucasian', 'fm_mPT_API2p5_japanese', 'fm_mPT_API2p5_caucasian', 'fm_aPTT_placebo_japanese', 'fm_aPTT_placebo_caucasian', 'fm_aPTT_API2p5_japanese', 'fm_aPTT_API2p5_caucasian', 'fm_INR_placebo_japanese', 'fm_INR_placebo_caucasian', 'fm_INR_API2p5_japanese', 'fm_INR_API2p5_caucasian']
+weights: [4.0, 4.0, 12.0, 12.0, 4.0, 4.0, 12.0, 12.0, 4.0, 4.0, 12.0, 12.0]
+use_mapping_weights: True
+kind: outlier
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2018
+mappings: ['fm_api_API2p5_japanese', 'fm_api_API2p5_caucasian', 'fm_api_API10_japanese', 'fm_api_API10_caucasian', 'fm_api_API25_japanese', 'fm_api_API25_caucasian', 'fm_api_API50_japanese', 'fm_api_API50_caucasian', 'fm_cumulative_amount_API2p5_japanese', 'fm_cumulative_amount_API2p5_caucasian', 'fm_cumulative_amount_API10_japanese', 'fm_cumulative_amount_API10_caucasian', 'fm_cumulative_amount_API25_japanese', 'fm_cumulative_amount_API25_caucasian', 'fm_cumulative_amount_API50_japanese', 'fm_cumulative_amount_API50_caucasian']
+weights: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2021
+mappings: ['fm_prothrombin_time_group1_IV0_5', 'fm_prothrombin_time_group2_IV1_25', 'fm_prothrombin_time_group3_IV2_5', 'fm_prothrombin_time_group4_IV3_75', 'fm_prothrombin_time_group5_IV5', 'fm_antiXa_activity_IU_group5_IV5', 'fm_antiXa_activity_ng_group5_IV5', 'fm_prothrombin_time_group_po_PO5', 'fm_antiXa_activity_IU_group_po_PO5', 'fm_antiXa_activity_ng_group_po_PO5']
+weights: [6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 5.0, 5.0, 5.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2021
+mappings: ['fm_placebo']
+weights: [12.0]
+use_mapping_weights: True
+kind: outlier
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2021
+mappings: ['fm_apixaban_group1_IV0_5', 'fm_cumulative_amount_group1_IV0_5', 'fm_apixaban_group2_IV1_25', 'fm_cumulative_amount_group2_IV1_25', 'fm_apixaban_group3_IV2_5', 'fm_cumulative_amount_group3_IV2_5', 'fm_apixaban_group4_IV3_75', 'fm_cumulative_amount_group4_IV3_75', 'fm_apixaban_group5_IV5', 'fm_cumulative_amount_group5_IV5', 'fm_apixaban_group_po_PO5', 'fm_cumulative_amount_group_po_PO5']
+weights: [None, None, None, None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2021a
+mappings: ['fm_po_xa_healthy', 'fm_po_inr_healthy', 'fm_po_aPTT_healthy']
+weights: [16.0, 16.0, 16.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2021a
+mappings: ['fm_po_xa_mild', 'fm_po_xa_moderate', 'fm_po_inr_mild', 'fm_po_inr_moderate', 'fm_po_aPTT_mild', 'fm_po_aPTT_moderate']
+weights: [8.0, 8.0, 8.0, 8.0, 8.0, 8.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Frost2021a
+mappings: ['fm_po_apixaban_healthy_log', 'fm_po_apixaban_mild_log', 'fm_po_apixaban_moderate_log', 'fm_po_cumulative_amount_healthy', 'fm_po_cumulative_amount_mild', 'fm_po_cumulative_amount_moderate']
+weights: [None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Garonzik2019
+mappings: ['fm_apixaban_API10', 'fm_apixaban_API10_CLARI500']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Jeong2019
+mappings: ['fm_apixaban_apixaban_API10', 'fm_apixaban_apixaban_API10_ROS20', 'fm_apixaban_apixaban_API10_LAP250']
+weights: [None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Kreutz2017
+mappings: ['fm_PO_api_prothrombin_time_ratio', 'fm_PO_api_aPTT_ratio', 'fm_PO_api_Anti_factor_Xa_activity_mean_ug']
+weights: [24.0, 24.0, 24.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Kreutz2017
+mappings: ['fm_PO_api_apixaban']
+weights: [None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Lenard2024
+mappings: ['fm_apixaban_API25_RIV25_EDO50', 'fm_apixaban_API25_RIV25_EDO50_CLAR']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Lenard2025
+mappings: ['fm_apixaban_API25_RIV25_EDO50_1', 'fm_apixaban_API25_RIV25_EDO50_CAR', 'fm_apixaban_API25_RIV25_EDO50_2', 'fm_apixaban_API25_RIV25_EDO50_GAB', 'fm_apixaban_API25_RIV25_EDO50_3', 'fm_apixaban_API25_RIV25_EDO50_PRE']
+weights: [None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Leong2024
+mappings: ['fm_apixaban_TEST', 'fm_apixaban_REF']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Metze2021
+mappings: ['fm_apixaban_API5_IS001', 'fm_apixaban_API5_IS002', 'fm_apixaban_API5_IS003', 'fm_apixaban_API5_IS004', 'fm_apixaban_API5_IS005', 'fm_apixaban_API5_IS006', 'fm_apixaban_API5_IS007', 'fm_apixaban_API5_IS008', 'fm_apixaban_API5_IS009', 'fm_apixaban_API5_IS010', 'fm_apixaban_API5_IS011', 'fm_apixaban_API5_IS012', 'fm_apixaban_API5_IS013', 'fm_apixaban_API5_IS014', 'fm_apixaban_API5_IS015', 'fm_apixaban_API5_IS016', 'fm_apixaban_API5_IS017', 'fm_apixaban_API5_IS018', 'fm_apixaban_API5_IS019', 'fm_apixaban_API5_IS020']
+weights: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Mikus2019
+mappings: ['fm_apixaban_API25_RIV25_EDO50', 'fm_apixaban_urine_API25_RIV25_EDO50', 'fm_apixaban_API25_RIV25_EDO50_KET', 'fm_apixaban_urine_API25_RIV25_EDO50_KET']
+weights: [None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Raghavan2009
+mappings: ['fm_apixaban_group1', 'fm_apixaban2_group1', 'fm_m1_group1', 'fm_apixaban_urine_group1', 'fm_m1_urine_group1', 'fm_m7_urine_group1', 'fm_apixaban_feces_group1', 'fm_m1_feces_group1', 'fm_m2_m10_m13_feces_group1', 'fm_m7_feces_group1', 'fm_apixaban_group2', 'fm_apixaban2_group2', 'fm_m1_group2', 'fm_apixaban_urine_group2', 'fm_m1_urine_group2', 'fm_m7_urine_group2', 'fm_apixaban_feces_group2', 'fm_m1_feces_group2', 'fm_m2_m10_m13_feces_group2', 'fm_m7_feces_group2']
+weights: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Rohr2024
+mappings: ['fm_apixaban_API25_RIV25_EDO50', 'fm_apixaban_urine_API25_RIV25_EDO50', 'fm_apixaban_API25_RIV25_EDO50_RITx5', 'fm_apixaban_urine_API25_RIV25_EDO50_RITx5']
+weights: [None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Shaikh2021
+mappings: ['fm_apixaban_API5_R', 'fm_apixaban_API5_T']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Song2015
+mappings: ['fm_apixaban_API10_PO_TAB', 'fm_apixaban_API10_PO_OS', 'fm_apixaban_API5_PO_OS', 'fm_apixaban_API5_NGT_D5W', 'fm_apixaban_API5_NGT_IF', 'fm_apixaban_API5_PO_OS_3', 'fm_apixaban_API5_NGT_NS', 'fm_apixaban_API5_NGT_D5W_crushed']
+weights: [None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Song2016
+mappings: ['fm_apixaban_tablet', 'fm_apixaban_water', 'fm_apixaban_applesauce', 'fm_apixaban_fasted', 'fm_apixaban_fed']
+weights: [None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Tirona2018
+mappings: ['fm_apixaban_control', 'fm_cumulative_amount_control', 'fm_apixaban_nafld', 'fm_cumulative_amount_nafld']
+weights: [None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Upreti2013
+mappings: ['fm_apixaban_low', 'fm_cumulative_amount_low', 'fm_apixaban_reference', 'fm_cumulative_amount_reference', 'fm_apixaban_high', 'fm_cumulative_amount_high']
+weights: [None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Upreti2013a
+mappings: ['fm_apixaban_apixaban_API10', 'fm_apixaban_apixaban_API10_FAMO40']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Vakkalagadda2016
+mappings: ['fm_API5IV_apixaban', 'fm_API5IV_cumulative_amount', 'fm_API10PO_apixaban', 'fm_API10PO_cumulative_amount', 'fm_API5IV_RIF600_apixaban', 'fm_API5IV_RIF600_cumulative_amount', 'fm_API10PO_RIF600_apixaban', 'fm_API10PO_RIF600_cumulative_amount']
+weights: [None, None, None, None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: VandenBosch2021
+mappings: ['fm_api_apixaban_PO2p5', 'fm_api_apixaban_PO5']
+weights: [None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Wang2014
+mappings: ['fm_apixaban_api_20']
+weights: [None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Wang2016
+mappings: ['fm_inr_healthy', 'fm_pt_healthy', 'fm_aptt_healthy', 'fm_xa_healthy']
+weights: [8.0, 8.0, 8.0, 8.0]
+use_mapping_weights: True
+kind: training
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Wang2016
+mappings: ['fm_inr_esrd_P1', 'fm_pt_esrd_P1', 'fm_aptt_esrd_P1', 'fm_xa_esrd_P1', 'fm_inr_esrd_P2', 'fm_pt_esrd_P2', 'fm_aptt_esrd_P2', 'fm_xa_esrd_P2']
+weights: [8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0]
+use_mapping_weights: True
+kind: validation
+fit_parameters: {}
+	*** FitMappingCollection ***
+experiment: Wang2016
+mappings: ['fm_apixaban_healthy', 'fm_cumulative_amount_healthy', 'fm_apixaban_esrd_P1', 'fm_apixaban_esrd_P2', 'fm_cumulative_amount_esrd_P2']
+weights: [None, None, None, None, None]
+use_mapping_weights: True
+kind: excluded
+fit_parameters: {}
+Parameters
+	FitParameter<COAG__slope_api_INR = 600.9 [10 - 100000.0]>
+	FitParameter<COAG__slope_api_PT = 1360.0 [10 - 100000.0]>
+	FitParameter<COAG__Emax_mPT = 6.053704513422128 [0.1 - 10]>
+	FitParameter<COAG__EC50_api_mPT = 0.0019122026019966877 [1e-05 - 0.01]>
+	FitParameter<COAG__Emax_aPTT = 0.3596591786589533 [0.05 - 5]>
+	FitParameter<COAG__EC50_api_aPTT = 0.000720649921655501 [0.0001 - 0.01]>
+	FitParameter<COAG__antiXa_slope = 5728.15077902583 [500 - 50000.0]>
+	FitParameter<COAG__antiXa_gram_slope = 420605.75939786324 [200000.0 - 1000000.0]>
+FitSettings:
+	residual: NORMALIZED
+	parameter_scale: LOG10
+	loss_function: LINEAR
+	weighting_curves: ['MAPPING', 'POINTS']
+	weighting_points: ERROR_WEIGHTING
+	variable_step_size: True
+	relative_tolerance: 1e-06
+	absolute_tolerance: {'amount': 1e-12, 'concentration': 1e-12, 'other': 1e-06, 'ids': {}, 'relative': None, 'scales': {}}
+	initial_time_step: 0.0
+	data_at_change: before
+	objective: least_squares
+Engine: roadrunner
+Mappings: 120 (63 training, 41 validation, 16 outlier)
+Data
+	experiment_keys: ['Cui2013', 'Cui2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2013a', 'Frost2014', 'Frost2014a', 'Frost2014a', 'Frost2015', 'Frost2015', 'Frost2015', 'Frost2015', 'Frost2015', 'Frost2015', 'Frost2015', 'Frost2015', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2018', 'Frost2021', 'Frost2021', 'Frost2021', 'Frost2021', 'Frost2021', 'Frost2021', 'Frost2021', 'Frost2021', 'Frost2021', 'Frost2021', 'Frost2021', 'Frost2021a', 'Frost2021a', 'Frost2021a', 'Frost2021a', 'Frost2021a', 'Frost2021a', 'Frost2021a', 'Frost2021a', 'Frost2021a', 'Kreutz2017', 'Kreutz2017', 'Kreutz2017', 'Wang2016', 'Wang2016', 'Wang2016', 'Wang2016', 'Wang2016', 'Wang2016', 'Wang2016', 'Wang2016', 'Wang2016', 'Wang2016', 'Wang2016', 'Wang2016']
+	mapping_keys: ['fm_antiXa_activity_API10', 'fm_antiXa_activity_API10M', 'fm_inr_D0_5', 'fm_aPTT_D0_5', 'fm_mPT_D0_5', 'fm_inr_D1', 'fm_aPTT_D1', 'fm_mPT_D1', 'fm_inr_D2_5', 'fm_aPTT_D2_5', 'fm_mPT_D2_5', 'fm_inr_D5', 'fm_aPTT_D5', 'fm_mPT_D5', 'fm_inr_D10', 'fm_aPTT_D10', 'fm_mPT_D10', 'fm_inr_D25', 'fm_aPTT_D25', 'fm_mPT_D25', 'fm_inr_D50', 'fm_aPTT_D50', 'fm_mPT_D50', 'fm_API2x2_INR', 'fm_API2x2_aPTT', 'fm_API2x2_mPT', 'fm_API5x2_INR', 'fm_API5x2_aPTT', 'fm_API5x2_mPT', 'fm_API10_INR', 'fm_API10_aPTT', 'fm_API10_mPT', 'fm_API10x2_INR', 'fm_API10x2_aPTT', 'fm_API10x2_mPT', 'fm_API25_INR', 'fm_API25_aPTT', 'fm_API25_mPT', 'fm_API25x2_INR', 'fm_API25x2_aPTT', 'fm_API25x2_mPT', 'fm_placebo_INR', 'fm_placebo_aPTT', 'fm_placebo_mPT', 'fm_mAPI_antiXa_activity', 'fm_inr_healthy', 'fm_Anti_factor_Xa_activity_healthy', 'fm_INR_young', 'fm_mPT_young', 'fm_antiXa_activity_young', 'fm_antiXa_activity_gram_young1', 'fm_INR_elderly', 'fm_mPT_elderly', 'fm_antiXa_activity_elderly', 'fm_antiXa_activity_gram_elderly1', 'fm_mPT_API10_japanese', 'fm_mPT_API10_caucasian', 'fm_mPT_API25_japanese', 'fm_mPT_API25_caucasian', 'fm_mPT_API50_japanese', 'fm_mPT_API50_caucasian', 'fm_aPTT_API10_japanese', 'fm_aPTT_API10_caucasian', 'fm_aPTT_API25_japanese', 'fm_aPTT_API25_caucasian', 'fm_aPTT_API50_japanese', 'fm_aPTT_API50_caucasian', 'fm_INR_API10_japanese', 'fm_INR_API10_caucasian', 'fm_INR_API25_japanese', 'fm_INR_API25_caucasian', 'fm_INR_API50_japanese', 'fm_INR_API50_caucasian', 'fm_mPT_placebo_japanese', 'fm_mPT_placebo_caucasian', 'fm_mPT_API2p5_japanese', 'fm_mPT_API2p5_caucasian', 'fm_aPTT_placebo_japanese', 'fm_aPTT_placebo_caucasian', 'fm_aPTT_API2p5_japanese', 'fm_aPTT_API2p5_caucasian', 'fm_INR_placebo_japanese', 'fm_INR_placebo_caucasian', 'fm_INR_API2p5_japanese', 'fm_INR_API2p5_caucasian', 'fm_prothrombin_time_group1_IV0_5', 'fm_prothrombin_time_group2_IV1_25', 'fm_prothrombin_time_group3_IV2_5', 'fm_prothrombin_time_group4_IV3_75', 'fm_prothrombin_time_group5_IV5', 'fm_antiXa_activity_IU_group5_IV5', 'fm_antiXa_activity_ng_group5_IV5', 'fm_prothrombin_time_group_po_PO5', 'fm_antiXa_activity_IU_group_po_PO5', 'fm_antiXa_activity_ng_group_po_PO5', 'fm_placebo', 'fm_po_xa_healthy', 'fm_po_inr_healthy', 'fm_po_aPTT_healthy', 'fm_po_xa_mild', 'fm_po_xa_moderate', 'fm_po_inr_mild', 'fm_po_inr_moderate', 'fm_po_aPTT_mild', 'fm_po_aPTT_moderate', 'fm_PO_api_prothrombin_time_ratio', 'fm_PO_api_aPTT_ratio', 'fm_PO_api_Anti_factor_Xa_activity_mean_ug', 'fm_inr_healthy', 'fm_pt_healthy', 'fm_aptt_healthy', 'fm_xa_healthy', 'fm_inr_esrd_P1', 'fm_pt_esrd_P1', 'fm_aptt_esrd_P1', 'fm_xa_esrd_P1', 'fm_inr_esrd_P2', 'fm_pt_esrd_P2', 'fm_aptt_esrd_P2', 'fm_xa_esrd_P2']
+	xid_observable: ['time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time', 'time']
+	yid_observable: ['COAG__antiXa_activity', 'COAG__antiXa_activity', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__INR', 'COAG__aPTT', 'COAG__mPT', 'COAG__antiXa_activity', 'COAG__INR', 'COAG__antiXa_activity', 'COAG__INR', 'COAG__mPT', 'COAG__antiXa_activity', 'COAG__antiXa_activity_gram', 'COAG__INR', 'COAG__mPT', 'COAG__antiXa_activity', 'COAG__antiXa_activity_gram', 'COAG__mPT_relchange', 'COAG__mPT_relchange', 'COAG__mPT_relchange', 'COAG__mPT_relchange', 'COAG__mPT_relchange', 'COAG__mPT_relchange', 'COAG__aPTT_relchange', 'COAG__aPTT_relchange', 'COAG__aPTT_relchange', 'COAG__aPTT_relchange', 'COAG__aPTT_relchange', 'COAG__aPTT_relchange', 'COAG__INR_relchange', 'COAG__INR_relchange', 'COAG__INR_relchange', 'COAG__INR_relchange', 'COAG__INR_relchange', 'COAG__INR_relchange', 'COAG__mPT_relchange', 'COAG__mPT_relchange', 'COAG__mPT_relchange', 'COAG__mPT_relchange', 'COAG__aPTT_relchange', 'COAG__aPTT_relchange', 'COAG__aPTT_relchange', 'COAG__aPTT_relchange', 'COAG__INR_relchange', 'COAG__INR_relchange', 'COAG__INR_relchange', 'COAG__INR_relchange', 'COAG__mPT', 'COAG__mPT', 'COAG__mPT', 'COAG__mPT', 'COAG__mPT', 'COAG__antiXa_activity', 'COAG__antiXa_activity_gram', 'COAG__mPT', 'COAG__antiXa_activity', 'COAG__antiXa_activity_gram', 'COAG__mPT', 'COAG__antiXa_activity', 'COAG__INR_relchange', 'COAG__aPTT_relchange', 'COAG__antiXa_activity', 'COAG__antiXa_activity', 'COAG__INR_relchange', 'COAG__INR_relchange', 'COAG__aPTT_relchange', 'COAG__aPTT_relchange', 'COAG__PT_ratio', 'COAG__aPTT_ratio', 'COAG__antiXa_activity_gram', 'COAG__INR', 'COAG__PT', 'COAG__aPTT', 'COAG__antiXa_activity', 'COAG__INR', 'COAG__PT', 'COAG__aPTT', 'COAG__antiXa_activity', 'COAG__INR', 'COAG__PT', 'COAG__aPTT', 'COAG__antiXa_activity']
+	x_references: [array([  60.,  120.,  180.,  240.,  360.,  720., 1440., 2880.]), array([   0.,   60.,  120.,  180.,  240.,  360.,  720., 1440., 2880.,
+       4320.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   90.,  180.,  360.,  720., 1440., 2880.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   720.,  1080.,  1440.,  8640.,  8820.,
+        9000.,  9360.,  9720., 10080.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   720.,  1080.,  1440.,  8640.,  8820.,
+        9000.,  9360.,  9720., 10080.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   720.,  1440.,  8640.,  8820.,  9000.,
+        9360., 10080.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   720.,  1080.,  1440.,  8640.,  8820.,
+        9000.,  9360.,  9720., 10080.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   720.,  1440.,  8640.,  8820.,  9000.,
+        9360., 10080.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   720.,  1080.,  1440.,  8640.,  8820.,
+        9000.,  9360.,  9720., 10080.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   540.,   720.,   900.,  1080.,  1260.,
+        1440.,  8640.,  8820.,  9000.,  9180.,  9360.,  9540.,  9720.,
+        9900., 10080.]), array([    0.,   180.,   360.,   720.,  1080.,  1440.,  8640.,  8820.,
+        9000.,  9360.,  9720., 10080.]), array([   0.,   30.,   60.,  120.,  180.,  240.,  300.,  360.,  480.,
+        720.,  750.,  780.,  840.,  900.,  960., 1020., 1080., 1200.,
+       1440., 2160., 2880.]), array([  0., 180.]), array([180.]), array([   0.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  600.,
+        720., 1080., 1440., 2160., 2880., 4320., 5760.]), array([   0.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  600.,
+        720., 1080., 1440., 2160., 2880., 4320., 5760.]), array([   0.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  600.,
+        720., 1080., 1440., 2160., 2880., 4320., 5760.]), array([   0.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  600.,
+        720., 1080., 1440., 2160., 2880., 4320., 5760.]), array([   0.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  600.,
+        720., 1080., 1440., 2160., 2880., 4320., 5760.]), array([   0.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  600.,
+        720., 1080., 1440., 2160., 2880., 4320., 5760.]), array([   0.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  600.,
+        720., 1080., 1440., 2160., 2880., 4320., 5760.]), array([   0.,   60.,   90.,  120.,  180.,  240.,  360.,  480.,  600.,
+        720., 1080., 1440., 2160., 2880., 4320., 5760.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,  180.,  360.,  720., 1440.]), array([   0.,    3.,   10.,   30.,   60.,  120.,  180.,  240.,  360.,
+        480.,  720., 1080., 1440.]), array([   0.,    3.,   10.,   30.,   60.,  120.,  180.,  240.,  360.,
+        480.,  720., 1080., 1440.]), array([   0.,    3.,   10.,   30.,   60.,  120.,  180.,  240.,  360.,
+        480.,  720., 1080., 1440.]), array([   0.,    3.,   10.,   30.,   60.,  120.,  180.,  240.,  360.,
+        480.,  720., 1080., 1440.]), array([   0.,    3.,   10.,   30.,   60.,  120.,  180.,  240.,  360.,
+        480.,  720., 1080., 1440.]), array([   0.,    3.,   10.,   30.,   60.,  120.,  180.,  240.,  360.,
+        480.,  720., 1080.]), array([   0.,    3.,   10.,   30.,   60.,  120.,  180.,  240.,  360.,
+        480.,  720., 1080.]), array([   0.,    3.,   30.,   60.,  120.,  180.,  240.,  360.,  480.,
+        720., 1080., 1440.]), array([   0.,   30.,   60.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1080.]), array([   0.,   30.,   60.,  120.,  180.,  240.,  360.,  480.,  720.,
+       1080.]), array([   0.,    3.,   30.,   60.,  120.,  180.,  240.,  360.,  480.,
+        720., 1080., 1440.]), array([ 180.,  210.,  360.,  720., 1440.]), array([ 180.,  210.,  360.,  720., 1440., 2880., 4320., 5760.]), array([ 180.,  210.,  360.,  720., 1440., 2880., 4320., 5760.]), array([ 180.,  210.,  360.,  720., 1440.]), array([ 180.,  210.,  360.,  720., 1440.]), array([ 180.,  210.,  360.,  720., 1440., 2880., 4320., 5760.]), array([ 180.,  210.,  360.,  720., 1440., 2880., 4320., 5760.]), array([ 180.,  210.,  360.,  720., 1440., 2880., 4320., 5760.]), array([ 180.,  210.,  360.,  720., 1440., 2880., 4320., 5760.]), array([   0.,   60.,  120.,  180.,  240.,  360.,  720.,  780.,  840.,
+        900.,  960., 1080., 1440., 1800., 2160., 2880., 3600., 4320.]), array([   0.,   60.,  120.,  180.,  240.,  360.,  720.,  780.,  840.,
+        900.,  960., 1080., 1440., 1800., 2160., 2880., 3600., 4320.]), array([ 720., 1440.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880., 4320.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880., 4320.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880., 4320.]), array([   0.,   30.,   90.,  180.,  360.,  720., 1440., 2880., 4320.]), array([   0.,   30.,   90.,  120.,  150.,  180.,  240.,  360.,  720.,
+       1440., 2880., 4320.]), array([   0.,   30.,   90.,  120.,  150.,  180.,  240.,  360.,  720.,
+       1440., 2880., 4320.]), array([   0.,   30.,   90.,  120.,  150.,  180.,  240.,  360.,  720.,
+       1440., 2880., 4320.]), array([   0.,   30.,   90.,  120.,  150.,  180.,  240.,  360.,  720.,
+       1440., 2880., 4320.]), array([   0.,   30.,   90.,  120.,  150.,  180.,  240.,  360.,  720.,
+       1440., 2880., 4320.]), array([   0.,   30.,   90.,  120.,  150.,  180.,  240.,  360.,  720.,
+       1440., 2880., 4320.]), array([   0.,   30.,   90.,  120.,  150.,  180.,  240.,  360.,  720.,
+       1440., 2880., 4320.]), array([   0.,   30.,   90.,  120.,  150.,  180.,  240.,  360.,  720.,
+       1440., 2880., 4320.])]
+	y_references: [array([1.941, 3.3  , 3.743, 3.454, 2.48 , 1.036, 0.365, 0.112]), array([1.833, 4.137, 5.245, 5.57 , 5.53 , 4.494, 1.94 , 0.874, 0.184,
+       0.13 ]), array([1.08 , 1.048, 1.057, 1.088, 1.137, 1.149, 1.099, 1.069]), array([30.4 , 31.95, 31.15, 32.51, 32.44, 31.87, 33.35]), array([39.39, 36.97, 40.  , 40.3 , 53.33, 46.06, 36.36, 53.64]), array([1.099, 1.133, 1.179, 1.147, 1.198, 1.219, 1.169, 1.118]), array([32.29, 32.55, 32.97, 33.04, 32.06, 32.02, 31.53]), array([44.85, 45.45, 47.27, 49.39, 49.39, 50.3 , 40.91, 36.67]), array([1.097, 1.125, 1.155, 1.16 , 1.177, 1.117, 1.091, 1.118]), array([30.55, 32.36, 31.3 , 32.02, 31.34, 31.27, 30.21]), array([45.45, 47.27, 52.42, 59.7 , 49.7 , 43.64, 47.88, 39.7 ]), array([1.08 , 1.12 , 1.149, 1.137, 1.18 , 1.12 , 1.088, 1.117]), array([31.46, 32.97, 33.69, 33.35, 31.46, 31.61, 32.02]), array([46.97, 52.42, 66.06, 65.45, 62.42, 56.97, 47.27, 49.09]), array([1.141, 1.179, 1.267, 1.326, 1.289, 1.169, 1.12 , 1.139]), array([29.45, 32.4 , 31.12, 32.51, 31.08, 30.55, 29.11]), array([ 55.45,  58.18,  80.91, 104.5 ,  96.67,  43.94,  55.15,  53.33]), array([1.006, 1.101, 1.278, 1.417, 1.358, 1.2  , 1.069, 1.109]), array([30.7 , 35.99, 38.22, 36.82, 34.33, 33.91, 32.4 ]), array([40.61, 50.  , 76.67, 89.09, 83.94, 56.67, 53.03, 50.3 ]), array([1.139, 1.228, 1.578, 1.675, 1.54 , 1.289, 1.198, 1.118]), array([28.9 , 34.25, 34.71, 33.57, 33.01, 32.85, 30.32]), array([ 49.09,  70.61, 134.5 , 133.3 , 130.3 ,  73.94,  66.67,  55.76]), array([1.12, 1.52, 1.18, 1.16, 1.21, 1.28, 1.12, 1.16, 1.1 , 1.12, 1.22,
+       1.21, 1.19, 1.18, 1.16, 1.16, 1.16, 1.13]), array([30.09, 35.3 , 30.35, 30.35, 29.57, 34.52, 31.13, 30.61, 31.39,
+       29.83, 30.87, 29.83, 30.09, 30.35, 31.91, 30.61, 30.35, 29.83]), array([46.74, 61.89, 55.16, 50.11, 43.37, 55.16, 40.  , 55.16, 55.16,
+       48.42, 58.53, 56.84]), array([1.12, 1.19, 1.22, 1.18, 1.12, 1.21, 1.18, 1.13, 1.1 , 1.1 , 1.18,
+       1.21, 1.18, 1.18, 1.24, 1.19, 1.13, 1.09]), array([31.39, 32.7 , 32.96, 31.39, 31.65, 32.17, 31.91, 30.61, 30.61,
+       32.7 , 34.  , 32.96, 31.13, 31.91, 32.96, 32.17, 31.13, 30.61]), array([51.79, 68.63, 65.26, 53.47, 58.53, 43.37, 68.63, 75.37, 82.11,
+       61.89, 65.26, 60.21]), array([1.11 , 1.294, 1.291, 1.275, 1.243, 1.194, 1.202, 1.184, 1.088,
+       1.166, 1.292, 1.34 , 1.288, 1.23 , 1.234, 1.206, 1.147, 1.132]), array([31.02, 34.68, 34.02, 34.01, 32.7 , 32.48, 32.68, 31.81, 30.28,
+       32.83, 34.55, 34.11, 31.94, 32.58, 32.78, 32.34, 31.46, 30.8 ]), array([42.86, 84.29, 81.43, 58.57, 52.86, 61.43, 98.57, 81.43, 62.86,
+       54.29]), array([1.06, 1.28, 1.36, 1.25, 1.18, 1.39, 1.33, 1.24, 1.22, 1.24, 1.43,
+       1.43, 1.33, 1.27, 1.83, 1.69, 1.3 , 1.27]), array([28.78, 31.65, 32.7 , 30.87, 30.09, 33.74, 32.96, 30.35, 29.83,
+       31.39, 33.48, 32.96, 32.17, 31.39, 39.48, 38.96, 31.91, 32.96]), array([ 50.11,  82.11,  77.05,  58.53,  82.11,  66.95,  80.42, 107.37,
+       105.68,  75.37,  82.11,  61.89]), array([1.15, 1.47, 1.43, 1.29, 1.25, 1.23, 1.21, 1.2 , 1.23, 1.2 , 1.62,
+       1.61, 1.4 , 1.32, 1.3 , 1.31, 1.27, 1.24]), array([33.18, 37.93, 37.7 , 35.31, 35.08, 35.29, 33.55, 32.24, 34.39,
+       35.  , 40.61, 39.52, 36.48, 35.39, 34.94, 34.5 , 35.57, 36.43]), array([ 51.43, 101.43,  81.43,  64.29,  52.86,  64.29, 134.29, 112.86,
+        74.29,  64.29]), array([1.18, 1.51, 1.37, 1.24, 1.22, 1.51, 1.36, 1.34, 1.31, 1.4 , 1.8 ,
+       1.76, 1.52, 1.4 , 1.64, 1.88, 1.45, 1.42]), array([30.09, 32.43, 32.96, 32.17, 31.65, 33.48, 32.7 , 32.96, 32.43,
+       35.83, 37.39, 35.04, 34.26, 33.22, 33.48, 41.83, 33.22, 33.74]), array([ 53.47, 115.79, 102.32,  73.68, 100.63,  85.47, 107.37, 168.  ,
+       136.  ,  98.95, 132.63, 100.63]), array([1.09, 1.11, 1.11, 1.16, 1.15, 1.18, 1.16, 1.13, 1.12, 1.1 , 1.11,
+       1.16, 1.15, 1.14, 1.15, 1.21, 1.16, 1.14]), array([29.94, 29.93, 29.92, 29.91, 30.11, 31.4 , 30.74, 30.73, 30.07,
+       30.24, 29.36, 29.36, 29.34, 29.98, 31.05, 31.69, 30.38, 30.15]), array([52.86, 55.71, 47.14, 51.43, 48.57, 48.57, 52.86, 48.57, 48.57,
+       52.86, 51.43, 51.43]), array([0.35, 0.64, 0.97, 1.11, 1.01, 0.89, 0.71, 0.6 , 0.46, 0.25, 0.36,
+       0.59, 0.72, 0.72, 0.66, 0.59, 0.52, 0.42, 0.35, 0.12, 0.11]), array([0.94, 1.07]), array([2.7]), array([1.11757576, 1.26      , 1.332     , 1.401     , 1.44727273,
+       1.44727273, 1.35030303, 1.23878788, 1.19272727, 1.17575758,
+       1.15878788, 1.15151515, 1.08848485, 1.11272727, 1.1030303 ,
+       1.13454545]), array([ 52.94970518,  89.23679061, 108.4148728 , 114.28571429,
+       122.11350294, 130.33268102, 121.7221135 , 107.2407045 ,
+        93.15068493,  84.14872798,  68.10176125,  66.53620352,
+        55.18590998,  56.75146771,  53.22896282,  56.75146771]), array([0.        , 1.9959175 , 2.508897  , 2.63711628, 2.82941725,
+       2.94956463, 2.47646978, 2.0514525 , 1.57835764, 1.28158757,
+       0.71997188, 0.59115676, 0.18131501, 0.11620919, 0.00998047,
+       0.03204551]), array([  0.        , 162.05569332, 221.76047745, 243.94060146,
+       271.24010003, 295.13225661, 218.39076255, 163.82312132,
+       116.93349673,  95.62924775,  55.5982054 ,  46.26668722,
+        14.81880205,   8.95524728,   2.34437671,   1.70576139]), array([1.04484848, 1.29212121, 1.40121212, 1.401     , 1.54666667,
+       1.52727273, 1.50787879, 1.42060606, 1.30666667, 1.29454545,
+       1.2169697 , 1.17818182, 1.12      , 1.12727273, 1.11515152,
+       1.10787879]), array([ 57.30198891, 109.5890411 , 127.59295499, 128.37573386,
+       147.16242661, 146.37964775, 147.55381605, 135.02935421,
+       121.7221135 , 109.19765166,  82.97455969,  74.7553816 ,
+        60.2739726 ,  61.83953033,  59.09980431,  59.09980431]), array([0.        , 2.15623814, 2.58904801, 2.76537279, 2.93362567,
+       2.94153929, 2.74900556, 2.48432754, 2.1234292 , 1.84271912,
+       1.12878952, 0.91179804, 0.27749809, 0.20438554, 0.02602185,
+       0.02401086]), array([  0.        , 170.58345506, 221.76047745, 243.94060146,
+       265.26993517, 275.51495546, 234.59445053, 202.20379772,
+       159.5775314 , 131.45023687,  77.77101303,  64.17822698,
+        24.20153487,  17.48196382,   5.75485429,   1.70367099]), array([0.      , 0.89779 , 0.801105, 0.303867, 0.055249]), array([0.     , 1.02395, 1.05399, 0.42398, 0.14884]), array([0.     , 1.87845, 1.53315, 0.59392, 0.12431]), array([0.     , 1.73801, 1.48666, 0.61635, 0.23868]), array([0.     , 2.23757, 2.25138, 1.09116, 0.35912]), array([0.     , 2.25587, 2.19424, 0.98117, 0.44035]), array([0.      , 0.151934, 0.082873, 0.041436, 0.      ]), array([ 0.     ,  0.17542,  0.14439,  0.05773, -0.00098]), array([0.     , 0.16575, 0.15193, 0.05525, 0.06906]), array([0.     , 0.18701, 0.14885, 0.09047, 0.04556]), array([0.     , 0.23481, 0.17956, 0.09669, 0.02762]), array([0.     , 0.22573, 0.17741, 0.0294 , 0.02768]), array([ 0.      ,  0.207182,  0.207182, -0.027624, -0.041436]), array([0.     , 0.30294, 0.30519, 0.12446, 0.00468]), array([ 0.     ,  0.24862,  0.26243,  0.06906, -0.02762]), array([0.     , 0.42007, 0.36189, 0.09043, 0.07884]), array([0.     , 0.48343, 0.48343, 0.19337, 0.02762]), array([0.     , 0.59176, 0.51017, 0.10257, 0.07432]), array([0.      , 0.082873, 0.069061, 0.082873, 0.      ]), array([ 0.     ,  0.06187,  0.09185,  0.02599, -0.01597]), array([0.      , 0.359116, 0.262431, 0.151934, 0.055249]), array([ 0.     ,  0.40466,  0.17955,  0.01923, -0.05362]), array([ 0.      , -0.013812, -0.027624, -0.013812, -0.013812]), array([ 0.     , -0.00203,  0.00406, -0.00582, -0.02389]), array([ 0.      ,  0.069061,  0.013812, -0.027624, -0.027624]), array([ 0.     ,  0.07648,  0.00371, -0.03631, -0.0581 ]), array([ 0.      ,  0.027624,  0.041436,  0.041436, -0.013812]), array([ 0.     ,  0.01387,  0.01212, -0.00596, -0.03195]), array([ 0.      ,  0.124309,  0.082873,  0.082873, -0.069061]), array([ 0.     ,  0.06255,  0.00826,  0.01916, -0.03499]), array([54.5       , 74.4       , 67.93700265, 61.74204244, 61.75994695,
+       60.23806366, 58.71916446, 56.4214191 , 59.58753316, 57.32559682,
+       56.6780504 , 57.64787798, 55.51724138]), array([ 59.2       , 102.6       , 102.83885942,  85.78183024,
+        78.81100796,  78.05006631,  74.97944297,  74.23043767,
+        69.61405836,  71.23143236,  69.73938992,  60.56034483,
+        60.75132626]), array([ 54.9       , 132.        , 109.05769231,  91.22181698,
+        81.1505305 ,  76.52818302,  75.78812997,  78.92440318,
+        65.79741379,  51.89456233,  62.88793103,  58.42672414,
+        55.51425729]), array([ 46.4       , 137.9       , 108.28183024,  89.67307692,
+        88.13328912,  95.92771883,  86.64721485,  78.92440318,
+        68.90384615,  66.63594164,  59.0056366 ,  54.54442971,
+        48.53149867]), array([ 53.9       , 175.2       , 133.10941645, 125.35974801,
+       116.84316976, 100.58289125, 107.5984748 , 102.19429708,
+        91.40384615,  82.15318302,  67.54310345,  63.85179045,
+        60.94827586]), array([0.        , 6.99130435, 5.26956522, 3.80869565, 3.13043478,
+       2.50434783, 2.08695652, 1.77391304, 1.14782609, 0.88695652,
+       0.36521739, 0.20869565]), array([  0.        , 449.35064935, 290.90909091, 207.79220779,
+       176.62337662, 148.05194805, 132.46753247, 119.48051948,
+        70.12987013,  49.35064935,  23.37662338,  18.18181818]), array([53.3       , 52.4137931 , 49.32824934, 62.53580902, 78.08289125,
+       83.54376658, 89.2       , 75.8806366 , 75.94330239, 69.87068966,
+       63.85477454, 53.18965517]), array([0.        , 0.4173913 , 0.7826087 , 1.04347826, 1.56521739,
+       1.40869565, 0.88695652, 0.73043478, 0.36521739, 0.26086957]), array([ 0.        , 25.97402597, 46.75324675, 67.53246753, 93.50649351,
+       88.31168831, 57.14285714, 46.75324675, 25.97402597, 18.18181818]), array([53.35      , 55.51724138, 53.98342175, 53.99834218, 54.80702918,
+       58.71916446, 57.19728117, 60.6       , 55.77685676, 56.68103448,
+       58.42672414, 55.51724138]), array([1.8072, 1.7495, 1.0668, 0.4183, 0.1529]), array([ 0.10704,  0.09715,  0.10292,  0.02186,  0.05408, -0.02398,
+        0.01008, -0.01223]), array([ 0.09326,  0.07205,  0.03654, -0.00861,  0.01596,  0.01191,
+       -0.02303, -0.0155 ]), array([1.6329, 1.6017, 1.1565, 0.5094, 0.1871]), array([1.8608, 1.8486, 1.1069, 0.4429, 0.1871]), array([ 0.1474 ,  0.09052,  0.12762,  0.02206,  0.01451,  0.00961,
+        0.01838, -0.00218]), array([ 0.12856,  0.15675,  0.13539,  0.08315,  0.02407, -0.00596,
+        0.0093 ,  0.00975]), array([ 0.08538,  0.09378,  0.07242,  0.00813,  0.01315, -0.00621,
+        0.00695, -0.01896]), array([ 1.0464e-01,  1.0464e-01,  3.3450e-02, -4.9800e-03, -1.5810e-02,
+       -5.0000e-05,  1.8720e-02, -1.1150e-02]), array([1.0411215 , 1.08224299, 1.1046729 , 1.11214953, 1.1046729 ,
+       1.07476636, 1.05      , 1.07850467, 1.08598131, 1.09345794,
+       1.09719626, 1.08224299, 1.06      , 1.01869159, 1.01      ,
+       1.01      , 1.00373832, 1.00373832]), array([1.03623731, 1.05951056, 1.09055582, 1.10606774, 1.10344495,
+       1.08263392, 1.06      , 1.07720635, 1.06422087, 1.08490344,
+       1.08228065, 1.08738706, 1.06      , 1.02997474, 1.02      ,
+       1.02      , 0.98484135, 0.99218516]), array([37.5, 44.9]), array([0.96948779, 1.01864001, 1.11183023, 1.23890215, 1.03036337,
+       1.10818472, 0.97231372, 0.99039707, 0.99151171]), array([11.42450142, 12.05128205, 13.21937322, 14.81481481, 12.16524217,
+       13.13390313, 11.48148148, 11.73789174, 11.76638177]), array([34.33333333, 34.72222222, 36.16666667, 40.5       , 38.33333333,
+       36.16666667, 36.16666667, 34.44444444, 39.27777778]), array([0.        , 0.21637113, 1.46714592, 1.357398  , 1.0702802 ,
+       0.44112272, 0.24338477, 0.05915365, 0.04817087]), array([1.07287694, 1.12541569, 1.18301621, 1.21010845, 1.24740617,
+       1.16263802, 1.15244237, 1.1574779 , 1.15733366, 1.15197684,
+       1.13784062, 1.1355884 ]), array([12.79202279, 13.39031339, 14.04558405, 14.9002849 , 14.35897436,
+       13.81766382, 13.67521368, 13.78917379, 13.81766382, 13.78917379,
+       13.58974359, 13.53276353]), array([36.27777778, 35.77777778, 38.66666667, 38.61111111, 35.88888889,
+       36.33333333, 36.33333333, 36.94444444, 35.27777778, 35.94444444,
+       35.33333333, 37.33333333]), array([0.        , 0.2543995 , 0.82488897, 1.02774689, 1.01088533,
+       0.95598741, 0.88000256, 0.84211796, 0.4284466 , 0.23070066,
+       0.08873127, 0.05662162]), array([1.09490742, 1.1525276 , 1.25420874, 1.22198589, 1.25417268,
+       1.27958968, 1.27786855, 1.27443285, 1.15226206, 1.14350232,
+       1.07174264, 1.09320596]), array([12.99145299, 13.73219373, 14.9002849 , 14.58689459, 15.01424501,
+       15.32763533, 15.24216524, 15.18518519, 13.7037037 , 13.64672365,
+       12.76353276, 13.04843305]), array([31.55555556, 36.05555556, 36.88888889, 35.38888889, 37.77777778,
+       38.11111111, 36.72222222, 36.61111111, 32.        , 34.44444444,
+       33.33333333, 34.27777778]), array([0.        , 0.37009346, 1.07242991, 1.28271028, 1.1817757 ,
+       1.13130841, 1.11869159, 1.02616822, 0.5088785 , 0.2817757 ,
+       0.0588785 , 0.05046729])]
+	y_errors: [array([0.794, 0.851, 0.868, 0.819, 0.575, 0.868, 0.213, 0.868]), array([1.98 , 0.214, 1.98 , 1.54 , 1.632, 1.157, 0.54 , 1.98 , 0.113,
+       0.113]), None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, array([0.04, 0.64, 0.64, 0.02, 0.64, 0.03, 0.64, 0.64, 0.02, 0.64, 0.09,
+       0.64, 0.09, 0.09, 0.02, 0.06, 0.09, 0.03]), array([2.34, 9.4 , 4.69, 3.65, 3.91, 0.52, 3.13, 4.17, 1.83, 4.43, 1.83,
+       2.6 , 1.04, 3.65, 0.52, 2.87, 9.4 , 9.4 ]), array([6.73, 5.06, 5.05, 5.05, 6.73, 3.37, 5.05, 5.05, 6.73, 3.37, 6.73,
+       1.69]), array([0.16, 0.06, 0.09, 0.16, 0.07, 0.16, 0.12, 0.09, 0.09, 0.11, 0.1 ,
+       0.09, 0.07, 0.09, 0.09, 0.12, 0.14, 0.13]), array([0.52, 0.52, 0.52, 0.52, 0.78, 1.05, 0.52, 0.52, 3.13, 0.52, 2.35,
+       0.52, 0.52, 3.13, 1.82, 3.13, 0.78, 1.82]), array([ 3.37,  6.74,  5.06,  5.06,  6.73,  6.74,  6.74, 13.47,  6.73,
+        6.74,  8.42,  5.05]), array([0.165, 0.081, 0.123, 0.11 , 0.165, 0.148, 0.139, 0.085, 0.094,
+       0.068, 0.08 , 0.087, 0.079, 0.082, 0.105, 0.1  , 0.127, 0.105]), array([2.16, 2.38, 2.38, 3.03, 1.73, 3.67, 4.54, 3.02, 2.81, 2.17, 2.6 ,
+       3.03, 2.81, 2.81, 3.25, 2.16, 3.03, 2.38]), array([11.43,  7.14, 14.28,  5.72,  5.71,  8.57, 14.29, 12.86, 10.  ,
+        5.71]), array([0.12, 0.23, 0.37, 0.37, 0.04, 0.12, 0.03, 0.1 , 0.09, 0.16, 0.37,
+       0.33, 0.19, 0.13, 0.19, 0.19, 0.15, 0.15]), array([ 1.05,  2.09,  3.65,  1.83,  1.04,  5.48,  4.17,  1.04,  0.78,
+        3.65,  3.65,  2.34,  3.13,  1.57,  6.52, 11.21,  0.52,  6.26]), array([ 1.68, 21.89, 11.79,  5.05, 11.78, 10.1 , 11.79, 23.58, 23.58,
+       15.16, 10.1 ,  6.74]), array([0.15, 0.05, 0.05, 0.05, 0.05, 0.04, 0.05, 0.15, 0.02, 0.15, 0.15,
+       0.11, 0.07, 0.05, 0.05, 0.08, 0.05, 0.06]), array([4.11, 4.75, 3.03, 3.68, 3.25, 3.24, 2.81, 4.54, 3.03, 2.81, 4.32,
+       3.24, 3.46, 2.37, 2.6 , 1.08, 2.38, 4.32]), array([ 1.43, 18.57, 10.  ,  4.28,  2.85,  2.85, 15.71, 15.71,  8.57,
+        7.14]), array([0.46, 0.09, 0.12, 0.46, 0.05, 0.15, 0.09, 0.09, 0.05, 0.09, 0.3 ,
+       0.31, 0.21, 0.12, 0.19, 0.46, 0.15, 0.16]), array([2.87, 1.83, 2.87, 3.92, 3.92, 4.43, 2.6 , 3.65, 3.66, 2.6 , 5.22,
+       4.96, 3.13, 4.95, 2.87, 9.91, 4.17, 6.  ]), array([30.32, 23.58, 21.89, 10.11, 20.21, 10.11, 10.1 , 30.32, 20.21,
+       18.52, 21.9 , 15.16]), array([0.04, 0.06, 0.07, 0.05, 0.14, 0.09, 0.08, 0.05, 0.04, 0.07, 0.07,
+       0.06, 0.05, 0.07, 0.07, 0.07, 0.07, 0.07]), array([1.73, 1.51, 3.02, 2.81, 2.38, 3.02, 2.38, 1.94, 1.94, 1.51, 2.82,
+       1.72, 1.95, 1.52, 2.38, 2.59, 2.16, 2.38]), array([ 4.28, 14.29,  7.15,  4.28,  4.29,  7.14,  8.57,  5.72,  7.14,
+        4.28,  5.71,  8.57]), None, array([0.04, 0.07]), array([0.7]), array([0.02181818, 0.184     , 0.184     , 0.174     , 0.11393939,
+       0.1769697 , 0.1430303 , 0.13818182, 0.13575758, 0.10909091,
+       0.08969697, 0.0630303 , 0.08      , 0.07515152, 0.09212121,
+       0.06060606]), array([ 6.52688551, 20.35225049, 24.26614481, 21.13502935, 19.96086106,
+       26.61448141, 27.39726027, 23.87475538, 21.52641879, 14.481409  ,
+        8.61056751,  7.43639922,  9.78473581,  7.82778865,  6.26223092,
+        5.08806262]), array([0.63326653, 0.63326653, 0.48096192, 0.49699399, 0.33667335,
+       0.36872816, 0.4970033 , 0.48897796, 0.43288435, 0.4008016 ,
+       0.20041942, 0.16833667, 0.08817635, 0.10421773, 0.63326653,
+       0.01603206]), array([92.11216008, 75.05350102, 79.31685929, 81.02366587, 67.37548438,
+       92.11216008, 79.31894968, 63.966052  , 43.49691536, 36.67491501,
+       18.76442045, 15.34976209, 13.64713629,  7.67697144,  2.34437671,
+        1.70576139]), array([0.05090909, 0.16969697, 0.19636364, 0.154     , 0.18424242,
+       0.14060606, 0.14787879, 0.12848485, 0.11151515, 0.09212121,
+       0.13333333, 0.06060606, 0.06545455, 0.06060606, 0.07030303,
+       0.06545455]), array([ 4.35690399, 35.22504892, 31.3111546 , 28.18003914, 24.26614481,
+       23.87475538, 25.83170254, 19.96086106, 19.96086106, 18.00391389,
+       12.52446184, 11.74168297,  9.39334638,  5.87084149,  3.91389432,
+        5.08806262]), array([0.78557114, 0.78557114, 0.68939738, 0.55310621, 0.2725544 ,
+       0.3206599 , 0.2966025 , 0.36071213, 0.36873747, 0.36872816,
+       0.31261594, 0.29659319, 0.15230461, 0.09618307, 0.0721536 ,
+       0.07216291]), array([77.6121431 , 77.6121431 , 74.20166552, 71.64197824, 57.99693235,
+       74.20062032, 56.29012576, 51.17179641, 40.93618289, 36.67386982,
+       20.47018184, 17.91049456,  9.38064243, 10.23561352,  5.97121005,
+        5.97016485]), None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, array([4.71      , 9.4       , 6.98275862, 6.20988064, 4.65517241,
+       3.87931034, 5.43401857, 4.65218833, 6.97977454, 3.10643236,
+       3.10046419, 3.10643236, 2.32460212]), array([ 2.12, 13.9 , 13.9 , 13.9 , 13.9 , 13.9 , 13.9 , 13.9 , 13.9 ,
+       13.9 , 13.9 , 13.9 , 13.9 ]), array([ 2.23, 12.2 , 12.2 , 12.2 , 12.2 , 12.2 , 12.2 , 12.2 , 12.2 ,
+       12.2 , 12.2 , 12.2 , 12.2 ]), array([ 2.55, 29.  , 29.  , 29.  , 29.  , 29.  , 29.  , 29.  , 29.  ,
+       29.  , 29.  , 29.  , 29.  ]), array([ 4.34      , 37.2       , 23.27586207, 20.17539788, 20.17241379,
+        9.31034483, 16.29011936,  5.43700265, 15.51724138,  6.98275862,
+       10.0862069 ,  7.76458886,  6.20092838]), array([1.09565217, 1.09565217, 0.67826087, 0.57391304, 0.62608696,
+       0.52173913, 0.10434783, 0.10434783, 0.15652174, 0.10434783,
+       0.15652174, 0.15652174]), array([96.1038961 , 96.1038961 , 59.74025974, 46.75324675, 23.37662338,
+       23.37662338, 20.77922078, 15.58441558, 12.98701299,  7.79220779,
+        7.79220779,  7.79220779]), array([ 6.03, 17.  , 17.  , 17.  , 17.  , 17.  , 17.  , 17.  , 17.  ,
+       17.  , 17.  , 17.  ]), array([0.7826087 , 0.7826087 , 0.62608696, 0.36521739, 0.31304348,
+       0.46956522, 0.10434783, 0.15652174, 0.15652174, 0.15652174]), array([41.55844156, 36.36363636, 41.55844156, 31.16883117, 23.37662338,
+       15.58441558,  7.79220779,  7.79220779,  7.79220779,  7.79220779]), array([8.96, 8.96, 8.96, 8.96, 8.96, 8.96, 8.96, 8.96, 8.96, 8.96, 8.96,
+       8.96]), array([0.742 , 0.7608, 0.4216, 0.2596, 0.1836]), array([0.11288, 0.1142 , 0.10264, 0.11272, 0.16932, 0.07064, 0.15508,
+       0.09596]), array([0.11628, 0.16   , 0.11348, 0.11324, 0.15028, 0.06664, 0.08916,
+       0.08612]), array([0.65110392, 0.5489977 , 0.29359074, 0.17847375, 0.65110392]), array([0.54447222, 0.60160645, 0.31112698, 0.22231437, 0.1668772 ]), array([0.08640845, 0.05529575, 0.10586803, 0.0920653 , 0.06253652,
+       0.07950709, 0.05781305, 0.06253652]), array([0.06363961, 0.13166328, 0.07393509, 0.09560084, 0.08448512,
+       0.08295777, 0.0622254 , 0.10934699]), array([0.11638978, 0.05487149, 0.15313104, 0.0478287 , 0.04434974,
+       0.08717212, 0.07854542, 0.03385627]), array([0.07008842, 0.07995963, 0.092433  , 0.07404822, 0.03965455,
+       0.04367091, 0.03708068, 0.04881865]), None, None, None, array([0.1006629 , 0.18699969, 0.13904202, 0.08627189, 0.05275159,
+       0.08147797, 0.11026927, 0.07668406, 0.06713332]), array([1.20872954, 2.17571317, 1.61163939, 4.02909847, 0.64465575,
+       1.12814757, 1.20872954, 2.01454923, 0.88640166]), array([1.88561808, 1.25707872, 4.24264069, 5.02831489, 7.38533749,
+       5.65685425, 4.24264069, 5.49971941, 9.11382074]), array([0.65596742, 0.36342088, 0.65596742, 0.38351394, 0.32725215,
+       0.09648027, 0.20374798, 0.2014411 , 0.08976204]), array([0.14381739, 0.18216869, 0.2732623 , 0.18217796, 0.21094144,
+       0.20132579, 0.17257159, 0.23968637, 0.10548463, 0.22051072,
+       0.27807476, 0.18216869]), array([2.01454923, 1.61163939, 3.70677059, 0.88640166, 2.0951312 ,
+       2.33687711, 2.0951312 , 2.9009509 , 2.9009509 , 2.57862302,
+       3.30386074, 2.25629514]), array([7.38533749, 6.75679813, 3.29983165, 4.87118005, 6.91393297,
+       7.38533749, 6.44252845, 7.22820265, 3.92837101, 4.55691037,
+       8.64241621, 6.44252845]), array([0.66446573, 0.24396514, 0.66446573, 0.41186875, 0.41197943,
+       0.41261589, 0.33015216, 0.27077242, 0.1204385 , 0.09688101,
+       0.11778295, 0.05396446]), array([0.15825476, 0.19656897, 0.21569826, 0.14381739, 0.15342376,
+       0.31160434, 0.13423883, 0.12943565, 0.10547536, 0.15818058,
+       0.15821767, 0.18218723]), array([2.33687711, 2.33687711, 2.73978696, 2.01454923, 1.8533853 ,
+       3.62618862, 1.8533853 , 1.8533853 , 1.45047545, 1.77280333,
+       2.0951312 , 2.17571317]), array([2.82842712, 6.59966329, 8.17101169, 3.29983165, 6.75679813,
+       3.92837101, 6.44252845, 6.59966329, 2.51415744, 3.14269681,
+       4.08550585, 2.67129228]), array([0.58286746, 0.30927661, 0.45201966, 0.58286746, 0.46391492,
+       0.45201966, 0.2854861 , 0.21411458, 0.11895254, 0.09516203,
+       0.04758102, 0.07137153])]
+	y_errors_type: ['SD', 'SD', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', None, 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', None, None, None, 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD', 'SD']
+	y_errors_log: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+	weights: [array([3.66687657, 5.81668625, 6.46831797, 6.32600733, 6.46956522,
+       1.79032258, 2.57042254, 0.19354839]), array([ 1.11090909, 23.19813084,  3.17878788,  4.34025974,  4.06617647,
+        4.66101988,  4.31111111,  0.52969697,  1.9539823 ,  1.38053097]), array([1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5]), array([1.71428571, 1.71428571, 1.71428571, 1.71428571, 1.71428571,
+       1.71428571, 1.71428571]), array([1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5]), array([1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5]), array([1.71428571, 1.71428571, 1.71428571, 1.71428571, 1.71428571,
+       1.71428571, 1.71428571]), array([1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5]), array([1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5]), array([1.71428571, 1.71428571, 1.71428571, 1.71428571, 1.71428571,
+       1.71428571, 1.71428571]), array([1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5]), array([1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5]), array([1.71428571, 1.71428571, 1.71428571, 1.71428571, 1.71428571,
+       1.71428571, 1.71428571]), array([1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5]), array([1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5]), array([1.71428571, 1.71428571, 1.71428571, 1.71428571, 1.71428571,
+       1.71428571, 1.71428571]), array([1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5]), array([1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5]), array([1.71428571, 1.71428571, 1.71428571, 1.71428571, 1.71428571,
+       1.71428571, 1.71428571]), array([1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5]), array([1.75, 1.75, 1.75, 1.75, 1.75, 1.75, 1.75, 1.75]), array([2., 2., 2., 2., 2., 2., 2.]), array([1.75, 1.75, 1.75, 1.75, 1.75, 1.75, 1.75, 1.75]), array([ 9.33333333,  0.79166667,  0.61458333, 19.33333333,  0.63020833,
+       14.22222222,  0.58333333,  0.60416667, 18.33333333,  0.58333333,
+        4.51851852,  0.63020833,  4.40740741,  4.37037037, 19.33333333,
+        6.44444444,  4.2962963 , 12.55555556]), array([ 4.28632479,  1.25177305,  2.15707178,  2.7716895 ,  2.52088662,
+       22.12820513,  3.31522897,  2.44684253,  5.71766849,  2.24454477,
+        5.62295082,  3.82435897,  9.64423077,  2.7716895 , 20.45512821,
+        3.55516841,  1.07624113,  1.05780142]), array([ 3.47251114,  6.11561265,  5.46138614,  4.96138614,  3.22213967,
+        8.18397626,  3.96039604,  5.46138614,  4.09806835,  7.18397626,
+        4.34843982, 16.81656805]), array([2.33333333, 6.61111111, 4.51851852, 2.45833333, 5.33333333,
+       2.52083333, 3.27777778, 4.18518519, 4.07407407, 3.33333333,
+       3.93333333, 4.48148148, 5.61904762, 4.37037037, 4.59259259,
+       3.30555556, 2.69047619, 2.79487179]), array([20.12179487, 20.96153846, 21.12820513, 20.12179487, 13.52564103,
+       10.21269841, 20.45512821, 19.62179487,  3.25985091, 20.96153846,
+        4.82269504, 21.12820513, 19.95512821,  3.39829606,  6.03663004,
+        3.42598509, 13.3034188 ,  5.60622711]), array([7.68397626, 5.09124629, 6.4486166 , 5.28359684, 4.34843982,
+       3.21735905, 5.09124629, 2.79769859, 6.10029718, 4.59124629,
+       3.87529691, 5.96138614]), array([2.24242424, 5.32510288, 3.49864499, 3.86363636, 2.51111111,
+       2.68918919, 2.882494  , 4.64313725, 3.85815603, 5.71568627,
+       5.38333333, 5.13409962, 5.43459916, 5.        , 3.91746032,
+       4.02      , 3.01049869, 3.59365079]), array([4.78703704, 4.85714286, 4.76470588, 3.74147415, 6.30057803,
+       2.95004541, 2.39941263, 3.51103753, 3.59193357, 5.04301075,
+       4.42948718, 3.75247525, 3.78884935, 3.86476868, 3.36205128,
+       4.99074074, 3.46094609, 4.31372549]), array([2.24986877, 7.08319328, 3.42142857, 6.14370629, 5.55446585,
+       4.3008168 , 4.13869839, 3.7992224 , 3.7716    , 5.70472855]), array([ 2.94444444,  1.85507246,  1.22522523,  1.12612613,  9.83333333,
+        3.86111111, 14.77777778,  4.13333333,  4.51851852,  2.58333333,
+        1.28828829,  1.44444444,  2.33333333,  3.25641026,  3.21052632,
+        2.96491228,  2.88888889,  2.82222222]), array([ 9.13650794,  5.04784689,  2.98630137,  5.62295082,  9.64423077,
+        2.05231144,  2.63469225,  9.7275641 , 12.74786325,  2.86666667,
+        3.05753425,  4.6951567 ,  3.42598509,  6.66454352,  2.01840491,
+        1.15848944, 20.45512821,  1.75505857]), array([14.91369048,  1.87551393,  3.26759966,  5.7950495 ,  3.48514431,
+        3.31435644,  3.41051739,  2.27671756,  2.2408821 ,  2.48581794,
+        4.06485149,  4.59124629]), array([ 2.55555556,  9.8       ,  9.53333333,  8.6       ,  8.33333333,
+       10.25      ,  8.06666667,  2.66666667, 20.5       ,  2.66666667,
+        3.6       ,  4.87878788,  6.66666667,  8.8       ,  8.66666667,
+        5.45833333,  8.46666667,  6.88888889]), array([ 2.69099757,  2.66175439,  4.14741474,  3.19836957,  3.59794872,
+        3.63065844,  3.97983393,  2.3671072 ,  3.78327833,  4.15183867,
+        3.13348765,  4.06584362,  3.51445087,  4.97749648,  4.47948718,
+       10.64814815,  4.98179272,  2.81095679]), array([21.57902098,  3.27722132,  4.8858    ,  9.01261682, 11.12842105,
+       13.53473684,  5.12883514,  4.31037556,  5.20116686,  5.40252101]), array([0.85507246, 5.59259259, 3.80555556, 0.89855072, 8.13333333,
+       3.35555556, 5.03703704, 4.96296296, 8.73333333, 5.18518519,
+       2.        , 1.89247312, 2.41269841, 3.88888889, 2.87719298,
+       1.36231884, 3.22222222, 2.95833333]), array([3.49477352, 5.90710383, 3.82810685, 2.73554422, 2.69132653,
+       2.51918736, 4.19230769, 3.01004566, 2.95355191, 4.59358974,
+       2.38761175, 2.35483871, 3.6485623 , 2.23703704, 3.88850174,
+       1.4069963 , 2.65547562, 1.87444444]), array([0.88176121, 2.45525869, 2.33714025, 3.64391691, 2.4896091 ,
+       4.22700297, 5.31534653, 2.77044855, 3.36467095, 2.67143629,
+       3.02808219, 3.3189314 ]), array([9.08333333, 6.16666667, 5.28571429, 7.73333333, 2.73809524,
+       4.37037037, 4.83333333, 7.53333333, 9.33333333, 5.23809524,
+       5.28571429, 6.44444444, 7.66666667, 5.42857143, 5.47619048,
+       5.76190476, 5.52380952, 5.42857143]), array([5.76878613, 6.60706402, 3.30242826, 3.5480427 , 4.21708683,
+       3.46578366, 4.30532213, 5.28006873, 5.16666667, 6.67549669,
+       3.47044917, 5.68992248, 5.01538462, 6.5745614 , 4.3487395 ,
+       4.07850708, 4.6882716 , 4.22268908]), array([6.17523364, 1.94926522, 3.2965035 , 6.00817757, 5.66083916,
+       3.4012605 , 3.084014  , 4.24562937, 3.4012605 , 6.17523364,
+       4.50350263, 3.00058343]), array([1.33333333, 1.33333333, 1.33333333, 1.33333333, 1.33333333,
+       1.33333333, 1.33333333, 1.33333333, 1.33333333, 1.33333333,
+       1.33333333, 1.33333333, 1.33333333, 1.33333333, 1.33333333,
+       1.33333333, 1.33333333, 1.33333333, 1.33333333, 1.33333333,
+       1.33333333]), array([246.75, 160.5 ]), array([81.]), array([128.05555556,  17.11956522,  18.09782609,  20.12931034,
+        31.75531915,  20.44520548,  23.60169492,  22.4122807 ,
+        21.96428571,  26.94444444,  32.2972973 ,  45.67307692,
+        34.01515152,  37.01612903,  29.93421053,  46.8       ]), array([20.28138273, 10.96153846, 11.16935484, 13.51851852, 15.29411765,
+       12.24264706, 11.10714286, 11.2295082 , 10.81818182, 14.52702703,
+       19.77272727, 22.36842105, 14.1       , 18.125     , 21.25      ,
+       27.88461538]), array([ 0.        ,  7.8794528 , 13.04103755, 13.26533288, 21.01010729,
+       19.99823255, 12.45700879, 10.48847128,  9.11535401,  7.99390244,
+        8.98081479,  8.77938167,  5.14069264,  2.7876541 ,  0.03940076,
+        4.9970964 ]), array([ 0.        ,  5.39800579,  6.98970179,  7.52683179, 10.06449536,
+        8.01013287,  6.88330983,  6.40273693,  6.72079248,  6.51870957,
+        7.40739709,  7.53540787,  2.71463583,  2.91626957,  2.5       ,
+        2.5       ]), array([50.02678571, 18.55982143, 17.39351852, 22.17491883, 20.46217105,
+       26.4762931 , 24.8545082 , 26.9504717 , 28.5611413 , 34.25328947,
+       22.24772727, 47.385     , 41.70833333, 45.3375    , 38.6637931 ,
+       41.25694444]), array([32.05799311,  7.58333333,  9.9328125 , 11.10416667, 14.78225806,
+       14.94467213, 13.92329545, 16.48897059, 14.86397059, 14.78396739,
+       16.1484375 , 15.51875   , 15.640625  , 25.675     , 36.80625   ,
+       28.3125    ]), array([ 0.        ,  6.69045767,  9.1540884 , 12.1868025 , 26.23590948,
+       22.36014532, 22.5915194 , 16.78775907, 14.03670372, 12.18140702,
+        8.80129289,  7.49345513,  4.4411104 ,  5.17959902,  0.87907258,
+        0.81103245]), array([ 0.        ,  5.35737264,  7.28475783,  8.29967612, 11.14878737,
+        9.05070202, 10.15851298,  9.63170714,  9.50186865,  8.73673692,
+        9.26063314,  8.73423276,  6.28861421,  4.16313949,  2.34918169,
+        0.69557511]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([1.6, 1.6, 1.6, 1.6, 1.6]), array([1.6, 1.6, 1.6, 1.6, 1.6]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([1.6, 1.6, 1.6, 1.6, 1.6]), array([1.6, 1.6, 1.6, 1.6, 1.6]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([1.6, 1.6, 1.6, 1.6, 1.6]), array([1.6, 1.6, 1.6, 1.6, 1.6]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([4.8, 4.8, 4.8, 4.8, 4.8]), array([ 5.34051935,  3.65302782,  4.49042297,  4.58886876,  6.12320842,
+        7.16678501,  4.98731325,  5.59750662,  3.94023306,  8.51715559,
+        8.43715604,  8.56503855, 11.02267865]), array([12.88824383,  3.40675152,  3.41468266,  2.84831755,  2.61685693,
+        2.59159047,  2.48963286,  2.46476273,  2.31147952,  2.36518314,
+        2.31564106,  2.01085816,  2.01719954]), array([11.36253881,  4.99369483,  4.1257639 ,  3.45101451,  3.07000746,
+        2.89513933,  2.86714237,  2.98579079,  2.48918337,  1.9632243 ,
+        2.37911467,  2.21034265,  2.10016106]), array([8.39819005, 2.19469496, 1.72331825, 1.42715772, 1.40265182,
+       1.5267011 , 1.37900077, 1.2560913 , 1.09661294, 1.06051897,
+       0.93908175, 0.86808111, 0.77238459]), array([5.73200993, 2.17369727, 2.63943458, 2.86776725, 2.67333485,
+       4.98616042, 3.0485249 , 8.67511047, 2.7186785 , 5.43006794,
+       3.09072978, 3.79544335, 4.53641322]), array([ 0.        ,  3.19047619,  3.88461538,  3.31818182,  2.5       ,
+        2.4       , 10.        ,  8.5       ,  3.66666667,  4.25      ,
+        1.16666667,  0.66666667]), array([0.        , 2.33783784, 2.43478261, 2.22222222, 3.77777778,
+       3.16666667, 3.1875    , 3.83333333, 2.7       , 3.16666667,
+       1.5       , 1.16666667]), array([3.68297402, 1.28465179, 1.20902572, 1.53274042, 1.91379635,
+       2.04764134, 2.18627451, 1.85981952, 1.86135545, 1.7125169 ,
+       1.565068  , 1.30366802]), array([0.        , 0.26666667, 0.625     , 1.42857143, 2.5       ,
+       1.5       , 4.25      , 2.33333333, 1.16666667, 0.83333333]), array([0.        , 0.35714286, 0.5625    , 1.08333333, 2.        ,
+       2.83333333, 3.66666667, 3.        , 1.66666667, 1.16666667]), array([5.95424107, 6.19612069, 6.02493546, 6.02660069, 6.11685594,
+       6.55347818, 6.38362513, 6.76339286, 6.22509562, 6.32600831,
+       6.52083975, 6.19612069]), array([7.79385445, 7.35856993, 8.0971537 , 5.15624037, 2.66492375]), array([1.89652729, 1.70140105, 2.00545596, 0.38786373, 0.63879046,
+       0.67893545, 0.12999742, 0.25489787]), array([1.60405917, 0.900625  , 0.64399013, 0.15206641, 0.21240351,
+       0.35744298, 0.51659937, 0.35996284]), array([4.01263132, 4.66799766, 6.30265119, 4.56672196, 0.45977299]), array([5.46819449, 4.91643666, 5.69233815, 3.1875582 , 1.79389395]), array([1.70585171, 1.63701549, 1.2054631 , 0.23961253, 0.23202441,
+       0.12086973, 0.3179213 , 0.03485963]), array([2.02012551, 1.19053693, 1.83120098, 0.86976226, 0.28490225,
+       0.07184378, 0.14945666, 0.08916569]), array([0.73356959, 1.70908438, 0.47292827, 0.16998161, 0.29650683,
+       0.07123837, 0.08848383, 0.56001439]), array([1.49297122e+00, 1.30866030e+00, 3.61883749e-01, 6.72534715e-02,
+       3.98693231e-01, 1.14492678e-03, 5.04845116e-01, 2.28396310e-01]), array([2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667]), array([2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667, 2.66666667, 2.66666667,
+       2.66666667, 2.66666667, 2.66666667]), array([24., 24.]), array([ 8.56091916,  4.84202825,  7.10787687, 12.76483456, 17.36210443,
+       12.08980833,  7.83789429, 11.48026003, 13.12825996]), array([ 8.40147613,  4.92355833,  7.29105659,  3.26840468, 16.7741442 ,
+       10.34845162,  8.44337875,  5.17916434, 11.79939801]), array([16.18488855, 24.55231879,  7.57739119,  7.15945616,  4.61374637,
+        5.68304339,  7.57739119,  5.56706291,  3.83083904]), array([0.        , 0.52922082, 1.98810133, 3.14610727, 2.90711665,
+       4.06413766, 1.06181187, 0.26102428, 0.4770229 ]), array([4.97332985, 4.11858447, 2.88615538, 4.42830166, 3.94234592,
+       3.84993892, 4.45203589, 3.21942352, 7.31439061, 3.48275389,
+       2.72790096, 4.15581261]), array([ 4.2332126 ,  5.53900312,  2.52611336, 11.20657111,  4.56899766,
+        3.94191711,  4.35142635,  3.16888595,  3.17543323,  3.56499669,
+        2.74219459,  3.99852049]), array([3.27475694, 3.53005246, 7.81184634, 5.28429261, 3.46053773,
+       3.27977188, 3.7597385 , 3.40743485, 5.98683741, 5.25859871,
+       2.72557523, 3.86321754]), array([0.        , 0.69517991, 0.82762129, 1.66355082, 1.63581846,
+       1.54459621, 1.77696359, 2.07337205, 2.37159258, 1.58751896,
+       0.5022304 , 0.6994927 ]), array([4.61242545, 3.90881495, 3.87642978, 5.66452559, 5.44971091,
+       2.73763774, 6.34624388, 6.56404876, 7.28297813, 4.8193962 ,
+       4.51589949, 4.0003021 ]), array([3.70621485, 3.91753412, 3.62565536, 4.82718229, 5.40065614,
+       2.81795147, 5.48263954, 5.46214369, 6.29848818, 5.13188103,
+       4.06133126, 3.99820871]), array([7.43771577, 3.64216112, 3.00973656, 7.14963523, 3.72738458,
+       6.46767003, 3.79998034, 3.6982807 , 8.48528137, 7.30677007,
+       5.43928293, 8.55460557]), array([0.        , 0.7977615 , 1.58168622, 1.46712631, 1.698265  ,
+       1.6685239 , 2.61236672, 3.19507509, 2.85199735, 1.97400643,
+       0.82495791, 0.47140452])]
+	weights_points: [array([2.44458438, 3.87779083, 4.31221198, 4.21733822, 4.31304348,
+       1.19354839, 1.71361502, 0.12903226]), array([ 0.92575758, 19.3317757 ,  2.6489899 ,  3.61688312,  3.38848039,
+        3.88418323,  3.59259259,  0.44141414,  1.62831858,  1.15044248]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2., 2., 2., 2.]), array([28.        ,  2.375     ,  1.84375   , 58.        ,  1.890625  ,
+       42.66666667,  1.75      ,  1.8125    , 55.        ,  1.75      ,
+       13.55555556,  1.890625  , 13.22222222, 13.11111111, 58.        ,
+       19.33333333, 12.88888889, 37.66666667]), array([12.85897436,  3.75531915,  6.47121535,  8.31506849,  7.56265985,
+       66.38461538,  9.9456869 ,  7.34052758, 17.15300546,  6.73363431,
+       16.86885246, 11.47307692, 28.93269231,  8.31506849, 61.36538462,
+       10.66550523,  3.2287234 ,  3.17340426]), array([ 6.94502229, 12.2312253 , 10.92277228,  9.92277228,  6.44427935,
+       16.36795252,  7.92079208, 10.92277228,  8.1961367 , 14.36795252,
+        8.69687964, 33.63313609]), array([ 7.        , 19.83333333, 13.55555556,  7.375     , 16.        ,
+        7.5625    ,  9.83333333, 12.55555556, 12.22222222, 10.        ,
+       11.8       , 13.44444444, 16.85714286, 13.11111111, 13.77777778,
+        9.91666667,  8.07142857,  8.38461538]), array([60.36538462, 62.88461538, 63.38461538, 60.36538462, 40.57692308,
+       30.63809524, 61.36538462, 58.86538462,  9.77955272, 62.88461538,
+       14.46808511, 63.38461538, 59.86538462, 10.19488818, 18.10989011,
+       10.27795527, 39.91025641, 16.81868132]), array([15.36795252, 10.18249258, 12.8972332 , 10.56719368,  8.69687964,
+        6.4347181 , 10.18249258,  5.59539718, 12.20059435,  9.18249258,
+        7.75059382, 11.92277228]), array([ 6.72727273, 15.97530864, 10.49593496, 11.59090909,  7.53333333,
+        8.06756757,  8.64748201, 13.92941176, 11.57446809, 17.14705882,
+       16.15      , 15.40229885, 16.30379747, 15.        , 11.75238095,
+       12.06      ,  9.03149606, 10.78095238]), array([14.36111111, 14.57142857, 14.29411765, 11.22442244, 18.9017341 ,
+        8.85013624,  7.19823789, 10.53311258, 10.77580071, 15.12903226,
+       13.28846154, 11.25742574, 11.36654804, 11.59430605, 10.08615385,
+       14.97222222, 10.38283828, 12.94117647]), array([ 3.74978128, 11.80532213,  5.70238095, 10.23951049,  9.25744308,
+        7.168028  ,  6.89783065,  6.33203733,  6.286     ,  9.50788091]), array([ 8.83333333,  5.56521739,  3.67567568,  3.37837838, 29.5       ,
+       11.58333333, 44.33333333, 12.4       , 13.55555556,  7.75      ,
+        3.86486486,  4.33333333,  7.        ,  9.76923077,  9.63157895,
+        8.89473684,  8.66666667,  8.46666667]), array([27.40952381, 15.14354067,  8.95890411, 16.86885246, 28.93269231,
+        6.15693431,  7.90407674, 29.18269231, 38.24358974,  8.6       ,
+        9.17260274, 14.08547009, 10.27795527, 19.99363057,  6.05521472,
+        3.47546833, 61.36538462,  5.26517572]), array([29.82738095,  3.75102787,  6.53519932, 11.59009901,  6.97028862,
+        6.62871287,  6.82103478,  4.55343511,  4.48176421,  4.97163588,
+        8.12970297,  9.18249258]), array([ 7.66666667, 29.4       , 28.6       , 25.8       , 25.        ,
+       30.75      , 24.2       ,  8.        , 61.5       ,  8.        ,
+       10.8       , 14.63636364, 20.        , 26.4       , 26.        ,
+       16.375     , 25.4       , 20.66666667]), array([ 8.0729927 ,  7.98526316, 12.44224422,  9.5951087 , 10.79384615,
+       10.89197531, 11.93950178,  7.10132159, 11.34983498, 12.45551601,
+        9.40046296, 12.19753086, 10.5433526 , 14.93248945, 13.43846154,
+       31.94444444, 14.94537815,  8.43287037]), array([35.96503497,  5.46203554,  8.143     , 15.02102804, 18.54736842,
+       22.55789474,  8.54805856,  7.18395926,  8.66861144,  9.00420168]), array([ 2.56521739, 16.77777778, 11.41666667,  2.69565217, 24.4       ,
+       10.06666667, 15.11111111, 14.88888889, 26.2       , 15.55555556,
+        6.        ,  5.67741935,  7.23809524, 11.66666667,  8.63157895,
+        4.08695652,  9.66666667,  8.875     ]), array([10.48432056, 17.72131148, 11.48432056,  8.20663265,  8.07397959,
+        7.55756208, 12.57692308,  9.03013699,  8.86065574, 13.78076923,
+        7.16283525,  7.06451613, 10.9456869 ,  6.71111111, 11.66550523,
+        4.2209889 ,  7.96642686,  5.62333333]), array([ 1.76352243,  4.91051739,  4.67428049,  7.28783383,  4.97921821,
+        8.45400593, 10.63069307,  5.5408971 ,  6.72934191,  5.34287257,
+        6.05616438,  6.6378628 ]), array([27.25      , 18.5       , 15.85714286, 23.2       ,  8.21428571,
+       13.11111111, 14.5       , 22.6       , 28.        , 15.71428571,
+       15.85714286, 19.33333333, 23.        , 16.28571429, 16.42857143,
+       17.28571429, 16.57142857, 16.28571429]), array([17.30635838, 19.82119205,  9.90728477, 10.64412811, 12.6512605 ,
+       10.39735099, 12.91596639, 15.84020619, 15.5       , 20.02649007,
+       10.41134752, 17.06976744, 15.04615385, 19.72368421, 13.04621849,
+       12.23552124, 14.06481481, 12.66806723]), array([12.35046729,  3.89853044,  6.59300699, 12.01635514, 11.32167832,
+        6.80252101,  6.168028  ,  8.49125874,  6.80252101, 12.35046729,
+        9.00700525,  6.00116686]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.,
+       2., 2., 2., 2.]), array([23.5       , 15.28571429]), array([3.85714286]), array([51.22222222,  6.84782609,  7.23913043,  8.05172414, 12.70212766,
+        8.17808219,  9.44067797,  8.96491228,  8.78571429, 10.77777778,
+       12.91891892, 18.26923077, 13.60606061, 14.80645161, 11.97368421,
+       18.72      ]), array([ 8.11255309,  4.38461538,  4.46774194,  5.40740741,  6.11764706,
+        4.89705882,  4.44285714,  4.49180328,  4.32727273,  5.81081081,
+        7.90909091,  8.94736842,  5.64      ,  7.25      ,  8.5       ,
+       11.15384615]), array([0.        , 3.15178112, 5.21641502, 5.30613315, 8.40404292,
+       7.99929302, 4.98280351, 4.19538851, 3.6461416 , 3.19756098,
+       3.59232592, 3.51175267, 2.05627706, 1.11506164, 0.0157603 ,
+       1.99883856]), array([0.        , 2.15920232, 2.79588072, 3.01073271, 4.02579814,
+       3.20405315, 2.75332393, 2.56109477, 2.68831699, 2.60748383,
+       2.96295884, 3.01416315, 1.08585433, 1.16650783, 1.        ,
+       1.        ]), array([20.52380952,  7.61428571,  7.13580247,  9.0974026 ,  8.39473684,
+       10.86206897, 10.19672131, 11.05660377, 11.7173913 , 14.05263158,
+        9.12727273, 19.44      , 17.11111111, 18.6       , 15.86206897,
+       16.92592593]), array([13.15199717,  3.11111111,  4.075     ,  4.55555556,  6.06451613,
+        6.13114754,  5.71212121,  6.76470588,  6.09803922,  6.06521739,
+        6.625     ,  6.36666667,  6.41666667, 10.53333333, 15.1       ,
+       11.61538462]), array([ 0.        ,  2.74480315,  3.75552344,  4.99971385, 10.76345004,
+        9.17339295,  9.26831565,  6.88728577,  5.75864768,  4.99750032,
+        3.61078682,  3.074238  ,  1.82199401,  2.1249637 ,  0.36064516,
+        0.33273126]), array([0.        , 2.19789647, 2.9886186 , 3.40499533, 4.57386149,
+       3.71310852, 4.16759507, 3.9514696 , 3.89820252, 3.58430233,
+       3.79923411, 3.58327498, 2.57994429, 1.70795466, 0.96376685,
+       0.28536415]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([2., 2., 2., 2., 2.]), array([11.57112527,  7.91489362,  9.72924976,  9.94254899, 13.26695157,
+       15.52803419, 10.80584538, 12.12793101,  8.53717163, 18.45383712,
+       18.28050476, 18.55758352, 23.8824704 ]), array([27.9245283 ,  7.38129496,  7.39847909,  6.17135469,  5.66985669,
+        5.61511268,  5.39420453,  5.34031926,  5.00820564,  5.12456348,
+        5.0172223 ,  4.35685934,  4.37059901]), array([24.61883408, 10.81967213,  8.93915511,  7.47719811,  6.65168283,
+        6.27280189,  6.2121418 ,  6.46921338,  5.39323064,  4.25365265,
+        5.15474845,  4.78907575,  4.55034896]), array([18.19607843,  4.75517241,  3.73385622,  3.09217507,  3.03907894,
+        3.30785237,  2.98783499,  2.72153114,  2.37599469,  2.29779109,
+        2.03467712,  1.8808424 ,  1.67349995]), array([12.41935484,  4.70967742,  5.71877493,  6.2134957 ,  5.79222551,
+       10.80334758,  6.60513729, 18.79607269,  5.89047009, 11.7651472 ,
+        6.6965812 ,  8.22346059,  9.82889531]), array([ 0.        ,  6.38095238,  7.76923077,  6.63636364,  5.        ,
+        4.8       , 20.        , 17.        ,  7.33333333,  8.5       ,
+        2.33333333,  1.33333333]), array([0.        , 4.67567568, 4.86956522, 4.44444444, 7.55555556,
+       6.33333333, 6.375     , 7.66666667, 5.4       , 6.33333333,
+       3.        , 2.33333333]), array([8.83913765, 3.0831643 , 2.90166173, 3.678577  , 4.59311125,
+       4.91433921, 5.24705882, 4.46356686, 4.46725308, 4.11004057,
+       3.75616321, 3.12880325]), array([0.        , 0.53333333, 1.25      , 2.85714286, 5.        ,
+       3.        , 8.5       , 4.66666667, 2.33333333, 1.66666667]), array([0.        , 0.71428571, 1.125     , 2.16666667, 4.        ,
+       5.66666667, 7.33333333, 6.        , 3.33333333, 2.33333333]), array([5.95424107, 6.19612069, 6.02493546, 6.02660069, 6.11685594,
+       6.55347818, 6.38362513, 6.76339286, 6.22509562, 6.32600831,
+       6.52083975, 6.19612069]), array([2.43557951, 2.2995531 , 2.53036053, 1.61132512, 0.83278867]), array([0.94826364, 0.85070053, 1.00272798, 0.19393187, 0.31939523,
+       0.33946772, 0.06499871, 0.12744894]), array([0.80202958, 0.4503125 , 0.32199507, 0.0760332 , 0.10620176,
+       0.17872149, 0.25829969, 0.17998142]), array([2.50789458, 2.91749854, 3.939157  , 2.85420122, 0.28735812]), array([3.41762155, 3.07277291, 3.55771135, 1.99222388, 1.12118372]), array([1.70585171, 1.63701549, 1.2054631 , 0.23961253, 0.23202441,
+       0.12086973, 0.3179213 , 0.03485963]), array([2.02012551, 1.19053693, 1.83120098, 0.86976226, 0.28490225,
+       0.07184378, 0.14945666, 0.08916569]), array([0.73356959, 1.70908438, 0.47292827, 0.16998161, 0.29650683,
+       0.07123837, 0.08848383, 0.56001439]), array([1.49297122e+00, 1.30866030e+00, 3.61883749e-01, 6.72534715e-02,
+       3.98693231e-01, 1.14492678e-03, 5.04845116e-01, 2.28396310e-01]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.,
+       2.]), array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.,
+       2.]), array([2., 2.]), array([ 9.63103406,  5.44728178,  7.99636148, 14.36043888, 19.53236749,
+       13.60103437,  8.81763108, 12.91529253, 14.76929246]), array([ 9.45166064,  5.53900312,  8.20243866,  3.67695526, 18.87091222,
+       11.64200808,  9.49880109,  5.82655988, 13.27432276]), array([18.20799962, 27.62135864,  8.52456508,  8.05438818,  5.19046467,
+        6.39342381,  8.52456508,  6.26294578,  4.30969392]), array([0.        , 0.59537342, 2.236614  , 3.53937068, 3.27050623,
+       4.57215487, 1.19453835, 0.29365232, 0.53665077]), array([ 7.45999478,  6.1778767 ,  4.32923307,  6.64245248,  5.91351887,
+        5.77490838,  6.67805383,  4.82913528, 10.97158592,  5.22413083,
+        4.09185145,  6.23371892]), array([ 6.3498189 ,  8.30850468,  3.78917003, 16.80985666,  6.85349649,
+        5.91287567,  6.52713952,  4.75332892,  4.76314985,  5.34749503,
+        4.11329189,  5.99778073]), array([ 4.91213541,  5.29507869, 11.71776952,  7.92643892,  5.1908066 ,
+        4.91965782,  5.63960774,  5.11115228,  8.98025612,  7.88789806,
+        4.08836284,  5.7948263 ]), array([0.        , 1.04276987, 1.24143194, 2.49532622, 2.45372768,
+       2.31689432, 2.66544539, 3.11005807, 3.55738887, 2.38127844,
+       0.7533456 , 1.04923905]), array([ 6.91863818,  5.86322242,  5.81464466,  8.49678839,  8.17456636,
+        4.10645661,  9.51936582,  9.84607314, 10.9244672 ,  7.2290943 ,
+        6.77384924,  6.00045315]), array([5.55932228, 5.87630118, 5.43848304, 7.24077344, 8.10098421,
+       4.2269272 , 8.2239593 , 8.19321553, 9.44773227, 7.69782155,
+       6.09199688, 5.99731307]), array([11.15657366,  5.46324168,  4.51460483, 10.72445285,  5.59107687,
+        9.70150504,  5.69997052,  5.54742106, 12.72792206, 10.96015511,
+        8.1589244 , 12.83190835]), array([0.        , 1.19664225, 2.37252933, 2.20068947, 2.54739751,
+       2.50278584, 3.91855008, 4.79261263, 4.27799603, 2.96100965,
+       1.23743687, 0.70710678])]
+	weights_curves: [1.5, 1.2, 0.75, 0.8571428571428571, 0.75, 0.75, 0.8571428571428571, 0.75, 0.75, 0.8571428571428571, 0.75, 0.75, 0.8571428571428571, 0.75, 0.75, 0.8571428571428571, 0.75, 0.75, 0.8571428571428571, 0.75, 0.875, 1.0, 0.875, 0.3333333333333333, 0.3333333333333333, 0.5, 0.3333333333333333, 0.3333333333333333, 0.5, 0.3333333333333333, 0.3333333333333333, 0.6, 0.3333333333333333, 0.3333333333333333, 0.5, 0.3333333333333333, 0.3333333333333333, 0.6, 0.3333333333333333, 0.3333333333333333, 0.5, 0.3333333333333333, 0.3333333333333333, 0.5, 0.6666666666666666, 10.5, 21.0, 2.5, 2.5, 2.5, 2.5, 2.4375, 2.4375, 2.4375, 2.4375, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 0.8, 0.8, 2.4, 2.4, 0.8, 0.8, 2.4, 2.4, 0.8, 0.8, 2.4, 2.4, 0.46153846153846156, 0.46153846153846156, 0.46153846153846156, 0.46153846153846156, 0.46153846153846156, 0.5, 0.5, 0.4166666666666667, 0.5, 0.5, 1.0, 3.2, 2.0, 2.0, 1.6, 1.6, 1.0, 1.0, 1.0, 1.0, 1.3333333333333333, 1.3333333333333333, 12.0, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.8888888888888888, 0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 0.6666666666666666]
+--------------------------------------------------------------------------------
+Parameter sets: ['PD_20261104_193909__02221_0']
+--------------------------------------------------------------------------------
+              parameter          unit  PD_20261104_193909__02221_0
+    COAG__slope_api_INR          1/mM                   485.385979
+     COAG__slope_api_PT          1/mM                   974.831513
+         COAG__Emax_mPT dimensionless                     6.053687
+     COAG__EC50_api_mPT            mM                     0.001912
+        COAG__Emax_aPTT dimensionless                     0.359659
+    COAG__EC50_api_aPTT            mM                     0.000721
+     COAG__antiXa_slope       1/ml/mM                  5429.387162
+COAG__antiXa_gram_slope      ng/ml/mM                430016.929600
+
+PD_20261104_193909__02221_0: cost = 62.7499
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Metrics: PD_20261104_193909__02221_0
+--------------------------------------------------------------------------------
+              parameter_set       kind   n  k      cost       MSE     RMSE    NRMSE   RMSE_w       R2  within_2fold         AIC         BIC     GMFE      AFE  within_1.25fold  within_1.5fold  within_1sd  within_2sd
+PD_20261104_193909__02221_0   training 504  8 62.749852 37.420726 6.117248 0.248008 0.499006 0.984288     94.029851 1841.601261 1875.381871 1.220542 0.884472        79.530917       87.206823   82.914573   95.979899
+PD_20261104_193909__02221_0 validation 555  8       NaN 40.134609 6.335188 0.218546 0.413202 0.973732     92.633517 2065.192659 2099.744404 1.244141 0.846191        82.136280       88.029466   79.443255   94.432548
+PD_20261104_193909__02221_0    outlier 120  8       NaN  2.342769 1.530611 3.374953 6.821330 0.995066     89.610390  118.160004  140.459938 1.221159 0.972006        84.415584       85.714286   91.666667  100.000000
+
+experiment                                   mapping       kind  n        MSE      RMSE     NRMSE    RMSE_w         R2  within_2fold     GMFE      AFE  within_1.25fold  within_1.5fold  within_1sd  within_2sd
+   Cui2013                  fm_antiXa_activity_API10   training  8   0.635377  0.797105  0.388098  0.946792   0.642542     75.000000 1.984741 0.503844         0.000000       37.500000   33.333333  100.000000
+   Cui2013                 fm_antiXa_activity_API10M validation 10   3.311060  1.819632  0.607820  1.534772   0.259972     30.000000 3.385698 0.295360         0.000000        0.000000    0.000000   62.500000
+ Frost2013                               fm_inr_D0_5   training  8   0.001298  0.036033  0.033031  0.040455  -0.133581    100.000000 1.026176 0.995449       100.000000      100.000000         NaN         NaN
+ Frost2013                              fm_aPTT_D0_5   training  7   2.844586  1.686590  0.052784  0.069110  -2.579676    100.000000 1.045909 0.956106       100.000000      100.000000         NaN         NaN
+ Frost2013                               fm_mPT_D0_5   training  8  53.821630  7.336323  0.169601  0.207719  -0.271893    100.000000 1.134830 0.949823        75.000000      100.000000         NaN         NaN
+ Frost2013                                 fm_inr_D1   training  8   0.003512  0.059261  0.051186  0.062690  -1.399334    100.000000 1.041350 0.960510       100.000000      100.000000         NaN         NaN
+ Frost2013                                fm_aPTT_D1   training  7   0.176910  0.420607  0.013001  0.017023   0.300153    100.000000 1.010429 1.007410       100.000000      100.000000         NaN         NaN
+ Frost2013                                 fm_mPT_D1   training  8  18.391138  4.288489  0.094193  0.115362   0.056214    100.000000 1.080428 1.054266       100.000000      100.000000         NaN         NaN
+ Frost2013                               fm_inr_D2_5   training  8   0.000357  0.018883  0.016710  0.020466   0.573121    100.000000 1.012793 0.997862       100.000000      100.000000         NaN         NaN
+ Frost2013                              fm_aPTT_D2_5   training  7   0.208523  0.456644  0.014593  0.019106   0.570022    100.000000 1.012656 0.996443       100.000000      100.000000         NaN         NaN
+ Frost2013                               fm_mPT_D2_5   training  8  36.520607  6.043228  0.125326  0.153493  -0.150805    100.000000 1.098685 1.088048       100.000000      100.000000         NaN         NaN
+ Frost2013                                 fm_inr_D5   training  8   0.000703  0.026505  0.023584  0.028884   0.224025    100.000000 1.019371 0.995762       100.000000      100.000000         NaN         NaN
+ Frost2013                                fm_aPTT_D5   training  7   0.206931  0.454897  0.014055  0.018402   0.732695    100.000000 1.010621 1.003625       100.000000      100.000000         NaN         NaN
+ Frost2013                                 fm_mPT_D5   training  8  12.996435  3.605057  0.064571  0.079083   0.769339    100.000000 1.045284 1.021140       100.000000      100.000000         NaN         NaN
+ Frost2013                                fm_inr_D10   training  8   0.000750  0.027385  0.022750  0.027863   0.861050    100.000000 1.016150 1.014335       100.000000      100.000000         NaN         NaN
+ Frost2013                               fm_aPTT_D10   training  7   0.794246  0.891205  0.028852  0.037776   0.462885    100.000000 1.020068 1.005885       100.000000      100.000000         NaN         NaN
+ Frost2013                                fm_mPT_D10   training  8 194.799680 13.957066  0.203704  0.249486   0.558766    100.000000 1.149931 1.144652        75.000000       87.500000         NaN         NaN
+ Frost2013                                fm_inr_D25   training  8   0.003423  0.058510  0.049076  0.060105   0.818065    100.000000 1.041707 0.960916       100.000000      100.000000         NaN         NaN
+ Frost2013                               fm_aPTT_D25   training  7   1.432726  1.196965  0.034570  0.045263   0.752733    100.000000 1.030251 0.973696       100.000000      100.000000         NaN         NaN
+ Frost2013                                fm_mPT_D25   training  8 136.169587 11.669173  0.186591  0.228526   0.521248    100.000000 1.143644 1.058171       100.000000      100.000000         NaN         NaN
+ Frost2013                                fm_inr_D50   training  8   0.001383  0.037183  0.027632  0.036554   0.966846    100.000000 1.018785 0.996786       100.000000      100.000000         NaN         NaN
+ Frost2013                               fm_aPTT_D50   training  7  13.947559  3.734643  0.114857  0.162432  -2.591456    100.000000 1.108473 1.108473       100.000000      100.000000         NaN         NaN
+ Frost2013                                fm_mPT_D50   training  8  83.435305  9.134293  0.102321  0.135358   0.929733    100.000000 1.072079 1.011988       100.000000      100.000000         NaN         NaN
+Frost2013a                             fm_API2x2_INR validation 18   0.008082  0.089901  0.075688  0.108054   0.028264    100.000000 1.040573 0.973438        94.444444      100.000000   75.000000   91.666667
+Frost2013a                            fm_API2x2_aPTT validation 18   1.656091  1.286892  0.041589  0.115748   0.284086    100.000000 1.027172 1.000226       100.000000      100.000000   93.750000   93.750000
+Frost2013a                             fm_API2x2_mPT validation 12  39.164066  6.258120  0.119861  0.266339  -0.008914    100.000000 1.087683 1.052148        83.333333      100.000000   60.000000   80.000000
+Frost2013a                             fm_API5x2_INR validation 18   0.001543  0.039285  0.033753  0.065704   0.220296    100.000000 1.028465 1.021332       100.000000      100.000000  100.000000  100.000000
+Frost2013a                            fm_API5x2_aPTT validation 18   1.640761  1.280922  0.040101  0.144490  -0.853327    100.000000 1.034513 1.033135       100.000000      100.000000   58.823529   64.705882
+Frost2013a                             fm_API5x2_mPT validation 12 108.103901 10.397303  0.165360  0.335704  -0.061182    100.000000 1.136413 1.103671        83.333333      100.000000   41.666667   75.000000
+Frost2013a                              fm_API10_INR validation 18   0.002845  0.053334  0.043804  0.089755   0.407888    100.000000 1.039937 0.972012       100.000000      100.000000   94.117647  100.000000
+Frost2013a                             fm_API10_aPTT validation 18   0.503663  0.709692  0.021760  0.043247   0.677043    100.000000 1.017721 0.993544       100.000000      100.000000  100.000000  100.000000
+Frost2013a                              fm_API10_mPT validation 10  73.250383  8.558644  0.126124  0.262950   0.735380    100.000000 1.122833 0.891981        90.000000      100.000000   70.000000  100.000000
+Frost2013a                            fm_API10x2_INR validation 18   0.040145  0.200362  0.149648  0.264074  -0.329848    100.000000 1.122338 0.890997        88.888889      100.000000   62.500000   81.250000
+Frost2013a                           fm_API10x2_aPTT validation 18   6.017862  2.453133  0.075395  0.104678   0.174997    100.000000 1.045699 0.962532       100.000000      100.000000   94.444444  100.000000
+Frost2013a                            fm_API10x2_mPT validation 12 101.258006 10.062704  0.129883  0.217948   0.623622    100.000000 1.106982 1.041803        91.666667      100.000000   75.000000  100.000000
+Frost2013a                              fm_API25_INR validation 18   0.003692  0.060764  0.046091  0.119522   0.789849    100.000000 1.034805 0.975095       100.000000      100.000000   60.000000   93.333333
+Frost2013a                             fm_API25_aPTT validation 18   1.187375  1.089668  0.030499  0.055151   0.721658    100.000000 1.025497 1.001436       100.000000      100.000000  100.000000  100.000000
+Frost2013a                              fm_API25_mPT validation 10 272.066587 16.494441  0.205805  0.453811   0.600730    100.000000 1.138434 1.114260        70.000000      100.000000   40.000000   70.000000
+Frost2013a                            fm_API25x2_INR validation 18   0.015153  0.123096  0.084216  0.131097   0.593674    100.000000 1.065744 0.996655       100.000000      100.000000   87.500000  100.000000
+Frost2013a                           fm_API25x2_aPTT validation 18   4.750340  2.179528  0.064432  0.105981   0.233308    100.000000 1.044512 1.009453       100.000000      100.000000   88.888889  100.000000
+Frost2013a                            fm_API25x2_mPT validation 12 179.495332 13.397587  0.126101  0.209181   0.782354    100.000000 1.095085 1.046693        91.666667      100.000000   72.727273  100.000000
+Frost2013a                            fm_placebo_INR    outlier 18   0.003428  0.058547  0.051332  0.122360  -2.931327    100.000000 1.046032 0.955994       100.000000      100.000000   77.777778  100.000000
+Frost2013a                           fm_placebo_aPTT    outlier 18   0.505533  0.711009  0.023513  0.048109  -0.214644    100.000000 1.016664 0.990339       100.000000      100.000000  100.000000  100.000000
+Frost2013a                            fm_placebo_mPT    outlier 12  10.049333  3.170068  0.062362  0.121643  -0.691250    100.000000 1.050210 1.041058       100.000000      100.000000  100.000000  100.000000
+ Frost2014                   fm_mAPI_antiXa_activity validation 21   0.041595  0.203949  0.352504  0.407037   0.425277     76.190476 1.624320 0.616350        33.333333       57.142857         NaN         NaN
+Frost2014a                            fm_inr_healthy   training  2   0.000518  0.022770  0.022656  0.287029   0.877289    100.000000 1.014936 1.014936       100.000000      100.000000  100.000000  100.000000
+Frost2014a        fm_Anti_factor_Xa_activity_healthy   training  1   0.592681  0.769857  0.285132  2.566192        NaN    100.000000 1.398860 0.714868         0.000000      100.000000    0.000000  100.000000
+ Frost2015                              fm_INR_young   training 16   0.001526  0.039063  0.031707  0.153417   0.896838    100.000000 1.025731 1.022960       100.000000      100.000000  100.000000  100.000000
+ Frost2015                              fm_mPT_young   training 16  59.282927  7.699541  0.089260  0.332973   0.920219    100.000000 1.060625 1.003305       100.000000      100.000000  100.000000  100.000000
+ Frost2015                  fm_antiXa_activity_young   training 16   0.132740  0.364334  0.265460  1.057116   0.889326     73.333333 1.872666 0.594454        40.000000       60.000000   50.000000   85.714286
+ Frost2015            fm_antiXa_activity_gram_young1   training 16 279.357241 16.713983  0.139385  0.377440   0.973465     66.666667 1.885168 0.542913        60.000000       60.000000   86.666667  100.000000
+ Frost2015                            fm_INR_elderly validation 16   0.015779  0.125614  0.097525  0.513294   0.382267    100.000000 1.094081 0.914009       100.000000      100.000000   37.500000  100.000000
+ Frost2015                            fm_mPT_elderly validation 16 114.816399 10.715241  0.105313  0.406243   0.904121    100.000000 1.074546 0.943851       100.000000      100.000000   87.500000  100.000000
+ Frost2015                fm_antiXa_activity_elderly validation 16   0.195023  0.441614  0.280860  1.071439   0.848235     60.000000 2.036683 0.531130        40.000000       53.333333   40.000000   86.666667
+ Frost2015          fm_antiXa_activity_gram_elderly1 validation 16 691.611280 26.298503  0.200753  0.591781   0.930512     66.666667 2.091224 0.488249        33.333333       60.000000   66.666667   93.333333
+ Frost2018                     fm_mPT_API10_japanese   training  5   0.010952  0.104650  0.254251  0.557036   0.921336    100.000000 1.089691 1.069057        75.000000      100.000000         NaN         NaN
+ Frost2018                    fm_mPT_API10_caucasian   training  5   0.027107  0.164641  0.310554  0.680390   0.858225     75.000000 1.563640 0.653760        25.000000       75.000000         NaN         NaN
+ Frost2018                     fm_mPT_API25_japanese   training  5   0.003304  0.057477  0.069587  0.152458   0.994176    100.000000 1.103130 1.051070        75.000000      100.000000         NaN         NaN
+ Frost2018                    fm_mPT_API25_caucasian   training  5   0.005350  0.073147  0.089647  0.196407   0.988562    100.000000 1.166761 0.860594        75.000000       75.000000         NaN         NaN
+ Frost2018                     fm_mPT_API50_japanese   training  5   0.038618  0.196514  0.165437  0.362455   0.955511    100.000000 1.130553 0.884523       100.000000      100.000000         NaN         NaN
+ Frost2018                    fm_mPT_API50_caucasian   training  5   0.048918  0.221173  0.188341  0.412634   0.941276    100.000000 1.214510 0.823378        75.000000      100.000000         NaN         NaN
+ Frost2018                    fm_aPTT_API10_japanese   training  5   0.000130  0.011420  0.206701  0.452859   0.960256    100.000000 1.134098 1.053905       100.000000      100.000000         NaN         NaN
+ Frost2018                   fm_aPTT_API10_caucasian   training  5   0.000943  0.030716  0.407849  0.893552   0.822622    100.000000 1.404951 0.711769         0.000000       66.666667         NaN         NaN
+ Frost2018                    fm_aPTT_API25_japanese   training  5   0.000761  0.027581  0.312011  0.683581   0.802990     75.000000 1.538389 0.899137        50.000000       50.000000         NaN         NaN
+ Frost2018                   fm_aPTT_API25_caucasian   training  5   0.000136  0.011642  0.123351  0.270249   0.970349     75.000000 1.243602 0.822580        75.000000       75.000000         NaN         NaN
+ Frost2018                    fm_aPTT_API50_japanese   training  5   0.000278  0.016663  0.154668  0.338861   0.964812    100.000000 1.246691 1.192742        75.000000       75.000000         NaN         NaN
+ Frost2018                   fm_aPTT_API50_caucasian   training  5   0.001511  0.038875  0.422353  0.925328   0.818786     75.000000 1.623407 1.562614        50.000000       50.000000         NaN         NaN
+ Frost2018                     fm_INR_API10_japanese   training  5   0.002740  0.052345  0.757956  1.660599   0.787537    100.000000 1.253807 0.819845        50.000000       50.000000         NaN         NaN
+ Frost2018                    fm_INR_API10_caucasian   training  5   0.009730  0.098639  0.668950  1.465597   0.469552     50.000000 2.056953 0.657417         0.000000        0.000000         NaN         NaN
+ Frost2018                     fm_INR_API25_japanese   training  5   0.005805  0.076188  0.689501  1.510621   0.613868    100.000000 1.407796 1.407796        33.333333       33.333333         NaN         NaN
+ Frost2018                    fm_INR_API25_caucasian   training  5   0.002795  0.052866  0.277882  0.608808   0.900787     75.000000 1.553035 0.684231        50.000000       75.000000         NaN         NaN
+ Frost2018                     fm_INR_API50_japanese   training  5   0.001642  0.040527  0.170589  0.373741   0.963235    100.000000 1.285604 1.106710        75.000000       75.000000         NaN         NaN
+ Frost2018                    fm_INR_API50_caucasian   training  5   0.006325  0.079531  0.310956  0.681270   0.894376    100.000000 1.401122 0.889387        25.000000       50.000000         NaN         NaN
+ Frost2018                   fm_mPT_placebo_japanese    outlier  5   0.003701  0.060836  1.295454  1.638634  -1.474490           NaN      NaN      NaN              NaN             NaN         NaN         NaN
+ Frost2018                  fm_mPT_placebo_caucasian    outlier  5   0.002639  0.051371  1.568673  1.984231  -0.684588           NaN      NaN      NaN              NaN             NaN         NaN         NaN
+ Frost2018                    fm_mPT_API2p5_japanese    outlier  5   0.001547  0.039329  0.237282  0.519859   0.910709     75.000000 1.697306 0.589462        50.000000       50.000000         NaN         NaN
+ Frost2018                   fm_mPT_API2p5_caucasian    outlier  5   0.002697  0.051930  0.472243  1.034632   0.902838     66.666667 1.791790 1.588138        66.666667       66.666667         NaN         NaN
+ Frost2018                  fm_aPTT_placebo_japanese    outlier  5   0.000267  0.016343  1.183216  1.496663  -2.500000           NaN      NaN      NaN              NaN             NaN         NaN         NaN
+ Frost2018                 fm_aPTT_placebo_caucasian    outlier  5   0.000125  0.011182  2.019908  2.555004  -0.324672           NaN      NaN      NaN              NaN             NaN         NaN         NaN
+ Frost2018                   fm_aPTT_API2p5_japanese    outlier  5   0.000644  0.025386  4.594806 10.066715   0.491245     50.000000 1.802222 1.346624         0.000000       50.000000         NaN         NaN
+ Frost2018                  fm_aPTT_API2p5_caucasian    outlier  5   0.001502  0.038752 13.625969 29.853002   0.286012     50.000000 3.654330 2.328724         0.000000        0.000000         NaN         NaN
+ Frost2018                   fm_INR_placebo_japanese    outlier  5   0.000878  0.029623  1.531972  1.937809  -0.742424           NaN      NaN      NaN              NaN             NaN         NaN         NaN
+ Frost2018                  fm_INR_placebo_caucasian    outlier  5   0.000279  0.016707  7.007910  8.864383  -0.020785           NaN      NaN      NaN              NaN             NaN         NaN         NaN
+ Frost2018                    fm_INR_API2p5_japanese    outlier  5   0.003296  0.057412  1.298942  2.845839   0.318716      0.000000 3.149927 0.317468         0.000000        0.000000         NaN         NaN
+ Frost2018                   fm_INR_API2p5_caucasian    outlier  5   0.000425  0.020614  1.874711  4.107286   0.572276     66.666667 1.942557 1.313371        33.333333       33.333333         NaN         NaN
+ Frost2021          fm_prothrombin_time_group1_IV0_5   training 13   2.381731  1.543286  0.025640  0.062793   0.915115    100.000000 1.021661 0.998287       100.000000      100.000000  100.000000  100.000000
+ Frost2021         fm_prothrombin_time_group2_IV1_25   training 13  30.731599  5.543609  0.072914  0.129273   0.833238    100.000000 1.045835 0.969520       100.000000      100.000000  100.000000  100.000000
+ Frost2021          fm_prothrombin_time_group3_IV2_5   training 13  33.347762  5.774752  0.075518  0.123246   0.933548    100.000000 1.059284 1.033072        92.307692      100.000000  100.000000  100.000000
+ Frost2021         fm_prothrombin_time_group4_IV3_75   training 13  40.082332  6.331061  0.079945  0.094250   0.935768    100.000000 1.066098 0.941050       100.000000      100.000000  100.000000  100.000000
+ Frost2021            fm_prothrombin_time_group5_IV5   training 13  34.982838  5.914629  0.060038  0.128777   0.967781    100.000000 1.058183 0.954778       100.000000      100.000000   92.307692  100.000000
+ Frost2021          fm_antiXa_activity_IU_group5_IV5   training 12   0.571917  0.756252  0.322107  0.629407   0.865061    100.000000 1.277168 0.789293        36.363636       90.909091   36.363636   63.636364
+ Frost2021          fm_antiXa_activity_ng_group5_IV5   training 12 458.165255 21.404795  0.152373  0.235549   0.970455    100.000000 1.133287 1.007763        81.818182       90.909091   90.909091  100.000000
+ Frost2021          fm_prothrombin_time_group_po_PO5   training 12  49.278530  7.019867  0.104366  0.134110   0.702681    100.000000 1.088765 0.997289       100.000000      100.000000  100.000000  100.000000
+ Frost2021        fm_antiXa_activity_IU_group_po_PO5   training 10   0.067083  0.259003  0.347149  0.497291   0.703839     88.888889 1.464691 0.690555        22.222222       55.555556   55.555556   88.888889
+ Frost2021        fm_antiXa_activity_ng_group_po_PO5   training 10 101.768931 10.088059  0.214580  0.278668   0.877649     88.888889 1.286978 0.852477        55.555556       88.888889   77.777778  100.000000
+ Frost2021                                fm_placebo    outlier 12  12.607411  3.550692  0.063163  0.161574  -1.864091    100.000000 1.052969 0.949696       100.000000      100.000000  100.000000  100.000000
+Frost2021a                          fm_po_xa_healthy   training  5   0.216691  0.465500  0.448053  1.231570   0.521898     80.000000 1.699194 0.588514         0.000000       40.000000  100.000000  100.000000
+Frost2021a                         fm_po_inr_healthy   training  8   0.000591  0.024312  0.544926  0.556633   0.761100     66.666667 3.597390 0.296407        50.000000       50.000000  100.000000  100.000000
+Frost2021a                        fm_po_aPTT_healthy   training  8   0.000344  0.018555  0.813026  0.526121   0.776033     60.000000 2.505373 0.486804        40.000000       40.000000  100.000000  100.000000
+Frost2021a                             fm_po_xa_mild validation  5   0.179000  0.423083  0.415799  0.901253   0.469492     80.000000 1.695881 0.589664         0.000000        0.000000   50.000000  100.000000
+Frost2021a                         fm_po_xa_moderate validation  5   0.249727  0.499727  0.458776  1.046060   0.480571    100.000000 1.483300 0.674172        20.000000       40.000000   60.000000  100.000000
+Frost2021a                            fm_po_inr_mild validation  8   0.000890  0.029827  0.557620  0.642776   0.708908     57.142857 3.785615 0.287542        14.285714       28.571429  100.000000  100.000000
+Frost2021a                        fm_po_inr_moderate validation  8   0.001388  0.037251  0.550840  0.646363   0.636651     42.857143 5.646178 0.177111         0.000000       14.285714  100.000000  100.000000
+Frost2021a                           fm_po_aPTT_mild validation  8   0.000201  0.014178  0.445417  0.374085   0.884391     66.666667 2.849709 0.530783        16.666667       50.000000  100.000000  100.000000
+Frost2021a                       fm_po_aPTT_moderate validation  8   0.000598  0.024459  0.852758  0.645749   0.721516     75.000000 3.887251 0.349788         0.000000       50.000000  100.000000  100.000000
+Kreutz2017          fm_PO_api_prothrombin_time_ratio validation 18   0.006613  0.081323  0.076587  0.125066  -3.786326    100.000000 1.055767 1.054463       100.000000      100.000000         NaN         NaN
+Kreutz2017                      fm_PO_api_aPTT_ratio validation 18   0.000266  0.016297  0.015406  0.025157   0.787219    100.000000 1.013644 0.992381       100.000000      100.000000         NaN         NaN
+Kreutz2017 fm_PO_api_Anti_factor_Xa_activity_mean_ug validation  2 157.900984 12.565866  0.304997  1.494173 -10.534038    100.000000 1.405681 0.711399         0.000000       50.000000         NaN         NaN
+  Wang2016                            fm_inr_healthy   training  9   0.005677  0.075343  0.071895  0.249865   0.198158    100.000000 1.045153 0.957499       100.000000      100.000000   77.777778   88.888889
+  Wang2016                             fm_pt_healthy   training  9   0.410638  0.640811  0.051588  0.141318   0.624757    100.000000 1.035857 0.979446       100.000000      100.000000   88.888889  100.000000
+  Wang2016                           fm_aptt_healthy   training  9   5.205015  2.281450  0.062200  0.141720  -0.194958    100.000000 1.044516 0.962804       100.000000      100.000000  100.000000  100.000000
+  Wang2016                             fm_xa_healthy   training  9   0.069264  0.263180  0.483093  0.761356   0.775437     62.500000 3.140902 0.328545        12.500000       25.000000   75.000000  100.000000
+  Wang2016                            fm_inr_esrd_P1 validation 12   0.002059  0.045376  0.039191  0.077697  -0.197107    100.000000 1.034499 0.971829       100.000000      100.000000  100.000000  100.000000
+  Wang2016                             fm_pt_esrd_P1 validation 12   0.788389  0.887913  0.064381  0.127878  -2.264045    100.000000 1.052657 1.021475       100.000000      100.000000  100.000000  100.000000
+  Wang2016                           fm_aptt_esrd_P1 validation 12   3.319685  1.822000  0.049836  0.098073  -1.812632    100.000000 1.039855 1.034824       100.000000      100.000000  100.000000  100.000000
+  Wang2016                             fm_xa_esrd_P1 validation 12   0.009855  0.099275  0.180485  0.223150   0.935658     81.818182 1.776036 0.640197        63.636364       63.636364  100.000000  100.000000
+  Wang2016                            fm_inr_esrd_P2 validation 12   0.002990  0.054680  0.045980  0.103630   0.483904    100.000000 1.038416 0.965962       100.000000      100.000000  100.000000  100.000000
+  Wang2016                             fm_pt_esrd_P2 validation 12   0.162450  0.403051  0.028427  0.062825   0.809763    100.000000 1.022312 1.012007       100.000000      100.000000  100.000000  100.000000
+  Wang2016                           fm_aptt_esrd_P2 validation 12   7.541550  2.746188  0.077875  0.172466  -0.759759    100.000000 1.073934 0.934967       100.000000      100.000000   83.333333  100.000000
+  Wang2016                             fm_xa_esrd_P2 validation 12   0.014083  0.118674  0.176179  0.219793   0.939920     63.636364 1.779165 0.564825        63.636364       63.636364   90.909091  100.000000
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Optimization results: PD_20261104_193909__02221
+--------------------------------------------------------------------------------
+   run  success   duration       cost  COAG__slope_api_INR  COAG__slope_api_PT  COAG__Emax_mPT  COAG__EC50_api_mPT  COAG__Emax_aPTT  COAG__EC50_api_aPTT  COAG__antiXa_slope  COAG__antiXa_gram_slope                                     message                                                  x                                                 x0
+0    0     True  16.179991  62.749852           485.385979          974.831513        6.053687            0.001912         0.359659             0.000721         5429.387162              430016.9296  `ftol` termination condition is satisfied.  [485.385979, 974.831513, 6.053687, 0.001912, 0...  [600.9, 1360.0, 6.053705, 0.001912, 0.359659, ...
+--------------------------------------------------------------------------------
+Optimal parameters:
+	'COAG__slope_api_INR': Q(485.385979198431, '1/(mmol/l)'),  # [10 - 100000.0]
+	'COAG__slope_api_PT': Q(974.8315128122445, '1/(mmol/l)'),  # [10 - 100000.0]
+	'COAG__Emax_mPT': Q(6.053687185201115, 'dimensionless'),  # [0.1 - 10]
+	'COAG__EC50_api_mPT': Q(0.0019121954717388758, 'mmol/l'),  # [1e-05 - 0.01]
+	'COAG__Emax_aPTT': Q(0.3596591874762167, 'dimensionless'),  # [0.05 - 5]
+	'COAG__EC50_api_aPTT': Q(0.0007206499549153126, 'mmol/l'),  # [0.0001 - 0.01]
+	'COAG__antiXa_slope': Q(5429.387162089676, '1/ml/(mmol/l)'),  # [500 - 50000.0]
+	'COAG__antiXa_gram_slope': Q(430016.92959953507, 'ng/ml/(mmol/l)'),  # [200000.0 - 1000000.0]
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Identifiability 'PD_20261104_193909__02221'
+--------------------------------------------------------------------------------
+parameter set: PD_20261104_193909__02221_0
+cost: 62.7499
+cost_min: 62.7499
+alpha: 0.95
+degrees of freedom: 1
+threshold: 64.6706
+reoptimize: True
+duration: 436.4 s
+
+              parameter         value          unit  lower_bound  upper_bound      ci_lower      ci_upper        identifiability  n_points  cost_min  converged
+    COAG__slope_api_INR    485.385979          1/mM     10.00000    100000.00    432.131625    538.532420           identifiable        11 62.749852       True
+     COAG__slope_api_PT    974.831513          1/mM     10.00000    100000.00           NaN   3675.396897 non_identifiable_lower        15 62.749852       True
+         COAG__Emax_mPT      6.053687 dimensionless      0.10000        10.00      2.821386           NaN non_identifiable_upper        12 62.749852       True
+     COAG__EC50_api_mPT      0.001912            mM      0.00001         0.01      0.000633      0.003991           identifiable        19 62.749852       True
+        COAG__Emax_aPTT      0.359659 dimensionless      0.05000         5.00      0.233848      0.726948           identifiable        18 62.749852       True
+    COAG__EC50_api_aPTT      0.000721            mM      0.00010         0.01      0.000328      0.002035           identifiable        17 62.749852       True
+     COAG__antiXa_slope   5429.387162       1/ml/mM    500.00000     50000.00   5023.977806   5833.713630           identifiable         8 62.749852       True
+COAG__antiXa_gram_slope 430016.929600      ng/ml/mM 200000.00000   1000000.00 381044.830255 478785.055813           identifiable        11 62.749852       True
+--------------------------------------------------------------------------------

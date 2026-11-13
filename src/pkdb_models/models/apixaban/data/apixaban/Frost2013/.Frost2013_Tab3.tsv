@@ -1,13 +1,13 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	geomean	median	min	max	sd	se	cv	unit	comments
-Frost2013	fasted	23.0	API_10	INR	apixaban	plasma	coagulation assay	3.0	hr	1.33	NA	NA	NA	NA	0.2	NA	NA	dimensionless	oral tablet
-Frost2013	fasted	23.0	API_10	INR (change)	apixaban	plasma	coagulation assay	3.0	hr	0.23	NA	NA	NA	NA	0.13	NA	NA	dimensionless	oral tablet
-Frost2013	fasted	23.0	API_10	aPTT	apixaban	plasma	coagulation assay	3.0	hr	32.96	NA	NA	NA	NA	3.59	NA	NA	s	oral tablet
-Frost2013	fasted	23.0	API_10	aPTT (change)	apixaban	plasma	coagulation assay	3.0	hr	3.05	NA	NA	NA	NA	2.59	NA	NA	s	oral tablet
-Frost2013	fasted	23.0	API_10	PT	apixaban	plasma	coagulation assay	3.0	hr	14.99	NA	NA	NA	NA	1.24	NA	NA	s	oral tablet
-Frost2013	fasted	23.0	API_10	PT (change)	apixaban	plasma	coagulation assay	3.0	hr	1.39	NA	NA	NA	NA	0.89	NA	NA	s	oral tablet
-Frost2013	fed	22.0	API_10	INR	apixaban	plasma	coagulation assay	3.0	hr	1.28	NA	NA	NA	NA	0.15	NA	NA	dimensionless	oral tablet
-Frost2013	fed	22.0	API_10	INR (change)	apixaban	plasma	coagulation assay	3.0	hr	0.2	NA	NA	NA	NA	0.12	NA	NA	dimensionless	oral tablet
-Frost2013	fed	22.0	API_10	aPTT	apixaban	plasma	coagulation assay	3.0	hr	31.55	NA	NA	NA	NA	3.02	NA	NA	s	oral tablet
-Frost2013	fed	22.0	API_10	aPTT (change)	apixaban	plasma	coagulation assay	3.0	hr	2.9	NA	NA	NA	NA	2.21	NA	NA	s	oral tablet
-Frost2013	fed	22.0	API_10	PT	apixaban	plasma	coagulation assay	3.0	hr	14.66	NA	NA	NA	NA	0.97	NA	NA	s	oral tablet
-Frost2013	fed	22.0	API_10	PT (change)	apixaban	plasma	coagulation assay	3.0	hr	1.3	NA	NA	NA	NA	0.85	NA	NA	s	oral tablet
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Frost2013	fasted	NA	23	API_10	aPTT	sample mean	NA	NA	plasma	coagulation assay	aPTT_plasma_API_10_fasted	3.0	hr	NA	32.96	NA	3.59	0.7485667464648984	0.10891990291262135	NA	NA	NA	NA	NA	sec	NA
+Frost2013	fasted	NA	23	API_10	aPTT (change)	sample mean	NA	NA	plasma	coagulation assay	aPTT_change_plasma_API_10_fasted	3.0	hr	NA	3.05	NA	2.59	0.5400523324078237	0.8491803278688524	NA	NA	NA	NA	NA	sec	change from baseline
+Frost2013	fasted	NA	23	API_10	inr	sample mean	NA	NA	plasma	coagulation assay	inr_plasma_API_10_fasted	3.0	hr	NA	1.33	NA	0.2	0.04170288281141496	0.15037593984962405	NA	NA	NA	NA	NA	dimensionless	NA
+Frost2013	fasted	NA	23	API_10	inr (change)	sample mean	NA	NA	plasma	coagulation assay	inr_change_plasma_API_10_fasted	3.0	hr	NA	0.23	NA	0.13	0.027106873827419723	0.5652173913043478	NA	NA	NA	NA	NA	dimensionless	change from baseline
+Frost2013	fasted	NA	23	API_10	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	prothrombin_time_plasma_API_10_fasted	3.0	hr	NA	14.99	NA	1.24	0.25855787343077274	0.08272181454302868	NA	NA	NA	NA	NA	sec	NA
+Frost2013	fasted	NA	23	API_10	prothrombin time (change)	sample mean	NA	NA	plasma	coagulation assay	prothrombin_time_change_plasma_API_10_fasted	3.0	hr	NA	1.39	NA	0.89	0.18557782851079657	0.6402877697841727	NA	NA	NA	NA	NA	sec	change from baseline
+Frost2013	fed	NA	22	API_10	aPTT	sample mean	NA	NA	plasma	coagulation assay	aPTT_plasma_API_10_fed	3.0	hr	NA	31.55	NA	3.02	0.6438661633939435	0.09572107765451664	NA	NA	NA	NA	NA	sec	NA
+Frost2013	fed	NA	22	API_10	aPTT (change)	sample mean	NA	NA	plasma	coagulation assay	aPTT_change_plasma_API_10_fed	3.0	hr	NA	2.9	NA	2.21	0.471173583145899	0.7620689655172413	NA	NA	NA	NA	NA	sec	change from baseline
+Frost2013	fed	NA	22	API_10	inr	sample mean	NA	NA	plasma	coagulation assay	inr_plasma_API_10_fed	3.0	hr	NA	1.28	NA	0.15	0.03198010745334156	0.1171875	NA	NA	NA	NA	NA	dimensionless	NA
+Frost2013	fed	NA	22	API_10	inr (change)	sample mean	NA	NA	plasma	coagulation assay	inr_change_plasma_API_10_fed	3.0	hr	NA	0.2	NA	0.12	0.02558408596267325	0.6	NA	NA	NA	NA	NA	dimensionless	change from baseline
+Frost2013	fed	NA	22	API_10	prothrombin time	sample mean	NA	NA	plasma	coagulation assay	prothrombin_time_plasma_API_10_fed	3.0	hr	NA	14.66	NA	0.97	0.2068046948649421	0.06616643929058663	NA	NA	NA	NA	NA	sec	NA
+Frost2013	fed	NA	22	API_10	prothrombin time (change)	sample mean	NA	NA	plasma	coagulation assay	prothrombin_time_change_plasma_API_10_fed	3.0	hr	NA	1.3	NA	0.85	0.18122060890226885	0.6538461538461539	NA	NA	NA	NA	NA	sec	change from baseline

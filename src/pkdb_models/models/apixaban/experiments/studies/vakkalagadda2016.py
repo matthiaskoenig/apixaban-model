@@ -49,6 +49,8 @@ class Vakkalagadda2016(ApixabanSimulationExperiment):
     daily on days 5 to 15 (n = 19). The profiles under rifampin are measured
     after 7 or 9 doses of rifampin, the induction is at steady state and is
     simulated with constant factors.
+
+    The subjects are mostly men (3 women of 20) and run on the male build.
     """
 
     arms: ClassVar[dict[str, Vakkalagadda2016Arm]] = {
@@ -67,14 +69,14 @@ class Vakkalagadda2016(ApixabanSimulationExperiment):
             color="black",
         ),
         "API5IV_RIF600": Vakkalagadda2016Arm(
-            intervention="API5IV_after, RIF600",
+            intervention="API5IV_after_RIF600",
             route=Route.IV,
             dose=5,
             rifampin=True,
             color="tab:purple",
         ),
         "API10PO_RIF600": Vakkalagadda2016Arm(
-            intervention="API10PO_after, RIF600",
+            intervention="API10PO_after_RIF600",
             route=Route.PO,
             dose=10,
             rifampin=True,
@@ -89,17 +91,18 @@ class Vakkalagadda2016(ApixabanSimulationExperiment):
     #: and CLR unchanged), PO AUCinf x0.46, Cmax x0.58, F 0.49 -> 0.37. Hepatic
     #: CYP3A4 activity about 2-fold (systemic clearance of midazolam after
     #: rifampin about 2- to 3-fold) and intestinal P-gp about 2- to 3.5-fold
-    #: (duodenal P-gp after rifampin 600 mg, Greiner1999). With the unfitted
-    #: model the factors give IV AUC x0.59 and PO AUC x0.57: the model has no
-    #: first pass extraction which the induction changes (F is constant), so the
-    #: larger effect on the oral dose is not described.
+    #: (duodenal P-gp after rifampin 600 mg, Greiner1999). With the adopted
+    #: fits the factors give IV AUC x0.61, PO AUC x0.57 and Cmax x0.78, F 0.52
+    #: -> 0.49: the induced efflux of the mucosa lowers F little, the model has
+    #: no first pass metabolism of the gut wall, so the larger effect on the
+    #: oral dose is not described.
     rifampin_changes: ClassVar[dict[str, float]] = {
         "LI__f_cyp3a4": 2.0,
-        "GU__f_pgp": 2.0,
+        "GU__f_abcb1": 2.0,
     }
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
         "Aurine_api": "cumulative amount",
     }
 
@@ -114,9 +117,9 @@ class Vakkalagadda2016(ApixabanSimulationExperiment):
             The key of the dataset.
         """
         intervention = self.arms[arm].intervention
-        if sid == "[Cve_api]":
-            return self.to_sid(f"{intervention}_all_apixaban")
-        return self.to_sid(f"{intervention}_cumulative amount_all_apixaban")
+        if sid == "Carm_api":
+            return f"{intervention}_all_apixaban"
+        return f"cumulative_amount_apixaban_urine_{intervention}_all"
 
     def label(self, arm: str) -> str:
         """Text of the legend of an arm.
@@ -134,23 +137,24 @@ class Vakkalagadda2016(ApixabanSimulationExperiment):
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Tab2", "Fig2"]:
-            df = self.load_dataframe(fig_id)
-            if fig_id == "Tab2":
-                # the urinary amounts are derived, the geometric means of the
-                # renal clearance times the AUC0-T of Table 2
-                df = df.rename(
-                    columns={
-                        "mean": "mean_real",
-                        "geomean": "mean",
-                    }
-                )
-            for label, df_label in df.groupby("label"):
-                label = str(label)
-                if fig_id == "Fig2" or "cumulative" in label:
-                    dset = DataSet.from_df(df_label, self.ureg)
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
-                    dsets[self.to_sid(label)] = dset
+        df = self.load_dataframe("Fig2")
+        for key in self.arms:
+            label = self.dataset_key(key, "Carm_api")
+            dset = DataSet.from_df(df[df["label"] == label], self.ureg)
+            dset.unit_conversion("mean", 1 / self.Mr["api"])
+            dsets[label] = dset
+
+        # the urinary amounts are derived, the geometric means of the renal
+        # clearance times the AUC0-T of Table 2; the amount of 0 at the dose is
+        # not part of the series
+        df = self.load_dataframe("Tab2")
+        for key in self.arms:
+            label = self.dataset_key(key, "Aurine_api")
+            dset = DataSet.from_df(
+                df[(df["label"] == label) & df["gmean"].notna()], self.ureg
+            )
+            dset.unit_conversion("gmean", 1 / self.Mr["api"])
+            dsets[label] = dset
 
         return dsets
 
@@ -194,14 +198,15 @@ class Vakkalagadda2016(ApixabanSimulationExperiment):
         mappings: dict[str, FitMapping] = {}
         for key, arm in self.arms.items():
             for sid, name in self.infos_pk.items():
+                tissue = Tissue.PLASMA if sid == "Carm_api" else Tissue.URINE
                 mappings[self.to_sid(f"fm_{key}_{name}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
                         dataset=self.dataset_key(key, sid),
                         xid="time",
-                        yid="mean",
-                        yid_sd="mean_sd" if sid == "[Cve_api]" else None,
+                        yid="mean" if sid == "Carm_api" else "gmean",
+                        yid_sd="mean_sd" if sid == "Carm_api" else None,
                         count="count",
                     ),
                     observable=FitData(
@@ -211,7 +216,7 @@ class Vakkalagadda2016(ApixabanSimulationExperiment):
                         yid=sid,
                     ),
                     metadata=PKPDMappingMetaData(
-                        tissue=Tissue.PLASMA if sid == "[Cve_api]" else Tissue.URINE,
+                        tissue=tissue,
                         route=arm.route,
                         application_form=ApplicationForm.TABLET
                         if arm.route == Route.PO
@@ -245,19 +250,25 @@ class Vakkalagadda2016(ApixabanSimulationExperiment):
             height=self.panel_height,
             width=self.panel_width * 3.6,
             # one legend right of the panels, which share their curves
-            settings={"legend_scope": "row"},
+            settings={"legend_scope": "row", "legend_fontsize": 13},
         )
         plots = fig.create_plots(
             xaxis=Axis(self.label_time, unit=self.unit_time),
             legend=True,
         )
         panels = [
-            ("[Cve_api]", "linear"),
-            ("[Cve_api]", "log"),
+            ("Carm_api", "linear"),
+            ("Carm_api", "log"),
             ("Aurine_api", "linear"),
         ]
         for kp, (sid, scale) in enumerate(panels):
-            plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid], scale=scale)
+            # the data reach 2.5e-3 µM
+            plots[kp].set_yaxis(
+                self.labels[sid],
+                unit=self.units[sid],
+                scale=scale,
+                min=1e-3 if scale == "log" else None,
+            )
             for key, arm in self.arms.items():
                 # simulation
                 plots[kp].add_data(
@@ -272,12 +283,12 @@ class Vakkalagadda2016(ApixabanSimulationExperiment):
                 plots[kp].add_data(
                     dataset=self.dataset_key(key, sid),
                     xid="time",
-                    yid="mean",
-                    yid_sd="mean_sd" if sid == "[Cve_api]" else None,
+                    yid="mean" if sid == "Carm_api" else "gmean",
+                    yid_sd="mean_sd" if sid == "Carm_api" else None,
                     count="count",
                     label=f"exp: {self.label(key)}",
                     color=arm.color,
-                    linestyle="solid" if sid == "[Cve_api]" else "",
+                    linestyle="solid" if sid == "Carm_api" else "",
                 )
 
         return self.figures_by_sid(fig)

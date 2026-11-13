@@ -1,18 +1,18 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	0.0	hr		0.0					ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	0.25	hr		0.89					ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	0.5	hr		4.41	7.48	3.07			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	0.75	hr		11.42	18.43	7.01			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	1.0	hr		18.44	27.63	9.19			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	1.5	hr		25.89	33.34	7.45			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	2.0	hr		31.6	41.67	10.07			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	2.5	hr		32.48	44.31	11.83			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	3.0	hr		27.68	36.44	8.76			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	3.5	hr		23.75	32.51	8.76			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	4.0	hr		19.82	28.14	8.32			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	5.0	hr		16.77	25.97	9.2			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	6.0	hr		11.54	16.79	5.25			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	8.0	hr		7.64	10.27	2.63			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	10.0	hr		6.37	8.56	2.19			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	12.0	hr		5.1	7.29	2.19			ng/ml	ng/ml	dimensionless
-Lenard2025		all	12.0	EDO60	concentration	edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	24.0	hr		1.86					ng/ml	ng/ml	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	0.0	hr		ng/ml	0.0			ng/ml		ng/ml					ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	0.25	hr		ng/ml	0.086			ng/ml		ng/ml					ng/ml		dimensionless		read from the log inset of the figure (the linear panel cannot resolve it); was 0.89
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	0.5	hr		ng/ml	4.41	3.07	0.8862326632060755	ng/ml		ng/ml	0.6961451247165532				ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	0.75	hr		ng/ml	11.42	7.01	2.0236126935096386	ng/ml		ng/ml	0.6138353765323993				ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	1.0	hr		ng/ml	18.44	9.19	2.6529244869263304	ng/ml		ng/ml	0.4983731019522776				ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	1.5	hr		ng/ml	25.89	7.45	2.1506297527313563	ng/ml		ng/ml	0.2877558903051371				ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	2.0	hr		ng/ml	31.6	10.07	2.906958605369766	ng/ml		ng/ml	0.31867088607594934				ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	2.5	hr		ng/ml	32.48	11.83	3.4150268422566366	ng/ml		ng/ml	0.36422413793103453				ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	3.0	hr		ng/ml	27.68	8.76	2.528794179050561	ng/ml		ng/ml	0.31647398843930635				ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	3.5	hr		ng/ml	23.75	8.76	2.528794179050561	ng/ml		ng/ml	0.36884210526315786				ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	4.0	hr		ng/ml	19.82	8.32	2.4017771198288433	ng/ml		ng/ml	0.41977800201816345				ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	5.0	hr		ng/ml	16.77	9.2	2.6558112382722783	ng/ml		ng/ml	0.5485986881335718				ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	6.0	hr		ng/ml	11.54	5.25	1.5155444566227678	ng/ml		ng/ml	0.4549393414211439				ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	8.0	hr		ng/ml	7.64	2.63	0.759215603984358	ng/ml		ng/ml	0.34424083769633507				ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	10.0	hr		ng/ml	6.37	2.19	0.6321985447626403	ng/ml		ng/ml	0.34379905808477235				ng/ml		dimensionless		
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	12.0	hr		ng/ml	4.3	2.19	0.6321985447626403	ng/ml		ng/ml	0.5093023255813953				ng/ml		dimensionless		read from the log inset of the figure (the linear panel cannot resolve it); was 5.1
+Lenard2025	all		12	dimensionless	EDO60	concentration	sample mean		edoxaban-M4	plasma	HPLC MS/MS	M4_EDO60	24.0	hr		ng/ml	0.93			ng/ml		ng/ml					ng/ml		dimensionless		read from the log inset of the figure (the linear panel cannot resolve it); was 1.86

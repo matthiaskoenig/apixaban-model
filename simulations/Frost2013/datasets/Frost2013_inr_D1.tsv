@@ -1,9 +1,9 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2013		D1	6.0	API_1	inr		blood	coagulation assay	inr_D1	0.0	hr		1.09900199600798				oral solution	dimensionless	dimensionless	dimensionless
-Frost2013		D1	6.0	API_1	inr		blood	coagulation assay	inr_D1	0.5	hr		1.13253493013972				oral solution	dimensionless	dimensionless	dimensionless
-Frost2013		D1	6.0	API_1	inr		blood	coagulation assay	inr_D1	1.5	hr		1.17884231536926				oral solution	dimensionless	dimensionless	dimensionless
-Frost2013		D1	6.0	API_1	inr		blood	coagulation assay	inr_D1	3.0	hr		1.14690618762475				oral solution	dimensionless	dimensionless	dimensionless
-Frost2013		D1	6.0	API_1	inr		blood	coagulation assay	inr_D1	6.0	hr		1.19800399201596				oral solution	dimensionless	dimensionless	dimensionless
-Frost2013		D1	6.0	API_1	inr		blood	coagulation assay	inr_D1	12.0	hr		1.2187624750499				oral solution	dimensionless	dimensionless	dimensionless
-Frost2013		D1	6.0	API_1	inr		blood	coagulation assay	inr_D1	24.0	hr		1.1692614770459				oral solution	dimensionless	dimensionless	dimensionless
-Frost2013		D1	6.0	API_1	inr		blood	coagulation assay	inr_D1	48.0	hr		1.11816367265469				oral solution	dimensionless	dimensionless	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2013	D1		6	dimensionless	API_1	inr	sample mean			plasma	coagulation assay	inr_D1	0.0	hr		dimensionless	1.099			dimensionless		dimensionless					dimensionless		dimensionless		
+Frost2013	D1		6	dimensionless	API_1	inr	sample mean			plasma	coagulation assay	inr_D1	0.5	hr		dimensionless	1.133			dimensionless		dimensionless					dimensionless		dimensionless		
+Frost2013	D1		6	dimensionless	API_1	inr	sample mean			plasma	coagulation assay	inr_D1	1.5	hr		dimensionless	1.179			dimensionless		dimensionless					dimensionless		dimensionless		
+Frost2013	D1		6	dimensionless	API_1	inr	sample mean			plasma	coagulation assay	inr_D1	3.0	hr		dimensionless	1.147			dimensionless		dimensionless					dimensionless		dimensionless		
+Frost2013	D1		6	dimensionless	API_1	inr	sample mean			plasma	coagulation assay	inr_D1	6.0	hr		dimensionless	1.198			dimensionless		dimensionless					dimensionless		dimensionless		
+Frost2013	D1		6	dimensionless	API_1	inr	sample mean			plasma	coagulation assay	inr_D1	12.0	hr		dimensionless	1.219			dimensionless		dimensionless					dimensionless		dimensionless		
+Frost2013	D1		6	dimensionless	API_1	inr	sample mean			plasma	coagulation assay	inr_D1	24.0	hr		dimensionless	1.169			dimensionless		dimensionless					dimensionless		dimensionless		
+Frost2013	D1		6	dimensionless	API_1	inr	sample mean			plasma	coagulation assay	inr_D1	48.0	hr		dimensionless	1.118			dimensionless		dimensionless					dimensionless		dimensionless		

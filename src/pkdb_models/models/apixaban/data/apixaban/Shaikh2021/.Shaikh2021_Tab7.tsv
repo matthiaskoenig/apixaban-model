@@ -1,13 +1,13 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	geomean	median	min	max	sd	geosd	se	cv	unit	comments
-Shaikh2021	all	23.0	API5_T	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	171.0	NA	NA	NA	NA	31.6	NA	NA	NA	ng/ml	NA
-Shaikh2021	all	23.0	API5_T	auc_end	apixaban	plasma	HPLC MS/MS	48.0	hr	1576.0	NA	NA	NA	NA	323.0	NA	NA	NA	ng*hr/ml	NA
-Shaikh2021	all	23.0	API5_T	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	1591.0	NA	NA	NA	NA	325.0	NA	NA	NA	ng*hr/ml	NA
-Shaikh2021	all	23.0	API5_T	tmax	apixaban	plasma	HPLC MS/MS	NA	NA	2.72	NA	NA	NA	NA	1.23	NA	NA	NA	hr	NA
-Shaikh2021	all	23.0	API5_T	thalf	apixaban	plasma	HPLC MS/MS	NA	NA	5.3333	NA	NA	NA	NA	0.903	NA	NA	NA	hr	NA
-Shaikh2021	all	23.0	API5_T	kel	apixaban	plasma	HPLC MS/MS	NA	NA	0.133	NA	NA	NA	NA	0.02	NA	NA	NA	1/hr	NA
-Shaikh2021	all	23.0	API5_R	cmax	apixaban	plasma	HPLC MS/MS	NA	NA	156.0	NA	NA	NA	NA	37.8	NA	NA	NA	ng/ml	NA
-Shaikh2021	all	23.0	API5_R	auc_end	apixaban	plasma	HPLC MS/MS	48.0	hr	1493.0	NA	NA	NA	NA	407.0	NA	NA	NA	ng*hr/ml	NA
-Shaikh2021	all	23.0	API5_R	auc_inf	apixaban	plasma	HPLC MS/MS	NA	NA	1510.0	NA	NA	NA	NA	410.0	NA	NA	NA	ng*hr/ml	NA
-Shaikh2021	all	23.0	API5_R	tmax	apixaban	plasma	HPLC MS/MS	NA	NA	3.1	NA	NA	NA	NA	1.22	NA	NA	NA	hr	NA
-Shaikh2021	all	23.0	API5_R	thalf	apixaban	plasma	HPLC MS/MS	NA	NA	5.64	NA	NA	NA	NA	1.15	NA	NA	NA	hr	NA
-Shaikh2021	all	23.0	API5_R	kel	apixaban	plasma	HPLC MS/MS	NA	NA	0.127	NA	NA	NA	NA	0.021	NA	NA	NA	1/hr	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Shaikh2021	all	NA	23	API5_R	auc_end	sample mean	NA	apixaban	plasma	HPLC MS/MS	auc_end_apixaban_plasma_API5_R_all	48.0	hr	NA	1493.0	NA	407.0	84.86536652122943	0.2726054922973878	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Shaikh2021	all	NA	23	API5_R	auc_inf	sample mean	NA	apixaban	plasma	HPLC MS/MS	auc_inf_apixaban_plasma_API5_R_all	NA	NA	NA	1510.0	NA	410.0	85.49090976340067	0.271523178807947	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Shaikh2021	all	NA	23	API5_R	cmax	sample mean	NA	apixaban	plasma	HPLC MS/MS	cmax_apixaban_plasma_API5_R_all	NA	NA	NA	156.0	NA	37.8	7.881844851357426	0.24230769230769228	NA	NA	NA	NA	NA	ng/ml	NA
+Shaikh2021	all	NA	23	API5_R	kel	sample mean	NA	apixaban	plasma	HPLC MS/MS	kel_apixaban_plasma_API5_R_all	NA	NA	NA	0.127	NA	0.021	0.004378802695198571	0.16535433070866143	NA	NA	NA	NA	NA	1/hr	NA
+Shaikh2021	all	NA	23	API5_R	thalf	sample mean	NA	apixaban	plasma	HPLC MS/MS	thalf_apixaban_plasma_API5_R_all	NA	NA	NA	5.64	NA	1.15	0.23979157616563598	0.20390070921985815	NA	NA	NA	NA	NA	hr	NA
+Shaikh2021	all	NA	23	API5_R	tmax	sample mean	NA	apixaban	plasma	HPLC MS/MS	tmax_apixaban_plasma_API5_R_all	NA	NA	NA	3.1	NA	1.22	0.2543875851496312	0.3935483870967742	NA	NA	NA	NA	NA	hr	NA
+Shaikh2021	all	NA	23	API5_T	auc_end	sample mean	NA	apixaban	plasma	HPLC MS/MS	auc_end_apixaban_plasma_API5_T_all	48.0	hr	NA	1576.0	NA	323.0	67.35015574043516	0.2049492385786802	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Shaikh2021	all	NA	23	API5_T	auc_inf	sample mean	NA	apixaban	plasma	HPLC MS/MS	auc_inf_apixaban_plasma_API5_T_all	NA	NA	NA	1591.0	NA	325.0	67.7671845685493	0.2042740414833438	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Shaikh2021	all	NA	23	API5_T	cmax	sample mean	NA	apixaban	plasma	HPLC MS/MS	cmax_apixaban_plasma_API5_T_all	NA	NA	NA	171.0	NA	31.6	6.589055484203564	0.1847953216374269	NA	NA	NA	NA	NA	ng/ml	NA
+Shaikh2021	all	NA	23	API5_T	kel	sample mean	NA	apixaban	plasma	HPLC MS/MS	kel_apixaban_plasma_API5_T_all	NA	NA	NA	0.133	NA	0.02	0.004170288281141496	0.15037593984962405	NA	NA	NA	NA	NA	1/hr	NA
+Shaikh2021	all	NA	23	API5_T	thalf	sample mean	NA	apixaban	plasma	HPLC MS/MS	thalf_apixaban_plasma_API5_T_all	NA	NA	NA	5.3333	NA	0.903	0.18828851589353854	0.1693135582097388	NA	NA	NA	NA	NA	hr	NA
+Shaikh2021	all	NA	23	API5_T	tmax	sample mean	NA	apixaban	plasma	HPLC MS/MS	tmax_apixaban_plasma_API5_T_all	NA	NA	NA	2.72	NA	1.23	0.256472729290202	0.4522058823529411	NA	NA	NA	NA	NA	hr	NA

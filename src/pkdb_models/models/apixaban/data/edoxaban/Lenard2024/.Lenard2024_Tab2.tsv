@@ -1,13 +1,11 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cv	median	min	max	sd	se	unit	comments
-Lenard2024	all	12.0	baseline	aPTT	NA	plasma	coagulation assay	NA	NA	24.9	NA	NA	NA	NA	1.0	NA	sec	NA
-Lenard2024	all	12.0	baseline	inr	NA	plasma	coagulation assay	NA	NA	1.02	NA	NA	NA	NA	0.06	NA	dimensionless	NA
-Lenard2024	all	12.0	EDO60	aPTT	NA	plasma	coagulation assay	NA	NA	33.4	NA	NA	NA	NA	2.85	NA	sec	NA
-Lenard2024	all	12.0	EDO60	inr	NA	plasma	coagulation assay	NA	NA	1.23	NA	NA	NA	NA	0.11	NA	dimensionless	NA
-Lenard2024	all	12.0	EDO60, CLAR	aPTT	NA	plasma	coagulation assay	NA	NA	40.2	NA	NA	NA	NA	3.68	NA	sec	NA
-Lenard2024	all	12.0	EDO60, CLAR	inr	NA	plasma	coagulation assay	NA	NA	1.43	NA	NA	NA	NA	0.17	NA	dimensionless	NA
-Lenard2024	all	12.0	baseline	aPTT	NA	plasma	coagulation assay	NA	NA	24.9	NA	NA	NA	NA	1.0	NA	sec	NA
-Lenard2024	all	12.0	baseline	inr	NA	plasma	coagulation assay	NA	NA	1.02	NA	NA	NA	NA	0.06	NA	dimensionless	NA
-Lenard2024	all	12.0	API25, RIV25, EDO50 	aPTT	NA	plasma	coagulation assay	NA	NA	25.3	NA	NA	NA	NA	1.0	NA	sec	NA
-Lenard2024	all	12.0	API25, RIV25, EDO50 	inr	NA	plasma	coagulation assay	NA	NA	1.04	NA	NA	NA	NA	0.05	NA	dimensionless	NA
-Lenard2024	all	12.0	API25, RIV25, EDO50, CLAR	aPTT	NA	plasma	coagulation assay	NA	NA	25.9	NA	NA	NA	NA	1.2	NA	sec	NA
-Lenard2024	all	12.0	API25, RIV25, EDO50, CLAR	inr	NA	plasma	coagulation assay	NA	NA	1.05	NA	NA	NA	NA	0.06	NA	dimensionless	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Lenard2024	all	NA	12	API25,CLAR,EDO50,RIV25	aPTT	sample mean	NA	NA	plasma	coagulation assay	aPTT_plasma_API25_CLAR_EDO50_RIV25_all	3.0	hr	NA	25.9	NA	1.2	0.34641016151377546	0.04633204633204633	NA	NA	NA	NA	NA	sec	NA
+Lenard2024	all	NA	12	API25,CLAR,EDO50,RIV25	inr	sample mean	NA	NA	plasma	coagulation assay	inr_plasma_API25_CLAR_EDO50_RIV25_all	3.0	hr	NA	1.05	NA	0.06	0.017320508075688773	0.05714285714285714	NA	NA	NA	NA	NA	dimensionless	NA
+Lenard2024	all	NA	12	API25,EDO50,RIV25	aPTT	sample mean	NA	NA	plasma	coagulation assay	aPTT_plasma_API25_EDO50_RIV25_all	3.0	hr	NA	25.3	NA	1.0	0.2886751345948129	0.039525691699604744	NA	NA	NA	NA	NA	sec	NA
+Lenard2024	all	NA	12	API25,EDO50,RIV25	inr	sample mean	NA	NA	plasma	coagulation assay	inr_plasma_API25_EDO50_RIV25_all	3.0	hr	NA	1.04	NA	0.05	0.014433756729740645	0.04807692307692308	NA	NA	NA	NA	NA	dimensionless	NA
+Lenard2024	all	NA	12	baseline	aPTT	sample mean	NA	NA	plasma	coagulation assay	aPTT_plasma_baseline_all	NA	NA	NA	24.9	NA	1.0	0.2886751345948129	0.040160642570281124	NA	NA	NA	NA	NA	sec	NA
+Lenard2024	all	NA	12	baseline	inr	sample mean	NA	NA	plasma	coagulation assay	inr_plasma_baseline_all	NA	NA	NA	1.02	NA	0.06	0.017320508075688773	0.058823529411764705	NA	NA	NA	NA	NA	dimensionless	NA
+Lenard2024	all	NA	12	CLAR,EDO60	aPTT	sample mean	NA	NA	plasma	coagulation assay	aPTT_plasma_CLAR_EDO60_all	3.0	hr	NA	40.2	NA	3.68	1.0623244953089115	0.09154228855721393	NA	NA	NA	NA	NA	sec	NA
+Lenard2024	all	NA	12	CLAR,EDO60	inr	sample mean	NA	NA	plasma	coagulation assay	inr_plasma_CLAR_EDO60_all	3.0	hr	NA	1.43	NA	0.17	0.049074772881118195	0.1188811188811189	NA	NA	NA	NA	NA	dimensionless	NA
+Lenard2024	all	NA	12	EDO60	aPTT	sample mean	NA	NA	plasma	coagulation assay	aPTT_plasma_EDO60_all	3.0	hr	NA	33.4	NA	2.85	0.8227241335952168	0.08532934131736528	NA	NA	NA	NA	NA	sec	NA
+Lenard2024	all	NA	12	EDO60	inr	sample mean	NA	NA	plasma	coagulation assay	inr_plasma_EDO60_all	3.0	hr	NA	1.23	NA	0.11	0.03175426480542942	0.08943089430894309	NA	NA	NA	NA	NA	dimensionless	NA

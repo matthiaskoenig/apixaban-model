@@ -1,0 +1,915 @@
+fit	experiment	mapping	target	kind	measurement	unit	simulated	source	reported	low	high	reported_by	status	ratio
+PK	Abdollahizad2025	fm_apixaban_REF5	BW	covariate	weight	kg	71.9	simulation	71.9	50.0	98.0	group all	equivalent	1.0
+PK	Abdollahizad2025	fm_apixaban_REF5	HEIGHT	covariate	height	cm	172.4	simulation	172.4	150.0	186.0	group all	equivalent	1.0
+PK	Abdollahizad2025	fm_apixaban_REF5	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention REF5	equivalent	1.0
+PK	Bashir2018	fm_apixaban_apixaban_API10_A	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Bashir2018	fm_apixaban_apixaban_API10_A	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Bashir2018	fm_apixaban_apixaban_API10_A	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Bashir2018	fm_apixaban_apixaban_API10_CYC100	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Bashir2018	fm_apixaban_apixaban_API10_CYC100	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Bashir2018	fm_apixaban_apixaban_API10_CYC100	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Bashir2018	fm_apixaban_apixaban_API10_TAC5	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Bashir2018	fm_apixaban_apixaban_API10_TAC5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Bashir2018	fm_apixaban_apixaban_API10_TAC5	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Chang2016	fm_apixaban_normal	BW	covariate	weight	kg	83.3	simulation	83.3	66.2	92.8	group normal	equivalent	1.0
+PK	Chang2016	fm_apixaban_normal	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Chang2016	fm_apixaban_normal	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Chang2016	fm_cumulative_amount_normal	BW	covariate	weight	kg	83.3	simulation	83.3	66.2	92.8	group normal	equivalent	1.0
+PK	Chang2016	fm_cumulative_amount_normal	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Chang2016	fm_cumulative_amount_normal	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Chang2016	fm_apixaban_mild	BW	covariate	weight	kg	79.3	simulation	79.3	60.0	112.4	group mild	equivalent	1.0
+PK	Chang2016	fm_apixaban_mild	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Chang2016	fm_apixaban_mild	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Chang2016	fm_cumulative_amount_mild	BW	covariate	weight	kg	79.3	simulation	79.3	60.0	112.4	group mild	equivalent	1.0
+PK	Chang2016	fm_cumulative_amount_mild	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Chang2016	fm_cumulative_amount_mild	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Chang2016	fm_apixaban_moderate	BW	covariate	weight	kg	74.5	simulation	74.5	58.9	103.7	group moderate	equivalent	1.0
+PK	Chang2016	fm_apixaban_moderate	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Chang2016	fm_apixaban_moderate	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Chang2016	fm_cumulative_amount_moderate	BW	covariate	weight	kg	74.5	simulation	74.5	58.9	103.7	group moderate	equivalent	1.0
+PK	Chang2016	fm_cumulative_amount_moderate	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Chang2016	fm_cumulative_amount_moderate	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Chang2016	fm_apixaban_severe	BW	covariate	weight	kg	84.1	simulation	84.1	59.0	132.3	group severe	equivalent	1.0
+PK	Chang2016	fm_apixaban_severe	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Chang2016	fm_apixaban_severe	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Chang2016	fm_cumulative_amount_severe	BW	covariate	weight	kg	84.1	simulation	84.1	59.0	132.3	group severe	equivalent	1.0
+PK	Chang2016	fm_cumulative_amount_severe	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Chang2016	fm_cumulative_amount_severe	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Cui2013	fm_apixaban_API10	BW	covariate	weight	kg	63.1	simulation	63.1	54.0	68.0	group API10	equivalent	1.0
+PK	Cui2013	fm_apixaban_API10	HEIGHT	covariate	height	cm	163.7	simulation	163.7	152.0	169.0	group API10	equivalent	1.0
+PK	Cui2013	fm_apixaban_API10	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Cui2013	fm_apixaban_API10M	BW	covariate	weight	kg	63.1	simulation	63.1	54.0	68.0	group API10	equivalent	1.0
+PK	Cui2013	fm_apixaban_API10M	HEIGHT	covariate	height	cm	163.7	simulation	163.7	152.0	169.0	group API10	equivalent	1.0
+PK	Cui2013	fm_apixaban_API10M	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10M	equivalent	1.0
+PK	Frost2013	fm_apixaban_D0_5	BW	covariate	weight	kg	87.2	simulation	87.2	58.6	115.80000000000001	group D0_5	equivalent	1.0
+PK	Frost2013	fm_apixaban_D0_5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013	fm_apixaban_D0_5	SOLDOSE_api	dose	dosing	mg	0.5	simulation	0.5			intervention API_0_5	equivalent	1.0
+PK	Frost2013	fm_apixaban_D1	BW	covariate	weight	kg	82.2	simulation	82.2	55.2	109.2	group D1	equivalent	1.0
+PK	Frost2013	fm_apixaban_D1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013	fm_apixaban_D1	SOLDOSE_api	dose	dosing	mg	1.0	simulation	1.0			intervention API_1	equivalent	1.0
+PK	Frost2013	fm_apixaban_D2_5	BW	covariate	weight	kg	87.3	simulation	87.3	70.1	104.5	group D2_5	equivalent	1.0
+PK	Frost2013	fm_apixaban_D2_5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013	fm_apixaban_D2_5	SOLDOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API_2_5	equivalent	1.0
+PK	Frost2013	fm_apixaban_D5	BW	covariate	weight	kg	82.4	simulation	82.4	59.60000000000001	105.2	group D5	equivalent	1.0
+PK	Frost2013	fm_apixaban_D5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013	fm_apixaban_D5	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API_5	equivalent	1.0
+PK	Frost2013	fm_apixaban_D10	BW	covariate	weight	kg	73.8	simulation	73.8	50.8	96.8	group D10	equivalent	1.0
+PK	Frost2013	fm_apixaban_D10	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013	fm_apixaban_D10	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API_10	equivalent	1.0
+PK	Frost2013	fm_apixaban_D25	BW	covariate	weight	kg	73.3	simulation	73.3	60.9	85.7	group D25	equivalent	1.0
+PK	Frost2013	fm_apixaban_D25	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013	fm_apixaban_D25	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API_25	equivalent	1.0
+PK	Frost2013	fm_apixaban_D50	BW	covariate	weight	kg	77.0	simulation	77.0	52.6	101.4	group D50	equivalent	1.0
+PK	Frost2013	fm_apixaban_D50	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013	fm_apixaban_D50	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API_50	equivalent	1.0
+PK	Frost2013	fm_apixaban_fasted	BW	covariate	weight	kg	76.6	simulation	76.6	55.8	97.39999999999999	group food effect	equivalent	1.0
+PK	Frost2013	fm_apixaban_fasted	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013	fm_apixaban_fasted	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API_10	equivalent	1.0
+PK	Frost2013	fm_apixaban_fed	BW	covariate	weight	kg	76.6	simulation	76.6	55.8	97.39999999999999	group food effect	equivalent	1.0
+PK	Frost2013	fm_apixaban_fed	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013	fm_apixaban_fed	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API_10	equivalent	1.0
+PK	Frost2013a	fm_apixaban_API2x2	BW	covariate	weight	kg	78.3	simulation	78.3	64.7	104.4	group API2x2	equivalent	1.0
+PK	Frost2013a	fm_apixaban_API2x2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013a	fm_apixaban_API2x2	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2x2	equivalent	1.0
+PK	Frost2013a	fm_apixaban_API5x2	BW	covariate	weight	kg	72.3	simulation	72.3	66.1	93.1	group API5x2	equivalent	1.0
+PK	Frost2013a	fm_apixaban_API5x2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013a	fm_apixaban_API5x2	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5x2	equivalent	1.0
+PK	Frost2013a	fm_apixaban_API10	BW	covariate	weight	kg	79.7	simulation	79.7	69.3	87.8	group API10	equivalent	1.0
+PK	Frost2013a	fm_apixaban_API10	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013a	fm_apixaban_API10	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Frost2013a	fm_apixaban_API10x2	BW	covariate	weight	kg	70.5	simulation	70.5	62.9	87.9	group API10x2	equivalent	1.0
+PK	Frost2013a	fm_apixaban_API10x2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013a	fm_apixaban_API10x2	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10x2	equivalent	1.0
+PK	Frost2013a	fm_apixaban_API25	BW	covariate	weight	kg	82.2	simulation	82.2	65.4	94.2	group API25	equivalent	1.0
+PK	Frost2013a	fm_apixaban_API25	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013a	fm_apixaban_API25	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PK	Frost2013a	fm_apixaban_API25x2	BW	covariate	weight	kg	82.3	simulation	82.3	76.2	91.9	group API25x2	equivalent	1.0
+PK	Frost2013a	fm_apixaban_API25x2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2013a	fm_apixaban_API25x2	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25x2	equivalent	1.0
+PK	Frost2014	fm_apixaban_mAPI	BW	covariate	weight	kg	75.9	simulation	75.9	62.9	94.4	group all	equivalent	1.0
+PK	Frost2014	fm_apixaban_mAPI	HEIGHT	covariate	height	cm	181.0	simulation	181.0	170.0	195.0	group all	equivalent	1.0
+PK	Frost2014	fm_apixaban_mAPI	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention mAPI	equivalent	1.0
+PK	Frost2014a	fm_apixaban_healthy	BW	covariate	weight	kg	83.3	simulation	83.3	57.5	106.9	group all	equivalent	1.0
+PK	Frost2014a	fm_apixaban_healthy	HEIGHT	covariate	height	cm	178.0	simulation	178.0	161.7	189.0	group all	equivalent	1.0
+PK	Frost2014a	fm_apixaban_healthy	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Frost2015	fm_apixaban_young_male	BW	covariate	weight	kg	76.8	simulation	76.8	60.0	97.0	group young_male	equivalent	1.0
+PK	Frost2015	fm_apixaban_young_male	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2015	fm_apixaban_young_male	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PK	Frost2015	fm_apixaban_young_female	BW	covariate	weight	kg	65.3	simulation	65.3	53.7	86.0	group young_female	equivalent	1.0
+PK	Frost2015	fm_apixaban_young_female	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Frost2015	fm_apixaban_young_female	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PK	Frost2015	fm_cumulative_amount_young	BW	covariate	weight	kg	71.1	simulation	71.1	53.7	97.0	group young	equivalent	1.0
+PK	Frost2015	fm_cumulative_amount_young	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2015	fm_cumulative_amount_young	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PK	Frost2015	fm_apixaban_elderly_male	BW	covariate	weight	kg	78.9	simulation	78.9	55.0	114.0	group elderly_male	equivalent	1.0
+PK	Frost2015	fm_apixaban_elderly_male	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2015	fm_apixaban_elderly_male	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PK	Frost2015	fm_apixaban_elderly_female	BW	covariate	weight	kg	70.2	simulation	70.2	54.0	89.0	group elderly_female	equivalent	1.0
+PK	Frost2015	fm_apixaban_elderly_female	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Frost2015	fm_apixaban_elderly_female	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PK	Frost2015	fm_cumulative_amount_elderly	BW	covariate	weight	kg	74.8	simulation	74.8	54.0	114.0	group elderly	equivalent	1.0
+PK	Frost2015	fm_cumulative_amount_elderly	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Frost2015	fm_cumulative_amount_elderly	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PK	Frost2015a	fm_apixaban_apixaban_API10_D1_A	BW	covariate	weight	kg	79.0	simulation	79.0	64.0	107.0	group group1	equivalent	1.0
+PK	Frost2015a	fm_apixaban_apixaban_API10_D1_A	HEIGHT	covariate	height	cm	177.76388834631177	simulation					not_reported	
+PK	Frost2015a	fm_apixaban_apixaban_API10_D1_A	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10_D1_A	equivalent	1.0
+PK	Frost2015a	fm_apixaban_apixaban_API10_D1_B	BW	covariate	weight	kg	78.0	simulation	78.0	53.0	109.0	group group2	equivalent	1.0
+PK	Frost2015a	fm_apixaban_apixaban_API10_D1_B	HEIGHT	covariate	height	cm	173.20508075688772	simulation					not_reported	
+PK	Frost2015a	fm_apixaban_apixaban_API10_D1_B	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10_D1_B	equivalent	1.0
+PK	Frost2015a	fm_apixaban_apixaban_API10_D7_KET400	BW	covariate	weight	kg	79.0	simulation	79.0	64.0	107.0	group group1	equivalent	1.0
+PK	Frost2015a	fm_apixaban_apixaban_API10_D7_KET400	HEIGHT	covariate	height	cm	177.76388834631177	simulation					not_reported	
+PK	Frost2015a	fm_apixaban_apixaban_API10_D7_KET400	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10_D7	equivalent	1.0
+PK	Frost2015a	fm_apixaban_apixaban_API10_D11_DIL360	BW	covariate	weight	kg	78.0	simulation	78.0	53.0	109.0	group group2	equivalent	1.0
+PK	Frost2015a	fm_apixaban_apixaban_API10_D11_DIL360	HEIGHT	covariate	height	cm	173.20508075688772	simulation					not_reported	
+PK	Frost2015a	fm_apixaban_apixaban_API10_D11_DIL360	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10_D11	equivalent	1.0
+PK	Frost2015b	fm_api_apixaban_PO10	BW	covariate	weight	kg	76.6	simulation	76.6	57.199999999999996	96.0	group all	equivalent	1.0
+PK	Frost2015b	fm_api_apixaban_PO10	HEIGHT	covariate	height	cm	171.9746771338431	simulation					not_reported	
+PK	Frost2015b	fm_api_apixaban_PO10	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention PO10	equivalent	1.0
+PK	Frost2015b	fm_api_apixaban_M1_PO10	BW	covariate	weight	kg	76.6	simulation	76.6	57.199999999999996	96.0	group all	equivalent	1.0
+PK	Frost2015b	fm_api_apixaban_M1_PO10	HEIGHT	covariate	height	cm	171.9746771338431	simulation					not_reported	
+PK	Frost2015b	fm_api_apixaban_M1_PO10	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention PO10	equivalent	1.0
+PK	Frost2015b	fm_api_apixaban_PO50	BW	covariate	weight	kg	76.6	simulation	76.6	57.199999999999996	96.0	group all	equivalent	1.0
+PK	Frost2015b	fm_api_apixaban_PO50	HEIGHT	covariate	height	cm	171.9746771338431	simulation					not_reported	
+PK	Frost2015b	fm_api_apixaban_PO50	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention PO50	equivalent	1.0
+PK	Frost2015b	fm_api_apixaban_M1_PO50	BW	covariate	weight	kg	76.6	simulation	76.6	57.199999999999996	96.0	group all	equivalent	1.0
+PK	Frost2015b	fm_api_apixaban_M1_PO50	HEIGHT	covariate	height	cm	171.9746771338431	simulation					not_reported	
+PK	Frost2015b	fm_api_apixaban_M1_PO50	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention PO50	equivalent	1.0
+PK	Frost2017	fm_apixaban_API10	BW	covariate	weight	kg	80.9	simulation	80.9	58.3	97.1	group api_aten	equivalent	1.0
+PK	Frost2017	fm_apixaban_API10	HEIGHT	covariate	height	cm	175.05410419050278	simulation					not_reported	
+PK	Frost2017	fm_apixaban_API10	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Frost2017	fm_apixaban_API10_ATEN	BW	covariate	weight	kg	80.9	simulation	80.9	58.3	97.1	group api_aten	equivalent	1.0
+PK	Frost2017	fm_apixaban_API10_ATEN	HEIGHT	covariate	height	cm	175.05410419050278	simulation					not_reported	
+PK	Frost2017	fm_apixaban_API10_ATEN	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Frost2018	fm_api_API2p5_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PK	Frost2018	fm_api_API2p5_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PK	Frost2018	fm_api_API2p5_japanese	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PK	Frost2018	fm_api_API2p5_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PK	Frost2018	fm_api_API2p5_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PK	Frost2018	fm_api_API2p5_caucasian	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PK	Frost2018	fm_api_API10_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PK	Frost2018	fm_api_API10_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PK	Frost2018	fm_api_API10_japanese	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Frost2018	fm_api_API10_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PK	Frost2018	fm_api_API10_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PK	Frost2018	fm_api_API10_caucasian	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Frost2018	fm_api_API25_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PK	Frost2018	fm_api_API25_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PK	Frost2018	fm_api_API25_japanese	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PK	Frost2018	fm_api_API25_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PK	Frost2018	fm_api_API25_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PK	Frost2018	fm_api_API25_caucasian	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PK	Frost2018	fm_api_API50_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PK	Frost2018	fm_api_API50_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PK	Frost2018	fm_api_API50_japanese	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API50	equivalent	1.0
+PK	Frost2018	fm_api_API50_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PK	Frost2018	fm_api_API50_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PK	Frost2018	fm_api_API50_caucasian	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API50	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API2p5_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API2p5_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PK	Frost2018	fm_cumulative_amount_API2p5_japanese	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API2p5_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API2p5_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PK	Frost2018	fm_cumulative_amount_API2p5_caucasian	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API10_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API10_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PK	Frost2018	fm_cumulative_amount_API10_japanese	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API10_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API10_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PK	Frost2018	fm_cumulative_amount_API10_caucasian	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API25_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API25_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PK	Frost2018	fm_cumulative_amount_API25_japanese	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API25_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API25_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PK	Frost2018	fm_cumulative_amount_API25_caucasian	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API50_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API50_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PK	Frost2018	fm_cumulative_amount_API50_japanese	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API50	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API50_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PK	Frost2018	fm_cumulative_amount_API50_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PK	Frost2018	fm_cumulative_amount_API50_caucasian	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API50	equivalent	1.0
+PK	Frost2021	fm_apixaban_group1_IV0_5	BW	covariate	weight	kg	75.8	simulation	75.8	60.0	89.7	group group1	equivalent	1.0
+PK	Frost2021	fm_apixaban_group1_IV0_5	HEIGHT	covariate	height	cm	174.47569191229218	simulation					not_reported	
+PK	Frost2021	fm_apixaban_group1_IV0_5	IVDOSE_api	dose	dosing	mg	0.5	simulation	0.5			intervention IV0_5	equivalent	1.0
+PK	Frost2021	fm_cumulative_amount_group1_IV0_5	BW	covariate	weight	kg	75.8	simulation	75.8	60.0	89.7	group group1	equivalent	1.0
+PK	Frost2021	fm_cumulative_amount_group1_IV0_5	HEIGHT	covariate	height	cm	174.47569191229218	simulation					not_reported	
+PK	Frost2021	fm_cumulative_amount_group1_IV0_5	IVDOSE_api	dose	dosing	mg	0.5	simulation	0.5			intervention IV0_5	equivalent	1.0
+PK	Frost2021	fm_apixaban_group2_IV1_25	BW	covariate	weight	kg	74.8	simulation	74.8	65.3	79.0	group group2	equivalent	1.0
+PK	Frost2021	fm_apixaban_group2_IV1_25	HEIGHT	covariate	height	cm	175.8098145983065	simulation					not_reported	
+PK	Frost2021	fm_apixaban_group2_IV1_25	IVDOSE_api	dose	dosing	mg	1.25	simulation	1.25			intervention IV1_25	equivalent	1.0
+PK	Frost2021	fm_cumulative_amount_group2_IV1_25	BW	covariate	weight	kg	74.8	simulation	74.8	65.3	79.0	group group2	equivalent	1.0
+PK	Frost2021	fm_cumulative_amount_group2_IV1_25	HEIGHT	covariate	height	cm	175.8098145983065	simulation					not_reported	
+PK	Frost2021	fm_cumulative_amount_group2_IV1_25	IVDOSE_api	dose	dosing	mg	1.25	simulation	1.25			intervention IV1_25	equivalent	1.0
+PK	Frost2021	fm_apixaban_group3_IV2_5	BW	covariate	weight	kg	80.6	simulation	80.6	65.7	94.2	group group3	equivalent	1.0
+PK	Frost2021	fm_apixaban_group3_IV2_5	HEIGHT	covariate	height	cm	179.5550054997075	simulation					not_reported	
+PK	Frost2021	fm_apixaban_group3_IV2_5	IVDOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention IV2_5	equivalent	1.0
+PK	Frost2021	fm_cumulative_amount_group3_IV2_5	BW	covariate	weight	kg	80.6	simulation	80.6	65.7	94.2	group group3	equivalent	1.0
+PK	Frost2021	fm_cumulative_amount_group3_IV2_5	HEIGHT	covariate	height	cm	179.5550054997075	simulation					not_reported	
+PK	Frost2021	fm_cumulative_amount_group3_IV2_5	IVDOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention IV2_5	equivalent	1.0
+PK	Frost2021	fm_apixaban_group4_IV3_75	BW	covariate	weight	kg	82.4	simulation	82.4	75.6	89.7	group group4	equivalent	1.0
+PK	Frost2021	fm_apixaban_group4_IV3_75	HEIGHT	covariate	height	cm	175.67419622976445	simulation					not_reported	
+PK	Frost2021	fm_apixaban_group4_IV3_75	IVDOSE_api	dose	dosing	mg	3.75	simulation	3.75			intervention IV3_75	equivalent	1.0
+PK	Frost2021	fm_cumulative_amount_group4_IV3_75	BW	covariate	weight	kg	82.4	simulation	82.4	75.6	89.7	group group4	equivalent	1.0
+PK	Frost2021	fm_cumulative_amount_group4_IV3_75	HEIGHT	covariate	height	cm	175.67419622976445	simulation					not_reported	
+PK	Frost2021	fm_cumulative_amount_group4_IV3_75	IVDOSE_api	dose	dosing	mg	3.75	simulation	3.75			intervention IV3_75	equivalent	1.0
+PK	Frost2021	fm_apixaban_group5_IV5	BW	covariate	weight	kg	83.1	simulation	83.1	68.7	93.1	group group5	equivalent	1.0
+PK	Frost2021	fm_apixaban_group5_IV5	HEIGHT	covariate	height	cm	178.43508752420337	simulation					not_reported	
+PK	Frost2021	fm_apixaban_group5_IV5	IVDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention IV5	equivalent	1.0
+PK	Frost2021	fm_cumulative_amount_group5_IV5	BW	covariate	weight	kg	83.1	simulation	83.1	68.7	93.1	group group5	equivalent	1.0
+PK	Frost2021	fm_cumulative_amount_group5_IV5	HEIGHT	covariate	height	cm	178.43508752420337	simulation					not_reported	
+PK	Frost2021	fm_cumulative_amount_group5_IV5	IVDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention IV5	equivalent	1.0
+PK	Frost2021	fm_apixaban_group_po_PO5	BW	covariate	weight	kg	80.6	simulation	80.6	65.7	94.2	group group3	equivalent	1.0
+PK	Frost2021	fm_apixaban_group_po_PO5	HEIGHT	covariate	height	cm	179.5550054997075	simulation					not_reported	
+PK	Frost2021	fm_apixaban_group_po_PO5	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention PO5	equivalent	1.0
+PK	Frost2021	fm_cumulative_amount_group_po_PO5	BW	covariate	weight	kg	80.6	simulation	80.6	65.7	94.2	group group3	equivalent	1.0
+PK	Frost2021	fm_cumulative_amount_group_po_PO5	HEIGHT	covariate	height	cm	179.5550054997075	simulation					not_reported	
+PK	Frost2021	fm_cumulative_amount_group_po_PO5	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention PO5	equivalent	1.0
+PK	Frost2021a	fm_po_apixaban_healthy_log	BW	covariate	weight	kg	77.6	simulation	77.6	60.0	100.4	group healthy	equivalent	1.0
+PK	Frost2021a	fm_po_apixaban_healthy_log	HEIGHT	covariate	height	cm	168.28894165455935	simulation					not_reported	
+PK	Frost2021a	fm_po_apixaban_healthy_log	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Frost2021a	fm_po_cumulative_amount_healthy	BW	covariate	weight	kg	77.6	simulation					not_reported	
+PK	Frost2021a	fm_po_cumulative_amount_healthy	HEIGHT	covariate	height	cm	168.28894165455935	simulation					not_reported	
+PK	Frost2021a	fm_po_cumulative_amount_healthy	PODOSE_api	dose	dosing	mg	5.0	simulation					not_reported	
+PK	Frost2021a	fm_po_apixaban_mild_log	BW	covariate	weight	kg	86.1	simulation	86.1	56.9	101.8	group mild	equivalent	1.0
+PK	Frost2021a	fm_po_apixaban_mild_log	HEIGHT	covariate	height	cm	172.30686339323165	simulation					not_reported	
+PK	Frost2021a	fm_po_apixaban_mild_log	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Frost2021a	fm_po_apixaban_moderate_log	BW	covariate	weight	kg	83.8	simulation	83.8	58.0	120.5	group moderate	equivalent	1.0
+PK	Frost2021a	fm_po_apixaban_moderate_log	HEIGHT	covariate	height	cm	171.7761399424295	simulation					not_reported	
+PK	Frost2021a	fm_po_apixaban_moderate_log	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Frost2021a	fm_po_cumulative_amount_mild	BW	covariate	weight	kg	86.1	simulation					not_reported	
+PK	Frost2021a	fm_po_cumulative_amount_mild	HEIGHT	covariate	height	cm	172.30686339323165	simulation					not_reported	
+PK	Frost2021a	fm_po_cumulative_amount_mild	PODOSE_api	dose	dosing	mg	5.0	simulation					not_reported	
+PK	Frost2021a	fm_po_cumulative_amount_moderate	BW	covariate	weight	kg	83.8	simulation					not_reported	
+PK	Frost2021a	fm_po_cumulative_amount_moderate	HEIGHT	covariate	height	cm	171.7761399424295	simulation					not_reported	
+PK	Frost2021a	fm_po_cumulative_amount_moderate	PODOSE_api	dose	dosing	mg	5.0	simulation					not_reported	
+PK	Garonzik2019	fm_apixaban_API10	BW	covariate	weight	kg	72.35	simulation	72.35	54.5	96.9	group all	equivalent	1.0
+PK	Garonzik2019	fm_apixaban_API10	HEIGHT	covariate	height	cm	167.65	simulation	167.65	154.3	185.9	group all	equivalent	1.0
+PK	Garonzik2019	fm_apixaban_API10	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention TX_API5_1	equivalent	1.0
+PK	Garonzik2019	fm_apixaban_API10_CLARI500	BW	covariate	weight	kg	72.35	simulation	72.35	54.5	96.9	group all	equivalent	1.0
+PK	Garonzik2019	fm_apixaban_API10_CLARI500	HEIGHT	covariate	height	cm	167.65	simulation	167.65	154.3	185.9	group all	equivalent	1.0
+PK	Garonzik2019	fm_apixaban_API10_CLARI500	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention TX_API5_2	equivalent	1.0
+PK	Jeong2019	fm_apixaban_apixaban_API10	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Jeong2019	fm_apixaban_apixaban_API10	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Jeong2019	fm_apixaban_apixaban_API10	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Jeong2019	fm_apixaban_apixaban_API10_ROS20	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Jeong2019	fm_apixaban_apixaban_API10_ROS20	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Jeong2019	fm_apixaban_apixaban_API10_ROS20	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Jeong2019	fm_apixaban_apixaban_API10_LAP250	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Jeong2019	fm_apixaban_apixaban_API10_LAP250	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Jeong2019	fm_apixaban_apixaban_API10_LAP250	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Kreutz2017	fm_PO_api_apixaban	BW	covariate	weight	kg	81.1	simulation	81.1	60.0	95.1	group all	equivalent	1.0
+PK	Kreutz2017	fm_PO_api_apixaban	HEIGHT	covariate	height	cm	181.0	simulation	181.0	169.0	191.0	group all	equivalent	1.0
+PK	Kreutz2017	fm_PO_api_apixaban	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention api	equivalent	1.0
+PK	Lenard2024	fm_apixaban_API25_RIV25_EDO50	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Lenard2024	fm_apixaban_API25_RIV25_EDO50	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Lenard2024	fm_apixaban_API25_RIV25_EDO50	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Lenard2024	fm_apixaban_API25_RIV25_EDO50_CLAR	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Lenard2024	fm_apixaban_API25_RIV25_EDO50_CLAR	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Lenard2024	fm_apixaban_API25_RIV25_EDO50_CLAR	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_1	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_1	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_1	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_2	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_2	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_2	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_3	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_3	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_3	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_CAR	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_CAR	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_CAR	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_GAB	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_GAB	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_GAB	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_PRE	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_PRE	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Lenard2025	fm_apixaban_API25_RIV25_EDO50_PRE	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Leong2024	fm_apixaban_TEST	BW	covariate	weight	kg	60.7	simulation	60.7	47.0	90.0	group all	equivalent	1.0
+PK	Leong2024	fm_apixaban_TEST	HEIGHT	covariate	height	cm	161.0	simulation	161.0	145.0	174.0	group all	equivalent	1.0
+PK	Leong2024	fm_apixaban_TEST	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention TEST	equivalent	1.0
+PK	Leong2024	fm_apixaban_REF	BW	covariate	weight	kg	60.7	simulation	60.7	47.0	90.0	group all	equivalent	1.0
+PK	Leong2024	fm_apixaban_REF	HEIGHT	covariate	height	cm	161.0	simulation	161.0	145.0	174.0	group all	equivalent	1.0
+PK	Leong2024	fm_apixaban_REF	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention REF	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS001	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS001	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS001	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS002	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS002	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS002	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS003	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS003	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS003	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS004	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS004	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS004	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS005	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS005	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS005	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS006	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS006	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS006	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS007	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS007	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS007	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS008	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS008	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS008	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS009	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS009	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS009	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS010	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS010	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS010	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS011	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS011	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS011	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS012	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS012	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS012	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS013	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS013	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS013	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS014	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS014	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS014	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS015	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS015	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS015	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS016	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS016	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS016	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS017	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS017	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS017	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS018	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS018	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS018	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS019	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS019	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS019	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Metze2021	fm_apixaban_API5_IS020	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS020	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Metze2021	fm_apixaban_API5_IS020	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Mikus2019	fm_apixaban_API25_RIV25_EDO50	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Mikus2019	fm_apixaban_API25_RIV25_EDO50	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Mikus2019	fm_apixaban_API25_RIV25_EDO50	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Mikus2019	fm_apixaban_urine_API25_RIV25_EDO50	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Mikus2019	fm_apixaban_urine_API25_RIV25_EDO50	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Mikus2019	fm_apixaban_urine_API25_RIV25_EDO50	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Mikus2019	fm_apixaban_API25_RIV25_EDO50_KET	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Mikus2019	fm_apixaban_API25_RIV25_EDO50_KET	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Mikus2019	fm_apixaban_API25_RIV25_EDO50_KET	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Mikus2019	fm_apixaban_urine_API25_RIV25_EDO50_KET	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Mikus2019	fm_apixaban_urine_API25_RIV25_EDO50_KET	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Mikus2019	fm_apixaban_urine_API25_RIV25_EDO50_KET	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Raghavan2009	fm_apixaban_group1	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban_group1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban_group1	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_apixaban2_group1	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban2_group1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban2_group1	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_m1_group1	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_m1_group1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_m1_group1	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_apixaban_urine_group1	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban_urine_group1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban_urine_group1	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_m1_urine_group1	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_m1_urine_group1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_m1_urine_group1	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_m7_urine_group1	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_m7_urine_group1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_m7_urine_group1	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_apixaban_feces_group1	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban_feces_group1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban_feces_group1	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_m1_feces_group1	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_m1_feces_group1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_m1_feces_group1	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_m2_m10_m13_feces_group1	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_m2_m10_m13_feces_group1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_m2_m10_m13_feces_group1	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_m7_feces_group1	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_m7_feces_group1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_m7_feces_group1	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_apixaban_group2	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban_group2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban_group2	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_apixaban2_group2	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban2_group2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban2_group2	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_m1_group2	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_m1_group2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_m1_group2	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_apixaban_urine_group2	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban_urine_group2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban_urine_group2	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_m1_urine_group2	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_m1_urine_group2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_m1_urine_group2	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_m7_urine_group2	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_m7_urine_group2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_m7_urine_group2	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_apixaban_feces_group2	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban_feces_group2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_apixaban_feces_group2	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_m1_feces_group2	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_m1_feces_group2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_m1_feces_group2	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_m2_m10_m13_feces_group2	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_m2_m10_m13_feces_group2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_m2_m10_m13_feces_group2	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Raghavan2009	fm_m7_feces_group2	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Raghavan2009	fm_m7_feces_group2	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Raghavan2009	fm_m7_feces_group2	SOLDOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Rohr2024	fm_apixaban_API25_RIV25_EDO50	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Rohr2024	fm_apixaban_API25_RIV25_EDO50	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Rohr2024	fm_apixaban_API25_RIV25_EDO50	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Rohr2024	fm_apixaban_urine_API25_RIV25_EDO50	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Rohr2024	fm_apixaban_urine_API25_RIV25_EDO50	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Rohr2024	fm_apixaban_urine_API25_RIV25_EDO50	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Rohr2024	fm_apixaban_API25_RIV25_EDO50_RITx5	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Rohr2024	fm_apixaban_API25_RIV25_EDO50_RITx5	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Rohr2024	fm_apixaban_API25_RIV25_EDO50_RITx5	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Rohr2024	fm_apixaban_urine_API25_RIV25_EDO50_RITx5	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	Rohr2024	fm_apixaban_urine_API25_RIV25_EDO50_RITx5	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	Rohr2024	fm_apixaban_urine_API25_RIV25_EDO50_RITx5	SOLDOSE_api	dose	dosing	mg	0.025	simulation	0.025			intervention API25	equivalent	1.0
+PK	Shaikh2021	fm_apixaban_API5_R	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Shaikh2021	fm_apixaban_API5_R	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Shaikh2021	fm_apixaban_API5_R	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5_R	equivalent	1.0
+PK	Shaikh2021	fm_apixaban_API5_T	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	Shaikh2021	fm_apixaban_API5_T	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	Shaikh2021	fm_apixaban_API5_T	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5_T	equivalent	1.0
+PK	Song2015	fm_apixaban_API10_PO_TAB	BW	covariate	weight	kg	78.0	simulation	78.0	54.8	101.7	group study_1	equivalent	1.0
+PK	Song2015	fm_apixaban_API10_PO_TAB	HEIGHT	covariate	height	cm	174.89492643904123	simulation					not_reported	
+PK	Song2015	fm_apixaban_API10_PO_TAB	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10_PO_TAB	equivalent	1.0
+PK	Song2015	fm_apixaban_API10_PO_OS	BW	covariate	weight	kg	78.0	simulation	78.0	54.8	101.7	group study_1	equivalent	1.0
+PK	Song2015	fm_apixaban_API10_PO_OS	HEIGHT	covariate	height	cm	174.89492643904123	simulation					not_reported	
+PK	Song2015	fm_apixaban_API10_PO_OS	SOLDOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10_PO_OS	equivalent	1.0
+PK	Song2015	fm_apixaban_API5_PO_OS	BW	covariate	weight	kg	75.6	simulation	75.6	56.7	93.4	group study_2	equivalent	1.0
+PK	Song2015	fm_apixaban_API5_PO_OS	HEIGHT	covariate	height	cm	172.5218233371044	simulation					not_reported	
+PK	Song2015	fm_apixaban_API5_PO_OS	SOLDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5_PO_OS	equivalent	1.0
+PK	Song2015	fm_apixaban_API5_PO_OS_3	BW	covariate	weight	kg	75.2	simulation	75.2	56.5	98.4	group study_3	equivalent	1.0
+PK	Song2015	fm_apixaban_API5_PO_OS_3	HEIGHT	covariate	height	cm	169.7417465928711	simulation					not_reported	
+PK	Song2015	fm_apixaban_API5_PO_OS_3	SOLDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5_PO_OS_3	equivalent	1.0
+PK	Song2015	fm_apixaban_API5_NGT_D5W	BW	covariate	weight	kg	75.6	simulation	75.6	56.7	93.4	group study_2	equivalent	1.0
+PK	Song2015	fm_apixaban_API5_NGT_D5W	HEIGHT	covariate	height	cm	172.5218233371044	simulation					not_reported	
+PK	Song2015	fm_apixaban_API5_NGT_D5W	SOLDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5_NGT_D5W	equivalent	1.0
+PK	Song2015	fm_apixaban_API5_NGT_IF	BW	covariate	weight	kg	75.6	simulation	75.6	56.7	93.4	group study_2	equivalent	1.0
+PK	Song2015	fm_apixaban_API5_NGT_IF	HEIGHT	covariate	height	cm	172.5218233371044	simulation					not_reported	
+PK	Song2015	fm_apixaban_API5_NGT_IF	SOLDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5_NGT_IF	equivalent	1.0
+PK	Song2015	fm_apixaban_API5_NGT_NS	BW	covariate	weight	kg	75.2	simulation	75.2	56.5	98.4	group study_3	equivalent	1.0
+PK	Song2015	fm_apixaban_API5_NGT_NS	HEIGHT	covariate	height	cm	169.7417465928711	simulation					not_reported	
+PK	Song2015	fm_apixaban_API5_NGT_NS	SOLDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5_NGT_NS	equivalent	1.0
+PK	Song2015	fm_apixaban_API5_NGT_D5W_crushed	BW	covariate	weight	kg	75.2	simulation	75.2	56.5	98.4	group study_3	equivalent	1.0
+PK	Song2015	fm_apixaban_API5_NGT_D5W_crushed	HEIGHT	covariate	height	cm	169.7417465928711	simulation					not_reported	
+PK	Song2015	fm_apixaban_API5_NGT_D5W_crushed	SOLDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5_NGT_D5W_crushed	equivalent	1.0
+PK	Song2016	fm_apixaban_tablet	BW	covariate	weight	kg	77.4	simulation	77.4	59.2	89.7	group crushed	equivalent	1.0
+PK	Song2016	fm_apixaban_tablet	HEIGHT	covariate	height	cm	172.20677226460376	simulation					not_reported	
+PK	Song2016	fm_apixaban_tablet	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10_tablet	equivalent	1.0
+PK	Song2016	fm_apixaban_fasted	BW	covariate	weight	kg	69.2	simulation					not_reported	
+PK	Song2016	fm_apixaban_fasted	HEIGHT	covariate	height	cm	171.23677729478877	simulation					not_reported	
+PK	Song2016	fm_apixaban_fasted	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Song2016	fm_apixaban_water	BW	covariate	weight	kg	77.4	simulation	77.4	59.2	89.7	group crushed	equivalent	1.0
+PK	Song2016	fm_apixaban_water	HEIGHT	covariate	height	cm	172.20677226460376	simulation					not_reported	
+PK	Song2016	fm_apixaban_water	SOLDOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10_suspension	equivalent	1.0
+PK	Song2016	fm_apixaban_applesauce	BW	covariate	weight	kg	77.4	simulation	77.4	59.2	89.7	group crushed	equivalent	1.0
+PK	Song2016	fm_apixaban_applesauce	HEIGHT	covariate	height	cm	172.20677226460376	simulation					not_reported	
+PK	Song2016	fm_apixaban_applesauce	SOLDOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10_syrup	equivalent	1.0
+PK	Song2016	fm_apixaban_fed	BW	covariate	weight	kg	69.2	simulation					not_reported	
+PK	Song2016	fm_apixaban_fed	HEIGHT	covariate	height	cm	171.23677729478877	simulation					not_reported	
+PK	Song2016	fm_apixaban_fed	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Tirona2018	fm_apixaban_control	BW	covariate	weight	kg	65.6	simulation	65.6	44.99999999999999	86.19999999999999	group control	equivalent	1.0
+PK	Tirona2018	fm_apixaban_control	HEIGHT	covariate	height	cm	167.43413043399497	simulation					not_reported	
+PK	Tirona2018	fm_apixaban_control	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PK	Tirona2018	fm_cumulative_amount_control	BW	covariate	weight	kg	65.6	simulation	65.6	44.99999999999999	86.19999999999999	group control	equivalent	1.0
+PK	Tirona2018	fm_cumulative_amount_control	HEIGHT	covariate	height	cm	167.43413043399497	simulation					not_reported	
+PK	Tirona2018	fm_cumulative_amount_control	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PK	Tirona2018	fm_apixaban_nafld	BW	covariate	weight	kg	99.9	simulation	99.9	56.10000000000001	143.7	group nafld	equivalent	1.0
+PK	Tirona2018	fm_apixaban_nafld	HEIGHT	covariate	height	cm	171.41281440188908	simulation					not_reported	
+PK	Tirona2018	fm_apixaban_nafld	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PK	Tirona2018	fm_cumulative_amount_nafld	BW	covariate	weight	kg	99.9	simulation	99.9	56.10000000000001	143.7	group nafld	equivalent	1.0
+PK	Tirona2018	fm_cumulative_amount_nafld	HEIGHT	covariate	height	cm	171.41281440188908	simulation					not_reported	
+PK	Tirona2018	fm_cumulative_amount_nafld	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PK	Upreti2013	fm_apixaban_reference	BW	covariate	weight	kg	75.0	simulation	75.0	67.0	84.0	group reference	equivalent	1.0
+PK	Upreti2013	fm_apixaban_reference	HEIGHT	covariate	height	cm	168.87009879241407	simulation					not_reported	
+PK	Upreti2013	fm_apixaban_reference	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Upreti2013	fm_cumulative_amount_reference	BW	covariate	weight	kg	75.0	simulation	75.0	67.0	84.0	group reference	equivalent	1.0
+PK	Upreti2013	fm_cumulative_amount_reference	HEIGHT	covariate	height	cm	168.87009879241407	simulation					not_reported	
+PK	Upreti2013	fm_cumulative_amount_reference	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Upreti2013	fm_apixaban_low	BW	covariate	weight	kg	47.0	simulation	47.0	38.0	50.0	group low	equivalent	1.0
+PK	Upreti2013	fm_apixaban_low	HEIGHT	covariate	height	cm	158.11388300841898	simulation					not_reported	
+PK	Upreti2013	fm_apixaban_low	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Upreti2013	fm_cumulative_amount_low	BW	covariate	weight	kg	47.0	simulation	47.0	38.0	50.0	group low	equivalent	1.0
+PK	Upreti2013	fm_cumulative_amount_low	HEIGHT	covariate	height	cm	158.11388300841898	simulation					not_reported	
+PK	Upreti2013	fm_cumulative_amount_low	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Upreti2013	fm_apixaban_high	BW	covariate	weight	kg	137.0	simulation	137.0	120.0	175.0	group high	equivalent	1.0
+PK	Upreti2013	fm_apixaban_high	HEIGHT	covariate	height	cm	179.33104698614108	simulation					not_reported	
+PK	Upreti2013	fm_apixaban_high	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Upreti2013	fm_cumulative_amount_high	BW	covariate	weight	kg	137.0	simulation	137.0	120.0	175.0	group high	equivalent	1.0
+PK	Upreti2013	fm_cumulative_amount_high	HEIGHT	covariate	height	cm	179.33104698614108	simulation					not_reported	
+PK	Upreti2013	fm_cumulative_amount_high	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Upreti2013a	fm_apixaban_apixaban_API10	BW	covariate	weight	kg	73.7	simulation	73.7	55.7	91.7	group all	equivalent	1.0
+PK	Upreti2013a	fm_apixaban_apixaban_API10	HEIGHT	covariate	height	cm	172.7	simulation	172.7	152.0	192.0	group all	equivalent	1.0
+PK	Upreti2013a	fm_apixaban_apixaban_API10	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Upreti2013a	fm_apixaban_apixaban_API10_FAMO40	BW	covariate	weight	kg	73.7	simulation	73.7	55.7	91.7	group all	equivalent	1.0
+PK	Upreti2013a	fm_apixaban_apixaban_API10_FAMO40	HEIGHT	covariate	height	cm	172.7	simulation	172.7	152.0	192.0	group all	equivalent	1.0
+PK	Upreti2013a	fm_apixaban_apixaban_API10_FAMO40	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PK	Vakkalagadda2016	fm_API5IV_apixaban	BW	covariate	weight	kg	74.5	simulation	74.5	54.0	89.2	group all	equivalent	1.0
+PK	Vakkalagadda2016	fm_API5IV_apixaban	HEIGHT	covariate	height	cm	174.7363353319678	simulation					not_reported	
+PK	Vakkalagadda2016	fm_API5IV_apixaban	IVDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5IV	equivalent	1.0
+PK	Vakkalagadda2016	fm_API5IV_cumulative_amount	BW	covariate	weight	kg	74.5	simulation	74.5	54.0	89.2	group all	equivalent	1.0
+PK	Vakkalagadda2016	fm_API5IV_cumulative_amount	HEIGHT	covariate	height	cm	174.7363353319678	simulation					not_reported	
+PK	Vakkalagadda2016	fm_API5IV_cumulative_amount	IVDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5IV	equivalent	1.0
+PK	Vakkalagadda2016	fm_API10PO_apixaban	BW	covariate	weight	kg	74.5	simulation	74.5	54.0	89.2	group all	equivalent	1.0
+PK	Vakkalagadda2016	fm_API10PO_apixaban	HEIGHT	covariate	height	cm	174.7363353319678	simulation					not_reported	
+PK	Vakkalagadda2016	fm_API10PO_apixaban	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10PO	equivalent	1.0
+PK	Vakkalagadda2016	fm_API10PO_cumulative_amount	BW	covariate	weight	kg	74.5	simulation	74.5	54.0	89.2	group all	equivalent	1.0
+PK	Vakkalagadda2016	fm_API10PO_cumulative_amount	HEIGHT	covariate	height	cm	174.7363353319678	simulation					not_reported	
+PK	Vakkalagadda2016	fm_API10PO_cumulative_amount	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10PO	equivalent	1.0
+PK	Vakkalagadda2016	fm_API5IV_RIF600_apixaban	BW	covariate	weight	kg	74.5	simulation	74.5	54.0	89.2	group all	equivalent	1.0
+PK	Vakkalagadda2016	fm_API5IV_RIF600_apixaban	HEIGHT	covariate	height	cm	174.7363353319678	simulation					not_reported	
+PK	Vakkalagadda2016	fm_API5IV_RIF600_apixaban	IVDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5IV_after	equivalent	1.0
+PK	Vakkalagadda2016	fm_API5IV_RIF600_cumulative_amount	BW	covariate	weight	kg	74.5	simulation	74.5	54.0	89.2	group all	equivalent	1.0
+PK	Vakkalagadda2016	fm_API5IV_RIF600_cumulative_amount	HEIGHT	covariate	height	cm	174.7363353319678	simulation					not_reported	
+PK	Vakkalagadda2016	fm_API5IV_RIF600_cumulative_amount	IVDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5IV_after	equivalent	1.0
+PK	Vakkalagadda2016	fm_API10PO_RIF600_apixaban	BW	covariate	weight	kg	74.5	simulation	74.5	54.0	89.2	group all	equivalent	1.0
+PK	Vakkalagadda2016	fm_API10PO_RIF600_apixaban	HEIGHT	covariate	height	cm	174.7363353319678	simulation					not_reported	
+PK	Vakkalagadda2016	fm_API10PO_RIF600_apixaban	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10PO_after	equivalent	1.0
+PK	Vakkalagadda2016	fm_API10PO_RIF600_cumulative_amount	BW	covariate	weight	kg	74.5	simulation	74.5	54.0	89.2	group all	equivalent	1.0
+PK	Vakkalagadda2016	fm_API10PO_RIF600_cumulative_amount	HEIGHT	covariate	height	cm	174.7363353319678	simulation					not_reported	
+PK	Vakkalagadda2016	fm_API10PO_RIF600_cumulative_amount	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10PO_after	equivalent	1.0
+PK	VandenBosch2021	fm_api_apixaban_PO2p5	BW	covariate	weight	kg	60.0	model					not_reported	
+PK	VandenBosch2021	fm_api_apixaban_PO2p5	HEIGHT	covariate	height	cm	163.0	model					not_reported	
+PK	VandenBosch2021	fm_api_apixaban_PO2p5	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention PO2.5	equivalent	1.0
+PK	VandenBosch2021	fm_api_apixaban_PO5	BW	covariate	weight	kg	73.0	model					not_reported	
+PK	VandenBosch2021	fm_api_apixaban_PO5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PK	VandenBosch2021	fm_api_apixaban_PO5	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention PO5	equivalent	1.0
+PK	Wang2014	fm_apixaban_api_20	BW	covariate	weight	kg	72.2	simulation	72.2	51.4	111.1	group all	equivalent	1.0
+PK	Wang2014	fm_apixaban_api_20	HEIGHT	covariate	height	cm	169.4	simulation	169.4	147.3	198.5	group all	equivalent	1.0
+PK	Wang2014	fm_apixaban_api_20	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API20	equivalent	1.0
+PK	Wang2016	fm_apixaban_healthy	BW	covariate	weight	kg	87.4	simulation	87.4	66.3	115.0	group healthy	equivalent	1.0
+PK	Wang2016	fm_apixaban_healthy	HEIGHT	covariate	height	cm	171.54477382773698	simulation					not_reported	
+PK	Wang2016	fm_apixaban_healthy	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Wang2016	fm_cumulative_amount_healthy	BW	covariate	weight	kg	87.4	simulation	87.4	66.3	115.0	group healthy	equivalent	1.0
+PK	Wang2016	fm_cumulative_amount_healthy	HEIGHT	covariate	height	cm	171.54477382773698	simulation					not_reported	
+PK	Wang2016	fm_cumulative_amount_healthy	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Wang2016	fm_apixaban_esrd_P1	BW	covariate	weight	kg	92.5	simulation	92.5	62.2	126.0	group esrd	equivalent	1.0
+PK	Wang2016	fm_apixaban_esrd_P1	HEIGHT	covariate	height	cm	176.47884050157725	simulation					not_reported	
+PK	Wang2016	fm_apixaban_esrd_P1	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Wang2016	fm_apixaban_esrd_P2	BW	covariate	weight	kg	90.7	simulation	92.5	62.2	126.0	group esrd	equivalent	0.9805405405405405
+PK	Wang2016	fm_apixaban_esrd_P2	HEIGHT	covariate	height	cm	176.47884050157725	simulation					not_reported	
+PK	Wang2016	fm_apixaban_esrd_P2	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PK	Wang2016	fm_cumulative_amount_esrd_P2	BW	covariate	weight	kg	90.7	simulation	92.5	62.2	126.0	group esrd	equivalent	0.9805405405405405
+PK	Wang2016	fm_cumulative_amount_esrd_P2	HEIGHT	covariate	height	cm	176.47884050157725	simulation					not_reported	
+PK	Wang2016	fm_cumulative_amount_esrd_P2	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Cui2013	fm_antiXa_activity_API10	BW	covariate	weight	kg	63.1	simulation	63.1	54.0	68.0	group API10	equivalent	1.0
+PD	Cui2013	fm_antiXa_activity_API10	HEIGHT	covariate	height	cm	163.7	simulation	163.7	152.0	169.0	group API10	equivalent	1.0
+PD	Cui2013	fm_antiXa_activity_API10	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PD	Cui2013	fm_antiXa_activity_API10M	BW	covariate	weight	kg	63.1	simulation	63.1	54.0	68.0	group API10	equivalent	1.0
+PD	Cui2013	fm_antiXa_activity_API10M	HEIGHT	covariate	height	cm	163.7	simulation	163.7	152.0	169.0	group API10	equivalent	1.0
+PD	Cui2013	fm_antiXa_activity_API10M	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10M	equivalent	1.0
+PD	Frost2013	fm_inr_D0_5	BW	covariate	weight	kg	87.2	simulation	87.2	58.6	115.80000000000001	group D0_5	equivalent	1.0
+PD	Frost2013	fm_inr_D0_5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_inr_D0_5	SOLDOSE_api	dose	dosing	mg	0.5	simulation	0.5			intervention API_0_5	equivalent	1.0
+PD	Frost2013	fm_aPTT_D0_5	BW	covariate	weight	kg	87.2	simulation	87.2	58.6	115.80000000000001	group D0_5	equivalent	1.0
+PD	Frost2013	fm_aPTT_D0_5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_aPTT_D0_5	SOLDOSE_api	dose	dosing	mg	0.5	simulation	0.5			intervention API_0_5	equivalent	1.0
+PD	Frost2013	fm_mPT_D0_5	BW	covariate	weight	kg	87.2	simulation	87.2	58.6	115.80000000000001	group D0_5	equivalent	1.0
+PD	Frost2013	fm_mPT_D0_5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_mPT_D0_5	SOLDOSE_api	dose	dosing	mg	0.5	simulation	0.5			intervention API_0_5	equivalent	1.0
+PD	Frost2013	fm_inr_D1	BW	covariate	weight	kg	82.2	simulation	82.2	55.2	109.2	group D1	equivalent	1.0
+PD	Frost2013	fm_inr_D1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_inr_D1	SOLDOSE_api	dose	dosing	mg	1.0	simulation	1.0			intervention API_1	equivalent	1.0
+PD	Frost2013	fm_aPTT_D1	BW	covariate	weight	kg	82.2	simulation	82.2	55.2	109.2	group D1	equivalent	1.0
+PD	Frost2013	fm_aPTT_D1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_aPTT_D1	SOLDOSE_api	dose	dosing	mg	1.0	simulation	1.0			intervention API_1	equivalent	1.0
+PD	Frost2013	fm_mPT_D1	BW	covariate	weight	kg	82.2	simulation	82.2	55.2	109.2	group D1	equivalent	1.0
+PD	Frost2013	fm_mPT_D1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_mPT_D1	SOLDOSE_api	dose	dosing	mg	1.0	simulation	1.0			intervention API_1	equivalent	1.0
+PD	Frost2013	fm_inr_D2_5	BW	covariate	weight	kg	87.3	simulation	87.3	70.1	104.5	group D2_5	equivalent	1.0
+PD	Frost2013	fm_inr_D2_5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_inr_D2_5	SOLDOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API_2_5	equivalent	1.0
+PD	Frost2013	fm_aPTT_D2_5	BW	covariate	weight	kg	87.3	simulation	87.3	70.1	104.5	group D2_5	equivalent	1.0
+PD	Frost2013	fm_aPTT_D2_5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_aPTT_D2_5	SOLDOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API_2_5	equivalent	1.0
+PD	Frost2013	fm_mPT_D2_5	BW	covariate	weight	kg	87.3	simulation	87.3	70.1	104.5	group D2_5	equivalent	1.0
+PD	Frost2013	fm_mPT_D2_5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_mPT_D2_5	SOLDOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API_2_5	equivalent	1.0
+PD	Frost2013	fm_inr_D5	BW	covariate	weight	kg	82.4	simulation	82.4	59.60000000000001	105.2	group D5	equivalent	1.0
+PD	Frost2013	fm_inr_D5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_inr_D5	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API_5	equivalent	1.0
+PD	Frost2013	fm_aPTT_D5	BW	covariate	weight	kg	82.4	simulation	82.4	59.60000000000001	105.2	group D5	equivalent	1.0
+PD	Frost2013	fm_aPTT_D5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_aPTT_D5	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API_5	equivalent	1.0
+PD	Frost2013	fm_mPT_D5	BW	covariate	weight	kg	82.4	simulation	82.4	59.60000000000001	105.2	group D5	equivalent	1.0
+PD	Frost2013	fm_mPT_D5	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_mPT_D5	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API_5	equivalent	1.0
+PD	Frost2013	fm_inr_D10	BW	covariate	weight	kg	73.8	simulation	73.8	50.8	96.8	group D10	equivalent	1.0
+PD	Frost2013	fm_inr_D10	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_inr_D10	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API_10	equivalent	1.0
+PD	Frost2013	fm_aPTT_D10	BW	covariate	weight	kg	73.8	simulation	73.8	50.8	96.8	group D10	equivalent	1.0
+PD	Frost2013	fm_aPTT_D10	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_aPTT_D10	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API_10	equivalent	1.0
+PD	Frost2013	fm_mPT_D10	BW	covariate	weight	kg	73.8	simulation	73.8	50.8	96.8	group D10	equivalent	1.0
+PD	Frost2013	fm_mPT_D10	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_mPT_D10	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API_10	equivalent	1.0
+PD	Frost2013	fm_inr_D25	BW	covariate	weight	kg	73.3	simulation	73.3	60.9	85.7	group D25	equivalent	1.0
+PD	Frost2013	fm_inr_D25	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_inr_D25	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API_25	equivalent	1.0
+PD	Frost2013	fm_aPTT_D25	BW	covariate	weight	kg	73.3	simulation	73.3	60.9	85.7	group D25	equivalent	1.0
+PD	Frost2013	fm_aPTT_D25	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_aPTT_D25	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API_25	equivalent	1.0
+PD	Frost2013	fm_mPT_D25	BW	covariate	weight	kg	73.3	simulation	73.3	60.9	85.7	group D25	equivalent	1.0
+PD	Frost2013	fm_mPT_D25	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_mPT_D25	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API_25	equivalent	1.0
+PD	Frost2013	fm_inr_D50	BW	covariate	weight	kg	77.0	simulation	77.0	52.6	101.4	group D50	equivalent	1.0
+PD	Frost2013	fm_inr_D50	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_inr_D50	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API_50	equivalent	1.0
+PD	Frost2013	fm_aPTT_D50	BW	covariate	weight	kg	77.0	simulation	77.0	52.6	101.4	group D50	equivalent	1.0
+PD	Frost2013	fm_aPTT_D50	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_aPTT_D50	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API_50	equivalent	1.0
+PD	Frost2013	fm_mPT_D50	BW	covariate	weight	kg	77.0	simulation	77.0	52.6	101.4	group D50	equivalent	1.0
+PD	Frost2013	fm_mPT_D50	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013	fm_mPT_D50	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API_50	equivalent	1.0
+PD	Frost2013a	fm_API2x2_INR	BW	covariate	weight	kg	78.3	simulation	78.3	64.7	104.4	group API2x2	equivalent	1.0
+PD	Frost2013a	fm_API2x2_INR	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API2x2_INR	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2x2	equivalent	1.0
+PD	Frost2013a	fm_API2x2_aPTT	BW	covariate	weight	kg	78.3	simulation	78.3	64.7	104.4	group API2x2	equivalent	1.0
+PD	Frost2013a	fm_API2x2_aPTT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API2x2_aPTT	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2x2	equivalent	1.0
+PD	Frost2013a	fm_API2x2_mPT	BW	covariate	weight	kg	78.3	simulation	78.3	64.7	104.4	group API2x2	equivalent	1.0
+PD	Frost2013a	fm_API2x2_mPT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API2x2_mPT	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2x2	equivalent	1.0
+PD	Frost2013a	fm_API5x2_INR	BW	covariate	weight	kg	72.3	simulation	72.3	66.1	93.1	group API5x2	equivalent	1.0
+PD	Frost2013a	fm_API5x2_INR	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API5x2_INR	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5x2	equivalent	1.0
+PD	Frost2013a	fm_API5x2_aPTT	BW	covariate	weight	kg	72.3	simulation	72.3	66.1	93.1	group API5x2	equivalent	1.0
+PD	Frost2013a	fm_API5x2_aPTT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API5x2_aPTT	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5x2	equivalent	1.0
+PD	Frost2013a	fm_API5x2_mPT	BW	covariate	weight	kg	72.3	simulation	72.3	66.1	93.1	group API5x2	equivalent	1.0
+PD	Frost2013a	fm_API5x2_mPT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API5x2_mPT	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5x2	equivalent	1.0
+PD	Frost2013a	fm_API10_INR	BW	covariate	weight	kg	79.7	simulation	79.7	69.3	87.8	group API10	equivalent	1.0
+PD	Frost2013a	fm_API10_INR	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API10_INR	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PD	Frost2013a	fm_API10_aPTT	BW	covariate	weight	kg	79.7	simulation	79.7	69.3	87.8	group API10	equivalent	1.0
+PD	Frost2013a	fm_API10_aPTT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API10_aPTT	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PD	Frost2013a	fm_API10_mPT	BW	covariate	weight	kg	79.7	simulation	79.7	69.3	87.8	group API10	equivalent	1.0
+PD	Frost2013a	fm_API10_mPT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API10_mPT	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PD	Frost2013a	fm_API10x2_INR	BW	covariate	weight	kg	70.5	simulation	70.5	62.9	87.9	group API10x2	equivalent	1.0
+PD	Frost2013a	fm_API10x2_INR	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API10x2_INR	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10x2	equivalent	1.0
+PD	Frost2013a	fm_API10x2_aPTT	BW	covariate	weight	kg	70.5	simulation	70.5	62.9	87.9	group API10x2	equivalent	1.0
+PD	Frost2013a	fm_API10x2_aPTT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API10x2_aPTT	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10x2	equivalent	1.0
+PD	Frost2013a	fm_API10x2_mPT	BW	covariate	weight	kg	70.5	simulation	70.5	62.9	87.9	group API10x2	equivalent	1.0
+PD	Frost2013a	fm_API10x2_mPT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API10x2_mPT	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10x2	equivalent	1.0
+PD	Frost2013a	fm_API25_INR	BW	covariate	weight	kg	82.2	simulation	82.2	65.4	94.2	group API25	equivalent	1.0
+PD	Frost2013a	fm_API25_INR	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API25_INR	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PD	Frost2013a	fm_API25_aPTT	BW	covariate	weight	kg	82.2	simulation	82.2	65.4	94.2	group API25	equivalent	1.0
+PD	Frost2013a	fm_API25_aPTT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API25_aPTT	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PD	Frost2013a	fm_API25_mPT	BW	covariate	weight	kg	82.2	simulation	82.2	65.4	94.2	group API25	equivalent	1.0
+PD	Frost2013a	fm_API25_mPT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API25_mPT	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PD	Frost2013a	fm_API25x2_INR	BW	covariate	weight	kg	82.3	simulation	82.3	76.2	91.9	group API25x2	equivalent	1.0
+PD	Frost2013a	fm_API25x2_INR	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API25x2_INR	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25x2	equivalent	1.0
+PD	Frost2013a	fm_API25x2_aPTT	BW	covariate	weight	kg	82.3	simulation	82.3	76.2	91.9	group API25x2	equivalent	1.0
+PD	Frost2013a	fm_API25x2_aPTT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API25x2_aPTT	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25x2	equivalent	1.0
+PD	Frost2013a	fm_API25x2_mPT	BW	covariate	weight	kg	82.3	simulation	82.3	76.2	91.9	group API25x2	equivalent	1.0
+PD	Frost2013a	fm_API25x2_mPT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_API25x2_mPT	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25x2	equivalent	1.0
+PD	Frost2013a	fm_placebo_INR	BW	covariate	weight	kg	78.9	simulation	78.9	58.6	98.4	group placebo	equivalent	1.0
+PD	Frost2013a	fm_placebo_INR	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_placebo_aPTT	BW	covariate	weight	kg	78.9	simulation	78.9	58.6	98.4	group placebo	equivalent	1.0
+PD	Frost2013a	fm_placebo_aPTT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2013a	fm_placebo_mPT	BW	covariate	weight	kg	78.9	simulation	78.9	58.6	98.4	group placebo	equivalent	1.0
+PD	Frost2013a	fm_placebo_mPT	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2014	fm_mAPI_antiXa_activity	BW	covariate	weight	kg	75.9	simulation	75.9	62.9	94.4	group all	equivalent	1.0
+PD	Frost2014	fm_mAPI_antiXa_activity	HEIGHT	covariate	height	cm	181.0	simulation	181.0	170.0	195.0	group all	equivalent	1.0
+PD	Frost2014	fm_mAPI_antiXa_activity	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention mAPI	equivalent	1.0
+PD	Frost2014a	fm_inr_healthy	BW	covariate	weight	kg	83.3	simulation	83.3	57.5	106.9	group all	equivalent	1.0
+PD	Frost2014a	fm_inr_healthy	HEIGHT	covariate	height	cm	178.0	simulation	178.0	161.7	189.0	group all	equivalent	1.0
+PD	Frost2014a	fm_inr_healthy	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PD	Frost2014a	fm_Anti_factor_Xa_activity_healthy	BW	covariate	weight	kg	83.3	simulation	83.3	57.5	106.9	group all	equivalent	1.0
+PD	Frost2014a	fm_Anti_factor_Xa_activity_healthy	HEIGHT	covariate	height	cm	178.0	simulation	178.0	161.7	189.0	group all	equivalent	1.0
+PD	Frost2014a	fm_Anti_factor_Xa_activity_healthy	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PD	Frost2015	fm_INR_young	BW	covariate	weight	kg	71.1	simulation	71.1	53.7	97.0	group young	equivalent	1.0
+PD	Frost2015	fm_INR_young	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2015	fm_INR_young	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PD	Frost2015	fm_mPT_young	BW	covariate	weight	kg	71.1	simulation	71.1	53.7	97.0	group young	equivalent	1.0
+PD	Frost2015	fm_mPT_young	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2015	fm_mPT_young	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PD	Frost2015	fm_antiXa_activity_young	BW	covariate	weight	kg	71.1	simulation	71.1	53.7	97.0	group young	equivalent	1.0
+PD	Frost2015	fm_antiXa_activity_young	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2015	fm_antiXa_activity_young	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PD	Frost2015	fm_antiXa_activity_gram_young1	BW	covariate	weight	kg	71.1	simulation	71.1	53.7	97.0	group young	equivalent	1.0
+PD	Frost2015	fm_antiXa_activity_gram_young1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2015	fm_antiXa_activity_gram_young1	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PD	Frost2015	fm_INR_elderly	BW	covariate	weight	kg	74.8	simulation	74.8	54.0	114.0	group elderly	equivalent	1.0
+PD	Frost2015	fm_INR_elderly	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2015	fm_INR_elderly	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PD	Frost2015	fm_mPT_elderly	BW	covariate	weight	kg	74.8	simulation	74.8	54.0	114.0	group elderly	equivalent	1.0
+PD	Frost2015	fm_mPT_elderly	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2015	fm_mPT_elderly	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PD	Frost2015	fm_antiXa_activity_elderly	BW	covariate	weight	kg	74.8	simulation	74.8	54.0	114.0	group elderly	equivalent	1.0
+PD	Frost2015	fm_antiXa_activity_elderly	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2015	fm_antiXa_activity_elderly	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PD	Frost2015	fm_antiXa_activity_gram_elderly1	BW	covariate	weight	kg	74.8	simulation	74.8	54.0	114.0	group elderly	equivalent	1.0
+PD	Frost2015	fm_antiXa_activity_gram_elderly1	HEIGHT	covariate	height	cm	176.0	model					not_reported	
+PD	Frost2015	fm_antiXa_activity_gram_elderly1	PODOSE_api	dose	dosing	mg	20.0	simulation	20.0			intervention API_20	equivalent	1.0
+PD	Frost2018	fm_mPT_API10_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PD	Frost2018	fm_mPT_API10_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_mPT_API10_japanese	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PD	Frost2018	fm_mPT_API10_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PD	Frost2018	fm_mPT_API10_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_mPT_API10_caucasian	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PD	Frost2018	fm_mPT_API25_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PD	Frost2018	fm_mPT_API25_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_mPT_API25_japanese	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PD	Frost2018	fm_mPT_API25_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PD	Frost2018	fm_mPT_API25_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_mPT_API25_caucasian	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PD	Frost2018	fm_mPT_API50_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PD	Frost2018	fm_mPT_API50_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_mPT_API50_japanese	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API50	equivalent	1.0
+PD	Frost2018	fm_mPT_API50_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PD	Frost2018	fm_mPT_API50_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_mPT_API50_caucasian	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API50	equivalent	1.0
+PD	Frost2018	fm_aPTT_API10_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PD	Frost2018	fm_aPTT_API10_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_aPTT_API10_japanese	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PD	Frost2018	fm_aPTT_API10_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PD	Frost2018	fm_aPTT_API10_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_aPTT_API10_caucasian	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PD	Frost2018	fm_aPTT_API25_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PD	Frost2018	fm_aPTT_API25_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_aPTT_API25_japanese	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PD	Frost2018	fm_aPTT_API25_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PD	Frost2018	fm_aPTT_API25_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_aPTT_API25_caucasian	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PD	Frost2018	fm_aPTT_API50_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PD	Frost2018	fm_aPTT_API50_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_aPTT_API50_japanese	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API50	equivalent	1.0
+PD	Frost2018	fm_aPTT_API50_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PD	Frost2018	fm_aPTT_API50_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_aPTT_API50_caucasian	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API50	equivalent	1.0
+PD	Frost2018	fm_INR_API10_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PD	Frost2018	fm_INR_API10_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_INR_API10_japanese	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PD	Frost2018	fm_INR_API10_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PD	Frost2018	fm_INR_API10_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_INR_API10_caucasian	PODOSE_api	dose	dosing	mg	10.0	simulation	10.0			intervention API10	equivalent	1.0
+PD	Frost2018	fm_INR_API25_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PD	Frost2018	fm_INR_API25_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_INR_API25_japanese	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PD	Frost2018	fm_INR_API25_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PD	Frost2018	fm_INR_API25_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_INR_API25_caucasian	PODOSE_api	dose	dosing	mg	25.0	simulation	25.0			intervention API25	equivalent	1.0
+PD	Frost2018	fm_INR_API50_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PD	Frost2018	fm_INR_API50_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_INR_API50_japanese	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API50	equivalent	1.0
+PD	Frost2018	fm_INR_API50_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PD	Frost2018	fm_INR_API50_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_INR_API50_caucasian	PODOSE_api	dose	dosing	mg	50.0	simulation	50.0			intervention API50	equivalent	1.0
+PD	Frost2018	fm_mPT_placebo_japanese	BW	covariate	weight	kg	65.6	simulation	66.0	59.5	75.0	group japanese_placebo	equivalent	0.9939393939393939
+PD	Frost2018	fm_mPT_placebo_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_mPT_placebo_caucasian	BW	covariate	weight	kg	70.1	simulation	68.9	60.0	77.3	group caucasian_placebo	equivalent	1.0174165457184323
+PD	Frost2018	fm_mPT_placebo_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_mPT_API2p5_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PD	Frost2018	fm_mPT_API2p5_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_mPT_API2p5_japanese	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PD	Frost2018	fm_mPT_API2p5_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PD	Frost2018	fm_mPT_API2p5_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_mPT_API2p5_caucasian	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PD	Frost2018	fm_aPTT_placebo_japanese	BW	covariate	weight	kg	65.6	simulation	66.0	59.5	75.0	group japanese_placebo	equivalent	0.9939393939393939
+PD	Frost2018	fm_aPTT_placebo_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_aPTT_placebo_caucasian	BW	covariate	weight	kg	70.1	simulation	68.9	60.0	77.3	group caucasian_placebo	equivalent	1.0174165457184323
+PD	Frost2018	fm_aPTT_placebo_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_aPTT_API2p5_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PD	Frost2018	fm_aPTT_API2p5_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_aPTT_API2p5_japanese	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PD	Frost2018	fm_aPTT_API2p5_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PD	Frost2018	fm_aPTT_API2p5_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_aPTT_API2p5_caucasian	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PD	Frost2018	fm_INR_placebo_japanese	BW	covariate	weight	kg	65.6	simulation	66.0	59.5	75.0	group japanese_placebo	equivalent	0.9939393939393939
+PD	Frost2018	fm_INR_placebo_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_INR_placebo_caucasian	BW	covariate	weight	kg	70.1	simulation	68.9	60.0	77.3	group caucasian_placebo	equivalent	1.0174165457184323
+PD	Frost2018	fm_INR_placebo_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_INR_API2p5_japanese	BW	covariate	weight	kg	65.6	simulation	65.6	54.5	79.1	group japanese	equivalent	1.0
+PD	Frost2018	fm_INR_API2p5_japanese	HEIGHT	covariate	height	cm	172.6794192084911	simulation					not_reported	
+PD	Frost2018	fm_INR_API2p5_japanese	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PD	Frost2018	fm_INR_API2p5_caucasian	BW	covariate	weight	kg	70.1	simulation	70.1	58.5	83.6	group caucasian	equivalent	1.0
+PD	Frost2018	fm_INR_API2p5_caucasian	HEIGHT	covariate	height	cm	178.9109622692006	simulation					not_reported	
+PD	Frost2018	fm_INR_API2p5_caucasian	PODOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention API2.5	equivalent	1.0
+PD	Frost2021	fm_prothrombin_time_group1_IV0_5	BW	covariate	weight	kg	75.8	simulation	75.8	60.0	89.7	group group1	equivalent	1.0
+PD	Frost2021	fm_prothrombin_time_group1_IV0_5	HEIGHT	covariate	height	cm	174.47569191229218	simulation					not_reported	
+PD	Frost2021	fm_prothrombin_time_group1_IV0_5	IVDOSE_api	dose	dosing	mg	0.5	simulation	0.5			intervention IV0_5	equivalent	1.0
+PD	Frost2021	fm_prothrombin_time_group2_IV1_25	BW	covariate	weight	kg	74.8	simulation	74.8	65.3	79.0	group group2	equivalent	1.0
+PD	Frost2021	fm_prothrombin_time_group2_IV1_25	HEIGHT	covariate	height	cm	175.8098145983065	simulation					not_reported	
+PD	Frost2021	fm_prothrombin_time_group2_IV1_25	IVDOSE_api	dose	dosing	mg	1.25	simulation	1.25			intervention IV1_25	equivalent	1.0
+PD	Frost2021	fm_prothrombin_time_group3_IV2_5	BW	covariate	weight	kg	80.6	simulation	80.6	65.7	94.2	group group3	equivalent	1.0
+PD	Frost2021	fm_prothrombin_time_group3_IV2_5	HEIGHT	covariate	height	cm	179.5550054997075	simulation					not_reported	
+PD	Frost2021	fm_prothrombin_time_group3_IV2_5	IVDOSE_api	dose	dosing	mg	2.5	simulation	2.5			intervention IV2_5	equivalent	1.0
+PD	Frost2021	fm_prothrombin_time_group4_IV3_75	BW	covariate	weight	kg	82.4	simulation	82.4	75.6	89.7	group group4	equivalent	1.0
+PD	Frost2021	fm_prothrombin_time_group4_IV3_75	HEIGHT	covariate	height	cm	175.67419622976445	simulation					not_reported	
+PD	Frost2021	fm_prothrombin_time_group4_IV3_75	IVDOSE_api	dose	dosing	mg	3.75	simulation	3.75			intervention IV3_75	equivalent	1.0
+PD	Frost2021	fm_prothrombin_time_group5_IV5	BW	covariate	weight	kg	83.1	simulation	83.1	68.7	93.1	group group5	equivalent	1.0
+PD	Frost2021	fm_prothrombin_time_group5_IV5	HEIGHT	covariate	height	cm	178.43508752420337	simulation					not_reported	
+PD	Frost2021	fm_prothrombin_time_group5_IV5	IVDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention IV5	equivalent	1.0
+PD	Frost2021	fm_antiXa_activity_IU_group5_IV5	BW	covariate	weight	kg	83.1	simulation	83.1	68.7	93.1	group group5	equivalent	1.0
+PD	Frost2021	fm_antiXa_activity_IU_group5_IV5	HEIGHT	covariate	height	cm	178.43508752420337	simulation					not_reported	
+PD	Frost2021	fm_antiXa_activity_IU_group5_IV5	IVDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention IV5	equivalent	1.0
+PD	Frost2021	fm_antiXa_activity_ng_group5_IV5	BW	covariate	weight	kg	83.1	simulation	83.1	68.7	93.1	group group5	equivalent	1.0
+PD	Frost2021	fm_antiXa_activity_ng_group5_IV5	HEIGHT	covariate	height	cm	178.43508752420337	simulation					not_reported	
+PD	Frost2021	fm_antiXa_activity_ng_group5_IV5	IVDOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention IV5	equivalent	1.0
+PD	Frost2021	fm_prothrombin_time_group_po_PO5	BW	covariate	weight	kg	80.6	simulation	80.6	65.7	94.2	group group3	equivalent	1.0
+PD	Frost2021	fm_prothrombin_time_group_po_PO5	HEIGHT	covariate	height	cm	179.5550054997075	simulation					not_reported	
+PD	Frost2021	fm_prothrombin_time_group_po_PO5	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention PO5	equivalent	1.0
+PD	Frost2021	fm_antiXa_activity_IU_group_po_PO5	BW	covariate	weight	kg	80.6	simulation	80.6	65.7	94.2	group group3	equivalent	1.0
+PD	Frost2021	fm_antiXa_activity_IU_group_po_PO5	HEIGHT	covariate	height	cm	179.5550054997075	simulation					not_reported	
+PD	Frost2021	fm_antiXa_activity_IU_group_po_PO5	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention PO5	equivalent	1.0
+PD	Frost2021	fm_antiXa_activity_ng_group_po_PO5	BW	covariate	weight	kg	80.6	simulation	80.6	65.7	94.2	group group3	equivalent	1.0
+PD	Frost2021	fm_antiXa_activity_ng_group_po_PO5	HEIGHT	covariate	height	cm	179.5550054997075	simulation					not_reported	
+PD	Frost2021	fm_antiXa_activity_ng_group_po_PO5	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention PO5	equivalent	1.0
+PD	Frost2021	fm_placebo	BW	covariate	weight	kg	78.7	simulation					not_reported	
+PD	Frost2021	fm_placebo	HEIGHT	covariate	height	cm	177.426040929735	simulation					not_reported	
+PD	Frost2021a	fm_po_xa_healthy	BW	covariate	weight	kg	77.6	simulation	77.6	60.0	100.4	group healthy	equivalent	1.0
+PD	Frost2021a	fm_po_xa_healthy	HEIGHT	covariate	height	cm	168.28894165455935	simulation					not_reported	
+PD	Frost2021a	fm_po_xa_healthy	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Frost2021a	fm_po_inr_healthy	BW	covariate	weight	kg	77.6	simulation	77.6	60.0	100.4	group healthy	equivalent	1.0
+PD	Frost2021a	fm_po_inr_healthy	HEIGHT	covariate	height	cm	168.28894165455935	simulation					not_reported	
+PD	Frost2021a	fm_po_inr_healthy	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Frost2021a	fm_po_aPTT_healthy	BW	covariate	weight	kg	77.6	simulation	77.6	60.0	100.4	group healthy	equivalent	1.0
+PD	Frost2021a	fm_po_aPTT_healthy	HEIGHT	covariate	height	cm	168.28894165455935	simulation					not_reported	
+PD	Frost2021a	fm_po_aPTT_healthy	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Frost2021a	fm_po_xa_mild	BW	covariate	weight	kg	86.1	simulation	86.1	56.9	101.8	group mild	equivalent	1.0
+PD	Frost2021a	fm_po_xa_mild	HEIGHT	covariate	height	cm	172.30686339323165	simulation					not_reported	
+PD	Frost2021a	fm_po_xa_mild	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Frost2021a	fm_po_xa_moderate	BW	covariate	weight	kg	83.8	simulation	83.8	58.0	120.5	group moderate	equivalent	1.0
+PD	Frost2021a	fm_po_xa_moderate	HEIGHT	covariate	height	cm	171.7761399424295	simulation					not_reported	
+PD	Frost2021a	fm_po_xa_moderate	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Frost2021a	fm_po_inr_mild	BW	covariate	weight	kg	86.1	simulation	86.1	56.9	101.8	group mild	equivalent	1.0
+PD	Frost2021a	fm_po_inr_mild	HEIGHT	covariate	height	cm	172.30686339323165	simulation					not_reported	
+PD	Frost2021a	fm_po_inr_mild	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Frost2021a	fm_po_inr_moderate	BW	covariate	weight	kg	83.8	simulation	83.8	58.0	120.5	group moderate	equivalent	1.0
+PD	Frost2021a	fm_po_inr_moderate	HEIGHT	covariate	height	cm	171.7761399424295	simulation					not_reported	
+PD	Frost2021a	fm_po_inr_moderate	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Frost2021a	fm_po_aPTT_mild	BW	covariate	weight	kg	86.1	simulation	86.1	56.9	101.8	group mild	equivalent	1.0
+PD	Frost2021a	fm_po_aPTT_mild	HEIGHT	covariate	height	cm	172.30686339323165	simulation					not_reported	
+PD	Frost2021a	fm_po_aPTT_mild	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Frost2021a	fm_po_aPTT_moderate	BW	covariate	weight	kg	83.8	simulation	83.8	58.0	120.5	group moderate	equivalent	1.0
+PD	Frost2021a	fm_po_aPTT_moderate	HEIGHT	covariate	height	cm	171.7761399424295	simulation					not_reported	
+PD	Frost2021a	fm_po_aPTT_moderate	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Kreutz2017	fm_PO_api_prothrombin_time_ratio	BW	covariate	weight	kg	81.1	simulation	81.1	60.0	95.1	group all	equivalent	1.0
+PD	Kreutz2017	fm_PO_api_prothrombin_time_ratio	HEIGHT	covariate	height	cm	181.0	simulation	181.0	169.0	191.0	group all	equivalent	1.0
+PD	Kreutz2017	fm_PO_api_prothrombin_time_ratio	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention api	equivalent	1.0
+PD	Kreutz2017	fm_PO_api_aPTT_ratio	BW	covariate	weight	kg	81.1	simulation	81.1	60.0	95.1	group all	equivalent	1.0
+PD	Kreutz2017	fm_PO_api_aPTT_ratio	HEIGHT	covariate	height	cm	181.0	simulation	181.0	169.0	191.0	group all	equivalent	1.0
+PD	Kreutz2017	fm_PO_api_aPTT_ratio	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention api	equivalent	1.0
+PD	Kreutz2017	fm_PO_api_Anti_factor_Xa_activity_mean_ug	BW	covariate	weight	kg	81.1	simulation	81.1	60.0	95.1	group all	equivalent	1.0
+PD	Kreutz2017	fm_PO_api_Anti_factor_Xa_activity_mean_ug	HEIGHT	covariate	height	cm	181.0	simulation	181.0	169.0	191.0	group all	equivalent	1.0
+PD	Kreutz2017	fm_PO_api_Anti_factor_Xa_activity_mean_ug	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention api	equivalent	1.0
+PD	Wang2016	fm_inr_healthy	BW	covariate	weight	kg	87.4	simulation	87.4	66.3	115.0	group healthy	equivalent	1.0
+PD	Wang2016	fm_inr_healthy	HEIGHT	covariate	height	cm	171.54477382773698	simulation					not_reported	
+PD	Wang2016	fm_inr_healthy	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Wang2016	fm_pt_healthy	BW	covariate	weight	kg	87.4	simulation	87.4	66.3	115.0	group healthy	equivalent	1.0
+PD	Wang2016	fm_pt_healthy	HEIGHT	covariate	height	cm	171.54477382773698	simulation					not_reported	
+PD	Wang2016	fm_pt_healthy	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Wang2016	fm_aptt_healthy	BW	covariate	weight	kg	87.4	simulation	87.4	66.3	115.0	group healthy	equivalent	1.0
+PD	Wang2016	fm_aptt_healthy	HEIGHT	covariate	height	cm	171.54477382773698	simulation					not_reported	
+PD	Wang2016	fm_aptt_healthy	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Wang2016	fm_xa_healthy	BW	covariate	weight	kg	87.4	simulation	87.4	66.3	115.0	group healthy	equivalent	1.0
+PD	Wang2016	fm_xa_healthy	HEIGHT	covariate	height	cm	171.54477382773698	simulation					not_reported	
+PD	Wang2016	fm_xa_healthy	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Wang2016	fm_inr_esrd_P1	BW	covariate	weight	kg	92.5	simulation	92.5	62.2	126.0	group esrd	equivalent	1.0
+PD	Wang2016	fm_inr_esrd_P1	HEIGHT	covariate	height	cm	176.47884050157725	simulation					not_reported	
+PD	Wang2016	fm_inr_esrd_P1	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Wang2016	fm_pt_esrd_P1	BW	covariate	weight	kg	92.5	simulation	92.5	62.2	126.0	group esrd	equivalent	1.0
+PD	Wang2016	fm_pt_esrd_P1	HEIGHT	covariate	height	cm	176.47884050157725	simulation					not_reported	
+PD	Wang2016	fm_pt_esrd_P1	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Wang2016	fm_aptt_esrd_P1	BW	covariate	weight	kg	92.5	simulation	92.5	62.2	126.0	group esrd	equivalent	1.0
+PD	Wang2016	fm_aptt_esrd_P1	HEIGHT	covariate	height	cm	176.47884050157725	simulation					not_reported	
+PD	Wang2016	fm_aptt_esrd_P1	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Wang2016	fm_xa_esrd_P1	BW	covariate	weight	kg	92.5	simulation	92.5	62.2	126.0	group esrd	equivalent	1.0
+PD	Wang2016	fm_xa_esrd_P1	HEIGHT	covariate	height	cm	176.47884050157725	simulation					not_reported	
+PD	Wang2016	fm_xa_esrd_P1	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Wang2016	fm_inr_esrd_P2	BW	covariate	weight	kg	90.7	simulation	92.5	62.2	126.0	group esrd	equivalent	0.9805405405405405
+PD	Wang2016	fm_inr_esrd_P2	HEIGHT	covariate	height	cm	176.47884050157725	simulation					not_reported	
+PD	Wang2016	fm_inr_esrd_P2	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Wang2016	fm_pt_esrd_P2	BW	covariate	weight	kg	90.7	simulation	92.5	62.2	126.0	group esrd	equivalent	0.9805405405405405
+PD	Wang2016	fm_pt_esrd_P2	HEIGHT	covariate	height	cm	176.47884050157725	simulation					not_reported	
+PD	Wang2016	fm_pt_esrd_P2	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Wang2016	fm_aptt_esrd_P2	BW	covariate	weight	kg	90.7	simulation	92.5	62.2	126.0	group esrd	equivalent	0.9805405405405405
+PD	Wang2016	fm_aptt_esrd_P2	HEIGHT	covariate	height	cm	176.47884050157725	simulation					not_reported	
+PD	Wang2016	fm_aptt_esrd_P2	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0
+PD	Wang2016	fm_xa_esrd_P2	BW	covariate	weight	kg	90.7	simulation	92.5	62.2	126.0	group esrd	equivalent	0.9805405405405405
+PD	Wang2016	fm_xa_esrd_P2	HEIGHT	covariate	height	cm	176.47884050157725	simulation					not_reported	
+PD	Wang2016	fm_xa_esrd_P2	PODOSE_api	dose	dosing	mg	5.0	simulation	5.0			intervention API5	equivalent	1.0

@@ -9,7 +9,7 @@ package of the model:
     run_fit pkdb_models.models.apixaban --subset=PD --runs=3 --cores=3 --seed=1234 --method=DE
 
 The pharmacokinetics are fitted first, the pharmacodynamics on the adopted
-values of the pharmacokinetics (`MODEL.fits`). A fit is not followed by the
+values of the pharmacokinetics (`MODEL.adopted_fits()`). A fit is not followed by the
 identifiability analysis of its parameters unless `--identifiability` is given.
 
 The results, figures and the HTML report are written into the fit folder of the

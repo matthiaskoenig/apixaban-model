@@ -1,8 +1,8 @@
-study	name	time	time_end	time_unit	route	application	measurement_type	form	substance	value	unit	comments
-Lenard2025	API25	0	NA	hr	oral	single dose	dosing	solution	apixaban	25	μg	NA
-Lenard2025	RIV25	0	NA	hr	oral	single dose	dosing	solution	rivaroxaban	25	μg	NA
-Lenard2025	EDO50	0	NA	hr	oral	single dose	dosing	solution	edoxaban	50	μg	NA
-Lenard2025	EDO60	0	NA	hr	oral	single dose	dosing	tablet	edoxaban	60	mg	NA
-Lenard2025	CAR	0	NA	hr	oral	multiple dose	dosing	tablet	carbamazepine	200	mg	titrated to max 2 × 200 mg/d (or carbamazepine 5-10 µg/ml) for 21 days (12)
-Lenard2025	GAB	0	NA	hr	oral	multiple dose	dosing	tablet	gabapentin	400	mg	3 × 400 mg/d for 13 days (11)
-Lenard2025	PRE	0	NA	hr	oral	multiple dose	dosing	tablet	pregabalin	300	mg	2 × 300 mg/d for 21 days (12)
+study	name	time	time_end	time_unit	interval	doses	route	application	measurement_type	form	substance	value	unit	comments
+Lenard2025	API25	0.0	NA	hr	NA	NA	oral	single dose	dosing	solution	apixaban	25.0	μg	microdose cocktail of apixaban, edoxaban and rivaroxaban given as an oral solution
+Lenard2025	CAR	0.0	NA	hr	NA	NA	oral	multiple dose	dosing	tablet	carbamazepine	200.0	mg	titrated to a maximum dose of 200 mg twice a day, or to therapeutic plasma concentrations (5-10 μg/mL) if this dose was not tolerated; 21 d to steady state
+Lenard2025	EDO50	0.0	NA	hr	NA	NA	oral	single dose	dosing	solution	edoxaban	50.0	μg	microdose cocktail of apixaban, edoxaban and rivaroxaban given as an oral solution
+Lenard2025	EDO60	0.0	NA	hr	NA	NA	oral	single dose	dosing	tablet	edoxaban	60.0	mg	NA
+Lenard2025	GAB	0.0	NA	hr	NA	NA	oral	multiple dose	dosing	tablet	gabapentin	400.0	mg	400 mg three times a day for 13 d to steady state
+Lenard2025	PRE	0.0	NA	hr	NA	NA	oral	multiple dose	dosing	tablet	pregabalin	300.0	mg	300 mg twice a day for 21 d to steady state
+Lenard2025	RIV25	0.0	NA	hr	NA	NA	oral	single dose	dosing	solution	rivaroxaban	25.0	μg	microdose cocktail of apixaban, edoxaban and rivaroxaban given as an oral solution

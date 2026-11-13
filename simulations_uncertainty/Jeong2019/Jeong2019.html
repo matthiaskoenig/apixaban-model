@@ -208,8 +208,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
   <nav class="sections">
 <a href="#overview">Overview</a>
 <a href="#figures">Figures</a>
-<a href="#code">Code</a>
-  </nav>
+<a href="#code">Code</a>  </nav>
   <div class="search">
     <input id="search" type="search" placeholder="Search figures, models, datasets …" autocomplete="off">
     <span id="hits"></span>
@@ -226,7 +225,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     <table data-filter="row">
       <thead><tr><th data-sort="text">model</th><th data-sort="text">source</th></tr></thead>
       <tbody>
-      <tr><td class="mono">model</td><td><a href="../../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml" title="../../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml">apixaban_body_flat.xml</a></td></tr>
+      <tr><td class="mono">model</td><td><a href="../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml" title="../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml">apixaban_body_flat.xml</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -237,8 +236,8 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <thead><tr><th data-sort="text">dataset</th><th data-sort="text">file</th></tr></thead>
       <tbody>
       <tr><td class="mono">apixaban_API10</td><td><a href="datasets/Jeong2019_apixaban_API10.tsv">datasets/Jeong2019_apixaban_API10.tsv</a></td></tr>
-      <tr><td class="mono">apixaban_API10__LAP250</td><td><a href="datasets/Jeong2019_apixaban_API10__LAP250.tsv">datasets/Jeong2019_apixaban_API10__LAP250.tsv</a></td></tr>
-      <tr><td class="mono">apixaban_API10__ROS20</td><td><a href="datasets/Jeong2019_apixaban_API10__ROS20.tsv">datasets/Jeong2019_apixaban_API10__ROS20.tsv</a></td></tr>
+      <tr><td class="mono">apixaban_API10_LAP250</td><td><a href="datasets/Jeong2019_apixaban_API10_LAP250.tsv">datasets/Jeong2019_apixaban_API10_LAP250.tsv</a></td></tr>
+      <tr><td class="mono">apixaban_API10_ROS20</td><td><a href="datasets/Jeong2019_apixaban_API10_ROS20.tsv">datasets/Jeong2019_apixaban_API10_ROS20.tsv</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -262,7 +261,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
 <section id="code">
   <h2>Code</h2>
   <div class="card">
-    <p><a href="../../../../src/pkdb_models/models/apixaban/experiments/studies/jeong2019.py" title="../../../../src/pkdb_models/models/apixaban/experiments/studies/jeong2019.py">jeong2019.py</a></p>
+    <p><a href="../../../src/pkdb_models/models/apixaban/experiments/studies/jeong2019.py" title="../../../src/pkdb_models/models/apixaban/experiments/studies/jeong2019.py">jeong2019.py</a></p>
     <pre class="code"><code>&#34;&#34;&#34;Simulation experiment of the study Jeong2019.&#34;&#34;&#34;
 
 from typing import ClassVar, override
@@ -295,28 +294,30 @@ class Jeong2019(ApixabanSimulationExperiment):
     Healthy Korean subjects: a single oral dose of 10 mg apixaban (tablet) in
     period 1 (n=23), in period 2 together with a single dose of rosuvastatin
     20 mg (n=16) or lapatinib 250 mg (n=7); fasting is not reported.
+
+    The sex of the 23 subjects is not reported; they run on the male build.
     &#34;&#34;&#34;
 
     colors: ClassVar[dict[str, str]] = {
         &#34;apixaban_API10&#34;: &#34;black&#34;,
-        &#34;apixaban_API10, ROS20&#34;: &#34;tab:blue&#34;,
-        &#34;apixaban_API10, LAP250&#34;: &#34;tab:orange&#34;,
+        &#34;apixaban_API10_ROS20&#34;: &#34;tab:blue&#34;,
+        &#34;apixaban_API10_LAP250&#34;: &#34;tab:orange&#34;,
     }
     group_labels: ClassVar[dict[str, str]] = {
         &#34;apixaban_API10&#34;: &#34;10mg PO&#34;,
-        &#34;apixaban_API10, ROS20&#34;: &#34;10mg PO + rosuvastatin&#34;,
-        &#34;apixaban_API10, LAP250&#34;: &#34;10mg PO + lapatinib&#34;,
+        &#34;apixaban_API10_ROS20&#34;: &#34;10mg PO + rosuvastatin&#34;,
+        &#34;apixaban_API10_LAP250&#34;: &#34;10mg PO + lapatinib&#34;,
     }
     #: the simulation of a dataset
     simulation_keys: ClassVar[dict[str, str]] = {
         &#34;apixaban_API10&#34;: &#34;API10&#34;,
-        &#34;apixaban_API10, ROS20&#34;: &#34;API10&#34;,
-        &#34;apixaban_API10, LAP250&#34;: &#34;API10_LAP250&#34;,
+        &#34;apixaban_API10_ROS20&#34;: &#34;API10&#34;,
+        &#34;apixaban_API10_LAP250&#34;: &#34;API10_LAP250&#34;,
     }
     coadministrations: ClassVar[dict[str, Coadministration]] = {
         &#34;apixaban_API10&#34;: Coadministration.NONE,
-        &#34;apixaban_API10, ROS20&#34;: Coadministration.ROSUVASTATIN,
-        &#34;apixaban_API10, LAP250&#34;: Coadministration.LAPATINIB,
+        &#34;apixaban_API10_ROS20&#34;: Coadministration.ROSUVASTATIN,
+        &#34;apixaban_API10_LAP250&#34;: Coadministration.LAPATINIB,
     }
     #: The factors of the interactions are not fitted but set from the
     #: literature; the arms are validation data.
@@ -325,16 +326,16 @@ class Jeong2019(ApixabanSimulationExperiment):
     #: vs 372 ng/ml alone).
     #: Lapatinib inhibits P-gp and BCRP and CYP3A4 weakly; observed Cmax
     #: 529 ng/ml vs 372 ng/ml alone (x1.42, unpaired, n=7, no AUC reported).
-    #: The factors give AUC x1.35, Cmax x1.12 for 10 mg.
+    #: The factors give AUC x1.32, Cmax x1.11 for 10 mg with the adopted fits.
     interactions: ClassVar[dict[str, dict[str, float]]] = {
         &#34;API10&#34;: {},
-        &#34;API10_LAP250&#34;: {&#34;LI__f_cyp3a4&#34;: 0.8, &#34;GU__f_pgp&#34;: 0.5},
+        &#34;API10_LAP250&#34;: {&#34;LI__f_cyp3a4&#34;: 0.8, &#34;GU__f_abcb1&#34;: 0.5},
     }
 
     dataset_labels: ClassVar[list[str]] = list(colors.keys())
 
     infos_pk: ClassVar[dict[str, str]] = {
-        &#34;[Cve_api]&#34;: &#34;apixaban&#34;,
+        &#34;Carm_api&#34;: &#34;apixaban&#34;,
     }
 
     @override
@@ -345,7 +346,7 @@ class Jeong2019(ApixabanSimulationExperiment):
             label = str(label)
             dset = DataSet.from_df(df_label, self.ureg)
             if label.startswith(&#34;apixaban&#34;):
-                dset.unit_conversion(&#34;mean&#34;, 1 / self.Mr.api)
+                dset.unit_conversion(&#34;mean&#34;, 1 / self.Mr[&#34;api&#34;])
             dsets[self.to_sid(label)] = dset
         return dsets
 
@@ -419,7 +420,7 @@ class Jeong2019(ApixabanSimulationExperiment):
         plots[0].set_yaxis(self.label_api_plasma, unit=self.unit_api)
 
         for ks, sid in enumerate(self.infos_pk):
-            for label in [&#34;apixaban_API10&#34;, &#34;apixaban_API10, LAP250&#34;]:
+            for label in [&#34;apixaban_API10&#34;, &#34;apixaban_API10_LAP250&#34;]:
                 plots[ks].add_data(
                     task=f&#34;task_{self.simulation_keys[label]}&#34;,
                     xid=&#34;time&#34;,
@@ -450,8 +451,7 @@ if __name__ == &#34;__main__&#34;:
 </main>
 
 <footer>
-<a href="../index.html">all experiments</a> · <a href="../../../../src/pkdb_models/models/apixaban/experiments/studies/jeong2019.py" title="../../../../src/pkdb_models/models/apixaban/experiments/studies/jeong2019.py">jeong2019.py</a>
-</footer>
+<a href="../index.html">all experiments</a> · <a href="../../../src/pkdb_models/models/apixaban/experiments/studies/jeong2019.py" title="../../../src/pkdb_models/models/apixaban/experiments/studies/jeong2019.py">jeong2019.py</a></footer>
 
 <div id="lightbox"><img alt=""></div>
 

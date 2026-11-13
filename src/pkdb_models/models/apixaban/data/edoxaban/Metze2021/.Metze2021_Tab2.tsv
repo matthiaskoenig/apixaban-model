@@ -1,37 +1,37 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cv	median	min	max	sd	se	unit	comments
-Metze2021	api	20.0	API5	TGLT	NA	NA	coagulation assay	0.0	hr	1.5	NA	NA	1.4	1.5	NA	NA	min	NA
-Metze2021	api	20.0	API5	TGP	NA	NA	coagulation assay	0.0	hr	459.0	NA	NA	421.0	480.0	NA	NA	dimensionless	nmol/L
-Metze2021	api	20.0	API5	TPTG	NA	NA	coagulation assay	0.0	hr	2.7	NA	NA	2.6	3.0	NA	NA	min	NA
-Metze2021	api	20.0	API5	ETP	NA	NA	coagulation assay	0.0	hr	1656.0	NA	NA	1601.0	1893.0	NA	NA	dimensionless	nmol/L*min
-Metze2021	api	20.0	API5	TGLT	NA	NA	coagulation assay	3.0	hr	2.6	NA	NA	2.1	3.0	NA	NA	min	NA
-Metze2021	api	20.0	API5	TGP	NA	NA	coagulation assay	3.0	hr	282.0	NA	NA	210.0	310.0	NA	NA	dimensionless	NA
-Metze2021	api	20.0	API5	TPTG	NA	NA	coagulation assay	3.0	hr	5.4	NA	NA	4.0	5.7	NA	NA	min	NA
-Metze2021	api	20.0	API5	ETP	NA	NA	coagulation assay	3.0	hr	1681.0	NA	NA	1407.0	1837.0	NA	NA	dimensionless	NA
-Metze2021	api	20.0	API5	cmax	apixaban	plasma	LC MS/MS	3.0	hr	109.0	NA	NA	18.0	251.0	NA	NA	ng/mL	NA
-Metze2021	edo	20.0	ED60	TGLT	NA	NA	coagulation assay	0.0	hr	1.5	NA	NA	1.4	1.6	NA	NA	min	NA
-Metze2021	edo	20.0	ED60	TGP	NA	NA	coagulation assay	0.0	hr	393.0	NA	NA	346.0	441.0	NA	NA	dimensionless	NA
-Metze2021	edo	20.0	ED60	TPTG	NA	NA	coagulation assay	0.0	hr	2.8	NA	NA	2.5	3.1	NA	NA	min	NA
-Metze2021	edo	20.0	ED60	ETP	NA	NA	coagulation assay	0.0	hr	1458.0	NA	NA	1344.0	1681.0	NA	NA	dimensionless	NA
-Metze2021	edo	20.0	ED60	TGLT	NA	NA	coagulation assay	2.0	hr	4.9	NA	NA	3.5	5.2	NA	NA	min	NA
-Metze2021	edo	20.0	ED60	TGP	NA	NA	coagulation assay	2.0	hr	158.0	NA	NA	126.0	191.0	NA	NA	dimensionless	NA
-Metze2021	edo	20.0	ED60	TPTG	NA	NA	coagulation assay	2.0	hr	9.5	NA	NA	7.2	11.2	NA	NA	min	NA
-Metze2021	edo	20.0	ED60	ETP	NA	NA	coagulation assay	2.0	hr	1342.0	NA	NA	1223.0	1421.0	NA	NA	dimensionless	NA
-Metze2021	edo	20.0	ED60	cmax	edoxaban	plasma	LC MS/MS	2.0	hr	289.0	NA	NA	99.0	482.0	NA	NA	ng/mL	NA
-Metze2021	riv	20.0	RIV20	TGLT	NA	NA	coagulation assay	0.0	hr	1.5	NA	NA	1.4	1.9	NA	NA	min	NA
-Metze2021	riv	20.0	RIV20	TGP	NA	NA	coagulation assay	0.0	hr	356.0	NA	NA	308.0	476.0	NA	NA	dimensionless	NA
-Metze2021	riv	20.0	RIV20	TPTG	NA	NA	coagulation assay	0.0	hr	2.9	NA	NA	2.8	3.6	NA	NA	min	NA
-Metze2021	riv	20.0	RIV20	ETP	NA	NA	coagulation assay	0.0	hr	1529.0	NA	NA	1388.0	1901.0	NA	NA	dimensionless	NA
-Metze2021	riv	20.0	RIV20	TGLT	NA	NA	coagulation assay	3.0	hr	4.4	NA	NA	3.7	5.1	NA	NA	min	NA
-Metze2021	riv	20.0	RIV20	TGP	NA	NA	coagulation assay	3.0	hr	125.0	NA	NA	103.0	188.0	NA	NA	dimensionless	NA
-Metze2021	riv	20.0	RIV20	TPTG	NA	NA	coagulation assay	3.0	hr	10.7	NA	NA	8.6	11.3	NA	NA	min	NA
-Metze2021	riv	20.0	RIV20	ETP	NA	NA	coagulation assay	3.0	hr	1459.0	NA	NA	1244.0	1828.0	NA	NA	dimensionless	NA
-Metze2021	riv	20.0	RIV20	cmax	rivaroxaban	plasma	LC MS/MS	3.0	hr	216.0	NA	NA	130.0	406.0	NA	NA	ng/mL	NA
-Metze2021	dab	20.0	DAB150	TGLT	NA	NA	coagulation assay	0.0	hr	1.5	NA	NA	1.2	1.7	NA	NA	min	NA
-Metze2021	dab	20.0	DAB150	TGP	NA	NA	coagulation assay	0.0	hr	451.0	NA	NA	357.0	521.0	NA	NA	dimensionless	NA
-Metze2021	dab	20.0	DAB150	TPTG	NA	NA	coagulation assay	0.0	hr	2.8	NA	NA	2.4	3.0	NA	NA	min	NA
-Metze2021	dab	20.0	DAB150	ETP	NA	NA	coagulation assay	0.0	hr	1921.0	NA	NA	1399.0	2394.0	NA	NA	dimensionless	NA
-Metze2021	dab	20.0	DAB150	TGLT	NA	NA	coagulation assay	3.0	hr	2.2	NA	NA	2.0	2.9	NA	NA	min	NA
-Metze2021	dab	20.0	DAB150	TGP	NA	NA	coagulation assay	3.0	hr	411.0	NA	NA	364.0	499.0	NA	NA	dimensionless	NA
-Metze2021	dab	20.0	DAB150	TPTG	NA	NA	coagulation assay	3.0	hr	3.2	NA	NA	3.2	4.2	NA	NA	min	NA
-Metze2021	dab	20.0	DAB150	ETP	NA	NA	coagulation assay	3.0	hr	1731.0	NA	NA	1407.0	2093.0	NA	NA	dimensionless	NA
-Metze2021	dab	20.0	DAB150	cmax	dabigatran	plasma	LC MS/MS	3.0	hr	93.0	NA	NA	20.0	277.0	NA	NA	ng/mL	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Metze2021	api	NA	20	API5	cmax	sample mean	NA	apixaban	plasma	coagulation assay	cmax_apixaban_plasma_API5_api	3.0	hr	NA	NA	109.0	NA	NA	NA	18.0	251.0	NA	NA	NA	ng/mL	NA
+Metze2021	api	NA	20	API5	ETP	sample mean	NA	NA	NA	coagulation assay	ETP_API5_api	0.0	hr	NA	NA	1656.0	NA	NA	NA	NA	NA	NA	NA	NA	nM*min	IQR 1601-1893
+Metze2021	api	NA	20	API5	ETP	sample mean	NA	NA	NA	coagulation assay	ETP_API5_api	3.0	hr	NA	NA	1681.0	NA	NA	NA	NA	NA	NA	NA	NA	nM*min	IQR 1407-1837
+Metze2021	api	NA	20	API5	TGLT	sample mean	NA	NA	NA	coagulation assay	TGLT_API5_api	0.0	hr	NA	NA	1.5	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 1.4-1.5
+Metze2021	api	NA	20	API5	TGLT	sample mean	NA	NA	NA	coagulation assay	TGLT_API5_api	3.0	hr	NA	NA	2.6	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 2.1-3
+Metze2021	api	NA	20	API5	TGP	sample mean	NA	NA	NA	coagulation assay	TGP_API5_api	0.0	hr	NA	NA	459.0	NA	NA	NA	NA	NA	NA	NA	NA	nM	IQR 421-480
+Metze2021	api	NA	20	API5	TGP	sample mean	NA	NA	NA	coagulation assay	TGP_API5_api	3.0	hr	NA	NA	282.0	NA	NA	NA	NA	NA	NA	NA	NA	nM	IQR 210-310
+Metze2021	api	NA	20	API5	TPTG	sample mean	NA	NA	NA	coagulation assay	TPTG_API5_api	0.0	hr	NA	NA	2.7	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 2.6-3
+Metze2021	api	NA	20	API5	TPTG	sample mean	NA	NA	NA	coagulation assay	TPTG_API5_api	3.0	hr	NA	NA	5.4	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 4-5.7
+Metze2021	dab	NA	20	DAB150	cmax	sample mean	NA	dabigatran	plasma	coagulation assay	cmax_dabigatran_plasma_DAB150_dab	3.0	hr	NA	NA	93.0	NA	NA	NA	20.0	277.0	NA	NA	NA	ng/mL	NA
+Metze2021	dab	NA	20	DAB150	ETP	sample mean	NA	NA	NA	coagulation assay	ETP_DAB150_dab	0.0	hr	NA	NA	1921.0	NA	NA	NA	NA	NA	NA	NA	NA	nM*min	IQR 1399-2394
+Metze2021	dab	NA	20	DAB150	ETP	sample mean	NA	NA	NA	coagulation assay	ETP_DAB150_dab	3.0	hr	NA	NA	1731.0	NA	NA	NA	NA	NA	NA	NA	NA	nM*min	IQR 1407-2093
+Metze2021	dab	NA	20	DAB150	TGLT	sample mean	NA	NA	NA	coagulation assay	TGLT_DAB150_dab	0.0	hr	NA	NA	1.5	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 1.2-1.7
+Metze2021	dab	NA	20	DAB150	TGLT	sample mean	NA	NA	NA	coagulation assay	TGLT_DAB150_dab	3.0	hr	NA	NA	2.2	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 2-2.9
+Metze2021	dab	NA	20	DAB150	TGP	sample mean	NA	NA	NA	coagulation assay	TGP_DAB150_dab	0.0	hr	NA	NA	451.0	NA	NA	NA	NA	NA	NA	NA	NA	nM	IQR 357-521
+Metze2021	dab	NA	20	DAB150	TGP	sample mean	NA	NA	NA	coagulation assay	TGP_DAB150_dab	3.0	hr	NA	NA	411.0	NA	NA	NA	NA	NA	NA	NA	NA	nM	IQR 364-499
+Metze2021	dab	NA	20	DAB150	TPTG	sample mean	NA	NA	NA	coagulation assay	TPTG_DAB150_dab	0.0	hr	NA	NA	2.8	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 2.4-3
+Metze2021	dab	NA	20	DAB150	TPTG	sample mean	NA	NA	NA	coagulation assay	TPTG_DAB150_dab	3.0	hr	NA	NA	3.2	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 3.2-4.2
+Metze2021	edo	NA	20	ED60	cmax	sample mean	NA	edoxaban	plasma	coagulation assay	cmax_edoxaban_plasma_ED60_edo	2.0	hr	NA	NA	289.0	NA	NA	NA	99.0	482.0	NA	NA	NA	ng/mL	NA
+Metze2021	edo	NA	20	ED60	ETP	sample mean	NA	NA	NA	coagulation assay	ETP_ED60_edo	0.0	hr	NA	NA	1458.0	NA	NA	NA	NA	NA	NA	NA	NA	nM*min	IQR 1344-1681
+Metze2021	edo	NA	20	ED60	ETP	sample mean	NA	NA	NA	coagulation assay	ETP_ED60_edo	2.0	hr	NA	NA	1342.0	NA	NA	NA	NA	NA	NA	NA	NA	nM*min	IQR 1223-1421
+Metze2021	edo	NA	20	ED60	TGLT	sample mean	NA	NA	NA	coagulation assay	TGLT_ED60_edo	0.0	hr	NA	NA	1.5	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 1.4-1.6
+Metze2021	edo	NA	20	ED60	TGLT	sample mean	NA	NA	NA	coagulation assay	TGLT_ED60_edo	2.0	hr	NA	NA	4.9	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 3.5-5.2
+Metze2021	edo	NA	20	ED60	TGP	sample mean	NA	NA	NA	coagulation assay	TGP_ED60_edo	0.0	hr	NA	NA	393.0	NA	NA	NA	NA	NA	NA	NA	NA	nM	IQR 346-441
+Metze2021	edo	NA	20	ED60	TGP	sample mean	NA	NA	NA	coagulation assay	TGP_ED60_edo	2.0	hr	NA	NA	158.0	NA	NA	NA	NA	NA	NA	NA	NA	nM	IQR 126-191
+Metze2021	edo	NA	20	ED60	TPTG	sample mean	NA	NA	NA	coagulation assay	TPTG_ED60_edo	0.0	hr	NA	NA	2.8	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 2.5-3.1
+Metze2021	edo	NA	20	ED60	TPTG	sample mean	NA	NA	NA	coagulation assay	TPTG_ED60_edo	2.0	hr	NA	NA	9.5	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 7.2-11.2
+Metze2021	riv	NA	20	RIV20	cmax	sample mean	NA	rivaroxaban	plasma	coagulation assay	cmax_rivaroxaban_plasma_RIV20_riv	3.0	hr	NA	NA	216.0	NA	NA	NA	130.0	406.0	NA	NA	NA	ng/mL	NA
+Metze2021	riv	NA	20	RIV20	ETP	sample mean	NA	NA	NA	coagulation assay	ETP_RIV20_riv	0.0	hr	NA	NA	1529.0	NA	NA	NA	NA	NA	NA	NA	NA	nM*min	IQR 1388-1901
+Metze2021	riv	NA	20	RIV20	ETP	sample mean	NA	NA	NA	coagulation assay	ETP_RIV20_riv	3.0	hr	NA	NA	1459.0	NA	NA	NA	NA	NA	NA	NA	NA	nM*min	IQR 1244-1828
+Metze2021	riv	NA	20	RIV20	TGLT	sample mean	NA	NA	NA	coagulation assay	TGLT_RIV20_riv	0.0	hr	NA	NA	1.5	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 1.4-1.9
+Metze2021	riv	NA	20	RIV20	TGLT	sample mean	NA	NA	NA	coagulation assay	TGLT_RIV20_riv	3.0	hr	NA	NA	4.4	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 3.7-5.1
+Metze2021	riv	NA	20	RIV20	TGP	sample mean	NA	NA	NA	coagulation assay	TGP_RIV20_riv	0.0	hr	NA	NA	356.0	NA	NA	NA	NA	NA	NA	NA	NA	nM	IQR 308-476
+Metze2021	riv	NA	20	RIV20	TGP	sample mean	NA	NA	NA	coagulation assay	TGP_RIV20_riv	3.0	hr	NA	NA	125.0	NA	NA	NA	NA	NA	NA	NA	NA	nM	IQR 103-188
+Metze2021	riv	NA	20	RIV20	TPTG	sample mean	NA	NA	NA	coagulation assay	TPTG_RIV20_riv	0.0	hr	NA	NA	2.9	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 2.8-3.6
+Metze2021	riv	NA	20	RIV20	TPTG	sample mean	NA	NA	NA	coagulation assay	TPTG_RIV20_riv	3.0	hr	NA	NA	10.7	NA	NA	NA	NA	NA	NA	NA	NA	min	IQR 8.6-11.3

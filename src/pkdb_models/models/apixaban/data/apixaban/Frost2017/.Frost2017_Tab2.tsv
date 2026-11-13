@@ -1,7 +1,7 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cv	median	min	max	sd	se	unit	comments
-Frost2017	api_dig	22.0	DIG	cmax	digoxin	plasma	LC MS/MS	NA	NA	1.68	27.0	NA	NA	NA	0.4536	NA	ng/ml	NA
-Frost2017	api_dig	22.0	DIG	auc_end	digoxin	plasma	LC MS/MS	24.0	hr	16.8	28.0	NA	NA	NA	4.704	NA	ng/ml*hr	NA
-Frost2017	api_dig	22.0	DIG	tmax	digoxin	plasma	LC MS/MS	NA	NA	NA	NA	1.0	0.5	2.0	NA	NA	hr	NA
-Frost2017	api_dig	22.0	DIG, API20	cmax	digoxin	plasma	LC MS/MS	NA	NA	1.54	25.0	NA	NA	NA	0.385	NA	ng/ml	NA
-Frost2017	api_dig	22.0	DIG, API20	auc_end	digoxin	plasma	LC MS/MS	24.0	hr	15.1	28.0	NA	NA	NA	4.228	NA	ng/ml*hr	NA
-Frost2017	api_dig	22.0	DIG, API20	tmax	digoxin	plasma	LC MS/MS	NA	NA	NA	NA	1.0	1.0	2.0	NA	NA	hr	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Frost2017	api_dig	NA	22	API20,DIG	auc_end	geometric mean	NA	digoxin	plasma	LC MS/MS	auc_end_digoxin_plasma_API20_DIG_api_dig	24.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	15.1	1.3161797827200103	0.28	ng/ml*hr	NA
+Frost2017	api_dig	NA	22	API20,DIG	cmax	geometric mean	NA	digoxin	plasma	LC MS/MS	cmax_digoxin_plasma_API20_DIG_api_dig	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1.54	1.2791818284939318	0.25	ng/ml	NA
+Frost2017	api_dig	NA	22	API20,DIG	tmax	sample mean	NA	digoxin	plasma	LC MS/MS	tmax_digoxin_plasma_API20_DIG_api_dig	NA	NA	NA	NA	1.0	NA	NA	NA	1.0	2.0	NA	NA	NA	hr	NA
+Frost2017	api_dig	NA	22	DIG	auc_end	geometric mean	NA	digoxin	plasma	LC MS/MS	auc_end_digoxin_plasma_DIG_api_dig	24.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	16.8	1.3161797827200103	0.28	ng/ml*hr	NA
+Frost2017	api_dig	NA	22	DIG	cmax	geometric mean	NA	digoxin	plasma	LC MS/MS	cmax_digoxin_plasma_DIG_api_dig	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1.68	1.3037757977931919	0.27	ng/ml	NA
+Frost2017	api_dig	NA	22	DIG	tmax	sample mean	NA	digoxin	plasma	LC MS/MS	tmax_digoxin_plasma_DIG_api_dig	NA	NA	NA	NA	1.0	NA	NA	NA	0.5	2.0	NA	NA	NA	hr	NA

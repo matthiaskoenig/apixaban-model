@@ -2,12 +2,11 @@
 
 from collections.abc import Mapping, Sequence
 from types import MappingProxyType
-from typing import ClassVar, NamedTuple, override
+from typing import ClassVar, override
 
 import pandas as pd
-from pkpdsim.experiment import PKPDSimulationExperiment
-from pkpdsim.impairment import RENAL_COLORS_END_STAGE, RENAL_FUNCTION_GFR
-from sbmlsim import Q
+from pkpdsim import impairment
+from pkpdsim.pbpk import REFERENCE_GFR, PBPKSimulationExperiment, molecular_weights
 from sbmlsim.units import Quantity
 
 from pkdb_models.models.apixaban import MODEL
@@ -15,20 +14,22 @@ from pkdb_models.models.apixaban.apixaban_pk import (
     calculate_apixaban_pd,
     calculate_apixaban_pk,
 )
+from pkdb_models.models.apixaban.models.definition import DEFINITION
 
 
-class MolecularWeights(NamedTuple):
-    """Molecular weights for the conversion of the data."""
+class ApixabanSimulationExperiment(PBPKSimulationExperiment):
+    """Base class of the apixaban simulation experiments.
 
-    api: Quantity
-    m1: Quantity
-    m2: Quantity
-    m7: Quantity
-    riv: Quantity
-
-
-class ApixabanSimulationExperiment(PKPDSimulationExperiment):
-    """Base class of the apixaban simulation experiments."""
+    The plasma of the studies is drawn from an arm vein (`Carm_<id>`), which
+    the coagulation model reads as well (`COAG__<id>`). The food effect is the
+    slower gastric emptying of the fed state of the library (`FED`), which
+    the fed arms set. The coadministered drugs are factors of the activity of
+    CYP3A4 in the liver (`LI__f_cyp3a4`) and of the efflux of the intestine
+    (`GU__f_abcb1`, P-gp and BCRP lumped). The renal function is
+    `f_renal_function` (a measured creatinine clearance is `renal_function`,
+    the classes of renal impairment `renal_map`), cirrhosis the Child-Pugh
+    severity `CP_severity` (`cirrhosis_map`).
+    """
 
     pkpd_model = MODEL
     #: the model counts the international units (IU) of the anti-factor Xa
@@ -52,47 +53,56 @@ class ApixabanSimulationExperiment(PKPDSimulationExperiment):
     )
     selections = (
         "time",
-        "[Cve_api]",
-        "[Cve_m1]",
-        "[Cve_m7]",
-        "Aurine_api",
-        "Aurine_m1",
-        "Aurine_m7",
-        "Afeces_api",
-        "Afeces_m1",
-        "Afeces_m2",
-        "Afeces_m7",
-        "GU__APIABS",
-        "GU__APISEC",
-        "GU__APIEXC",
-        "KI__GFR",
-        # cases
-        "KI__f_renal_function",
-        "f_cirrhosis",
-        "LI__f_cyp3a4",
-        "GU__f_pgp",
-        # pharmacodynamics
-        "INR",
-        "INR_change",
-        "INR_ratio",
-        "INR_relchange",
-        "PT",
-        "PT_change",
-        "PT_ratio",
-        "PT_relchange",
-        "mPT",
-        "mPT_change",
-        "mPT_ratio",
-        "mPT_relchange",
-        "aPTT",
-        "aPTT_change",
-        "aPTT_ratio",
-        "aPTT_relchange",
-        "antiXa_activity",
-        "antiXa_activity_gram",
+        # dosing
         "PODOSE_api",
         "SOLDOSE_api",
-        "GU__F_api_abs",
+        # arm vein plasma
+        "Carm_api",
+        "Carm_api_m1",
+        "Carm_api_m7",
+        # urine
+        "Aurine_api",
+        "Aurine_api_m1",
+        "Aurine_api_m7",
+        # feces
+        "Afeces_api",
+        "Afeces_api_m1",
+        "Afeces_api_m2",
+        "Afeces_api_m7",
+        # intestine: the summed fluxes of the absorption, the efflux into the
+        # lumen and the loss to the feces
+        "Rabs_api",
+        "Reff_api",
+        "Rfeces_api",
+        # the gross absorbed fraction of the oral dose
+        "Fa_api",
+        # kidney
+        "GFR",  # glomerular filtration rate
+        # cases
+        "f_renal_function",
+        "CP_severity",
+        "LI__f_cyp3a4",
+        "GU__f_abcb1",
+        # pharmacodynamics
+        "COAG__INR",
+        "COAG__INR_change",
+        "COAG__INR_ratio",
+        "COAG__INR_relchange",
+        "COAG__PT",
+        "COAG__PT_change",
+        "COAG__PT_ratio",
+        "COAG__PT_relchange",
+        "COAG__mPT",
+        "COAG__mPT_change",
+        "COAG__mPT_ratio",
+        "COAG__mPT_relchange",
+        "COAG__aPTT",
+        "COAG__aPTT_change",
+        "COAG__aPTT_ratio",
+        "COAG__aPTT_relchange",
+        "COAG__antiXa_activity",
+        "COAG__antiXa_activity_gram",
+        # covariates
         "BW",
         "BSA",
     )
@@ -128,38 +138,40 @@ class ApixabanSimulationExperiment(PKPDSimulationExperiment):
 
     labels: ClassVar[Mapping[str, str]] = {
         "time": "time",
-        "[Cve_api]": label_api_plasma,
-        "[Cve_m1]": label_m1_plasma,
-        "[Cve_m7]": label_m7_plasma,
+        "Carm_api": label_api_plasma,
+        "Carm_api_m1": label_m1_plasma,
+        "Carm_api_m7": label_m7_plasma,
         "Aurine_api": label_api_urine,
-        "Aurine_m1": label_m1_urine,
-        "Aurine_m7": label_m7_urine,
+        "Aurine_api_m1": label_m1_urine,
+        "Aurine_api_m7": label_m7_urine,
         "Afeces_api": label_api_feces,
-        "Afeces_m1": label_m1_feces,
-        "Afeces_m2": label_m2_feces,
-        "Afeces_m7": label_m7_feces,
-        "GU__APIABS": "apixaban\nabsorption",
-        "GU__APISEC": "apixaban intestinal\nsecretion",
-        "GU__APIEXC": "apixaban fecal\nexcretion",
-        "KI__GFR": "GFR",
-        "INR": "INR",
-        "INR_change": "INR change",
-        "INR_ratio": "INR ratio",
-        "INR_relchange": "INR relative change",
-        "PT": "PT",  # "prothrombin time",
-        "PT_change": "PT change",  # "prothrombin time change",
-        "PT_ratio": "PT ratio",  # "prothrombin time ratio",
-        "PT_relchange": "PT relative change",
-        "aPTT": "aPTT",
-        "aPTT_change": "aPTT change",
-        "aPTT_ratio": "aPTT ratio",
-        "aPTT_relchange": "aPTT relative change",
-        "mPT": "mPT",  # "modified prothrombin time",
-        "mPT_change": "mPT change",  # "modified prothrombin time change",
-        "mPT_ratio": "mPT ratio",  # "modified prothrombin time ratio",
-        "mPT_relchange": "mPT relative change",
-        "antiXa_activity": "anti-Xa (IU)",
-        "antiXa_activity_gram": "anti-Xa",
+        "Afeces_api_m1": label_m1_feces,
+        "Afeces_api_m2": label_m2_feces,
+        "Afeces_api_m7": label_m7_feces,
+        "Rabs_api": label_api + " absorption",
+        "Reff_api": label_api + " efflux",
+        "Rfeces_api": label_api + " to feces",
+        # the gross absorbed fraction of the oral dose
+        "Fa_api": label_api + " absorbed fraction",
+        "GFR": "GFR",
+        "COAG__INR": "INR",
+        "COAG__INR_change": "INR change",
+        "COAG__INR_ratio": "INR ratio",
+        "COAG__INR_relchange": "INR relative change",
+        "COAG__PT": "PT",  # "prothrombin time",
+        "COAG__PT_change": "PT change",  # "prothrombin time change",
+        "COAG__PT_ratio": "PT ratio",  # "prothrombin time ratio",
+        "COAG__PT_relchange": "PT relative change",
+        "COAG__aPTT": "aPTT",
+        "COAG__aPTT_change": "aPTT change",
+        "COAG__aPTT_ratio": "aPTT ratio",
+        "COAG__aPTT_relchange": "aPTT relative change",
+        "COAG__mPT": "mPT",  # "modified prothrombin time",
+        "COAG__mPT_change": "mPT change",  # "modified prothrombin time change",
+        "COAG__mPT_ratio": "mPT ratio",  # "modified prothrombin time ratio",
+        "COAG__mPT_relchange": "mPT relative change",
+        "COAG__antiXa_activity": "anti-Xa (IU)",
+        "COAG__antiXa_activity_gram": "anti-Xa",
     }
 
     # units
@@ -184,38 +196,39 @@ class ApixabanSimulationExperiment(PKPDSimulationExperiment):
 
     units: ClassVar[Mapping[str, str]] = {
         "time": unit_time,
-        "[Cve_api]": unit_api,
-        "[Cve_m1]": unit_m1,
-        "[Cve_m7]": unit_m7,
+        "Carm_api": unit_api,
+        "Carm_api_m1": unit_m1,
+        "Carm_api_m7": unit_m7,
         "Aurine_api": unit_api_urine,
-        "Aurine_m1": unit_m1_urine,
-        "Aurine_m7": unit_m7_urine,
+        "Aurine_api_m1": unit_m1_urine,
+        "Aurine_api_m7": unit_m7_urine,
         "Afeces_api": unit_api_feces,
-        "Afeces_m1": unit_m1_feces,
-        "Afeces_m2": unit_m2_feces,
-        "Afeces_m7": unit_m7_feces,
-        "GU__APIABS": "µmole/min",
-        "GU__APISEC": "µmole/min",
-        "GU__APIEXC": "µmole/min",
-        "KI__GFR": "ml/min",
-        "INR": "dimensionless",
-        "INR_change": "dimensionless",
-        "INR_ratio": "dimensionless",
-        "INR_relchange": "%",
-        "PT": "s",
-        "PT_change": "s",
-        "PT_ratio": "dimensionless",
-        "PT_relchange": "%",
-        "mPT": "s",
-        "mPT_change": "s",
-        "mPT_ratio": "dimensionless",
-        "mPT_relchange": "%",
-        "aPTT": "s",
-        "aPTT_change": "s",
-        "aPTT_ratio": "dimensionless",
-        "aPTT_relchange": "%",
-        "antiXa_activity": "1/ml",  # IU/ml, see `data_units`
-        "antiXa_activity_gram": "ng/ml",
+        "Afeces_api_m1": unit_m1_feces,
+        "Afeces_api_m2": unit_m2_feces,
+        "Afeces_api_m7": unit_m7_feces,
+        "Rabs_api": "µmole/min",
+        "Reff_api": "µmole/min",
+        "Rfeces_api": "µmole/min",
+        "Fa_api": "dimensionless",
+        "GFR": "ml/min",
+        "COAG__INR": "dimensionless",
+        "COAG__INR_change": "dimensionless",
+        "COAG__INR_ratio": "dimensionless",
+        "COAG__INR_relchange": "%",
+        "COAG__PT": "s",
+        "COAG__PT_change": "s",
+        "COAG__PT_ratio": "dimensionless",
+        "COAG__PT_relchange": "%",
+        "COAG__mPT": "s",
+        "COAG__mPT_change": "s",
+        "COAG__mPT_ratio": "dimensionless",
+        "COAG__mPT_relchange": "%",
+        "COAG__aPTT": "s",
+        "COAG__aPTT_change": "s",
+        "COAG__aPTT_ratio": "dimensionless",
+        "COAG__aPTT_relchange": "%",
+        "COAG__antiXa_activity": "1/ml",  # IU/ml, see `data_units`
+        "COAG__antiXa_activity_gram": "ng/ml",
     }
 
     # ----------- Multiple dosing -----
@@ -225,17 +238,41 @@ class ApixabanSimulationExperiment(PKPDSimulationExperiment):
     }
 
     # ----------- Fasting/food -----
-    # the model has no effect of food (Frost2013: AUC +4 %, Song2016: -20 %),
-    # the fasting state is part of the metadata of the fit mappings only
+    # the food effect is the slower gastric emptying of the fed state of the
+    # library (`FED`), which the fed arms set; the measured effects of food
+    # (Frost2013: AUC +4 %, Song2016: -20 %) are validation data of the
+    # limitations (`fitting/mapping_collections.py`)
     fasting_colors: ClassVar[dict[str, str]] = {
         "fasted": "black",
         "fed": "tab:purple",
     }
 
-    # ----------- Renal map --------------
-    # the renal function relative to the GFR of 101 ml/min (`KI__GFR_base`)
-    renal_map = RENAL_FUNCTION_GFR
-    renal_colors = RENAL_COLORS_END_STAGE
+    @override
+    def initialize(self) -> None:
+        """Initialize the experiment and label an axis in percent with `%`.
+
+        sbmlsim writes the unit of an axis in the short form of pint, which is
+        `percent` for `%`; the relative changes of the clotting times are in
+        `%`.
+        """
+        super().initialize()
+        # A workaround of sbmlsim: its unit registry defines
+        # `percent = 0.01*count` without a symbol, so an axis in `%` reads
+        # "[percent]" (in every model). Remove it once sbmlsim gives percent
+        # the symbol `%` (`percent = 0.01*count = %`).
+        for figure in self._figures.values():
+            for plot in figure.get_plots():
+                for axis in (plot.xaxis, plot.yaxis):
+                    if axis is not None and axis.unit == "%":
+                        axis.name = axis.name.replace("[percent]", "[%]")
+
+    # ----------- Renal function --------------
+    #: the GFR of the classes of renal impairment by the limits of their GFR
+    #: and of the end stage renal disease [ml/min]
+    #: (`impairment.RENAL_FUNCTION_GFR` relative to `REFERENCE_GFR`, 101 ml/min)
+    renal_class_gfr: ClassVar[Mapping[str, float]] = MappingProxyType(
+        {key: REFERENCE_GFR * v for key, v in impairment.RENAL_FUNCTION_GFR.items()}
+    )
 
     @override
     def load_dataframe(
@@ -265,14 +302,9 @@ class ApixabanSimulationExperiment(PKPDSimulationExperiment):
             na_values = {"time": ["NR"], "time_unit": ["NR"]}
         return super().load_dataframe(fig_id, study, na_values=na_values)
 
-    # molecular weights of apixaban, its metabolites and rivaroxaban
-    Mr: ClassVar[MolecularWeights] = MolecularWeights(
-        api=Q(459.5, "g/mole"),
-        m1=Q(525.5, "g/mole"),
-        m2=Q(445.5, "g/mole"),
-        m7=Q(459.5 + 16, "g/mole"),
-        riv=Q(435.88, "g/mole"),
-    )
+    #: the molecular weights of apixaban and its metabolites, by substance
+    #: (`api`, `api_m1`, ...), those of the definition
+    Mr: ClassVar[Mapping[str, Quantity]] = molecular_weights(DEFINITION)
 
     # --- Pharmacokinetic parameters ---
     # keys are the parameters of the non-compartmental analysis of pkpdutils
@@ -318,7 +350,7 @@ class ApixabanSimulationExperiment(PKPDSimulationExperiment):
         "inr_ratiomax": "INRmax ratio",
         "pt_ratiomax": "PTmax ratio",
         "aptt_ratiomax": "aPTTmax ratio",
-        "antixa_activitymax": "anti-FXa activity max (IU)",
+        "antixa_activitymax": "anti-Xa max (IU)",
     }
 
     pd_units: ClassVar[dict[str, str]] = {
@@ -346,7 +378,7 @@ class ApixabanSimulationExperiment(PKPDSimulationExperiment):
         keys = scans if scans else self._simulations
         return {
             key: calculate_apixaban_pk(
-                experiment=self, res=self.results[f"task_{key}"], across=self._across()
+                experiment=self, res=self.results[f"task_{key}"], across=self.across()
             )
             for key in keys
         }
@@ -366,11 +398,7 @@ class ApixabanSimulationExperiment(PKPDSimulationExperiment):
         keys = scans if scans else self._simulations
         return {
             key: calculate_apixaban_pd(
-                res=self.results[f"task_{key}"], across=self._across()
+                res=self.results[f"task_{key}"], across=self.across()
             )
             for key in keys
         }
-
-    def _across(self) -> str | None:
-        """Get the dimension of the draws of the fitted parameters, `None` without."""
-        return None if self.uncertainty is None else self.uncertainty.id

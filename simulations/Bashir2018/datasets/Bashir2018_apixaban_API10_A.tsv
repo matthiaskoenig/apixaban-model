@@ -1,9 +1,9 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Bashir2018		all	12.0	API10	concentration	apixaban	plasma	HPLC MS	apixaban_API10_A	0.0	hr		0.0					mole/meter^3	ng/ml	dimensionless
-Bashir2018		all	12.0	API10	concentration	apixaban	plasma	HPLC MS	apixaban_API10_A	1.0	hr		0.0002544330794341676					mole/meter^3	ng/ml	dimensionless
-Bashir2018		all	12.0	API10	concentration	apixaban	plasma	HPLC MS	apixaban_API10_A	2.0	hr		0.00035524483133841136					mole/meter^3	ng/ml	dimensionless
-Bashir2018		all	12.0	API10	concentration	apixaban	plasma	HPLC MS	apixaban_API10_A	3.0	hr		0.00036644613710554955					mole/meter^3	ng/ml	dimensionless
-Bashir2018		all	12.0	API10	concentration	apixaban	plasma	HPLC MS	apixaban_API10_A	4.0	hr		0.00034884439608269866					mole/meter^3	ng/ml	dimensionless
-Bashir2018		all	12.0	API10	concentration	apixaban	plasma	HPLC MS	apixaban_API10_A	6.0	hr		0.00023522959738846573					mole/meter^3	ng/ml	dimensionless
-Bashir2018		all	12.0	API10	concentration	apixaban	plasma	HPLC MS	apixaban_API10_A	12.0	hr		9.601305767138196e-05					mole/meter^3	ng/ml	dimensionless
-Bashir2018		all	12.0	API10	concentration	apixaban	plasma	HPLC MS	apixaban_API10_A	24.0	hr		4.480522306855278e-05					mole/meter^3	ng/ml	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Bashir2018	all		12	dimensionless	API10	concentration	sample mean		apixaban	plasma	HPLC MS	apixaban_API10_A	0.0	hr		ng/ml	0.0			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Bashir2018	all		12	dimensionless	API10	concentration	sample mean		apixaban	plasma	HPLC MS	apixaban_API10_A	1.0	hr		ng/ml	0.0002544330794341676			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Bashir2018	all		12	dimensionless	API10	concentration	sample mean		apixaban	plasma	HPLC MS	apixaban_API10_A	2.0	hr		ng/ml	0.00035524483133841136			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Bashir2018	all		12	dimensionless	API10	concentration	sample mean		apixaban	plasma	HPLC MS	apixaban_API10_A	3.0	hr		ng/ml	0.00036644613710554955			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Bashir2018	all		12	dimensionless	API10	concentration	sample mean		apixaban	plasma	HPLC MS	apixaban_API10_A	4.0	hr		ng/ml	0.00034884439608269866			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Bashir2018	all		12	dimensionless	API10	concentration	sample mean		apixaban	plasma	HPLC MS	apixaban_API10_A	6.0	hr		ng/ml	0.00023522959738846573			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Bashir2018	all		12	dimensionless	API10	concentration	sample mean		apixaban	plasma	HPLC MS	apixaban_API10_A	12.0	hr		ng/ml	9.601305767138196e-05			mole/meter^3		ng/ml					ng/ml		dimensionless		
+Bashir2018	all		12	dimensionless	API10	concentration	sample mean		apixaban	plasma	HPLC MS	apixaban_API10_A	24.0	hr		ng/ml	4.480522306855278e-05			mole/meter^3		ng/ml					ng/ml		dimensionless		

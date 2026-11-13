@@ -63,9 +63,13 @@ class Song2016(ApixabanSimulationExperiment):
     dissolves fast and is simulated as the oral solution (`SOLDOSE_api`): the
     early concentrations of the suspension in water (0.25 h 45, 0.5 h 129 ng/ml)
     are those of a solution, not those of the whole tablet (19 and 97 ng/ml).
-    The model has no effect of food: the fed arm and the applesauce arm (AUC
-    -16 % and Cmax -21 % against the whole tablet, the mechanism is unknown) are
-    simulated like the fasted arms.
+    The food effect of the model is the slower gastric emptying of the fed
+    state (`FED`) of the fed arm; the model has no effect of the applesauce
+    (AUC -16 % and Cmax -21 % against the whole tablet, the mechanism is
+    unknown), its arm is simulated like the arm in water.
+
+    The subjects are mostly men (11 women of 55; 7 of 33 in the crushed tablet
+    study, 4 of 22 in the food study) and run on the male build.
     """
 
     groups: ClassVar[dict[str, Song2016Group]] = {
@@ -143,7 +147,7 @@ class Song2016(ApixabanSimulationExperiment):
     lloq = 1.0
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
 
     @override
@@ -162,7 +166,7 @@ class Song2016(ApixabanSimulationExperiment):
                     (df_label["mean"] >= self.lloq) | (df_label["time"] == 0.0)
                 ]
                 dset = DataSet.from_df(df_label, self.ureg)
-                dset.unit_conversion("mean", 1 / self.Mr.api)
+                dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[label] = dset
 
         return dsets
@@ -179,6 +183,8 @@ class Song2016(ApixabanSimulationExperiment):
                     group.dosing: Q(group.dose, "mg"),
                     "BW": Q(group.bodyweight, "kg"),
                     "HEIGHT": Q(math.sqrt(group.bodyweight / group.bmi), "m"),
+                    # the high-fat breakfast of the fed arm
+                    "FED": Q(int(group.fasting == Fasting.FED), "dimensionless"),
                 },
             )
         return tcsims
@@ -238,11 +244,17 @@ class Song2016(ApixabanSimulationExperiment):
             xaxis=Axis(self.label_time, unit=self.unit_time),
             legend=True,
         )
-        sid = "[Cve_api]"
+        sid = "Carm_api"
         for kp, keys in enumerate(self.panels):
             for kscale, scale in enumerate(["linear", "log"]):
                 plot = plots[kp + 2 * kscale]
-                plot.set_yaxis(self.labels[sid], unit=self.units[sid], scale=scale)
+                # the data reach 5e-3 µM
+                plot.set_yaxis(
+                    self.labels[sid],
+                    unit=self.units[sid],
+                    scale=scale,
+                    min=1e-3 if scale == "log" else None,
+                )
                 for key in keys:
                     group = self.groups[key]
                     plot.add_data(

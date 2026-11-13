@@ -32,6 +32,8 @@ class Leong2024(ApixabanSimulationExperiment):
     Bioequivalence study of a 5 mg apixaban tablet (test) and Eliquis 5 mg
     (reference) in 26 healthy Indonesian volunteers (60.7 kg, 161 cm) after an
     8 h overnight fast; plasma by LC-MS/MS (LLOQ 1 ng/ml).
+
+    The volunteers are mostly men (12 women of 26) and run on the male build.
     """
 
     colors: ClassVar[dict[str, str]] = {
@@ -46,7 +48,7 @@ class Leong2024(ApixabanSimulationExperiment):
     lloq = 1.0
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
     legend: ClassVar[dict[str, str]] = {
         "TEST": "test: 5mg PO",
@@ -68,7 +70,7 @@ class Leong2024(ApixabanSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("apixaban"):
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
+                    dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[label] = dset
 
         return dsets

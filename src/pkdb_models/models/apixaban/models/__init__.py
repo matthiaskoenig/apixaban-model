@@ -1,1 +1,1 @@
-"""Model definitions of apixaban: tissue, coagulation and whole-body models."""
+"""The model of apixaban: its definition on the PBPK library and the coagulation model."""

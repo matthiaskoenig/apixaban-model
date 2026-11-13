@@ -31,6 +31,9 @@ class Frost2017(ApixabanSimulationExperiment):
     Atenolol study: 15 healthy subjects, randomized crossover of single oral
     doses of apixaban 10 mg (two 5 mg tablets), atenolol 100 mg and both
     together; fasting is not reported.
+
+    The subjects are mostly men (the atenolol study 2 women of 15, the digoxin
+    study 24 men) and run on the male build.
     """
 
     #: body weight [kg] and height [cm] from the BMI 26.4 kg/m^2 (Table 1)
@@ -39,24 +42,24 @@ class Frost2017(ApixabanSimulationExperiment):
 
     colors: ClassVar[dict[str, str]] = {
         "API10": "black",
-        "API10, ATEN": "tab:red",
+        "API10_ATEN": "tab:red",
     }
     group_labels: ClassVar[dict[str, str]] = {
         "API10": "10mg PO",
-        "API10, ATEN": "10mg PO + atenolol",
+        "API10_ATEN": "10mg PO + atenolol",
     }
     #: Atenolol is a substrate of P-gp, neither an inhibitor nor an inducer of
     #: CYP3A4 or P-gp, so the arm is simulated without an interaction (the
     #: observed geometric mean ratios are Cmax 0.82, AUCinf 0.85).
     coadministrations: ClassVar[dict[str, Coadministration]] = {
         "API10": Coadministration.NONE,
-        "API10, ATEN": Coadministration.ATENOLOL,
+        "API10_ATEN": Coadministration.ATENOLOL,
     }
 
     interventions: ClassVar[list[str]] = list(colors.keys())
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
 
     @override
@@ -71,7 +74,7 @@ class Frost2017(ApixabanSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if "apixaban" in label:
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
+                    dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[self.to_sid(label)] = dset
 
         return dsets

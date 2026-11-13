@@ -28,7 +28,11 @@ class Kreutz2017(ApixabanSimulationExperiment):
 
     Healthy men: apixaban 5 mg (tablet) twice daily with breakfast and dinner
     for 7 days, the pharmacokinetics and pharmacodynamics (anti-factor Xa
-    activity calibrated with apixaban, PT and aPTT ratio) on day 7.
+    activity calibrated with apixaban, PT and aPTT ratio) on day 7. The data
+    are geometric means, without an absolute spread (the geometric SD of the
+    paper is a factor).
+
+    The subjects are men (24) and run on the male build.
     """
 
     bodyweight = 81.1  # [kg]
@@ -38,13 +42,13 @@ class Kreutz2017(ApixabanSimulationExperiment):
     route = "PO"
 
     info_figpk: ClassVar[dict[str, str]] = {
-        "api_apixaban": "[Cve_api]",
+        "api_apixaban": "Carm_api",
     }
 
     info_figpd: ClassVar[dict[str, str]] = {
-        "api_prothrombin time ratio": "PT_ratio",
-        "api_aPTT ratio": "aPTT_ratio",
-        "api_Anti-factor Xa activity_mean_ug": "antiXa_activity_gram",
+        "api_prothrombin time ratio": "COAG__PT_ratio",
+        "api_aPTT ratio": "COAG__aPTT_ratio",
+        "api_Anti-factor Xa activity_mean_ug": "COAG__antiXa_activity_gram",
     }
 
     @override
@@ -63,7 +67,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
                     continue
                 dset = DataSet.from_df(df_label, self.ureg)
                 if "apixaban" in label:
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
+                    dset.unit_conversion("gmean", 1 / self.Mr["api"])
                 # the time 0 of the data is the morning dose of day 7
                 dset.time = dset.time - 6 * 24
                 dsets[self.to_sid(label)] = dset
@@ -84,6 +88,8 @@ class Kreutz2017(ApixabanSimulationExperiment):
                 "BW": Q(self.bodyweight, "kg"),
                 "HEIGHT": Q(self.bodyheight, "cm"),
                 f"{self.route}DOSE_api": Q(self.dose, "mg"),
+                # the doses with the meals
+                "FED": Q(1, "dimensionless"),
             },
             changes=[
                 self.add_doses(
@@ -111,8 +117,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
                         self,
                         dataset=self.to_sid(label),
                         xid="time",
-                        yid="mean",
-                        yid_sd="mean_sd",
+                        yid="gmean",
                         count="count",
                     ),
                     observable=FitData(
@@ -154,7 +159,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
             legend=True,
         )
         plots[0].set_yaxis(
-            self.labels["[Cve_api]"], unit=self.units["[Cve_api]"], scale="linear"
+            self.labels["Carm_api"], unit=self.units["Carm_api"], scale="linear"
         )
 
         for label, sid in self.info_figpk.items():
@@ -170,8 +175,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
             plots[0].add_data(
                 dataset=self.to_sid(label),
                 xid="time",
-                yid="mean",
-                yid_sd="mean_sd",
+                yid="gmean",
                 count="count",
                 label=f"exp fed: {self.dose}mg {self.route}",
                 color=self.fasting_colors["fed"],
@@ -207,8 +211,7 @@ class Kreutz2017(ApixabanSimulationExperiment):
             plots[kp].add_data(
                 dataset=self.to_sid(label),
                 xid="time",
-                yid="mean",
-                yid_sd="mean_sd",
+                yid="gmean",
                 count="count",
                 label=f"exp fed: {self.dose}mg {self.route}",
                 color=self.fasting_colors["fed"],

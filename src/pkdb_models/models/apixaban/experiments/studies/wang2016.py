@@ -32,11 +32,14 @@ class Wang2016(ApixabanSimulationExperiment):
     (ESRD), twice: period 1 with a hemodialysis 2 to 6 h after the dose (P1),
     period 2 with the dose immediately after a hemodialysis (P2). The model has
     no dialysis: P1 is simulated like P2 (the dialysis removed 6.7 % of the
-    dose). The renal function of the ESRD patients is the class of end stage
-    renal disease of the renal map, but the measured renal clearance of
+    dose). The GFR of the ESRD patients is the one of the class of end stage
+    renal disease (10.5 ml/min), but the measured renal clearance of
     apixaban is 0.02 against 11.3 ml/min in the healthy subjects (3 of 8
     patients anuric): the model overestimates the urinary excretion of the
     patients. The urinary amounts are derived (CLR x AUCinf of Table 2).
+
+    The subjects are mostly men (4 women of 16, 2 of 8 in each group) and run
+    on the male build.
     """
 
     colors: ClassVar[dict[str, str]] = {
@@ -81,55 +84,61 @@ class Wang2016(ApixabanSimulationExperiment):
         "esrd_P2": 31.56,  # pre-apixaban hemodialysis
     }
 
-    #: the renal function relative to a GFR of 101 ml/min: the measured
-    #: creatinine clearance of the healthy subjects (125 ml/min), the class of
-    #: end stage renal disease of the renal map for the patients
-    renal_functions: ClassVar[dict[str, float]] = {
-        "healthy": 125.0 / 101.0,
-        "esrd_P1": ApixabanSimulationExperiment.renal_map["End stage renal disease"],
-        "esrd_P2": ApixabanSimulationExperiment.renal_map["End stage renal disease"],
+    #: the GFR of the simulations [ml/min] (`renal_function`): the measured
+    #: creatinine clearance of the healthy subjects, the GFR of the class of
+    #: end stage renal disease for the patients
+    gfr: ClassVar[dict[str, float]] = {
+        "healthy": 125.0,
+        "esrd_P1": ApixabanSimulationExperiment.renal_class_gfr[
+            "End stage renal disease"
+        ],
+        "esrd_P2": ApixabanSimulationExperiment.renal_class_gfr[
+            "End stage renal disease"
+        ],
     }
     groups: ClassVar[list[str]] = [
         "healthy",
         "esrd_P1",
         "esrd_P2",
     ]
-    #: the groups with urinary data
-    groups_urine: ClassVar[list[str]] = ["healthy", "esrd_P2"]
+    #: the groups with urinary data and the labels of their urinary amounts
+    #: (without a spread)
+    groups_urine: ClassVar[dict[str, str]] = {
+        "healthy": "cumulative_amount_apixaban_urine_API5_healthy",
+        "esrd_P2": "cumulative_amount_apixaban_urine_API5_DIALYSIS_PRE_esrd",
+    }
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
         "Aurine_api": "cumulative amount",
     }
     infos_pd: ClassVar[dict[str, str]] = {
-        "INR": "inr",
-        "PT": "pt",
-        "aPTT": "aptt",
-        "antiXa_activity": "xa",
+        "COAG__INR": "inr",
+        "COAG__PT": "pt",
+        "COAG__aPTT": "aptt",
+        "COAG__antiXa_activity": "xa",
     }
 
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id, group_id in zip(
-            ["Fig1", "Fig2", "Fig3", "Tab2"],
-            ["label", "label", "x_label", "label"],
-            strict=True,
-        ):
+        for fig_id in ["Fig1", "Fig2", "Fig3"]:
             df = self.load_dataframe(fig_id)
-            for label, df_label in df.groupby(group_id):
+            for label, df_label in df.groupby("label"):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                if label.startswith("apixaban_"):
-                    if fig_id == "Fig3":
-                        dset.unit_conversion("x", 1 / self.Mr.api)
-                    else:
-                        dset.unit_conversion("mean", 1 / self.Mr.api)
-                if fig_id == "Tab2":
-                    if "cumulative" in label:
-                        dset.unit_conversion("mean", 1 / self.Mr.api)
-                        dsets[self.to_sid(label)] = dset
-                else:
-                    dsets[self.to_sid(label)] = dset
+                if fig_id == "Fig3":
+                    # the anti-Xa activity against apixaban
+                    dset.unit_conversion("x", 1 / self.Mr["api"])
+                    label = "apixaban_vs_xa_" + label.removeprefix("xa_vs_apixaban_")
+                elif label.startswith("apixaban_"):
+                    dset.unit_conversion("mean", 1 / self.Mr["api"])
+                dsets[self.to_sid(label)] = dset
+
+        df = self.load_dataframe("Tab2")
+        for group, label in self.groups_urine.items():
+            dset = DataSet.from_df(df[df["label"] == label], self.ureg)
+            dset.unit_conversion("mean", 1 / self.Mr["api"])
+            dsets[self.to_sid(f"{group}_cumulative amount")] = dset
 
         return dsets
 
@@ -144,12 +153,14 @@ class Wang2016(ApixabanSimulationExperiment):
                     **self.default_changes(),
                     "PODOSE_api": Q(5, "mg"),
                     "BW": Q(self.bodyweights[group], "kg"),
-                    "KI__f_renal_function": Q(
-                        self.renal_functions[group], "dimensionless"
+                    "f_renal_function": self.renal_function(
+                        self.gfr[group],
+                        bw=self.bodyweights[group],
+                        height=100 * self.bodyheights[group],
                     ),
-                    "INR_ref": Q(self.inrs[group], "dimensionless"),
-                    "aPTT_ref": Q(self.aptts[group], "second"),
-                    "PT_ref": Q(self.pts[group], "second"),
+                    "COAG__INR_ref": Q(self.inrs[group], "dimensionless"),
+                    "COAG__aPTT_ref": Q(self.aptts[group], "second"),
+                    "COAG__PT_ref": Q(self.pts[group], "second"),
                     "HEIGHT": Q(self.bodyheights[group], "m"),
                 },
             )
@@ -166,6 +177,7 @@ class Wang2016(ApixabanSimulationExperiment):
             for sid, name in infos.items():
                 if sid == "Aurine_api" and group not in self.groups_urine:
                     continue
+                tissue = Tissue.URINE if "cumulative" in name else Tissue.PLASMA
                 mappings[self.to_sid(f"fm_{name}_{group}")] = FitMapping(
                     self,
                     reference=FitData(
@@ -177,7 +189,7 @@ class Wang2016(ApixabanSimulationExperiment):
                         ),
                         xid="time",
                         yid="mean",
-                        yid_sd="mean_sd",
+                        yid_sd=None if sid == "Aurine_api" else "mean_sd",
                         count="count",
                     ),
                     observable=FitData(
@@ -187,7 +199,7 @@ class Wang2016(ApixabanSimulationExperiment):
                         yid=sid,
                     ),
                     metadata=PKPDMappingMetaData(
-                        tissue=Tissue.URINE if "cumulative" in name else Tissue.PLASMA,
+                        tissue=tissue,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
                         dosing=Dosing.SINGLE,
@@ -247,7 +259,7 @@ class Wang2016(ApixabanSimulationExperiment):
                     ),
                     xid="time",
                     yid="mean",
-                    yid_sd="mean_sd",
+                    yid_sd=None if sid == "Aurine_api" else "mean_sd",
                     count="count",
                     label=f"exp: {self.legends[group]}",
                     color=self.colors[group],
@@ -307,19 +319,19 @@ class Wang2016(ApixabanSimulationExperiment):
             width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
-            xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
+            xaxis=Axis(self.labels["Carm_api"], unit=self.units["Carm_api"]),
             legend=True,
         )
         plots[0].set_yaxis(
-            self.labels["antiXa_activity"],
-            unit=self.units["antiXa_activity"],
+            self.labels["COAG__antiXa_activity"],
+            unit=self.units["COAG__antiXa_activity"],
             scale="linear",
         )
         for group in self.groups:
             plots[0].add_data(
                 task=self.to_sid(f"task_{group}"),
-                xid="[Cve_api]",
-                yid="antiXa_activity",
+                xid="Carm_api",
+                yid="COAG__antiXa_activity",
                 label=f"sim: {self.legends[group]}",
                 color=self.colors[group],
             )

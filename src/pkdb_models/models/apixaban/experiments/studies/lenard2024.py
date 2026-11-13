@@ -14,6 +14,7 @@ from pkpdsim.metadata import (
     Route,
     Tissue,
 )
+from pkpdsim.pbpk import Sex
 from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
@@ -33,43 +34,47 @@ class Lenard2024(ApixabanSimulationExperiment):
     volunteers: a microdosed cocktail of apixaban 25 µg, edoxaban 50 µg and
     rivaroxaban 25 µg as an oral solution (with midazolam 30 µg) at baseline
     and on day 8 of clarithromycin 500 mg b.i.d. Fasting is not reported.
+
+    The volunteers are mostly women (9 of 12) and run on the female build.
     """
 
+    sex: ClassVar[Sex] = Sex.FEMALE
+
     interventions: ClassVar[list[str]] = [
-        "API25, RIV25, EDO50",
-        "API25, RIV25, EDO50, CLAR",
+        "API25_RIV25_EDO50",
+        "API25_RIV25_EDO50_CLAR",
     ]
     colors: ClassVar[dict[str, str]] = {
-        "API25, RIV25, EDO50": "black",
-        "API25, RIV25, EDO50, CLAR": "tab:pink",
+        "API25_RIV25_EDO50": "black",
+        "API25_RIV25_EDO50_CLAR": "tab:pink",
     }
     markers: ClassVar[dict[str, str]] = {
-        "API25, RIV25, EDO50": "s",
-        "API25, RIV25, EDO50, CLAR": "o",
+        "API25_RIV25_EDO50": "s",
+        "API25_RIV25_EDO50_CLAR": "o",
     }
     legend_labels: ClassVar[dict[str, str]] = {
-        "API25, RIV25, EDO50": "25µg SOL",
-        "API25, RIV25, EDO50, CLAR": "25µg SOL + clarithromycin 500mg BID",
+        "API25_RIV25_EDO50": "25µg SOL",
+        "API25_RIV25_EDO50_CLAR": "25µg SOL + clarithromycin 500mg BID",
     }
     coadministrations: ClassVar[dict[str, Coadministration]] = {
-        "API25, RIV25, EDO50": Coadministration.COCKTAIL,
-        "API25, RIV25, EDO50, CLAR": Coadministration.CLARITHROMYCIN,
+        "API25_RIV25_EDO50": Coadministration.COCKTAIL,
+        "API25_RIV25_EDO50_CLAR": Coadministration.CLARITHROMYCIN,
     }
     #: The factors of the interaction are not fitted but set from the
     #: literature; the arm is validation data. Clarithromycin 500 mg b.i.d. is a
     #: strong CYP3A4 and a P-gp inhibitor; observed here AUCinf x1.38 and Cmax
     #: x1.17 (geometric mean ratios, Table 1), x1.60 and x1.30 with therapeutic
     #: doses of apixaban (Garonzik2019). The factors give AUC x1.41 and Cmax
-    #: x1.11 for the microdose with the unfitted model.
+    #: x1.09 for the microdose with the adopted fits.
     interactions: ClassVar[dict[str, dict[str, float]]] = {
-        "API25, RIV25, EDO50": {},
-        "API25, RIV25, EDO50, CLAR": {"LI__f_cyp3a4": 0.6, "GU__f_pgp": 0.6},
+        "API25_RIV25_EDO50": {},
+        "API25_RIV25_EDO50_CLAR": {"LI__f_cyp3a4": 0.6, "GU__f_abcb1": 0.6},
     }
 
     #: apixaban microdose [mg]
     dose = 0.025
 
-    infos_pk: ClassVar[dict[str, str]] = {"[Cve_api]": "apixaban"}
+    infos_pk: ClassVar[dict[str, str]] = {"Carm_api": "apixaban"}
 
     @override
     def datasets(self) -> dict[str, DataSet]:
@@ -79,7 +84,7 @@ class Lenard2024(ApixabanSimulationExperiment):
             label = str(label)
             dset = DataSet.from_df(df_label, self.ureg)
             if label.startswith("apixaban"):
-                dset.unit_conversion("mean", 1 / self.Mr.api)
+                dset.unit_conversion("mean", 1 / self.Mr["api"])
             dsets[self.to_sid(label)] = dset
         return dsets
 

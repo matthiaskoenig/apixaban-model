@@ -1,13 +1,13 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	value	median	sd	se	min	max	cv	unit	comments
-VandenBosch2021	NA	post2.5	6.0	PO2.5	auc_end	apixaban	plasma	NR	48.0	hr	NA	2214.2	NA	NA	479.0	4411.0	NA	ng*hr/ml	NA
-VandenBosch2021	NA	post2.5	6.0	PO2.5	cmax	apixaban	plasma	NR	NA	NA	NA	127.5	NA	NA	45.4	210.4	NA	ng/ml	NA
-VandenBosch2021	NA	post2.5	6.0	PO2.5	tmax	apixaban	plasma	NR	NA	NA	NA	3.33	NA	NA	1.0	3.5	NA	hr	NA
-VandenBosch2021	NA	post5	6.0	PO5	auc_end	apixaban	plasma	NR	48.0	hr	NA	3817.6	NA	NA	1243.0	5604.0	NA	ng*hr/ml	NA
-VandenBosch2021	NA	post5	6.0	PO5	cmax	apixaban	plasma	NR	NA	NA	NA	195.9	NA	NA	85.59	280.05	NA	ng/ml	NA
-VandenBosch2021	NA	post5	6.0	PO5	tmax	apixaban	plasma	NR	NA	NA	NA	2.83	NA	NA	1.0	4.0	NA	hr	NA
-VandenBosch2021	NA	pre2.5	6.0	PO2.5	auc_end	apixaban	plasma	NR	48.0	hr	NA	1159.0	NA	NA	563.0	1938.0	NA	ng*hr/ml	NA
-VandenBosch2021	NA	pre2.5	6.0	PO2.5	cmax	apixaban	plasma	NR	NA	NA	NA	86.4	NA	NA	63.3	106.84	NA	ng/ml	NA
-VandenBosch2021	NA	pre2.5	6.0	PO2.5	tmax	apixaban	plasma	NR	NA	NA	NA	3.5	NA	NA	1.5	5.5	NA	hr	NA
-VandenBosch2021	NA	pre5	6.0	PO5	auc_end	apixaban	plasma	NR	48.0	hr	NA	2792.1	NA	NA	1750.0	3788.0	NA	ng*hr/ml	NA
-VandenBosch2021	NA	pre5	6.0	PO5	cmax	apixaban	plasma	NR	NA	NA	NA	158.0	NA	NA	94.96	230.17	NA	ng/ml	NA
-VandenBosch2021	NA	pre5	6.0	PO5	tmax	apixaban	plasma	NR	NA	NA	NA	2.75	NA	NA	1.0	3.8	NA	hr	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+VandenBosch2021	post2.5	NA	6	PO2.5	auc_end	sample mean	NA	apixaban	plasma	coagulation assay	auc_end_apixaban_plasma_PO2_5_post2_5	48.0	hr	NA	NA	2214.2	NA	NA	NA	479.0	4411.0	NA	NA	NA	ng*hr/ml	NA
+VandenBosch2021	post2.5	NA	6	PO2.5	cmax	sample mean	NA	apixaban	plasma	coagulation assay	cmax_apixaban_plasma_PO2_5_post2_5	NA	NA	NA	NA	127.5	NA	NA	NA	45.4	210.4	NA	NA	NA	ng/ml	NA
+VandenBosch2021	post2.5	NA	6	PO2.5	tmax	sample mean	NA	apixaban	plasma	coagulation assay	tmax_apixaban_plasma_PO2_5_post2_5	NA	NA	NA	NA	3.33	NA	NA	NA	1.0	3.5	NA	NA	NA	hr	NA
+VandenBosch2021	post5	NA	6	PO5	auc_end	sample mean	NA	apixaban	plasma	coagulation assay	auc_end_apixaban_plasma_PO5_post5	48.0	hr	NA	NA	3817.6	NA	NA	NA	1243.0	5604.0	NA	NA	NA	ng*hr/ml	NA
+VandenBosch2021	post5	NA	6	PO5	cmax	sample mean	NA	apixaban	plasma	coagulation assay	cmax_apixaban_plasma_PO5_post5	NA	NA	NA	NA	195.9	NA	NA	NA	85.59	280.05	NA	NA	NA	ng/ml	NA
+VandenBosch2021	post5	NA	6	PO5	tmax	sample mean	NA	apixaban	plasma	coagulation assay	tmax_apixaban_plasma_PO5_post5	NA	NA	NA	NA	2.83	NA	NA	NA	1.0	4.0	NA	NA	NA	hr	NA
+VandenBosch2021	pre2.5	NA	6	PO2.5	auc_end	sample mean	NA	apixaban	plasma	coagulation assay	auc_end_apixaban_plasma_PO2_5_pre2_5	48.0	hr	NA	NA	1159.0	NA	NA	NA	563.0	1938.0	NA	NA	NA	ng*hr/ml	NA
+VandenBosch2021	pre2.5	NA	6	PO2.5	cmax	sample mean	NA	apixaban	plasma	coagulation assay	cmax_apixaban_plasma_PO2_5_pre2_5	NA	NA	NA	NA	86.4	NA	NA	NA	63.3	106.84	NA	NA	NA	ng/ml	NA
+VandenBosch2021	pre2.5	NA	6	PO2.5	tmax	sample mean	NA	apixaban	plasma	coagulation assay	tmax_apixaban_plasma_PO2_5_pre2_5	NA	NA	NA	NA	3.5	NA	NA	NA	1.5	5.5	NA	NA	NA	hr	NA
+VandenBosch2021	pre5	NA	6	PO5	auc_end	sample mean	NA	apixaban	plasma	coagulation assay	auc_end_apixaban_plasma_PO5_pre5	48.0	hr	NA	NA	2792.1	NA	NA	NA	1750.0	3788.0	NA	NA	NA	ng*hr/ml	NA
+VandenBosch2021	pre5	NA	6	PO5	cmax	sample mean	NA	apixaban	plasma	coagulation assay	cmax_apixaban_plasma_PO5_pre5	NA	NA	NA	NA	158.0	NA	NA	NA	94.96	230.17	NA	NA	NA	ng/ml	NA
+VandenBosch2021	pre5	NA	6	PO5	tmax	sample mean	NA	apixaban	plasma	coagulation assay	tmax_apixaban_plasma_PO5_pre5	NA	NA	NA	NA	2.75	NA	NA	NA	1.0	3.8	NA	NA	NA	hr	NA

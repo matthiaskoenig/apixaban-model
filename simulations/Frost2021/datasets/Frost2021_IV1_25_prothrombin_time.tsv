@@ -1,14 +1,14 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2021		group2	6.0	IV1_25	mPT		plasma	coagulation assay	IV1_25_prothrombin time	0.0	hr		59.2		2.12	0.8654863757833897	102.838859416445	sec	sec	dimensionless
-Frost2021		group2	6.0	IV1_25	mPT		plasma	coagulation assay	IV1_25_prothrombin time	0.05	hr		102.6		13.9	5.6746512374477		sec	sec	dimensionless
-Frost2021		group2	6.0	IV1_25	mPT		plasma	coagulation assay	IV1_25_prothrombin time	0.166666666666667	hr		102.838859416445	104.396551724137				sec	sec	dimensionless
-Frost2021		group2	6.0	IV1_25	mPT		plasma	coagulation assay	IV1_25_prothrombin time	0.5	hr		85.7818302387268	88.1094164456233				sec	sec	dimensionless
-Frost2021		group2	6.0	IV1_25	mPT		plasma	coagulation assay	IV1_25_prothrombin time	1.0	hr		78.8110079575597	80.3627320954907				sec	sec	dimensionless
-Frost2021		group2	6.0	IV1_25	mPT		plasma	coagulation assay	IV1_25_prothrombin time	2.0	hr		78.0500663129973	80.3746684350132				sec	sec	dimensionless
-Frost2021		group2	6.0	IV1_25	mPT		plasma	coagulation assay	IV1_25_prothrombin time	3.0	hr		74.9794429708222	72.6458885941644				sec	sec	dimensionless
-Frost2021		group2	6.0	IV1_25	mPT		plasma	coagulation assay	IV1_25_prothrombin time	4.0	hr		74.2304376657824	76.5610079575597				sec	sec	dimensionless
-Frost2021		group2	6.0	IV1_25	mPT		plasma	coagulation assay	IV1_25_prothrombin time	6.0	hr		69.6140583554376	71.1657824933686				sec	sec	dimensionless
-Frost2021		group2	6.0	IV1_25	mPT		plasma	coagulation assay	IV1_25_prothrombin time	8.0	hr		71.2314323607426	72.7771883289124				sec	sec	dimensionless
-Frost2021		group2	6.0	IV1_25	mPT		plasma	coagulation assay	IV1_25_prothrombin time	12.0	hr		69.7393899204244	71.294098143236				sec	sec	dimensionless
-Frost2021		group2	6.0	IV1_25	mPT		plasma	coagulation assay	IV1_25_prothrombin time	18.0	hr		60.5603448275862	62.1120689655172				sec	sec	dimensionless
-Frost2021		group2	6.0	IV1_25	mPT		plasma	coagulation assay	IV1_25_prothrombin time	24.0	hr		60.7513262599469	62.3030503978779				sec	sec	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2021	group2		6	dimensionless	IV1_25	mPT	sample mean			plasma	coagulation assay	IV1_25_prothrombin time	0.0	hr		sec	59.2	2.12	0.865486	sec		sec	0.03581081081081081				sec		dimensionless		
+Frost2021	group2		6	dimensionless	IV1_25	mPT	sample mean			plasma	coagulation assay	IV1_25_prothrombin time	0.05	hr		sec	102.6	13.9	5.6746512374477	sec		sec	0.13547758284600392				sec		dimensionless		
+Frost2021	group2		6	dimensionless	IV1_25	mPT	sample mean			plasma	coagulation assay	IV1_25_prothrombin time	0.166666666666667	hr		sec	102.838859416445			sec		sec					sec		dimensionless		
+Frost2021	group2		6	dimensionless	IV1_25	mPT	sample mean			plasma	coagulation assay	IV1_25_prothrombin time	0.5	hr		sec	85.7818302387268			sec		sec					sec		dimensionless		
+Frost2021	group2		6	dimensionless	IV1_25	mPT	sample mean			plasma	coagulation assay	IV1_25_prothrombin time	1.0	hr		sec	78.8110079575597			sec		sec					sec		dimensionless		
+Frost2021	group2		6	dimensionless	IV1_25	mPT	sample mean			plasma	coagulation assay	IV1_25_prothrombin time	2.0	hr		sec	78.0500663129973			sec		sec					sec		dimensionless		
+Frost2021	group2		6	dimensionless	IV1_25	mPT	sample mean			plasma	coagulation assay	IV1_25_prothrombin time	3.0	hr		sec	74.9794429708222			sec		sec					sec		dimensionless		
+Frost2021	group2		6	dimensionless	IV1_25	mPT	sample mean			plasma	coagulation assay	IV1_25_prothrombin time	4.0	hr		sec	74.2304376657824			sec		sec					sec		dimensionless		
+Frost2021	group2		6	dimensionless	IV1_25	mPT	sample mean			plasma	coagulation assay	IV1_25_prothrombin time	6.0	hr		sec	69.6140583554376			sec		sec					sec		dimensionless		
+Frost2021	group2		6	dimensionless	IV1_25	mPT	sample mean			plasma	coagulation assay	IV1_25_prothrombin time	8.0	hr		sec	71.2314323607426			sec		sec					sec		dimensionless		
+Frost2021	group2		6	dimensionless	IV1_25	mPT	sample mean			plasma	coagulation assay	IV1_25_prothrombin time	12.0	hr		sec	69.7393899204244			sec		sec					sec		dimensionless		
+Frost2021	group2		6	dimensionless	IV1_25	mPT	sample mean			plasma	coagulation assay	IV1_25_prothrombin time	18.0	hr		sec	60.5603448275862			sec		sec					sec		dimensionless		
+Frost2021	group2		6	dimensionless	IV1_25	mPT	sample mean			plasma	coagulation assay	IV1_25_prothrombin time	24.0	hr		sec	60.7513262599469			sec		sec					sec		dimensionless		

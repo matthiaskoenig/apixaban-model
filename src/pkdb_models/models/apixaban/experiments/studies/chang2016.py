@@ -1,5 +1,7 @@
 """Simulation experiment of the study Chang2016."""
 
+from collections.abc import Mapping
+from types import MappingProxyType
 from typing import ClassVar, override
 
 from pkpdsim.metadata import (
@@ -11,6 +13,7 @@ from pkpdsim.metadata import (
     Route,
     Tissue,
 )
+from pkpdsim.pbpk import Sex
 from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
@@ -24,7 +27,21 @@ from pkdb_models.models.apixaban.experiments.base_experiment import (
 
 
 class Chang2016(ApixabanSimulationExperiment):
-    """Simulation experiment of Chang2016."""
+    """Simulation experiment of Chang2016.
+
+    The groups of normal renal function (5 women of 8) and of mild renal
+    impairment (6 women of 10) are mostly women and run on the female build,
+    their renal function relative to the healthy GFR of the female build; the
+    moderate (1 woman of 7) and severe (2 women of 7) groups run on the male
+    build.
+    """
+
+    simulation_sexes: ClassVar[Mapping[str, Sex]] = MappingProxyType(
+        {
+            "normal": Sex.FEMALE,
+            "mild": Sex.FEMALE,
+        }
+    )
 
     groups: ClassVar[list[str]] = [
         "normal",
@@ -50,56 +67,54 @@ class Chang2016(ApixabanSimulationExperiment):
         "moderate": 74.5,
         "severe": 84.1,
     }
-    #: the renal function is the measured 24-hr creatinine clearance of the
-    #: group (Tab1, ml/min) relative to the GFR of 101 ml/min of the model
-    renal_functions: ClassVar[dict[str, float]] = {
-        "normal": 106.7 / 101,
-        "mild": 58.8 / 101,
-        "moderate": 38.0 / 101,
-        "severe": 24.5 / 101,
-    }
-    markers: ClassVar[dict[str, str]] = {
-        "normal": "s",
-        "mild": "*",
-        "moderate": "^",
-        "severe": "o",
+    #: the measured 24-hr creatinine clearance of the groups (Tab1) [ml/min],
+    #: the GFR of the simulation (`renal_function`)
+    crcl: ClassVar[dict[str, float]] = {
+        "normal": 106.7,
+        "mild": 58.8,
+        "moderate": 38.0,
+        "severe": 24.5,
     }
 
     #: the urinary amounts are not reported: they are derived in the curation
-    #: as the renal clearance times the AUCinf of Tab2 (geometric means), with
-    #: SDs which are not reported values; the renal clearance of the study is
-    #: Ae(0-96)/AUC(0-96), so the amounts overestimate Ae(0-96) slightly
+    #: as the renal clearance times the AUCinf of Tab2 (geometric means,
+    #: without a spread); the renal clearance of the study is Ae(0-96)/AUC(0-96),
+    #: so the amounts overestimate Ae(0-96) slightly
     info_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
         "Aurine_api": "cumulative amount",
+    }
+    #: the statistic of the data and its error, by the name of the data
+    yids: ClassVar[dict[str, tuple[str, str | None]]] = {
+        "apixaban": ("mean", "mean_sd"),
+        "cumulative amount": ("gmean", None),
     }
 
     info_pd: ClassVar[dict[str, str]] = {
-        "INR": "inr",
-        "antiXa_activity": "xa",
+        "COAG__INR": "inr",
+        "COAG__antiXa_activity": "xa",
     }
 
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id, group_id in zip(
-            ["Fig1", "Fig4", "Tab2"], ["label", "x_label", "label"], strict=True
-        ):
-            df = self.load_dataframe(fig_id)
-            for label, df_label in df.groupby(group_id):
-                label = str(label)
-                dset = DataSet.from_df(df_label, self.ureg)
-                if label.startswith("apixaban_"):
-                    if fig_id == "Fig4":
-                        dset.unit_conversion("x", 1 / self.Mr.api)
-                    else:
-                        dset.unit_conversion("mean", 1 / self.Mr.api)
-                if fig_id == "Tab2":
-                    if "cumulative" in label:
-                        dset.unit_conversion("mean", 1 / self.Mr.api)
-                        dsets[self.to_sid(label)] = dset
-                else:
-                    dsets[self.to_sid(label)] = dset
+        df = self.load_dataframe("Fig1")
+        for label, df_label in df.groupby("label"):
+            dset = DataSet.from_df(df_label, self.ureg)
+            dset.unit_conversion("mean", 1 / self.Mr["api"])
+            dsets[self.to_sid(str(label))] = dset
+
+        # the urinary amounts at 96 hr are geometric means; the amount of 0 at
+        # the dose is no geometric mean and not part of the series
+        df = self.load_dataframe("Tab2")
+        for group in self.groups:
+            df_group = df[
+                (df["label"] == f"cumulative_amount_apixaban_urine_API10_{group}")
+                & df["gmean"].notna()
+            ]
+            dset = DataSet.from_df(df_group, self.ureg)
+            dset.unit_conversion("gmean", 1 / self.Mr["api"])
+            dsets[self.to_sid(f"cumulative amount_{group}")] = dset
 
         return dsets
 
@@ -113,8 +128,10 @@ class Chang2016(ApixabanSimulationExperiment):
                 preinit_changes={
                     **self.default_changes(),
                     "BW": Q(self.bodyweights[group], "kg"),
-                    "KI__f_renal_function": Q(
-                        self.renal_functions[group], "dimensionless"
+                    "f_renal_function": self.renal_function(
+                        self.crcl[group],
+                        bw=self.bodyweights[group],
+                        simulation=self.to_sid(group),
                     ),
                     "PODOSE_api": Q(10, "mg"),
                 },
@@ -128,14 +145,15 @@ class Chang2016(ApixabanSimulationExperiment):
 
         for group in self.groups:
             for sid, name in self.info_pk.items():
+                tissue = Tissue.PLASMA if sid == "Carm_api" else Tissue.URINE
                 mappings[self.to_sid(f"fm_{name}_{group}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
                         dataset=self.to_sid(f"{name}_{group}"),
                         xid="time",
-                        yid="mean",
-                        yid_sd="mean_sd",
+                        yid=self.yids[name][0],
+                        yid_sd=self.yids[name][1],
                         count="count",
                     ),
                     observable=FitData(
@@ -145,7 +163,7 @@ class Chang2016(ApixabanSimulationExperiment):
                         yid=sid,
                     ),
                     metadata=PKPDMappingMetaData(
-                        tissue=Tissue.PLASMA if sid == "[Cve_api]" else Tissue.URINE,
+                        tissue=tissue,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
                         dosing=Dosing.SINGLE,
@@ -206,8 +224,8 @@ class Chang2016(ApixabanSimulationExperiment):
                 plots[kp].add_data(
                     dataset=self.to_sid(f"{name}_{group}"),
                     xid="time",
-                    yid="mean",
-                    yid_sd="mean_sd",
+                    yid=self.yids[name][0],
+                    yid_sd=self.yids[name][1],
                     count="count",
                     label="exp: 10mg PO"
                     if group == "normal"
@@ -219,7 +237,11 @@ class Chang2016(ApixabanSimulationExperiment):
         return self.figures_by_sid(fig)
 
     def figure_scatter_xa(self) -> dict[str, Figure]:
-        """Figure of the anti-factor Xa activity against apixaban in plasma."""
+        """Figure of the anti-factor Xa activity against apixaban in plasma.
+
+        The simulations only: the individual values of the paper (Fig4) are not
+        curated in pkdb_data.
+        """
         fig = Figure(
             experiment=self,
             sid="PD_scatter_xa",
@@ -228,41 +250,33 @@ class Chang2016(ApixabanSimulationExperiment):
             width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
-            xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
+            xaxis=Axis(self.labels["Carm_api"], unit=self.units["Carm_api"]),
             legend=True,
         )
         plots[0].set_yaxis(
-            self.labels["antiXa_activity"],
-            unit=self.units["antiXa_activity"],
+            self.labels["COAG__antiXa_activity"],
+            unit=self.units["COAG__antiXa_activity"],
             scale="linear",
         )
         for group in self.groups:
             plots[0].add_data(
                 task=self.to_sid(f"task_{group}"),
-                xid="[Cve_api]",
-                yid="antiXa_activity",
+                xid="Carm_api",
+                yid="COAG__antiXa_activity",
                 label="sim: 10mg PO"
                 if group == "normal"
                 else f"sim {self.short_names[group]}: 10mg PO",
                 color=self.colors[group],
             )
-            plots[0].add_data(
-                dataset=self.to_sid(f"apixaban_vs_xa_{group}"),
-                xid="x",
-                yid="y",
-                label=f"exp individ {self.short_names[group]}: 10mg PO"
-                if group != "normal"
-                else "exp individ: 10mg PO",
-                linestyle="",
-                color="white",
-                marker=self.markers[group],
-                markeredgecolor=self.colors[group],
-            )
 
         return self.figures_by_sid(fig)
 
     def figure_scatter_inr(self) -> dict[str, Figure]:
-        """Figure of the INR against apixaban in plasma."""
+        """Figure of the INR against apixaban in plasma.
+
+        The simulations only: the individual values of the paper (Fig4) are not
+        curated in pkdb_data.
+        """
         fig = Figure(
             experiment=self,
             sid="PD_scatter_inr",
@@ -271,35 +285,23 @@ class Chang2016(ApixabanSimulationExperiment):
             width=self.panel_width * 0.87,
         )
         plots = fig.create_plots(
-            xaxis=Axis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"]),
+            xaxis=Axis(self.labels["Carm_api"], unit=self.units["Carm_api"]),
             legend=True,
         )
         plots[0].set_yaxis(
-            self.labels["INR"],
-            unit=self.units["INR"],
+            self.labels["COAG__INR"],
+            unit=self.units["COAG__INR"],
             scale="linear",
         )
         for group in self.groups:
             plots[0].add_data(
                 task=self.to_sid(f"task_{group}"),
-                xid="[Cve_api]",
-                yid="INR",
+                xid="Carm_api",
+                yid="COAG__INR",
                 label="sim: 10mg PO"
                 if group == "normal"
                 else f"sim {self.short_names[group]}: 10mg PO",
                 color=self.colors[group],
-            )
-            plots[0].add_data(
-                dataset=self.to_sid(f"apixaban_vs_INR_{group}"),
-                xid="x",
-                yid="y",
-                label=f"exp individ {self.short_names[group]}: 10mg PO"
-                if group != "normal"
-                else "exp individ: 10mg PO",
-                linestyle="",
-                color="white",
-                marker=self.markers[group],
-                markeredgecolor=self.colors[group],
             )
 
         return self.figures_by_sid(fig)

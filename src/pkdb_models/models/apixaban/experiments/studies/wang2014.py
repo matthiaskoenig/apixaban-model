@@ -33,6 +33,8 @@ class Wang2014(ApixabanSimulationExperiment):
     rest and intestinal secretion) and shortens the half-life (13.4 to about
     5 h). The model has no binding in the lumen: the charcoal arms are not
     simulated or mapped, they are shown with the control.
+
+    The subjects are mostly men (8 women of 18) and run on the male build.
     """
 
     colors: ClassVar[dict[str, str]] = {
@@ -42,14 +44,14 @@ class Wang2014(ApixabanSimulationExperiment):
 
     #: the data of the charcoal arms (not simulated) and their colors
     charcoal: ClassVar[dict[str, tuple[str, str]]] = {
-        "API20, AC50_2hr_all_apixaban": ("20mg PO + charcoal at 2 h", "tab:blue"),
-        "API20, AC50_6hr_all_apixaban": ("20mg PO + charcoal at 6 h", "tab:orange"),
+        "API20_AC50_2hr_all_apixaban": ("20mg PO + charcoal at 2 h", "tab:blue"),
+        "API20_AC50_6hr_all_apixaban": ("20mg PO + charcoal at 6 h", "tab:orange"),
     }
     bodyweight = 72.2  # [kg] (control)
     bodyheight = 1.694  # [m]
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
 
     @override
@@ -60,7 +62,7 @@ class Wang2014(ApixabanSimulationExperiment):
             for label, df_label in df.groupby("label"):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
-                dset.unit_conversion("mean", 1 / self.Mr.api)
+                dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[self.to_sid(label)] = dset
 
         return dsets
@@ -133,10 +135,16 @@ class Wang2014(ApixabanSimulationExperiment):
             xaxis=Axis(self.label_time, unit=self.unit_time),
             legend=True,
         )
-        sid = "[Cve_api]"
+        sid = "Carm_api"
         name = self.infos_pk[sid]
         for kp, scale in enumerate(["linear", "log"]):
-            plots[kp].set_yaxis(self.labels[sid], unit=self.units[sid], scale=scale)
+            # the data reach 3.5e-3 µM
+            plots[kp].set_yaxis(
+                self.labels[sid],
+                unit=self.units[sid],
+                scale=scale,
+                min=1e-3 if scale == "log" else None,
+            )
             for group in self.groups:
                 # simulation
                 plots[kp].add_data(

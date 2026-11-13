@@ -1,11 +1,13 @@
 """Parameter scans of the apixaban model.
 
-The oral dose, the renal function, the degree of cirrhosis and the body weight
-are scanned after a single oral dose of apixaban. The matplotlib figures show
-the timecourses of the scans and the pharmacokinetic and pharmacodynamic
-parameters of `apixaban_pk` together with the data of the studies.
+The oral dose, the renal function, the Child-Pugh severity of cirrhosis and
+the body weight are scanned after a single oral dose of apixaban. The
+matplotlib figures show the timecourses of the scans and the pharmacokinetic
+and pharmacodynamic parameters of `apixaban_pk` together with the data of the
+studies.
 """
 
+from functools import cached_property
 from pathlib import Path
 from typing import Any, ClassVar, Literal, NamedTuple, NotRequired, TypedDict, override
 
@@ -28,12 +30,18 @@ from matplotlib.lines import Line2D
 from matplotlib.ticker import FuncFormatter
 from matplotlib.typing import ColorType
 from pint import DimensionalityError
-from pkpdsim.experiment import rename_units
-from pkpdsim.scan import point_band, point_timecourse, scan_dimensions, start_values
 from sbmlsim import Q
+from sbmlsim.data import rename_units
 from sbmlsim.plot.serialization_matplotlib import FigureMPL
 from sbmlsim.result import ScanResult
+from sbmlsim.result.scan import (
+    point_band,
+    point_timecourse,
+    scan_dimensions,
+    start_values,
+)
 from sbmlsim.simulation import Dimension, Scan, Simulation
+from sbmlsim.units import short_unit
 from sbmlutils.console import console
 
 from pkdb_models.models.apixaban import MODEL
@@ -92,14 +100,14 @@ def _with(values: np.ndarray, *extra: float) -> np.ndarray:
 
 
 def _unit(unit: str) -> str:
-    """Get a unit as written on an axis, `-` for a dimensionless quantity."""
-    return unit.replace("dimensionless", "-")
+    """Get a unit as written on an axis, `-` for a dimensionless quantity.
+
+    The short form of pint, as sbmlsim writes the axes of the figures of the
+    studies (`h`, `µmol`).
+    """
+    return short_unit(unit) or "-"
 
 
-_CIRRHOSIS = ApixabanSimulationExperiment.cirrhosis_map
-_CIRRHOSIS_COLORS = ApixabanSimulationExperiment.cirrhosis_colors
-_RENAL = ApixabanSimulationExperiment.renal_map
-_RENAL_COLORS = ApixabanSimulationExperiment.renal_colors
 #: the diverging colormaps, whose light center is left out and centered at the
 #: default of the scan
 _DIVERGING = {"RdBu_r"}
@@ -145,27 +153,27 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
     selections = (
         "time",
         "PODOSE_api",
-        "KI__f_renal_function",
-        "f_cirrhosis",
+        "f_renal_function",
+        "CP_severity",
         "BW",
-        "[Cve_api]",
-        "[Cve_m1]",
-        "[Cve_m7]",
+        "Carm_api",
+        "Carm_api_m1",
+        "Carm_api_m7",
         "Aurine_api",
-        "Aurine_m1",
-        "Aurine_m7",
+        "Aurine_api_m1",
+        "Aurine_api_m7",
         "Afeces_api",
-        "Afeces_m1",
-        "Afeces_m7",
-        "INR",
-        "PT",
-        "mPT",
-        "aPTT",
-        "antiXa_activity",
-        "INR_ratio",
-        "PT_ratio",
-        "mPT_ratio",
-        "aPTT_ratio",
+        "Afeces_api_m1",
+        "Afeces_api_m7",
+        "COAG__INR",
+        "COAG__PT",
+        "COAG__mPT",
+        "COAG__aPTT",
+        "COAG__antiXa_activity",
+        "COAG__INR_ratio",
+        "COAG__PT_ratio",
+        "COAG__mPT_ratio",
+        "COAG__aPTT_ratio",
     )
 
     #: the substance of the data of the studies
@@ -190,13 +198,13 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
     #: the pharmacodynamic outputs of the pharmacodynamic parameters
     #: (`<output>max`, the maximum of the output)
     pd_outputs: ClassVar[dict[str, str]] = {
-        "inrmax": "INR",
-        "ptmax": "PT",
-        "apttmax": "aPTT",
-        "inr_ratiomax": "INR_ratio",
-        "pt_ratiomax": "PT_ratio",
-        "aptt_ratiomax": "aPTT_ratio",
-        "antixa_activitymax": "antiXa_activity",
+        "inrmax": "COAG__INR",
+        "ptmax": "COAG__PT",
+        "apttmax": "COAG__aPTT",
+        "inr_ratiomax": "COAG__INR_ratio",
+        "pt_ratiomax": "COAG__PT_ratio",
+        "aptt_ratiomax": "COAG__aPTT_ratio",
+        "antixa_activitymax": "COAG__antiXa_activity",
     }
 
     study_data_files: ClassVar[dict[str, Path]] = {
@@ -219,122 +227,141 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
         "linestyle": "",
     }
 
-    scan_map: ClassVar[dict[str, ScanSpec]] = {
-        "dose_scan": {
-            "parameter": "PODOSE_api",
-            "default": dose_api,
-            # the doses of the studies, 2.5 to 50 mg
-            "range": np.array([0.5, 1, 2.5, 5, 7.5, 10, 15, 20, 25, 35, 50]),
-            "scale": "linear",
-            "colormap": "Oranges",
-            "units": "mg",
-            "label": "apixaban dose [mg]",
-            "ticks": {0.5: "0.5", 5: "5", 25: "25", 50: "50"},
-        },
-        "renal_scan": {
-            "parameter": "KI__f_renal_function",
-            "default": 1.0,
-            # 0.1 to 2, with the limits of the classes of the GFR
-            "range": _with(
-                np.array([0.1, 0.14, 0.27, 0.7, 1.4, 2.0]),
-                *(v for k, v in _RENAL.items() if k != "End stage renal disease"),
-            ),
-            "scale": "log",
-            # the colors of the classes at their renal function (of 0.1 to 2),
-            # light greens for a normal and an increased renal function
-            "colormap": [
-                (0.0, _RENAL_COLORS["End stage renal disease"]),
-                *(
-                    (_position(_RENAL[key], 0.1, 2), _RENAL_COLORS[key])
-                    for key in (
-                        "Severe renal impairment",
-                        "Moderate renal impairment",
-                        "Mild renal impairment",
-                    )
-                ),
-                (_position(1.0, 0.1, 2), "#a1d99b"),
-                (1.0, "#c7e9c0"),
-            ],
-            "units": "dimensionless",
-            "label": "renal function [-]",
-            "ticks": {0.1: "0.1", 1.0: "1", 2.0: "2"},
-        },
-        "hepatic_scan": {
-            "parameter": "f_cirrhosis",
-            "default": 0.0,
-            # with the degrees of the Child-Pugh classes
-            "range": _with(
-                np.array([0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.9]),
-                *(v for k, v in _CIRRHOSIS.items() if k != "Control"),
-            ),
-            "scale": "linear",
-            # the colors of the classes at their degrees (of 0 to 0.9)
-            "colormap": [
-                (0.0, "#d0e1f2"),
-                *(
-                    (_CIRRHOSIS[key] / 0.9, _CIRRHOSIS_COLORS[key])
-                    for key in (
-                        "Mild cirrhosis",
-                        "Moderate cirrhosis",
-                        "Severe cirrhosis",
-                    )
-                ),
-                (1.0, "#023858"),
-            ],
-            "units": "dimensionless",
-            "label": "cirrhosis degree [-]",
-            "ticks": {
-                0.0: "0",
-                _CIRRHOSIS["Mild cirrhosis"]: "CPT A",
-                _CIRRHOSIS["Moderate cirrhosis"]: "CPT B",
-                _CIRRHOSIS["Severe cirrhosis"]: "CPT C",
+    @cached_property
+    def scan_map(self) -> dict[str, ScanSpec]:
+        """Get the scans by their keys.
+
+        The renal scan has the renal functions of the classes of renal
+        impairment, which are relative to the healthy GFR of the model
+        (`renal_map`): it is built on the first access, so importing the scans
+        loads no model.
+        """
+        renal = self.renal_map
+        renal_colors = self.renal_colors
+        cirrhosis = self.cirrhosis_map
+        cirrhosis_colors = self.cirrhosis_colors
+        #: the smallest renal function of the scan, the end stage renal disease
+        rf_min = renal["End stage renal disease"]
+        #: the largest severity of the scan, Child-Pugh C
+        cp_max = cirrhosis["Severe cirrhosis"]
+        return {
+            "dose_scan": {
+                "parameter": "PODOSE_api",
+                "default": self.dose_api,
+                # the doses of the studies, 2.5 to 50 mg
+                "range": np.array([0.5, 1, 2.5, 5, 7.5, 10, 15, 20, 25, 35, 50]),
+                "scale": "linear",
+                "colormap": "Oranges",
+                "units": "mg",
+                "label": "apixaban dose [mg]",
+                "ticks": {0.5: "0.5", 5: "5", 25: "25", 50: "50"},
             },
-        },
-        "bodyweight_scan": {
-            "parameter": "BW",
-            "default": 75.0,
-            # the body weights of the studies, 38 to 170 kg
-            "range": np.array([38, 45, 55, 65, 75, 90, 105, 120, 140, 170, 200]),
-            "scale": "linear",
-            "colormap": "RdBu_r",
-            "units": "kg",
-            "label": "body weight [kg]",
-        },
-    }
+            "renal_scan": {
+                "parameter": "f_renal_function",
+                "default": 1.0,
+                # the end stage renal disease to 2, with the classes of the GFR
+                "range": _with(
+                    np.array([0.1, 0.14, 0.27, 0.7, 1.4, 2.0]), *renal.values()
+                ),
+                "scale": "log",
+                # the colors of the classes at their renal function (of the end
+                # stage renal disease to 2), light greens for a normal and an
+                # increased renal function
+                "colormap": [
+                    (0.0, renal_colors["End stage renal disease"]),
+                    *(
+                        (_position(renal[key], rf_min, 2), renal_colors[key])
+                        for key in (
+                            "Severe renal impairment",
+                            "Moderate renal impairment",
+                            "Mild renal impairment",
+                        )
+                    ),
+                    (_position(1.0, rf_min, 2), "#a1d99b"),
+                    (1.0, "#c7e9c0"),
+                ],
+                "units": "dimensionless",
+                "label": "renal function [-]",
+                "ticks": {0.1: "0.1", 1.0: "1", 2.0: "2"},
+            },
+            "hepatic_scan": {
+                "parameter": "CP_severity",
+                "default": 0.0,
+                # healthy (0) to Child-Pugh C (3) every 0.25, with the classes
+                "range": np.linspace(0, cp_max, 13),
+                "scale": "linear",
+                # the colors of the classes at their severities
+                "colormap": [
+                    (0.0, "#d0e1f2"),
+                    *(
+                        (cirrhosis[key] / cp_max, cirrhosis_colors[key])
+                        for key in (
+                            "Mild cirrhosis",
+                            "Moderate cirrhosis",
+                            "Severe cirrhosis",
+                        )
+                    ),
+                ],
+                "units": "dimensionless",
+                "label": "Child-Pugh severity [-]",
+                "ticks": {
+                    0.0: "0",
+                    cirrhosis["Mild cirrhosis"]: "CPT A",
+                    cirrhosis["Moderate cirrhosis"]: "CPT B",
+                    cirrhosis["Severe cirrhosis"]: "CPT C",
+                },
+            },
+            "bodyweight_scan": {
+                "parameter": "BW",
+                "default": 75.0,
+                # the body weights of the studies, 38 to 170 kg
+                "range": np.array([38, 45, 55, 65, 75, 90, 105, 120, 140, 170, 200]),
+                "scale": "linear",
+                "colormap": "RdBu_r",
+                "units": "kg",
+                "label": "body weight [kg]",
+            },
+        }
 
     #: the timecourses of the figures of the scans
     scan_sids: ClassVar[dict[str, list[str]]] = {
         "dose_scan": [
-            "[Cve_api]",
-            "[Cve_m1]",
-            "[Cve_m7]",
+            "Carm_api",
+            "Carm_api_m1",
+            "Carm_api_m7",
             "Aurine_api",
             "Afeces_api",
         ],
         "renal_scan": [
-            "[Cve_api]",
+            "Carm_api",
             "Aurine_api",
-            "Aurine_m1",
-            "Aurine_m7",
-            "Afeces_m1",
+            "Aurine_api_m1",
+            "Aurine_api_m7",
+            "Afeces_api_m1",
         ],
         "hepatic_scan": [
-            "[Cve_api]",
-            "[Cve_m1]",
-            "[Cve_m7]",
-            "Afeces_m1",
-            "Afeces_m7",
+            "Carm_api",
+            "Carm_api_m1",
+            "Carm_api_m7",
+            "Afeces_api_m1",
+            "Afeces_api_m7",
         ],
         "bodyweight_scan": [
-            "[Cve_api]",
-            "[Cve_m1]",
-            "[Cve_m7]",
+            "Carm_api",
+            "Carm_api_m1",
+            "Carm_api_m7",
             "Aurine_api",
             "Afeces_api",
         ],
     }
     #: the pharmacodynamic timecourses of every scan, the second row
-    pd_sids: ClassVar[list[str]] = ["INR", "PT", "mPT", "aPTT", "antiXa_activity"]
+    pd_sids: ClassVar[list[str]] = [
+        "COAG__INR",
+        "COAG__PT",
+        "COAG__mPT",
+        "COAG__aPTT",
+        "COAG__antiXa_activity",
+    ]
 
     @override
     def simulations(self) -> dict[str, Scan]:
@@ -374,7 +401,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
         """Get the values of the scanned parameter at the points of the scan."""
         parameter_id = scan["parameter"]
         values = start_values(res, parameter_id)
-        across = self._across()
+        across = self.across()
         if across is not None:
             values = values.isel({across: 0})
         return Q(values.values, res.units[parameter_id]).to(scan["units"]).magnitude
@@ -578,7 +605,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                 squeeze=False,
             )
             res = self.results[f"task_scan_po_{scan_key}"]
-            (scandim,) = scan_dimensions(res, self._across())
+            (scandim,) = scan_dimensions(res, self.across())
             par_vec = self._scanned(res, scan_data)
 
             for ax, panel in zip(axes.flatten(), panels, strict=True):
@@ -606,7 +633,8 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
                 else:
                     ax.set_ylim(0, 1.05 * top if top > 0 else 1.0)
                 ax.set_xlabel(
-                    f"{self.label_time} [{self.units['time']}]", fontdict=self.font
+                    f"{self.label_time} [{_unit(self.units['time'])}]",
+                    fontdict=self.font,
                 )
                 ax.set_ylabel(
                     f"{self.labels[panel.sid]} [{_unit(self.units[panel.sid])}]",
@@ -893,7 +921,7 @@ class ApixabanParameterScan(ApixabanSimulationExperiment):
             value = Q(float(data_point), units).to(st_units).magnitude
         except DimensionalityError:
             # a mass concentration of apixaban
-            quantity = Q(float(data_point), units) / self.Mr.api
+            quantity = Q(float(data_point), units) / self.Mr["api"]
             try:
                 value = quantity.to(st_units).magnitude
             except DimensionalityError as err:

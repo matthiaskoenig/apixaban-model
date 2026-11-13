@@ -1,5 +1,5 @@
-study	name	time	time_end	time_unit	route	application	measurement_type	form	substance	value	unit	comments
-Song2016	API10_tablet	0.0	NA	hr	oral	single dose	dosing	tablet	apixaban	10.0	mg	two 5-mg tablets as a single dose
-Song2016	API10_suspension	0.0	NA	hr	oral	single dose	dosing	suspension	apixaban	10.0	mg	two 5-mg tablets crushed and suspended in 30 ml water
-Song2016	API10_syrup	0.0	NA	hr	oral	single dose	dosing	tablet	apixaban	10.0	mg	two 5-mg tablets crushed and mixed with 30 g applesauce (no syrup)
-Song2016	API5	0.0	NA	hr	oral	single dose	dosing	tablet	apixaban	5.0	mg	NA
+study	name	time	time_end	time_unit	interval	doses	route	application	measurement_type	form	substance	value	unit	comments
+Song2016	API5	0.0	NA	hr	NA	NA	oral	single dose	dosing	tablet	apixaban	5.0	mg	NA
+Song2016	API10_suspension	0.0	NA	hr	NA	NA	oral	single dose	dosing	suspension	apixaban	10.0	mg	Treatment B: two 5-mg tablets gently crushed into a coarse particulate form and suspended in 30 ml of water (Table I).
+Song2016	API10_syrup	0.0	NA	hr	NA	NA	oral	single dose	dosing	tablet	apixaban	10.0	mg	Treatment C: two 5-mg tablets gently crushed into a coarse particulate form and mixed with 30 g of applesauce (Table I); no syrup, the name is kept for the labels. Form tablet as the closest term for a crushed tablet.
+Song2016	API10_tablet	0.0	NA	hr	NA	NA	oral	single dose	dosing	tablet	apixaban	10.0	mg	Treatment A (reference): two 5-mg tablets administered whole (Table I).

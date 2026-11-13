@@ -1,8 +1,9 @@
 """Simulation experiment of the study VandenBosch2021."""
 
+from collections.abc import Mapping
+from types import MappingProxyType
 from typing import ClassVar, override
 
-import pandas as pd
 from pkpdsim.metadata import (
     ApplicationForm,
     Dosing,
@@ -12,6 +13,7 @@ from pkpdsim.metadata import (
     Route,
     Tissue,
 )
+from pkpdsim.pbpk import Sex
 from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
@@ -35,7 +37,18 @@ class VandenBosch2021(ApixabanSimulationExperiment):
     disease of the renal map (no measured value, 75 % of the patients have a
     urine output below 300 ml/day). The concentrations are measured with a
     chromogenic anti-Xa assay calibrated with apixaban (LOQ 21 ng/ml).
+
+    The patients dosed 2.5 mg after the dialysis are mostly women (4 of 6) and
+    run on the female build, with the end stage renal disease of the female
+    build; the patients dosed 5 mg (3 women of 6, no majority) run on the male
+    build.
     """
+
+    simulation_sexes: ClassVar[Mapping[str, Sex]] = MappingProxyType(
+        {
+            "api_PO2p5": Sex.FEMALE,
+        }
+    )
 
     colors: ClassVar[dict[str, str]] = {"PO2.5": "#31a354", "PO5": "#006d2c"}
 
@@ -55,39 +68,38 @@ class VandenBosch2021(ApixabanSimulationExperiment):
     loq = 21.0
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
 
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        # the means of the groups, the points below the limit of quantification
-        # are left out (but the predose point)
-        df = self.load_dataframe("Fig1Mean")
-        for label, df_label in df.groupby("label"):
-            label = str(label)
-            if "post" not in label:
-                continue
-            df_label = df_label[
-                (df_label["time"] < self.end_data)
-                & ((df_label["mean"] >= self.loq) | (df_label["time"] == 0.0))
-            ]
-            dset = DataSet.from_df(df_label, self.ureg)
-            dset.unit_conversion("mean", 1 / self.Mr.api)
-            dsets[self.to_sid(label)] = dset
-
-        # the individual points of a group as one scatter, every digitized point
-        # has its own individual id in the data (not a subject); plotted only
         df = self.load_dataframe("Fig1")
         for intervention, group in self.groups.items():
-            df_group = df[
-                (df["group"] == group)
-                & (df["intervention"] == intervention)
+            # the means of the groups (the samples below the limit of
+            # quantification counted as 0), the means below the limit of
+            # quantification are left out (but the predose point)
+            df_mean = df[df["label"] == f"{intervention}_apixaban_{group}_mean"]
+            df_mean = df_mean[
+                (df_mean["time"] < self.end_data)
+                & ((df_mean["mean"] >= self.loq) | (df_mean["time"] == 0.0))
+            ]
+            dset = DataSet.from_df(df_mean, self.ureg)
+            dset.unit_conversion("mean", 1 / self.Mr["api"])
+            dsets[self.to_sid(f"{intervention}_apixaban_{group}_mean")] = dset
+
+            # the samples of a group as one scatter (the samples below the limit
+            # of quantification have no value); plotted only
+            df_samples = df[
+                (
+                    df["label"]
+                    == "concentration_apixaban_plasma_"
+                    + f"{intervention}_{group}".replace(".", "_")
+                )
                 & (df["time"] < self.end_data)
             ]
-            df_group = pd.DataFrame(df_group).assign(individual="NA", count=1.0)
-            dset = DataSet.from_df(df_group, self.ureg)
-            dset.unit_conversion("value", 1 / self.Mr.api)
+            dset = DataSet.from_df(df_samples, self.ureg)
+            dset.unit_conversion("mean", 1 / self.Mr["api"])
             dsets[self.to_sid(f"{intervention}_apixaban_{group}_individual")] = dset
 
         return dsets
@@ -96,14 +108,17 @@ class VandenBosch2021(ApixabanSimulationExperiment):
     def simulations(self) -> dict[str, Simulation]:
         tcsims = {}
         for intervention in self.interventions:
-            tcsims[self.to_sid(f"api_{intervention}")] = Simulation(
+            key = self.to_sid(f"api_{intervention}")
+            # the classes of the build of the group (`simulation_sexes`)
+            renal_map = self.renal_map_of(simulation=key)
+            tcsims[key] = Simulation(
                 time_unit="hr",
                 end=54,
                 preinit_changes={
                     **self.default_changes(),
                     "PODOSE_api": Q(self.doses[intervention], "mg"),
-                    "KI__f_renal_function": Q(
-                        self.renal_map["End stage renal disease"], "dimensionless"
+                    "f_renal_function": Q(
+                        renal_map["End stage renal disease"], "dimensionless"
                     ),
                 },
             )
@@ -185,7 +200,7 @@ class VandenBosch2021(ApixabanSimulationExperiment):
                 plots[kp].add_data(
                     dataset=self.to_sid(f"{intervention}_{name}_{group}_individual"),
                     xid="time",
-                    yid="value",
+                    yid="mean",
                     label=f"exp individ ESRD: {dose}mg PO",
                     color=f"{color}60",
                     markeredgecolor=f"{color}60",

@@ -1,17 +1,17 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	0.0	hr		52.9497051834902	46.4228196779018	6.526885505588403	1.0319912112399503		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	1.0	hr		89.2367906066536	68.8845401174168	20.352250489236795	3.217973352813224		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	1.5	hr		108.414872798434	84.1487279843443	24.2661448140897	3.8368143822003313		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	2.0	hr		114.285714285714	93.1506849315068	21.13502935420719	3.3417415586906163		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	3.0	hr		122.11350293542	102.152641878669	19.960861056751	3.1560892498744337		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	4.0	hr		130.332681017612	103.71819960861	26.614481409002	4.208118999832683		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	6.0	hr		121.722113502935	94.3248532289628	27.397260273972208	4.331887205710046		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	8.0	hr		107.240704500978	83.3659491193737	23.874755381604302	3.774930279261604		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	10.0	hr		93.1506849315068	71.624266144814	21.5264187866928	3.4036256616293774		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	12.0	hr		84.1487279843443	69.6673189823874	14.481409001956903	2.2897118087324797		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	18.0	hr		68.1017612524461	59.491193737769	8.610567514677093	1.3614502646517468		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	24.0	hr		66.5362035225048	59.0998043052837	7.436399217221108	1.1757979558355969		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	36.0	hr		55.1859099804305	45.4011741682974	9.7847358121331	1.5471025734679005		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	48.0	hr		56.7514677103718	48.9236790606653	7.827788649706498	1.2376820587743231		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	72.0	hr		53.2289628180039	46.9667318982387	6.2622309197652015	0.990145647019459		sec	sec	dimensionless
-Frost2015		young	40.0	API_20	mPT		plasma	coagulation assay	mPT_young_API_20	96.0	hr		56.7514677103718	51.6634050880626	5.088062622309195	0.8044933382033055		sec	sec	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	0.0	hr		sec	52.9497051834902	6.526885505588403	1.0319912112399503	sec		sec	0.12326575724964557				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	1.0	hr		sec	89.2367906066536	20.352250489236795	3.217973352813224	sec		sec	0.2280701754385966				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	1.5	hr		sec	108.414872798434	24.2661448140897	3.8368143822003313	sec		sec	0.223826714801442				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	2.0	hr		sec	114.285714285714	21.13502935420719	3.3417415586906163	sec		sec	0.1849315068493134				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	3.0	hr		sec	122.11350293542	19.960861056751	3.1560892498744337	sec		sec	0.16346153846153563				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	4.0	hr		sec	130.332681017612	26.614481409001996	4.208118999832683	sec		sec	0.20420420420420532				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	6.0	hr		sec	121.722113502935	27.397260273972208	4.331887205710046	sec		sec	0.22508038585208756				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	8.0	hr		sec	107.240704500978	23.874755381604302	3.7749302792616035	sec		sec	0.22262773722627469				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	10.0	hr		sec	93.1506849315068	21.5264187866928	3.4036256616293774	sec		sec	0.23109243697479048				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	12.0	hr		sec	84.1487279843443	14.481409001956905	2.2897118087324793	sec		sec	0.1720930232558137				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	18.0	hr		sec	68.1017612524461	8.610567514677093	1.3614502646517468	sec		sec	0.12643678160919541				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	24.0	hr		sec	66.5362035225048	7.436399217221108	1.1757979558355967	sec		sec	0.11176470588235268				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	36.0	hr		sec	55.1859099804305	9.7847358121331	1.5471025734679003	sec		sec	0.17730496453900768				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	48.0	hr		sec	56.7514677103718	7.827788649706498	1.2376820587743231	sec		sec	0.1379310344827594				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	72.0	hr		sec	53.2289628180039	6.2622309197652015	0.990145647019459	sec		sec	0.1176470588235301				sec		dimensionless		
+Frost2015	young		40	dimensionless	API_20	mPT	sample mean			plasma	coagulation assay	mPT_young_API_20	96.0	hr		sec	56.7514677103718	5.088062622309195	0.8044933382033055	sec		sec	0.08965517241379309				sec		dimensionless		

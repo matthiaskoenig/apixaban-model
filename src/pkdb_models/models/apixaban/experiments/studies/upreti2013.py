@@ -1,6 +1,8 @@
 """Simulation experiment of the study Upreti2013."""
 
 import math
+from collections.abc import Mapping
+from types import MappingProxyType
 from typing import ClassVar, override
 
 from pkpdsim.metadata import (
@@ -12,6 +14,7 @@ from pkpdsim.metadata import (
     Route,
     Tissue,
 )
+from pkpdsim.pbpk import Sex
 from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
@@ -32,7 +35,18 @@ class Upreti2013(ApixabanSimulationExperiment):
     and high (137 kg, n = 19) body weight. The urinary amounts (0-72 h) are not
     reported, they are derived from the geometric means of the renal clearance
     and the AUCinf of Table 2.
+
+    The groups of low (16 women of 18) and reference body weight (10 women of
+    18) are mostly women and run on the female build; the group of high body
+    weight (3 women of 19) runs on the male build.
     """
+
+    simulation_sexes: ClassVar[Mapping[str, Sex]] = MappingProxyType(
+        {
+            "low": Sex.FEMALE,
+            "reference": Sex.FEMALE,
+        }
+    )
 
     bodyweights: ClassVar[dict[str, float]] = {  # [kg]
         "low": 47,
@@ -58,33 +72,46 @@ class Upreti2013(ApixabanSimulationExperiment):
     }
 
     info_fig1: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
         "Aurine_api": "cumulative amount",
     }
 
+    #: the statistic of the data and its error by the name of the data: the
+    #: urinary amounts are geometric means without a spread, the amount of 0 at
+    #: the dose is not part of the series
+    yids: ClassVar[dict[str, tuple[str, str | None]]] = {
+        "apixaban": ("mean", "mean_sd"),
+        "cumulative amount": ("gmean", None),
+    }
+
     info_fig_scatter: ClassVar[dict[str, list[str]]] = {
-        "apixaban_vs_antiXa": ["[Cve_api]", "antiXa_activity"],
+        "apixaban_vs_antiXa": ["Carm_api", "COAG__antiXa_activity"],
     }
 
     @override
     def datasets(self) -> dict[str, DataSet]:
         dsets = {}
-        for fig_id in ["Tab2", "Fig1", "Fig4"]:
+        for fig_id in ["Fig1", "Fig4"]:
             df = self.load_dataframe(fig_id)
-            group_by = "x_label" if fig_id == "Fig4" else "label"
-            for label, df_label in df.groupby(group_by):
-                label = str(label)
-                if fig_id == "Tab2" and not label.startswith("cumulative amount"):
-                    # the pharmacokinetic parameters of Tab2 are not used
-                    continue
+            for label, df_label in df.groupby("label"):
                 dset = DataSet.from_df(df_label, self.ureg)
-                if fig_id == "Fig4":
-                    dset.unit_conversion("x", 1 / self.Mr.api)
-                else:
-                    # the urinary amounts of Tab2 are derived, the geometric means
-                    # of the renal clearance times the AUCinf (Ae0-72)
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
-                dsets[self.to_sid(label)] = dset
+                dset.unit_conversion(
+                    "x" if fig_id == "Fig4" else "mean", 1 / self.Mr["api"]
+                )
+                dsets[self.to_sid(str(label))] = dset
+
+        # the urinary amounts of Tab2 are derived, the geometric means of the
+        # renal clearance times the AUCinf (Ae0-72); the pharmacokinetic
+        # parameters of Tab2 are not used
+        df = self.load_dataframe("Tab2")
+        for group in self.groups:
+            df_group = df[
+                (df["label"] == f"cumulative_amount_apixaban_urine_API10_{group}")
+                & df["gmean"].notna()
+            ]
+            dset = DataSet.from_df(df_group, self.ureg)
+            dset.unit_conversion("gmean", 1 / self.Mr["api"])
+            dsets[self.to_sid(f"cumulative amount_{group}")] = dset
 
         return dsets
 
@@ -115,14 +142,15 @@ class Upreti2013(ApixabanSimulationExperiment):
         for group in self.groups:
             # pharmacokinetics
             for sid, name in self.info_fig1.items():
+                tissue = Tissue.URINE if sid == "Aurine_api" else Tissue.PLASMA
                 mappings[self.to_sid(f"fm_{name}_{group}")] = FitMapping(
                     self,
                     reference=FitData(
                         self,
                         dataset=self.to_sid(f"{name}_{group}"),
                         xid="time",
-                        yid="mean",
-                        yid_sd="mean_sd",
+                        yid=self.yids[name][0],
+                        yid_sd=self.yids[name][1],
                         count="count",
                     ),
                     observable=FitData(
@@ -132,7 +160,7 @@ class Upreti2013(ApixabanSimulationExperiment):
                         yid=sid,
                     ),
                     metadata=PKPDMappingMetaData(
-                        tissue=Tissue.URINE if sid == "Aurine_api" else Tissue.PLASMA,
+                        tissue=tissue,
                         route=Route.PO,
                         application_form=ApplicationForm.TABLET,
                         dosing=Dosing.SINGLE,
@@ -182,8 +210,8 @@ class Upreti2013(ApixabanSimulationExperiment):
                 plots[k].add_data(
                     dataset=self.to_sid(f"{name}_{group}"),
                     xid="time",
-                    yid="mean",
-                    yid_sd="mean_sd",
+                    yid=self.yids[name][0],
+                    yid_sd=self.yids[name][1],
                     count="count",
                     label=f"exp {group}: 10mg PO",
                     color=self.colors[group],

@@ -1,2 +1,2 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	mean	geomean	median	min	max	mean_sd	mean_se	cv	comments	mean_unit	median_unit	count_unit
-Frost2015	female	39.0	API_20	cumulative amount	apixaban	urine	calculated	cumulative amount_female	96.0	hr	4.07775209483433e-06					9.896116086931622e-08			1/hr * hr/l * mg, time assumed	mole	mg	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2015	female		39	dimensionless	API_20	cumulative amount	sample mean		apixaban	urine	calculated	cumulative_amount_apixaban_urine_API_20_female	96.0	hr		mg	4.07775209483433e-06			mole		mg					mg		dimensionless		urinary amount of apixaban 0-96 h computed as dose x mean CLR / mean CL/F of the table, not printed

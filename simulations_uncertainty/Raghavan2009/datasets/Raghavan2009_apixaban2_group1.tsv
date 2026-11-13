@@ -1,6 +1,6 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Raghavan2009		group1	6.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group1	1.0	hr		1.084					µM	µM	dimensionless
-Raghavan2009		group1	6.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group1	6.0	hr		0.791					µM	µM	dimensionless
-Raghavan2009		group1	6.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group1	12.0	hr		0.354					µM	µM	dimensionless
-Raghavan2009		group1	6.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group1	24.0	hr		0.108					µM	µM	dimensionless
-Raghavan2009		group1	6.0	API20	concentration	apixaban	plasma	HPLC MS/MS	apixaban2_group1	48.0	hr		0.029					µM	µM	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Raghavan2009	group1		6	dimensionless	API20	concentration	sample mean		apixaban	plasma	HPLC MS/MS	apixaban2_group1	1.0	hr		µM	1.084			µM		µM					µM		dimensionless		
+Raghavan2009	group1		6	dimensionless	API20	concentration	sample mean		apixaban	plasma	HPLC MS/MS	apixaban2_group1	6.0	hr		µM	0.791			µM		µM					µM		dimensionless		
+Raghavan2009	group1		6	dimensionless	API20	concentration	sample mean		apixaban	plasma	HPLC MS/MS	apixaban2_group1	12.0	hr		µM	0.354			µM		µM					µM		dimensionless		
+Raghavan2009	group1		6	dimensionless	API20	concentration	sample mean		apixaban	plasma	HPLC MS/MS	apixaban2_group1	24.0	hr		µM	0.108			µM		µM					µM		dimensionless		
+Raghavan2009	group1		6	dimensionless	API20	concentration	sample mean		apixaban	plasma	HPLC MS/MS	apixaban2_group1	48.0	hr		µM	0.029			µM		µM					µM		dimensionless		

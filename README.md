@@ -3,7 +3,7 @@
 [![Documentation](https://github.com/matthiaskoenig/apixaban-model/actions/workflows/docs.yml/badge.svg)](https://matthiaskoenig.github.io/apixaban-model/)
 [![CI](https://github.com/matthiaskoenig/apixaban-model/actions/workflows/ci.yml/badge.svg)](https://github.com/matthiaskoenig/apixaban-model/actions/workflows/ci.yml)
 [![Docker](https://img.shields.io/docker/v/matthiaskoenig/apixaban?sort=semver&label=docker)](https://hub.docker.com/r/matthiaskoenig/apixaban)
-[![Python](https://img.shields.io/badge/python-3.14-blue)](https://www.python.org)
+[![Python](https://img.shields.io/badge/python-3.14%20%7C%203.15-blue)](https://www.python.org)
 [![Code license: MIT](https://img.shields.io/badge/code%20license-MIT-blue)](https://opensource.org/license/MIT)
 [![Model license: CC BY-SA 4.0](https://img.shields.io/badge/model%20license-CC%20BY--SA%204.0-lightgrey)](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -13,12 +13,20 @@ This repository provides the apixaban physiologically based pharmacokinetic/phar
 
 Documentation: <https://matthiaskoenig.github.io/apixaban-model/>
 
+Credibility of the model for its contexts of use: [https://matthiaskoenig.github.io/apixaban-model/credibility.html](https://matthiaskoenig.github.io/apixaban-model/credibility.html)
+
+## Model
+
+![apixaban_body](models/apixaban_body.svg)
+
+![apixaban_body_body](models/apixaban_body_body.svg)
+
 ## Quick start
 
 ```bash
 git clone https://github.com/matthiaskoenig/apixaban-model.git && cd apixaban-model
 uv sync
-uv run run_simulation pkdb_models.models.apixaban --action all -r results
+uv run python -m sbmlsim.run simulate specs/simulate.json --out results/simulate
 ```
 
 ## How to cite

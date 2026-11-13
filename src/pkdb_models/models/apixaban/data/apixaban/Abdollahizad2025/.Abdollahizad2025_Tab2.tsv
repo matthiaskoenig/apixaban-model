@@ -1,13 +1,13 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	se	geomean	median	min	max	sd	cv	unit	comments
-Abdollahizad2025	all	24.0	REF5	auc_end	apixaban	plasma	LC MS/MS	48.0	hr	1310.6	101.2	1222.9	NA	NA	NA	NA	NA	ng/ml*hr	NA
-Abdollahizad2025	all	24.0	REF5	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	1406.5	105.2	1319.8	NA	NA	NA	NA	NA	ng/ml*hr	NA
-Abdollahizad2025	all	24.0	REF5	cmax	apixaban	plasma	LC MS/MS	NA	NA	157.6	12.5	145.7	NA	NA	NA	NA	NA	ng/ml	NA
-Abdollahizad2025	all	24.0	REF5	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	2.5	1.0	3.5	NA	NA	hr	NA
-Abdollahizad2025	all	24.0	REF5	kel	apixaban	plasma	LC MS/MS	NA	NA	0.075	0.005	0.069	NA	NA	NA	NA	NA	1/hr	NA
-Abdollahizad2025	all	24.0	REF5	thalf	apixaban	plasma	LC MS/MS	NA	NA	11.1	1.4	9.95	NA	NA	NA	NA	NA	hr	NA
-Abdollahizad2025	all	24.0	TEST5	auc_end	apixaban	plasma	LC MS/MS	48.0	hr	1284.0	85.1	1207.2	NA	NA	NA	NA	NA	ng/ml*hr	NA
-Abdollahizad2025	all	24.0	TEST5	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	1368.2	88.7	1290.6	NA	NA	NA	NA	NA	ng/ml*hr	NA
-Abdollahizad2025	all	24.0	TEST5	cmax	apixaban	plasma	LC MS/MS	NA	NA	157.4	10.1	149.8	NA	NA	NA	NA	NA	ng/ml	NA
-Abdollahizad2025	all	24.0	TEST5	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	NA	2.5	1.5	4.0	NA	NA	hr	NA
-Abdollahizad2025	all	24.0	TEST5	kel	apixaban	plasma	LC MS/MS	NA	NA	0.072	0.004	0.069	NA	NA	NA	NA	NA	1/hr	NA
-Abdollahizad2025	all	24.0	TEST5	thalf	apixaban	plasma	LC MS/MS	NA	NA	10.4	0.6	10.0	NA	NA	NA	NA	NA	hr	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Abdollahizad2025	all	NA	24	REF5	auc_end	sample mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_REF5_all	48.0	hr	NA	1310.6	NA	495.7767239393152	101.2	0.3782822554092135	NA	NA	1222.9	NA	NA	ng/ml*hr	NA
+Abdollahizad2025	all	NA	24	REF5	auc_inf	sample mean	NA	apixaban	plasma	LC MS/MS	auc_inf_apixaban_plasma_REF5_all	NA	NA	NA	1406.5	NA	515.3726418815806	105.2	0.3664220703032923	NA	NA	1319.8	NA	NA	ng/ml*hr	NA
+Abdollahizad2025	all	NA	24	REF5	cmax	sample mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_REF5_all	NA	NA	NA	157.6	NA	61.23724356957945	12.5	0.38856119016230617	NA	NA	145.7	NA	NA	ng/ml	NA
+Abdollahizad2025	all	NA	24	REF5	kel	sample mean	NA	apixaban	plasma	LC MS/MS	kel_apixaban_plasma_REF5_all	NA	NA	NA	0.075	NA	0.02449489742783178	0.005	0.3265986323710904	NA	NA	0.069	NA	NA	1/hr	NA
+Abdollahizad2025	all	NA	24	REF5	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_REF5_all	NA	NA	NA	11.1	NA	6.858571279792898	1.4	0.6178893044858467	NA	NA	9.95	NA	NA	hr	NA
+Abdollahizad2025	all	NA	24	REF5	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_REF5_all	NA	NA	NA	NA	2.5	NA	NA	NA	1.0	3.5	NA	NA	NA	hr	NA
+Abdollahizad2025	all	NA	24	TEST5	auc_end	sample mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_TEST5_all	48.0	hr	NA	1284.0	NA	416.90315422169687	85.1	0.3246909300792032	NA	NA	1207.2	NA	NA	ng/ml*hr	NA
+Abdollahizad2025	all	NA	24	TEST5	auc_inf	sample mean	NA	apixaban	plasma	LC MS/MS	auc_inf_apixaban_plasma_TEST5_all	NA	NA	NA	1368.2	NA	434.53948036973577	88.7	0.31759938632490553	NA	NA	1290.6	NA	NA	ng/ml*hr	NA
+Abdollahizad2025	all	NA	24	TEST5	cmax	sample mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_TEST5_all	NA	NA	NA	157.4	NA	49.47969280422019	10.1	0.3143563710560368	NA	NA	149.8	NA	NA	ng/ml	NA
+Abdollahizad2025	all	NA	24	TEST5	kel	sample mean	NA	apixaban	plasma	LC MS/MS	kel_apixaban_plasma_TEST5_all	NA	NA	NA	0.072	NA	0.019595917942265423	0.004	0.2721655269759087	NA	NA	0.069	NA	NA	1/hr	NA
+Abdollahizad2025	all	NA	24	TEST5	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_TEST5_all	NA	NA	NA	10.4	NA	2.9393876913398134	0.6	0.28263343185959744	NA	NA	10.0	NA	NA	hr	NA
+Abdollahizad2025	all	NA	24	TEST5	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_TEST5_all	NA	NA	NA	NA	2.5	NA	NA	NA	1.5	4.0	NA	NA	NA	hr	NA

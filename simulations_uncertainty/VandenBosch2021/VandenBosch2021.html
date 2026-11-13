@@ -200,7 +200,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     <h1>VandenBosch2021</h1>
     <span class="sub">simulation experiment</span>
     <div class="badges">
-<span class="badge">models <b>1</b></span>
+<span class="badge">models <b>2</b></span>
 <span class="badge">datasets <b>4</b></span>
 <span class="badge">figures <b>1</b></span>
     </div>
@@ -208,8 +208,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
   <nav class="sections">
 <a href="#overview">Overview</a>
 <a href="#figures">Figures</a>
-<a href="#code">Code</a>
-  </nav>
+<a href="#code">Code</a>  </nav>
   <div class="search">
     <input id="search" type="search" placeholder="Search figures, models, datasets …" autocomplete="off">
     <span id="hits"></span>
@@ -226,7 +225,8 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     <table data-filter="row">
       <thead><tr><th data-sort="text">model</th><th data-sort="text">source</th></tr></thead>
       <tbody>
-      <tr><td class="mono">model</td><td><a href="../../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml" title="../../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml">apixaban_body_flat.xml</a></td></tr>
+      <tr><td class="mono">model</td><td><a href="../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml" title="../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml">apixaban_body_flat.xml</a></td></tr>
+      <tr><td class="mono">model_female</td><td><a href="../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_female_flat.xml" title="../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_female_flat.xml">apixaban_body_female_flat.xml</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -237,8 +237,8 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
       <thead><tr><th data-sort="text">dataset</th><th data-sort="text">file</th></tr></thead>
       <tbody>
       <tr><td class="mono">PO2p5_apixaban_post2p5_mean</td><td><a href="datasets/VandenBosch2021_PO2p5_apixaban_post2p5_mean.tsv">datasets/VandenBosch2021_PO2p5_apixaban_post2p5_mean.tsv</a></td></tr>
-      <tr><td class="mono">PO5_apixaban_post5_mean</td><td><a href="datasets/VandenBosch2021_PO5_apixaban_post5_mean.tsv">datasets/VandenBosch2021_PO5_apixaban_post5_mean.tsv</a></td></tr>
       <tr><td class="mono">PO2p5_apixaban_post2p5_individual</td><td><a href="datasets/VandenBosch2021_PO2p5_apixaban_post2p5_individual.tsv">datasets/VandenBosch2021_PO2p5_apixaban_post2p5_individual.tsv</a></td></tr>
+      <tr><td class="mono">PO5_apixaban_post5_mean</td><td><a href="datasets/VandenBosch2021_PO5_apixaban_post5_mean.tsv">datasets/VandenBosch2021_PO5_apixaban_post5_mean.tsv</a></td></tr>
       <tr><td class="mono">PO5_apixaban_post5_individual</td><td><a href="datasets/VandenBosch2021_PO5_apixaban_post5_individual.tsv">datasets/VandenBosch2021_PO5_apixaban_post5_individual.tsv</a></td></tr>
       </tbody>
     </table>
@@ -263,12 +263,13 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
 <section id="code">
   <h2>Code</h2>
   <div class="card">
-    <p><a href="../../../../src/pkdb_models/models/apixaban/experiments/studies/vandenbosch2021.py" title="../../../../src/pkdb_models/models/apixaban/experiments/studies/vandenbosch2021.py">vandenbosch2021.py</a></p>
+    <p><a href="../../../src/pkdb_models/models/apixaban/experiments/studies/vandenbosch2021.py" title="../../../src/pkdb_models/models/apixaban/experiments/studies/vandenbosch2021.py">vandenbosch2021.py</a></p>
     <pre class="code"><code>&#34;&#34;&#34;Simulation experiment of the study VandenBosch2021.&#34;&#34;&#34;
 
+from collections.abc import Mapping
+from types import MappingProxyType
 from typing import ClassVar, override
 
-import pandas as pd
 from pkpdsim.metadata import (
     ApplicationForm,
     Dosing,
@@ -278,6 +279,7 @@ from pkpdsim.metadata import (
     Route,
     Tissue,
 )
+from pkpdsim.pbpk import Sex
 from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
@@ -301,7 +303,18 @@ class VandenBosch2021(ApixabanSimulationExperiment):
     disease of the renal map (no measured value, 75 % of the patients have a
     urine output below 300 ml/day). The concentrations are measured with a
     chromogenic anti-Xa assay calibrated with apixaban (LOQ 21 ng/ml).
+
+    The patients dosed 2.5 mg after the dialysis are mostly women (4 of 6) and
+    run on the female build, with the end stage renal disease of the female
+    build; the patients dosed 5 mg (3 women of 6, no majority) run on the male
+    build.
     &#34;&#34;&#34;
+
+    simulation_sexes: ClassVar[Mapping[str, Sex]] = MappingProxyType(
+        {
+            &#34;api_PO2p5&#34;: Sex.FEMALE,
+        }
+    )
 
     colors: ClassVar[dict[str, str]] = {&#34;PO2.5&#34;: &#34;#31a354&#34;, &#34;PO5&#34;: &#34;#006d2c&#34;}
 
@@ -321,39 +334,38 @@ class VandenBosch2021(ApixabanSimulationExperiment):
     loq = 21.0
 
     infos_pk: ClassVar[dict[str, str]] = {
-        &#34;[Cve_api]&#34;: &#34;apixaban&#34;,
+        &#34;Carm_api&#34;: &#34;apixaban&#34;,
     }
 
     @override
     def datasets(self) -&gt; dict[str, DataSet]:
         dsets = {}
-        # the means of the groups, the points below the limit of quantification
-        # are left out (but the predose point)
-        df = self.load_dataframe(&#34;Fig1Mean&#34;)
-        for label, df_label in df.groupby(&#34;label&#34;):
-            label = str(label)
-            if &#34;post&#34; not in label:
-                continue
-            df_label = df_label[
-                (df_label[&#34;time&#34;] &lt; self.end_data)
-                &amp; ((df_label[&#34;mean&#34;] &gt;= self.loq) | (df_label[&#34;time&#34;] == 0.0))
-            ]
-            dset = DataSet.from_df(df_label, self.ureg)
-            dset.unit_conversion(&#34;mean&#34;, 1 / self.Mr.api)
-            dsets[self.to_sid(label)] = dset
-
-        # the individual points of a group as one scatter, every digitized point
-        # has its own individual id in the data (not a subject); plotted only
         df = self.load_dataframe(&#34;Fig1&#34;)
         for intervention, group in self.groups.items():
-            df_group = df[
-                (df[&#34;group&#34;] == group)
-                &amp; (df[&#34;intervention&#34;] == intervention)
+            # the means of the groups (the samples below the limit of
+            # quantification counted as 0), the means below the limit of
+            # quantification are left out (but the predose point)
+            df_mean = df[df[&#34;label&#34;] == f&#34;{intervention}_apixaban_{group}_mean&#34;]
+            df_mean = df_mean[
+                (df_mean[&#34;time&#34;] &lt; self.end_data)
+                &amp; ((df_mean[&#34;mean&#34;] &gt;= self.loq) | (df_mean[&#34;time&#34;] == 0.0))
+            ]
+            dset = DataSet.from_df(df_mean, self.ureg)
+            dset.unit_conversion(&#34;mean&#34;, 1 / self.Mr[&#34;api&#34;])
+            dsets[self.to_sid(f&#34;{intervention}_apixaban_{group}_mean&#34;)] = dset
+
+            # the samples of a group as one scatter (the samples below the limit
+            # of quantification have no value); plotted only
+            df_samples = df[
+                (
+                    df[&#34;label&#34;]
+                    == &#34;concentration_apixaban_plasma_&#34;
+                    + f&#34;{intervention}_{group}&#34;.replace(&#34;.&#34;, &#34;_&#34;)
+                )
                 &amp; (df[&#34;time&#34;] &lt; self.end_data)
             ]
-            df_group = pd.DataFrame(df_group).assign(individual=&#34;NA&#34;, count=1.0)
-            dset = DataSet.from_df(df_group, self.ureg)
-            dset.unit_conversion(&#34;value&#34;, 1 / self.Mr.api)
+            dset = DataSet.from_df(df_samples, self.ureg)
+            dset.unit_conversion(&#34;mean&#34;, 1 / self.Mr[&#34;api&#34;])
             dsets[self.to_sid(f&#34;{intervention}_apixaban_{group}_individual&#34;)] = dset
 
         return dsets
@@ -362,14 +374,17 @@ class VandenBosch2021(ApixabanSimulationExperiment):
     def simulations(self) -&gt; dict[str, Simulation]:
         tcsims = {}
         for intervention in self.interventions:
-            tcsims[self.to_sid(f&#34;api_{intervention}&#34;)] = Simulation(
+            key = self.to_sid(f&#34;api_{intervention}&#34;)
+            # the classes of the build of the group (`simulation_sexes`)
+            renal_map = self.renal_map_of(simulation=key)
+            tcsims[key] = Simulation(
                 time_unit=&#34;hr&#34;,
                 end=54,
                 preinit_changes={
                     **self.default_changes(),
                     &#34;PODOSE_api&#34;: Q(self.doses[intervention], &#34;mg&#34;),
-                    &#34;KI__f_renal_function&#34;: Q(
-                        self.renal_map[&#34;End stage renal disease&#34;], &#34;dimensionless&#34;
+                    &#34;f_renal_function&#34;: Q(
+                        renal_map[&#34;End stage renal disease&#34;], &#34;dimensionless&#34;
                     ),
                 },
             )
@@ -451,7 +466,7 @@ class VandenBosch2021(ApixabanSimulationExperiment):
                 plots[kp].add_data(
                     dataset=self.to_sid(f&#34;{intervention}_{name}_{group}_individual&#34;),
                     xid=&#34;time&#34;,
-                    yid=&#34;value&#34;,
+                    yid=&#34;mean&#34;,
                     label=f&#34;exp individ ESRD: {dose}mg PO&#34;,
                     color=f&#34;{color}60&#34;,
                     markeredgecolor=f&#34;{color}60&#34;,
@@ -472,8 +487,7 @@ if __name__ == &#34;__main__&#34;:
 </main>
 
 <footer>
-<a href="../index.html">all experiments</a> · <a href="../../../../src/pkdb_models/models/apixaban/experiments/studies/vandenbosch2021.py" title="../../../../src/pkdb_models/models/apixaban/experiments/studies/vandenbosch2021.py">vandenbosch2021.py</a>
-</footer>
+<a href="../index.html">all experiments</a> · <a href="../../../src/pkdb_models/models/apixaban/experiments/studies/vandenbosch2021.py" title="../../../src/pkdb_models/models/apixaban/experiments/studies/vandenbosch2021.py">vandenbosch2021.py</a></footer>
 
 <div id="lightbox"><img alt=""></div>
 

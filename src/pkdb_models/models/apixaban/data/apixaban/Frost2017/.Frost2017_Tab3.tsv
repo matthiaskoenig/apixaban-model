@@ -1,21 +1,21 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cv	median	min	max	sd	se	unit	comments
-Frost2017	api_aten	15.0	API10	cmax	apixaban	plasma	LC MS/MS	NA	NA	216.0	33.0	NA	NA	NA	NA	NA	ng/ml	NA
-Frost2017	api_aten	15.0	API10	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	2103.0	31.0	NA	NA	NA	NA	NA	ng/ml*hr	NA
-Frost2017	api_aten	15.0	API10	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	2157.0	31.0	NA	NA	NA	NA	NA	ng/ml*hr	NA
-Frost2017	api_aten	15.0	API10	thalf	apixaban	plasma	LC MS/MS	NA	NA	13.9	NA	NA	NA	NA	6.1	NA	hr	NA
-Frost2017	api_aten	15.0	API10	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	3.0	1.0	4.0	NA	NA	hr	NA
-Frost2017	api_aten	14.0	API10, ATEN	cmax	apixaban	plasma	LC MS/MS	NA	NA	180.0	32.0	NA	NA	NA	NA	NA	ng/ml	NA
-Frost2017	api_aten	14.0	API10, ATEN	auc_end	apixaban	plasma	LC MS/MS	72.0	hr	1838.0	33.0	NA	NA	NA	NA	NA	ng/ml*hr	NA
-Frost2017	api_aten	14.0	API10, ATEN	auc_inf	apixaban	plasma	LC MS/MS	NA	NA	1878.0	33.0	NA	NA	NA	NA	NA	ng/ml*hr	NA
-Frost2017	api_aten	14.0	API10, ATEN	thalf	apixaban	plasma	LC MS/MS	NA	NA	11.7	NA	NA	NA	NA	3.8	NA	hr	NA
-Frost2017	api_aten	14.0	API10, ATEN	tmax	apixaban	plasma	LC MS/MS	NA	NA	NA	NA	4.0	2.0	4.0	NA	NA	hr	NA
-Frost2017	api_aten	14.0	ATEN	cmax	atenolol	plasma	LC MS/MS	NA	NA	603.0	39.0	NA	NA	NA	NA	NA	ng/ml	NA
-Frost2017	api_aten	14.0	ATEN	auc_end	atenolol	plasma	LC MS/MS	72.0	hr	5500.0	29.0	NA	NA	NA	NA	NA	ng/ml*hr	NA
-Frost2017	api_aten	14.0	ATEN	auc_inf	atenolol	plasma	LC MS/MS	NA	NA	5596.0	29.0	NA	NA	NA	NA	NA	ng/ml*hr	NA
-Frost2017	api_aten	14.0	ATEN	thalf	atenolol	plasma	LC MS/MS	NA	NA	8.33	NA	NA	NA	NA	1.64	NA	hr	NA
-Frost2017	api_aten	14.0	ATEN	tmax	atenolol	plasma	LC MS/MS	NA	NA	NA	NA	3.0	1.0	6.0	NA	NA	hr	NA
-Frost2017	api_aten	15.0	ATEN, API10	cmax	atenolol	plasma	LC MS/MS	NA	NA	598.0	33.0	NA	NA	NA	NA	NA	ng/ml	NA
-Frost2017	api_aten	15.0	ATEN, API10	auc_end	atenolol	plasma	LC MS/MS	72.0	hr	5528.0	22.0	NA	NA	NA	NA	NA	ng/ml*hr	NA
-Frost2017	api_aten	15.0	ATEN, API10	auc_inf	atenolol	plasma	LC MS/MS	NA	NA	5649.0	22.0	NA	NA	NA	NA	NA	ng/ml*hr	NA
-Frost2017	api_aten	15.0	ATEN, API10	thalf	atenolol	plasma	LC MS/MS	NA	NA	8.57	NA	NA	NA	NA	1.89	NA	hr	NA
-Frost2017	api_aten	15.0	ATEN, API10	tmax	atenolol	plasma	LC MS/MS	NA	NA	NA	NA	2.0	2.0	4.0	NA	NA	hr	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Frost2017	api_aten	NA	15	API10	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_API10_api_aten	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	2103.0	1.3538014603591997	0.31	ng/ml*hr	NA
+Frost2017	api_aten	NA	15	API10	auc_inf	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_inf_apixaban_plasma_API10_api_aten	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	2157.0	1.3538014603591997	0.31	ng/ml*hr	NA
+Frost2017	api_aten	NA	15	API10	cmax	geometric mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_API10_api_aten	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	216.0	1.3792084824821116	0.33	ng/ml	NA
+Frost2017	api_aten	NA	15	API10	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_API10_api_aten	NA	NA	NA	13.9	NA	6.1	1.5750132274576827	0.4388489208633093	NA	NA	NA	NA	NA	hr	NA
+Frost2017	api_aten	NA	15	API10	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_API10_api_aten	NA	NA	NA	NA	3.0	NA	NA	NA	1.0	4.0	NA	NA	NA	hr	NA
+Frost2017	api_aten	NA	14	API10,ATEN	auc_end	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_end_apixaban_plasma_API10_ATEN_api_aten	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	1838.0	1.3792084824821116	0.33	ng/ml*hr	NA
+Frost2017	api_aten	NA	15	API10,ATEN	auc_end	geometric mean	NA	atenolol	plasma	LC MS/MS	auc_end_atenolol_plasma_API10_ATEN_api_aten	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	5528.0	1.2428480921227265	0.22	ng/ml*hr	NA
+Frost2017	api_aten	NA	14	API10,ATEN	auc_inf	geometric mean	NA	apixaban	plasma	LC MS/MS	auc_inf_apixaban_plasma_API10_ATEN_api_aten	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1878.0	1.3792084824821116	0.33	ng/ml*hr	NA
+Frost2017	api_aten	NA	15	API10,ATEN	auc_inf	geometric mean	NA	atenolol	plasma	LC MS/MS	auc_inf_atenolol_plasma_API10_ATEN_api_aten	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	5649.0	1.2428480921227265	0.22	ng/ml*hr	NA
+Frost2017	api_aten	NA	14	API10,ATEN	cmax	geometric mean	NA	apixaban	plasma	LC MS/MS	cmax_apixaban_plasma_API10_ATEN_api_aten	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	180.0	1.3664734270732437	0.32	ng/ml	NA
+Frost2017	api_aten	NA	15	API10,ATEN	cmax	geometric mean	NA	atenolol	plasma	LC MS/MS	cmax_atenolol_plasma_API10_ATEN_api_aten	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	598.0	1.3792084824821116	0.33	ng/ml	NA
+Frost2017	api_aten	NA	14	API10,ATEN	thalf	sample mean	NA	apixaban	plasma	LC MS/MS	thalf_apixaban_plasma_API10_ATEN_api_aten	NA	NA	NA	11.7	NA	3.8	1.0155927192672127	0.3247863247863248	NA	NA	NA	NA	NA	hr	NA
+Frost2017	api_aten	NA	15	API10,ATEN	thalf	sample mean	NA	atenolol	plasma	LC MS/MS	thalf_atenolol_plasma_API10_ATEN_api_aten	NA	NA	NA	8.57	NA	1.89	0.48799590162213446	0.22053675612602097	NA	NA	NA	NA	NA	hr	NA
+Frost2017	api_aten	NA	14	API10,ATEN	tmax	sample mean	NA	apixaban	plasma	LC MS/MS	tmax_apixaban_plasma_API10_ATEN_api_aten	NA	NA	NA	NA	4.0	NA	NA	NA	2.0	4.0	NA	NA	NA	hr	NA
+Frost2017	api_aten	NA	15	API10,ATEN	tmax	sample mean	NA	atenolol	plasma	LC MS/MS	tmax_atenolol_plasma_API10_ATEN_api_aten	NA	NA	NA	NA	2.0	NA	NA	NA	2.0	4.0	NA	NA	NA	hr	NA
+Frost2017	api_aten	NA	14	ATEN	auc_end	geometric mean	NA	atenolol	plasma	LC MS/MS	auc_end_atenolol_plasma_ATEN_api_aten	72.0	hr	NA	NA	NA	NA	NA	NA	NA	NA	5500.0	1.3286530811483306	0.29	ng/ml*hr	NA
+Frost2017	api_aten	NA	14	ATEN	auc_inf	geometric mean	NA	atenolol	plasma	LC MS/MS	auc_inf_atenolol_plasma_ATEN_api_aten	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	5596.0	1.3286530811483306	0.29	ng/ml*hr	NA
+Frost2017	api_aten	NA	14	ATEN	cmax	geometric mean	NA	atenolol	plasma	LC MS/MS	cmax_atenolol_plasma_ATEN_api_aten	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	603.0	1.4568544649846984	0.39	ng/ml	NA
+Frost2017	api_aten	NA	14	ATEN	thalf	sample mean	NA	atenolol	plasma	LC MS/MS	thalf_atenolol_plasma_ATEN_api_aten	NA	NA	NA	8.33	NA	1.64	0.438308436736376	0.19687875150060022	NA	NA	NA	NA	NA	hr	NA
+Frost2017	api_aten	NA	14	ATEN	tmax	sample mean	NA	atenolol	plasma	LC MS/MS	tmax_atenolol_plasma_ATEN_api_aten	NA	NA	NA	NA	3.0	NA	NA	NA	1.0	6.0	NA	NA	NA	hr	NA

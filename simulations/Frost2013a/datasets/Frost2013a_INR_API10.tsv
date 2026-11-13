@@ -1,19 +1,19 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	0.0	hr		1.12	1.38	0.26			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	3.0	hr		1.19	1.42	0.23			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	6.0	hr		1.22	1.39	0.17			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	9.0	hr		1.18	1.41	0.23			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	12.0	hr		1.12	1.34	0.22			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	15.0	hr		1.21	1.35	0.14			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	18.0	hr		1.18	1.28	0.1			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	21.0	hr		1.13	1.19	0.0600000000000001			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	24.0	hr		1.1	1.24	0.14			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	144.0	hr		1.1	1.38	0.28			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	147.0	hr		1.18	1.42	0.24			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	150.0	hr		1.21	1.37	0.16			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	153.0	hr		1.18	1.31	0.13			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	156.0	hr		1.18	1.35	0.17			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	159.0	hr		1.24	1.28	0.04			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	162.0	hr		1.19	1.24	0.05			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	165.0	hr		1.13	1.21	0.0800000000000001			dimensionless	dimensionless	dimensionless
-Frost2013a		API10	6.0	API10	inr		plasma	coagulation assay	INR_API10	168.0	hr		1.09					dimensionless	dimensionless	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	0.0	hr		dimensionless	1.11			dimensionless		dimensionless					dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	3.0	hr		dimensionless	1.294	0.08099999999999996	0.03306811152757289	dimensionless		dimensionless	0.06259659969088095				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	6.0	hr		dimensionless	1.291	0.123	0.050214539727055155	dimensionless		dimensionless	0.09527498063516654				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	9.0	hr		dimensionless	1.275	0.1100000000000001	0.04490731195102497	dimensionless		dimensionless	0.08627450980392165				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	12.0	hr		dimensionless	1.243	0.1649999999999998	0.06736096792653733	dimensionless		dimensionless	0.13274336283185825				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	15.0	hr		dimensionless	1.194	0.14800000000000013	0.06042074698865178	dimensionless		dimensionless	0.1239530988274708				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	18.0	hr		dimensionless	1.202	0.139	0.05674651237447697	dimensionless		dimensionless	0.1156405990016639				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	21.0	hr		dimensionless	1.184	0.08499999999999996	0.034701104689428344	dimensionless		dimensionless	0.07179054054054052				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	24.0	hr		dimensionless	1.088	0.09399999999999986	0.03837533930360307	dimensionless		dimensionless	0.08639705882352927				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	144.0	hr		dimensionless	1.166	0.06800000000000006	0.027760883751542714	dimensionless		dimensionless	0.05831903945111498				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	147.0	hr		dimensionless	1.292	0.08000000000000007	0.03265986323710907	dimensionless		dimensionless	0.061919504643962904				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	150.0	hr		dimensionless	1.34	0.08699999999999997	0.035517601270356074	dimensionless		dimensionless	0.06492537313432833				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	153.0	hr		dimensionless	1.288	0.07899999999999996	0.03225161494664516	dimensionless		dimensionless	0.061335403726708045				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	156.0	hr		dimensionless	1.23	0.08200000000000007	0.0334763598180368	dimensionless		dimensionless	0.06666666666666672				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	159.0	hr		dimensionless	1.234	0.10499999999999998	0.04286607049870561	dimensionless		dimensionless	0.08508914100486223				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	162.0	hr		dimensionless	1.206	0.10000000000000009	0.04082482904638634	dimensionless		dimensionless	0.08291873963515763				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	165.0	hr		dimensionless	1.147	0.127	0.05184753288891061	dimensionless		dimensionless	0.11072362685265912				dimensionless		dimensionless		
+Frost2013a	API10		6	dimensionless	API10	inr	sample mean			plasma	coagulation assay	INR_API10	168.0	hr		dimensionless	1.132	0.1050000000000002	0.0428660704987057	dimensionless		dimensionless	0.09275618374558323				dimensionless		dimensionless		

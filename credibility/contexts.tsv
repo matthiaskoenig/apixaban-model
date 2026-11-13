@@ -1,0 +1,7 @@
+id	title	level	influence	consequence	risk	verdict	n_decisive	n_evaluable	minimum_points	uncovered_quantities	verified	within_2fold	within_2fold_limit	GMFE	GMFE_limit
+describe	Describe the data of the fits	C1	low	low	low	insufficient_evidence	1427	1354	5	COAG__PT,COAG__mPT_relchange	True	85.52437223042836	>= 70		
+dose	Repeated oral doses in healthy adults	C2	medium	low	low	supported	217	211	5		True	87.67772511848341	>= 70		
+renal	Renal function, age and body weight	C3	medium	medium	medium	not_supported	219	193	10		True	73.05699481865285	>= 80	1.7938564577470746	<= 1.5
+interaction	Coadministered drugs	C3	medium	medium	medium	supported	223	208	10		True	84.61538461538461	>= 80	1.4209481655401874	<= 1.5
+coagulation	Clotting times in healthy adults	C5	medium	low	low	insufficient_evidence	352	352	5	COAG__PT_ratio,COAG__aPTT_ratio	True	100.0	>= 70		
+antixa	Anti-factor Xa activity in healthy adults	C5	medium	low	low	not_supported	65	63	5		True	63.49206349206349	>= 70		

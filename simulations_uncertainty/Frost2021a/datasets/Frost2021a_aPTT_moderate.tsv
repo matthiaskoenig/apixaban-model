@@ -1,10 +1,9 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2021a	moderate	8.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_moderate	0.0	hr		0.0					percent	percent	dimensionless
-Frost2021a	moderate	8.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_moderate	3.0	hr		10.50367	12.97989	2.47622	0.875475976854876		percent	percent	dimensionless
-Frost2021a	moderate	8.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_moderate	3.5	hr		10.46533	13.20818	2.74285	0.969743917388761		percent	percent	dimensionless
-Frost2021a	moderate	8.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_moderate	6.0	hr		3.37869	6.65487	3.27618	1.15830454719387		percent	percent	dimensionless
-Frost2021a	moderate	8.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_moderate	12.0	hr		-0.47134	2.11918	2.59052	0.915887129399687		percent	percent	dimensionless
-Frost2021a	moderate	8.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_moderate	24.0	hr		-1.5427	-0.17127	1.37143	0.484873726461333		percent	percent	dimensionless
-Frost2021a	moderate	8.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_moderate	48.0	hr		0.00964	1.57154	1.5619	0.552215040767634		percent	percent	dimensionless
-Frost2021a	moderate	8.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_moderate	72.0	hr		1.86673	3.16197	1.29524	0.457936493632032		percent	percent	dimensionless
-Frost2021a	moderate	8.0	API5	aPTT (change relative)		plasma	coagulation assay	aPTT_moderate	96.0	hr		-1.07616	0.67622	1.75238	0.619559890607841		percent	percent	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2021a	moderate		8	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_moderate	3.0	hr		percent	10.464	7.00884241512106	2.478	percent		percent	0.6698052766744131				percent		dimensionless		
+Frost2021a	moderate		8	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_moderate	3.5	hr		percent	10.464	7.99596348165748	2.827	percent		percent	0.7641402409840864				percent		dimensionless		error bar centred at 10.369, not at the marker
+Frost2021a	moderate		8	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_moderate	6.0	hr		percent	3.345	9.243299843670549	3.268	percent		percent	2.7633183389149623				percent		dimensionless		
+Frost2021a	moderate		8	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_moderate	12.0	hr		percent	-0.498	7.404822212585525	2.618	percent		percent	14.869120908806275				percent		dimensionless		
+Frost2021a	moderate		8	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_moderate	24.0	hr		percent	-1.581	3.9654548288941585	1.402	percent		percent	2.5081940726718273				percent		dimensionless		
+Frost2021a	moderate		8	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_moderate	48.0	hr		percent	-0.005	4.367091480608118	1.544	percent		percent	873.4182961216236				percent		dimensionless		
+Frost2021a	moderate		8	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_moderate	72.0	hr		percent	1.872	3.7080679605422553	1.311	percent		percent	1.9808055344777005				percent		dimensionless		
+Frost2021a	moderate		8	dimensionless	API5	aPTT (change relative)	sample mean			plasma	coagulation assay	aPTT_change_moderate	96.0	hr		percent	-1.115	4.881865217311924	1.726	percent		percent	4.378354454988273				percent		dimensionless		error bar centred at -1.045, not at the marker

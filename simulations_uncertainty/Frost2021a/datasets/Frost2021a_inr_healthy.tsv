@@ -1,10 +1,9 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	value	mean	mean_pm	mean_sd	mean_se	comments	mean_unit	value_unit	count_unit
-Frost2021a	healthy	16.0	API5	INR (change)		plasma	coagulation assay	inr_healthy	0.0	hr		0.0				INR	percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	INR (change)		plasma	coagulation assay	inr_healthy	3.0	hr		10.5848	13.46979	2.88499	0.7212475		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	INR (change)		plasma	coagulation assay	inr_healthy	3.5	hr		9.49318	12.45614	2.96296	0.74074		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	INR (change)		plasma	coagulation assay	inr_healthy	6.0	hr		10.03899	12.76803	2.72904	0.68226		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	INR (change)		plasma	coagulation assay	inr_healthy	12.0	hr		2.08577	4.81481	2.72904	0.68226		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	INR (change)		plasma	coagulation assay	inr_healthy	24.0	hr		5.28265	9.64912	4.36647	1.0916175		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	INR (change)		plasma	coagulation assay	inr_healthy	48.0	hr		-2.51462	-0.72125	1.79337	0.4483425		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	INR (change)		plasma	coagulation assay	inr_healthy	72.0	hr		0.91618	4.97076	4.05458	1.013645		percent	percent	dimensionless
-Frost2021a	healthy	16.0	API5	INR (change)		plasma	coagulation assay	inr_healthy	96.0	hr		-1.26706	0.99415	2.26121	0.5653025		percent	percent	dimensionless
+study	group	individual	count	count_unit	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	value_unit	mean	mean_sd	mean_se	mean_unit	median	median_unit	cv	min	max	gmean	gmean_unit	gsd	gsd_unit	gcv	comments
+Frost2021a	healthy		16	dimensionless	API5	inr (change relative)	sample mean			plasma	coagulation assay	inr_change_healthy	3.0	hr		percent	10.704	11.288	2.822	percent		percent	1.054559043348281				percent		dimensionless		
+Frost2021a	healthy		16	dimensionless	API5	inr (change relative)	sample mean			plasma	coagulation assay	inr_change_healthy	3.5	hr		percent	9.715	11.42	2.855	percent		percent	1.1755018013381369				percent		dimensionless		
+Frost2021a	healthy		16	dimensionless	API5	inr (change relative)	sample mean			plasma	coagulation assay	inr_change_healthy	6.0	hr		percent	10.292	10.264	2.566	percent		percent	0.9972794403420132				percent		dimensionless		
+Frost2021a	healthy		16	dimensionless	API5	inr (change relative)	sample mean			plasma	coagulation assay	inr_change_healthy	12.0	hr		percent	2.186	11.272	2.818	percent		percent	5.156450137236963				percent		dimensionless		error bar centred at 2.086, not at the marker
+Frost2021a	healthy		16	dimensionless	API5	inr (change relative)	sample mean			plasma	coagulation assay	inr_change_healthy	24.0	hr		percent	5.408	16.932	4.233	percent		percent	3.130917159763313				percent		dimensionless		error bar centred at 5.542, not at the marker
+Frost2021a	healthy		16	dimensionless	API5	inr (change relative)	sample mean			plasma	coagulation assay	inr_change_healthy	48.0	hr		percent	-2.398	7.064	1.766	percent		percent	2.945788156797331				percent		dimensionless		
+Frost2021a	healthy		16	dimensionless	API5	inr (change relative)	sample mean			plasma	coagulation assay	inr_change_healthy	72.0	hr		percent	1.008	15.508	3.877	percent		percent	15.384920634920634				percent		dimensionless		error bar centred at 1.164, not at the marker
+Frost2021a	healthy		16	dimensionless	API5	inr (change relative)	sample mean			plasma	coagulation assay	inr_change_healthy	96.0	hr		percent	-1.223	9.596	2.399	percent		percent	7.8462796402289445				percent		dimensionless		error bar centred at -1.319, not at the marker

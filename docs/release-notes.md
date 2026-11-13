@@ -1,5 +1,138 @@
 # Release notes
 
+## Release notes for apixaban-model 0.8.0
+
+Made from pkdb_models a509edcd58 with pkpdsim 0.25.0.
+
+The changes since 0.7.0.
+
+### Core libraries
+
+pkpdsim 0.11.0 → 0.25.0 (latest 5 of 169):
+
+- **The option `--progress` says how the progress of the runs of a command is shown** ([#190](https://github.com/matthiaskoenig/pkpdsim/pull/190)).
+- `sbmlsim>=0.23.0`, which carries `sbmlsim.progress`, the progress of the long runs, and writes the uniform of the bounds for a parameter whose standard error covers them, so a model with a rank deficient Fisher information can be built.
+- **The models of the library compile at `O0`** ([#187](https://github.com/matthiaskoenig/pkpdsim/pull/187)).
+- **Every action of the workflows is pinned by the commit of its release** ([#187](https://github.com/matthiaskoenig/pkpdsim/pull/187)), with the version in the comment next to it: a tag and a branch move, and the release job of `ci-cd.yml` carries the identity of the trusted publisher of PyPI (`id-token: write`) and may create a release (`contents: write`), so a tag moved under it would hand both to whoever moved it.
+- **The text of a definition cannot leave the attribute of an SVG node or the `<script>` block of an interactive figure** ([#187](https://github.com/matthiaskoenig/pkpdsim/pull/187)).
+
+sbmlsim 0.13.0 → 0.23.0 (latest 5 of 106):
+
+- **One progress report for the long runs** ([#509](https://github.com/matthiaskoenig/sbmlsim/pull/509)).
+- **The workers of a fit report to the reporter of the parent** ([#510](https://github.com/matthiaskoenig/sbmlsim/pull/510)).
+- **The README and the site of a release show the diagrams of the models** ([#513](https://github.com/matthiaskoenig/sbmlsim/pull/513)).
+- **A standard error which covers the bounds of a parameter is a uniform** ([#512](https://github.com/matthiaskoenig/sbmlsim/pull/512)).
+- **The pool of a fit is stopped and its forwarding thread closed**.
+
+sbmlutils 0.17.0 → 0.17.2 (latest 5 of 12):
+
+- `flatten_sbml` and `flatten_sbml_doc` no longer validate the comp model unless asked.
+- a document with errors from reading it is refused before the flattening, and an error which libsbml's converter only logs, e.g. a replaced element, port or deletion it cannot resolve, now fails the flattening instead of being dropped in silence (#522)
+- `ValidationOptions(comp_flat_model=False)` skips the check of the flat model when a comp document is validated: libsbml flattens a copy of a comp document and checks the flat model (`CompFlatModelNotValid`), which a workflow that flattens the model and validates the flat model anyway does twice.
+- the rest of the validation time of a comp model with many model definitions is libsbml checking every model definition in a copy of the whole document, which is quadratic in their number, reported as [sbmlteam/libsbml#505](https://github.com/sbmlteam/libsbml/issues/505)
+- `requests>=2.33.0` instead of `requests>=2.32.4`: requests before 2.33.0 extracts a file of a zip archive in `extract_zipped_paths` to a predictable path in the temporary directory and reuses a file which already exists there (GHSA-gc5v-m9x4-r6x2, CVE-2026-25645).
+
+### Libraries
+
+| Package | Previous | New |
+| --- | --- | --- |
+| `libroadrunner` | 2.11.0 | 2.11.1.dev670 |
+| `numpy` | 2.5.3 | 2.5.4 |
+| `pandas` | 3.0.6 | 3.1.0 |
+| `petab` | 0.9.0 | 0.10.0 |
+| `pillow` | 12.3.0 | 13.0.0 |
+| `pint` | 0.26.1 | 0.26.2 |
+| `pkpdsim` | 0.11.0 | 0.25.0 |
+| `pkpdutils` | 1.3.0 | 1.4.0 |
+| `pymetadata` | 0.8.1 | 0.8.3 |
+| `sbmlode` | 0.3.0 | 0.3.2 |
+| `sbmlsim` | 0.13.0 | 0.23.0 |
+| `sbmlutils` | 0.17.0 | 0.17.2 |
+
+36 other packages changed.
+
+<details>
+<summary>All changed packages</summary>
+
+| Package | Previous | New |
+| --- | --- | --- |
+| `antimony` | 3.1.3 | 3.3.0 |
+| `anyio` | - | 4.16.0 |
+| `backoff` | 2.2.1 | - |
+| `certifi` | 2026.10.19 | 2026.10.23 |
+| `chardet` | 7.6.0 | - |
+| `colorbrewer` | 0.3 | - |
+| `colour` | 0.1.5 | - |
+| `decorator` | 5.3.1 | - |
+| `deepmerge` | 3.0.1 | 4.0.0 |
+| `fastexcel` | - | 0.21.0 |
+| `fonttools` | 4.66.1 | 4.68.0 |
+| `h11` | - | 0.16.0 |
+| `h5netcdf` | 1.8.1 | 1.8.2 |
+| `hdf5plugin` | - | 7.1.0 |
+| `httpcore2` | - | 2.16.0 |
+| `httpx2` | - | 2.16.0 |
+| `httpx2-jsfetch` | - | 1.0 |
+| `igraph` | 1.0.0 | - |
+| `libroadrunner` | 2.11.0 | 2.11.1.dev670 |
+| `markdown` | 3.11 | 3.11.2 |
+| `narwhals` | 2.26.0 | 2.28.0 |
+| `networkx` | 3.7 | - |
+| `numpy` | 2.5.3 | 2.5.4 |
+| `pandas` | 3.0.6 | 3.1.0 |
+| `petab` | 0.9.0 | 0.10.0 |
+| `pillow` | 12.3.0 | 13.0.0 |
+| `pint` | 0.26.1 | 0.26.2 |
+| `pkdb` | - | 0.12.19 |
+| `pkpdsim` | 0.11.0 | 0.25.0 |
+| `pkpdutils` | 1.3.0 | 1.4.0 |
+| `platformdirs` | 4.12.4 | 4.14.3 |
+| `polars` | - | 1.44.2 |
+| `polars-runtime-32` | - | 1.44.2 |
+| `py4cytoscape` | 1.13.0 | - |
+| `pydantic` | 2.14.1 | 2.14.2 |
+| `pydantic-core` | 2.50.1 | 2.50.2 |
+| `pymdown-extensions` | 12.1 | 12.3 |
+| `pymetadata` | 0.8.1 | 0.8.3 |
+| `python-dateutil` | 2.9.0.post0 | 4.0.0 |
+| `sbmlode` | 0.3.0 | 0.3.2 |
+| `sbmlsim` | 0.13.0 | 0.23.0 |
+| `sbmlutils` | 0.17.0 | 0.17.2 |
+| `six` | 1.17.0 | - |
+| `texttable` | 1.7.0 | - |
+| `truststore` | - | 0.10.5 |
+| `tzdata` | 2026.5 | 2026.6 |
+| `zensical` | 0.0.70 | 0.0.74 |
+| `zensical-ui` | - | 0.0.41 |
+
+</details>
+
+### Data
+
+- Changed: `apixaban/Abdollahizad2025`, `apixaban/Bashir2018`, `apixaban/Chang2016`, `apixaban/Cui2013`, `apixaban/Frost2013`, `apixaban/Frost2013a`, `apixaban/Frost2014`, `apixaban/Frost2014a`, `apixaban/Frost2015`, `apixaban/Frost2015a`, `apixaban/Frost2015b`, `apixaban/Frost2017`, `apixaban/Frost2018`, `apixaban/Frost2021`, `apixaban/Frost2021a`, `apixaban/Garonzik2019`, `apixaban/Jeong2019`, `apixaban/Kreutz2017`, `apixaban/Leong2024`, `apixaban/Raghavan2009`, `apixaban/Shaikh2021`, `apixaban/Song2015`, `apixaban/Song2016`, `apixaban/Tirona2018`, `apixaban/Upreti2013`, `apixaban/Upreti2013a`, `apixaban/Vakkalagadda2016`, `apixaban/VandenBosch2021`, `apixaban/Wang2014`, `apixaban/Wang2016`, `edoxaban/Lenard2024`, `edoxaban/Lenard2025`, `edoxaban/Metze2021`, `edoxaban/Mikus2019`, `edoxaban/Rohr2024`
+
+### Analysis
+
+#### Models
+
+- `apixaban_body.xml`: added 19 species, 1 reaction, 323 parameters; removed 34 species, 45 reactions, 62 parameters; changed values `BW` 75 → 73, `BW_ref` 75 → 73, `HEIGHT` 170 → 176, `HEIGHT_ref` 170 → 176, `Kp_api` 1.39939 → 0.226161, `ftissue_api` 4.89532 → 12.9389
+- `apixaban_body_female.xml`: new, 24 species, 1 reaction, 356 parameters
+- `apixaban_body_female_flat.xml`: new, 170 species, 312 reactions, 510 parameters
+- `apixaban_body_flat.xml`: added 165 species, 308 reactions, 473 parameters; removed 44 species, 66 reactions, 81 parameters; changed values `BW` 75 → 73, `BW_ref` 75 → 73, `GU__APISEC_k` 0.426931 → 0.269457, `HEIGHT` 170 → 176, `HEIGHT_ref` 170 → 176, `Kp_api` 1.39939 → 0.226161, `LI__API2M_k` 0.0875891 → 0.0787734, `LI__M22M1_k` 0.000493194 → 0.00568318, `ftissue_api` 4.89532 → 12.9389
+- `apixaban_coagulation.xml`: removed
+- `apixaban_intestine.xml`: removed
+- `apixaban_kidney.xml`: removed
+- `apixaban_liver.xml`: removed
+
+#### Experiments
+
+No changes.
+
+#### Fits
+
+- `PD`: `PD_20261017_121913__2536d` → `PD_20261104_193909__02221`, moved `COAG__EC50_api_aPTT` none → 0.00072065, `COAG__EC50_api_mPT` none → 0.0019122, `COAG__Emax_aPTT` none → 0.359659, `COAG__Emax_mPT` none → 6.05369, `COAG__antiXa_gram_slope` none → 430017, `COAG__antiXa_slope` none → 5429.39, `COAG__slope_api_INR` none → 485.386, `COAG__slope_api_PT` none → 974.832, `EC50_api_INR` 0.00198645 → none, `EC50_api_PT` 0.000172288 → none, `EC50_api_aPTT` 0.00057679 → none, `EC50_api_mPT` 0.00169467 → none, `Emax_INR` 1.20702 → none, `Emax_PT` 0.299362 → none, `Emax_aPTT` 0.308174 → none, `Emax_mPT` 5.30233 → none, `antiXa_gram_slope` 420606 → none, `antiXa_slope` 5728.15 → none
+- `PK`: `PK_20261017_103232__85dfa` → `PK_20261031_104725__64222`, moved `D50_dis_api` none → 9.0956, `GU__APIABS_k` 0.0185164 → none, `GU__APISEC_k` 0.426931 → 0.269457, `GU__Ka_dis_api` 1.6299 → none, `GU__Ka_sol_api` 6.40581 → none, `GU__PODOSE_50` 5.74096 → none, `GU__SITRANS_k` 0.00735101 → none, `KI__APIEX_f` 1.01497 → none, `KI__M1EX_f` 0.0459801 → none, `KI__M7EX_f` 0.0141866 → none, `Ka_dis_api` none → 1.08229, `Kp_api` 1.39939 → 0.226161, `LI__API2M_k` 0.0875891 → 0.0787734, `LI__M1EXBI_k` none → 0.0372352, `LI__M22M1_k` 0.000493194 → 0.00568318, `LI__M7EXBI_k` none → 0.132284, `LI__MXEXBI_k` 0.002451 → none, `fabs_api` none → 0.682971, `ftissue_api` 4.89532 → 12.9389, `fu_ref_api_m1` none → 0.0417292, `fu_ref_api_m7` none → 0.001285, `ka_api` none → 2.77586
+
 ## Release notes for apixaban-model 0.7.0
 
 Made from pkdb_models 3a0b49144b with pkpdsim 0.11.0.

@@ -14,6 +14,7 @@ from pkpdsim.metadata import (
     Route,
     Tissue,
 )
+from pkpdsim.pbpk import Sex
 from sbmlsim import Q
 from sbmlsim.data import DataSet
 from sbmlsim.fit import FitData, FitMapping
@@ -34,71 +35,76 @@ class Lenard2025(ApixabanSimulationExperiment):
     a microdosed cocktail of apixaban 25 µg, edoxaban 50 µg and rivaroxaban
     25 µg as an oral solution (with midazolam 30 µg) at baseline and at the
     steady state of the perpetrator. Fasting is not reported.
+
+    The volunteers are mostly women (22 of 36 over the three cohorts, the sex
+    of a cohort is not curated) and run on the female build.
     """
+
+    sex: ClassVar[Sex] = Sex.FEMALE
 
     #: the cohorts: the figure of the data and the baseline and perpetrator arm
     cohorts: ClassVar[dict[str, list[str]]] = {
-        "Fig2": ["API25, RIV25, EDO50_1", "API25, RIV25, EDO50, CAR"],
-        "Fig3": ["API25, RIV25, EDO50_2", "API25, RIV25, EDO50, GAB"],
-        "Fig4": ["API25, RIV25, EDO50_3", "API25, RIV25, EDO50, PRE"],
+        "Fig2": ["API25_RIV25_EDO50_1", "API25_RIV25_EDO50_CAR"],
+        "Fig3": ["API25_RIV25_EDO50_2", "API25_RIV25_EDO50_GAB"],
+        "Fig4": ["API25_RIV25_EDO50_3", "API25_RIV25_EDO50_PRE"],
     }
     interventions: ClassVar[list[str]] = [
         intervention for arms in cohorts.values() for intervention in arms
     ]
     markers: ClassVar[dict[str, str]] = {
-        "API25, RIV25, EDO50_1": "s",
-        "API25, RIV25, EDO50, CAR": "o",
-        "API25, RIV25, EDO50_2": "s",
-        "API25, RIV25, EDO50, GAB": "o",
-        "API25, RIV25, EDO50_3": "s",
-        "API25, RIV25, EDO50, PRE": "o",
+        "API25_RIV25_EDO50_1": "s",
+        "API25_RIV25_EDO50_CAR": "o",
+        "API25_RIV25_EDO50_2": "s",
+        "API25_RIV25_EDO50_GAB": "o",
+        "API25_RIV25_EDO50_3": "s",
+        "API25_RIV25_EDO50_PRE": "o",
     }
     colors: ClassVar[dict[str, str]] = {
-        "API25, RIV25, EDO50_1": "black",
-        "API25, RIV25, EDO50, CAR": "tab:pink",
-        "API25, RIV25, EDO50_2": "black",
-        "API25, RIV25, EDO50, GAB": "tab:orange",
-        "API25, RIV25, EDO50_3": "black",
-        "API25, RIV25, EDO50, PRE": "tab:red",
+        "API25_RIV25_EDO50_1": "black",
+        "API25_RIV25_EDO50_CAR": "tab:pink",
+        "API25_RIV25_EDO50_2": "black",
+        "API25_RIV25_EDO50_GAB": "tab:orange",
+        "API25_RIV25_EDO50_3": "black",
+        "API25_RIV25_EDO50_PRE": "tab:red",
     }
     legend_labels: ClassVar[dict[str, str]] = {
-        "API25, RIV25, EDO50_1": "25µg SOL",
-        "API25, RIV25, EDO50, CAR": "25µg SOL + carbamazepine max 200mg BID",
-        "API25, RIV25, EDO50_2": "25µg SOL",
-        "API25, RIV25, EDO50, GAB": "25µg SOL + gabapentin 400mg TID",
-        "API25, RIV25, EDO50_3": "25µg SOL",
-        "API25, RIV25, EDO50, PRE": "25µg SOL + pregabalin 300mg BID",
+        "API25_RIV25_EDO50_1": "25µg SOL",
+        "API25_RIV25_EDO50_CAR": "25µg SOL + carbamazepine max 200mg BID",
+        "API25_RIV25_EDO50_2": "25µg SOL",
+        "API25_RIV25_EDO50_GAB": "25µg SOL + gabapentin 400mg TID",
+        "API25_RIV25_EDO50_3": "25µg SOL",
+        "API25_RIV25_EDO50_PRE": "25µg SOL + pregabalin 300mg BID",
     }
     coadministrations: ClassVar[dict[str, Coadministration]] = {
-        "API25, RIV25, EDO50_1": Coadministration.COCKTAIL,
-        "API25, RIV25, EDO50, CAR": Coadministration.CARBAMAZEPINE,
-        "API25, RIV25, EDO50_2": Coadministration.COCKTAIL,
-        "API25, RIV25, EDO50, GAB": Coadministration.GABAPENTIN,
-        "API25, RIV25, EDO50_3": Coadministration.COCKTAIL,
-        "API25, RIV25, EDO50, PRE": Coadministration.PREGABALIN,
+        "API25_RIV25_EDO50_1": Coadministration.COCKTAIL,
+        "API25_RIV25_EDO50_CAR": Coadministration.CARBAMAZEPINE,
+        "API25_RIV25_EDO50_2": Coadministration.COCKTAIL,
+        "API25_RIV25_EDO50_GAB": Coadministration.GABAPENTIN,
+        "API25_RIV25_EDO50_3": Coadministration.COCKTAIL,
+        "API25_RIV25_EDO50_PRE": Coadministration.PREGABALIN,
     }
     #: The factors of the interactions are not fitted but set from the
     #: literature; the arms are validation data.
     #: Carbamazepine (titrated to max 200 mg b.i.d., 21 d) induces CYP3A4 and
     #: P-gp; observed AUCinf x0.66 and Cmax x0.88 (geometric mean ratios,
-    #: Table 1). The factors give AUC x0.68 and Cmax x0.85 for the microdose
-    #: with the unfitted model.
+    #: Table 1). The factors give AUC x0.68 and Cmax x0.88 for the microdose
+    #: with the adopted fits.
     #: Gabapentin (400 mg t.i.d., 13 d) and pregabalin (300 mg b.i.d., 21 d) are
     #: neither metabolized by nor inhibit or induce CYP3A4 and P-gp; observed
     #: AUCinf x0.93 and x0.98 (Tables 2 and 3), no factors.
     interactions: ClassVar[dict[str, dict[str, float]]] = {
-        "API25, RIV25, EDO50_1": {},
-        "API25, RIV25, EDO50, CAR": {"LI__f_cyp3a4": 1.5, "GU__f_pgp": 1.8},
-        "API25, RIV25, EDO50_2": {},
-        "API25, RIV25, EDO50, GAB": {},
-        "API25, RIV25, EDO50_3": {},
-        "API25, RIV25, EDO50, PRE": {},
+        "API25_RIV25_EDO50_1": {},
+        "API25_RIV25_EDO50_CAR": {"LI__f_cyp3a4": 1.5, "GU__f_abcb1": 1.8},
+        "API25_RIV25_EDO50_2": {},
+        "API25_RIV25_EDO50_GAB": {},
+        "API25_RIV25_EDO50_3": {},
+        "API25_RIV25_EDO50_PRE": {},
     }
 
     #: apixaban microdose [mg]
     dose = 0.025
 
-    infos_pk: ClassVar[dict[str, str]] = {"[Cve_api]": "apixaban"}
+    infos_pk: ClassVar[dict[str, str]] = {"Carm_api": "apixaban"}
 
     @override
     def datasets(self) -> dict[str, DataSet]:
@@ -109,7 +115,7 @@ class Lenard2025(ApixabanSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if label.startswith("apixaban"):
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
+                    dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[self.to_sid(label)] = dset
         return dsets
 

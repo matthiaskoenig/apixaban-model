@@ -1,0 +1,57 @@
+context	field	value	claimed	coverage	n
+describe	route	PO	True	calibrated	1176
+describe	route	IV	True	calibrated	178
+describe	health	HEALTHY	True	calibrated	1354
+describe	coadministration	NONE	True	calibrated	1263
+describe	coadministration	COCKTAIL	True	calibrated	91
+describe	dosing	SINGLE	True	calibrated	1310
+describe	dosing	MULTIPLE	True	calibrated	44
+describe	fasting	FASTED	True	calibrated	1137
+describe	fasting	NR	False		227
+describe	application_form	TABLET	True	calibrated	549
+describe	application_form	SOLUTION	True	calibrated	470
+describe	application_form	NR	False		360
+dose	route	PO	True	validated	211
+dose	health	HEALTHY	True	validated	211
+dose	coadministration	NONE	True	validated	211
+dose	dosing	MULTIPLE	True	validated	211
+dose	fasting	FASTED	True	validated	165
+dose	fasting	FED	False		24
+dose	fasting	NR	False		44
+renal	route	PO	True	validated	193
+renal	dosing	SINGLE	True	validated	193
+renal	health	HEALTHY	True	validated	79
+renal	health	RENAL_IMPAIRMENT	True	validated	114
+interaction	route	PO	True	validated	195
+interaction	route	IV	True	validated	13
+interaction	health	HEALTHY	True	validated	208
+interaction	coadministration	ATENOLOL	True	validated	11
+interaction	coadministration	CARBAMAZEPINE	True	validated	16
+interaction	coadministration	CLARITHROMYCIN	True	validated	24
+interaction	coadministration	CYCLOSPORINE	True	validated	7
+interaction	coadministration	DILTIAZEM	True	validated	12
+interaction	coadministration	FAMOTIDINE	True	validated	11
+interaction	coadministration	GABAPENTIN	True	validated	16
+interaction	coadministration	KETOCONAZOLE	True	validated	27
+interaction	coadministration	LAPATINIB	True	validated	8
+interaction	coadministration	PREGABALIN	True	validated	16
+interaction	coadministration	RIFAMPICIN	True	validated	24
+interaction	coadministration	RITONAVIR	True	validated	12
+interaction	coadministration	ROSUVASTATIN	True	validated	17
+interaction	coadministration	TACROLIMUS	True	validated	7
+coagulation	route	PO	True	validated	352
+coagulation	health	HEALTHY	True	validated	352
+coagulation	coadministration	NONE	True	validated	352
+coagulation	dosing	SINGLE	True	validated	32
+coagulation	dosing	MULTIPLE	True	validated	320
+coagulation	fasting	FASTED	True	validated	316
+coagulation	fasting	FED	False		36
+coagulation	fasting	NR	False		20
+antixa	route	PO	True	validated	63
+antixa	health	HEALTHY	True	validated	63
+antixa	coadministration	NONE	True	validated	63
+antixa	dosing	SINGLE	True	validated	30
+antixa	dosing	MULTIPLE	True	validated	33
+antixa	fasting	FASTED	True	validated	40
+antixa	fasting	FED	False		2
+antixa	fasting	NR	False		31

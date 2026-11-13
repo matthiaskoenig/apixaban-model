@@ -1,29 +1,29 @@
-study	individual	group	count	intervention	measurement_type	substance	tissue	method	label	time	time_unit	mean	sd	se	min	max	cv	unit	comments
-Tirona2018	NA	control	12.0	API2.5, ROS5	auc_end	rosuvastatin	plasma	LC MS/MS	auc_end_control_rosuvastatin	12.0	hr	25.4	11.0	NA	NA	NA	NA	ng*hr/ml	NA
-Tirona2018	NA	control	12.0	API2.5, ROS5	auc_inf	rosuvastatin	plasma	LC MS/MS	auc_inf_control_rosuvastatin	NA	NA	30.7	13.6	NA	NA	NA	NA	ng*hr/ml	NA
-Tirona2018	NA	control	12.0	API2.5, ROS5	cmax	rosuvastatin	plasma	LC MS/MS	cmax_control_rosuvastatin	NA	NA	3.7	2.0	NA	NA	NA	NA	ng/ml	NA
-Tirona2018	NA	control	12.0	API2.5, ROS5	tmax	rosuvastatin	plasma	LC MS/MS	tmax_control_rosuvastatin	NA	NA	3.9	2.0	NA	NA	NA	NA	hr	NA
-Tirona2018	NA	control	12.0	API2.5, ROS5	thalf	rosuvastatin	plasma	LC MS/MS	thalf_control_rosuvastatin	NA	NA	4.4	1.2	NA	NA	NA	NA	hr	NA
-Tirona2018	NA	control	12.0	API2.5, ROS5	cumulative amount	rosuvastatin	plasma	LC MS/MS	cumulative amount_control_rosuvastatin	12.0	hr	257.0	107.0	NA	NA	NA	NA	ug	NA
-Tirona2018	NA	control	12.0	API2.5, ROS5	clearance_renal	rosuvastatin	plasma	LC MS/MS	clearance_renal_control_rosuvastatin	NA	NA	180.0	64.0	NA	NA	NA	NA	ml/min	NA
-Tirona2018	NA	nafld	22.0	API2.5, ROS5	auc_end	rosuvastatin	plasma	LC MS/MS	auc_end_nafld_rosuvastatin	12.0	hr	20.1	14.3	NA	NA	NA	NA	ng*hr/ml	NA
-Tirona2018	NA	nafld	22.0	API2.5, ROS5	auc_inf	rosuvastatin	plasma	LC MS/MS	auc_inf_nafld_rosuvastatin	NA	NA	25.4	17.0	NA	NA	NA	NA	ng*hr/ml	NA
-Tirona2018	NA	nafld	22.0	API2.5, ROS5	cmax	rosuvastatin	plasma	LC MS/MS	cmax_nafld_rosuvastatin	NA	NA	3.0	2.6	NA	NA	NA	NA	ng/ml	NA
-Tirona2018	NA	nafld	22.0	API2.5, ROS5	tmax	rosuvastatin	plasma	LC MS/MS	tmax_nafld_rosuvastatin	NA	NA	3.8	1.9	NA	NA	NA	NA	hr	NA
-Tirona2018	NA	nafld	22.0	API2.5, ROS5	thalf	rosuvastatin	plasma	LC MS/MS	thalf_nafld_rosuvastatin	NA	NA	5.4	2.9	NA	NA	NA	NA	hr	NA
-Tirona2018	NA	nafld	22.0	API2.5, ROS5	cumulative amount	rosuvastatin	plasma	LC MS/MS	cumulative amount_nafld_rosuvastatin	12.0	hr	209.0	186.0	NA	NA	NA	NA	ug	NA
-Tirona2018	NA	nafld	22.0	API2.5, ROS5	clearance_renal	rosuvastatin	plasma	LC MS/MS	clearance_renal_nafld_rosuvastatin	NA	NA	178.0	69.0	NA	NA	NA	NA	ml/min	NA
-Tirona2018	NA	nafld_no_fibrosis	11.0	API2.5, ROS5	auc_end	rosuvastatin	plasma	LC MS/MS	auc_end_nafld_no_fibrosis_rosuvastatin	12.0	hr	21.5	13.5	NA	NA	NA	NA	ng*hr/ml	NA
-Tirona2018	NA	nafld_no_fibrosis	11.0	API2.5, ROS5	auc_inf	rosuvastatin	plasma	LC MS/MS	auc_inf_nafld_no_fibrosis_rosuvastatin	NA	NA	27.0	15.4	NA	NA	NA	NA	ng*hr/ml	NA
-Tirona2018	NA	nafld_no_fibrosis	11.0	API2.5, ROS5	cmax	rosuvastatin	plasma	LC MS/MS	cmax_nafld_no_fibrosis_rosuvastatin	NA	NA	3.3	2.6	NA	NA	NA	NA	ng/ml	NA
-Tirona2018	NA	nafld_no_fibrosis	11.0	API2.5, ROS5	tmax	rosuvastatin	plasma	LC MS/MS	tmax_nafld_no_fibrosis_rosuvastatin	NA	NA	3.7	2.1	NA	NA	NA	NA	hr	NA
-Tirona2018	NA	nafld_no_fibrosis	11.0	API2.5, ROS5	thalf	rosuvastatin	plasma	LC MS/MS	thalf_nafld_no_fibrosis_rosuvastatin	NA	NA	4.8	1.4	NA	NA	NA	NA	hr	NA
-Tirona2018	NA	nafld_no_fibrosis	11.0	API2.5, ROS5	cumulative amount	rosuvastatin	plasma	LC MS/MS	cumulative amount_nafld_no_fibrosis_rosuvastatin	12.0	hr	244.0	230.0	NA	NA	NA	NA	ug	NA
-Tirona2018	NA	nafld_no_fibrosis	11.0	API2.5, ROS5	clearance_renal	rosuvastatin	plasma	LC MS/MS	clearance_renal_nafld_no_fibrosis_rosuvastatin	NA	NA	178.0	84.0	NA	NA	NA	NA	ml/min	NA
-Tirona2018	NA	nafld_fibrosis	11.0	API2.5, ROS5	auc_end	rosuvastatin	plasma	LC MS/MS	auc_end_nafld_fibrosis_rosuvastatin	12.0	hr	18.6	15.7	NA	NA	NA	NA	ng*hr/ml	NA
-Tirona2018	NA	nafld_fibrosis	11.0	API2.5, ROS5	auc_inf	rosuvastatin	plasma	LC MS/MS	auc_inf_nafld_fibrosis_rosuvastatin	NA	NA	23.7	19.2	NA	NA	NA	NA	ng*hr/ml	NA
-Tirona2018	NA	nafld_fibrosis	11.0	API2.5, ROS5	cmax	rosuvastatin	plasma	LC MS/MS	cmax_nafld_fibrosis_rosuvastatin	NA	NA	2.8	2.7	NA	NA	NA	NA	ng/ml	NA
-Tirona2018	NA	nafld_fibrosis	11.0	API2.5, ROS5	tmax	rosuvastatin	plasma	LC MS/MS	tmax_nafld_fibrosis_rosuvastatin	NA	NA	3.9	1.8	NA	NA	NA	NA	hr	NA
-Tirona2018	NA	nafld_fibrosis	11.0	API2.5, ROS5	thalf	rosuvastatin	plasma	LC MS/MS	thalf_nafld_fibrosis_rosuvastatin	NA	NA	6.0	4.0	NA	NA	NA	NA	hr	NA
-Tirona2018	NA	nafld_fibrosis	11.0	API2.5, ROS5	cumulative amount	rosuvastatin	plasma	LC MS/MS	cumulative amount_nafld_fibrosis_rosuvastatin	12.0	hr	174.0	130.0	NA	NA	NA	NA	ug	NA
-Tirona2018	NA	nafld_fibrosis	11.0	API2.5, ROS5	clearance_renal	rosuvastatin	plasma	LC MS/MS	clearance_renal_nafld_fibrosis_rosuvastatin	NA	NA	178.0	53.0	NA	NA	NA	NA	ml/min	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Tirona2018	control	NA	12	API2.5,ROS5	auc_end	sample mean	NA	rosuvastatin	plasma	LC MS/MS	auc_end_rosuvastatin_plasma_API2_5_ROS5_control	12.0	hr	NA	25.4	NA	11.0	3.1754264805429417	0.4330708661417323	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Tirona2018	control	NA	12	API2.5,ROS5	auc_inf	sample mean	NA	rosuvastatin	plasma	LC MS/MS	auc_inf_rosuvastatin_plasma_API2_5_ROS5_control	NA	NA	NA	30.7	NA	13.6	3.925981830489455	0.44299674267100975	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Tirona2018	control	NA	12	API2.5,ROS5	clearance_renal	sample mean	NA	rosuvastatin	plasma	LC MS/MS	clearance_renal_rosuvastatin_plasma_API2_5_ROS5_control	NA	NA	NA	180.0	NA	64.0	18.475208614068027	0.35555555555555557	NA	NA	NA	NA	NA	ml/min	NA
+Tirona2018	control	NA	12	API2.5,ROS5	cmax	sample mean	NA	rosuvastatin	plasma	LC MS/MS	cmax_rosuvastatin_plasma_API2_5_ROS5_control	NA	NA	NA	3.7	NA	2.0	0.5773502691896258	0.5405405405405405	NA	NA	NA	NA	NA	ng/ml	NA
+Tirona2018	control	NA	12	API2.5,ROS5	cumulative amount	sample mean	NA	rosuvastatin	urine	LC MS/MS	cumulative_amount_rosuvastatin_urine_API2_5_ROS5_control	12.0	hr	NA	257.0	NA	107.0	30.88823940164498	0.4163424124513619	NA	NA	NA	NA	NA	ug	NA
+Tirona2018	control	NA	12	API2.5,ROS5	thalf	sample mean	NA	rosuvastatin	plasma	LC MS/MS	thalf_rosuvastatin_plasma_API2_5_ROS5_control	NA	NA	NA	4.4	NA	1.2	0.34641016151377546	0.2727272727272727	NA	NA	NA	NA	NA	hr	NA
+Tirona2018	control	NA	12	API2.5,ROS5	tmax	sample mean	NA	rosuvastatin	plasma	LC MS/MS	tmax_rosuvastatin_plasma_API2_5_ROS5_control	NA	NA	NA	3.9	NA	2.0	0.5773502691896258	0.5128205128205129	NA	NA	NA	NA	NA	hr	NA
+Tirona2018	nafld	NA	22	API2.5,ROS5	auc_end	sample mean	NA	rosuvastatin	plasma	LC MS/MS	auc_end_rosuvastatin_plasma_API2_5_ROS5_nafld	12.0	hr	NA	20.1	NA	14.3	3.048770243885229	0.7114427860696517	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Tirona2018	nafld	NA	22	API2.5,ROS5	auc_inf	sample mean	NA	rosuvastatin	plasma	LC MS/MS	auc_inf_rosuvastatin_plasma_API2_5_ROS5_nafld	NA	NA	NA	25.4	NA	17.0	3.624412178045377	0.6692913385826772	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Tirona2018	nafld	NA	22	API2.5,ROS5	clearance_renal	sample mean	NA	rosuvastatin	plasma	LC MS/MS	clearance_renal_rosuvastatin_plasma_API2_5_ROS5_nafld	NA	NA	NA	178.0	NA	69.0	14.71084942853712	0.38764044943820225	NA	NA	NA	NA	NA	ml/min	NA
+Tirona2018	nafld	NA	22	API2.5,ROS5	cmax	sample mean	NA	rosuvastatin	plasma	LC MS/MS	cmax_rosuvastatin_plasma_API2_5_ROS5_nafld	NA	NA	NA	3.0	NA	2.6	0.5543218625245872	0.8666666666666667	NA	NA	NA	NA	NA	ng/ml	NA
+Tirona2018	nafld	NA	22	API2.5,ROS5	cumulative amount	sample mean	NA	rosuvastatin	urine	LC MS/MS	cumulative_amount_rosuvastatin_urine_API2_5_ROS5_nafld	12.0	hr	NA	209.0	NA	186.0	39.65533324214354	0.8899521531100478	NA	NA	NA	NA	NA	ug	NA
+Tirona2018	nafld	NA	22	API2.5,ROS5	thalf	sample mean	NA	rosuvastatin	plasma	LC MS/MS	thalf_rosuvastatin_plasma_API2_5_ROS5_nafld	NA	NA	NA	5.4	NA	2.9	0.6182820774312702	0.537037037037037	NA	NA	NA	NA	NA	hr	NA
+Tirona2018	nafld	NA	22	API2.5,ROS5	tmax	sample mean	NA	rosuvastatin	plasma	LC MS/MS	tmax_rosuvastatin_plasma_API2_5_ROS5_nafld	NA	NA	NA	3.8	NA	1.9	0.4050813610756598	0.5	NA	NA	NA	NA	NA	hr	NA
+Tirona2018	nafld_fibrosis	NA	11	API2.5,ROS5	auc_end	sample mean	NA	rosuvastatin	plasma	LC MS/MS	auc_end_rosuvastatin_plasma_API2_5_ROS5_nafld_fibrosis	12.0	hr	NA	18.6	NA	15.7	4.7337281098708885	0.8440860215053763	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Tirona2018	nafld_fibrosis	NA	11	API2.5,ROS5	auc_inf	sample mean	NA	rosuvastatin	plasma	LC MS/MS	auc_inf_rosuvastatin_plasma_API2_5_ROS5_nafld_fibrosis	NA	NA	NA	23.7	NA	19.2	5.789017815893061	0.810126582278481	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Tirona2018	nafld_fibrosis	NA	11	API2.5,ROS5	clearance_renal	sample mean	NA	rosuvastatin	plasma	LC MS/MS	clearance_renal_rosuvastatin_plasma_API2_5_ROS5_nafld_fibrosis	NA	NA	NA	178.0	NA	53.0	15.980101262621472	0.29775280898876405	NA	NA	NA	NA	NA	ml/min	NA
+Tirona2018	nafld_fibrosis	NA	11	API2.5,ROS5	cmax	sample mean	NA	rosuvastatin	plasma	LC MS/MS	cmax_rosuvastatin_plasma_API2_5_ROS5_nafld_fibrosis	NA	NA	NA	2.8	NA	2.7	0.8140806303599618	0.9642857142857144	NA	NA	NA	NA	NA	ng/ml	NA
+Tirona2018	nafld_fibrosis	NA	11	API2.5,ROS5	cumulative amount	sample mean	NA	rosuvastatin	urine	LC MS/MS	cumulative_amount_rosuvastatin_urine_API2_5_ROS5_nafld_fibrosis	12.0	hr	NA	174.0	NA	130.0	39.196474795109275	0.7471264367816092	NA	NA	NA	NA	NA	ug	NA
+Tirona2018	nafld_fibrosis	NA	11	API2.5,ROS5	thalf	sample mean	NA	rosuvastatin	plasma	LC MS/MS	thalf_rosuvastatin_plasma_API2_5_ROS5_nafld_fibrosis	NA	NA	NA	6.0	NA	4.0	1.2060453783110545	0.6666666666666666	NA	NA	NA	NA	NA	hr	NA
+Tirona2018	nafld_fibrosis	NA	11	API2.5,ROS5	tmax	sample mean	NA	rosuvastatin	plasma	LC MS/MS	tmax_rosuvastatin_plasma_API2_5_ROS5_nafld_fibrosis	NA	NA	NA	3.9	NA	1.8	0.5427204202399746	0.46153846153846156	NA	NA	NA	NA	NA	hr	NA
+Tirona2018	nafld_no_fibrosis	NA	11	API2.5,ROS5	auc_end	sample mean	NA	rosuvastatin	plasma	LC MS/MS	auc_end_rosuvastatin_plasma_API2_5_ROS5_nafld_no_fibrosis	12.0	hr	NA	21.5	NA	13.5	4.070403151799809	0.627906976744186	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Tirona2018	nafld_no_fibrosis	NA	11	API2.5,ROS5	auc_inf	sample mean	NA	rosuvastatin	plasma	LC MS/MS	auc_inf_rosuvastatin_plasma_API2_5_ROS5_nafld_no_fibrosis	NA	NA	NA	27.0	NA	15.4	4.64327470649756	0.5703703703703704	NA	NA	NA	NA	NA	ng*hr/ml	NA
+Tirona2018	nafld_no_fibrosis	NA	11	API2.5,ROS5	clearance_renal	sample mean	NA	rosuvastatin	plasma	LC MS/MS	clearance_renal_rosuvastatin_plasma_API2_5_ROS5_nafld_no_fibrosis	NA	NA	NA	178.0	NA	84.0	25.326952944532145	0.47191011235955055	NA	NA	NA	NA	NA	ml/min	NA
+Tirona2018	nafld_no_fibrosis	NA	11	API2.5,ROS5	cmax	sample mean	NA	rosuvastatin	plasma	LC MS/MS	cmax_rosuvastatin_plasma_API2_5_ROS5_nafld_no_fibrosis	NA	NA	NA	3.3	NA	2.6	0.7839294959021854	0.787878787878788	NA	NA	NA	NA	NA	ng/ml	NA
+Tirona2018	nafld_no_fibrosis	NA	11	API2.5,ROS5	cumulative amount	sample mean	NA	rosuvastatin	urine	LC MS/MS	cumulative_amount_rosuvastatin_urine_API2_5_ROS5_nafld_no_fibrosis	12.0	hr	NA	244.0	NA	230.0	69.34760925288563	0.9426229508196722	NA	NA	NA	NA	NA	ug	NA
+Tirona2018	nafld_no_fibrosis	NA	11	API2.5,ROS5	thalf	sample mean	NA	rosuvastatin	plasma	LC MS/MS	thalf_rosuvastatin_plasma_API2_5_ROS5_nafld_no_fibrosis	NA	NA	NA	4.8	NA	1.4	0.42211588240886905	0.2916666666666667	NA	NA	NA	NA	NA	hr	NA
+Tirona2018	nafld_no_fibrosis	NA	11	API2.5,ROS5	tmax	sample mean	NA	rosuvastatin	plasma	LC MS/MS	tmax_rosuvastatin_plasma_API2_5_ROS5_nafld_no_fibrosis	NA	NA	NA	3.7	NA	2.1	0.6331738236133037	0.5675675675675675	NA	NA	NA	NA	NA	hr	NA

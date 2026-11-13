@@ -208,8 +208,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
   <nav class="sections">
 <a href="#overview">Overview</a>
 <a href="#figures">Figures</a>
-<a href="#code">Code</a>
-  </nav>
+<a href="#code">Code</a>  </nav>
   <div class="search">
     <input id="search" type="search" placeholder="Search figures, models, datasets …" autocomplete="off">
     <span id="hits"></span>
@@ -226,7 +225,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
     <table data-filter="row">
       <thead><tr><th data-sort="text">model</th><th data-sort="text">source</th></tr></thead>
       <tbody>
-      <tr><td class="mono">model</td><td><a href="../../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml" title="../../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml">apixaban_body_flat.xml</a></td></tr>
+      <tr><td class="mono">model</td><td><a href="../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml" title="../../../src/pkdb_models/models/apixaban/models/output/models/apixaban_body_flat.xml">apixaban_body_flat.xml</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -263,7 +262,7 @@ footer { color: var(--fg-soft); font-size: 12.5px; padding: 8px 24px 32px; max-w
 <section id="code">
   <h2>Code</h2>
   <div class="card">
-    <p><a href="../../../../src/pkdb_models/models/apixaban/experiments/studies/frost2015b.py" title="../../../../src/pkdb_models/models/apixaban/experiments/studies/frost2015b.py">frost2015b.py</a></p>
+    <p><a href="../../../src/pkdb_models/models/apixaban/experiments/studies/frost2015b.py" title="../../../src/pkdb_models/models/apixaban/experiments/studies/frost2015b.py">frost2015b.py</a></p>
     <pre class="code"><code>&#34;&#34;&#34;Simulation experiment of the study Frost2015b.&#34;&#34;&#34;
 
 import math
@@ -296,6 +295,8 @@ class Frost2015b(ApixabanSimulationExperiment):
     Thorough QT study in healthy subjects: apixaban 10 mg and 50 mg QD for 3
     days (form and fasting not reported), the pharmacokinetics of apixaban and
     M1 on day 3.
+
+    The subjects are mostly men (32 of 40) and run on the male build.
     &#34;&#34;&#34;
 
     bodyweight = 76.6  # kg
@@ -312,8 +313,8 @@ class Frost2015b(ApixabanSimulationExperiment):
     }
 
     infos_pk: ClassVar[dict[str, str]] = {
-        &#34;[Cve_api]&#34;: &#34;apixaban&#34;,
-        &#34;[Cve_m1]&#34;: &#34;apixaban-M1&#34;,
+        &#34;Carm_api&#34;: &#34;apixaban&#34;,
+        &#34;Carm_api_m1&#34;: &#34;apixaban-M1&#34;,
     }
 
     @override
@@ -325,9 +326,9 @@ class Frost2015b(ApixabanSimulationExperiment):
                 label = str(label)
                 dset = DataSet.from_df(df_label, self.ureg)
                 if &#34;apixaban-M1&#34; in label:
-                    dset.unit_conversion(&#34;mean&#34;, 1 / self.Mr.m1)
+                    dset.unit_conversion(&#34;mean&#34;, 1 / self.Mr[&#34;api_m1&#34;])
                 else:
-                    dset.unit_conversion(&#34;mean&#34;, 1 / self.Mr.api)
+                    dset.unit_conversion(&#34;mean&#34;, 1 / self.Mr[&#34;api&#34;])
                 dsets[self.to_sid(label)] = dset
 
         return dsets
@@ -443,8 +444,7 @@ if __name__ == &#34;__main__&#34;:
 </main>
 
 <footer>
-<a href="../index.html">all experiments</a> · <a href="../../../../src/pkdb_models/models/apixaban/experiments/studies/frost2015b.py" title="../../../../src/pkdb_models/models/apixaban/experiments/studies/frost2015b.py">frost2015b.py</a>
-</footer>
+<a href="../index.html">all experiments</a> · <a href="../../../src/pkdb_models/models/apixaban/experiments/studies/frost2015b.py" title="../../../src/pkdb_models/models/apixaban/experiments/studies/frost2015b.py">frost2015b.py</a></footer>
 
 <div id="lightbox"><img alt=""></div>
 

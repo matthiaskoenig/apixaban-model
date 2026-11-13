@@ -29,6 +29,9 @@ class Cui2013(ApixabanSimulationExperiment):
     12 healthy Chinese subjects: a single dose of 10 mg apixaban on day 1 and
     10 mg twice daily on days 4 to 9 (the last dose in the morning of day 9),
     in the fasted state.
+
+    The subjects are mostly men (4 women of the 12 of apixaban, 6 of 18 with
+    placebo) and run on the male build.
     """
 
     dose = 10.0
@@ -42,16 +45,11 @@ class Cui2013(ApixabanSimulationExperiment):
     interventions: ClassVar[list[str]] = list(colors.keys())
 
     infos_pk: ClassVar[dict[str, str]] = {
-        "[Cve_api]": "apixaban",
+        "Carm_api": "apixaban",
     }
-    #: the anti-Xa activity of day 1 (Fig2, the squares of the left panel);
-    #: the anti-Xa activity of day 9 is not curated
+    #: the anti-Xa activity of day 1 and of day 9 (Fig2)
     infos_pd: ClassVar[dict[str, str]] = {
-        "antiXa_activity": "antiXa_activity",
-    }
-    pd_interventions: ClassVar[list[str]] = ["API10"]
-    info_figpd_scatter: ClassVar[dict[str, str]] = {
-        "antiXa_vs_apixaban": "antiXa_activity",
+        "COAG__antiXa_activity": "antiXa_activity",
     }
 
     legends: ClassVar[dict[str, str]] = {
@@ -69,15 +67,8 @@ class Cui2013(ApixabanSimulationExperiment):
             for label, df_label in df.groupby("label"):
                 dset = DataSet.from_df(df_label, self.ureg)
                 if "apixaban" in str(label).lower():
-                    dset.unit_conversion("mean", 1 / self.Mr.api)
+                    dset.unit_conversion("mean", 1 / self.Mr["api"])
                 dsets[str(label)] = dset
-
-        # scatter fig3
-        df = self.load_dataframe("Fig3")
-        for ylab, df_label in df.groupby("y_label"):
-            dset = DataSet.from_df(df_label, self.ureg)
-            dset.unit_conversion("x", 1 / self.Mr.api)
-            dsets[str(ylab)] = dset
 
         return dsets
 
@@ -121,10 +112,7 @@ class Cui2013(ApixabanSimulationExperiment):
         mappings: dict[str, FitMapping] = {}
 
         for intervention in self.interventions:
-            infos = dict(self.infos_pk)
-            if intervention in self.pd_interventions:
-                infos.update(self.infos_pd)
-            for sid, name in infos.items():
+            for sid, name in {**self.infos_pk, **self.infos_pd}.items():
                 mappings[f"fm_{name}_{intervention}"] = FitMapping(
                     self,
                     reference=FitData(
@@ -186,7 +174,7 @@ class Cui2013(ApixabanSimulationExperiment):
             plots[0].add_data(
                 task=f"task_{intervention}",
                 xid="time",
-                yid="[Cve_api]",
+                yid="Carm_api",
                 label=f"sim {self.legends[intervention]}",
                 color=self.admin_colors["single"]
                 if intervention == "API10"
@@ -215,8 +203,6 @@ class Cui2013(ApixabanSimulationExperiment):
                     if intervention == "API10"
                     else self.admin_colors["multiple"],
                 )
-                if intervention not in self.pd_interventions:
-                    continue
                 plots[1].add_data(
                     dataset=f"{name}_{intervention}",
                     xid="time",
@@ -229,30 +215,21 @@ class Cui2013(ApixabanSimulationExperiment):
                     else self.admin_colors["multiple"],
                 )
 
-        plots[2].set_xaxis(self.labels["[Cve_api]"], unit=self.units["[Cve_api]"])
+        # the anti-Xa activity against apixaban, the simulation only: the
+        # individual values of the paper (Fig4) are not curated in pkdb_data
+        plots[2].set_xaxis(self.labels["Carm_api"], unit=self.units["Carm_api"])
         plots[2].set_yaxis(
-            self.labels["antiXa_activity"],
-            unit=self.units["antiXa_activity"],
+            self.labels["COAG__antiXa_activity"],
+            unit=self.units["COAG__antiXa_activity"],
             scale="linear",
         )
         plots[2].add_data(
             task="task_API10",
-            xid="[Cve_api]",
-            yid="antiXa_activity",
+            xid="Carm_api",
+            yid="COAG__antiXa_activity",
             label="sim: 10mg PO",
             color="black",
             linestyle="solid",
-        )
-
-        plots[2].add_data(
-            dataset="antiXa_vs_apixaban",
-            xid="x",
-            yid="y",
-            label="exp individ: 10mg PO",
-            color="white",
-            markeredgecolor="black",
-            marker="o",
-            linestyle="",
         )
 
         return self.figures_by_sid(fig)

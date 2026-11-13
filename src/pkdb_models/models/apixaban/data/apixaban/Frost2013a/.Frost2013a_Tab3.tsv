@@ -1,22 +1,22 @@
-study	group	count	intervention	measurement_type	substance	tissue	method	time	time_unit	mean	cv	median	min	max	sd	se	unit	comments
-Frost2013a	placebo	12.0	placebo	inr (change)	NA	plasma	coagulation assay	NA	NA	-0.01	NA	NA	NA	NA	0.056	NA	dimensionless	NA
-Frost2013a	placebo	12.0	placebo	aPTT (change)	NA	plasma	coagulation assay	NA	NA	0.25	NA	NA	NA	NA	1.703	NA	sec	NA
-Frost2013a	placebo	12.0	placebo	modified prothrombin time (change)	NA	plasma	coagulation assay	NA	NA	0.23	NA	NA	NA	NA	8.317	NA	sec	NA
-Frost2013a	API2x2	5.0	API2x2	inr (change)	NA	plasma	coagulation assay	NA	NA	0.04	NA	NA	NA	NA	0.033	NA	dimensionless	NA
-Frost2013a	API2x2	5.0	API2x2	aPTT (change)	NA	plasma	coagulation assay	NA	NA	0.2	NA	NA	NA	NA	2.351	NA	sec	NA
-Frost2013a	API2x2	5.0	API2x2	modified prothrombin time (change)	NA	plasma	coagulation assay	NA	NA	-6.06	NA	NA	NA	NA	4.397	NA	sec	NA
-Frost2013a	API5x2	6.0	API5x2	inr (change)	NA	plasma	coagulation assay	NA	NA	0.0	NA	NA	NA	NA	0.052	NA	dimensionless	NA
-Frost2013a	API5x2	6.0	API5x2	aPTT (change)	NA	plasma	coagulation assay	NA	NA	1.63	NA	NA	NA	NA	1.827	NA	sec	NA
-Frost2013a	API5x2	6.0	API5x2	modified prothrombin time (change)	NA	plasma	coagulation assay	NA	NA	17.5	NA	NA	NA	NA	6.969	NA	sec	NA
-Frost2013a	API10x2	6.0	API10x2	inr (change)	NA	plasma	coagulation assay	NA	NA	0.17	NA	NA	NA	NA	0.058	NA	dimensionless	NA
-Frost2013a	API10x2	6.0	API10x2	aPTT (change)	NA	plasma	coagulation assay	NA	NA	2.83	NA	NA	NA	NA	1.496	NA	sec	NA
-Frost2013a	API10x2	6.0	API10x2	modified prothrombin time (change)	NA	plasma	coagulation assay	NA	NA	32.27	NA	NA	NA	NA	8.464	NA	sec	NA
-Frost2013a	API25x2	6.0	API25x2	inr (change)	NA	plasma	coagulation assay	NA	NA	0.23	NA	NA	NA	NA	0.059	NA	dimensionless	NA
-Frost2013a	API25x2	6.0	API25x2	aPTT (change)	NA	plasma	coagulation assay	NA	NA	4.8	NA	NA	NA	NA	1.19	NA	sec	NA
-Frost2013a	API25x2	6.0	API25x2	modified prothrombin time (change)	NA	plasma	coagulation assay	NA	NA	55.25	NA	NA	NA	NA	10.8	NA	sec	NA
-Frost2013a	API10	6.0	API10	inr (change)	NA	plasma	coagulation assay	NA	NA	0.05	NA	NA	NA	NA	0.033	NA	dimensionless	NA
-Frost2013a	API10	6.0	API10	aPTT (change)	NA	plasma	coagulation assay	NA	NA	1.5	NA	NA	NA	NA	1.902	NA	sec	NA
-Frost2013a	API10	6.0	API10	modified prothrombin time (change)	NA	plasma	coagulation assay	NA	NA	17.47	NA	NA	NA	NA	6.458	NA	sec	NA
-Frost2013a	API25	6.0	API25	inr (change)	NA	plasma	coagulation assay	NA	NA	0.04	NA	NA	NA	NA	0.05	NA	dimensionless	NA
-Frost2013a	API25	6.0	API25	aPTT (change)	NA	plasma	coagulation assay	NA	NA	1.78	NA	NA	NA	NA	3.605	NA	sec	NA
-Frost2013a	API25	6.0	API25	modified prothrombin time (change)	NA	plasma	coagulation assay	NA	NA	12.7	NA	NA	NA	NA	5.047	NA	sec	NA
+study	group	individual	count	intervention	measurement_type	calculation_type	choice	substance	tissue	method	label	time	time_unit	value	mean	median	sd	se	cv	min	max	gmean	gsd	gcv	unit	comments
+Frost2013a	API2x2	NA	5	API2x2	aPTT (change)	sample mean	NA	NA	plasma	coagulation assay	aPTT_change_plasma_API2x2_API2x2	NA	NA	NA	0.2	NA	2.351	1.0513991630204012	11.754999999999999	NA	NA	NA	NA	NA	sec	NA
+Frost2013a	API2x2	NA	5	API2x2	inr (change)	sample mean	NA	NA	plasma	coagulation assay	inr_change_plasma_API2x2_API2x2	NA	NA	NA	0.04	NA	0.033	0.014758048651498611	0.8250000000000001	NA	NA	NA	NA	NA	dimensionless	NA
+Frost2013a	API2x2	NA	5	API2x2	modified prothrombin time (change)	sample mean	NA	NA	plasma	coagulation assay	modified_prothrombin_time_change_plasma_API2x2_API2x2	NA	NA	NA	-6.06	NA	4.397	1.966398179413315	0.7255775577557757	NA	NA	NA	NA	NA	sec	NA
+Frost2013a	API5x2	NA	6	API5x2	aPTT (change)	sample mean	NA	NA	plasma	coagulation assay	aPTT_change_plasma_API5x2_API5x2	NA	NA	NA	1.63	NA	1.827	0.7458696266774778	1.1208588957055214	NA	NA	NA	NA	NA	sec	NA
+Frost2013a	API5x2	NA	6	API5x2	inr (change)	sample mean	NA	NA	plasma	coagulation assay	inr_change_plasma_API5x2_API5x2	NA	NA	NA	0.0	NA	0.052	0.021228911104120878	NA	NA	NA	NA	NA	NA	dimensionless	NA
+Frost2013a	API5x2	NA	6	API5x2	modified prothrombin time (change)	sample mean	NA	NA	plasma	coagulation assay	modified_prothrombin_time_change_plasma_API5x2_API5x2	NA	NA	NA	17.5	NA	6.969	2.845082336242662	0.39822857142857143	NA	NA	NA	NA	NA	sec	NA
+Frost2013a	API10	NA	6	API10	aPTT (change)	sample mean	NA	NA	plasma	coagulation assay	aPTT_change_plasma_API10_API10	NA	NA	NA	1.5	NA	1.902	0.7764882484622675	1.268	NA	NA	NA	NA	NA	sec	NA
+Frost2013a	API10	NA	6	API10	inr (change)	sample mean	NA	NA	plasma	coagulation assay	inr_change_plasma_API10_API10	NA	NA	NA	0.05	NA	0.033	0.013472193585307482	0.66	NA	NA	NA	NA	NA	dimensionless	NA
+Frost2013a	API10	NA	6	API10	modified prothrombin time (change)	sample mean	NA	NA	plasma	coagulation assay	modified_prothrombin_time_change_plasma_API10_API10	NA	NA	NA	17.47	NA	6.458	2.6364674598156275	0.3696622781911849	NA	NA	NA	NA	NA	sec	NA
+Frost2013a	API10x2	NA	6	API10x2	aPTT (change)	sample mean	NA	NA	plasma	coagulation assay	aPTT_change_plasma_API10x2_API10x2	NA	NA	NA	2.83	NA	1.496	0.6107394425339391	0.5286219081272084	NA	NA	NA	NA	NA	sec	NA
+Frost2013a	API10x2	NA	6	API10x2	inr (change)	sample mean	NA	NA	plasma	coagulation assay	inr_change_plasma_API10x2_API10x2	NA	NA	NA	0.17	NA	0.058	0.02367840084690406	0.3411764705882353	NA	NA	NA	NA	NA	dimensionless	NA
+Frost2013a	API10x2	NA	6	API10x2	modified prothrombin time (change)	sample mean	NA	NA	plasma	coagulation assay	modified_prothrombin_time_change_plasma_API10x2_API10x2	NA	NA	NA	32.27	NA	8.464	3.455413530486137	0.26228695382708395	NA	NA	NA	NA	NA	sec	NA
+Frost2013a	API25	NA	6	API25	aPTT (change)	sample mean	NA	NA	plasma	coagulation assay	aPTT_change_plasma_API25_API25	NA	NA	NA	1.78	NA	3.605	1.4717350871222263	2.0252808988764044	NA	NA	NA	NA	NA	sec	NA
+Frost2013a	API25	NA	6	API25	inr (change)	sample mean	NA	NA	plasma	coagulation assay	inr_change_plasma_API25_API25	NA	NA	NA	0.04	NA	0.05	0.020412414523193152	1.25	NA	NA	NA	NA	NA	dimensionless	NA
+Frost2013a	API25	NA	6	API25	modified prothrombin time (change)	sample mean	NA	NA	plasma	coagulation assay	modified_prothrombin_time_change_plasma_API25_API25	NA	NA	NA	12.7	NA	5.047	2.060429121971117	0.3974015748031496	NA	NA	NA	NA	NA	sec	NA
+Frost2013a	API25x2	NA	6	API25x2	aPTT (change)	sample mean	NA	NA	plasma	coagulation assay	aPTT_change_plasma_API25x2_API25x2	NA	NA	NA	4.8	NA	1.19	0.485815465651997	0.24791666666666667	NA	NA	NA	NA	NA	sec	NA
+Frost2013a	API25x2	NA	6	API25x2	inr (change)	sample mean	NA	NA	plasma	coagulation assay	inr_change_plasma_API25x2_API25x2	NA	NA	NA	0.23	NA	0.059	0.024086649137367917	0.25652173913043474	NA	NA	NA	NA	NA	dimensionless	NA
+Frost2013a	API25x2	NA	6	API25x2	modified prothrombin time (change)	sample mean	NA	NA	plasma	coagulation assay	modified_prothrombin_time_change_plasma_API25x2_API25x2	NA	NA	NA	55.25	NA	10.8	4.409081537009722	0.19547511312217195	NA	NA	NA	NA	NA	sec	NA
+Frost2013a	placebo	NA	12	placebo	aPTT (change)	sample mean	NA	NA	plasma	coagulation assay	aPTT_change_plasma_placebo_placebo	NA	NA	NA	0.25	NA	1.703	0.4916137542149664	6.812	NA	NA	NA	NA	NA	sec	NA
+Frost2013a	placebo	NA	12	placebo	inr (change)	sample mean	NA	NA	plasma	coagulation assay	inr_change_plasma_placebo_placebo	NA	NA	NA	-0.01	NA	0.056	0.016165807537309524	5.6	NA	NA	NA	NA	NA	dimensionless	NA
+Frost2013a	placebo	NA	12	placebo	modified prothrombin time (change)	sample mean	NA	NA	plasma	coagulation assay	modified_prothrombin_time_change_plasma_placebo_placebo	NA	NA	NA	0.23	NA	8.317	2.400911094425059	36.16086956521739	NA	NA	NA	NA	NA	sec	NA
